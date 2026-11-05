@@ -1,0 +1,598 @@
+{
+  "at": "2026-11-05T20:59:29.887Z",
+  "readOnly": true,
+  "productionWrites": 0,
+  "sourceRequests": 0,
+  "coverage": [
+    {
+      "team": "ARI",
+      "candidates": 27
+    },
+    {
+      "team": "ATL",
+      "candidates": 24
+    },
+    {
+      "team": "BAL",
+      "candidates": 24
+    },
+    {
+      "team": "BUF",
+      "candidates": 23
+    },
+    {
+      "team": "CAR",
+      "candidates": 25
+    },
+    {
+      "team": "CHI",
+      "candidates": 26
+    },
+    {
+      "team": "CIN",
+      "candidates": 24
+    },
+    {
+      "team": "CLE",
+      "candidates": 26
+    },
+    {
+      "team": "DAL",
+      "candidates": 24
+    },
+    {
+      "team": "DEN",
+      "candidates": 26
+    },
+    {
+      "team": "DET",
+      "candidates": 24
+    },
+    {
+      "team": "GB",
+      "candidates": 27
+    },
+    {
+      "team": "HOU",
+      "candidates": 28
+    },
+    {
+      "team": "IND",
+      "candidates": 25
+    },
+    {
+      "team": "JAX",
+      "candidates": 25
+    },
+    {
+      "team": "KC",
+      "candidates": 26
+    },
+    {
+      "team": "LAC",
+      "candidates": 26
+    },
+    {
+      "team": "LAR",
+      "candidates": 25
+    },
+    {
+      "team": "LV",
+      "candidates": 30
+    },
+    {
+      "team": "MIA",
+      "candidates": 25
+    },
+    {
+      "team": "MIN",
+      "candidates": 23
+    },
+    {
+      "team": "NE",
+      "candidates": 27
+    },
+    {
+      "team": "NO",
+      "candidates": 28
+    },
+    {
+      "team": "NYG",
+      "candidates": 26
+    },
+    {
+      "team": "NYJ",
+      "candidates": 23
+    },
+    {
+      "team": "PHI",
+      "candidates": 28
+    },
+    {
+      "team": "PIT",
+      "candidates": 25
+    },
+    {
+      "team": "SEA",
+      "candidates": 28
+    },
+    {
+      "team": "SF",
+      "candidates": 30
+    },
+    {
+      "team": "TB",
+      "candidates": 24
+    },
+    {
+      "team": "TEN",
+      "candidates": 24
+    },
+    {
+      "team": "WAS",
+      "candidates": 26
+    }
+  ],
+  "functions": [
+    {
+      "proname": "record_refresh",
+      "provolatile": "v",
+      "definition": "CREATE OR REPLACE FUNCTION nfl_roster.record_refresh(observations jsonb)\n RETURNS void\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare x jsonb; prior nfl_roster.observations; checked timestamptz;\nbegin\n if jsonb_typeof(observations)<>'array' or jsonb_array_length(observations)>110 then raise exception 'Invalid roster batch';end if;\n for x in select * from jsonb_array_elements(observations) loop\n  select * into prior from nfl_roster.current_evidence where player_id=x->>'playerId';\n  checked:=(x->>'checkedAt')::timestamptz;\n  if prior.player_id is null or prior.provider_id is distinct from x->>'providerId' or prior.team is distinct from x->>'team'\n   or prior.source_url is distinct from x->>'sourceUrl'\n   or checked>clock_timestamp() or checked<clock_timestamp()-interval '10 minutes'\n   or not exists(select 1 from nfl_roster.observations o where o.player_id=prior.player_id and o.identity_verified)\n   or x->>'status' not in('active','reserve','practice-squad','unknown') then raise exception 'Previously verified identity and recent official source required';end if;\n  insert into nfl_roster.observations(player_id,provider_id,team,position,status,identity_verified,source_url,source_hash,checked_at,evidence)\n   values(prior.player_id,prior.provider_id,prior.team,x->>'position',x->>'status',(x->>'identityVerified')::boolean,prior.source_url,x->>'sourceHash',checked,x||jsonb_build_object('policy','official-nfl-roster-v1','refresh','known-identity-v1'))\n   on conflict(player_id,checked_at) do nothing;\n end loop;\nend $function$\n"
+    },
+    {
+      "proname": "refresh_candidates",
+      "provolatile": "s",
+      "definition": "CREATE OR REPLACE FUNCTION nfl_roster.refresh_candidates()\n RETURNS TABLE(player_id text, provider_id text, team text, \"position\" text, name text, fantasy_position text)\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\n select r.player_id,r.provider_id,r.team,r.position,p.identity->>'name',p.identity->>'position'\n from nfl_roster.current_evidence r join credits_sandbox.permanent_players p on p.id=r.player_id\n where p.sport='nfl' and r.source_url like '%/team/players-roster/'\n and exists(select 1 from nfl_roster.observations o where o.player_id=r.player_id and o.identity_verified)\n$function$\n"
+    }
+  ],
+  "runs": [
+    {
+      "id": "2626",
+      "started_at": "2026-11-05T12:15:04.460Z",
+      "finished_at": "2026-11-05T12:15:13.612Z",
+      "status": "downloaded",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        }
+      ],
+      "teams_checked": 32
+    },
+    {
+      "id": "2575",
+      "started_at": "2026-11-05T00:15:01.294Z",
+      "finished_at": "2026-11-05T00:15:09.066Z",
+      "status": "downloaded",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        }
+      ],
+      "teams_checked": 32
+    },
+    {
+      "id": "2523",
+      "started_at": "2026-11-04T12:15:00.546Z",
+      "finished_at": "2026-11-04T12:15:07.653Z",
+      "status": "cooldown",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        }
+      ],
+      "teams_checked": 32
+    },
+    {
+      "id": "2473",
+      "started_at": "2026-11-04T00:15:04.400Z",
+      "finished_at": "2026-11-04T00:15:12.295Z",
+      "status": "downloaded",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        }
+      ],
+      "teams_checked": 32
+    },
+    {
+      "id": "2422",
+      "started_at": "2026-11-03T12:15:01.102Z",
+      "finished_at": "2026-11-03T12:15:09.176Z",
+      "status": "cooldown",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        }
+      ],
+      "teams_checked": 32
+    },
+    {
+      "id": "2371",
+      "started_at": "2026-11-03T00:15:04.668Z",
+      "finished_at": "2026-11-03T00:15:13.206Z",
+      "status": "downloaded",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        }
+      ],
+      "teams_checked": 32
+    },
+    {
+      "id": "2319",
+      "started_at": "2026-11-02T12:15:00.566Z",
+      "finished_at": "2026-11-02T12:15:10.201Z",
+      "status": "downloaded",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        }
+      ],
+      "teams_checked": 32
+    },
+    {
+      "id": "2268",
+      "started_at": "2026-11-02T00:15:00.336Z",
+      "finished_at": "2026-11-02T00:15:10.485Z",
+      "status": "downloaded",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        }
+      ],
+      "teams_checked": 32
+    },
+    {
+      "id": "2217",
+      "started_at": "2026-11-01T12:15:00.279Z",
+      "finished_at": "2026-11-01T12:15:08.297Z",
+      "status": "downloaded",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        }
+      ],
+      "teams_checked": 32
+    },
+    {
+      "id": "2166",
+      "started_at": "2026-11-01T00:15:00.763Z",
+      "finished_at": "2026-11-01T00:15:09.417Z",
+      "status": "cooldown",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        }
+      ],
+      "teams_checked": 32
+    },
+    {
+      "id": "2116",
+      "started_at": "2026-10-31T12:15:03.862Z",
+      "finished_at": "2026-10-31T12:15:11.531Z",
+      "status": "downloaded",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        }
+      ],
+      "teams_checked": 32
+    },
+    {
+      "id": "2064",
+      "started_at": "2026-10-31T00:15:00.682Z",
+      "finished_at": "2026-10-31T00:15:07.473Z",
+      "status": "cooldown",
+      "task": "rosters",
+      "stage": null,
+      "diagnostic": null,
+      "official_status": "partial",
+      "target_outcomes": [
+        {
+          "team": "MIA",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 25
+        },
+        {
+          "team": "TEN",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 24
+        },
+        {
+          "team": "ARI",
+          "status": "unavailable; previous evidence retained",
+          "refreshed": 0,
+          "unresolved": 27
+        }
+      ],
+      "teams_checked": 32
+    }
+  ],
+  "jobs": [
+    {
+      "jobid": "4",
+      "jobname": "docked-nfl-rosters",
+      "schedule": "15 0,12 * * *",
+      "active": true,
+      "node_destination": true,
+      "edge_destination": false,
+      "roster_task": true
+    }
+  ],
+  "history": [
+    {
+      "start_time": "2026-11-05T12:15:00.111Z",
+      "end_time": "2026-11-05T12:15:00.143Z",
+      "status": "succeeded"
+    },
+    {
+      "start_time": "2026-11-05T00:15:00.205Z",
+      "end_time": "2026-11-05T00:15:00.226Z",
+      "status": "succeeded"
+    },
+    {
+      "start_time": "2026-11-04T12:15:00.190Z",
+      "end_time": "2026-11-04T12:15:00.198Z",
+      "status": "succeeded"
+    },
+    {
+      "start_time": "2026-11-04T00:15:00.128Z",
+      "end_time": "2026-11-04T00:15:00.145Z",
+      "status": "succeeded"
+    },
+    {
+      "start_time": "2026-11-03T12:15:00.118Z",
+      "end_time": "2026-11-03T12:15:00.141Z",
+      "status": "succeeded"
+    },
+    {
+      "start_time": "2026-11-03T00:15:00.192Z",
+      "end_time": "2026-11-03T00:15:00.204Z",
+      "status": "succeeded"
+    },
+    {
+      "start_time": "2026-11-02T12:15:00.098Z",
+      "end_time": "2026-11-02T12:15:00.118Z",
+      "status": "succeeded"
+    },
+    {
+      "start_time": "2026-11-02T00:15:00.095Z",
+      "end_time": "2026-11-02T00:15:00.110Z",
+      "status": "succeeded"
+    }
+  ],
+  "observations": [
+    {
+      "team": "ARI",
+      "observations": 30,
+      "oldest": "2026-10-17T05:22:05.204Z",
+      "newest": "2026-10-17T05:24:04.108Z",
+      "newest_verified_active": "2026-10-17T05:22:05.204Z"
+    },
+    {
+      "team": "MIA",
+      "observations": 32,
+      "oldest": "2026-10-17T05:22:14.802Z",
+      "newest": "2026-10-17T05:24:42.850Z",
+      "newest_verified_active": "2026-10-17T05:22:14.802Z"
+    },
+    {
+      "team": "TEN",
+      "observations": 459,
+      "oldest": "2026-10-17T05:22:19.882Z",
+      "newest": "2026-10-29T12:15:04.816Z",
+      "newest_verified_active": "2026-10-29T12:15:04.816Z"
+    }
+  ]
+}

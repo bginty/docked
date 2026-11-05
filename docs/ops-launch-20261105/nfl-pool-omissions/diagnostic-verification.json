@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-05T21:08:27.006Z",
+  "scope": "Local diagnostic-only implementation and dependency-injected service tests; not deployed",
+  "tests": {
+    "command": "npx tsx --test tests/platform/official-roster-diagnostics.test.ts",
+    "passed": 5,
+    "failed": 0
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0
+  },
+  "lint": {
+    "scope": [
+      "src/core/official-roster-diagnostics.ts",
+      "src/server/official-roster-refresh.ts",
+      "tests/platform/official-roster-diagnostics.test.ts"
+    ],
+    "exitCode": 0
+  },
+  "formatting": {
+    "sourceAndScripts": true,
+    "exitCode": 0
+  },
+  "whitespaceCheck": true,
+  "productionWrites": 0,
+  "scheduledRefreshInvocations": 0,
+  "providerRequests": {
+    "count": 3,
+    "retries": 0,
+    "credentials": false,
+    "redirectsFollowed": false,
+    "results": "current-source-once.json"
+  },
+  "parserBehaviorChanged": false,
+  "matchingChanged": false,
+  "freshnessRuleChanged": false,
+  "googleCandidate7319Changed": false,
+  "deployed": false,
+  "remaining": "Current official pages return HTTP200 but existing parser rejects completeness; exact rejected predicate remains unverified. No stale player admission or candidate correction justified."
+}

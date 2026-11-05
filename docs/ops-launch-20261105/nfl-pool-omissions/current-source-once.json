@@ -1,0 +1,73 @@
+{
+  "at": "2026-11-05T21:03:57.112Z",
+  "authority": "parent owner-authorised one retrieval per missing official team",
+  "sourceRequests": 3,
+  "retries": 0,
+  "redirects": false,
+  "credentials": false,
+  "databaseConnections": 0,
+  "productionWrites": 0,
+  "candidateChanged": false,
+  "rows": [
+    {
+      "team": "ARI",
+      "method": "GET",
+      "requestStartedAt": "2026-11-05T21:03:54.997Z",
+      "status": "RETAINED_EVIDENCE_REQUIRED",
+      "sourceRequests": 1,
+      "httpStatus": 200,
+      "sourceRetrievedAt": "2026-11-05T21:03:55.820Z",
+      "bytes": 457611,
+      "sha256": "dbf466ba4c20c9a5073e76169eed08fe425095eddae45b5d400ff1334f6af854",
+      "structure": {
+        "tables": 7,
+        "rosterLinks": 172,
+        "positionHeaders": 7,
+        "activeHeadingLevels": [4]
+      },
+      "stage": "parse",
+      "diagnostic": "ROSTER_INCOMPLETE",
+      "finishedAt": "2026-11-05T21:03:55.829Z"
+    },
+    {
+      "team": "MIA",
+      "method": "GET",
+      "requestStartedAt": "2026-11-05T21:03:55.832Z",
+      "status": "RETAINED_EVIDENCE_REQUIRED",
+      "sourceRequests": 1,
+      "httpStatus": 200,
+      "sourceRetrievedAt": "2026-11-05T21:03:56.424Z",
+      "bytes": 438255,
+      "sha256": "d62b22d223271e3318b6909716e17463710fd9bcd8d4172a62be0f1facea1311",
+      "structure": {
+        "tables": 4,
+        "rosterLinks": 158,
+        "positionHeaders": 4,
+        "activeHeadingLevels": [4]
+      },
+      "stage": "parse",
+      "diagnostic": "ROSTER_INCOMPLETE",
+      "finishedAt": "2026-11-05T21:03:56.431Z"
+    },
+    {
+      "team": "TEN",
+      "method": "GET",
+      "requestStartedAt": "2026-11-05T21:03:56.432Z",
+      "status": "RETAINED_EVIDENCE_REQUIRED",
+      "sourceRequests": 1,
+      "httpStatus": 200,
+      "sourceRetrievedAt": "2026-11-05T21:03:57.106Z",
+      "bytes": 459746,
+      "sha256": "e58a069c84140ab965fa90e465b5c2b0f56763bb72139e20fcc67f72f250ca01",
+      "structure": {
+        "tables": 6,
+        "rosterLinks": 164,
+        "positionHeaders": 6,
+        "activeHeadingLevels": [4]
+      },
+      "stage": "parse",
+      "diagnostic": "ROSTER_INCOMPLETE",
+      "finishedAt": "2026-11-05T21:03:57.111Z"
+    }
+  ]
+}

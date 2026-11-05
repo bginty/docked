@@ -1,0 +1,80 @@
+NFL OBSERVER TRACE — 6 NOVEMBER 2026
+
+The stale ARI/MIA/TEN evidence is not explained by missing scheduled coverage.
+Read-only observation at 2026-11-05T20:59:29.887Z established:
+
+- docked-nfl-rosters is active at 00:15 and 12:15 UTC daily, targeting the existing
+  Node /api/scoring/collect?task=rosters path. No old Edge destination was selected.
+- The latest eight database cron invocations succeeded. This means dispatch,
+  not successful observations from every team.
+- All twelve inspected actual roster worker runs considered 32 teams. Each
+  records officialRoster.status=partial and ARI/MIA/TEN with refreshed=0 and
+  "unavailable; previous evidence retained".
+- The latest run is 2626, started 5 November 12:15:04Z and finished 12:15:13Z.
+  Its parent status is downloaded; another parent status was cooldown. Neither
+  parent label proves the per-team official observation succeeded.
+- The actual current refresh_candidates() includes ARI 27, MIA 25 and TEN 24
+  previously verified identities. All 44 otherwise-eligible omitted mapped
+  players have a permanent identity and roster-page source. Current SQL scope
+  does not exclude these clubs or expire old candidates before refreshing them.
+- The current function appends observations rather than overwriting them; its
+  identity/source/ten-minute observation checks remain in force. No function or
+  permission was changed by this inspection.
+
+Historical observability limit
+src/server/official-roster-refresh.ts wraps HTTP fetch, HTML validation/parser
+and record_refresh() in one catch, which records only the same generic retained-
+evidence outcome. The retained worker record has no stage or underlying diagnostic
+for these team failures. Existing data therefore cannot distinguish an HTTP error,
+redirect/timeout, page/parser change, or a rejected observation batch. Do not claim
+one of those specific causes without evidence or describe this as a rights issue.
+
+Authorised one-shot current-source diagnosis
+One GET per missing team used the exact existing official URL, fetch restrictions
+and parser. All three returned HTTP 200, then the current parser rejected them:
+
+Team  Retrieval completed (UTC)            Bytes   Diagnostic
+ARI   2026-11-05T21:03:55.820Z              457611  parse / ROSTER_INCOMPLETE
+MIA   2026-11-05T21:03:56.424Z              438255  parse / ROSTER_INCOMPLETE
+TEN   2026-11-05T21:03:57.106Z              459746  parse / ROSTER_INCOMPLETE
+
+No retry, followed redirect, credential, provider mutation or database connection
+was used. Hashes and structural counters are in current-source-once.json. Bodies,
+headers, provider exception text and source URLs are not logged. A private local
+checkpoint prevents accidental repetition of the one-shot script. No candidate
+or Production observation timestamp was changed.
+
+This identifies the current failing boundary as source completeness/parser
+validation, not HTTP availability, scheduling, bank verification or player-name
+rights. It does not establish which exact completeness predicate rejected each
+page or prove that every historical failure had the same cause. No raw page was
+cached, no new eligible-player observation was asserted, and HTTP 200 alone is not
+valid roster evidence.
+
+Narrow diagnostic implementation, not a roster correction
+src/core/official-roster-diagnostics.ts supplies bounded codes. The existing
+src/server/official-roster-refresh.ts retains its URLs, timeouts, redirect policy,
+parser/completeness guard, identity matching, write batches and retained-evidence
+fallback. Only failed outcomes gain fetch/parse/persist stage and a safe code.
+Successful outcome shape and scheduling are unchanged. No body, header, URL,
+exception text, token or SQL detail is added to persisted diagnostics.
+
+Five targeted tests passed: HTTP failure, parser failure, persistence rejection,
+unchanged success, and bounded timeout/redirect/size/database/unknown-error codes.
+The only SQL writes in those tests are mocked attempted calls; no hosted job or
+observation was executed. Exact source/type/lint evidence is recorded with this
+separate diagnostic commit, outside the canonical 7319 Google review release.
+
+Remaining technical remedy
+Keep the present candidate and 72-hour gate unchanged. Review the specific source
+markup/completeness mismatch through an appropriately authorised observation or
+source cache, then correct and test only that parser boundary. Deploy the bounded
+diagnostics through a separately verified release; normal scheduled runs can then
+preserve useful future failure classifications. Do not bypass source restrictions,
+fabricate a fresh observation, batch-import all 44 stale players or reissue cards.
+
+The initial history/coverage trace made zero Production writes/source requests;
+the subsequent specifically authorised source diagnosis made exactly three GETs.
+Neither invoked a live refresh, collector, permanent issuance or new infrastructure.
+Evidence: observer-readback.json, current-source-once.json,
+../nfl-observer-coverage-readonly.ts and ../nfl-observer-source-once.ts.
