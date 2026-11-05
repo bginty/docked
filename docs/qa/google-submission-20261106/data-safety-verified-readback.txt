@@ -1,0 +1,230 @@
+- progressbar
+- generic: Loading Google Play Console
+- banner:
+  - link "Google Play Console logo":
+    - /url: /console/u/0/developers/6139268121863991375/home
+    - button "Google Play Console logo"
+  - button "Unread notifications Open notification center":
+    - img: notifications_unread
+    - generic: Unread notifications
+  - button "Switch developer accounts":
+    - img: more_vert
+  - 'button "Google Account: briant ginty (briantg_21@hotmail.com), Google membership"':
+- navigation:
+  - list:
+    - listitem "Home":
+      - button "Home":
+        - img: home
+    - listitem "Manage account":
+      - button "Manage account":
+        - img: badge
+    - listitem "Docked":
+      - button "Docked":
+        - img: play_prism
+    - listitem "Dashboard":
+      - button "Dashboard":
+        - img: dashboard
+    - listitem "Statistics":
+      - button "Statistics":
+        - img: bar_chart
+    - listitem "Publishing overview":
+      - button "Publishing overview":
+        - img: overview
+    - listitem "Protected with Play":
+      - button "Protected with Play":
+        - img: shield
+    - listitem "Test and release":
+      - button "Test and release":
+        - img: rocket_launch
+    - listitem "Monitor and improve":
+      - button "Monitor and improve":
+        - img: vital_signs
+    - listitem "Grow users":
+      - button "Grow users":
+        - img: finance_mode
+    - listitem "Monetize with Play":
+      - button "Monetize with Play":
+        - img: sell
+- link "Go back to App content":
+  - /url: /console/u/0/developers/6139268121863991375/app/4973145400906008303/app-content/overview
+  - img: keyboard_backspace
+  - generic: App content
+- heading "Data safety" [level=1]
+- button "Export to CSV":
+  - generic: Export to CSV
+- button "Import from CSV":
+  - generic: Import from CSV
+- text: Help users understand how your app collects and shares their data.
+- button "Show more details about Data safety": Show more
+- tablist:
+  - tab "Step 1 of 5, Overview" [disabled]:
+    - img: check
+    - generic: Overview
+  - tab "Step 2 of 5, Data collection and security" [disabled]:
+    - img: check
+    - generic: Data collection and security
+  - tab "Step 3 of 5, Data types" [disabled]:
+    - img: check
+    - generic: Data types
+  - tab "Step 4 of 5, Data usage and handling" [disabled]:
+    - img: check
+    - generic: Data usage and handling
+  - tab "Step 5 of 5, Preview" [selected]:
+    - generic: "5"
+    - generic: Preview
+- tabpanel:
+  - heading "Store listing preview" [level=2]
+  - button "Collapse all" [active]:
+    - generic: Collapse all
+  - generic: Based on what you've told us, the following information will be shown to users on Google Play
+  - heading "Data shared" [level=3]
+  - generic: Data that may be shared with other companies or organizations
+  - img: performance_max
+  - strong: App info and performance
+  - generic: Diagnostics
+  - img: brightness_1
+  - button "Hide details" [expanded]:
+    - generic: Hide details
+    - img: expand_less
+  - heading "Data shared, and for what purpose" [level=4]
+  - strong: Diagnostics
+  - paragraph: App functionality, Analytics
+  - img: perm_device_information
+  - strong: Device or other IDs
+  - generic: Device or other IDs
+  - img: brightness_1
+  - button "Hide details" [expanded]:
+    - generic: Hide details
+    - img: expand_less
+  - heading "Data shared, and for what purpose" [level=4]
+  - strong: Device or other IDs
+  - paragraph: App functionality, Analytics
+  - heading "Data collected" [level=3]
+  - generic: Data this app may collect
+  - img: account_circle
+  - strong: Personal info
+  - generic: Name, Email address, User IDs, Other info
+  - img: brightness_1
+  - button "Hide details" [expanded]:
+    - generic: Hide details
+    - img: expand_less
+  - heading "Data collected, and for what purpose" [level=4]
+  - strong: Name
+  - paragraph: App functionality, Account management
+  - strong: Email address
+  - paragraph: App functionality, Analytics, Developer communications, Fraud prevention, security, and compliance, Account management
+  - strong: User IDs
+  - paragraph: App functionality, Analytics, Fraud prevention, security, and compliance, Account management
+  - strong: Other info
+  - paragraph: App functionality, Fraud prevention, security, and compliance, Account management
+  - img: credit_card
+  - strong: Financial info
+  - generic: Purchase history
+  - img: brightness_1
+  - button "Hide details" [expanded]:
+    - generic: Hide details
+    - img: expand_less
+  - heading "Data collected, and for what purpose" [level=4]
+  - strong: Purchase history
+  - img: brightness_1
+  - strong: Optional
+  - paragraph: App functionality, Fraud prevention, security, and compliance, Account management
+  - img: location_on
+  - strong: Location
+  - generic: Approximate location
+  - img: brightness_1
+  - button "Hide details" [expanded]:
+    - generic: Hide details
+    - img: expand_less
+  - heading "Data collected, and for what purpose" [level=4]
+  - strong: Approximate location
+  - paragraph: App functionality, Fraud prevention, security, and compliance, Account management
+  - img: filter
+  - strong: Photos and videos
+  - generic: Photos
+  - img: brightness_1
+  - button "Hide details" [expanded]:
+    - generic: Hide details
+    - img: expand_less
+  - heading "Data collected, and for what purpose" [level=4]
+  - strong: Photos
+  - img: brightness_1
+  - strong: Optional
+  - paragraph: App functionality, Fraud prevention, security, and compliance
+  - img: performance_max
+  - strong: App info and performance
+  - generic: Diagnostics
+  - img: brightness_1
+  - button "Hide details" [expanded]:
+    - generic: Hide details
+    - img: expand_less
+  - heading "Data collected, and for what purpose" [level=4]
+  - strong: Diagnostics
+  - paragraph: App functionality, Analytics
+  - img: touch_app
+  - strong: App activity
+  - generic: App interactions, In-app search history, Other user-generated content
+  - img: brightness_1
+  - button "Hide details" [expanded]:
+    - generic: Hide details
+    - img: expand_less
+  - heading "Data collected, and for what purpose" [level=4]
+  - strong: App interactions
+  - paragraph: App functionality, Analytics, Fraud prevention, security, and compliance, Personalization
+  - strong: In-app search history
+  - img: brightness_1
+  - strong: Optional
+  - paragraph: App functionality
+  - strong: Other user-generated content
+  - img: brightness_1
+  - strong: Optional
+  - paragraph: App functionality, Fraud prevention, security, and compliance
+  - img: perm_device_information
+  - strong: Device or other IDs
+  - generic: Device or other IDs
+  - img: brightness_1
+  - button "Hide details" [expanded]:
+    - generic: Hide details
+    - img: expand_less
+  - heading "Data collected, and for what purpose" [level=4]
+  - strong: Device or other IDs
+  - paragraph: App functionality, Analytics, Developer communications
+  - heading "Data deletion" [level=3]
+  - generic: Data that can be deleted by users.
+  - img: delete
+  - strong: Delete app account
+  - paragraph:
+    - text: You can submit a request to delete your account and associated data for this app
+    - link "https://docked.com.au/account-deletion (opens in a new tab)":
+      - /url: https://docked.com.au/account-deletion
+      - text: https://docked.com.au/account-deletion
+      - img: open_in_new
+  - heading "Security practices" [level=3]
+  - heading "Data is encrypted in transit" [level=4]:
+    - img: lock
+    - strong: Data is encrypted in transit
+  - paragraph: Your data is transferred over a secure connection
+  - heading "Privacy policy" [level=3]
+  - paragraph: https://docked.com.au/privacy
+- generic: Step 5 of 5, Preview
+- button "Discard" [disabled]:
+  - generic: Discard
+- button "Back":
+  - generic: Back
+- button "Save as draft" [disabled]:
+  - generic: Save as draft
+- button "Save" [disabled]:
+  - generic: Save
+- link "Product updates":
+  - /url: https://play.google.com/console/about/whats-new/
+- link "Status dashboard":
+  - /url: https://status.play.google.com/
+- link "Help":
+  - /url: /console/u/0/developers/6139268121863991375/help-and-support?app=4973145400906008303
+- generic: © 2026 Google
+- link "Privacy":
+  - /url: https://www.google.com/policies/privacy/
+- link "Developer Distribution Agreement":
+  - /url: https://play.google.com/about/developer-distribution-agreement.html
+- link "Terms of Service":
+  - /url: https://play.google.com/about/console/terms-of-service/

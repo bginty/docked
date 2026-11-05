@@ -1,0 +1,228 @@
+- progressbar
+- generic: Loading Google Play Console
+- banner:
+  - link "Google Play Console logo":
+    - /url: /console/u/0/developers/6139268121863991375/home
+    - button "Google Play Console logo"
+  - button "Unread notifications Open notification center":
+    - img: notifications_unread
+    - generic: Unread notifications
+  - button "Switch developer accounts":
+    - img: more_vert
+  - 'button "Google Account: briant ginty (briantg_21@hotmail.com), Google membership"':
+- navigation:
+  - list:
+    - listitem "Home":
+      - button "Home":
+        - img: home
+    - listitem "Manage account":
+      - button "Manage account":
+        - img: badge
+    - listitem "Docked":
+      - button "Docked":
+        - img: play_prism
+    - listitem "Dashboard":
+      - button "Dashboard":
+        - img: dashboard
+    - listitem "Statistics":
+      - button "Statistics":
+        - img: bar_chart
+    - listitem "Publishing overview":
+      - button "Publishing overview":
+        - img: overview
+    - listitem "Protected with Play":
+      - button "Protected with Play":
+        - img: shield
+    - listitem "Test and release":
+      - button "Test and release":
+        - img: rocket_launch
+    - listitem "Monitor and improve":
+      - button "Monitor and improve":
+        - img: vital_signs
+    - listitem "Grow users":
+      - button "Grow users":
+        - img: finance_mode
+    - listitem "Monetize with Play":
+      - button "Monetize with Play":
+        - img: sell
+- link "Go back to Store listings":
+  - /url: /console/u/0/developers/6139268121863991375/app/4973145400906008303/store-listings
+  - img: keyboard_backspace
+  - generic: Store listings
+- heading "Default store listing" [level=1]
+- img: info
+- generic: Ready to send for review
+- img: brightness_1
+- text: Edit your app's name, icon, screenshots and more to present how your app looks to users on Google Play.
+- tablist:
+  - tab "Step 1 of 2, Assets" [selected]:
+    - generic: "1"
+    - generic: Assets
+  - tab "Step 2 of 2, Review" [disabled]:
+    - generic: "2"
+    - generic: Review
+- tabpanel:
+  - generic: Select a language to edit
+  - button "Default – English (United States) – en-US":
+    - generic: Default – English (United States) – en-US
+    - img: arrow_drop_down
+  - heading "Import translations with AI" [level=3]
+  - generic: Save time by using AI to add translations instead of manually creating and adding a new translation for every language.
+  - button "Dismiss":
+    - generic: Dismiss
+  - button "Import a file":
+    - img: article_spark
+    - generic: Import a file
+  - heading "Common text assets" [level=2]
+  - generic "Required field": "*"
+  - 'button "Hide content: Common text assets" [expanded]':
+    - img: expand_more
+  - paragraph:
+    - text: Check the
+    - link "View metadata policy (opens in a new tab)":
+      - /url: https://play.google.com/about/storelisting-promotional/metadata
+      - text: Metadata policy
+    - text: and
+    - link "View Help Center guidance (opens in a new tab)":
+      - /url: https://support.google.com/googleplay/android-developer/answer/9866151
+      - text: Help Center guidance
+    - text: to avoid common issues with your store listing. Review all
+    - link "View program policies (opens in a new tab)":
+      - /url: https://play.google.com/about/developer-content-policy
+      - text: program policies
+    - text: before submitting your app.
+    - text: If you're eligible to
+    - link "View advance notice help (opens in a new tab)":
+      - /url: https://support.google.com/googleplay/android-developer/answer/6320428
+      - text: provide advance notice
+    - text: to the app review team, contact us before publishing your store listing.
+  - generic: App name
+  - generic "Required field": "*"
+  - generic: This is how your app will appear on Google Play
+  - textbox "App name": Docked
+  - paragraph
+  - generic: 6 / 30
+  - generic: Text is 6 characters out of 30
+  - generic: Short description
+  - generic "Required field": "*"
+  - generic: Users can expand to view your full description.
+  - textbox "Short description": Collect cards, build fantasy teams and connect across NFL, AFL and NRL.
+  - paragraph
+  - generic: 71 / 80
+  - generic: Text is 71 characters out of 80
+  - generic: Full description
+  - generic "Required field": "*"
+  - textbox "Full description": "Docked brings fantasy teams and digital sports-card collecting into one account for Australian adults aged 18 and over. Play across NFL, AFL and NRL. Build eligible teams using free Core player selections and enter free fantasy competitions without buying packs. Follow your lineup, available player statistics and round rankings. Free Core selections are gameplay eligibility, not automatically owned collectible cards. Optional purchases: use Google Play Billing to buy Docked Credits, then choose Standard or Premium digital card packs. Pack contents are random. Card quantities, credit prices and rarity probabilities are shown before confirmation. Rarity multipliers apply under the saved competition rules; paid cards can change a player’s fantasy contribution. Purchases are not required to participate. View your owned cards and pack history, manage your teams, and connect with members through posts, comments, reactions and communities. Your account and eligible collections are shared with docked.com.au. Email confirmation and any required multi-factor authentication still apply. Docked Credits are for use within Docked. There are no withdrawals, paid competition entries or cash prizes in this release. Cards do not promise a resale value or investment return. Clearly labelled practice fixtures are separate from official results. Statistics update when verified data is available; Docked does not promise live play-by-play coverage. Refund support remains available after opening a pack. Confirmed refunds of spent credits can place restricted purchase or transfer activity under review; statutory consumer rights remain unaffected. See the purchase terms and refund policy in the app. Support: support@docked.com.au"
+  - paragraph
+  - generic: 1739 / 4000
+  - generic: Text is 1739 characters out of 4000
+  - heading "Common visual assets" [level=2]
+  - generic "Required field": "*"
+  - 'button "Hide content: Common visual assets" [expanded]':
+    - img: expand_more
+  - paragraph:
+    - text: Manage your app icon, screenshots, and videos to promote your app on Google Play. Review the
+    - link "View content guidelines (opens in a new tab)":
+      - /url: https://support.google.com/googleplay/android-developer/answer/9866151#zippy=,app-icon
+      - text: content guidelines
+    - text: before uploading new graphics. If you add translations for your store listing without localized graphics, we will use the graphics from your default language.
+  - generic: App icon
+  - generic "Required field": "*"
+  - text: Your app icon must be a PNG or JPEG, up to 1 MB, 512 px by 512 px, and meet our
+  - link "View design specifications (opens in a new tab)":
+    - /url: https://developer.android.com/google-play/resources/icon-design-specifications
+    - text: design specifications
+  - text: and
+  - link "View metadata policy (opens in a new tab)":
+    - /url: https://support.google.com/googleplay/android-developer/answer/9898842
+    - text: metadata policy
+  - img "docked-icon-512.png"
+  - button "Remove docked-icon-512.png":
+    - img: delete
+  - button "View details for docked-icon-512.png":
+    - img: arrow_right_alt
+  - generic "Icon 1 of 1": 1 / 1
+  - button "Add assets":
+    - generic: Add assets
+  - generic: Feature graphic
+  - generic "Required field": "*"
+  - text: Your featured graphic must be a PNG or JPEG, up to 15 MB, and 1,024 px by 500 px. This graphic will be used when you choose to feature your app.
+  - link "Learn more about featuring guidelines (opens in a new tab)":
+    - /url: https://play.google.com/console/about/guides/featuring/
+    - text: Learn more
+  - img "feature-graphic-review.png"
+  - button "Remove feature-graphic-review.png":
+    - img: delete
+  - button "View details for feature-graphic-review.png":
+    - img: arrow_right_alt
+  - generic "Image 1 of 1": 1 / 1
+  - button "Add assets":
+    - generic: Add assets
+  - generic: Video
+  - generic: Add a video by entering a YouTube URL. This video must be public or unlisted, ads must be turned off, and it must not be age restricted.
+  - textbox "Video":
+    - /placeholder: https://www.youtube.com/watch?v=
+  - paragraph
+  - heading "Phone assets" [level=2]
+  - generic "Required field": "*"
+  - 'button "Hide content: Phone assets" [expanded]':
+    - img: expand_more
+  - generic: Phone screenshots
+  - generic "Required field": "*"
+  - generic: Upload 2-8 phone screenshots. Screenshots must be PNG or JPEG, up to 8 MB each, 16:9 or 9:16 aspect ratio, with each side between 320 px and 3,840 px
+  - img "store-current-nfl-play-432.jpg"
+  - button "Remove store-current-nfl-play-432.jpg":
+    - img: delete
+  - button "View details for store-current-nfl-play-432.jpg":
+    - img: arrow_right_alt
+  - img "store-current-nrl-packs-432.jpg"
+  - button "Remove store-current-nrl-packs-432.jpg":
+    - img: delete
+  - button "View details for store-current-nrl-packs-432.jpg":
+    - img: arrow_right_alt
+  - img "store-current-nfl-field-432.jpg"
+  - button "Remove store-current-nfl-field-432.jpg":
+    - img: delete
+  - button "View details for store-current-nfl-field-432.jpg":
+    - img: arrow_right_alt
+  - img "store-current-afl-packs-432.jpg"
+  - button "Remove store-current-afl-packs-432.jpg":
+    - img: delete
+  - button "View details for store-current-afl-packs-432.jpg":
+    - img: arrow_right_alt
+  - generic "Screenshot 4 of 8": 4 / 8
+  - button "Add assets":
+    - generic: Add assets
+  - img: info
+  - generic: To be eligible for promotion, include at least 4 screenshots at a minimum of 1080 px on each side.
+  - link "View content guidelines about phone screenshots (opens in a new tab)":
+    - /url: https://support.google.com/googleplay/android-developer/answer/9866151#screenshots
+    - generic: View content guidelines
+  - heading "Tablet assets" [level=2]
+  - 'button "Show content: Tablet assets"':
+    - img: expand_more
+  - heading "Desktop assets" [level=2]
+  - 'button "Show content: Desktop assets"':
+    - img: expand_more
+  - heading "Android XR assets" [level=2]
+  - 'button "Show content: Android XR assets"':
+    - img: expand_more
+- button "Discard" [disabled]:
+  - generic: Discard
+- button "Save as draft" [disabled]:
+  - generic: Save as draft
+- button "Next":
+  - generic: Next
+- link "Product updates":
+  - /url: https://play.google.com/console/about/whats-new/
+- link "Status dashboard":
+  - /url: https://status.play.google.com/
+- link "Help":
+  - /url: /console/u/0/developers/6139268121863991375/help-and-support?app=4973145400906008303
+- generic: © 2026 Google
+- link "Privacy":
+  - /url: https://www.google.com/policies/privacy/
+- link "Developer Distribution Agreement":
+  - /url: https://play.google.com/about/developer-distribution-agreement.html
+- link "Terms of Service":
+  - /url: https://play.google.com/about/console/terms-of-service/

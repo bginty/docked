@@ -1,0 +1,261 @@
+- progressbar
+- generic: Loading Google Play Console
+- banner:
+  - link "Google Play Console logo":
+    - /url: /console/u/0/developers/6139268121863991375/home
+    - button "Google Play Console logo"
+  - button "Unread notifications Open notification center":
+    - img: notifications_unread
+    - generic: Unread notifications
+  - button "Switch developer accounts":
+    - img: more_vert
+  - 'button "Google Account: briant ginty (briantg_21@hotmail.com), Google membership"':
+- navigation:
+  - list:
+    - listitem "Home":
+      - button "Home":
+        - img: home
+    - listitem "Manage account":
+      - button "Manage account":
+        - img: badge
+    - listitem "Docked":
+      - button "Docked":
+        - img: play_prism
+    - listitem "Dashboard":
+      - button "Dashboard":
+        - img: dashboard
+    - listitem "Statistics":
+      - button "Statistics":
+        - img: bar_chart
+    - listitem "Publishing overview":
+      - button "Publishing overview":
+        - img: overview
+    - listitem "Protected with Play":
+      - button "Protected with Play":
+        - img: shield
+    - listitem "Test and release":
+      - button "Test and release":
+        - img: rocket_launch
+    - listitem "Monitor and improve":
+      - button "Monitor and improve":
+        - img: vital_signs
+    - listitem "Grow users":
+      - button "Grow users":
+        - img: finance_mode
+    - listitem "Monetize with Play":
+      - button "Monetize with Play":
+        - img: sell
+- link "Go back to App content":
+  - /url: /console/u/0/developers/6139268121863991375/app/4973145400906008303/app-content/overview
+  - img: keyboard_backspace
+  - generic: App content
+- heading "Content ratings" [level=1]
+- text: Receive content ratings for your app from official rating authorities.
+- button "Show more details about Content ratings": Show more
+- paragraph: Submit a new questionnaire if you’ve made changes to your app that would affect previous responses
+- button "Start new questionnaire": Start new questionnaire
+- heading "Your current ratings" [level=3]
+- generic: IARC status
+- img: check_circle
+- generic: Completed
+- button "View detailed ratings":
+  - generic: View details
+- generic: Email address
+- text: support@docked.com.au
+- button "Edit":
+  - generic: Edit
+- generic: IARC certificate ID
+- generic: "-"
+- generic: Submitted
+- generic: November 6, 2026, 12:01 AM
+- generic: Your ratings
+- img "Mature, Australian Classification Board (ACB), Australia"
+- img "Rated 18+, Classificação Indicativa (ClassInd), Brazil"
+- img "Everyone, Entertainment Software Rating Board (ESRB), North America"
+- img "All ages, Game Rating and Administration Committee (GRAC), South Korea"
+- img "General Public, Digital Game Self-regulation Committee (DGSC), Taiwan"
+- img "3, General Authority of Media Regulation (Gmedia), Saudi Arabia"
+- img "PEGI 3, Pan-European Game Information (PEGI), Europe"
+- 'img "USK: Ages 12+, Unterhaltungssoftware Selbstkontrolle (USK), Germany"'
+- img "Rated for 3+, IARC Generic, Rest of world"
+- img "Rated for 3+, Google Play, Russia"
+- heading "Previous questionnaires" [level=3]
+- 'button "Hide content: Previous questionnaires" [expanded]':
+  - generic: Hide
+  - img: expand_less
+- grid "Questionnaires history":
+  - row "Submitted IARC Certificate ID Email address":
+    - columnheader "Submitted"
+    - columnheader "IARC Certificate ID"
+    - columnheader "Email address"
+    - cell
+  - row "November 6, 2026, 12:01 AM - support@docked.com.au View detailed ratings":
+    - gridcell "November 6, 2026, 12:01 AM":
+      - generic: November 6, 2026, 12:01 AM
+    - gridcell "-":
+      - generic: "-"
+    - gridcell "support@docked.com.au":
+      - generic: support@docked.com.au
+    - gridcell "View detailed ratings":
+      - button "View detailed ratings":
+        - img: arrow_right_alt
+  - row "November 2, 2026, 3:56 PM - support@docked.com.au View detailed ratings":
+    - gridcell "November 2, 2026, 3:56 PM":
+      - generic: November 2, 2026, 3:56 PM
+    - gridcell "-":
+      - generic: "-"
+    - gridcell "support@docked.com.au":
+      - generic: support@docked.com.au
+    - gridcell "View detailed ratings":
+      - button "View detailed ratings":
+        - img: arrow_right_alt
+  - row "November 1, 2026, 9:16 AM - support@docked.com.au View detailed ratings":
+    - gridcell "November 1, 2026, 9:16 AM":
+      - generic: November 1, 2026, 9:16 AM
+    - gridcell "-":
+      - generic: "-"
+    - gridcell "support@docked.com.au":
+      - generic: support@docked.com.au
+    - gridcell "View detailed ratings":
+      - button "View detailed ratings":
+        - img: arrow_right_alt
+- text: Content ratings on Google Play are provided by the
+- link "International Age Rating Coalition (IARC) (opens in a new tab)":
+  - /url: https://globalratings.com
+  - text: International Age Rating Coalition (IARC)
+- text: . By completing this questionnaire you agree to IARC's
+- link "Terms of Service (opens in a new tab)":
+  - /url: https://web.iarcservices.com/terms
+  - text: Terms of Service
+- link "Product updates":
+  - /url: https://play.google.com/console/about/whats-new/
+- link "Status dashboard":
+  - /url: https://status.play.google.com/
+- link "Help":
+  - /url: /console/u/0/developers/6139268121863991375/help-and-support?app=4973145400906008303
+- generic: © 2026 Google
+- link "Privacy":
+  - /url: https://www.google.com/policies/privacy/
+- link "Developer Distribution Agreement":
+  - /url: https://play.google.com/about/developer-distribution-agreement.html
+- link "Terms of Service":
+  - /url: https://play.google.com/about/console/terms-of-service/
+- status
+- dialog "Summary":
+  - heading "Summary" [level=2]
+  - button "Close" [active]:
+    - img: close
+  - region:
+    - paragraph:
+      - generic: Category
+      - generic: Game
+      - generic: Digital Purchases, Cash Convertible Rewards, or NFTs
+      - generic: Can purchase digital goods
+      - generic: Can include random prizes
+      - generic: Miscellaneous
+      - generic: Online Interaction or Content shared with others
+      - generic: Users or user-generated content can be blocked
+      - generic: Users or user-generated content can be reported
+      - generic: Moderated chat
+      - heading "Your ratings" [level=2]
+      - heading "Australia" [level=3]
+      - generic: "Rating authority: Australian Classification Board (ACB)"
+      - generic: Rating
+      - img "Mature"
+      - generic: Mature
+      - generic: Content descriptors
+      - generic: Online Interactivity and Chat
+      - generic: Chance-Based In-Game Purchases
+      - generic: Interactive elements
+      - generic: Users Interact
+      - generic: In-Game Purchases (Includes Random Items)
+      - heading "Brazil" [level=3]
+      - generic: "Rating authority: Classificação Indicativa (ClassInd)"
+      - generic: Rating
+      - img "Rated 18+"
+      - generic: Rated 18+
+      - generic: Content descriptors
+      - generic: "-"
+      - generic: Interactive elements
+      - generic: Users Interact
+      - generic: In-Game Purchases (Includes Random Items)
+      - heading "North America" [level=3]
+      - generic: "Rating authority: Entertainment Software Rating Board (ESRB)"
+      - generic: Rating
+      - img "Everyone"
+      - generic: Everyone
+      - generic: Content descriptors
+      - generic: "-"
+      - generic: Interactive elements
+      - generic: Users Interact
+      - generic: In-Game Purchases (Includes Random Items)
+      - heading "South Korea" [level=3]
+      - generic: "Rating authority: Game Rating and Administration Committee (GRAC)"
+      - generic: Rating
+      - img "All ages"
+      - generic: All ages
+      - generic: Content descriptors
+      - generic: Random Box
+      - generic: Interactive elements
+      - generic: Users Interact
+      - generic: In-Game Purchases (Includes Random Items)
+      - heading "Taiwan" [level=3]
+      - generic: "Rating authority: Digital Game Self-regulation Committee (DGSC)"
+      - generic: Rating
+      - img "General Public"
+      - generic: General Public
+      - generic: Content descriptors
+      - generic: "-"
+      - generic: Interactive elements
+      - generic: Users Interact
+      - generic: In-Game Purchases (Includes Random Items)
+      - heading "Saudi Arabia" [level=3]
+      - generic: "Rating authority: General Authority of Media Regulation (Gmedia)"
+      - generic: Rating
+      - img "3"
+      - generic: "3"
+      - generic: Content descriptors
+      - generic: "-"
+      - generic: Interactive elements
+      - generic: Users Interact
+      - generic: In-Game Purchases (Includes Random Items)
+      - heading "Europe" [level=3]
+      - generic: "Rating authority: Pan-European Game Information (PEGI)"
+      - generic: Rating
+      - img "PEGI 3"
+      - generic: PEGI 3
+      - generic: Content descriptors
+      - generic: "-"
+      - generic: Interactive elements
+      - generic: Users Interact
+      - generic: In-Game Purchases (Includes Random Items)
+      - heading "Germany" [level=3]
+      - generic: "Rating authority: Unterhaltungssoftware Selbstkontrolle (USK)"
+      - generic: Rating
+      - 'img "USK: Ages 12+"'
+      - generic: "USK: Ages 12+"
+      - generic: Content descriptors
+      - generic: Increased Incentives to Buy
+      - generic: Interactive elements
+      - generic: Users Interact
+      - generic: In-Game Purchases (Includes Random Items)
+      - heading "Rest of world" [level=3]
+      - generic: "Rating authority: IARC Generic"
+      - generic: Rating
+      - img "Rated for 3+"
+      - generic: Rated for 3+
+      - generic: Content descriptors
+      - generic: "-"
+      - generic: Interactive elements
+      - generic: Users Interact
+      - generic: In-Game Purchases (Includes Random Items)
+      - heading "Russia" [level=3]
+      - generic: "Rating authority: Google Play"
+      - generic: Rating
+      - img "Rated for 3+"
+      - generic: Rated for 3+
+      - generic: Content descriptors
+      - generic: "-"
+      - generic: Interactive elements
+      - generic: Users Interact
+      - generic: In-Game Purchases (Includes Random Items)

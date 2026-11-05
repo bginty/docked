@@ -1,0 +1,59 @@
+- region "Beta participation notice":
+  - generic: DOCKED BETA · Invited members only
+  - generic: 18+ · Experimental gameplay and rankings · No cash value
+- link "Skip to content":
+  - /url: "#main"
+- main:
+  - article "Privacy notice":
+    - paragraph: Docked policies
+    - heading "Privacy notice" [level=1]
+    - paragraph: Current service notice. Public release and real-money purchases are not yet enabled.
+    - paragraph:
+      - generic: Published 6 November 2026 · Version 2026-11-06-privacy-sdk-v3
+    - navigation "Policy documents":
+      - list:
+        - link "Privacy notice":
+          - /url: /privacy
+        - link "Purchases and refunds":
+          - /url: /refund-policy
+        - link "Retention and deletion":
+          - /url: /retention
+        - link "Service and commercial release policy":
+          - /url: /commercial-policy
+        - link "Delete your account":
+          - /url: /account-deletion
+    - heading "Who we are" [level=2]
+    - paragraph: Docked is operated by Ginty United Investments Pty Ltd, ABN 78 606 187 106. Contact support@docked.com.au for privacy, access, correction, deletion or a complaint. NFL, AFL and NRL use one account. The current service is an invitation-only Australian adult beta.
+    - heading "Account and gameplay information" [level=2]
+    - paragraph: We handle email addresses and account identifiers, login and security records, profile information, country/state and age attestations, accepted policy versions and preferences. Required information supports authentication, eligibility, recovery and the service. Optional profile details are your choice.
+    - paragraph: We record cards, ownership transfers, serial and supply records, packs, credit transactions, marketplace sales, fantasy teams, competition entries and results. These support your collection, scoring, transaction reconciliation, dispute handling and fraud prevention. Test credits and test inventory have no cash value.
+    - heading "Social content and support" [level=2]
+    - paragraph: Posts, comments, reactions, follows, community memberships, optional images and shared-card snapshots are processed to provide the social features. Visibility follows audience, privacy, blocking and moderation controls. Other members may copy content you share. A historical card-post snapshot can remain a record of what was shared after a transfer. Reports, internal moderation notes, private preferences and authentication records are not ordinary public posts.
+    - paragraph: Support receives the messages and information you provide. Do not email passwords, payment-card details, verification links or identity documents. Real identity-document collection is disabled in the current test release.
+    - heading "Purchases" [level=2]
+    - paragraph: Real-money purchasing is disabled. Authorised Google Play TEST checkout is used only for testing. Google handles checkout and payment methods. Docked's server verifies purchase references, product, bound account, purchase state, fulfilment and refund evidence. Docked does not receive a complete Google payment-card number. Purchase references are sensitive and are not public profile data. Google processes information under its own privacy terms. A paid release will require completion of the payment and commercial approval process; this notice does not activate it.
+    - heading "Service providers and overseas processing" [level=2]
+    - paragraph: Docked uses Supabase for authentication and database services and Vercel for hosting. Our support/account mailbox uses Microsoft Exchange Online, purchased through GoDaddy with its listed email security service. The database and application functions are configured in Sydney. Providers can also use overseas infrastructure, support, backups and subprocessors. Sydney configuration does not mean all processing stays in Australia. Supabase's residency guidance identifies additional support/service processing in the United States, Singapore and Europe; this is not an exhaustive list across all providers.
+    - paragraph: We have not verified the mailbox's data-at-rest geography or every provider recovery, quarantine, backup or hold setting. We do not promise Australian-only processing or a fixed date when every provider-held copy is erased. Necessary information may also be disclosed to authorised personnel, advisers or authorities to provide the service, handle requests or incidents, or meet applicable obligations.
+    - heading "Device information and analytics" [level=2]
+    - paragraph: Network and security operations can involve IP addresses, device/request information and service logs. Optional first-party usage events require analytics consent and respect the browser's Do Not Track setting. Anonymous visitors are not assigned an identity by that observer. This does not mean hosting providers collect no operational information.
+    - paragraph: The app has no advertising SDK. Android and Google Play may provide operating-system diagnostics under their own settings.
+    - paragraph: The Android app also includes Google Play Billing Library. When the library is initialised or used, it sends billing-operation results, technical app/device information and a per-session identifier to Google for billing reliability, performance improvement and error support. This automatic SDK processing can occur without a completed purchase. It is separate from Docked's optional usage analytics and is not disabled by that analytics preference. Google handles this information under its own privacy terms.
+    - paragraph: Optional media selection and notification preferences follow device permissions and application controls. Contacts, microphone and location access are not required to buy a pack. We do not use identity documents or purchase tokens in Docked's optional usage analytics.
+    - heading "Access, correction and account deletion" [level=2]
+    - paragraph: Request an account export or deletion through Account settings. The account-deletion page is accessible on the web without installing the app. If you cannot sign in, use account recovery or contact support. We verify requests proportionately and do not routinely ask for identity documents.
+    - paragraph: Deletion first revokes access and sessions. In the current private beta, shared authentication identities require operator review before identity erasure; access revocation alone is not completed deletion. Eligible personal content is removed or pseudonymised through the deletion workflow. A failed or deferred step remains pending. Necessary ownership, competition, consent, dispute and security evidence can be retained for its documented purpose. Still-linkable information is not anonymous. Our retention notice explains the current targets and limitations.
+    - paragraph: For public customer accounts, credential erasure removes sign-in secrets and identifying Auth metadata while an opaque account reference may remain linked to necessary ownership, competition and audit records. The active profile is removed. This reference is restricted, is not an active login and is not described as anonymous while still linkable.
+    - heading "Questions and complaints" [level=2]
+    - paragraph: Email support@docked.com.au for access, correction, deletion or review of a privacy response. We explain restrictions needed to protect another person or meet an applicable obligation. Where the Privacy Act applies, you can seek assistance from the Office of the Australian Information Commissioner. This notice does not restrict rights that cannot lawfully be excluded. Previous accepted policy versions remain recorded; publication does not rewrite a past consent.
+    - paragraph: Ginty United Investments Pty Ltd · ABN 78 606 187 106
+    - paragraph:
+      - link "support@docked.com.au":
+        - /url: mailto:support@docked.com.au
+    - paragraph:
+      - link "Previously accepted beta policies":
+        - /url: /beta-policies
+    - paragraph:
+      - link "OAIC privacy complaints":
+        - /url: https://www.oaic.gov.au/privacy/privacy-complaints
+- alert

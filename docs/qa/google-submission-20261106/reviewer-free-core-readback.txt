@@ -1,0 +1,310 @@
+- link "Skip to content":
+  - /url: "#main"
+- main:
+  - complementary:
+    - link "Docked home":
+      - /url: /fantasy/play?sport=nrl
+      - img "Docked"
+    - navigation "App navigation":
+      - link "Play":
+        - /url: /fantasy/play?sport=nrl
+        - text: Play
+      - link "Cards":
+        - /url: /fantasy/cards?sport=nrl
+        - text: Cards
+      - link "Market":
+        - /url: /fantasy/market?sport=nrl
+        - text: Market
+      - link "Social":
+        - /url: /fantasy/social?sport=nrl
+        - text: Social
+      - link "Profile":
+        - /url: /fantasy/profile
+        - text: Profile
+    - generic "More & settings"
+    - link "Your account":
+      - /url: /fantasy/profile
+      - text: Your account
+      - generic: →
+    - paragraph:
+      - text: 18+ · Fantasy Cards
+      - text: Free play. No cash value.
+  - strong: Play
+  - navigation "App utilities":
+    - link "30,000 test Docked Credits":
+      - /url: /fantasy/test-wallet
+      - strong: 30,000
+      - generic: test Docked Credits
+    - link "Notifications":
+      - /url: /notifications
+    - link "Settings":
+      - /url: /dashboard
+  - navigation "Sport":
+    - button "NFL"
+    - button "AFL"
+    - button "NRL" [pressed]
+  - heading "Your lineup" [level=1]
+  - generic "Test rounds · No prizes · Provisional scoring"
+  - generic: Competition
+  - navigation "Competition":
+    - button "Traditional $8.2m salary cap" [active] [pressed]:
+      - text: Traditional
+      - generic: $8.2m salary cap
+    - button "All-Star No salary cap":
+      - text: All-Star
+      - generic: No salary cap
+  - generic: Team name
+  - strong: Docked Review
+  - generic: Entered
+  - button "Previous round": ‹
+  - generic: Season and round
+  - combobox "Round":
+    - option "2026 Test Season · Round 1"
+    - option "2026 Practice · Round 1" [selected]
+    - option "2026 Test Season · Round 2"
+    - option "2026 Test Season · Round 3"
+    - option "2026 Test Season · Round 4"
+    - option "2026 Test Season · Round 5"
+  - button "Next round": ›
+  - link "Rankings":
+    - /url: /fantasy/results?sport=nrl&competition=5ff32114-d621-41ac-ae2b-f006b0401eba&mode=SALARY_CAP&season=2026+Practice&week=1
+    - generic: Rankings
+    - generic: ›
+  - link "Prizes":
+    - /url: /fantasy/prizes?sport=nrl&competition=5ff32114-d621-41ac-ae2b-f006b0401eba&mode=SALARY_CAP&season=2026+Practice&week=1
+    - generic: Prizes
+    - generic: ›
+  - link "Rules":
+    - /url: /fantasy/scoring/how-it-works?sport=nrl&competition=5ff32114-d621-41ac-ae2b-f006b0401eba&mode=SALARY_CAP&season=2026+Practice&week=1
+    - generic: Rules
+    - generic: ›
+  - button "Refresh"
+  - generic "Entry & lock times"
+  - region "Round score":
+    - heading "Round 1 · Upcoming" [level=2]
+    - strong: — PTS
+    - paragraph: 0/13 played · 0/13 completed · Rank —
+    - paragraph: Games have not started
+    - paragraph:
+      - text: "All selections lock:"
+      - time: 31/01/2027, 11:00:00
+  - button "List view"
+  - region "NRL own lineup":
+    - region "Fullbacks / Wings":
+      - heading "Fullbacks / Wings · 2" [level=3]
+      - generic: WFB1
+      - 'button "Select WFB1: Brian To''o"':
+        - generic: WFB
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Brian
+        - generic: To'o
+        - generic: Penrith
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+      - generic: WFB2
+      - 'button "Select WFB2: Hamiso Tabuai-Fidow"':
+        - generic: WFB
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Hamiso
+        - generic: Tabuai-Fidow
+        - generic: Dolphins
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+    - region "Centres":
+      - heading "Centres · 2" [level=3]
+      - generic: CTR1
+      - 'button "Select CTR1: Taylan May"':
+        - generic: CTR
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Taylan
+        - generic: May
+        - generic: Wests Tigers
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+      - generic: CTR2
+      - 'button "Select CTR2: Clayton Faulalo"':
+        - generic: WFB
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Clayton
+        - generic: Faulalo
+        - generic: Manly-Warringah
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+    - region "Halves":
+      - heading "Halves · 2" [level=3]
+      - generic: HLF1
+      - 'button "Select HLF1: Latu Fainu"':
+        - generic: HLF
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Latu
+        - generic: Fainu
+        - generic: Wests Tigers
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+      - generic: HLF2
+      - 'button "Select HLF2: Brad Schneider"':
+        - generic: HLF
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Brad
+        - generic: Schneider
+        - generic: Dolphins
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+    - region "Edge forwards":
+      - heading "Edge forwards · 3" [level=3]
+      - generic: EDG1
+      - 'button "Select EDG1: Eliesa Katoa"':
+        - generic: EDG
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Eliesa
+        - generic: Katoa
+        - generic: Melbourne
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+      - generic: EDG2
+      - 'button "Select EDG2: Oryn Keeley"':
+        - generic: EDG
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Oryn
+        - generic: Keeley
+        - generic: Melbourne
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+      - generic: EDG3
+      - 'button "Select EDG3: Alex Seyfarth"':
+        - generic: EDG
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Alex
+        - generic: Seyfarth
+        - generic: Wests Tigers
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+    - region "Middle forwards":
+      - heading "Middle forwards · 3" [level=3]
+      - generic: MID1
+      - 'button "Select MID1: De La Salle Va''a"':
+        - generic: MID
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: De La Salle
+        - generic: Va'a
+        - generic: Sydney
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+      - generic: MID2
+      - 'button "Select MID2: Tuku Hau Tapuha"':
+        - generic: MID
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Tuku Hau
+        - generic: Tapuha
+        - generic: Cronulla-Sutherland
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+      - generic: MID3
+      - 'button "Select MID3: Thomas Hazelton"':
+        - generic: MID
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Thomas
+        - generic: Hazelton
+        - generic: Cronulla-Sutherland
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+    - region "Flex":
+      - heading "Flex · 1" [level=3]
+      - generic: FLEX1
+      - 'button "Select FLEX1: Tevita Naufahu"':
+        - generic: WFB
+        - generic "Core, 1.0 times. Card rarity multiplier; applied points depend on the competition rules":
+          - generic: CORE
+          - generic: 1.0×
+        - generic: Tevita
+        - generic: Naufahu
+        - generic: Dolphins
+        - generic: Unlimited Core
+        - img "Docked"
+      - paragraph:
+        - strong: — PTS
+        - generic: Not started
+  - complementary:
+    - heading "Team summary" [level=2]
+    - strong: 13 / 13 selected
+    - term: Fullbacks / Wings
+    - definition: 2 / 2
+    - term: Centres
+    - definition: 2 / 2
+    - term: Halves
+    - definition: 2 / 2
+    - term: Edge forwards
+    - definition: 3 / 3
+    - term: Middle forwards
+    - definition: 3 / 3
+    - term: Flex
+    - definition: 1 / 1
+    - heading "Traditional" [level=3]
+    - paragraph: $6,500,000 / 8,200,000 fantasy salary dollars
+    - text: Salary budget used
+    - progressbar
+    - paragraph: 1,700,000 fantasy salary dollars remaining
+  - button "Save draft" [disabled]
+  - button "Update Team" [disabled]
+  - paragraph: Invited test beta · No cash value. Competition rules apply.
+- alert

@@ -1,0 +1,147 @@
+- link "Skip to content":
+  - /url: "#main"
+- main:
+  - complementary:
+    - link "Docked home":
+      - /url: /fantasy/play?sport=nrl
+      - img "Docked"
+    - navigation "App navigation":
+      - link "Play":
+        - /url: /fantasy/play?sport=nrl
+        - text: Play
+      - link "Cards":
+        - /url: /fantasy/cards?sport=nrl
+        - text: Cards
+      - link "Market":
+        - /url: /fantasy/market?sport=nrl
+        - text: Market
+      - link "Social":
+        - /url: /fantasy/social?sport=nrl
+        - text: Social
+      - link "Profile":
+        - /url: /fantasy/profile
+        - text: Profile
+    - generic "More & settings"
+    - link "Your account":
+      - /url: /fantasy/profile
+      - text: Your account
+      - generic: →
+    - paragraph:
+      - text: 18+ · Fantasy Cards
+      - text: Free play. No cash value.
+  - strong: Profile
+  - navigation "App utilities":
+    - link "30,000 test Docked Credits":
+      - /url: /fantasy/test-wallet
+      - strong: 30,000
+      - generic: test Docked Credits
+    - link "Notifications":
+      - /url: /notifications
+    - link "Settings":
+      - /url: /dashboard
+  - status
+  - generic: D
+  - heading "Docked Review" [level=1]
+  - paragraph: Your profile · NRL
+  - link "Edit profile":
+    - /url: /profile?tab=about
+  - link "Packs":
+    - /url: /fantasy/cards?tab=packs&sport=nrl
+  - link "Test Wallet":
+    - /url: /fantasy/test-wallet
+  - heading "Collection & record" [level=2]
+  - navigation "Sport":
+    - button "NFL"
+    - button "AFL"
+    - button "NRL" [pressed]
+  - link "0 Cards":
+    - /url: /fantasy/cards?sport=nrl
+    - strong: "0"
+    - generic: Cards
+  - link "1 Entries":
+    - /url: /fantasy/results?sport=nrl
+    - strong: "1"
+    - generic: Entries
+  - link "0 Packs opened":
+    - /url: /fantasy/cards?tab=packs&sport=nrl&packs=history
+    - strong: "0"
+    - generic: Packs opened
+  - generic "Rarity counts in selected sport":
+    - link "View 0 Core cards in NRL":
+      - /url: /fantasy/cards?sport=nrl&rarity=CORE
+      - generic: Core
+      - strong: "0"
+    - link "View 0 Rare cards in NRL":
+      - /url: /fantasy/cards?sport=nrl&rarity=RARE
+      - generic: Rare
+      - strong: "0"
+    - link "View 0 Elite cards in NRL":
+      - /url: /fantasy/cards?sport=nrl&rarity=ELITE
+      - generic: Elite
+      - strong: "0"
+    - link "View 0 Ultra Rare cards in NRL":
+      - /url: /fantasy/cards?sport=nrl&rarity=ULTRA_RARE
+      - generic: Ultra Rare
+      - strong: "0"
+    - link "View 0 Legendary cards in NRL":
+      - /url: /fantasy/cards?sport=nrl&rarity=LEGENDARY
+      - generic: Legendary
+      - strong: "0"
+    - link "View 0 Icon cards in NRL":
+      - /url: /fantasy/cards?sport=nrl&rarity=ICON
+      - generic: Icon
+      - strong: "0"
+  - link "View Collection":
+    - /url: /fantasy/cards?sport=nrl
+    - generic: View Collection
+    - generic: ›
+  - link "View Rankings":
+    - /url: /fantasy/results?sport=nrl
+    - generic: View Rankings
+    - generic: ›
+  - link "NRL Pack History":
+    - /url: /fantasy/cards?tab=packs&sport=nrl&packs=history
+    - generic: NRL Pack History
+    - generic: ›
+  - heading "Account details Private" [level=2]:
+    - text: Account details
+    - generic: Private
+  - paragraph: Visible only to you
+  - term: Email
+  - definition: b••••@gmail.com
+  - term: Email verification
+  - definition: Verified
+  - link "Manage Account":
+    - /url: /dashboard
+    - generic: Manage Account
+    - generic: ›
+  - heading "Account shortcuts" [level=2]
+  - navigation "Account shortcuts":
+    - link "Withdrawals":
+      - /url: /profile/withdrawals
+      - generic: Withdrawals
+      - generic: ›
+    - link "Settings & Privacy":
+      - /url: /dashboard
+      - generic: Settings & Privacy
+      - generic: ›
+    - link "Social Profile":
+      - /url: /profile
+      - generic: Social Profile
+      - generic: ›
+    - button "Install Docked"
+  - link "Identity verification":
+    - /url: /profile/identity-verification
+    - generic: Identity verification
+    - generic: ›
+  - heading "Support & feedback" [level=2]
+  - paragraph: Have a question, spotted an issue or have an idea for Docked? We’d love to hear from you.
+  - paragraph: support@docked.com.au
+  - link "Email support":
+    - /url: mailto:support@docked.com.au
+    - generic: Email support
+    - generic: ›
+  - button "Copy email"
+  - status
+  - paragraph: Invited test beta · No cash value. Competition rules apply.
+- alert

@@ -1,0 +1,170 @@
+DOCKED — AUSTRALIAN GOOGLE PLAY REVIEW SUBMISSION
+6 November 2026, Australia/Sydney
+
+Actual outcome
+
+The ten saved changes were sent to Google. After the post-submission automated
+checks, Play Console explicitly said: "Your changes are now in review."
+Managed publishing remains ON. This is a review submission, not approval,
+publication, public registration or payment activation. No new blocking warning
+appeared. Google retains the normal warning that review may identify issues.
+
+Submitted Android release: 30 / 1.29, docked.fantasy, Australia only.
+AAB SHA256 d3837d7191e0a6bbd64a572a9ac3288fd37b440eb36e67408648fb4b3c879e29.
+No native rebuild or repeat physical-device purchase was necessary for this
+privacy/Auth-only backend release. Existing successful v30 TEST billing,
+acknowledgement, fulfilment and refund evidence remains applicable.
+
+Console evidence
+
+- google-review-submitted-readback.txt and google-review-submitted.png show the
+  final in-review state after quick checks, with managed publishing on.
+- IARC completed, Australia M / Mature. Online interactivity/chat and chance-based
+  in-game purchases are declared. No invented classification certificate ID.
+- Target audience 18+, no ads, privacy and deletion URLs match the deployed pages.
+- Data Safety includes required SDK diagnostics/device identifiers, collection
+  and sharing, and their applicable functionality/analytics purposes. No form
+  value or declaration was changed merely to obtain approval.
+- Four saved screenshots: NFL Play, NRL Packs, NFL Field, AFL Packs. No NBA.
+- App access has the previously supplied reviewer credentials. Only presence of
+  the password was verified; no password was copied to evidence or Git. Existing
+  owner full-access attestation was preserved, not newly made by the agent.
+- Reviewer instructions explain free Core, beta-only inventory, 30,000 TEST
+  credits and disabled native checkout/trading/withdrawals/prizes/NBA.
+- Submission confirmation contained a review-timing notice, not a fresh legal
+  agreement. No new legal agreement or personal attestation was accepted.
+
+Approved privacy correction — PUBLISHED
+
+Public URL: https://docked.com.au/privacy
+Privacy version: 2026-11-06-privacy-sdk-v3.
+Canonical source commit: 7319dddd1227b294fb38542cdee2044e01c89bd4.
+Vercel deployment: dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ.
+The source is the prior CLOSED dfed57b2 release plus the exact previously verified
+20 Auth/public-member-setup paths and 2 approved privacy paths. All other source
+blobs/modes are unchanged. Independent commercial preparation is excluded.
+
+The clarification describes Billing SDK automatic operation-result diagnostics,
+technical app/device metadata and a per-session identifier, including processing
+before a completed purchase and its separation from optional Docked analytics.
+It was checked against the actual v30 Billing 9.1.0 artifact/AAR and Google's
+current Billing release notes. No packet-capture claim is made.
+https://developer.android.com/google/play/billing/release-notes
+
+Approved full policy packet SHA256:
+da2b3a0067443e0fdd43e0b5080ad0d65370febd451bf7bc3db5dc972a8fc080.
+Exact live paragraph SHA256:
+4a33b60239612e65f57da7645ef1c6053691c1805b2c7a563639b5b01b15a1df.
+Terms, refund and retention policies remain v2. No unrelated commercial wording
+or historical consent was changed. Only the dormant prospective public-policy
+privacy_version binding changed to v3; Terms v2 and enabled=false are preserved.
+No migration/DDL, role or grant was added. See ../public-privacy-sdk-20261106/.
+
+Checks and preserved state
+
+- Fresh encrypted/authenticated 88,297,824-byte Production logical backup.
+- Exact dormant binding rehearsed twice in real isolated PostgreSQL, rolled back,
+  then applied with field-level guards. Idempotency checked, no broad restore.
+- 43 protected table groups unchanged in the guarded transaction; post-promotion
+  all43 protected counts match the fresh archive. Schema/RLS unchanged.
+- Backup drift in8 NFL scheduling rows was independently compared to the archive:
+  only existing scheduler telemetry changed, not fixtures/rules/locks/streams.
+- 18 staged and18 canonical live HTTP/origin/redirect checks passed. Public policy
+  is anonymous200, closed services reject requests, TEST operator transport off.
+- Exact policy text also verified through the public rendered browser page.
+- Existing targeted Auth tests23, privacy tests11, typecheck/lint and6 rendered
+  policy checks were reused from their valid prior evidence, not claimed rerun.
+- New operational report tests:4 real PostgreSQL concurrency scenarios passed;
+  new disabled alert adapter:4 mocked scenarios and targeted lint passed.
+- No new customer purchase, credit grant, pack opening, account deletion, entry
+  confirmation, permanent issuance or live email was performed this turn.
+
+Reviewer and public competition readiness — VERIFIED, NOT ACTIVATED
+
+Dedicated reviewer remains confirmed and able to sign in normally. Production
+read-only snapshot and authenticated browser readback agree:30,000 available,
+non-redeemable TEST credits, exactly one grant, no withdrawal/pending reservation.
+Existing valid free-Core entries: NFL7, AFL22 and NRL13. No collectible ownership
+was required or fabricated. The current NRL free-Core team rendered correctly.
+
+Six separate future public Round2 mappings remain disabled, deadline15 November
+2026 12:00UTC. NFL/AFL/NRL each have Traditional and All-Star. Traditional caps
+are4.4m/13.8m/8.2m; formations7/22/13; All-Star uncapped. Correct rule hashes and
+zero entry fees/prizes remain. Eight approved Australian18+ regional policies
+are retained. Historical private-beta competitions are not public mappings.
+
+All9 normal activation flags remain false. Public registration/customer access,
+commercial checkout/surfaces/trading, cash redemption, withdrawals, paid entry,
+prizes and NBA stay disabled. Both approved Google products remain inactive.
+Only existing admitted members can use the scoped authenticated setup workflow;
+fresh public terms/privacy/age/location choices are not inferred from beta data.
+
+Commercial preparation — separate from Google review
+
+ccd7e7c4 fixes a reproduced financial-summary race with a single REPEATABLE READ
+READ ONLY report snapshot and server asOf. Four real PostgreSQL concurrency tests
+passed. No ledger/account/issuance/schema change. This commit is NOT deployed in
+7319 and does not assert a real Google payout was reconciled.
+
+14f0a4c9 includes a default-OFF, unwired operational alert adapter using the
+existing Graph transport. Aggregate counts only; durable claim/dispatch-fence
+contract; uncertain sends held, not blindly retried;202is not claimed delivered.
+No queue/role/cron/email was created or activated. A purpose-filtered durable
+binding and an authorised actual-delivery drill remain before paid operation.
+
+Current read-only commercial jobs and recoveries are zero. Four known TEST
+receipts are cancelled, all4 consumption jobs complete. Seven preserved TEST
+notification attention rows are unbound hints (4purchase/3voided), not seven
+mapped commercial refund failures. No account binding was invented or queue
+item cleared to make health appear green.
+
+Prepared permanent pool:6,335 definitions /1,267 identities, all unapproved and
+unissued. Production commercial definitions/cards/receipts remain empty. Existing
+finite caps, TEST exclusions, serial protection and immutable source guards stay
+intact. This is NOT permanent-card issuance acceptance. Final source freshness,
+coverage and immutable-snapshot import review remain before live paid issuance.
+See the operational continuation and pool follow-up for precise limitations.
+
+The bounded follow-up established the exact three NFL omissions: Arizona (ARI),
+Miami (MIA) and Tennessee (TEN). Each has zero evidence within the existing
+72-hour freshness gate. Existing beta mappings contain 15,15 and14 respectively
+that satisfy the other identity/position criteria, but stale evidence cannot be
+made current by dropping the filter. No team or player-name licence was inferred
+missing. No new observation, source rewrite, import or issuance was performed.
+AFL/NRL source freshness remains the separately identified dated-snapshot work.
+
+Exact remaining actions
+
+No additional owner action was needed to send this review submission. Await
+Google's review outcome and address any actual review request when received.
+Managed publishing prevents approval automatically publishing the app.
+
+Before live paid/public activation:
+1. Complete final permanent-pool source/coverage review and the exact immutable
+   import/supply gate, without altering existing TEST inventory or inventing
+   player positions. Do not approve an editable source draft as final inventory.
+2. Finish purpose-scoped durable alert binding and one authorised receipt drill.
+   Identify the support/finance primary and substitute, key/recovery custodians
+   and independent recovery evidence. Never send key values in chat or Git.
+3. Review/deploy the separately tested reporting/operations changes, then perform
+   the bounded intended-runtime activation checks; no repeat broad rebuild cycle.
+4. Use a separately authorised final public/payment activation plan after the
+   mandatory technical/platform conditions pass. Publishing, Google products,
+   registration and competition mappings must not be implicitly flipped by this
+   submission. Trading, withdrawals, paid entry and prizes remain out of launch.
+
+The late asynchronous owner response also explicitly confirmed the exact packet
+starting da2b3a006744 and prospective privacy version v3. It matches the narrow
+authority used above and requires no second policy publication or rule change.
+
+Irreversible retention cleanup remains independently disabled pending category
+schedule and archive-key custody approval. Existing financial-record obligations
+are not treated as a blanket retention period for every personal field.
+
+Rollback
+
+Exact CLOSED Hxyw/dfed app remains the rollback target. Coordinate prospective
+privacy binding with the text actually published, preservev2/v3 source/history,
+never overwrite later transactions with a broad database restore. Removing or
+changing Google review items requires a deliberate later action; no such action
+was performed after submission.
