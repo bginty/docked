@@ -16,6 +16,7 @@ import {
   type CollectionPage,
 } from "../core/owned-collection";
 import type { CommercialLedger } from "./commercial-ledger";
+import { hasRequiredPackSupply } from "../core/commercial-pack-supply";
 
 /** Member ID comes only from the authenticated adapter. Read projections never
  * combine commercial amounts or instances with the test inventory. */
@@ -64,8 +65,9 @@ export class CommercialMemberView {
           );
           approved = c.issuance_enabled === true;
         } catch {}
-        const pool =
-          await sql`select sport,rarity,count(distinct player_id)::int players from commercial_billing.definitions where approved and issued<lifetime_cap group by sport,rarity`;
+        const pool = await sql<
+          { sport: string; rarity: string; players: number }[]
+        >`select sport,rarity,count(distinct player_id)::int players from commercial_billing.definitions where approved and issued<lifetime_cap group by sport,rarity`;
         const products: PackShopState["products"] = commercialSports.flatMap(
           (sport) =>
             (["STANDARD", "PREMIUM"] as const).flatMap((family) =>
@@ -76,17 +78,9 @@ export class CommercialMemberView {
                     r.sport === sport &&
                     p.weights[r.rarity as keyof typeof p.weights] > 0,
                 );
-                // A conservative visible gate; issuance repeats all position-independent supply
-                // checks under row locks. No rarity fallback or probability renormalisation.
+                // The same rule is enforced again under issuance row locks.
                 const available =
-                  approved &&
-                  Object.entries(p.weights)
-                    .filter(([, weight]) => weight > 0)
-                    .every(([rarity]) =>
-                      eligible.some(
-                        (r) => r.rarity === rarity && r.players >= size,
-                      ),
-                    );
+                  approved && hasRequiredPackSupply(p, eligible);
                 return {
                   id: p.id,
                   name: p.name,

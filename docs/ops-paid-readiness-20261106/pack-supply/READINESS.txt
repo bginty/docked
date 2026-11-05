@@ -1,0 +1,109 @@
+PAID PACK ISSUANCE CONTROLS — 6 NOVEMBER 2026
+
+IMPLEMENTED / LOCALLY VERIFIED / NOT DEPLOYED OR ACTIVATED
+The Google-reviewed v30 /1.29 release and canonical7319 backend remain unchanged.
+No Google product, public programme, permission or real issuance was enabled.
+
+Actual defect and correction
+
+The shop required enough distinct available players in every positive-weight
+rarity for the selected size. The purchase method only checked whichever rarities
+were randomly selected. A direct/stale request could therefore buy a pack which
+the shop was correctly showing as unavailable.
+
+The isolated pre-fix test forced only the local process's crypto draw to zero.
+With only8 available Icon players, the NRL Premium9 shop said unavailable, but
+the server charged5,000 fixture credits and issued9 fixture cards. No Production
+account or Google transaction was involved. Evidence: before-fix.json.
+
+hasRequiredPackSupply now supplies the identical availability rule to the shop
+and purchase method. Issuance checks it after locking definitions and before
+spending credit. Request-id retries are resolved before this supply test, so an
+already completed purchase remains idempotent after the last stock is consumed.
+There is no new fallback, probability renormalisation or product configuration.
+Production still uses crypto.randomInt; no RNG parameter/client control was added.
+
+Preserved authoritative products and supply
+
+Two native Google credit products remain A$49/4,900 and A$99/9,900, no bonus.
+They fund the authenticated shared account before a separately confirmed pack
+purchase. They are not18 native IAP products or one direct-charge SKU per pack.
+
+For each NFL/AFL/NRL sport: Premium9/3/1 costs5,000/1,900/700 credits;
+Standard9/3/1 costs700/300/100.18 internal paid products, sport-specific hashes.
+Core is absent from paid products and remains unlimited free gameplay eligibility.
+
+Existing paidPackWeights are unchanged:
+Standard Rare85%, Elite12%, Ultra Rare2.5%, Legendary0.49%, Icon0.01%.
+Premium Ultra Rare90%, Legendary9.9%, Icon0.1%; Rare/Elite0%.
+All size variants use the same approved per-card mechanism. Every one of10,000
+ticket outcomes was checked at every slot of all18 products (780,000 outcomes).
+
+Per-player lifetime caps remain Rare5,000, Elite2,500, Ultra Rare400,
+Legendary50 and Icon1. An unavailable required rarity refuses the entire new
+purchase; no charge or substitute card. The SQL trigger locks the definition,
+requires approval and the exact next serial, and enforces its lifetime cap.
+Unique(definition,serial) and unique(pack,slot) remain. Selected player IDs are
+distinct per pack, irrespective of rarity. All cards stay within the pack sport.
+
+Issuance, funding lots, balanced journals, ownership events and the pack receipt
+commit in one transaction. Refunds replace authoritative funding state; they do
+not reset serials, reissue packs or remove unrelated inventory. Spent value uses
+the existing audited recovery hold and support process, not negative balances,
+automatic bank debits or denial of applicable consumer remedies.
+
+New importer guard
+
+validateDormantCommercialPool recomputes exact row IDs, caps and immutable source
+metadata from the existing generator before opening a write transaction. It
+rejects duplicate definitions/provider aliases, inconsistent player snapshots,
+extra/tampered fields, synthetic source identities, Core/NBA, approval flags and
+non-zero counters. A partial rarity batch is allowed only if its rows are exact.
+This validates a dormant plan; it is not an issuance or licensing approval.
+
+Actual checks
+
+node scripts/commercial-local-postgres.mjs --pack-supply
+Seven isolated PostgreSQL groups passed:
+- Commercial mode refuses synthetic supply with no account/card side effects.
+- A direct request cannot bypass the visible all-rarity availability rule.
+- Exact exhaustive odds and product configuration for all18 products.
+- All18 real SQL purchases: exact debit/count/sport, unique players, idempotent
+  retries/openings, cross-account opening refusal.
+- A fault after the seventh allocation rolls back funding, serials, instances,
+  ownership, pack and audit together; explicit retry issues once.
+-20 buyers racing the final Ultra Rare serial produce one winner and one charge;
+  cap+1 is refused, last completed request retries safely with no new issuance.
+- Journals balance; issued-minus-legacy equals instances; no duplicate serial,
+  negative lot or wallet/ledger divergence.
+Evidence: postgres.json. No Google/Graph/provider call, live money or Production
+inventory. The synthetic acceptance fixtures are not permanent customer cards.
+
+Two availability unit tests and four pool/import-plan unit tests passed. New
+source and test paths passed targeted ESLint and whole-project typecheck.
+
+The separate exact-source pool rehearsal imports only dormant rows first, verifies
+repeat/conflict/role/gate rules, then uses trusted provider-result FIXTURES in the
+same disposable DB to exercise real-player metadata through six Standard/Premium
+nine-card purchases and refunds. It preserves54 local fixture cards and proves
+that reimport cannot reset issued counters. This is not genuine Google receipt
+verification, permanent issuance approval or authenticated hosted acceptance.
+Read the exact candidate hash and nine results in ../pool-rehearsal/postgres.json;
+later reviewed candidate versions get a new evidence directory, never overwrite
+the earlier source/hash evidence.
+
+Activation remains separate
+
+Before Production import, verify the final immutable source plan/hash and approved
+scope, latest backup/restore compatibility, all existing issuance provenance and
+closed gates. Import only unapproved definitions, never overwrite existing ones.
+The existing447 TEST_ONLY instances remain excluded under their saved approved
+economy rules, not deleted or converted. Unknown historical issuance blocks the
+plan rather than being silently treated as zero.
+
+Only after the final source/supply approval may the exact definitions and products
+be approved in the recorded activation sequence. Checkout, issuance, registration,
+commercial trading, withdrawals, paid entry, prizes and NBA remain disabled here.
+The separately prepared monitoring/reconciliation/runtime cohort must be promoted
+and accepted before paid admission, with appropriate operator/key custody and
+alert delivery. No Google review resubmission or new Android build is implied.

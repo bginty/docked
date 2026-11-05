@@ -1,6 +1,9 @@
 import assert from "node:assert/strict";
 import type { Sql } from "postgres";
-import type { DormantPoolDefinition } from "../src/core/commercial-pool-plan";
+import {
+  validateDormantCommercialPool,
+  type DormantPoolDefinition,
+} from "../src/core/commercial-pool-plan";
 
 /** Operator-reviewed dormant configuration only. Never issues cards, approves a
  * definition/product, changes gates, or modifies an existing snapshot. */
@@ -8,9 +11,7 @@ export async function importDormantCommercialPool(
   sql: Sql,
   rows: DormantPoolDefinition[],
 ) {
-  assert(rows.length > 0);
-  for (const r of rows)
-    assert(r.approved === false && r.issued === 0 && r.legacy_issued === 0);
+  validateDormantCommercialPool(rows);
   return sql.begin(async (tx) => {
     await tx`set local lock_timeout='5s'`;
     const [control] =
