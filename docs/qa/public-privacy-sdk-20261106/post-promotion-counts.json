@@ -1,0 +1,185 @@
+{
+  "at": "2026-11-05T20:44:06.134Z",
+  "readOnly": true,
+  "baselineArchiveSha256": "970c6f32a955840ee407555325690343550ea71d58bc85c3943ee886d66f3ec6",
+  "protectedGroups": 43,
+  "counts": [
+    {
+      "name": "auth.sessions",
+      "count": 132
+    },
+    {
+      "name": "auth.users",
+      "count": 6
+    },
+    {
+      "name": "beta_fantasy.cards",
+      "count": 59
+    },
+    {
+      "name": "beta_fantasy.competitions",
+      "count": 65
+    },
+    {
+      "name": "beta_fantasy.entries",
+      "count": 17
+    },
+    {
+      "name": "beta_fantasy.lineup_configurations",
+      "count": 7
+    },
+    {
+      "name": "beta_fantasy.ownership_events",
+      "count": 59
+    },
+    {
+      "name": "beta_fantasy.pack_items",
+      "count": 11
+    },
+    {
+      "name": "beta_fantasy.packs",
+      "count": 1
+    },
+    {
+      "name": "beta_fantasy.production_rounds",
+      "count": 12
+    },
+    {
+      "name": "beta_fantasy.results",
+      "count": 1
+    },
+    {
+      "name": "beta_fantasy.round_drafts",
+      "count": 34
+    },
+    {
+      "name": "beta_fantasy.sales",
+      "count": 0
+    },
+    {
+      "name": "beta_fantasy.scoring_rules",
+      "count": 10
+    },
+    {
+      "name": "beta_fantasy.slot_locks",
+      "count": 79
+    },
+    {
+      "name": "beta_private.consent_events",
+      "count": 46
+    },
+    {
+      "name": "beta_private.roles",
+      "count": 2
+    },
+    {
+      "name": "beta_public.profiles",
+      "count": 5
+    },
+    {
+      "name": "commercial_billing.accounts",
+      "count": 0
+    },
+    {
+      "name": "commercial_billing.cards",
+      "count": 0
+    },
+    {
+      "name": "commercial_billing.control",
+      "count": 1
+    },
+    {
+      "name": "commercial_billing.journals",
+      "count": 0
+    },
+    {
+      "name": "commercial_billing.lots",
+      "count": 0
+    },
+    {
+      "name": "commercial_billing.packs",
+      "count": 0
+    },
+    {
+      "name": "commercial_billing.receipts",
+      "count": 0
+    },
+    {
+      "name": "commercial_billing.recovery_cases",
+      "count": 0
+    },
+    {
+      "name": "credits_sandbox.card_instances",
+      "count": 447
+    },
+    {
+      "name": "credits_sandbox.journal",
+      "count": 109
+    },
+    {
+      "name": "credits_sandbox.pack_receipts",
+      "count": 77
+    },
+    {
+      "name": "credits_sandbox.state",
+      "count": 1
+    },
+    {
+      "name": "cron.job",
+      "count": 9
+    },
+    {
+      "name": "private.consent_events",
+      "count": 0
+    },
+    {
+      "name": "private.feature_flags",
+      "count": 11
+    },
+    {
+      "name": "private.region_policies",
+      "count": 8
+    },
+    {
+      "name": "private.roles",
+      "count": 0
+    },
+    {
+      "name": "public.profiles",
+      "count": 0
+    },
+    {
+      "name": "public_gameplay.rounds",
+      "count": 6
+    },
+    {
+      "name": "public_gameplay.sports",
+      "count": 3
+    },
+    {
+      "name": "sports_feed.free_core_programmes",
+      "count": 3
+    },
+    {
+      "name": "sports_feed.free_core_roster",
+      "count": 386
+    },
+    {
+      "name": "sports_feed.free_core_roster_beta",
+      "count": 882
+    },
+    {
+      "name": "sports_feed.nfl_rounds",
+      "count": 8
+    },
+    {
+      "name": "sports_feed.sport_rounds",
+      "count": 44
+    }
+  ],
+  "allowedSessionCountChanges": [],
+  "financialOwnershipAndHistoricalCountsUnchanged": true,
+  "productionCommercialTablesRemainEmpty": true,
+  "customerMutations": 0,
+  "passed": true
+}

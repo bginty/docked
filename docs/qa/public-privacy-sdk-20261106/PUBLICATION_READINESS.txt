@@ -9,7 +9,7 @@ IMMUTABLE APPLICATION SOURCE
 7319dddd1227b294fb38542cdee2044e01c89bd4 on pushed branch codex/public-privacy-sdk-release-20261106.
 Exact dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f plus Auth6fc7a31d's20 paths and privacya71c6acb's2 paths. All other baseline blobs/modes preserved. Optional Android diagnostics, pool preparation, tooling and documentation excluded.
 
-READY UNASSIGNED CANDIDATE
+VERIFIED DEPLOYMENT — NOW CANONICAL
 dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ
 https://docked-production-ocrqeork7-briant-s-projects.vercel.app
 18 anonymous HTTP/origin/redirect checks passed. Actual privacy HTML includes v3 and the SDK per-session identifier disclosure. Unchanged policy pages retain v2. Public setup unauthenticated requests redirect to login (including Next streamed redirects), unauthorized/cross-origin POSTs fail, billing/public gameplay gates remain closed, and the TEST operator route remains closed.
@@ -31,9 +31,10 @@ AES-256-GCM existing operator-held key. Authenticated archive/digest verified wi
 Policy-only real PostgreSQL17.11 rehearsal used exact saved policy/sports/rounds DDL and closed-gate projections. Exact SQL applied twice; Terms/gates/8region/6map invariants checked; transaction rolled back and fixture schema absent. Temporary network-isolated local container stopped afterward.
 Backup-to-apply NFL round hash drift was independently resolved against the actual authenticated archive. All8 round rows preserved except existing scheduler last_checked/next_check/lease_until fields; fixtures/rules/streams/locks/issues unchanged. No drift was excused solely by a table name.
 
-REMAINING STEP
-Canonical Production is still dpl_Hxyw3omGaXcGAG1qEhFtjdgYs5En / dfed. Candidate publication requires root review and promotion authority. No public registration, Google product activation, live payment, prize, withdrawal or public competition activation is included.
-After promotion run the same targeted live identity/policy/security checks. Actual member public setup must use the authenticated form with fresh unticked public choices; do not copy beta age/region/consents or submit on the owner's behalf.
+PUBLICATION COMPLETED
+Root reviewed and authorised promotion of this exact candidate. Canonical https://docked.com.au now serves source7319dddd / deploymentdpl_2YxdbcCi584D1zQPVmyewM8QPxiQ. Live18/18 checks passed at2026-11-05T20:42:33.097Z; the exact approved SDK paragraph was additionally matched to actual anonymous live HTML. Privacy v3 is published; unchanged policies retain v2.
+Post-promotion read-only checks found all43 protected counts unchanged and all7 Production commercial financial/inventory tables empty. No TEST transport, registration, real payments, public competition programme, withdrawals or prize activation. Hxyw/dfed remains the closed rollback.
+Actual member public setup must use the authenticated form with fresh unticked public choices; no beta age/region/consents were copied or submitted by this work. Google review submission remains root-owned and is not claimed by this publication evidence.
 
 ROLLBACK
 Candidate rollback target is the exact CLOSED Hxyw/dfed application. If rollback of privacy publication is necessary, coordinate the prospective privacy binding with the prior published version while the public programme remains disabled; preserve v2/v3 source texts and every historical consent. Never rewrite account acceptance rows, delete evidence, restore a broad snapshot over later legitimate transactions or reactivate billing. Restoring the old app alone is a safe closed-gate operational fallback but does not mean the new privacy disclosure is published.
@@ -44,3 +45,6 @@ candidate-verified.json / deployment-submitted.json / rollback.json
 binding-rehearsal.json / binding-applied.json / binding-readback.json
 round-telemetry-review.json
 backup/capture.json / backup/archive-integrity.json
+
+POST-PUBLICATION EVIDENCE
+live-verified.json / deployment-promoted.json / exact-live-disclosure.json / post-promotion-counts.json

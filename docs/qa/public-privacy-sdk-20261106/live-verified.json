@@ -1,0 +1,146 @@
+{
+  "at": "2026-11-05T20:42:33.097Z",
+  "id": "dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ",
+  "commit": "7319dddd1227b294fb38542cdee2044e01c89bd4",
+  "url": "https://docked.com.au",
+  "domainAssigned": true,
+  "currentProductionUnchanged": "dpl_Hxyw3omGaXcGAG1qEhFtjdgYs5En",
+  "canonicalGitArchiveMatches": true,
+  "normalizedTextFiles": 771,
+  "files": 860,
+  "normalFlags": {
+    "REGISTRATION_ENABLED": false,
+    "COMPETITIONS_ENABLED": false,
+    "PRIZES_ENABLED": false,
+    "DOCKED_MULTI_SPORT_SANDBOX": false,
+    "DOCKED_MEMBER_GOOGLE_TEST": false,
+    "DOCKED_COMMERCIAL_SERVICE": false,
+    "DOCKED_COMMERCIAL_SURFACES": false,
+    "DOCKED_COMMERCIAL_CHECKOUT": false,
+    "DOCKED_PUBLIC_CUSTOMERS": false
+  },
+  "exactRuntimeChanges": [
+    "DOCKED_PUBLIC_MEMBER_SETUP",
+    "DOCKED_PUBLIC_MEMBER_SETUP_DATABASE_URL",
+    "DOCKED_PUBLIC_MEMBER_SETUP_POLICY_APPROVED",
+    "DOCKED_PUBLIC_PRIVACY_VERSION",
+    "DOCKED_PUBLIC_TERMS_VERSION",
+    "LEGAL_ENTITY_VERIFIED"
+  ],
+  "ordinaryRole": "docked_app",
+  "ordinaryProject": "pojoymtniryarxxunyvz",
+  "secretsAdded": [
+    "DOCKED_PUBLIC_MEMBER_SETUP_DATABASE_URL (existing restricted connection only)"
+  ],
+  "noNewRolesOrGrants": true,
+  "publicTermsVersion": "2026-11-02-release-preparation-v2",
+  "publicPrivacyVersion": "2026-11-06-privacy-sdk-v3",
+  "entityEvidence": "docs/qa/final-au-submission-20261105/official-entity-browser-readback.txt",
+  "policyHash": "da2b3a0067443e0fdd43e0b5080ad0d65370febd451bf7bc3db5dc972a8fc080",
+  "transportPresent": false,
+  "customerNbaVisible": false,
+  "checks": [
+    {
+      "route": "/api/beta-release",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/app/login",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/privacy",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/refund-policy",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/retention",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/commercial-policy",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/account-deletion",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "method": "GET",
+      "status": 401
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "method": "GET",
+      "status": 403
+    },
+    {
+      "route": "/profile/qa_billing",
+      "method": "GET",
+      "status": 503
+    },
+    {
+      "route": "/app/onboarding/public",
+      "method": "GET",
+      "status": 200,
+      "streamedRedirect": "/app/login",
+      "redirectDigestStatus": 307
+    },
+    {
+      "route": "/api/store/apple/test",
+      "method": "GET",
+      "status": 404
+    },
+    {
+      "route": "/app/onboarding",
+      "method": "GET",
+      "status": 200,
+      "streamedRedirect": "/app/login",
+      "redirectDigestStatus": 307
+    },
+    {
+      "route": "/api/auth/public-member-setup",
+      "method": "POST",
+      "status": 403,
+      "origin": "https://docked.com.au"
+    },
+    {
+      "route": "/api/auth/public-member-setup",
+      "method": "POST",
+      "status": 403,
+      "origin": "https://outside.invalid"
+    }
+  ],
+  "customerMutations": 0,
+  "authenticatedAcceptance": false,
+  "noMigrations": true,
+  "passed": true,
+  "live": true,
+  "approvedPrivacyPublished": true
+}
