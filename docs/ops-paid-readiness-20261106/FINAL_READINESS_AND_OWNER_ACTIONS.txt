@@ -1,0 +1,247 @@
+DOCKED — PAID-PACK READINESS AND OWNER REVIEW
+6 November 2026, Australia/Sydney
+
+Decision: READY FOR REVIEWED DORMANT PREPARATION; LIVE ACTIVATION NOT AUTHORISED
+
+The existing Australia-only Google Play v30 / 1.29 submission was left alone.
+No Console editing, resubmission, publication, payment activation, or new
+Android bundle was necessary. Managed publishing remains part of that existing
+submission. This work did not re-query the Google review outcome.
+
+Canonical docked.com.au remains 7319dddd / dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ.
+All nine normal launch gates remain closed. NBA, public registration, real-money
+purchases, permanent issuance, commercial trading, withdrawals, paid entry and
+prizes remain off. The existing five-minute cron schedule/host is unchanged.
+The bounded Production check found zero commercial definitions, issued cards,
+receipts, packs, accounts or approved products. Existing 59 beta cards, 17
+historical beta entries and 447 TEST_ONLY sandbox instances were preserved.
+The reviewer still has 30,000 non-redeemable TEST credits and normal beta access.
+No ordinary public reviewer profile was created or consent inferred.
+
+Permanent supply — exact dormant candidate, not imported or approved
+
+NFL: 426 verified mapped players across 32 teams.
+AFL: 537 across 18 clubs.
+NRL: 330 across 17 clubs.
+Total: 1,293 stable existing player identities, 6,465 limited definitions.
+Exact private candidate: private-data/commercial-pool-20261106-v2/candidate.private.json
+SHA-256 f436a9883a1ddda433fe81248533ad1d68d1aa02de8ca69d0863c465d8de60fc.
+
+The NFL parser was rejecting otherwise complete teams when extra PUP/TRC
+sections had an unrecognised status. The fix quarantines those rows and still
+requires a complete verified Active group, including its QB. It adds 41 mapped
+Arizona/Miami/Tennessee players to the fresh baseline without admitting unknown
+statuses. New Australian derivatives retain exact Wikimedia source revisions,
+attribution and current profile/club/position agreement. The three 2027 NRL
+templates were not relabelled: their 51 known IDs were supported separately by
+explicit 2026 squad revisions and current profiles. Ambiguous or unsupported
+records remain held. This is a verified eligible subset, not a claim to every
+professional roster member. No unlicensed statistics, logos, photos, invented
+positions, new franchises or NBA source rows were added.
+
+Every definition is approved=false, issued=0, legacy_issued=0. All five finite
+caps remain 5,000/2,500/400/50/1; Core stays free and outside paid packs. The
+importer now validates canonical IDs/caps/metadata and fails on immutable
+conflicts before creating definitions. The 447 historical TEST_ONLY instances
+are accounted for under their saved rules, preserved and never converted.
+
+The direct-request shortage defect was reproduced locally and fixed. Purchase
+and shop now enforce the same positive-weight rarity availability under the
+issuance locks, before debit, without changing odds, prices or randomness.
+Seven PostgreSQL pack groups passed: all 18 internal variants, 780,000 exact
+per-slot draw outcomes, cross-owner opening denial, mid-issuance rollback,
+20 buyers racing one last serial, safe retries and ledger/supply invariants.
+Six related unit tests passed. On the exact final 6,465-definition candidate,
+nine additional PostgreSQL groups passed, including dormant import/retry,
+actual-source metadata through six nine-card purchases and refunds, and no
+serial reset. Those 54 cards and receipts were isolated fixtures only; no
+Google call, customer charge or permanent Production issuance occurred.
+
+Evidence: pack-supply/READINESS.txt, pool-rehearsal-v2/postgres.json,
+../qa/commercial-pool-20261106-v2/plan.json, and dated source manifests.
+Key source commits: b2e9b716, 390e3fd1, 88643e43, c99127ed, 4b6d503b.
+
+Six forward free/owned-card competitions — tested locally, not applied
+
+The actual public picker joins owned cards through Free Core identities. The
+previous six disabled Round 2 bindings lack the owned-card opt-in, and their
+rules must stay immutable. The prepared forward transition adds 49 scoped
+player corrections (42 missing NFL joins and seven metadata corrections), and
+six NEW disabled 2026 Practice Round 3 bindings. It preserves the old six,
+confirmed/historical entries, salary caps, scoring, zero fees and zero prizes.
+There is no rewrite of beta roster sources or old card/lineup snapshots.
+
+Proposed exact forward IDs (only these would later be enabled):
+- NFL Traditional: 6c78eac7-561d-5451-a34d-6d909eb8dcf0
+- NFL All-Star: 2b282c96-93f1-54e6-a6ea-ba750de4d89d
+- AFL Traditional: 690eb6d5-287c-5f5b-a5e6-0c336db4e371
+- AFL All-Star: e887078d-b43a-523e-a6fc-bfc3de00a32f
+- NRL Traditional: 8cf2dcaa-1b33-5b56-a79e-650b7e4efb08
+- NRL All-Star: c2036eab-965b-5928-a0d8-4e239cde6f52
+
+The public SQL reader combines Free Core with a separately gated owned-card
+inventory. Unowned Core does not require a purchase. Public play keeps the
+retired generic COMPETITIONS_ENABLED flag false. Approved caps are 4.4m,
+13.8m and 8.2m; formations 7/22/13; All-Star uncapped. These are recorded-roster
+practice rounds, not invented official fixtures/results.
+
+Seven native PostgreSQL groups verified the actual parent read/entry path,
+including a primed old SQL plan, all 1,293 IDs in both modes, 15 owned fixtures
+covering all five rarities in all three sports, cross-account denial, exact
+position correction, and saved entry visibility after lock. Source freshness
+expires on 8 November 2026 at 23:15 AEDT. That is a preparation/activation
+preflight, not a mid-round removal of already admitted players. The saved
+practice deadline is 15 November 2026 at 23:00 AEDT. If either window is no
+longer valid, refresh/review and prepare a fresh future version before launch.
+
+Exact unapplied serializable transition SQL SHA-256:
+22962aa966391b4bf3ea33bebdfb1b07a0199241e576d3890872b9d12cca77b1.
+It adds one private RLS overlay table, preserves old helper/rules, creates six
+disabled forward bindings and adds no runtime grants. Read-only activation
+preflight SHA-256 906ce9ff74674ca4a380ce045874d20802ee6e5dc03429f1bb6539c0599a48f1.
+See public-compatibility/COMPATIBILITY_AND_ROLLOUT.txt, exact SQL and postgres.json.
+Compatibility packet/evidence commit 8e78caee. No Production application.
+
+Financial monitoring v2 — exact permission review, still off
+
+The v2 proposal supersedes unapplied v1. Do not apply both. SHA-256:
+b3e7ff04182b33f351c4c897550959ba3885c5f9960b1733a1a255ff5526e121.
+Existing stop SQL: aa5c6d107a06c5542e43f4055efdfd4858ad2fae1d04fe2dbad1774a66e337fa.
+All 13 frozen source/SQL manifest hashes independently matched.
+
+Only the existing docked_commercial_app role receives EXECUTE on the
+zero-argument aggregate enqueue and enum/UUID signal functions. Only existing
+service_role receives EXECUTE on the purpose-scoped queue RPC. The proposal
+adds no direct table/schema grant, new role, service, schedule or credential.
+PUBLIC/client grants are revoked; narrow RLS reservations keep legacy rows
+and the Auth-mail path intact. The fixed recipient is support@docked.com.au.
+The independently approved finite DB window and default-OFF runtime flags
+must both allow operation. Counters are aggregate only; no tokens, individual
+customer data, balances, raw errors or purchase references are emailed.
+
+18 real PostgreSQL groups and 10 targeted tests passed for fulfilment, duplicate
+observations/replay, refunds, wallet/journal divergence, pack issuance, delivery
+failure, recovery holds and reconciliation outages. 20 concurrent identical
+receipt observations produced 19 informational duplicates and one 4,900-credit
+lot, with no peer credit. Expected duplicate success does not trigger email.
+Unknown sends are held behind a durable fence; provider acceptance is not
+mailbox delivery. SQL rollback and actual database roles/RLS were tested.
+
+Real mailbox receipt and independent total-database/missed-cron escalation
+remain unverified. A failed database cannot send its own database-backed alert.
+The existing schedule/log escalation and one authorised non-financial drill
+are specified; no new paid monitoring service or live email was used. Bind
+the producer/sender to the reviewed existing worker boundary, without moving
+Graph credentials or broadening the signed Auth hook.
+
+See ../ops-launch-20261105/alerts-preparation/COVERAGE_AND_APPROVAL_V2.txt and
+approval-package-v2.json for exact grants, guard conditions, rollback and tests.
+Monitor source/packet commit 3ab7982c, ledger dependency 4b6d503b.
+
+Hosted preparation and integrated database rehearsal
+
+Protected, unassigned operations-only backend candidate: 0e7085af174e503014dccf0f9fac0b3239cfc2dc,
+dpl_4mNaWxtLGQQ3ZXmewtABHHf2UcSK. Exact canonical base plus ten reviewed runtime
+paths, no public namespace switch, SQL, Graph worker, catalogue assets or
+Android changes. Hosted build/typecheck, 16 candidate GETs and five canonical
+GETs passed. Vercel SSO protects the staged URL. All 11 candidate gates off.
+The separate app target, canonical domain and active cron still use 7319dddd.
+No authenticated public-positive journey, worker invocation or Production
+promotion is claimed. See launch-operations/ops-candidate/READBACK.md (c3d14610).
+
+The integrated restore passed on isolated PostgreSQL 17.11. The existing
+88,297,824-byte authenticated encrypted archive matched all 43 archived groups.
+Both exact SQL packages applied and reapplied together. Existing rows in those
+groups and 13 additional financial/outbox/registry groups matched; roles and
+out-of-scope ACLs were preserved. The six old bindings remained intact, and the
+only planned additions were the disabled monitoring flag, scoped schema objects,
+49 overlays and six disabled zero-fee/no-prize bindings. Rolled-back row ACL
+checks passed. No network, cron, plaintext archive file or hosted SQL was used;
+the isolated database and tmpfs were removed. Archive Privacy v2 was correctly
+preserved as captured, not mistaken for the currently published v3 binding.
+See launch-operations/restore-rehearsal/READBACK.md and the exact JSON proof.
+This verifies isolated compatibility, not application to Production,
+provider/Storage recovery or independently held encryption keys.
+
+Exact owner approval checklist
+
+1. Approve the exact dormant source pool and both reviewed SQL packages above,
+   after fresh hash/project/backup/drift checks for the actual change. These
+   approvals cover unapproved definitions and disabled configuration/functions,
+   never charging, issuance, registration or rule activation. Do not use an
+   expired roster package or silently substitute a different hash.
+2. Name primary/backup support, financial reconciliation and incident operators,
+   receipt/runtime key custodian and independent encrypted-recovery custodian.
+   Record identities/cover privately and prove independent recovery, including
+   needed provider/Storage configuration. No custodian names or credentials
+   were assumed. Keep the retention archive key separate; irreversible cleanup
+   remains off pending its own approved schedule/custody.
+3. Approve the scoped worker binding, finite support recipient/window and one
+   non-financial delivery/outage drill. Verify actual receipt and safe stop.
+   No broader table rights, extra staff access or new paid service is implied.
+4. Review the exact availability-only wording proposal before eventual public
+   cutover (PROPOSED_PUBLIC_AVAILABILITY_WORDING.txt, LF SHA-256
+   69df193b607ba38f80541394d6c785096db68c7da523b06018c86c1ff3e59174).
+   It is not published and retains the SDK privacy disclosure, pricing, refund
+   rights, holds, fee rules and historical consents. Use actual approved
+   prospective versions/dates, no placeholders or current-policy rewrite.
+5. After Google approval and the changed-boundary checks below, give final
+   public availability/payment/publishing authority. The approved business
+   model and player-name position are already recorded.
+
+Public activation sequence — prepare now, execute only within authority
+
+1. Keep the current Google submission and managed publishing unchanged until
+   Google responds. Preserve reviewer beta access and the closed 7319 fallback.
+2. Pin approved source/SQL/wording hashes and the fresh recoverable backup.
+   Refresh source if outside its approved window. Rehearse/current drift-check
+   the exact later change, then apply only the approved dormant SQL and import
+   only exact unapproved definitions. Verify original rounds/ownership/balances,
+   no new approvals/issuance and no broadened grants. Never reapply old approved
+   migrations or clear historical serials to make a retry pass.
+3. Stage the actual ordinary public runtime and a compatible closed public
+   rollback. The current beta namespace and manifest approved=false are
+   deliberate; do not merely flip DOCKED_PUBLIC_CUSTOMERS. Use
+   DOCKED_BETA_STAGING=false, DOCKED_FRIENDS_BETA=false,
+   DOCKED_RELEASE_CHANNEL=stable, the reviewed approved manifest and
+   the existing restricted ordinary/commercial roles. Keep launch gates OFF
+   while preparing and retain admin MFA. Bind exact prospective consent versions.
+4. Verify changed boundaries in protected hosting: ordinary confirmed account,
+   AU 18+ policy and new source/round picker/entry, deletion and purchase/refund
+   separation. Reuse prior genuine v30 Google TEST and unchanged Auth/email
+   acceptance; do not repeat complete device suites without a changed boundary.
+   Existing admitted members complete ordinary setup themselves at
+   /app/onboarding/public; do not copy beta age/state/consents. Reviewer public
+   profile remains a normal authenticated transition, not a bypass.
+5. Bind the commercial verification/RTDN/reconciliation and scoped operational
+   monitoring; test delivery and recovery with checkout closed and TEST
+   transport absent from Production. Run the exact source/round activation
+   preflight. Confirm supply for all 18 offers, record actual approval/evidence
+   references and expiry, and verify the product prices/eligibility. Do not
+   treat previous TEST checkout or bank verification as real settlement proof.
+6. After final authority, enable only the approved public policy, NFL/AFL/NRL
+   sport rows and six exact forward mappings. Leave the original six disabled.
+   Enable registration only with ordinary public runtime, Auth email, both
+   registration switches and current approved consents. Keep generic
+   COMPETITIONS_ENABLED=false. Free Core remains available with checkout closed.
+7. Approve only the exact reviewed commercial definitions/products and owned
+   gameplay scope. Verify issuance before customers can buy credits. Coordinate
+   approved ledger sales, runtime checkout/surfaces and then the two Australian
+   Google purchase options in one controlled window. Activate only
+   docked_credits_4900_v1 / buy-au (A$49, 4,900 credits) and
+   docked_credits_9900_v1 / buy-au (A$99, 9,900 credits), no bonus. No cash-out,
+   commercial trading, paid competition entry, prizes or NBA activation.
+8. Publish the Google-approved Australian release through managed publishing
+   only under the final authority. Verify real public availability, source and
+   wallet/pack/refund health. Provider payout, fees/tax and recognised revenue
+   need actual finance reconciliation; never book TEST amounts as real revenue.
+
+Rollback: close new checkout and ledger sales first; pause affected new issuance
+without removing cards. Leave commercial service, authenticated notification
+persistence and reconciliation available for accepted orders. Preserve all
+ledger/ownership/entries/dedupe/holds. Stop new alerts with the exact stop SQL
+and keep valid in-flight settlement; never blindly resend uncertain mail.
+Use a public-compatible rollback after customers exist, not the old beta
+fallback as a routine paid rollback. No broad restore over later transactions.
+See launch-operations/OWNERSHIP_AND_ACTIVATION_SEQUENCE.txt for the operational
+custody matrix, complete support procedures and underlying current readback.

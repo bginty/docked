@@ -1,0 +1,96 @@
+PUBLIC AVAILABILITY WORDING — OWNER REVIEW ONLY
+Prepared 6 November 2026, Australia/Sydney. Not published or applied.
+
+Base: the approved current config/launch-policy-content.json, LF SHA-256
+da2b3a0067443e0fdd43e0b5080ad0d65370febd451bf7bc3db5dc972a8fc080.
+Terms/refund/retention v2; privacy 2026-11-06-privacy-sdk-v3.
+This proposal is limited to current-service/availability sentences. It is not
+another approval of prices, player-name use, refund rules or the business model.
+It describes a staged release accurately even when registration and checkout
+are closed. Do not load it into the live policy renderer during this review.
+
+At an authorised cutover, replace only the identified text below, give changed
+documents new prospective versions and actual publication dates, retain the
+previous full text/acceptance records, and bind the approved versions in the
+public manifest, prospective consent policy and runtime together. Compare the
+base packet first; stop on a mismatch. No old acceptance is rewritten.
+
+Privacy notice (/privacy)
+
+- Status paragraph, exact replacement:
+  This notice explains how Docked handles information. Current registration and
+  purchasing availability is shown in the app.
+- Who we are, replace only the last sentence about the invitation-only beta:
+  Docked is for eligible Australian adults.
+- Social content and support, replace only the last sentence about test release:
+  Docked does not collect real identity documents for this release.
+- Purchases, replace the first two sentences about disabled and TEST purchasing:
+  Optional Android purchases use Google Play Billing when checkout is available.
+  Google Play TEST checkout is separate from commercial purchasing.
+  Retain the existing sentences about checkout, payment methods, receipt
+  verification and Google privacy. Replace only the final sentence about a
+  future paid release with:
+  Account eligibility and product availability are checked before a purchase.
+- Access, correction and account deletion, replace only the words "In the current
+  private beta, shared authentication identities" with "Shared beta identities".
+  Keep the operator review and pending/deletion wording intact.
+- Preserve the exact SDK diagnostics, per-session identifier and analytics
+  paragraph approved in privacy v3, plus all other processing disclosures.
+
+Purchases and refunds (/refund-policy)
+
+- Status paragraph, exact replacement:
+  Optional Google Play purchases depend on account eligibility and product
+  availability. This policy explains purchases, refunds and recovery reviews.
+- Current availability section, exact replacement:
+  The app shows when paid purchasing is available. TEST credits, TEST inventory
+  and Google Play licence-test orders are separate from commercial purchases.
+  Docked Credits and cards are not redeemable for cash. Withdrawals, paid
+  competition entry and prize awards are unavailable in this release.
+- Approved paid-release products: replace the final sentence "These product
+  descriptions do not activate sales." with:
+  A product is purchasable only when the app and Google Play make it available.
+- Release and consumer safeguards: replace only the sentence "Sales remain
+  disabled until those requirements, the final customer purchase flow and
+  operational support procedures are verified." with:
+  Sales are available only after the applicable release checks are complete.
+  Preserve the existing refund, spent-credit hold, support review, no automatic
+  bank debit and consumer-rights wording. Keep both AUD credit prices, all pack
+  prices and disclosures unchanged.
+
+Service and commercial release policy (/commercial-policy)
+
+- Status paragraph, exact replacement:
+  Australian release scope. Check the app for current registration, competition
+  and purchase availability.
+- Service scope, exact replacement:
+  Docked offers NFL, AFL and NRL fantasy cards through one account for eligible
+  Australian adults. The app shows whether registration and paid purchasing are
+  available. Withdrawals, commercial trading, paid competition entry and prizes
+  are unavailable in this release. TEST credits and TEST inventory have no cash
+  value. NBA remains unavailable.
+- Gameplay and collections, replace only the final two sentences about the
+  prepared free Core path and pre-opening verification with:
+  Free Core players can be selected in eligible free competitions without
+  purchasing packs. This eligibility does not create collectible ownership.
+- Packs and marketplace: replace only "The marketplace supports credit sales
+  only; offers and swaps are disabled." with:
+  Commercial trading, offers and swaps are unavailable in the initial public
+  release. The following fee terms describe eligible legacy beta credit sales.
+  Keep the approved fee, rounding, cap, example, historical fees and no cash-out
+  statements intact. This does not enable any public marketplace transactions.
+- Keep the professional-name, independent rights, moderation, review and
+  applicable-requirements safeguards. No claim of a licence, legal clearance,
+  Google approval, live statistics or authorised prizes is added.
+
+Retention and account deletion
+
+Leave /retention and /account-deletion unchanged. The operative retention periods,
+holds, provider-copy limits and deletion workflow are not part of this wording
+approval. Automated cleanup and real identity-document collection stay off.
+
+Owner decision: review the exact availability replacements and prospective
+version adoption for the eventual authorised public cutover. Approval of this
+wording would not publish the app, enable registration or charge a customer.
+Do not publish a draft with placeholders; record the final approved effective
+date/version and source checksum before the change window.

@@ -1,0 +1,254 @@
+{
+  "at": "2026-11-05T22:45:02.160Z",
+  "archiveCapturedAt": "2026-11-05T20:33:06.965Z",
+  "archiveBytes": 88297824,
+  "archiveSha256": "970c6f32a955840ee407555325690343550ea71d58bc85c3943ee886d66f3ec6",
+  "archiveAuthenticated": true,
+  "archiveFormat": "AES-256-GCM encrypted logical pg_dump",
+  "restoreImage": "public.ecr.aws/supabase/postgres:17.11.0.002",
+  "imageId": "sha256:0450166354dc9c1d25f0322ac8b580774d4fb0184d2b087f6e4fe9499c66cf53",
+  "containerNetwork": "none",
+  "publishedPorts": 0,
+  "tlsOrAuthEndpointsStarted": false,
+  "cronLaunchingDisabled": true,
+  "pgNetWorkerDatabaseDisabled": true,
+  "plaintextArchiveFilesCreated": false,
+  "restoreStorage": "container tmpfs only",
+  "teardownVerified": true,
+  "packets": [
+    {
+      "path": "config/operations/billing-ops-outbox-v2.prepared.sql",
+      "sha256": "b3e7ff04182b33f351c4c897550959ba3885c5f9960b1733a1a255ff5526e121"
+    },
+    {
+      "path": "docs/ops-paid-readiness-20261106/public-compatibility/public-paid-lineup-v2.prepared.sql",
+      "sha256": "22962aa966391b4bf3ea33bebdfb1b07a0199241e576d3890872b9d12cca77b1"
+    }
+  ],
+  "engine": "PostgreSQL 17.11 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+  "backupGroups": [
+    "auth.sessions",
+    "auth.users",
+    "beta_fantasy.cards",
+    "beta_fantasy.competitions",
+    "beta_fantasy.entries",
+    "beta_fantasy.lineup_configurations",
+    "beta_fantasy.ownership_events",
+    "beta_fantasy.pack_items",
+    "beta_fantasy.packs",
+    "beta_fantasy.production_rounds",
+    "beta_fantasy.results",
+    "beta_fantasy.round_drafts",
+    "beta_fantasy.sales",
+    "beta_fantasy.scoring_rules",
+    "beta_fantasy.slot_locks",
+    "beta_private.consent_events",
+    "beta_private.roles",
+    "beta_public.profiles",
+    "commercial_billing.accounts",
+    "commercial_billing.cards",
+    "commercial_billing.control",
+    "commercial_billing.journals",
+    "commercial_billing.lots",
+    "commercial_billing.packs",
+    "commercial_billing.receipts",
+    "commercial_billing.recovery_cases",
+    "credits_sandbox.card_instances",
+    "credits_sandbox.journal",
+    "credits_sandbox.pack_receipts",
+    "credits_sandbox.state",
+    "cron.job",
+    "private.consent_events",
+    "private.feature_flags",
+    "private.region_policies",
+    "private.roles",
+    "public.profiles",
+    "public_gameplay.rounds",
+    "public_gameplay.sports",
+    "sports_feed.free_core_programmes",
+    "sports_feed.free_core_roster",
+    "sports_feed.free_core_roster_beta",
+    "sports_feed.nfl_rounds",
+    "sports_feed.sport_rounds"
+  ],
+  "additionalProtectedGroups": [
+    "private.outbox",
+    "private.audit_events",
+    "private.docked_auth_mail_outbox",
+    "credits_sandbox.store_notifications",
+    "commercial_billing.lines",
+    "commercial_billing.jobs",
+    "commercial_billing.definitions",
+    "commercial_billing.products",
+    "beta_fantasy.entry_revisions",
+    "beta_fantasy.players",
+    "credits_sandbox.nba_fixture_players",
+    "public_gameplay.policy",
+    "supabase_migrations.schema_migrations"
+  ],
+  "appliedLocallyAndReapplied": true,
+  "rolesOrMembershipsAdded": 0,
+  "flagsOff": true,
+  "archivePolicyVersions": {
+    "terms": "2026-11-02-release-preparation-v2",
+    "privacy": "2026-11-02-release-preparation-v2"
+  },
+  "previouslyApprovedPrivacyV3BindingReplayed": false,
+  "oldBindingsUnchanged": 6,
+  "newDormantRounds": [
+    {
+      "id": "e887078d-b43a-523e-a6fc-bfc3de00a32f",
+      "fee": 0,
+      "mode": "OPEN",
+      "prize": "No cash prize",
+      "round": 3,
+      "sport": "afl",
+      "enabled": false,
+      "template": "public-roster-practice-20261106-pool-v2",
+      "hashValid": true,
+      "inventory": "commercial-owned-v1",
+      "salaryCap": null
+    },
+    {
+      "id": "690eb6d5-287c-5f5b-a5e6-0c336db4e371",
+      "fee": 0,
+      "mode": "SALARY_CAP",
+      "prize": "No cash prize",
+      "round": 3,
+      "sport": "afl",
+      "enabled": false,
+      "template": "public-roster-practice-20261106-pool-v2",
+      "hashValid": true,
+      "inventory": "commercial-owned-v1",
+      "salaryCap": 13800000
+    },
+    {
+      "id": "2b282c96-93f1-54e6-a6ea-ba750de4d89d",
+      "fee": 0,
+      "mode": "OPEN",
+      "prize": "No cash prize",
+      "round": 3,
+      "sport": "nfl",
+      "enabled": false,
+      "template": "public-roster-practice-20261106-pool-v2",
+      "hashValid": true,
+      "inventory": "commercial-owned-v1",
+      "salaryCap": null
+    },
+    {
+      "id": "6c78eac7-561d-5451-a34d-6d909eb8dcf0",
+      "fee": 0,
+      "mode": "SALARY_CAP",
+      "prize": "No cash prize",
+      "round": 3,
+      "sport": "nfl",
+      "enabled": false,
+      "template": "public-roster-practice-20261106-pool-v2",
+      "hashValid": true,
+      "inventory": "commercial-owned-v1",
+      "salaryCap": 4400000
+    },
+    {
+      "id": "c2036eab-965b-5928-a0d8-4e239cde6f52",
+      "fee": 0,
+      "mode": "OPEN",
+      "prize": "No cash prize",
+      "round": 3,
+      "sport": "nrl",
+      "enabled": false,
+      "template": "public-roster-practice-20261106-pool-v2",
+      "hashValid": true,
+      "inventory": "commercial-owned-v1",
+      "salaryCap": null
+    },
+    {
+      "id": "8cf2dcaa-1b33-5b56-a79e-650b7e4efb08",
+      "fee": 0,
+      "mode": "SALARY_CAP",
+      "prize": "No cash prize",
+      "round": 3,
+      "sport": "nrl",
+      "enabled": false,
+      "template": "public-roster-practice-20261106-pool-v2",
+      "hashValid": true,
+      "inventory": "commercial-owned-v1",
+      "salaryCap": 8200000
+    }
+  ],
+  "overlaySummary": {
+    "nfl": 43,
+    "nrl": 6,
+    "rls": true,
+    "rows": 49,
+    "allExactLock": true,
+    "allVersioned": true,
+    "identityCount": 49,
+    "nonOwnerGrants": 0,
+    "allReviewedHash": true
+  },
+  "functionACLs": {
+    "private.billing_ops_window()": {
+      "definer": false,
+      "nonOwnerGrants": [],
+      "restrictedSearchPath": true
+    },
+    "public.docked_billing_ops_enqueue()": {
+      "definer": true,
+      "nonOwnerGrants": [
+        "docked_commercial_app"
+      ],
+      "restrictedSearchPath": true
+    },
+    "sports_feed.free_core_inventory(uuid,uuid)": {
+      "definer": true,
+      "nonOwnerGrants": [],
+      "restrictedSearchPath": true
+    },
+    "public.docked_billing_ops_queue(text,jsonb)": {
+      "definer": true,
+      "nonOwnerGrants": [
+        "service_role"
+      ],
+      "restrictedSearchPath": true
+    },
+    "public.docked_billing_ops_signal(text,uuid)": {
+      "definer": true,
+      "nonOwnerGrants": [
+        "docked_commercial_app"
+      ],
+      "restrictedSearchPath": true
+    },
+    "private.billing_ops_key(jsonb,timestamp with time zone)": {
+      "definer": false,
+      "nonOwnerGrants": [],
+      "restrictedSearchPath": true
+    },
+    "sports_feed.free_core_inventory_before_public_pool_v2(uuid,uuid)": {
+      "definer": true,
+      "nonOwnerGrants": [],
+      "restrictedSearchPath": true
+    }
+  },
+  "restrictivePolicyNames": [
+    "billing_ops_reserved_delete",
+    "billing_ops_reserved_insert",
+    "billing_ops_reserved_select",
+    "billing_ops_reserved_update",
+    "billing_ops_signal_reserved_insert"
+  ],
+  "protectionScope": "Logical PostgreSQL and captured roles/memberships, ownership mapped to local restore postgres; no hosted Auth, object bodies, passwords, mail/Google or network acceptance.",
+  "assertions": [
+    "43 protected groups match their authenticated archive counts and row digests",
+    "archive has the exact six dormant old bindings, all activation switches closed, and prospective Terms v2/Privacy v2",
+    "both exact standalone transactions apply together with only one disabled ops flag, six new competitions/mappings and 49 versioned overlays",
+    "all pre-existing rows in 43 archived and 13 additional groups retained exact counts and content",
+    "existing roles, memberships, schema/table/routine grants and policies are identical outside the explicitly prepared scope",
+    "six old public bindings remain identical and disabled, six new rounds have the reviewed salary/zero fee/no-prize rules, and overlays are RLS-protected",
+    "second exact combined apply is idempotent across protected rows, mappings, overlays, disabled flag, ACLs and policies",
+    "disabled commercial signal/enqueue and scoped service claim return harmless values; RLS allows ordinary outbox read/update, blocks reserved read/update/forged inserts, and denies overlay access under docked_app",
+    "all RLS test fixtures rolled back and ordinary outbox/audit/financial fingerprints remained identical"
+  ],
+  "productionQueries": 0,
+  "productionWrites": 0,
+  "passed": true
+}
