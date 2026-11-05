@@ -1,0 +1,89 @@
+{
+  "at": "2026-11-05T22:06:36.313Z",
+  "snapshot": "wikimedia-nrl-2026-squad-supplement-2026-11-06-v1",
+  "inputFile": "private-data/roster-refresh-20261106/wikimedia/supplement/pool-roster-inputs.json",
+  "inputsSha256": "e954148586684e1a2f32f51ae940d41ca9a6fe21b2d22a05712c91d47b8af3d5",
+  "accepted": 51,
+  "acceptedByTeam": {
+    "Brisbane Broncos": 17,
+    "North Queensland Cowboys": 17,
+    "New Zealand Warriors": 17
+  },
+  "productionWrites": 0,
+  "newUuids": 0,
+  "permanentIssuanceApproved": false,
+  "sourceContext": "2026 season-specific squad sections, freshly observed. Current profile club and supported position corroborated from the already complete same-dated observation cache. Not a 2027 roster or active match/contract/statistics claim.",
+  "observations": [
+    {
+      "key": "bri",
+      "team": "Brisbane Broncos",
+      "page": "2026 Brisbane Broncos season",
+      "season": "2026",
+      "section": "5",
+      "heading": "Squad information",
+      "revision": 1382104461,
+      "observedAt": "2026-11-05T22:03:33.929Z",
+      "sourceUrl": "https://en.wikipedia.org/w/api.php?action=parse&oldid=1382104461&section=5&prop=text%7Crevid%7Cdisplaytitle%7Ctemplates&format=json&formatversion=2&maxlag=5",
+      "responseSha256": "8906ee65543185dc53729dcfb4152a177e8338b1df19c52458f1c5530aa5f931",
+      "expandedHtmlSha256": "45c2d2d18977465fa2b32feeb6e19602feb99f0970134807353d1e115f005839"
+    },
+    {
+      "key": "nql",
+      "team": "North Queensland Cowboys",
+      "page": "2026 North Queensland Cowboys season",
+      "season": "2026",
+      "section": "3",
+      "heading": "Squad",
+      "revision": 1381016323,
+      "observedAt": "2026-11-05T22:03:35.067Z",
+      "sourceUrl": "https://en.wikipedia.org/w/api.php?action=parse&oldid=1381016323&section=3&prop=text%7Crevid%7Cdisplaytitle%7Ctemplates&format=json&formatversion=2&maxlag=5",
+      "responseSha256": "44f4de1829c2990caeaf1338d198e011adbc27a9e6a20ab3722ee46234f8d983",
+      "expandedHtmlSha256": "2d83c65562eab57ef233cc53ccccdfc74eb4ca242cc5fa8385f52b935fd9d49e"
+    },
+    {
+      "key": "war",
+      "team": "New Zealand Warriors",
+      "page": "2026 New Zealand Warriors season",
+      "season": "2026",
+      "section": "1",
+      "heading": "Squad",
+      "revision": 1377992585,
+      "observedAt": "2026-11-05T22:03:36.248Z",
+      "sourceUrl": "https://en.wikipedia.org/w/api.php?action=parse&oldid=1377992585&section=1&prop=text%7Crevid%7Cdisplaytitle%7Ctemplates&format=json&formatversion=2&maxlag=5",
+      "responseSha256": "da2d15b93eb7040e82e626e113f7c027e5fec274bf09aa5f3ff030cf5a147914",
+      "expandedHtmlSha256": "eb725bdd7e7f2c7130bc41c8c94698759704537b6adecf2ed228b21d9996bbbe"
+    }
+  ],
+  "priorAu": {
+    "inputsSha256": "9cdddf3960f3f184e71ab3885fbdfc5e29274994f02a7e8ce7aa73998ea2b275",
+    "manifestSha256": "e1ee52b695a0ca99c41080417bd79fb3b3d3454f1cc9e2c41cf0e9e7cbec3fef",
+    "accepted": 816,
+    "unchanged": true
+  },
+  "profileCrawlRepeated": false,
+  "officialNrlSiteUsedForCandidate": false,
+  "held": {
+    "nrl": 57
+  },
+  "holdsByReason": {
+    "nrl:NO_SUPPORTED_PROFILE_ROSTER_POSITION": 12,
+    "nrl:MISSING_PROFILE_REVISION": 27,
+    "nrl:MISSING_WIKIDATA_ID": 27,
+    "nrl:NO_EXISTING_DOCKED_UUID": 29,
+    "nrl:MISSING_PLAYER_INFOBOX": 16,
+    "nrl:PROFILE_ROSTER_CLUB_CONFLICT": 1
+  },
+  "privateReview": "private-data/roster-refresh-20261106/wikimedia/supplement/review.json",
+  "privateReviewSha256": "3b31fc7bdb9d3f7b8a4636c6394fd71f162d652f76f54e9bb660f21ffc098a0b",
+  "attribution": {
+    "text": "Wikipedia contributors; per-record profile oldid and separate team template revision links/hashes are retained in the dated evidence.",
+    "rosterTextLicense": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "identifierLicense": "CC0 (Wikidata identifiers)",
+    "changes": "Extracted factual roster/name/position associations, held conflicts and future seasons, reused existing Docked IDs, normalised known team/position labels and kept numberless fallbacks.",
+    "termsUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use/en#7._Licensing_of_Content",
+    "apiEtiquetteUrl": "https://www.mediawiki.org/wiki/API:Etiquette"
+  },
+  "validatedSchema": true,
+  "passed": true
+}

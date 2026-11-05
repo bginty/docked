@@ -1,0 +1,32 @@
+{
+  "accepted": {
+    "afl": 537,
+    "nrl": 279
+  },
+  "held": {
+    "afl": 69,
+    "nrl": 300
+  },
+  "holdsByReason": {
+    "afl:NO_EXISTING_DOCKED_UUID": 68,
+    "afl:NO_SUPPORTED_PROFILE_ROSTER_POSITION": 31,
+    "afl:PROFILE_ROSTER_CLUB_CONFLICT": 5,
+    "afl:PROFILE_CLUB_STARTS_IN_FUTURE_SEASON": 1,
+    "afl:MISSING_PLAYER_INFOBOX": 7,
+    "nrl:FUTURE_OR_UNRESOLVED_SOURCE_SEASON": 91,
+    "nrl:NO_EXISTING_DOCKED_UUID": 242,
+    "nrl:PROFILE_CLUB_STARTS_IN_FUTURE_SEASON": 10,
+    "nrl:PROFILE_ROSTER_CLUB_CONFLICT": 91,
+    "nrl:NO_SUPPORTED_PROFILE_ROSTER_POSITION": 64,
+    "nrl:MISSING_PLAYER_INFOBOX": 70,
+    "nrl:RETIRED_PROFILE": 2,
+    "nrl:MISSING_WIKIDATA_ID": 1
+  },
+  "acceptedTeams": {
+    "afl": 18,
+    "nrl": 14
+  },
+  "futureTemplateRowsHeld": 91,
+  "newIdsCreated": 0,
+  "permanentIssuanceApproved": false
+}

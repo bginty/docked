@@ -1,0 +1,164 @@
+{
+  "at": "2026-11-05T21:59:22.159Z",
+  "snapshot": "wikimedia-afl-nrl-factual-2026-11-06-v1",
+  "inputFile": "private-data/roster-refresh-20261106/wikimedia/pool-roster-inputs.json",
+  "inputsSha256": "9cdddf3960f3f184e71ab3885fbdfc5e29274994f02a7e8ce7aa73998ea2b275",
+  "accepted": 816,
+  "acceptedBySport": {
+    "afl": {
+      "accepted": 537,
+      "teams": [
+        "Adelaide",
+        "Brisbane Lions",
+        "Carlton",
+        "Collingwood",
+        "Essendon",
+        "Fremantle",
+        "Geelong",
+        "Gold Coast",
+        "Greater Western Sydney",
+        "Hawthorn",
+        "Melbourne",
+        "North Melbourne",
+        "Port Adelaide",
+        "Richmond",
+        "St Kilda",
+        "Sydney",
+        "West Coast",
+        "Western Bulldogs"
+      ],
+      "verifiedNumbers": 532,
+      "positions": {
+        "DEF": 193,
+        "FWD": 197,
+        "MID": 202,
+        "RUC": 45
+      }
+    },
+    "nrl": {
+      "accepted": 279,
+      "teams": [
+        "Canberra Raiders",
+        "Canterbury-Bankstown Bulldogs",
+        "Cronulla-Sutherland Sharks",
+        "Dolphins",
+        "Gold Coast Titans",
+        "Manly Warringah Sea Eagles",
+        "Melbourne Storm",
+        "Newcastle Knights",
+        "Parramatta Eels",
+        "Penrith Panthers",
+        "South Sydney Rabbitohs",
+        "St. George Illawarra Dragons",
+        "Sydney Roosters",
+        "Wests Tigers"
+      ],
+      "verifiedNumbers": 0,
+      "positions": {
+        "CTR": 43,
+        "EDG": 54,
+        "HLF": 46,
+        "MID": 90,
+        "WFB": 68
+      }
+    }
+  },
+  "productionWrites": 0,
+  "newUuids": 0,
+  "permanentIssuanceApproved": false,
+  "publishedDatasetUnchanged": true,
+  "basePublishedDataset": {
+    "file": "public/data/rosters/wikimedia-roster-beta-2026-10-23-v1.json",
+    "sha256": "6d668ba8658b843077120cc1c31d7f92ce5e60d10f76accc56c6db638b75f6f7"
+  },
+  "sourceSeasonScope": "2026; AFL root explicitly declares2026, current team personnel templates lack independent season labels; changed-team/future profile evidence held unless explicit2026 career coverage. NRL only exact2026 team templates;2027 contexts held.",
+  "futureTeamTemplatesHeld": [
+    {
+      "sport": "nrl",
+      "team": "Brisbane Broncos",
+      "rootDeclaredSeason": "2026",
+      "teamDeclaredSeason": "2027",
+      "sourceSeason": "2027",
+      "template": "Template:Brisbane Broncos current squad",
+      "revision": 1379132626,
+      "revisionTimestamp": "2026-10-08T04:00:10Z",
+      "templateHash": "ad6b19fbf228417a54f55e0bb8fe87cc142c3d76de8978ad6714a1949241e7e9",
+      "observedAt": "2026-11-05T21:49:52.135Z",
+      "rootRevision": 1351815700,
+      "expandedHtmlSha256": "9f97ee7a0a01da995f040ce444593f4d9df351d89d5c70b904082b8d9088ea94",
+      "rosterSourceObservedAt": "2026-11-05T21:48:35.928Z"
+    },
+    {
+      "sport": "nrl",
+      "team": "New Zealand Warriors",
+      "rootDeclaredSeason": "2026",
+      "teamDeclaredSeason": "2027",
+      "sourceSeason": "2027",
+      "template": "Template:New Zealand Warriors current squad",
+      "revision": 1377664374,
+      "revisionTimestamp": "2026-09-30T12:31:52Z",
+      "templateHash": "6750f803d8f8d06b4c34626aaf63ad5772e1971f50b6d719c8d620a0f93e4728",
+      "observedAt": "2026-11-05T21:49:52.135Z",
+      "rootRevision": 1351815700,
+      "expandedHtmlSha256": "9f97ee7a0a01da995f040ce444593f4d9df351d89d5c70b904082b8d9088ea94",
+      "rosterSourceObservedAt": "2026-11-05T21:48:35.928Z"
+    },
+    {
+      "sport": "nrl",
+      "team": "North Queensland Cowboys",
+      "rootDeclaredSeason": "2026",
+      "teamDeclaredSeason": "2027",
+      "sourceSeason": "2027",
+      "template": "Template:North Queensland Cowboys current squad",
+      "revision": 1381018028,
+      "revisionTimestamp": "2026-10-19T13:41:24Z",
+      "templateHash": "c6f80520c6f3e5987e9518b4bf397fdde0289ed3d3754a9e479daa8ca2ad47e4",
+      "observedAt": "2026-11-05T21:49:52.135Z",
+      "rootRevision": 1351815700,
+      "expandedHtmlSha256": "9f97ee7a0a01da995f040ce444593f4d9df351d89d5c70b904082b8d9088ea94",
+      "rosterSourceObservedAt": "2026-11-05T21:48:35.928Z"
+    }
+  ],
+  "held": {
+    "afl": 69,
+    "nrl": 300
+  },
+  "holdsByReason": {
+    "afl:NO_EXISTING_DOCKED_UUID": 68,
+    "afl:NO_SUPPORTED_PROFILE_ROSTER_POSITION": 31,
+    "afl:PROFILE_ROSTER_CLUB_CONFLICT": 5,
+    "afl:PROFILE_CLUB_STARTS_IN_FUTURE_SEASON": 1,
+    "afl:MISSING_PLAYER_INFOBOX": 7,
+    "nrl:FUTURE_OR_UNRESOLVED_SOURCE_SEASON": 91,
+    "nrl:NO_EXISTING_DOCKED_UUID": 242,
+    "nrl:PROFILE_CLUB_STARTS_IN_FUTURE_SEASON": 10,
+    "nrl:PROFILE_ROSTER_CLUB_CONFLICT": 91,
+    "nrl:NO_SUPPORTED_PROFILE_ROSTER_POSITION": 64,
+    "nrl:MISSING_PLAYER_INFOBOX": 70,
+    "nrl:RETIRED_PROFILE": 2,
+    "nrl:MISSING_WIKIDATA_ID": 1
+  },
+  "futureTemplateRowsHeld": 91,
+  "rawReviewPrivate": "private-data/roster-refresh-20261106/wikimedia/review.json",
+  "rawReviewSha256": "1f683970ee461910ce65e6afeb83fa2e5374a66842bff90303f2519fa57a9bf5",
+  "sourceEvidenceSha256": {
+    "root-observations.json": "a10d79618c59a9d95d807f3fcb6de1f33462575a736a2301b4a2321efbb717ce",
+    "team-template-request.json": "0adcd2f5b2e8da8ed1f906e48e73d799a3d25a70c0999261fb099a808f74be14",
+    "team-source-seasons.json": "c60867468720848cd81bfab72153911ce8bb99fd0b921040b6e241ba47c1c5fc",
+    "profile-requests.json": "89f3879beb4356226b4b718aa3f746825442e8e334a6074d5927c7412fd2e1f7",
+    "discovery-summary.json": "a2d5f5c3168bec866ac23d87d1969fba99411a905736f1484b60d17ab798a829",
+    "review-summary.json": "1e37a6e37341306bc89eb393277502472b23aac756120d670609760af3ae33f0"
+  },
+  "attribution": {
+    "text": "Wikipedia contributors; per-record profile oldid and separate team template revision links/hashes are retained in the dated evidence.",
+    "rosterTextLicense": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "identifierLicense": "CC0 (Wikidata identifiers)",
+    "changes": "Extracted factual roster/name/position associations, held conflicts and future seasons, reused existing Docked IDs, normalised known team/position labels and kept numberless fallbacks.",
+    "termsUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use/en#7._Licensing_of_Content",
+    "apiEtiquetteUrl": "https://www.mediawiki.org/wiki/API:Etiquette"
+  },
+  "scope": "Local factual preparation only. No stats, images, likenesses, logos, sponsors, supplier commercial rights, contract/health verification or independent issuance approval are asserted. No NBA requests, new team, public data overwrite, deployment, permanent issue or pool import.",
+  "validatedSchema": true,
+  "passed": true
+}

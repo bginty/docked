@@ -1,0 +1,100 @@
+{
+  "at": "2026-11-05T22:09:43.473Z",
+  "snapshot": "wikimedia-afl-nrl-factual-2026-11-06-v2",
+  "inputFile": "private-data/roster-refresh-20261106/wikimedia/combined-v2/pool-roster-inputs.json",
+  "inputsSha256": "eb4c706a31134a7872e7de6054d8f5d3b9d22bd6adc668218e224fa7fa3352fe",
+  "accepted": 867,
+  "acceptedBySport": {
+    "afl": {
+      "accepted": 537,
+      "teams": 18
+    },
+    "nrl": {
+      "accepted": 330,
+      "teams": 17
+    }
+  },
+  "productionWrites": 0,
+  "newUuids": 0,
+  "permanentIssuanceApproved": false,
+  "originalPacketsUnchanged": true,
+  "sourcePackets": [
+    {
+      "name": "current-rosters",
+      "manifest": "docs/qa/roster-refresh-20261106/wikimedia/input-manifest.json",
+      "manifestSha256": "e1ee52b695a0ca99c41080417bd79fb3b3d3454f1cc9e2c41cf0e9e7cbec3fef",
+      "input": "private-data/roster-refresh-20261106/wikimedia/pool-roster-inputs.json",
+      "inputsSha256": "9cdddf3960f3f184e71ab3885fbdfc5e29274994f02a7e8ce7aa73998ea2b275",
+      "accepted": 816,
+      "review": "private-data/roster-refresh-20261106/wikimedia/review.json",
+      "reviewSha256": "1f683970ee461910ce65e6afeb83fa2e5374a66842bff90303f2519fa57a9bf5",
+      "heldSourceRows": 369,
+      "heldBySport": {
+        "afl": 69,
+        "nrl": 300
+      },
+      "holdsByReason": {
+        "afl:NO_EXISTING_DOCKED_UUID": 68,
+        "afl:NO_SUPPORTED_PROFILE_ROSTER_POSITION": 31,
+        "afl:PROFILE_ROSTER_CLUB_CONFLICT": 5,
+        "afl:PROFILE_CLUB_STARTS_IN_FUTURE_SEASON": 1,
+        "afl:MISSING_PLAYER_INFOBOX": 7,
+        "nrl:FUTURE_OR_UNRESOLVED_SOURCE_SEASON": 91,
+        "nrl:NO_EXISTING_DOCKED_UUID": 242,
+        "nrl:PROFILE_CLUB_STARTS_IN_FUTURE_SEASON": 10,
+        "nrl:PROFILE_ROSTER_CLUB_CONFLICT": 91,
+        "nrl:NO_SUPPORTED_PROFILE_ROSTER_POSITION": 64,
+        "nrl:MISSING_PLAYER_INFOBOX": 70,
+        "nrl:RETIRED_PROFILE": 2,
+        "nrl:MISSING_WIKIDATA_ID": 1
+      },
+      "actualSourceContext": "2026; AFL root explicitly declares2026, current team personnel templates lack independent season labels; changed-team/future profile evidence held unless explicit2026 career coverage. NRL only exact2026 team templates;2027 contexts held."
+    },
+    {
+      "name": "three-2026-squad-sections",
+      "manifest": "docs/qa/roster-refresh-20261106/wikimedia/supplement-input-manifest.json",
+      "manifestSha256": "888b57ff4206251bd7cd2d0af816e720418d2b0a8d32b64b80a7666ab8caad0f",
+      "input": "private-data/roster-refresh-20261106/wikimedia/supplement/pool-roster-inputs.json",
+      "inputsSha256": "e954148586684e1a2f32f51ae940d41ca9a6fe21b2d22a05712c91d47b8af3d5",
+      "accepted": 51,
+      "review": "private-data/roster-refresh-20261106/wikimedia/supplement/review.json",
+      "reviewSha256": "3b31fc7bdb9d3f7b8a4636c6394fd71f162d652f76f54e9bb660f21ffc098a0b",
+      "heldSourceRows": 57,
+      "heldBySport": {
+        "nrl": 57
+      },
+      "holdsByReason": {
+        "nrl:NO_SUPPORTED_PROFILE_ROSTER_POSITION": 12,
+        "nrl:MISSING_PROFILE_REVISION": 27,
+        "nrl:MISSING_WIKIDATA_ID": 27,
+        "nrl:NO_EXISTING_DOCKED_UUID": 29,
+        "nrl:MISSING_PLAYER_INFOBOX": 16,
+        "nrl:PROFILE_ROSTER_CLUB_CONFLICT": 1
+      },
+      "actualSourceContext": "2026 season-specific squad sections, freshly observed. Current profile club and supported position corroborated from the already complete same-dated observation cache. Not a 2027 roster or active match/contract/statistics claim."
+    }
+  ],
+  "sourceEvidence": [
+    "docs/qa/roster-refresh-20261106/wikimedia/root-observations.json",
+    "docs/qa/roster-refresh-20261106/wikimedia/team-source-seasons.json",
+    "docs/qa/roster-refresh-20261106/wikimedia/profile-requests.json",
+    "docs/qa/roster-refresh-20261106/wikimedia/supplement-observations.json"
+  ],
+  "holdsScope": "All original 2027 template rows remain held in their original source context. Additional explicit 2026 season sections corroborate 51 existing players with same-dated current profiles. Hold counts describe source rows and can overlap identities or reasons; not all omitted players are ineligible or retired.",
+  "attribution": {
+    "text": "Wikipedia contributors; per-record profile oldid and separate team template revision links/hashes are retained in the dated evidence.",
+    "rosterTextLicense": "CC-BY-SA-4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "identifierLicense": "CC0 (Wikidata identifiers)",
+    "changes": "Extracted factual roster/name/position associations, held conflicts and future seasons, reused existing Docked IDs, normalised known team/position labels and kept numberless fallbacks.",
+    "termsUrl": "https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use/en#7._Licensing_of_Content",
+    "apiEtiquetteUrl": "https://www.mediawiki.org/wiki/API:Etiquette"
+  },
+  "identifierLicenseUrl": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+  "validatedSchema": true,
+  "validatedOriginalDigests": true,
+  "validatedExactSourceSeasonAndRevisions": true,
+  "validatedCurrentProfileClubAndPositionAgreement": true,
+  "validatedUniqueIdsAndProviderAliases": true,
+  "passed": true
+}

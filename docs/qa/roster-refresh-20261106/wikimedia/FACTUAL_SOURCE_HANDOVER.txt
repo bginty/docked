@@ -1,0 +1,46 @@
+AFL/NRL — DATED FACTUAL SOURCE PREPARATION, 6 NOVEMBER2026 AUSTRALIA/SYDNEY
+
+Result:867 existing Docked player UUIDs in the separately reviewed local v2 derivative:537 AFL across18 teams,330 NRL across17 teams. No new identity/team, no Production write, import, approval, card issuance, supply/odds change, deployment or published catalogue overwrite. NBA was never requested. Every candidate remains permanentIssuanceEligible=false.
+
+Source work completed
+- Used the documented Wikimedia Action API with descriptive Docked/contact User-Agent, sequential GETs, maxlag=5 and 35-title batches. Existing pinned BeautifulSoup4.13.4/mwparserfromhell0.7.2 were reused. No new service, scraping circumvention or credentials.
+- Fresh observations: two current squad roots,35 exact team template revisions,32 profile batches requesting1,117 unique titles. Root response and expanded HTML hashes, exact team-template source revision/hash/observation time, and each matching profile revision/hash/observation time were retained. A fresh observation does not imply the source revision itself changed that day.
+- The older profile parser expected currentclub; the actual current AFL infoboxes expose current_club. The dated parser accepts the explicit field and holds conflicting simultaneous fields. Positions remain sourced. AFL guernsey numbers require matching roster/profile evidence:532 verified matches and5 numberless fallbacks. NRL candidates remain numberless; match-day positions do not establish permanent numbers.
+- Base candidate accepted816: AFL537/18teams, NRL279/14teams. AFL root explicitly says2026, while its transcluded team personnel templates omit an independent season field. A changed team without explicit2026 career coverage, an explicitly future profile club start, unsupported positions, missing/conflicting identities and club disagreement are held. NRL team season overrides the more general root heading. Three explicitly2027 templates (Brisbane, North Queensland, Warriors) remain held, with91 source rows excluded from the2026 base.
+
+Bounded three-team alternative
+Official Broncos/Cowboys/Warriors /teams responses did not expose a usable roster, and the NRL Network Terms §§1 and12 restrict the network/material to personal, non-commercial use. Dated official team lists/announcements are not a current comprehensive roster or commercial permission. No NRL Network payload was incorporated into commercial inputs. This does not revoke or reinterpret the owner's already confirmed player-name position.
+
+The permitted alternative was freshly observed season-specific Wikimedia squad sections. Exactly three section-index reads and three pinned squad-section reads; no new profile requests. Cached current profile evidence was from the same dated source run, not the October snapshot. No 2027 roster was renamed.
+- Brisbane Broncos, 2026 squad information, article revision1382104461:17 accepted, explicit position column.
+- North Queensland Cowboys, 2026 squad section, article revision1381016323:17 accepted, explicit2026 squad context.
+- New Zealand Warriors, 2026 squad section, article revision1377992585:17 accepted, explicit2026 squad context.
+- Each of the51 supplemental records matched an existing UUID/QID, a fresh current profile club and an intersecting supported position. Hooker-only positions were not relabelled.57 additional source rows held, including27 without an already-observed usable profile revision. No new broad crawl was done to make those counts look complete.
+
+Review and validation
+- Current and supplemental packets are kept byte-for-byte separate. The combined derivative rechecked both exact input/manifest/private-review digests; all867 IDs and provider aliases unique and present in the prior stable identity map; profile club/team agreement, source position and primary position, actual2026 context, oldid revision, recomputed source hash and recent observation verified. All330 NRL number fields are null. The first816 and separate51 packets were not overwritten.
+- Holds describe source rows, not unique ineligible people. Base holds69 AFL/300 NRL; supplement57 NRL. A held2027 observation remains held even if the same identity is independently accepted through an explicit2026 squad and current profile. No player is declared retired or inactive merely because this source packet omitted them.
+- No photographs, logos, sponsors, player likenesses, game statistics or third-party commercial provider content were imported. Old Oct23 public dataset SHA2566d668ba8658b843077120cc1c31d7f92ce5e60d10f76accc56c6db638b75f6f7 remained exact. Its player UUIDs were reused for identity only, not as a stale roster fallback.
+
+Files and hashes
+Private input arrays stay in private-data/roster-refresh-20261106/wikimedia; raw/cache material is not committed or published. Public repo evidence carries attribution, versions, checksums, source links and aggregate holds, with per-record facts/revisions in the private review.
+- Base pool-roster-inputs.json:816; SHA2569cdddf3960f3f184e71ab3885fbdfc5e29274994f02a7e8ce7aa73998ea2b275; input-manifest.json.
+- Supplement supplement/pool-roster-inputs.json:51; SHA256e954148586684e1a2f32f51ae940d41ca9a6fe21b2d22a05712c91d47b8af3d5; supplement-input-manifest.json.
+- Combined combined-v2/pool-roster-inputs.json:867; SHA256eb4c706a31134a7872e7de6054d8f5d3b9d22bd6adc668218e224fa7fa3352fe; combined-input-manifest-20261106-v2.json.
+- The downstream combined NFL/AFL/NRL pool build is independently owned. A local roster input is not an approved commercial definition or launch authorisation.
+
+Operator reproduction (new dated directory/version for a new observation; do not overwrite old evidence)
+1. wikimedia-fetch.mjs rosters; then templates; wikimedia-discover.py; fetch.mjs profiles.
+2. wikimedia-review.py; then wikimedia-package.mts using tsx.
+3. For this explicitly reviewed three-team supplement only: fetch.mjs supplement; wikimedia-supplement-discover.py; wikimedia-review.py --supplement; wikimedia-supplement-package.mts.
+4. wikimedia-combine.mts reads the two fixed packets and writes a distinct combined-v2 candidate after all guards. Source/roster freshness is bounded; renew via new versioned evidence when required, not by changing timestamps.
+
+Attribution and scope
+Source: Wikipedia contributors. The roster-fact derivative follows CC BY-SA4.0 attribution/change/source-link obligations; Wikidata identifiers are CC0. Preserve specific source revision links, authors/history, licence and changes when distributing the derivative. The fetched roster facts do not establish a general club/league trademark, likeness, proprietary statistics, contract, health or commercial issuance licence.
+Wikimedia terms: https://foundation.wikimedia.org/wiki/Policy:Terms_of_Use/en#7._Licensing_of_Content
+MediaWiki API etiquette: https://www.mediawiki.org/wiki/API:Etiquette
+Wikidata licensing: https://www.wikidata.org/wiki/Wikidata:Licensing
+NRL Network restrictions (not candidate source): https://www.nrl.com/terms-of-use/
+BRI squad context: https://en.wikipedia.org/w/index.php?title=2026_Brisbane_Broncos_season&oldid=1382104461#Squad_information
+NQL squad context: https://en.wikipedia.org/w/index.php?title=2026_North_Queensland_Cowboys_season&oldid=1381016323#Squad
+WAR squad context: https://en.wikipedia.org/w/index.php?title=2026_New_Zealand_Warriors_season&oldid=1377992585#Squad
