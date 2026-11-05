@@ -96,3 +96,14 @@ Exact bounded next review action — no migration applied
 
 No financial reconciliation/recovery rule, customer balance, card ownership,
 permanent supply, Auth mail permission or historical record changed.
+
+Concrete SQL follow-up, prepared after Google submission
+
+The next-step design is now implemented as an UNAPPLIED purpose-filtered SQL
+package, minimal existing-provider RPC binding and real PostgreSQL rehearsal.
+Read SQL_APPROVAL_PACKAGE.txt and approval-package.json for the exact functions,
+grants, disabled policy/window gates, checksum, compatible deployment order and
+safe stop. Eleven real-PG scenario groups passed, including injected SQL audit
+failures, role denial, concurrency, null-purpose legacy rows and prefix collision
+preflight. Production functions/permissions remain unchanged; no live binding,
+email, cron or operational activation is claimed.

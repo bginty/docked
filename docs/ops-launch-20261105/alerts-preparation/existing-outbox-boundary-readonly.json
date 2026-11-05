@@ -1,0 +1,149 @@
+{
+  "at": "2026-11-05T21:01:10.005Z",
+  "readOnly": true,
+  "productionWrites": 0,
+  "columns": [
+    {
+      "name": "id",
+      "type": "uuid",
+      "not_null": true
+    },
+    {
+      "name": "dedupe_key",
+      "type": "text",
+      "not_null": true
+    },
+    {
+      "name": "kind",
+      "type": "text",
+      "not_null": true
+    },
+    {
+      "name": "user_id",
+      "type": "uuid",
+      "not_null": false
+    },
+    {
+      "name": "payload",
+      "type": "jsonb",
+      "not_null": true
+    },
+    {
+      "name": "state",
+      "type": "text",
+      "not_null": true
+    },
+    {
+      "name": "available_at",
+      "type": "timestamp with time zone",
+      "not_null": true
+    },
+    {
+      "name": "expires_at",
+      "type": "timestamp with time zone",
+      "not_null": true
+    },
+    {
+      "name": "lease_until",
+      "type": "timestamp with time zone",
+      "not_null": false
+    },
+    {
+      "name": "lease_token",
+      "type": "uuid",
+      "not_null": false
+    },
+    {
+      "name": "attempts",
+      "type": "integer",
+      "not_null": true
+    },
+    {
+      "name": "last_error",
+      "type": "text",
+      "not_null": false
+    },
+    {
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "not_null": true
+    }
+  ],
+  "grants": [
+    {
+      "grantee": "docked_app",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "docked_app",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "docked_app",
+      "privilege_type": "UPDATE"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "DELETE"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "INSERT"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "REFERENCES"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "SELECT"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "TRIGGER"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "TRUNCATE"
+    },
+    {
+      "grantee": "postgres",
+      "privilege_type": "UPDATE"
+    }
+  ],
+  "policies": [
+    {
+      "policyname": "docked_app_insert",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "docked_app"
+      ],
+      "cmd": "INSERT"
+    },
+    {
+      "policyname": "docked_app_select",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "docked_app"
+      ],
+      "cmd": "SELECT"
+    },
+    {
+      "policyname": "docked_app_update",
+      "permissive": "PERMISSIVE",
+      "roles": [
+        "docked_app"
+      ],
+      "cmd": "UPDATE"
+    }
+  ],
+  "reservedPurposeCollisions": 0,
+  "scheduledOutboxJobs": [
+    {
+      "jobname": "docked-auth-mail-drain",
+      "schedule": "* * * * *",
+      "active": true
+    }
+  ],
+  "preparedRpcExists": false
+}

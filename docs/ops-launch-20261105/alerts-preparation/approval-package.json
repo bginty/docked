@@ -1,0 +1,83 @@
+{
+  "package": "billing-ops-outbox-20261106-v1",
+  "at": "2026-11-05T21:05:27.587Z",
+  "status": "PREPARED_UNAPPLIED",
+  "checksumConvention": "SHA-256 UTF-8 exact file bytes plus LF-canonical digest; deployment review must match LF-canonical source exactly, allowing checkout line-ending conversion only.",
+  "files": [
+    {
+      "file": "config/operations/billing-ops-outbox.prepared.sql",
+      "sha256": "68dfd76393b817e728a5896a8d499719b6a5d8f3148fde7b80c19e2e970a6038",
+      "lfCanonicalSha256": "68dfd76393b817e728a5896a8d499719b6a5d8f3148fde7b80c19e2e970a6038"
+    },
+    {
+      "file": "config/operations/billing-ops-outbox.stop.prepared.sql",
+      "sha256": "aa5c6d107a06c5542e43f4055efdfd4858ad2fae1d04fe2dbad1774a66e337fa",
+      "lfCanonicalSha256": "aa5c6d107a06c5542e43f4055efdfd4858ad2fae1d04fe2dbad1774a66e337fa"
+    },
+    {
+      "file": "src/server/billing-ops-alerts.mjs",
+      "sha256": "f39c76263880ac80a6af7d65c27be88384b4e40f6b72d3aaa473810b8a8ed2e8",
+      "lfCanonicalSha256": "f39c76263880ac80a6af7d65c27be88384b4e40f6b72d3aaa473810b8a8ed2e8"
+    },
+    {
+      "file": "src/server/billing-ops-queue.mjs",
+      "sha256": "2d0a544be6c001911bd9be89415221afb23bb524ef128d42adcd787b567b80b1",
+      "lfCanonicalSha256": "2d0a544be6c001911bd9be89415221afb23bb524ef128d42adcd787b567b80b1"
+    },
+    {
+      "file": "src/server/outbox-lease.ts",
+      "sha256": "bd114410fedb9c67875c2888800b4e11abd5fef788952028a0a8b6fa56fbd9dc",
+      "lfCanonicalSha256": "bd114410fedb9c67875c2888800b4e11abd5fef788952028a0a8b6fa56fbd9dc"
+    },
+    {
+      "file": "scripts/billing-ops-alerts-postgres.ts",
+      "sha256": "33925c652141e454bfa67a9222cb8b7728d8ca090f4b3389134a57b8b9ba9a26",
+      "lfCanonicalSha256": "33925c652141e454bfa67a9222cb8b7728d8ca090f4b3389134a57b8b9ba9a26"
+    },
+    {
+      "file": "scripts/commercial-local-postgres.mjs",
+      "sha256": "417906fbf64d78c9f4bc5859eee707f0bf30c5f3e95b5d7e827424c79e4cd4ed",
+      "lfCanonicalSha256": "417906fbf64d78c9f4bc5859eee707f0bf30c5f3e95b5d7e827424c79e4cd4ed"
+    }
+  ],
+  "databaseObjects": {
+    "newTables": 0,
+    "newRoles": 0,
+    "newSchedules": 0,
+    "newCredentials": 0,
+    "functions": [
+      "private.billing_ops_window()",
+      "private.billing_ops_key(jsonb,timestamptz)",
+      "public.docked_billing_ops_enqueue()",
+      "public.docked_billing_ops_queue(text,jsonb)"
+    ],
+    "reservedPolicies": [
+      "billing_ops_reserved_select",
+      "billing_ops_reserved_insert",
+      "billing_ops_reserved_update",
+      "billing_ops_reserved_delete"
+    ],
+    "newFlag": {
+      "key": "billing_ops_alerts",
+      "enabled": false
+    },
+    "approvedPolicyInserted": false
+  },
+  "grants": [
+    {
+      "function": "public.docked_billing_ops_enqueue()",
+      "executeOnly": "docked_commercial_app"
+    },
+    {
+      "function": "public.docked_billing_ops_queue(text,jsonb)",
+      "executeOnly": "service_role"
+    }
+  ],
+  "directPrivateTableOrSchemaGrants": 0,
+  "productionApplied": false,
+  "productionEmails": 0,
+  "realProviderTest": false,
+  "sourceDeployed": false,
+  "frozenReviewReleaseUnchanged": true,
+  "activationApprovalRequired": true
+}

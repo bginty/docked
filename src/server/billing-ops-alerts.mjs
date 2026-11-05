@@ -53,7 +53,7 @@ export function billingOpsAlertMessage(health, observedAt) {
     Math.floor(timestamp / 3600000) * 3600000,
   ).toISOString();
   const key = `billing-ops-v1:${window}:${createHash("sha256")
-    .update(JSON.stringify(counts))
+    .update(countNames.map((name) => counts[name]).join(","))
     .digest("hex")}`;
   return {
     key,
