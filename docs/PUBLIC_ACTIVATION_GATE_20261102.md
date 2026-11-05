@@ -1,5 +1,7 @@
 # Australian Google Play activation gate — 2 November 2026
 
+> **Historical checkpoint, superseded on 6 November 2026.** Docked's ten Australian changes are now **in Google review**, with managed publishing ON and payments/public registration still OFF. The named migrations below were subsequently approved and applied; do not reapply them or request the same approval. The owner subsequently confirmed the player-name position, approved/published v2 policies and the narrow privacy v3 clarification. These are recorded owner decisions, not a newly inferred licence. Current deployment is `7319dddd`. Use the [actual submission and remaining activation report](qa/google-submission-20261106/FINAL_SUBMISSION_REPORT.txt), [current operations procedure](DUAL_STORE_OPERATIONS_20261105.md), and [separate commercial continuation](ops-launch-20261105/COMMERCIAL_OPERATIONS_CONTINUATION_20261106.txt). The text below preserves what was true at this original 2 November checkpoint and is not a current task/approval list.
+
 **Release prepared; not submitted, approved, published or charging customers.** The owner has conditionally authorised submission and later payment activation. The remaining conditions are substantive technical/external requirements, not another commercial-model decision.
 
 ## Work completed in this continuation
