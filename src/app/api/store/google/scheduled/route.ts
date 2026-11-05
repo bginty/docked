@@ -1,5 +1,7 @@
 import { googleScheduledReconciliationRequest } from "@/server/google-reconciliation-http";
 import { memberGoogleReconciliation } from "@/server/member-google-reconciliation";
+import { commercialRuntime } from "@/server/commercial-runtime";
+import { runGoogleReconciliationServices } from "@/server/google-reconciliation-services";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
@@ -7,7 +9,10 @@ export async function GET(req: Request) {
   const response = await googleScheduledReconciliationRequest(req, {
     secret: process.env.CRON_SECRET ?? "",
     run: async () => {
-      const health = await memberGoogleReconciliation().run();
+      const health = await runGoogleReconciliationServices(process.env, {
+        legacy: () => memberGoogleReconciliation().run(),
+        commercial: async () => (await commercialRuntime()).worker.run(),
+      });
       // Operational counters only: never log receipt tokens or account identity.
       const event = { event: "google-test-reconciliation", ...health };
       if (health.attentionRequired) console.error(JSON.stringify(event));
