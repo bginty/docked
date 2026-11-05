@@ -1,0 +1,146 @@
+{
+  "at": "2026-11-05T13:35:22.130Z",
+  "verification": "independent immutable Git tree comparison",
+  "baseline": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f",
+  "authPatch": "6fc7a31d8d7923bf478f291e97d2a0a72bbce6e2",
+  "sourceCommit": "7e609062746ba1034d0dfbaeb450dc9317a9fae0",
+  "parentCommits": [
+    "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f"
+  ],
+  "expectedPathCount": 20,
+  "authChangedPathCount": 20,
+  "derivedChangedPathCount": 20,
+  "pathsExactlyMatch": true,
+  "allOtherBlobsAndModesUnchanged": true,
+  "preservedBaselinePathCount": 12152,
+  "expectedTreeSHA256": "5cedca91b79ae6b637b346e926fd671c1f683e8e32f8bc239cafa3db984b6687",
+  "actualTreeSHA256": "5cedca91b79ae6b637b346e926fd671c1f683e8e32f8bc239cafa3db984b6687",
+  "mismatches": [],
+  "unchangedMismatches": [],
+  "changedPaths": [
+    {
+      "path": "src/app/api/auth/public-member-setup/route.ts",
+      "authEntry": "100644 blob c329696c355a419bf403f3e0180ce1c12026cb01",
+      "derivedEntry": "100644 blob c329696c355a419bf403f3e0180ce1c12026cb01",
+      "match": true
+    },
+    {
+      "path": "src/app/api/auth/route.ts",
+      "authEntry": "100644 blob 06e2ece1ed5031661ad56a2b7cce2863f523010c",
+      "derivedEntry": "100644 blob 06e2ece1ed5031661ad56a2b7cce2863f523010c",
+      "match": true
+    },
+    {
+      "path": "src/app/api/member/route.ts",
+      "authEntry": "100644 blob 06b0a3651cd9bf8425b0d623ab6e8de78bf1071b",
+      "derivedEntry": "100644 blob 06b0a3651cd9bf8425b0d623ab6e8de78bf1071b",
+      "match": true
+    },
+    {
+      "path": "src/app/app/onboarding/page.tsx",
+      "authEntry": "100644 blob 4f3d836ffba738f602c03fd2fec31f1107758f63",
+      "derivedEntry": "100644 blob 4f3d836ffba738f602c03fd2fec31f1107758f63",
+      "match": true
+    },
+    {
+      "path": "src/app/app/onboarding/public/page.tsx",
+      "authEntry": "100644 blob a7563a5602cfcab2cd1d1de0a542bc5666c34f72",
+      "derivedEntry": "100644 blob a7563a5602cfcab2cd1d1de0a542bc5666c34f72",
+      "match": true
+    },
+    {
+      "path": "src/components/app-auth-forms.tsx",
+      "authEntry": "100644 blob 3ae4ed0718ab30d04993c780774ec3c7b0a51f43",
+      "derivedEntry": "100644 blob 3ae4ed0718ab30d04993c780774ec3c7b0a51f43",
+      "match": true
+    },
+    {
+      "path": "src/core/auth-policy.ts",
+      "authEntry": "100644 blob 7fbfd28b2b59aee0017a763298e3a55d56198d5c",
+      "derivedEntry": "100644 blob 7fbfd28b2b59aee0017a763298e3a55d56198d5c",
+      "match": true
+    },
+    {
+      "path": "src/core/mfa-flow.ts",
+      "authEntry": "100644 blob 4ab121ebc3b78cd63cfb7251b63f8bb2f29a087d",
+      "derivedEntry": "100644 blob 4ab121ebc3b78cd63cfb7251b63f8bb2f29a087d",
+      "match": true
+    },
+    {
+      "path": "src/core/public-member-setup.ts",
+      "authEntry": "100644 blob 7e8a0f6f354bf5d21736a7d0a804d6a907394021",
+      "derivedEntry": "100644 blob 7e8a0f6f354bf5d21736a7d0a804d6a907394021",
+      "match": true
+    },
+    {
+      "path": "src/server/app-onboarding.ts",
+      "authEntry": "100644 blob 50878b7809a8e0c8109fe2efc4d3d6a75c73d164",
+      "derivedEntry": "100644 blob 50878b7809a8e0c8109fe2efc4d3d6a75c73d164",
+      "match": true
+    },
+    {
+      "path": "src/server/community-social.ts",
+      "authEntry": "100644 blob afe2a1946cb454b5e7996ea320835fb3b33e3bba",
+      "derivedEntry": "100644 blob afe2a1946cb454b5e7996ea320835fb3b33e3bba",
+      "match": true
+    },
+    {
+      "path": "src/server/existing-member-onboarding.ts",
+      "authEntry": "100644 blob 895edf53dd065468f0f8e6118607b8bb46658a44",
+      "derivedEntry": "100644 blob 895edf53dd065468f0f8e6118607b8bb46658a44",
+      "match": true
+    },
+    {
+      "path": "src/server/onboarding-identity.ts",
+      "authEntry": "100644 blob 51e6452b50a494a0610d0aaedf1f08f506054052",
+      "derivedEntry": "100644 blob 51e6452b50a494a0610d0aaedf1f08f506054052",
+      "match": true
+    },
+    {
+      "path": "src/server/public-member-setup.ts",
+      "authEntry": "100644 blob 7226f8af47355239098caf02bb33aa0677744abc",
+      "derivedEntry": "100644 blob 7226f8af47355239098caf02bb33aa0677744abc",
+      "match": true
+    },
+    {
+      "path": "tests/browser/public-member-setup.test.ts",
+      "authEntry": "100644 blob f46118920c4f88a34b4b9cb7be212001652d677a",
+      "derivedEntry": "100644 blob f46118920c4f88a34b4b9cb7be212001652d677a",
+      "match": true
+    },
+    {
+      "path": "tests/database/existing-member-onboarding.test.ts",
+      "authEntry": "100644 blob 5b8df6bedef02d6f869abbe59d6f733851a60667",
+      "derivedEntry": "100644 blob 5b8df6bedef02d6f869abbe59d6f733851a60667",
+      "match": true
+    },
+    {
+      "path": "tests/database/production-runtime-role.test.ts",
+      "authEntry": "100644 blob 73c451fe154fd5a0e99037eda953d62aebe1712d",
+      "derivedEntry": "100644 blob 73c451fe154fd5a0e99037eda953d62aebe1712d",
+      "match": true
+    },
+    {
+      "path": "tests/fixtures/public-member-setup.tsx",
+      "authEntry": "100644 blob 08fdd1b7908ab22fd12a353583d36a80ce2992c6",
+      "derivedEntry": "100644 blob 08fdd1b7908ab22fd12a353583d36a80ce2992c6",
+      "match": true
+    },
+    {
+      "path": "tests/platform/mfa-flow.test.ts",
+      "authEntry": "100644 blob 638c2e2c318603e13555cb82af33ab71220faa7f",
+      "derivedEntry": "100644 blob 638c2e2c318603e13555cb82af33ab71220faa7f",
+      "match": true
+    },
+    {
+      "path": "tests/platform/public-member-setup.test.ts",
+      "authEntry": "100644 blob 6132674f39d2c60671a970593125d30461740644",
+      "derivedEntry": "100644 blob 6132674f39d2c60671a970593125d30461740644",
+      "match": true
+    }
+  ],
+  "workingTreeUsed": false,
+  "optionalNativeDiagnosticsExcluded": true,
+  "optionalPoolAndDocumentationChangesExcluded": true,
+  "passed": true
+}
