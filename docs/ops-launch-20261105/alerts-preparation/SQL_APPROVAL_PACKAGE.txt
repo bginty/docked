@@ -1,0 +1,148 @@
+Operational billing-alert SQL approval package
+6 November 2026 Australia/Sydney — PREPARED, NOT APPLIED OR DEPLOYED
+
+Package: billing-ops-outbox-20261106-v1
+SQL: config/operations/billing-ops-outbox.prepared.sql
+Stop: config/operations/billing-ops-outbox.stop.prepared.sql
+Exact source/checksums: approval-package.json alongside this document.
+This is a reviewed SQL candidate outside automatic migrations. A specifically
+approved application must record its exact hash and application result; if a
+tracked Supabase migration is required, allocate it through the existing CLI.
+No migration ID/application or Production permission is claimed here.
+
+Concrete scope and approval request
+
+Reuse private.outbox, private.feature_flags, private.audit_events and the current
+Graph sender. Create no table, role, paid service, credential or scheduler.
+Approval of this package would allow the exact SQL functions/RLS reservations
+and dormant flag below only. It would NOT approve a delivery recipient/window,
+real email drill, activation, service-key copying, Auth-hook expansion or cron.
+
+Before -> after
+
+Before: commercial health is logged, with no operational mail queue path. Only
+postgres and docked_app have direct private.outbox rights. Ordinary app RLS can
+read queued service messages and insert them, but cannot lease/mark sent.
+The Auth-only mail queue and signed GoTrue hook are separate and remain unchanged.
+
+After a specifically approved apply: billing_ops_alerts=false is inserted once;
+existing flags and all commercial control/financial data remain unchanged.
+A private helper verifies BOTH that DB flag and a future approved opsAlerts
+window in commercial_billing.control.approvals. Its exact JSON requirements are:
+version=billing-ops-policy-v1; purpose=billing_ops_health_v1;
+recipient=support@docked.com.au; authority reference at least20characters;
+validUntil a future timestamp. No such approval is inserted by this package.
+Normal billing owner/legal/product approval fields and transaction gates are
+not changed. Runtime additionally requires its existing independent default-OFF
+operational purpose/recipient/authority/expiry configuration.
+
+Exact functions and grants
+
+- private.billing_ops_window(): internal approved-window predicate only.
+- private.billing_ops_key(jsonb,timestamptz): validated aggregate/hour fingerprint.
+- public.docked_billing_ops_enqueue(): zero arguments, derives eight aggregate
+  counters server-side, enqueues at most one identical health observation per
+  UTC hour, and appends an audit event only once. EXECUTE granted ONLY to existing
+  docked_commercial_app. No private-schema USAGE or direct outbox grant added.
+- public.docked_billing_ops_queue(text,jsonb): purpose-only claim/fence/settle RPC.
+  EXECUTE granted ONLY to existing service_role. Anonymous, authenticated,
+  ordinary app and commercial producer roles are explicitly denied. Actual
+  PostgreSQL/PostgREST role privileges enforce this; JWT/custom-GUC strings and
+  SECURITY DEFINER current_user are not accepted as caller authorisation.
+- Helper and RPC PUBLIC/default EXECUTE privileges are revoked explicitly.
+
+Rows use existing kind=service, user_id=NULL, a reserved purpose and dedupe
+prefix. No caller chooses a recipient, message, user, receipt, token or amount.
+Only complete counts and observation time reach Graph. Existing authenticated
+admin links grant no additional access.
+
+RLS/schema compatibility
+
+Preflight requires the exact existing outbox column types, RLS and dedupe_key
+NOT NULL. A first apply aborts on ANY existing reserved-purpose/prefix record,
+before it can hide/freeze a legitimate row. On exact retry, existing reserved
+rows must match the validated immutable aggregate key. Active alert admission
+also prevents re-preparation.
+
+Four NULL-safe RESTRICTIVE policies reserve the new purpose/prefix for SELECT,
+INSERT, UPDATE and DELETE. Existing rows with absent/null purpose continue
+through their current policies. Hiding reserved rows from ordinary SELECT also
+prevents an existing app lease subquery from selecting an inaccessible ops row
+and starving ordinary messages. No existing permissive policy/grant is weakened.
+The source leaseOutboxRecord query independently excludes only the reserved
+purpose/prefix, including when called by an operator who bypasses RLS.
+
+Dispatch/recovery semantics
+
+Claim is atomic, SKIP LOCKED and bounded. Pre-dispatch leases may be reclaimed
+under the existing five-attempt bound. Only the exact current lease can fence
+or settle. Fence persists before any Graph request; duplicate fence returns
+false. No dispatched job can be leased again. Expired dispatch becomes dead /
+unknown with audit evidence. Expired/unfenced work is held after its bound.
+Graph202 means provider accepted, never verified inbox delivery. Any ambiguous
+send or post-send DB outage remains held; no blind resend. Completed settlement
+retry is idempotent. Closing admission blocks new claims/fences but still permits
+valid in-flight outcomes to settle. Customer balances, holds, purchases, cards,
+Auth messages and financial journals are outside every mutating query.
+
+Actual isolated verification
+
+node scripts/commercial-local-postgres.mjs --ops-alerts
+11 scenario groups passed using pinned disposable PostgreSQL17.10:
+first-apply collision and nullable-schema refusal; dormant/idempotent DDL;
+actual-role denial including forged GUC; DB window enforcement;24 concurrent
+producers with one row/audit; legacy read/insert/suppress/generic-lease behaviour;
+24 concurrent claims and12 fences yielding one owner/fence; expired lease and
+post-fence replay denial; real SQL adapter with mocked Graph; injected real SQL
+audit-trigger failures rolling back fence/settlement; settle after admission
+closes. Protected financial/Auth-source fingerprints remained identical.
+No network provider call, actual email or permanent card issue occurred.
+The four adapter mock tests also pass; TypeScript and targeted ESLint pass.
+See postgres.json and existing-outbox-boundary-readonly.json. The latter confirms
+Production dedupe NOTNULL, zero reserved collisions, existing exact grants,
+only the current Auth-mail schedule and prepared RPC absent. This is metadata,
+not a Production application or delivery drill.
+
+Compatible rollout order — each later step remains separate
+
+1. Review/commit the tested generic query exclusion, message fingerprint alignment
+   and minimal queue adapter. Keep operational flags OFF. These source changes
+   are NOT deployed and are outside the frozen7319 Google-review release.
+2. Only after specific SQL approval: verify latest recoverable backup, exact
+   project, LF-canonical SQL checksum, dependencies/schema/roles and zero reserved
+   collisions. Apply the exact atomic SQL, leaving its flagfalse and approved
+   opsAlerts metadata absent. Verify unchanged protected counts/hashes and grants.
+   No producer/dispatcher starts from dormant DDL alone.
+3. Separately review recipient purpose, primary/backup support operator and a
+   finite authority window. Reuse existing Graph credentials only in their
+   current approved server environment; no copy into browser/other runtime.
+   Wire the minimal adapter to existing authenticated billing scheduling only
+   after its worker boundary is reviewed. Do not broaden the signed Auth hook.
+4. Separately authorise ONE non-financial aggregate drill and confirm actual
+   support-mailbox receipt. Provider202 or cron invocations are insufficient.
+   No real customer data or financial transaction is required for the drill.
+5. Only then approve the operational DB/runtime flag window. No recurring service
+   is required. This package itself enables no public registration, payment,
+   trading, cash redemption, prize, paid entry, destructive cleanup or NBA.
+
+Rollback/stop
+
+Close runtime alert admission and apply only the reviewed stop SQL if authorised.
+It sets the ONE ops flagfalse and records the stop without deleting a row.
+Keep the exact valid in-flight settlement path available until its outcome is
+resolved. Preserve queued/fenced/unknown/sent rows and audit records; never
+blindly requeue a dispatched unknown message. Roll back application routing to
+the prior disabled code if necessary; retain purpose-reserving policies so old
+code cannot claim historical ops rows. Do not drop schemas or restore an entire
+Production database over later customer transactions.
+
+After pending/fenced work is individually resolved, a separately reviewed
+privilege rollback may REVOKE EXECUTE on the two public functions from their
+specific roles. Removing helper/functions/policies is unnecessary for a safe
+stop and must not expose reserved rows to ordinary workers. No table/financial
+rollback or customer-account rewrite is involved.
+
+Outstanding approval/action is exact: this unapplied SQL/grant package, then a
+reviewed existing worker binding and finite support-recipient/drill authority.
+It is an operational payment-activation item; the already submitted Google
+review remains independent. Do not claim the alert path is live or delivered.

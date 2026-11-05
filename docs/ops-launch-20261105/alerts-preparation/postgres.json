@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-05T21:05:05.878Z",
+  "engine": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
+  "sqlSha256": "68dfd76393b817e728a5896a8d499719b6a5d8f3148fde7b80c19e2e970a6038",
+  "checks": [
+    "first-apply collisions and nullable dedupe schema fail without hiding customer records",
+    "prepared SQL is dormant, idempotent and preserves existing records",
+    "actual DB grants deny public/app callers and forged role claims",
+    "DB policy window cannot be replaced by a runtime flag",
+    "24 concurrent producers persist one server-derived aggregate and audit event",
+    "ordinary outbox reads/inserts/suppression and generic leasing remain correct",
+    "24 real claims and duplicate fences produce one dispatch owner",
+    "unfenced lease can recover; stale owner and post-fence retry are denied",
+    "real adapter fences before mocked Graph acceptance; outage cannot resend",
+    "failed dispatch fence rolls back and sends no email; settlement outage is held",
+    "closed admission still records an already fenced provider outcome"
+  ],
+  "passed": true,
+  "productionWrites": 0,
+  "providerCalls": 0,
+  "emailsSent": 0,
+  "permanentInventoryIssued": 0,
+  "protectedRecordsPreserved": true,
+  "productionApply": false
+}

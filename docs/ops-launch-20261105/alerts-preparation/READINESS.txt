@@ -1,0 +1,109 @@
+Billing operational-alert readiness — 6 November 2026 Australia/Sydney
+
+Status: new adapter IMPLEMENTED / mock-verified / DISABLED / NOT DEPLOYED.
+This follow-up is outside the immutable Google submission release. No email,
+queue write, IAM grant, permission, deployment, scheduler or live flag changed.
+
+Current read-only health, 5 November 20:35–20:36 UTC
+
+Commercial reconciliation jobs and recovery cases: zero.
+TEST receipts: four CANCELLED. TEST consumption: four done, none overdue.
+TEST notification inbox: ten done, seven attention after twelve attempts.
+Narrow triage: four purchase hints and three voided hints have NO binding in the
+Production TEST receipt table. None is a mapped pending refund of the four known
+TEST receipts. This does not establish whether a receipt exists elsewhere.
+Preserve them for operator review; never manufacture an account binding, clear
+rows, retry purchases or grant credit to make the queue green.
+Auth mail: eight accepted by provider, all one attempt; no pending Auth mail.
+The Auth scheduler is enabled with one existing scheduled job. Provider
+acceptance does not prove inbox delivery. Ordinary customer outbox is empty;
+legacy beta outbox has one queued item, purpose not changed by this task.
+
+Evidence:
+production-health-readonly.json
+test-attention-triage.json
+
+Established missing path
+
+CommercialReconciliation.health() and the existing scheduler expose/log
+attention and overdue counts. No code creates an operational alert from those
+counts or delivers it to the support mailbox. Existing Graph mail submission
+works for Auth, but its signed GoTrue hook and Auth outbox are purpose-limited.
+Reusing those messages or authentication hooks for operations would cross the
+existing purpose/authorisation boundary.
+
+Safe preparation completed
+
+src/server/billing-ops-alerts.mjs reuses the existing sendGraph transport from
+supabase/functions/docked-auth-email/mail.mjs. It introduces no endpoint,
+credential loading, queue table, cron or production database binding.
+
+Its independent operational flag is off by default. Explicit time-limited
+purpose/recipient authority is required even when Auth Graph mail is enabled.
+Recipient is fixed to support@docked.com.au and project to the existing Docked
+project. Only complete non-negative aggregate counters and observation time
+enter messages. Raw errors, user identities, receipt references and tokens are
+excluded; links require existing authenticated owner/staff access.
+
+The dispatcher requires a queue implementation to atomically claim, persist a
+pre-send dispatch fence and settle. No in-memory queue is shipped for production.
+Graph has no exactly-once sendMail guarantee. Ambiguous send errors become
+operator-held unknown outcomes, never blind retries. A failed settlement after
+202 also leaves its durable fence recoverable without resending. 202 is labelled
+accepted with deliveryVerified=false, never delivered.
+
+Four isolated mock tests passed: default-off and denied configuration never
+claim/send; sensitive extras omitted and incomplete counters rejected; concurrent
+mock dispatch respects one claim/fence; ambiguous send and post-send settlement
+outage cannot blindly resend. No real Graph request or email occurred.
+
+Exact bounded next review action — no migration applied
+
+1. Review a purpose-specific binding to the EXISTING private.outbox table. Do not
+   use private.docked_auth_mail_outbox and do not create a parallel mail system.
+   New internal rows use kind=service, user_id=NULL and payload.purpose=
+   billing_ops_health_v1. Store only approved aggregate counters, observation
+   timestamp and sanitised dispatch outcome. Existing unique dedupe_key can hold
+   the adapter's hourly aggregate fingerprint. Do not rewrite existing rows.
+2. Current docked_app RLS permits queued service inserts and suppressed/dead
+   updates; it cannot lease or mark sent. The commercial role has no private
+   outbox access. Prepare/review bounded enqueue/claim/fence/settle functions or
+   equivalent narrowly scoped worker grants before wiring. A reviewed function
+   must restrict its exact purpose, fixed recipient, project, lease token and
+   dedupe key; never grant general outbox/email access or BYPASSRLS to billing.
+3. Reuse existing columns and payload for lease and pre-dispatch fence. The
+   purpose-specific claim must EXCLUDE previously fenced jobs. An expired fenced
+   lease is held (dead with a sanitised ambiguous outcome) for operator review;
+   the generic leaseOutboxRecord must not blindly reclaim it. Only an exact
+   current lease can finish; no financial rows are modified. Prepare additive
+   permission/function migration if required, with isolated PostgreSQL role,
+   concurrency and fault tests. Obtain specific review before application.
+4. Reuse existing Graph sender/certificate INSIDE its approved server environment;
+   do not copy Auth keys into the client or unrelated runtime. Do not broaden the
+   signed Auth hook. Bind the operational worker to the existing authenticated
+   billing scheduling infrastructure only after its queue/worker boundary is
+   reviewed. No new paid service is needed. If a separate scoped worker secret
+   or grant is required, request that exact action; do not reuse the Auth hook
+   secret or expose a public message-sending endpoint.
+5. Owner/operator must confirm who monitors support@docked.com.au and the backup
+   operator. After that purpose/binding approval, run ONE clearly labelled,
+   non-financial alert drill using aggregate fixtures and confirm actual mailbox
+   receipt. Provider 202 and database scheduler invocations are insufficient.
+6. Keep DOCKED_BILLING_OPS_ALERTS unset/false until durable binding, operator,
+   recipient purpose, expiry and delivery drill are approved/verified. Until
+   then monitoring delivery is a paid-customer operational-activation gate,
+   separate from the already closed Google review submission configuration.
+
+No financial reconciliation/recovery rule, customer balance, card ownership,
+permanent supply, Auth mail permission or historical record changed.
+
+Concrete SQL follow-up, prepared after Google submission
+
+The next-step design is now implemented as an UNAPPLIED purpose-filtered SQL
+package, minimal existing-provider RPC binding and real PostgreSQL rehearsal.
+Read SQL_APPROVAL_PACKAGE.txt and approval-package.json for the exact functions,
+grants, disabled policy/window gates, checksum, compatible deployment order and
+safe stop. Eleven real-PG scenario groups passed, including injected SQL audit
+failures, role denial, concurrency, null-purpose legacy rows and prefix collision
+preflight. Production functions/permissions remain unchanged; no live binding,
+email, cron or operational activation is claimed.

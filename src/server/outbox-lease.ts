@@ -8,6 +8,6 @@ export async function leaseOutboxRecord(
 ) {
   const token = randomUUID();
   const rows =
-    await sql`update private.outbox set state='leased',lease_token=${token},lease_until=now()+interval '60 seconds',attempts=attempts+1 where id=(select id from private.outbox where (${onlyId ?? null}::uuid is null or id=${onlyId ?? null}::uuid) and (state='queued' or (state='leased' and lease_until<now())) and available_at<=now() and attempts<5 order by created_at for update skip locked limit 1) returning *`;
+    await sql`update private.outbox set state='leased',lease_token=${token},lease_until=now()+interval '60 seconds',attempts=attempts+1 where id=(select id from private.outbox where (${onlyId ?? null}::uuid is null or id=${onlyId ?? null}::uuid) and payload->>'purpose' is distinct from 'billing_ops_health_v1' and dedupe_key not like 'billing-ops-v1:%' and (state='queued' or (state='leased' and lease_until<now())) and available_at<=now() and attempts<5 order by created_at for update skip locked limit 1) returning *`;
   return rows[0] ?? null;
 }
