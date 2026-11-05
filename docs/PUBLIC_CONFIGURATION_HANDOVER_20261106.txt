@@ -1,0 +1,93 @@
+DOCKED — DORMANT PUBLIC COMPETITION AND AU ELIGIBILITY HANDOVER
+6 November 2026 (Australia/Sydney)
+
+STATUS
+Implemented, rehearsed and applied as dormant Production configuration. This is not public registration, payment activation, a prize competition, a live-season fixture import or Google submission.
+
+ROOT CAUSE AND SCOPE
+Production public_gameplay initially had no mapped rounds and no public-template competitions. The public policy was disabled and its Terms, Privacy and expiry fields were empty. Ordinary public eligibility also lacked AU regional rows. Existing reviewer practice competitions and beta admission did not constitute an ordinary public profile or fresh public consent.
+
+The shared public practice rule builder was reused. No logical schema migration, competition recreation, eligibility extension, wallet adjustment or permanent card issuance was required. All new competitions use the existing '2026 Practice' eligibility season so the existing verified roster links remain valid. These are explicitly dated roster-practice rounds, not official NFL/AFL/NRL fixtures.
+
+BEFORE / AFTER — AUTHORISED CONFIGURATION ONLY
+- Public-template competition rows: 0 -> 6.
+- Public mappings: 0 -> 6; enabled mappings: 0 -> 0.
+- Saved lineup configurations: one new NFL round-wide practice configuration; AFL/NRL saved configurations reused unchanged.
+- AU ordinary regional policy rows for this version: 0 -> 8.
+- Public policy Terms/Privacy bindings: null -> 2026-11-02-release-preparation-v2.
+- Public policy enabled: false -> false.
+- Public sport visible/play flags: false -> false.
+- Registration, commercial sales/issuance/transfers/gameplay flags: false -> false.
+- Existing eligibility, user profiles, consent events, entries, wallets and inventory: unchanged by these configuration transactions.
+
+ACTUAL COMPETITIONS — ROUND 2 / LOCKS 15 NOVEMBER 2026 12:00 UTC
+NFL Traditional: 11edf5ac-262b-41ad-a6d9-06a53053a051 — 7 players, $4.4m.
+NFL All-Star: fa53ab81-b8fd-4d4e-bf5e-214c5209b09f — 7 players, uncapped mode.
+AFL Traditional: 38f8e2da-a8cd-41ec-b34b-008084be7722 — 22 players, $13.8m.
+AFL All-Star: 0073858d-b14b-49ce-8cda-56c2357490c5 — 22 players, uncapped mode.
+NRL Traditional: c49a6684-8d34-4411-92f5-50393d55386e — 13 players, $8.2m.
+NRL All-Star: 3e19ab97-7cff-490c-aa9c-aeba3a8e6207 — 13 players, uncapped mode.
+
+Each has zero entry fee, no awards and a disabled public mapping. Traditional salaries use the approved rarity mapping; All-Star ignores the saved configuration's cap through its authoritative OPEN mode. Existing beta/private competition records and links were preserved. No new legacy production_rounds or sport_rounds mapping exposes these rounds through beta navigation.
+
+AFL remains 6 Backs / 8 Midfielders / 6 Forwards / 2 Rucks. NRL remains 2 WFB / 2 CTR / 2 HLF / 3 EDG / 3 MID / 1 any-position Flex. The restored-server fixture verified eligible unique Core lineups, not merely arithmetic.
+
+ROSTER / EXPIRY
+Existing eligible practice records: NFL 386, AFL 545, NRL 337. Programme and eligibility records were not rewritten. Eligibility expires 31 January 2027 independently of the AU policy window. The NFL recorded practice roster is not represented as an official current live roster. Public sport and round mappings remain disabled.
+
+OWNER-APPROVED AU ELIGIBILITY
+Version docked-au-adult-closed-loop-v1: ACT, NSW, NT, QLD, SA, TAS, VIC, WA.
+Minimum age18; ordinary public_profiles and community_social eligibility; no preview-only substitution. Owner authority and the actual scoped assessment are recorded explicitly; no independent legal/regulatory certification or statistics licence is asserted.
+Effective: 5 November 2026 13:03:30.607 UTC.
+Review due: 5 December 2026 13:03:30.607 UTC.
+Expires: 3 February 2027 13:03:30.607 UTC.
+No fresh age, state, public username or Terms/Privacy consent was invented for an existing beta reviewer. The scoped Auth implementation requires the actual member to complete the explicit authenticated form.
+
+BACKUP / RESTORED REHEARSAL
+Fresh encrypted Production archive captured 5 November 2026 12:47:06.937 UTC, 87,665,243 bytes before encryption.
+SHA256 e84bf19e6e7228ad574811670160f012041a8a4319a34eb22328fbd4b8b7cd80.
+Existing operator-held AES-256-GCM key; authenticated archive read and full PostgreSQL restore succeeded. Restored environment: PostgreSQL17.11, no network, no published ports, Cron disabled. No storage object bodies or external service secrets are claimed as part of this logical database backup.
+
+The final restored rehearsal applied both packages twice, saved and entered all six competitions using an isolated ordinary non-allowlisted fixture, checked rankings/View Team projection, and rolled the entire fixture transaction back. Zero collectible cards or commercial wallets were created. Final targeted44 protected/affected groups matched after rollback. Earlier full-table rehearsal comparisons also succeeded before fixture-only harness repairs; they were not repeated unnecessarily.
+
+Production apply receipts:
+- Rounds: 5 November 2026 13:17:01.160 UTC; SQL SHA256 c148af91762398e978b8bcb1e9020066e7ce85b6e38e5f5ac9c5350464f27ed2.
+- AU eligibility: 5 November 2026 13:17:13.949 UTC; SQL SHA256 6765f899a8ee5791cbc0659ab849f16ea4942f0a87a9c83b5d00e9c437db1457.
+No DDL or new migrations.
+
+PROTECTED READBACK
+Independent readback at13:20:41 UTC confirmed exact six IDs/rule hashes, eight AU policies, intact RLS and denied anonymous/authenticated direct public-reader execution. All immutable business-data fingerprints matched the authenticated backup after excluding the exact approved additions/policy binding. sports_feed.nfl_rounds full hashes differed only in independently verified scheduler telemetry fields last_checked/next_check/lease_until; that difference is preserved in evidence and is not falsely reported as an identical full table hash. No fixtures, locked snapshots, issues, ownership, balances, transactions or historical competition rules changed.
+
+A separate later root-authorised NONFINANCIAL reviewer grant is outside these transactions and this fingerprint window. Do not attribute that grant to public configuration or rerun an older blanket fingerprint expectation against later authorised operations.
+
+TESTS ACTUALLY EXECUTED
+- Public practice / approved Australian rules / free Core targeted platform files: 5/5 passed.
+- Targeted TypeScript, ESLint and diff checks passed.
+- Restored PostgreSQL configuration idempotency, six actual saved+entered lineups, rankings projection and rollback: passed.
+- AU policy idempotency and dormant programme: passed.
+- No new hosted authenticated public entry is claimed by this work; Production mappings remain off.
+
+SOURCE / CANDIDATE
+Configuration implementation and evidence: fcde56c3.
+Auth-only release source: 7e609062746ba1034d0dfbaeb450dc9317a9fae0 (dfed baseline plus only approved Auth commit6fc7a31d's20 paths).
+Unassigned READY candidate dpl_9siKtt3qfKT2vFya3vVYJpbzd6tH, https://docked-production-e9rzfbb2p-briant-s-projects.vercel.app.
+Exact source/runtime boundary and18 anonymous HTTP/origin/redirect checks passed. Canonical Production remains Hxyw/dfed. All9 activation gates remain false; no TEST transport.
+Canonical promotion is held pending root's narrow privacy-version correction review. This candidate does not publish a new privacy policy and must not be used to collect consent immediately before an approved superseding privacy version.
+
+OPERATIONS / ROLLBACK
+Default script invocations are read-only plans. Frozen existing packages enforce exact-match idempotency and reject conflicting rules, enabled public programmes or changed policy versions. Do not rerun a v2 policy package after an approved privacy-version transition; prepare the explicitly authorised prospective binding instead.
+Keep mappings/policy/sports false until final readiness is approved. A later activation must check current deadlines, policy review/expiry, roster eligibility and actual customer consent. No implied indefinite schedule renewal.
+Preferred rollback for dormant configuration is leave it inactive, preserving all audit/configuration history. Application rollback is exact closed dfed deployment dpl_Hxyw3omGaXcGAG1qEhFtjdgYs5En. Do not delete new competition rows once a real entry/reference exists, restore broad backups over subsequent legitimate records, or clear prior refunds/holds.
+
+PRIMARY EVIDENCE
+- docs/qa/public-configuration-20261105/plan.json
+- docs/qa/public-configuration-20261105/applied.json
+- docs/qa/public-configuration-20261105/au-policy-plan.json
+- docs/qa/public-configuration-20261105/au-policy-applied.json
+- docs/qa/public-configuration-20261105/rehearsal.json
+- docs/qa/public-configuration-20261105/au-policy-rehearsal.json
+- docs/qa/public-configuration-20261105/restore/restore-drill.json
+- docs/qa/public-configuration-20261105/committed-readback.json
+- docs/qa/public-configuration-20261105/round-telemetry-review.json
+- docs/qa/public-member-setup-20261106/source-boundary.json
+- docs/qa/public-member-setup-20261106/candidate-verified.json
