@@ -2,7 +2,9 @@ import { commercialRuntime } from "@/server/commercial-runtime";
 import { googleNotificationRequest } from "@/server/google-reconciliation-http";
 import { isolatedBillingConfiguration } from "@/core/isolated-billing-acceptance";
 import { boundedCommunityBody } from "@/core/community-social";
+import { after } from "next/server";
 export const runtime = "nodejs";
+export const maxDuration = 60;
 export async function POST(req: Request) {
   try {
     // During an expiring isolated acceptance window the existing authenticated
@@ -33,7 +35,31 @@ export async function POST(req: Request) {
           process.env.DOCKED_GOOGLE_COMMERCIAL_PUSH_SUBSCRIPTION ?? "",
         packageName: "docked.fantasy",
       },
-      enqueue: async (n) => (await commercialRuntime()).worker.enqueue(n),
+      enqueue: async (n) => {
+        const { worker } = await commercialRuntime();
+        const inserted = await worker.enqueue(n);
+        // Authenticate and persist before returning 204. Dispatch bounded work
+        // independently of the browser; failed runs retain their durable jobs.
+        after(async () => {
+          try {
+            const health = await worker.run();
+            if (health.attentionRequired)
+              console.error(
+                JSON.stringify({
+                  event: "google-commercial-reconciliation",
+                  ...health,
+                }),
+              );
+          } catch {
+            console.error(
+              JSON.stringify({
+                event: "google-commercial-reconciliation-deferred",
+              }),
+            );
+          }
+        });
+        return inserted;
+      },
     });
   } catch {
     return Response.json(

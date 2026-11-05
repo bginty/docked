@@ -70,7 +70,7 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
     ))
   )
     throw new CommercialRateLimit("Please retry shortly");
-  const { ledger, verifier } = await commercialRuntime();
+  const { ledger, verifier, worker } = await commercialRuntime();
   return {
     member: who.user.id,
     view: new CommercialMemberView(ledger, who.user.id, authorize),
@@ -106,10 +106,22 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
         token,
         authorize,
       );
+      // Google requires acknowledgement after fulfilment. The durable consume
+      // job exists before this call; a failed attempt never rolls back or repeats
+      // wallet crediting, and its persisted lease/backoff supports recovery.
+      const acknowledged =
+        result.state === "PURCHASED" &&
+        (await worker
+          .acknowledgeReceipt(result.receipt, who.user.id)
+          .catch(() => false));
+      if (result.state === "PURCHASED" && !acknowledged)
+        console.warn(
+          JSON.stringify({ event: "google-commercial-acknowledgement-deferred" }),
+        );
       return {
         ...result,
         wallet: await ledger.wallet(who.user.id),
-        acknowledgement: "durable-worker",
+        acknowledgement: acknowledged ? "acknowledged" : "durable-worker",
       };
     },
     reconcile: async () => {
