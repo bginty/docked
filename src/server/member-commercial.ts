@@ -11,6 +11,7 @@ import { CommercialMemberView } from "./commercial-member-view";
 import { commercialCard } from "../core/commercial-presentation";
 import { isolatedPreviewReadOnlyIdentity } from "../core/isolated-public-preview.mjs";
 import { isolatedBillingIdentity } from "../core/isolated-billing-acceptance";
+import { BillingOpsMonitor } from "./billing-ops-monitor";
 /** Ordinary authenticated member; body never contains a customer, balance, price
  * or credited amount. TEST admission and synthetic identities are not reused. */
 export class CommercialRateLimit extends Error {}
@@ -71,6 +72,7 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
   )
     throw new CommercialRateLimit("Please retry shortly");
   const { ledger, verifier, worker } = await commercialRuntime();
+  const monitor = new BillingOpsMonitor(ledger.sql);
   return {
     member: who.user.id,
     view: new CommercialMemberView(ledger, who.user.id, authorize),
@@ -99,13 +101,24 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
         })
         .strict()
         .parse(body);
-      const receipt = await verifier.verify(token, account);
-      const result = await ledger.accept(
-        receipt,
-        who.user.id,
+      const knownReplay = await monitor.isKnownReceiptReplay(
         token,
-        authorize,
+        who.user.id,
+        account,
       );
+      const receipt = await monitor.run(
+        knownReplay ? "replay" : "verification",
+        () => verifier.verify(token, account),
+      );
+      const { duplicateObservation, ...result } = await monitor.run(
+        receipt.state === "REVOKED" || receipt.refundedCents > 0
+          ? "refund"
+          : receipt.state === "PURCHASED" && receipt.paid
+            ? "fulfilment"
+            : "reconciliation",
+        () => ledger.accept(receipt, who.user.id, token, authorize),
+      );
+      if (duplicateObservation) await monitor.record("receipt_duplicate_retry");
       // Google requires acknowledgement after fulfilment. The durable consume
       // job exists before this call; a failed attempt never rolls back or repeats
       // wallet crediting, and its persisted lease/backoff supports recovery.
@@ -113,10 +126,15 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
         result.state === "PURCHASED" &&
         (await worker
           .acknowledgeReceipt(result.receipt, who.user.id)
-          .catch(() => false));
+          .catch(async () => {
+            await monitor.record("acknowledgement_failed");
+            return false;
+          }));
       if (result.state === "PURCHASED" && !acknowledged)
         console.warn(
-          JSON.stringify({ event: "google-commercial-acknowledgement-deferred" }),
+          JSON.stringify({
+            event: "google-commercial-acknowledgement-deferred",
+          }),
         );
       return {
         ...result,
@@ -131,8 +149,15 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
       for (const row of refs) {
         const ref = await ledger.reference(row.key);
         if (ref) {
-          const r = await verifier.verify(ref.token, account);
-          await ledger.accept(r, who.user.id, ref.token, authorize, false);
+          const r = await monitor.run("reconciliation", () =>
+            verifier.verify(ref.token, account),
+          );
+          await monitor.run(
+            r.state === "REVOKED" || r.refundedCents > 0
+              ? "refund"
+              : "reconciliation",
+            () => ledger.accept(r, who.user.id, ref.token, authorize, false),
+          );
         }
       }
       return { checked: refs.length, morePossible: refs.length === 4 };
@@ -151,7 +176,9 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
         })
         .strict()
         .parse(body);
-      return ledger.buyPack(who.user.id, v.request, v, authorize);
+      return monitor.run("pack", () =>
+        ledger.buyPack(who.user.id, v.request, v, authorize),
+      );
     },
     openPack: async (body: unknown) => {
       assertTransactionIdentity();
@@ -162,7 +189,9 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
         })
         .strict()
         .parse(body);
-      const r = await ledger.openPack(who.user.id, id, authorize);
+      const r = await monitor.run("pack", () =>
+        ledger.openPack(who.user.id, id, authorize),
+      );
       return {
         id,
         name: r.product.name,

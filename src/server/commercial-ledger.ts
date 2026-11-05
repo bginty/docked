@@ -22,6 +22,7 @@ import { rarityRule } from "../core/card-rarity";
 import { sellerQuote } from "../core/credits-policy";
 import { digest } from "../core/scoring-engine";
 import { commercialCardSnapshot } from "../core/commercial-presentation";
+import { hasRequiredPackSupply } from "../core/commercial-pack-supply";
 type Authorize = (tx: Sql, member: string) => Promise<void>;
 type Funding = { lot: string; receipt: string; amount: number }[];
 const uuid = z.string().uuid();
@@ -334,7 +335,11 @@ export class CommercialLedger {
           environment: r.environment,
           credited: Boolean(old?.credited || state === "PURCHASED"),
         });
-      return { state, receipt: r.key };
+      return {
+        state,
+        receipt: r.key,
+        duplicateObservation: newObservation.length === 0,
+      };
     });
   }
   async reference(key: string) {
@@ -428,6 +433,23 @@ export class CommercialLedger {
         if (integer(d.lifetime_cap) !== rarityRule(d.rarity).lifetimeCap)
           throw Error("Approved lifetime supply mismatch");
       }
+      const availablePlayers = new Map<string, Set<string>>();
+      for (const d of pool) {
+        if (integer(d.issued) >= integer(d.lifetime_cap)) continue;
+        const players = availablePlayers.get(d.rarity) ?? new Set<string>();
+        players.add(d.player_id);
+        availablePlayers.set(d.rarity, players);
+      }
+      if (
+        !hasRequiredPackSupply(
+          p,
+          [...availablePlayers].map(([rarity, players]) => ({
+            rarity,
+            players: players.size,
+          })),
+        )
+      )
+        throw Error("Pack supply unavailable; no charge or substitution");
       const chosen: (typeof pool)[number][] = [];
       const players = new Set<string>();
       const evidence = [];
@@ -648,20 +670,44 @@ export class CommercialLedger {
     });
   }
   async financialReport() {
-    const [money] = await this
-      .sql`select count(*) filter(where money_recorded)::int purchases,coalesce(sum(gross_cents) filter(where money_recorded),0)::text gross_cents,coalesce(sum(refunded_cents) filter(where money_recorded),0)::text refund_cents,count(*) filter(where state='REVIEW')::int review from commercial_billing.receipts`;
-    const [credits] = await this
-      .sql`select coalesce(sum(remaining),0)::text outstanding from commercial_billing.lots`;
-    const [cases] = await this
-      .sql`select count(*)::int open_cases,coalesce(sum(exposure_credits),0)::text exposure_credits from commercial_billing.recovery_cases where state='OPEN'`;
-    return {
-      environment: this.environment,
-      ...money,
-      outstandingCredits: integer(credits.outstanding),
-      ...cases,
-      providerPayoutReconciled: false,
-      providerFees: null,
-      recognizedRevenue: null,
-    };
+    // All aggregates must describe the same committed ledger state. A purchase
+    // or refund may finish between queries without mixing old receipt totals
+    // with newer lot/recovery balances. Reporting never takes a write lock.
+    return this.sql.begin(
+      "isolation level repeatable read read only",
+      async (transaction) => {
+        const tx = transaction as unknown as Sql;
+        const [snapshot] = await tx`select transaction_timestamp() as as_of`;
+        const [money] = await tx<
+          {
+            purchases: number;
+            gross_cents: string;
+            refund_cents: string;
+            review: number;
+          }[]
+        >`select count(*) filter(where money_recorded)::int purchases,coalesce(sum(gross_cents) filter(where money_recorded),0)::text gross_cents,coalesce(sum(refunded_cents) filter(where money_recorded),0)::text refund_cents,count(*) filter(where state='REVIEW')::int review from commercial_billing.receipts`;
+        const [credits] = await tx<
+          {
+            outstanding: string;
+          }[]
+        >`select coalesce(sum(remaining),0)::text outstanding from commercial_billing.lots`;
+        const [cases] = await tx<
+          {
+            open_cases: number;
+            exposure_credits: string;
+          }[]
+        >`select count(*)::int open_cases,coalesce(sum(exposure_credits),0)::text exposure_credits from commercial_billing.recovery_cases where state='OPEN'`;
+        return {
+          environment: this.environment,
+          asOf: new Date(snapshot.as_of).toISOString(),
+          ...money,
+          outstandingCredits: integer(credits.outstanding),
+          ...cases,
+          providerPayoutReconciled: false,
+          providerFees: null,
+          recognizedRevenue: null,
+        };
+      },
+    );
   }
 }

@@ -100,11 +100,18 @@ export function parseOfficialRoster(html: string, url: string): OfficialRow[] {
       });
     }
   }
+  // Some official pages include additional labelled groups (for example PUP
+  // or TRC). Keep those rows unknown/ineligible rather than guessing their
+  // roster status or rejecting a complete, recognised Active group. Unknown,
+  // reserve and practice rows cannot establish Active-roster completeness.
+  const active = rows.filter((r) => r.status === "active");
   if (
     rows.length < 45 ||
     rows.length > 110 ||
-    !rows.some((r) => r.position === "QB") ||
-    rows.some((r) => r.status === "unknown")
+    active.length < 45 ||
+    new Set(active.map((r) => rosterName(r.name))).size !== active.length ||
+    new Set(active.map((r) => r.profile)).size !== active.length ||
+    !active.some((r) => r.position === "QB")
   )
     throw Error("Official roster incomplete; retain previous evidence");
   return rows;
