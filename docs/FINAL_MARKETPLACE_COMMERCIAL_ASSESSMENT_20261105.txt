@@ -1,0 +1,189 @@
+Docked Australian Google Play commercial boundary assessment
+5 November 2026 (Australia/Sydney)
+
+Decision for the exact release, not a new licence or legal opinion
+
+GO for technical preparation of the documented staged configuration: free app,
+free Core selection, free no-prize NFL/AFL/NRL gameplay, optional approved paid
+Standard/Premium packs through Play Billing, app-only non-redeemable credits,
+and commercial marketplace transfers OFF. NBA stays hidden. This assessment
+does not activate payments, public registration, competitions or publishing.
+The normal release, security, provider and owner activation checks still apply.
+
+The owner subsequently confirmed: "Keep commercial trading disabled for initial
+review." This staged scope is now explicitly approved. It preserves the future
+commercial model; it does not claim that commercial resale is implemented or
+enable paid purchases. Existing public-runtime Market presentation already
+explains that trading is unavailable and links to the member's collection.
+
+Concrete commercial pool preparation added after this review: Production had
+zero commercial definitions, empty approval references, both credit products
+unapproved and all commercial transaction gates false at 12:30 UTC. A dormant
+candidate now contains 6,335 definitions for 385 currently verified/mapped NFL,
+545 dated AFL and 337 dated NRL player identities. It has not been imported into
+Production or approved for issuance. All rows have approved=false, issued=0 and
+legacy_issued=0. Thus paid-pack Production activation is not yet ready merely
+because the synthetic Google TEST pool passed. See qa/commercial-pool-20261105.
+
+The 447 existing NFL limited instances each matched a saved TEST_ONLY pack
+receipt. The existing NFL economy specification explicitly excludes these
+isolated test allocations from commercial supply. They remain untouched; they
+are not converted to commercial inventory. Another 59 legacy generic cards are
+Core, outside the finite limited-rarity pool. No new global serial allocator
+is needed solely because those test rows exist. Unknown/non-TEST issuance must
+still fail reconciliation rather than being silently excluded.
+
+NO-GO today for representing a fully enabled public commercial marketplace or
+swaps as completed. Existing commercial ledger list/buy primitives are dormant;
+the customer marketplace endpoint still uses the private-beta wallet adapter.
+The complete public commercial listing/edit/cancel/buy/activity path has not
+been wired and accepted. New swap creation is explicitly rejected server-side.
+Keep it that way: the owner's previous credit-sales-only requirement remains.
+Do not reactivate swaps merely because they appear in the latest audit list.
+
+No source found requires every ordinary random-card game to obtain a generic
+government gambling-clearance certificate before submission. Conversely, this
+review cannot certify that a future transferable secondary-market model is
+outside all Australian laws. Obtain a scoped determination before commercial
+transfer activation, covering both gambling/value and payment-facility treatment
+if the credits can pay unrelated member sellers. That is a distinct mechanism,
+not a repeat request to approve the already-approved commercial business model.
+
+Observed implementation boundaries
+
+* CommercialLedger.wallet() returns withdrawable:0. No commercial cash-out,
+  bank transfer, general credit-to-credit gift, or third-party cash redemption
+  method was found in the authenticated commercial adapter.
+* Current Google products are docked_credits_4900_v1 (A$49/4,900 credits) and
+  docked_credits_9900_v1 (A$99/9,900 credits). These are credit purchases; the
+  internal pack prices are not A$49/A$99 direct-pack prices.
+* CommercialLedger.list()/buyListing() use transfers_enabled, transaction locks,
+  current ownership and hold checks. A fixed-price sale moves a card and credits
+  within Docked; sellerQuote() deducts 5%, capped at 2,000, whole-credit rounding.
+  There is no enabled cash redemption of seller proceeds.
+* /api/marketplace calls memberMarketplace(), then memberTestSource(). The latter
+  requires the private beta flags and admission. It is not an ordinary public
+  commercial listing endpoint. memberCommercial currently exposes receipt,
+  reconciliation and pack purchase/opening, not ledger list/buy operations.
+* /api/marketplace accepts list/reprice/cancel/review-buy/buy, not trade commands.
+  memberTestSource rejects offer/accept/replace-listing or non-sell preference.
+  sandboxSwaps also rejects new offer/accept. Historical records are retained.
+* Hosted redemptionSource cannot mutate redemption without assertLocalRedemption.
+  Its hosted read forces enabled:false, available/pending:0 and no requests or
+  destinations. Historical/local withdrawal examples are not public features.
+* No NFT/blockchain ownership, outside-Docked card export/transfer or gift-card
+  redemption service was found. Collection CSV/share screenshots do not convey
+  ownership. Generic account resale or a hypothetical unauthorised black market
+  is not an implemented cash-out path; abuse reports must still be investigated.
+* Free Core competition entry does not purchase or issue a collectible. Rarity
+  multipliers affect fantasy points. With prizes disabled, those points do not
+  produce cash, physical prizes or cash-convertible reward entitlements.
+* Refunds are reversals of an attributable purchase, not a user cash-out service.
+  Unspent funds are removed; spent funds create an auditable review. Neither
+  automatic bank charging nor unrelated card confiscation is authorised.
+
+Google Play analysis (primary policies checked 5 November)
+
+Google's Payments policy requires its billing system for covered digital goods,
+confines purchased virtual currency to that app/game, and requires item odds
+before and close to random-item purchase. Docked's pack review renders its
+authoritative rarity chances and no-substitution supply-failure disclosure.
+Actual native TEST purchases/acknowledgement/refunds are documented separately;
+do not turn TEST success into a claim of approved commercial settlement.
+https://support.google.com/googleplay/android-developer/answer/9858738
+
+The real-money games restriction addresses paid staking/participation for a
+prize of real-world monetary value. Randomness alone is not that finding. The
+staged model supplies in-game goods and free/no-prize play, not a cash contest.
+Keep withdrawal, paid-entry, prize and external-redemption paths OFF. Google
+review remains independent; the policy also excludes certain peer-to-peer and
+auction payments from Play Billing, so do not convert an internal marketplace
+into native cash payments between sellers without a separate assessment.
+https://support.google.com/googleplay/android-developer/answer/9877032?rd=1
+
+Questionnaire guidance: paid digital goods/random items Yes; communication/UGC
+Yes where supported; no enabled cash withdrawal/paid entry/cash prizes. Answer
+the precise trading wording accurately: the owner observed that it includes
+items traded for currency purchased with money. Do not change that to No merely
+because cash-out is OFF. Do not describe this closed-ledger game as an NFT app.
+The listing must state optional paid packs and which marketplace features are
+actually available. No cash earnings or investment-return claims.
+
+Australian analysis
+
+The current Classification guidance makes paid chance-linked purchases minimum
+M, while simulated gambling has a separate R18+ rule. The recorded Australian
+IARC M result is consistent with paid random packs; it is not permission for
+cash gambling. Docked's own adult eligibility is separate from M's advisory age.
+https://www.classification.gov.au/about-us/media-and-news/news/new-classifications-for-gambling-content-video-games
+
+Section 4 of the current Interactive Gambling Act links the relevant game
+definition to money/value, chance or mixed chance/skill, and consideration.
+Free/no-prize fantasy competitions do not themselves add a paid stake or a
+cash/value reward. The exact secondary-market question concerns paid random
+cards and their convertible value, not whether fantasy sports are named in
+the product. This is an assessment of mechanics, not an assertion of exemption.
+The Federal Register identifies the current compilation and future 1 January
+2027 reform. The enacted 2026 reform reviewed here contains no loot-box term;
+a proposed R18+ loot-box amendment is not treated as enacted law.
+https://www.legislation.gov.au/C2004A00851/latest/text
+https://www.legislation.gov.au/C2026A00072/asmade/2026-08-26/text/original/epub/OEBPS/document_1/document_1.html
+
+ACMA's published submission says ordinary loot boxes have generally not been
+regarded as IGA gambling where play is not for money/value, while acknowledging
+uncertainty where items have secondary markets. This supports the staged
+non-transfer configuration; it does not resolve a separately enabled market.
+https://www.acma.gov.au/sites/default/files/2022-12/Sub-96-Australian-Communications-and-Media-Authority.pdf
+
+For credits confined to purchases from Docked, a single-payee/incidental-payment
+analysis is relevant. If credits settle purchases from unrelated member sellers,
+do not assume that same exemption without analysing the terms and functions.
+ASIC says the rights and arrangement determine financial-product treatment.
+No AFSL requirement for these specific game credits is asserted by this review,
+and no exemption is fabricated. This is a precise transfer-activation question.
+https://www.asic.gov.au/regulatory-resources/digital-transformation/digital-assets-financial-products-and-services
+https://www.aph.gov.au/DocumentStore.ashx?id=7594481e-5528-4d7f-b6eb-8a406bcd2658&subId=707301
+
+Refund-after-spending holds must remain proportionate, reviewable and disclosed.
+Consumer guarantees are not removed by opening a pack, spending credits or
+terms saying no refunds. Keep support escalation and statutory remedies, and
+do not make automated recovery a blanket refusal to provide a lawful remedy.
+https://www.accc.gov.au/consumers/problem-with-a-product-or-service-you-bought/repair-replace-refund-cancel
+
+Separate data/art rights
+
+The owner's professional player-name advice/approval stands. It is not a newly
+executed licence, and this assessment does not ask for it again. Original Docked
+jerseys and branding remain; no league/club/sponsor logo, player photograph or
+likeness is added. Factual text labels are separate from protected logos.
+
+General nflverse-data releases have a documented CC BY 4.0 data licence; retain
+attribution and release provenance and do not extend it to separately restricted
+upstream feeds. Existing AFL/NRL adapted roster/result packages retain their
+revision provenance, attribution and CC BY-SA conditions; Wikidata structured
+IDs are CC0. These licences do not grant third-party trademark/publicity rights.
+Squiggle describes basic fixture/results information, not Champion Data player
+stats. Unlicensed proprietary AFL/NRL player-game feeds stay disabled. Missing
+player stats must remain missing, with no invented real scoring performances.
+https://github.com/nflverse/nflverse-data/blob/main/LICENSE.md
+https://creativecommons.org/licenses/by-sa/4.0/
+https://www.wikidata.org/wiki/Wikidata:Licensing
+https://api.squiggle.com.au/
+
+Required release decision, kept narrow
+
+1. Align the submitted experience and listing with paid packs/free no-prize play
+   and currently dormant commercial transfers. This does not remove paid packs.
+   If the owner requires the complete marketplace at first launch, its customer
+   commercial adapter/acceptance and scoped transfer/value assessment remain.
+2. Do not reopen names, claim a new agreement, or label all paid packs gambling.
+   Do not publish unsupported live-data/real-season-scoring claims.
+3. No billing configuration, customer records, policy wording, Console answers
+   or feature flags were changed by this review. Root release checks determine
+   whether the conditional submission requirements have actually been met.
+
+Files examined: src/server/{commercial-ledger,commercial-member-view,
+member-commercial,commercial-runtime,marketplace,member-test-wallet,
+sandbox-swaps,redemptions}.ts; src/core/{commercial-billing,credits-policy}.ts;
+src/app/api/{marketplace,fantasy/swaps}/route.ts; src/components/pack-shop.tsx;
+the 2/5 November rights, policy and public-gameplay handovers.

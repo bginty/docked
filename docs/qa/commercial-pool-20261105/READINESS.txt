@@ -1,0 +1,79 @@
+Dormant real-player commercial pool preparation — 5 November 2026
+
+This is prepared and locally rehearsed configuration, NOT Production activation.
+Production inspection used repeatable-read/read-only SQL; no rows were changed.
+
+Candidate:
+- NFL: 385 verified mapped active players, 1,925 five-rarity definitions.
+  29 teams represented. This is not a claim of a complete 32-team roster.
+  Source observations checked 5 November 12:15:06–12:15:13 UTC.
+- AFL: 545 players, 18 teams, 2,725 definitions; October 22 source snapshot.
+- NRL: 337 players, 17 teams, 1,685 definitions; October 22 source snapshot.
+- All 6,335 definitions are unapproved, zero issued and zero legacy baseline.
+  No Core finite definitions, NBA entries, cards, accounts, funds or purchases.
+- Caps use config/card-rarities-v1.json: Rare5,000 / Elite2,500 /
+  UltraRare400 / Legendary50 / Icon1. No allocation/probability changes.
+- Original artwork palettes, real names, source hashes/links/licence basis and
+  multi-position eligibility are preserved. Verified numbers: NFL385/AFL542;
+  NRL number-free. Source facts are not promoted into issuance approval.
+
+Baseline reconciliation:
+- Existing NFL limited test inventory: Rare95, Elite39, UltraRare275,
+  Legendary36, Icon2 =447 instances, every one joined to TEST_ONLY pack receipt.
+- Those instances use immutable serials within their invited test economy.
+  Existing delivery/specification expressly says they do not consume commercial
+  allocations. Preserve them and the existing wallet. Do not convert/reissue.
+- Other generic beta inventory observed:48regularCore+11first-yearCore.
+- Production commercial definitions/cards/receipts=0; products unapproved;
+  gates false. No production commercial serial baseline exists to carry over.
+- Unknown or unmatched issuance causes the preparation check to fail closed.
+
+Executed checks:
+- Three targeted unit scenarios passed.
+- Real PostgreSQL17.10: seven scenario checks passed; 6,335 dormant rows imported
+  in a disposable loopback database, then exact retry inserted zero.
+- Conflicting immutable definitions rejected; approval injection rejected;
+  active economy import rejected; runtime role cannot provision definitions.
+- Accounts, receipts, cards, packs, journals and approved products stayed zero.
+- This was not a genuine purchase, card issue, commercial activation or a new
+  hosted acceptance claim. Existing v30 Google acceptance remains separate.
+
+Review and use:
+1. Read plan.json and compare candidate SHA with the exact local candidate at
+   private-data/commercial-pool-20261105/candidate.private.json.
+   PowerShell, from this worktree:
+   Get-FileHash -Algorithm SHA256 -LiteralPath
+     'private-data/commercial-pool-20261105/candidate.private.json'
+   Reviewed SHA-256:
+   6df8ec2bc3b455f8e03081422b7b0aa7a735d824fed3eef485972df7219d4276
+2. Review source freshness and full desired pool coverage before irreversible
+   snapshot identity import; the AFL/NRL snapshots remain dated and not newly
+   commercially eligible. Existing source attribution is retained.
+3. The importer inserts dormant definitions only, validates existing snapshots
+   on retry, refuses approved products/transaction gates and never updates an
+   existing definition. Root must separately review any Production invocation.
+   Before that invocation, capture a fresh encrypted Production backup, verify
+   recoverability and target/project identity, recheck source/snapshot approval,
+   exact candidate hash and empty/closed current commercial controls/products.
+   No Production apply/activation CLI is exposed by this preparation. The only
+   importing invocation shipped here is the loopback rehearsal below. Adding a
+   Production operator command requires the actual fresh review and backup
+   evidence; no live invocation was run or implied by this report.
+4. For testing only, `node scripts/commercial-local-postgres.mjs
+   --pool-preparation` creates and stops its isolated PostgreSQL database.
+5. Product approval, permanent issuance approval, saved commercial policy
+   references, supply review and final payment activation remain separate.
+   No approval reference was fabricated or feature enabled by this preparation.
+
+Source/code:
+src/core/commercial-pool-plan.ts
+scripts/prepare-commercial-pool.ts --plan-production-read-only
+scripts/commercial-pool-import.ts
+scripts/commercial-pool-rehearsal.ts
+tests/platform/commercial-pool-plan.test.ts
+
+Existing semantic evidence:
+docs/NFL_CARD_ECONOMY_DELIVERY.md
+docs/NFL_CARD_ECONOMY_V2.md
+src/core/card-economy.ts (invited-nfl-test-v2; TEST_ONLY products)
+src/core/roster-beta.ts (verified facts, non-permanent test inventory)
