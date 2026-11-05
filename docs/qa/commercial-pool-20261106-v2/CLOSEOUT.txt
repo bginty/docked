@@ -1,0 +1,38 @@
+Dormant commercial roster candidate v2, 6 November 2026 AEDT
+
+Generated at 2026-11-05T22:10:15.683Z from one Production REPEATABLE READ READ
+ONLY transaction, using the verified NFL baseline and dated source inputs.
+The candidate covers 1,293 existing player identities and 6,465 definitions.
+
+Sport   Players   Teams   Definitions
+NFL         426      32         2,130
+AFL         537      18         2,685
+NRL         330      17         1,650
+
+The NRL supplement adds 17 verified players each for Brisbane Broncos, North
+Queensland Cowboys and New Zealand Warriors. It uses 2026 club-season squad
+sections and existing current-profile agreement. The original 2027 contexts
+remain excluded, along with 57 supplemental rows that lacked the required
+identity, eligibility or source agreement. See the combined Wikimedia source
+manifest for revision identifiers, attribution, holds and evidence hashes.
+
+Private candidate and SHA256
+private-data/commercial-pool-20261106-v2/candidate.private.json
+f436a9883a1ddda433fe81248533ad1d68d1aa02de8ca69d0863c465d8de60fc
+
+The offline check matched all six captured artifact hashes and confirmed all
+6,210 v1 definitions remain identical in v2. The only additions are 255 dormant
+NRL definitions for the 51 supplemental existing IDs. There are no duplicate
+definitions, merge conflicts or missing teams. All definitions have approved
+false, issued zero and legacy_issued zero. There are zero Core or NBA definitions.
+
+The original Australian derivative, the supplement, the combined derivative,
+the v1 and v2 private candidates, and the November 5 candidate matched their
+recorded hashes. The generation report preserves the exact dated source digests
+and Production readback. Source freshness must be checked again before import.
+
+All 447 existing limited NFL instances still reconcile to TEST_ONLY receipts.
+Production reported zero commercial definitions, cards, receipts and approved
+products, with sales, issuance and transfers disabled. Generation performed
+zero Production writes and created a local private candidate only. Approval,
+isolated rehearsal and import remain separately controlled steps.
