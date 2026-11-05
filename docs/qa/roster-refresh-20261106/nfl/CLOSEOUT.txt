@@ -1,0 +1,87 @@
+NFL current-source candidate — 6 November 2026 AEDT
+
+Scope and deployment
+This is a local source-readiness change. It has not been deployed and is not
+part of the Google review release 7319dddd. There were no Production database
+writes, roster refresh jobs, imports, supply approvals, card issues or customer
+transactions. NBA and the published October Australian catalogue are untouched.
+
+Established parser defect
+The existing adapter rejected an otherwise complete official page if any parsed
+section had unknown status. Arizona and Miami now include an
+Active/Physically Unable to Perform section; Tennessee includes TRC. Those
+headings do not establish Active eligibility. Treating their rows as unknown
+remains correct; rejecting every recognised Active player on the page was the
+defect. This explains the bounded HTTP200 + ROSTER_INCOMPLETE evidence.
+
+The corrected completeness test requires 45–110 total rows, at least 45
+recognised Active rows, unique Active normalised names and profile identities,
+and an Active QB. Unknown, reserve and practice rows cannot establish that
+completeness. Unknown rows retain their original fields and unknown status.
+Name/position matching still requires exactly one compatible identity across
+the parsed page. No PUP/TRC status, position or player eligibility is guessed.
+
+New independent official observations
+Exactly one GET per missing team was performed using the existing official
+source URL contract, without credentials, redirects, retries or new providers.
+All returned HTTP200. Raw HTML is ignored private-data, never committed.
+
+ARI — observed 2026-11-05T21:36:20.074Z
+https://www.azcardinals.com/team/players-roster/
+SHA256 7dcacc5fcb41447cd5cd3f331b44c3df422023d069d23d893df69f173a357078
+84 parsed rows; 52 recognised Active; 1 PUP unknown/ineligible.
+
+MIA — observed 2026-11-05T21:36:20.580Z
+https://www.miamidolphins.com/team/players-roster/
+SHA256 8eb1710d38b2602915192556848dc5862a57d2f48d5d966a9fe711ca33e2a9f6
+75 parsed rows; 53 recognised Active; 1 PUP unknown/ineligible.
+
+TEN — observed 2026-11-05T21:36:21.154Z
+https://www.tennesseetitans.com/team/players-roster/
+SHA256 e7bc91a4dbd6f2285ef3b95fdea5a47d7d4ceb755e625d84dd1ad3e22f103ceb
+79 parsed rows; 53 recognised Active; 1 TRC unknown/ineligible.
+
+The official pages are current dated observations, not an explicit season
+declaration. Their declaredSourceSeason is null. The existing Docked catalogue
+season2026 is retained separately; copyright/footer dates do not prove a roster
+season. These factual roster observations do not provide statistics, photograph,
+trademark, player-likeness or proprietary-feed licences.
+
+Draft input result
+private-data/roster-refresh-20261106/nfl/pool-inputs.private.json
+SHA256 f17d4c05871c99e062115f66a38cc614fecf743dceb6508edafb113c4bf47ed6
+
+41 accepted existing Docked identities: ARI11 / MIA16 / TEN14. These are stable
+existing IDs with current unique name, team, position and Active-source agreement;
+there are no new UUIDs, unsupported eligibility or invented jersey numbers.
+Eight otherwise-known candidates are held: three ARI Reserve/Injured, one MIA
+Practice Squad and four lacking unique current name/position agreement.
+
+The input validates through the existing PoolRosterCandidate schema and dormant
+pool builder: 205 local draft definitions, every approved=false, issued=0,
+legacy_issued=0 and permanentIssuanceEligible=false. The original 385-player
+candidate is unchanged. Combining these41 with that separately verified baseline
+would yield426 NFL identities covering32teams; this is not a claim to include
+every professional NFL player. Root owns that combination and supply audit.
+
+Re-running the offline candidate creation preserved the exact input hash and
+source retrieval timestamps, made zero network requests and did not relabel
+source freshness. The72-hour check remains enforced.
+
+Verification
+12/12 targeted Node tests passed after the guard change: three real-section
+structures with synthetic player data, unknown/undersized/duplicate Active
+guards, Active QB, position matching, size bounds, plus the five existing
+observer diagnostic/persistence safety tests.
+Targeted ESLint and Prettier results are recorded in verification.json.
+The first shared-worktree typecheck reported only concurrent other-owned
+commercial-pack-supply and commercial-member-view type errors; no NFL file
+error. After their owner corrected those types, npm run typecheck passed in a
+fresh run. No completed roster test was repeated for that unrelated type fix.
+
+Next controlled step
+Root can combine this immutable local source input with its current independently
+verified baseline and Australian dated derivative. Source-ready is distinct from
+an approved permanent supply pool. No live refresh, import, issuance or activation
+is included in this work. A future observer deployment must be explicitly tested
+and released separately; the source parser patch remains undeployed here.

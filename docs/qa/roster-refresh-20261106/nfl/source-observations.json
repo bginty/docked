@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-05T21:36:21.158Z",
+  "scope": "New independently observed local NFL official source snapshot; raw HTML stays private",
+  "networkRequestsThisRun": 3,
+  "retries": 0,
+  "productionWrites": 0,
+  "approvals": 0,
+  "inventoryIssued": 0,
+  "observations": [
+    {
+      "team": "ARI",
+      "url": "https://www.azcardinals.com/team/players-roster/",
+      "requestedAt": "2026-11-05T21:36:18.978Z",
+      "status": "observed",
+      "sourceClass": "existing-official-factual-roster",
+      "credentials": false,
+      "httpStatus": 200,
+      "fetchedAt": "2026-11-05T21:36:20.074Z",
+      "sha256": "7dcacc5fcb41447cd5cd3f331b44c3df422023d069d23d893df69f173a357078",
+      "bytes": 457611
+    },
+    {
+      "team": "MIA",
+      "url": "https://www.miamidolphins.com/team/players-roster/",
+      "requestedAt": "2026-11-05T21:36:20.078Z",
+      "status": "observed",
+      "sourceClass": "existing-official-factual-roster",
+      "credentials": false,
+      "httpStatus": 200,
+      "fetchedAt": "2026-11-05T21:36:20.580Z",
+      "sha256": "8eb1710d38b2602915192556848dc5862a57d2f48d5d966a9fe711ca33e2a9f6",
+      "bytes": 438255
+    },
+    {
+      "team": "TEN",
+      "url": "https://www.tennesseetitans.com/team/players-roster/",
+      "requestedAt": "2026-11-05T21:36:20.583Z",
+      "status": "observed",
+      "sourceClass": "existing-official-factual-roster",
+      "credentials": false,
+      "httpStatus": 200,
+      "fetchedAt": "2026-11-05T21:36:21.154Z",
+      "sha256": "e7bc91a4dbd6f2285ef3b95fdea5a47d7d4ceb755e625d84dd1ad3e22f103ceb",
+      "bytes": 459746
+    }
+  ]
+}

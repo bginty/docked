@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-11-05T21:49:46Z",
+  "scope": "Local NFL parser correction and dated existing-identity source inputs",
+  "releaseDeployment": false,
+  "productionWrites": 0,
+  "newProviderServices": 0,
+  "supplyApprovals": 0,
+  "cardsIssued": 0,
+  "tests": {
+    "command": "npx tsx --test tests/platform/official-roster-refresh-parsing.test.ts tests/platform/official-roster-diagnostics.test.ts",
+    "exitCode": 0,
+    "passed": 12,
+    "failed": 0
+  },
+  "targetedEslint": { "exitCode": 0, "files": 5 },
+  "targetedPrettier": { "exitCode": 0, "files": 5 },
+  "diffCheck": { "exitCode": 0 },
+  "boundedCredentialScan": { "matches": 0, "sourceBodiesCommitted": false },
+  "initialWholeWorktreeTypecheck": {
+    "exitCode": 1,
+    "nflErrors": 0,
+    "otherConcurrentPaths": [
+      "scripts/commercial-pack-supply-postgres.ts(183,146): TS2531",
+      "src/server/commercial-member-view.ts(81,72): TS2345"
+    ]
+  },
+  "finalWholeWorktreeTypecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "afterConcurrentTypeFixes": true
+  },
+  "offlineCandidateReplay": {
+    "exitCode": 0,
+    "networkRequests": 0,
+    "sourceTimestampsUnchanged": true,
+    "acceptedExistingIdentities": 41,
+    "newPlayerIds": 0,
+    "held": 8,
+    "definitions": 205,
+    "allApprovedFalse": true,
+    "allIssuedZero": true,
+    "allPermanentIssuanceEligibleFalse": true,
+    "sha256": "f17d4c05871c99e062115f66a38cc614fecf743dceb6508edafb113c4bf47ed6"
+  }
+}

@@ -1,0 +1,444 @@
+{
+  "at": "2026-11-05T21:37:39.433Z",
+  "offlineOnly": true,
+  "sourceRequests": 0,
+  "productionWrites": 0,
+  "trace": [
+    {
+      "team": "ARI",
+      "fetchedAt": "2026-11-05T21:36:20.074Z",
+      "sha256": "7dcacc5fcb41447cd5cd3f331b44c3df422023d069d23d893df69f173a357078",
+      "tables": [
+        {
+          "section": "Active",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 52,
+          "quarterbackRows": 3,
+          "observedPositions": [
+            "CB",
+            "DL",
+            "ILB",
+            "K",
+            "LS",
+            "OL",
+            "OLB",
+            "P",
+            "QB",
+            "RB",
+            "S",
+            "TE",
+            "WR"
+          ]
+        },
+        {
+          "section": "Active/Physically Unable to Perform",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 1,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "TE"
+          ]
+        },
+        {
+          "section": "Reserve/Injured",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 10,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "CB",
+            "DL",
+            "OL",
+            "RB",
+            "S",
+            "TE",
+            "WR"
+          ]
+        },
+        {
+          "section": "Reserve/Injured; Designated for Return",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 3,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "DL",
+            "OL",
+            "RB"
+          ]
+        },
+        {
+          "section": "Practice Squad",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 16,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "CB",
+            "DL",
+            "ILB",
+            "OL",
+            "OLB",
+            "RB",
+            "S",
+            "TE",
+            "WR"
+          ]
+        },
+        {
+          "section": "Practice Squad/Injured",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 1,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "TE"
+          ]
+        },
+        {
+          "section": "Practice Squad/International",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 1,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "OL"
+          ]
+        }
+      ],
+      "totalRows": 84
+    },
+    {
+      "team": "MIA",
+      "fetchedAt": "2026-11-05T21:36:20.580Z",
+      "sha256": "8eb1710d38b2602915192556848dc5862a57d2f48d5d966a9fe711ca33e2a9f6",
+      "tables": [
+        {
+          "section": "Active",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 53,
+          "quarterbackRows": 2,
+          "observedPositions": [
+            "C",
+            "CB",
+            "DL",
+            "EDGE",
+            "FB",
+            "G",
+            "G/T",
+            "ILB",
+            "LB",
+            "LS",
+            "P",
+            "QB",
+            "RB",
+            "S",
+            "T",
+            "TE",
+            "WR"
+          ]
+        },
+        {
+          "section": "Active/Physically Unable to Perform",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 1,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "CB"
+          ]
+        },
+        {
+          "section": "Reserve/Injured",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 5,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "DL",
+            "EDGE/ILB",
+            "ILB",
+            "RB",
+            "TE"
+          ]
+        },
+        {
+          "section": "Practice Squad",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 16,
+          "quarterbackRows": 1,
+          "observedPositions": [
+            "CB",
+            "DE",
+            "DT",
+            "EDGE",
+            "G",
+            "ILB",
+            "K",
+            "QB",
+            "RB",
+            "S",
+            "TE",
+            "WR"
+          ]
+        }
+      ],
+      "totalRows": 75
+    },
+    {
+      "team": "TEN",
+      "fetchedAt": "2026-11-05T21:36:21.154Z",
+      "sha256": "e7bc91a4dbd6f2285ef3b95fdea5a47d7d4ceb755e625d84dd1ad3e22f103ceb",
+      "tables": [
+        {
+          "section": "Active",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 53,
+          "quarterbackRows": 2,
+          "observedPositions": [
+            "C",
+            "CB",
+            "DE",
+            "DL",
+            "DT",
+            "G",
+            "K",
+            "LB",
+            "LS",
+            "P",
+            "QB",
+            "RB",
+            "S",
+            "T",
+            "TE",
+            "WR"
+          ]
+        },
+        {
+          "section": "Reserve/Injured",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 5,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "DB",
+            "DE",
+            "LB",
+            "TE"
+          ]
+        },
+        {
+          "section": "Reserve/Injured; Designated for Return",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 3,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "G",
+            "LB"
+          ]
+        },
+        {
+          "section": "Practice Squad",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 16,
+          "quarterbackRows": 1,
+          "observedPositions": [
+            "CB",
+            "DB",
+            "DL",
+            "G",
+            "LB",
+            "P",
+            "QB",
+            "RB",
+            "S",
+            "T",
+            "TE",
+            "WR"
+          ]
+        },
+        {
+          "section": "TRC",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 1,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "LB"
+          ]
+        },
+        {
+          "section": "Practice Squad/International",
+          "headers": [
+            "Player",
+            "#",
+            "Pos",
+            "HT",
+            "WT",
+            "Age",
+            "Exp",
+            "College"
+          ],
+          "positionIndex": 2,
+          "rows": 1,
+          "quarterbackRows": 0,
+          "observedPositions": [
+            "DT"
+          ]
+        }
+      ],
+      "totalRows": 79
+    }
+  ]
+}

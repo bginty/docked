@@ -1,0 +1,125 @@
+{
+  "at": "2026-11-05T21:48:52.665Z",
+  "status": "LOCAL_DRAFT_CURRENT_SOURCE_INPUTS_ONLY",
+  "productionWrites": 0,
+  "approvals": 0,
+  "inventoryIssued": 0,
+  "sourceRequests": 0,
+  "existingPlayerIdsOnly": true,
+  "newPlayerIds": 0,
+  "accepted": 41,
+  "draftDefinitions": 205,
+  "inputsSha256": "f17d4c05871c99e062115f66a38cc614fecf743dceb6508edafb113c4bf47ed6",
+  "teams": [
+    {
+      "team": "ARI",
+      "httpStatus": 200,
+      "fetchedAt": "2026-11-05T21:36:20.074Z",
+      "sourceHash": "7dcacc5fcb41447cd5cd3f331b44c3df422023d069d23d893df69f173a357078",
+      "parsedRows": 84,
+      "recognisedActive": 52,
+      "unknown": [
+        {
+          "section": "Active/Physically Unable to Perform",
+          "position": "TE",
+          "eligible": false
+        }
+      ],
+      "knownActiveCandidates": 15,
+      "acceptedExistingIdentities": 11,
+      "declaredSourceSeason": null,
+      "sourceContext": "Current official roster observed on the recorded date; page has no explicit roster-season declaration. Existing catalogue season2026 is preserved separately, not claimed as a page declaration."
+    },
+    {
+      "team": "MIA",
+      "httpStatus": 200,
+      "fetchedAt": "2026-11-05T21:36:20.580Z",
+      "sourceHash": "8eb1710d38b2602915192556848dc5862a57d2f48d5d966a9fe711ca33e2a9f6",
+      "parsedRows": 75,
+      "recognisedActive": 53,
+      "unknown": [
+        {
+          "section": "Active/Physically Unable to Perform",
+          "position": "CB",
+          "eligible": false
+        }
+      ],
+      "knownActiveCandidates": 18,
+      "acceptedExistingIdentities": 16,
+      "declaredSourceSeason": null,
+      "sourceContext": "Current official roster observed on the recorded date; page has no explicit roster-season declaration. Existing catalogue season2026 is preserved separately, not claimed as a page declaration."
+    },
+    {
+      "team": "TEN",
+      "httpStatus": 200,
+      "fetchedAt": "2026-11-05T21:36:21.154Z",
+      "sourceHash": "e7bc91a4dbd6f2285ef3b95fdea5a47d7d4ceb755e625d84dd1ad3e22f103ceb",
+      "parsedRows": 79,
+      "recognisedActive": 53,
+      "unknown": [
+        {
+          "section": "TRC",
+          "position": "LB",
+          "eligible": false
+        }
+      ],
+      "knownActiveCandidates": 16,
+      "acceptedExistingIdentities": 14,
+      "declaredSourceSeason": null,
+      "sourceContext": "Current official roster observed on the recorded date; page has no explicit roster-season declaration. Existing catalogue season2026 is preserved separately, not claimed as a page declaration."
+    }
+  ],
+  "holds": [
+    {
+      "team": "ARI",
+      "playerId": "557516f6-961d-4bc3-a82e-ddde8c510ad8",
+      "reason": "current-source-status-reserve",
+      "observedSection": "Reserve/Injured"
+    },
+    {
+      "team": "ARI",
+      "playerId": "5a02c698-0c62-412d-9954-85dcfe78f83f",
+      "reason": "current-source-status-reserve",
+      "observedSection": "Reserve/Injured"
+    },
+    {
+      "team": "ARI",
+      "playerId": "5a32bf00-95ff-4822-980f-74d51c7147d9",
+      "reason": "current-unique-name-position-agreement-missing",
+      "observedSection": null
+    },
+    {
+      "team": "ARI",
+      "playerId": "b2a02420-9ce6-4b10-b7c1-3e82e7943e3d",
+      "reason": "current-source-status-reserve",
+      "observedSection": "Reserve/Injured"
+    },
+    {
+      "team": "MIA",
+      "playerId": "08a15626-79e7-4fbb-bb4a-e9c010a6fd33",
+      "reason": "current-unique-name-position-agreement-missing",
+      "observedSection": null
+    },
+    {
+      "team": "MIA",
+      "playerId": "5c5fe56a-2b8b-47d5-89e2-6e449792bb97",
+      "reason": "current-source-status-practice-squad",
+      "observedSection": "Practice Squad"
+    },
+    {
+      "team": "TEN",
+      "playerId": "1a9e0ea8-a7f4-409c-96af-a46a2d28557d",
+      "reason": "current-unique-name-position-agreement-missing",
+      "observedSection": null
+    },
+    {
+      "team": "TEN",
+      "playerId": "d7b84ee6-559c-4c1c-b840-b0167f0a94e1",
+      "reason": "current-unique-name-position-agreement-missing",
+      "observedSection": null
+    }
+  ],
+  "baseCandidateUnchanged": true,
+  "sourceSeasonDisclosure": "Observed calendar2026 and existing catalogue season2026; no explicit official roster-season declaration inferred from copyright/footer dates.",
+  "output": "private-data/roster-refresh-20261106/nfl/pool-inputs.private.json"
+}
