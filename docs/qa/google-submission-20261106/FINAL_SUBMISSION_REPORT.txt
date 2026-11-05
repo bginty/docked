@@ -130,8 +130,55 @@ Miami (MIA) and Tennessee (TEN). Each has zero evidence within the existing
 72-hour freshness gate. Existing beta mappings contain 15,15 and14 respectively
 that satisfy the other identity/position criteria, but stale evidence cannot be
 made current by dropping the filter. No team or player-name licence was inferred
-missing. No new observation, source rewrite, import or issuance was performed.
+missing. No accepted roster observation, source rewrite, import or issuance was
+written to Production.
 AFL/NRL source freshness remains the separately identified dated-snapshot work.
+
+Further read-only tracing confirmed that the twice-daily roster schedule is
+active and attempts all32 teams. It was retaining old evidence after team-level
+failures while discarding the precise error. One bounded current official-source
+GET for each omitted team returned HTTP200 at21:03:55-57UTC, but the existing
+parser rejected all three as ROSTER_INCOMPLETE. This establishes the current
+HTTP/parser boundary, not the exact failed completeness subcondition. No response
+body/credentials were retained and no retry or timestamp relabelling occurred.
+The separate diagnostic-only observer preparation preserves the fail-closed
+parser, roster records and schedule. Five targeted synthetic tests, typecheck,
+targeted lint and formatting passed. It remains undeployed, outside7319.
+This is a remaining technical source-data
+task, not a new commercial-model/name approval or evidence that billing failed.
+See ops-launch-20261105/nfl-pool-omissions/ for bounded source/observer evidence.
+
+Concrete additional alert review package — NOT APPLIED
+
+Package billing-ops-outbox-20261106-v1 is outside automatic migrations:
+config/operations/billing-ops-outbox.prepared.sql
+SHA25668dfd76393b817e728a5896a8d499719b6a5d8f3148fde7b80c19e2e970a6038.
+Root independently matched all seven LF-canonical source/SQL manifest hashes.
+It reuses existing tables/roles and creates four purpose-specific functions,
+four restrictive reservation policies and one disabled flag. Only the existing
+commercial role can enqueue server-derived counts; only the actual service role
+can claim/fence/settle. No direct private-table/schema grant is added.
+The minimal source adapter and legacy query exclusion remain outside7319.
+
+Eleven real PostgreSQL scenario groups passed: actual-role denial/forged claims,
+schema/collision guards, dormant/idempotent SQL,24concurrent enqueue/claim workers,
+one dispatch fence, legacy outbox regression, actual audit-trigger rollback on
+fence/settlement failure, and safe in-flight settlement after admission closes.
+Protected financial/Auth-source fingerprints were preserved. Four mocks,
+typecheck and targeted lint also passed. No Google/Graph call or real email.
+
+Exact before/after, grants, checksum manifest, deployment order and non-destructive
+stop procedure are in:
+docs/ops-launch-20261105/alerts-preparation/SQL_APPROVAL_PACKAGE.txt.
+This new package requires its own specific approval, fresh backup/drift checks
+and restricted worker review. It was not included in any earlier migration
+approval. Recipient authority/window and one actual non-financial delivery drill
+remain separate; the package alone does not activate or schedule mail.
+
+Prepared-source commits (not the deployed review candidate): financial snapshot
+ccd7e7c4; initial alert preparation14f0a4c9; bounded supply audit4e8b5501;
+concrete alert SQL/adapter665a5769; observer diagnostics2cd2ebd5. Canonical
+Production remains7319dddd. All evidence/preparation commits were pushed.
 
 Exact remaining actions
 
