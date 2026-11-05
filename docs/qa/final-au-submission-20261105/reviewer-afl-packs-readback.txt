@@ -1,0 +1,174 @@
+- link "Skip to content":
+  - /url: "#main"
+- main:
+  - complementary:
+    - link "Docked home":
+      - /url: /fantasy/play?sport=afl
+      - img "Docked"
+    - navigation "App navigation":
+      - link "Play":
+        - /url: /fantasy/play?sport=afl
+        - text: Play
+      - link "Cards":
+        - /url: /fantasy/cards?sport=afl
+        - text: Cards
+      - link "Market":
+        - /url: /fantasy/market?sport=afl
+        - text: Market
+      - link "Social":
+        - /url: /fantasy/social?sport=afl
+        - text: Social
+      - link "Profile":
+        - /url: /fantasy/profile
+        - text: Profile
+    - generic "More & settings"
+    - link "Your account":
+      - /url: /fantasy/profile
+      - text: Your account
+      - generic: →
+    - paragraph:
+      - text: 18+ · Fantasy Cards
+      - text: Free play. No cash value.
+  - strong: Cards
+  - navigation "App utilities":
+    - link "30,000 test Docked Credits":
+      - /url: /fantasy/test-wallet
+      - strong: 30,000
+      - generic: test Docked Credits
+    - link "Notifications":
+      - /url: /notifications
+    - link "Settings":
+      - /url: /dashboard
+  - paragraph:
+    - text: A new Docked version is ready. Finish any draft before updating.
+    - button "Update app"
+  - navigation "Sport":
+    - button "NFL"
+    - button "AFL" [active] [pressed]
+    - button "NRL"
+  - navigation "Collection navigation":
+    - button "My Cards"
+    - button "Packs" [pressed]
+  - region "Docked packs":
+    - paragraph: CARDS / PACKS
+    - heading "AFL Packs" [level=1]
+    - paragraph:
+      - strong: 30,000
+      - generic: test Docked Credits
+    - navigation "Pack navigation":
+      - button "Buy Packs"
+      - button "My Packs"
+      - button "History"
+    - text: Have a coupon?
+    - textbox "Have a coupon?"
+    - button "Apply" [disabled]
+    - heading "Premium" [level=2]
+    - paragraph: Ultra Rare, Legendary or Icon on every card.
+    - article:
+      - img "Docked"
+      - strong: Premium
+      - generic: AFL
+      - generic: "9"
+      - text: cards
+      - generic: Premium 9 Pack
+      - heading "Premium 9 Pack" [level=3]
+      - paragraph: 9 cards
+      - paragraph:
+        - strong: 5,000
+        - text: test credits
+      - button "Buy Premium 9 Pack": Buy Premium
+    - article:
+      - img "Docked"
+      - strong: Premium
+      - generic: AFL
+      - generic: "3"
+      - text: cards
+      - generic: Premium 3 Pack
+      - heading "Premium 3 Pack" [level=3]
+      - paragraph: 3 cards
+      - paragraph:
+        - strong: 1,900
+        - text: test credits
+      - button "Buy Premium 3 Pack": Buy Premium
+    - article:
+      - img "Docked"
+      - strong: Premium
+      - generic: AFL
+      - generic: "1"
+      - text: card
+      - generic: Premium 1 Pack
+      - heading "Premium 1 Pack" [level=3]
+      - paragraph: 1 card
+      - paragraph:
+        - strong: "700"
+        - text: test credits
+      - button "Buy Premium 1 Pack": Buy Premium
+    - generic "Rarity Chances"
+    - generic "Pack Details"
+    - heading "Standard" [level=2]
+    - paragraph: Rare, Elite, Ultra Rare, Legendary or Icon.
+    - article:
+      - img "Docked"
+      - strong: Standard
+      - generic: AFL
+      - generic: "9"
+      - text: cards
+      - generic: Standard 9 Pack
+      - heading "Standard 9 Pack" [level=3]
+      - paragraph: 9 cards
+      - paragraph:
+        - strong: "700"
+        - text: test credits
+      - button "Buy Standard 9 Pack": Buy Standard
+    - article:
+      - img "Docked"
+      - strong: Standard
+      - generic: AFL
+      - generic: "3"
+      - text: cards
+      - generic: Standard 3 Pack
+      - heading "Standard 3 Pack" [level=3]
+      - paragraph: 3 cards
+      - paragraph:
+        - strong: "300"
+        - text: test credits
+      - button "Buy Standard 3 Pack": Buy Standard
+    - article:
+      - img "Docked"
+      - strong: Standard
+      - generic: AFL
+      - generic: "1"
+      - text: card
+      - generic: Standard 1 Pack
+      - heading "Standard 1 Pack" [level=3]
+      - paragraph: 1 card
+      - paragraph:
+        - strong: "100"
+        - text: test credits
+      - button "Buy Standard 1 Pack": Buy Standard
+    - generic "Rarity Chances"
+    - generic "Pack Details"
+    - region "Weekly starter pack":
+      - img "Docked"
+      - strong: Starter
+      - generic: AFL
+      - generic: "4"
+      - text: Core cards
+      - generic: Starter Pack
+      - heading "Weekly AFL Starter Pack" [level=2]
+      - paragraph: 4 random Core cards
+      - paragraph: 1 pack ready to open
+      - button "Open Pack"
+      - link "Pack History":
+        - /url: /fantasy/cards?tab=packs&sport=afl&packs=history
+      - generic: Next free pack in
+      - strong: 2d 16h 56m 46s
+      - generic: Free every seven days
+    - paragraph: Core cards are free and are never included in paid packs.
+    - paragraph: Test Docked Credits · No cash value
+    - link "View Collection":
+      - /url: /fantasy/cards?sport=afl
+      - generic: View Collection
+      - generic: ›
+  - paragraph: Invited test beta · No cash value. Competition rules apply.
+- alert

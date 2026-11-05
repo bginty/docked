@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-11-05T13:57:56.587Z",
+  "environment": "local source only; not deployed",
+  "authenticated": false,
+  "scope": "actual local read-only server-rendered policy routes; client hydration and unrelated app flows not claimed",
+  "mutationRequests": [],
+  "pageErrors": [],
+  "sourcePacketSha256": "da2b3a0067443e0fdd43e0b5080ad0d65370febd451bf7bc3db5dc972a8fc080",
+  "checks": [
+    {
+      "route": "/privacy",
+      "status": 200,
+      "width": 320,
+      "expectedVersion": "2026-11-06-privacy-sdk-v3",
+      "scrollWidth": 320,
+      "screenshot": "docs/ops-launch-20261105/local-privacy-320.png",
+      "mutationRequests": 0
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "width": 390,
+      "expectedVersion": "2026-11-06-privacy-sdk-v3",
+      "scrollWidth": 390,
+      "screenshot": "docs/ops-launch-20261105/local-privacy-390.png",
+      "mutationRequests": 0
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "width": 1440,
+      "expectedVersion": "2026-11-06-privacy-sdk-v3",
+      "scrollWidth": 1440,
+      "screenshot": "docs/ops-launch-20261105/local-privacy-1440.png",
+      "mutationRequests": 0
+    },
+    {
+      "route": "/commercial-policy",
+      "status": 200,
+      "width": 390,
+      "expectedVersion": "2026-11-02-release-preparation-v2",
+      "scrollWidth": 390,
+      "screenshot": "docs/ops-launch-20261105/local-commercial-policy-390.png",
+      "mutationRequests": 0
+    },
+    {
+      "route": "/refund-policy",
+      "status": 200,
+      "width": 390,
+      "expectedVersion": "2026-11-02-release-preparation-v2",
+      "scrollWidth": 390,
+      "screenshot": "docs/ops-launch-20261105/local-refund-policy-390.png",
+      "mutationRequests": 0
+    },
+    {
+      "route": "/retention",
+      "status": 200,
+      "width": 390,
+      "expectedVersion": "2026-11-02-release-preparation-v2",
+      "scrollWidth": 390,
+      "screenshot": "docs/ops-launch-20261105/local-retention-390.png",
+      "mutationRequests": 0
+    }
+  ]
+}

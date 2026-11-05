@@ -1,0 +1,158 @@
+{
+  "at": "2026-11-05T13:24:39.044Z",
+  "project": "pojoymtniryarxxunyvz",
+  "recipient": "eea25d64-9f12-4d8b-be8b-a8d8818ce0ff",
+  "reference": "owner-authorised-play-reviewer-test-30000-20261106-v1",
+  "amount": 30000,
+  "command": {
+    "kind": "promotion",
+    "member": "eea25d64-9f12-4d8b-be8b-a8d8818ce0ff",
+    "amount": 30000,
+    "campaign": "play-reviewer-free-access-20261106-v1",
+    "reason": "Owner-authorised one-time 30,000 non-cash TEST Docked Credits for nominated Google Play reviewer NFL/AFL/NRL pack access; no cash value, withdrawals, conversion, real funds or permanent issuance",
+    "confirmed": true,
+    "redeemable": false
+  },
+  "authorisation": "Specific owner approval in chat; out-of-band database operator following existing TEST promotion procedure",
+  "activeLoginOrMfaSessionCreated": false,
+  "jwtClaimsCreated": false,
+  "grantApplied": true,
+  "before": {
+    "available": 0,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 0,
+    "heldAvailable": 0,
+    "spendable": 0,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true,
+    "restricted": 0
+  },
+  "after": {
+    "available": 30000,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 30000,
+    "heldAvailable": 0,
+    "spendable": 30000,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true,
+    "restricted": 30000
+  },
+  "oneJournal": true,
+  "oneLot": true,
+  "identicalRetryNoExtraGrant": true,
+  "changedBodyRejectedInMemoryOnly": true,
+  "peerWalletFingerprintBefore": "1569ffcec4f79722b3e2973904e741b35936249d6fd815a147f6a6550ab1feb5",
+  "peerWalletFingerprintAfter": "1569ffcec4f79722b3e2973904e741b35936249d6fd815a147f6a6550ab1feb5",
+  "protectedInventoryFingerprintBefore": "555a229ee8dcf281ebe888eb5fac63336b093ee7b5dfdd4a4eb6b200db8a19e3",
+  "protectedInventoryFingerprintAfter": "555a229ee8dcf281ebe888eb5fac63336b093ee7b5dfdd4a4eb6b200db8a19e3",
+  "protectedTablesUnchanged": {
+    "beta_fantasy.cards": {
+      "count": 59,
+      "hash": "4f5735107c963fd5359ebf77de3e53c4"
+    },
+    "beta_fantasy.editions": {
+      "count": 678,
+      "hash": "52592bc12a9428593d97002fce74c46e"
+    },
+    "beta_fantasy.packs": {
+      "count": 1,
+      "hash": "79a2a7b163723a34efdfdacbaeaff280"
+    },
+    "beta_fantasy.entries": {
+      "count": 17,
+      "hash": "db8da2a5b18576a5606e8a5b60095542"
+    },
+    "beta_fantasy.results": {
+      "count": 1,
+      "hash": "43e1177a655929f54569b347ceb9c266"
+    },
+    "beta_fantasy.competitions": {
+      "count": 65,
+      "hash": "f814c350eaa8313aa2b30c55a63c9cc0"
+    },
+    "sports_feed.weekly_core_packs": {
+      "count": 27,
+      "hash": "aa52fe1dd57c5899d5480fd55932c0e1"
+    },
+    "sports_feed.weekly_core_schedules": {
+      "count": 15,
+      "hash": "aa0a6b3f2c15c03b6f6ac357a3b1b259"
+    },
+    "credits_sandbox.card_instances": {
+      "count": 447,
+      "hash": "1ba391e5302c1294608811756061f083"
+    },
+    "credits_sandbox.pack_receipts": {
+      "count": 77,
+      "hash": "e7dde22701afebd84df0f408250f1c47"
+    },
+    "credits_sandbox.nba_fixture_instances": {
+      "count": 192,
+      "hash": "14979bc4f3d66e480b44c2ca59f5d6fd"
+    },
+    "commercial_billing.accounts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.receipts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.lots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.journals": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.packs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.cards": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.recovery_cases": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+  },
+  "weeklyCorePreserved": [
+    {
+      "sport": "afl",
+      "total": 1,
+      "unopened": 1
+    },
+    {
+      "sport": "nfl",
+      "total": 1,
+      "unopened": 1
+    },
+    {
+      "sport": "nrl",
+      "total": 1,
+      "unopened": 1
+    }
+  ],
+  "backup": {
+    "at": "2026-11-05T13:24:24.312Z",
+    "file": "grant-before-1793885064307.aes",
+    "bytes": 3421953,
+    "cipherSha256": "f203acedc95d502fac3a30bcd32bbbb36b52a096c84f970c45ce89f790e26c20",
+    "encryption": "AES-256-GCM",
+    "authenticatedContext": "owner-authorised-play-reviewer-test-30000-20261106-v1",
+    "plaintextWritten": false
+  },
+  "commercialFundsChanged": false,
+  "commercialProductsActivated": false,
+  "permanentInventoryIssued": 0,
+  "reviewerPackPurchases": 0,
+  "reviewerPacksOpened": 0,
+  "signedInUiAcceptance": false
+}

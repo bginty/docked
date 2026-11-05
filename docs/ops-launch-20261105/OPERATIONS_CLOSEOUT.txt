@@ -1,0 +1,150 @@
+Docked operations closeout — 5 November 2026
+
+Scope: remaining operations for the Australian Google Play release. No hosted
+mutation, payment, deletion, credential/permission change, new service, support
+notification or destructive retention run was performed for this closeout.
+
+Verified now
+
+1. The existing encrypted Production logical archive was authenticated with
+   the existing operator key: 84,311,901 bytes, AES-256-GCM tag and SHA-256 match.
+   No plaintext was written and no hosted connection was made. The key file
+   has no allow grant for Everyone, BUILTIN Users or Authenticated Users. This
+   proves the present operator can decrypt this archive; it does not prove
+   independent recovery custody, off-site availability or provider recovery.
+2. The prior isolated PostgreSQL 17.11 restore matched 550 durable tables and
+   role definitions, with networking/cron disabled. No repeat full restore was
+   needed for this application-only change. Storage object bodies, provider
+   settings and secret recovery were explicitly outside that rehearsal.
+3. Current closed Production dfed57b2 and its final 13 route/gate checks are
+   recorded in ../qa/google-eligibility-20261105/acknowledgement-production/.
+   All seven inspected commercial financial/ownership table counts are zero.
+   Final genuine Google TEST fulfilment/refund affected only isolated accounts.
+4. Existing support and recovery procedures remain in
+   ../DUAL_STORE_OPERATIONS_20261105.md. The existing owner-MFA endpoint
+   /api/admin/commercial-billing reads the single authoritative ledger and
+   queue health. Audited hold waivers require a fresh owner session, exact case
+   revision and a different reviewer from the affected member. It does not
+   expose manual cash refunds, arbitrary credit grants or prize activation.
+5. The commercial reconciliation scheduler now dispatches the configured
+   commercial queue as well as the legacy service. Sanitised attention/overdue
+   counters are logged. Genuine automatic acknowledgement/refund acceptance
+   is recorded separately; no billing tests were repeated by this closeout.
+
+Operational status and exact outstanding steps
+
+Financial reconciliation — READY FOR OPERATIONS, not settlement attestation
+Use CommercialLedger.financialReport and the MFA owner screen. The report
+deliberately marks provider payout unreconciled and leaves provider fees and
+recognised revenue unavailable. Before first live charges, the finance owner
+must reconcile actual Google order/payout/fee/tax exports against these receipt
+and journal records. TEST gross amounts must never be booked as real revenue.
+No real cash settlement exists to reconcile during this test-only preparation.
+
+Customer support/refund disputes — IMPLEMENTED RUNBOOK, operator assignment due
+Keep support@docked.com.au as the existing intake; use authenticated owner
+reporting for receipt/member lookup. Never request passwords, MFA codes, raw
+tokens or payment-card data. Missing fulfilment uses the idempotent verifier,
+not wallet editing or replaying an opened pack. A Google refund after spending
+removes eligible remaining credits and opens a private recovery review; this
+is not authority for an automatic bank debit or blanket refusal of consumer
+remedies. Record the case, reviewer, evidence and reason. The owner should
+confirm who monitors intake and who substitutes when unavailable; no staff
+permission was added here.
+
+Backups/key custody — DATABASE RECOVERY TESTED, full-service recovery partial
+The inspected provider readback contained eight completed daily backups,
+latest 4 November 15:00 UTC; WALG enabled, PITR disabled. These observations
+are not a contractual backup-retention promise. Before live paid operation:
+confirm an independently accessible encrypted recovery copy and custodian;
+record a private secret/key inventory and provider recovery procedure; verify
+Storage-object recovery and provider configuration restoration where used.
+Do not put secret values or access tokens in this report or Git. Do not reuse
+the logical-backup key as the separate retention-archive key.
+
+Retention/archive/minimisation — IMPLEMENTED AND TESTED, APPLY DISABLED
+Keep the approved dormant schema. Twelve prior real-PostgreSQL scenarios
+covered holds, encryption, expiry, idempotency, role denial and fault rollback.
+The existing policy distinguishes covered company financial records (at least
+seven years) from proposed operational periods: completed jobs 90 days plus
+30-day encrypted archive; account closure target 30 days; support 12 months;
+routine logs 30 days and security logs 90 days. Non-statutory periods are
+operational targets, not claims that providers already enforce them.
+Before irreversible cleanup only: approve the category schedule/authority,
+final purchase-reference and tombstone retirement event, provider-copy expiry,
+dedicated versioned archive key/custodians and restore-suppression rehearsal.
+Run restricted bounded dry-run, then separately approve apply. Until then,
+neither service/apply nor a cleanup schedule is enabled. No record was deleted.
+This disabled optional minimisation operation is not by itself a Google Play
+submission blocker or a reason to reopen approved policy wording.
+
+Legal holds — IMPLEMENTED, case authority must be documented
+Scoped holds retain case reference, reason, authority and review date. An
+overdue review date never automatically releases a hold. Authorised release
+must be audited; do not silently expire holds to make cleanup pass.
+
+Monitoring/alerts — HEALTH SIGNALS PRESENT, delivery drill not verified
+The existing cron and sanitised commercial attention/overdue logs are useful
+signals. No automatic external operational-alert sender/delivery proof was
+found in the inspected path. The prior nine successful database invocations
+do not prove downstream delivery. Before paid customer activation, select an
+existing approved recipient/on-call substitute and configure an existing
+supported notification channel for failed/attention billing work, invariant
+failures, Auth/mail failures and stale ingestion; perform one clearly labelled
+non-financial delivery drill and record receipt. No email was sent here and no
+new paid monitoring service was purchased. This remains an actual activation
+readiness item, not a newly invented Google legal attestation.
+
+Account deletion — EXISTING HOSTED ACCEPTANCE RETAINED
+Prior protected external-email customer acceptance completed Auth erasure,
+profile/session removal, retry-safe completion and rejection of erased
+credentials while retaining six historical entries and necessary consent/
+financial evidence. Source evidence explicitly says retained evidence is not
+automatically anonymous. No genuine customer was deleted or retested here.
+Preserve deletion suppression when restoring backups; never replay completed
+credit/pack fulfilment or restore a deleted login from old backups.
+
+Incident/rollback — READY RUNBOOK, closed deployment pinned
+Stop only affected purchase admission; preserve ledger, token references,
+ownership, completed receipts and audit. Do not roll back by deleting records.
+Use the current CLOSED dfed57b2 deployment as the baseline, not a temporary
+TEST transport or an old build missing the acknowledgement/login fixes.
+Before any rollback verify database compatibility and every activation gate.
+Record release, sanitised case/job reference, action and follow-up review.
+
+Gate distinction
+
+GO for continuing accurate Console preparation/review with managed publishing
+and disabled payments, subject to the separate public-runtime and commercial
+assessment. Operations work above does not establish Google approval or legal
+clearance. Live paid operation still needs named support/finance/custody roles,
+the actual alert drill and documented recovery arrangements. Irreversible
+cleanup has its own unapproved schedule/key/provider-erasure gate and stays off.
+The owner already approved the business model and player-name position; those
+decisions are not requested again.
+
+Current primary-source checks
+
+ASIC company record keeping explains covered financial records are retained
+for at least seven years; it does not mandate keeping every personal field:
+https://www.asic.gov.au/for-business-and-companies/companies/company-building-blocks/company-record-keeping
+OAIC APP 11 requires reasonable security and, where no longer needed, reasonable
+destruction/de-identification subject to Australian-law/court-order exceptions:
+https://www.oaic.gov.au/privacy/australian-privacy-principles/australian-privacy-principles-guidelines/chapter-11-app-11-security-of-personal-information
+Supabase documents daily backup availability by plan and states database backups
+do not restore deleted Storage objects. Actual account plan/expiry and object
+recovery remain separate from Docked's successful logical database rehearsal:
+https://supabase.com/docs/guides/platform/backups
+
+Evidence and verification
+
+- archive-authentication.json: new authentication/digest check, no writes.
+- key-access-check.json: current ACL observation; no permission change.
+- verify-existing-backup.mjs: reusable read-only check, node --check passed.
+- ../qa/public-promotion-20261105/restore/restore-drill.json: prior 550-table
+  restore, not rerun or broadened into a full hosted disaster-recovery claim.
+- ../qa/launch-resolution-20261102/retention-postgres.json: 12 prior scenarios.
+- ../qa/final-australia-20261102/external-deletion-worker.json: prior hosted
+  deletion and retained-record acceptance.
+- ../qa/google-eligibility-20261105/final-production-commercial-integrity.json:
+  latest seven-table commercial census; no Production financial writes.

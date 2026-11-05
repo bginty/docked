@@ -1,0 +1,150 @@
+- link "skip to content":
+  - /url: javascript:document.getElementById('content-main').focus()
+- list:
+  - link "Home":
+    - /url: /
+  - link "Search":
+    - /url: /Search/Index
+  - link "Tools & resources":
+    - /url: /Tools
+  - link "Help":
+    - /url: /Help
+- link "Australian Government ABN Lookup":
+  - /url: /
+  - img "Australian Government"
+  - img "ABN Lookup"
+- strong: Search
+- text: "by ABN, ACN or name:"
+- textbox "Search by ABN, ACN or name:":
+  - /placeholder: Type an ABN, ACN or name
+- button "Search"
+- link "ABN Lookup":
+  - /url: /
+- text: ">"
+- link "Search":
+  - /url: /Search
+- text: "> Current details for ABN 78 606 187 106"
+- generic "Current details for ABN 78 606 187 106"
+- heading "Current details for ABN 78 606 187 106" [level=1]
+- list:
+  - link "Current details":
+    - /url: "#"
+  - link "Historical details":
+    - /url: /AbnHistory/View?id=78606187106
+  - list:
+    - button "Pdf"
+    - link "Print":
+      - /url: "#"
+    - link "Email":
+      - /url: "#"
+- table "ABN details help":
+  - caption:
+    - text: ABN details
+    - link "help":
+      - /url: /Help/Glossary
+  - rowgroup:
+    - 'row "Entity name: GINTY UNITED INVESTMENTS PTY LTD"':
+      - rowheader "Entity name:"
+      - cell "GINTY UNITED INVESTMENTS PTY LTD"
+    - 'row "ABN status: Active from 23 Jun 2015"':
+      - rowheader "ABN status:"
+      - cell "Active from 23 Jun 2015"
+    - 'row "Entity type: Australian Private Company"':
+      - rowheader "Entity type:"
+      - cell "Australian Private Company":
+        - link "Australian Private Company":
+          - /url: /Help/EntityTypeDescription?Id=00019
+    - 'row "Goods & Services Tax (GST): Registered from 01 Jul 2024"':
+      - rowheader "Goods & Services Tax (GST):"
+      - cell "Registered from 01 Jul 2024"
+    - 'row "Main business location: VIC 3909"':
+      - rowheader "Main business location:"
+      - cell "VIC 3909":
+        - generic: VIC 3909
+- table "Business name(s) help":
+  - caption:
+    - text: Business name(s)
+    - link "help":
+      - /url: /Help/Glossary#businessname
+  - rowgroup:
+    - row "A business name is the registered name a business operates under. Businesses need to register their business name on the national Business Names Register if the business operates with a different name to their own. To learn more visit the ASIC Website External site.":
+      - cell "A business name is the registered name a business operates under. Businesses need to register their business name on the national Business Names Register if the business operates with a different name to their own. To learn more visit the ASIC Website External site.":
+        - text: A business name is the registered name a business operates under. Businesses need to register their business name on the national Business Names Register if the business operates with a different name to their own.
+        - text: To learn more visit the
+        - link "ASIC Website External site":
+          - /url: https://www.asic.gov.au/for-business-and-companies/business-names/register-a-business-name/
+          - text: ASIC Website
+          - img "External site"
+        - text: .
+    - row "Business name From":
+      - columnheader "Business name"
+      - columnheader "From"
+    - row "Port Welshpool Fishing Lodge External site 14 Apr 2016":
+      - cell "Port Welshpool Fishing Lodge External site":
+        - link "Port Welshpool Fishing Lodge External site":
+          - /url: https://connectonline.asic.gov.au/RegistrySearch/bySearchId.jsp?searchIdType=BUSN&searchId=611871446
+          - text: Port Welshpool Fishing Lodge
+          - img "External site"
+      - cell "14 Apr 2016"
+- table "ASIC registration - ACN or ARBN or ARSN or ARFN":
+  - caption: ASIC registration - ACN or ARBN or ARSN or ARFN
+  - rowgroup:
+    - row "606 187 106 View record on the ASIC website External site":
+      - cell "606 187 106 View record on the ASIC website External site":
+        - text: 606 187 106
+        - link "View record on the ASIC website External site":
+          - /url: https://connectonline.asic.gov.au/RegistrySearch/faces/landing/panelSearch.jspx?searchType=OrgAndBusNm&searchText=606187106
+          - text: View record on the ASIC website
+          - img "External site"
+- table "Deductible gift recipient status help":
+  - caption:
+    - text: Deductible gift recipient status
+    - link "help":
+      - /url: /Help/DGR#itaa
+  - rowgroup:
+    - row "Not entitled to receive tax deductible gifts":
+      - cell "Not entitled to receive tax deductible gifts"
+- list:
+  - strong: "ABN last updated:"
+  - text: 25 Jul 2024
+  - strong: "Record extracted:"
+  - text: 06 Nov 2026
+- heading "Disclaimer" [level=3]
+- paragraph:
+  - text: The Registrar makes every reasonable effort to maintain current and accurate information on this site. The Commissioner of Taxation advises that if you use ABN Lookup for information about another entity for taxation purposes and that information turns out to be incorrect, in certain circumstances you will be protected from liability. For more information see
+  - link "disclaimer":
+    - /url: /Home/Disclaimer
+  - text: .
+- heading "Warning Statement" [level=3]
+- paragraph:
+  - text: If you use ABN Lookup for information about a person or entity that provides financial or investment products or advice, make sure they have an Australian Financial Services (AFS) licence. You can check licenced professional registers
+  - link "here":
+    - /url: https://connectonline.asic.gov.au/RegistrySearch/faces/landing/ProfessionalRegisters.jspx
+  - text: .
+- heading "More information" [level=3]
+- list:
+  - link "Update your ABN details External site":
+    - /url: https://www.abr.gov.au/contact-us/contact-abr
+    - text: Update your ABN details
+    - img "External site"
+  - link "Planning, starting and growing your business External site":
+    - /url: /ContactUs/Business-gov-au
+    - text: Planning, starting and growing your business
+    - img "External site"
+  - link "Trading names information External site":
+    - /url: /Help/Glossary#tradingname
+    - text: Trading names information
+    - img "External site"
+- list:
+  - link "About us":
+    - /url: /Home/About
+  - link "Contact us":
+    - /url: /ContactUs
+  - link "Privacy policies":
+    - /url: /Home/PrivacyPolicies
+  - link "Disclaimer":
+    - /url: /Home/Disclaimer
+  - link "Other languages":
+    - /url: /Home/OtherLanguages
+  - link "Site map":
+    - /url: /Home/SiteMap

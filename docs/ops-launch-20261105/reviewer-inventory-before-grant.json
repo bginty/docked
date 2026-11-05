@@ -1,0 +1,274 @@
+{
+  "at": "2026-11-05T13:12:04.673Z",
+  "project": "pojoymtniryarxxunyvz",
+  "exactNominatedReviewer": true,
+  "recipientId": "eea25d64-9f12-4d8b-be8b-a8d8818ce0ff",
+  "confirmed": true,
+  "deleted": false,
+  "testWallet": {
+    "available": 0,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 0,
+    "heldAvailable": 0,
+    "spendable": 0,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true,
+    "restricted": 0
+  },
+  "aggregateOwnedCards": 0,
+  "aggregateOwnedBySport": {
+    "nfl": 0,
+    "afl": 0,
+    "nrl": 0,
+    "basketball": 0
+  },
+  "aggregatePacks": [],
+  "aggregateEntitlements": [],
+  "weeklyCore": [
+    {
+      "sport": "afl",
+      "total": 1,
+      "unopened": 1,
+      "opened": 0
+    },
+    {
+      "sport": "nfl",
+      "total": 1,
+      "unopened": 1,
+      "opened": 0
+    },
+    {
+      "sport": "nrl",
+      "total": 1,
+      "unopened": 1,
+      "opened": 0
+    }
+  ],
+  "weeklyCoreSchedules": [
+    {
+      "sport": "afl",
+      "enrolled_at": "2026-11-01T06:28:00.180Z",
+      "next_period": 1
+    },
+    {
+      "sport": "nfl",
+      "enrolled_at": "2026-11-01T06:27:49.591Z",
+      "next_period": 1
+    },
+    {
+      "sport": "nrl",
+      "enrolled_at": "2026-11-01T06:28:00.183Z",
+      "next_period": 1
+    }
+  ],
+  "legacyInventory": {
+    "owned_cards": 0,
+    "unopened_packs": 0,
+    "opened_packs": 0,
+    "starter_claims": 0
+  },
+  "commercialInventory": {
+    "accounts": 0,
+    "receipts": 0,
+    "cards": 0,
+    "packs": 0
+  },
+  "admission": [
+    {
+      "status": "accepted",
+      "administrator": false,
+      "wallet_kind": "tester",
+      "wallet_enabled": true,
+      "sports_enabled": true,
+      "expires_at": "2027-01-31T00:00:00.000Z"
+    }
+  ],
+  "storedProductAvailability": [
+    {
+      "id": "premium-1-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "family": "PREMIUM",
+      "cards": 1,
+      "price": 700,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "premium-3-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "family": "PREMIUM",
+      "cards": 3,
+      "price": 1900,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "premium-9-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "family": "PREMIUM",
+      "cards": 9,
+      "price": 5000,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "standard-1-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "family": "STANDARD",
+      "cards": 1,
+      "price": 100,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "standard-3-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "family": "STANDARD",
+      "cards": 3,
+      "price": 300,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "standard-9-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "family": "STANDARD",
+      "cards": 9,
+      "price": 700,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "premium-1-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "family": "PREMIUM",
+      "cards": 1,
+      "price": 700,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "premium-1-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "family": "PREMIUM",
+      "cards": 1,
+      "price": 700,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "premium-3-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "family": "PREMIUM",
+      "cards": 3,
+      "price": 1900,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "premium-3-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "family": "PREMIUM",
+      "cards": 3,
+      "price": 1900,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "premium-9-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "family": "PREMIUM",
+      "cards": 9,
+      "price": 5000,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "premium-9-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "family": "PREMIUM",
+      "cards": 9,
+      "price": 5000,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "standard-1-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "family": "STANDARD",
+      "cards": 1,
+      "price": 100,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "standard-1-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "family": "STANDARD",
+      "cards": 1,
+      "price": 100,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "standard-3-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "family": "STANDARD",
+      "cards": 3,
+      "price": 300,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "standard-3-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "family": "STANDARD",
+      "cards": 3,
+      "price": 300,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "standard-9-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "family": "STANDARD",
+      "cards": 9,
+      "price": 700,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    },
+    {
+      "id": "standard-9-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "family": "STANDARD",
+      "cards": 9,
+      "price": 700,
+      "available": true,
+      "availabilityReason": null,
+      "availabilityRetryable": false
+    }
+  ],
+  "availabilityScope": "Stored aggregate before the member API's normal read-only roster refresh; not signed-in rendered acceptance",
+  "readOnly": true,
+  "financialOrInventoryMutations": 0,
+  "credentialsRead": false
+}

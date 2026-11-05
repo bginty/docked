@@ -1,0 +1,51 @@
+{
+  "scope": "existing confirmed member public onboarding; no production account mutation",
+  "sourceStatus": "implemented, locally verified; deployment and member form submission separate",
+  "dateAustraliaSydney": "2026-11-05/2026-11-06",
+  "checks": [
+    {
+      "command": "node --import tsx --test tests/database/existing-member-onboarding.test.ts tests/platform/auth-policy.test.ts tests/platform/mfa-flow.test.ts tests/platform/app-auth.test.ts tests/platform/invitation-setup.test.ts",
+      "passed": 20,
+      "failed": 0,
+      "note": "Six isolated SQL scenarios plus fourteen auth/invitation/MFA checks"
+    },
+    {
+      "command": "node --import tsx --test tests/platform/public-member-setup.test.ts",
+      "passed": 1,
+      "failed": 0,
+      "note": "Rerun after independent LEGAL_ENTITY_VERIFIED requirement"
+    },
+    {
+      "command": "node --import tsx --test --test-name-pattern='existing-member public bootstrap' tests/database/production-runtime-role.test.ts",
+      "passed": 1,
+      "failed": 0,
+      "note": "Full-migration PGlite fixture with actual restricted docked_app role; rerun after own RLS state reader addition"
+    },
+    {
+      "command": "EXTERNAL_PREVIEW=true npx playwright test tests/browser/public-member-setup.test.ts --reporter=list",
+      "passed": 1,
+      "failed": 0,
+      "note": "Headless Edge; actual shared form with mocked POST failure, 390x844 and 1440x900"
+    },
+    {
+      "command": "actual route POST handler gate-off smoke",
+      "expectedStatus": 503,
+      "actualStatus": 503,
+      "note": "No Auth/DB configured or contacted; route-gate-check.json"
+    },
+    { "command": "npx tsc --noEmit", "exitCode": 0 },
+    {
+      "command": "targeted ESLint for changed onboarding/auth source and tests",
+      "exitCode": 0,
+      "note": "Final changed helper, config, state route and tests rechecked after root review"
+    },
+    { "command": "git diff --check", "exitCode": 0 }
+  ],
+  "totalTargetedTestsPassed": 23,
+  "totalTargetedTestsFailed": 0,
+  "hostedAcceptanceClaimed": false,
+  "physicalDeviceAcceptanceClaimed": false,
+  "productionAccountWrites": false,
+  "schemaOrGrantChanges": false,
+  "secretsReadOrCopiedByThisTask": false
+}

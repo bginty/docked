@@ -1,0 +1,124 @@
+DATA SAFETY COMPARISON — 6 NOVEMBER 2026
+
+Scope
+Read-only comparison of the saved Console preview in
+docs/qa/final-au-submission-20261105/data-safety-readback.txt against the
+current controlled WebView/server code and existing signed Android v30/1.29.
+No declaration, attestation, policy publication or activation is performed here.
+
+Material correction
+The saved preview omits Diagnostics. The exact v30 bundle contains Google Play
+Billing 9.1.0 and its Google Datatransport/CCT diagnostic path. This is distinct
+from Docked's deliberately ephemeral, filtered product-query diagnostic display.
+Google's official Billing release notes describe API-result and connection
+logging for library reliability and error support. The current 9.1.0 implementation
+was independently inspected rather than assuming every dependency is active.
+
+Artifact evidence
+- AAB: Docked-commercial-candidate.aab, 9,214,095 bytes, SHA-256
+  d3837d7191e0a6bbd64a572a9ac3288fd37b440eb36e67408648fb4b3c879e29.
+- base/dex/classes.dex contains PLAY_BILLING_LIBRARY, billingClientSessionId
+  and CctBackendFactory. No FirebaseAnalytics or Crashlytics identifier was found
+  in either DEX by this targeted string check; this is not a universal binary audit.
+- Google Maven billing-9.1.0.aar SHA-256
+  d28286d4e4c18725510980de01211d9b72501e7146d96817fa0c9999af9b0d22.
+- Its declared dependencies include transport-api 3.0.0 and
+  transport-backend-cct/transport-runtime 3.1.8.
+- javap of zzdt: constructor initialises TransportRuntime and CCTDestination;
+  creates a proto transport named PLAY_BILLING_LIBRARY; event path invokes
+  Transport.send(Event.ofData(payload)). zzdr supplies the combined payload.
+- BillingClientImpl constructor creates a random per-client long identifier,
+  records library version, package, app version and Android SDK level in metadata,
+  then constructs zzdr. This identifier also becomes billingClientSessionId in
+  Play service requests. These are not advertising or permanent player IDs.
+- Current native plugin builds BillingClient in load(), before a purchase and
+  without testing Docked analytics consent. No SDK-telemetry opt-out is configured.
+- No packet capture or personal diagnostic payload is collected by this check.
+
+Console handling recommendation
+- Add Diagnostics collection: App functionality and Analytics (technical API/
+  performance reliability); not ephemeral, because transport schedules/queues
+  events; required because this build has no consent/opt-out for SDK diagnostics.
+- Do not infer Crash logs from this finding.
+- Existing Device or other IDs should cover the random billing session identifier,
+  not only optional browser-push subscriptions. Its required/optional and purposes
+  need to include the actual automatic SDK path (functionality/technical analytics).
+- Diagnostics goes to Google for Google's library-performance/error-support use.
+  An on-behalf-only service-provider exception must not be presumed merely because
+  Google supplies billing. Without evidence establishing that exception, disclose
+  the transfer as shared as well as collected. Apply the same analysis to the
+  associated SDK session identifier. Do not invent a contract or consent exception.
+- Google's payment-processor exception can cover payment credentials which Docked
+  never accesses; it is not a blanket exemption for app-bundled SDK diagnostics.
+
+Other saved categories — source comparison
+- Name/email/User IDs/other personal info: account authentication, public handle/
+  optional profile, user-selected jurisdiction, age attestation, policy versions,
+  preferences, account management and security. Optional first-party analytics is
+  consent-controlled; identities remain associated through the account directory.
+- Approximate location: self-declared country/state for eligibility. No GPS
+  permission in the v30 merged manifest. Do not describe it as precise geolocation.
+- Purchase history: verified store references, wallets, packs, marketplace orders,
+  refunds and recovery evidence. Optional use of purchasing is consistent with
+  free Core participation. Docked does not receive the complete payment-card number.
+- Photos: optional user-initiated avatar/social media upload; camera/photo picker
+  fills the normal form and authenticated quarantine handling still applies.
+- Other UGC: posts, comments, bios, card shares and reactions/follows. No direct-
+  messaging product was added. Publication at the user's direction and processor
+  exceptions should be evaluated separately from unrelated SDK telemetry.
+- App interactions: gameplay/service operations plus consenting first-party events.
+  Do not imply that all essential gameplay records are optional analytics.
+- Search: terms reach the server to search permitted profiles/posts; no retained
+  personal search-history table was found in the inspected search path. Google's
+  form still requires disclosure of off-device ephemeral processing where applicable.
+- Device IDs: optional browser-push endpoint/key infrastructure exists; native push
+  plugin/token registration is not in v30. It does not explain away SDK session IDs.
+- No advertising SDK, contacts, SMS, microphone or precise-location permission was
+  found in the v30 merged manifest/current package configuration. The actual merged
+  manifest also includes Billing and the app's non-exported-receiver permission.
+- KYC remains synthetic/local: literal synthetic applicant/DOB, synthetic-document
+  policy, local-only protected redemption gate. Hosted real ID collection is disabled.
+  Do not describe real legal identity documents as collected by this enabled flow.
+
+Deletion / telemetry checks
+The source requires a recorded deletion request and disabled account, erases Auth
+credentials/identifying metadata, removes the active profile, and keeps necessary
+opaque ledger/competition/audit references. Retries lock the queue row and do not
+duplicate completion audits. Shared beta identity erasure remains operator-reviewed;
+public mode has its tested worker. Do not promise immediate erasure of every record
+or call still-linkable retained evidence anonymous. Prior isolated hosted deletion
+acceptance remains valid; no deletion mutation was repeated for this comparison.
+The anonymous analytics endpoint returns consent disabled and private/no-store;
+synthetic identity and account-deletion endpoint readbacks are recorded separately.
+
+Privacy wording follow-up
+The approved v2 phrase about Android/Google diagnostics under their own settings
+does not clearly distinguish OS opt-in Vitals from app-bundled automatic Billing
+diagnostics. A narrow additional clarification is recommended for owner review:
+"The Android app includes Google Play Billing Library. When it is initialised or
+used, it sends billing-operation results, technical app/device information and a
+per-session identifier to Google for reliability, performance and error support.
+These SDK diagnostics are separate from Docked's optional usage analytics and are
+not disabled by that analytics preference. Google handles them under its privacy
+terms." This correction has not been published or represented as already approved.
+
+Primary references
+https://developer.android.com/google/play/billing/release-notes
+https://support.google.com/googleplay/android-developer/answer/10787469
+https://support.google.com/googleplay/android-developer/answer/13327111
+
+Relevant current source
+android/app/src/main/java/au/com/docked/app/DockedBillingPlugin.java
+android/app/capacitor.build.gradle
+src/components/native-image-picker.tsx
+src/components/analytics-observer.tsx
+src/app/api/analytics/route.ts
+src/server/analytics.ts
+src/server/community-social.ts (communitySearch)
+src/server/web-push-config.ts
+src/app/api/notifications/push/route.ts
+src/core/manual-identity.ts
+src/server/redemptions.ts
+src/server/account-deletion.ts
+src/app/api/member/route.ts
+config/launch-policy-content.json

@@ -1,0 +1,130 @@
+Google Play reviewer paid-content access — 6 November 2026 (Australia/Sydney)
+Prepared as an unapplied plan, then specifically owner-approved and executed
+6 November 2026 at 00:24 AEDT (5 November 13:24 UTC). Only the exact nominated
+reviewer's non-cash TEST balance changed, from 0 to 30,000. One journal and lot
+were issued; an identical retry did not issue another grant. See
+reviewer-grant-applied.json and reviewer-grant-backup-verified.json. No cards,
+packs, roles, prices, permissions or commercial funds changed. The three existing
+weekly Core packs remain unopened. Signed-in paid-content acceptance is still
+separate and is not claimed by these operator checks.
+
+Current exact account readback
+
+Nominated account: briantginty21@gmail.com, team Docked Review.
+Recipient ID: eea25d64-9f12-4d8b-be8b-a8d8818ce0ff.
+Email confirmed; accepted ordinary tester, no administrator flag. Existing
+sport access expires 2027-01-31 00:00 UTC. Current read-only Production census:
+
+- Beta test wallet: 0 available/pending/reserved/withdrawable/spendable.
+- Beta paid-pack aggregate: zero owned cards, packs and entitlements.
+- Legacy beta inventory: zero owned cards and zero opened/unopened packs.
+- Three earned unopened weekly Core packs: one each NFL, AFL and NRL.
+- Commercial account/receipt/card/pack records: all zero for this account.
+- All 18 stored beta pack variants report available before the member API's
+  normal read-only roster refresh. This is not a fresh rendered acceptance.
+
+Evidence: reviewer-inventory-readback.json. Query used a read-only repeatable
+snapshot; no request claimed, reconciled or opened a pack, and no password was
+read or recorded.
+
+What the existing free packs cover
+
+The legitimate weekly starter flow lets the reviewer reveal four Core cards
+per sport. It demonstrates Core artwork, the shared reveal and ownership flow.
+It does not provide Standard/Premium paid-pool cards, so it alone cannot justify
+a full-paid-content-access declaration. Existing completed billing TEST
+acceptance uses separate isolated QA accounts, not this reviewer account.
+
+Minimal proposed owner-authorised beta grant
+
+Grant this existing reviewer exactly 30,000 non-redeemable TEST Docked Credits
+through the existing trusted owner/operator promotion procedure. Keep the real
+commercial ledger, Google products and settlement inactive. These credits are
+test-only and cannot convert into real customer balances or permanent cards.
+
+Existing execution building blocks:
+- scripts/apply-member-test-wallet.ts (the previously authorised Barry grant
+  illustrates exact account validation, transactional store, protected snapshots
+  and replay verification; do NOT run its Barry-specific script for this account).
+- CreditsSandboxStore.execute from src/server/credits-sandbox-store.ts.
+- executeCredits promotion command and wallet checks in src/core/credits-sandbox.ts.
+- assertMemberTestEconomy from src/core/member-test-wallet.ts.
+
+Exact proposed request reference:
+  owner-authorised-play-reviewer-test-30000-20261106-v1
+Exact proposed command:
+  kind: promotion
+  member: eea25d64-9f12-4d8b-be8b-a8d8818ce0ff
+  amount: 30000
+  campaign: play-reviewer-free-access-20261106-v1
+  confirmed: true
+  redeemable: false
+  reason: Owner-authorised one-time 30,000 non-cash TEST Docked Credits for the
+          nominated Google Play reviewer to inspect NFL/AFL/NRL packs and card
+          features for free; no cash value, withdrawals, conversion or real funds.
+
+The domain uses its existing promotional-expense journal and a non-redeemable
+lot. No bank/Google capture event, coupon campaign, competition winner or reward
+should be fabricated. Do not execute the round-reward path: it requires genuine
+eligible final results and activated prize rules. Do not activate prizes.
+
+There is NO general customer HTTP grant action:
+- /api/test-wallet only accepts restricted member commands, not promotion.
+- /api/admin/credit-requests records owner review only; executionEnabled=false
+  and even its approved requests explicitly say credits are not issued.
+Use the existing explicitly authorised trusted operator release procedure,
+scoped to the recipient above, rather than adding an unrestricted grant API.
+Do not invent an owner login/MFA session or weaken existing authentication.
+
+Execution checks after specific approval
+
+1. Re-read the exact confirmed account, accepted admission, tester wallet
+   access and unexpired NFL/AFL/NRL programme. Refuse a changed account or role.
+2. Capture a fresh encrypted backup plus protected-data/peer-wallet snapshot.
+3. Reuse the store's transaction/advisory lock. Assert test-only economy,
+   unchanged policy, no live payments/withdrawals and a permitted campaign cap.
+4. Execute the exact promotion once with the stable request reference. Retry
+   the identical request to prove one journal, one lot and one 30,000 allocation;
+   a changed amount/body under that reference must fail idempotency.
+5. Verify only this test wallet increased by 30,000, withdrawable remains zero,
+   no commercial rows/cards/packs were issued by the grant, and all peer wallets,
+   inventory, historical competitions, prices and supply/odds remained unchanged.
+6. Sign in normally using the credentials already saved by the owner in Play
+   Console. Verify actual Buy Packs, My Packs, reveal, collection and history
+   routes with non-permanent inventory. Do not claim full access until observed.
+7. Update reviewer instructions to identify the non-cash test balance and beta
+   entitlements, existing expiry and real-payment restrictions. Do not claim
+   commercial checkout is active or that Google TEST evidence funded this user.
+
+Quantity limit and exact arithmetic
+
+Premium 9/3/1 = 5,000 + 1,900 + 700 = 7,600 credits per sport.
+Standard 9/3/1 = 700 + 300 + 100 = 1,100 credits per sport.
+All six variants per sport = 8,700; all 18 NFL/AFL/NRL variants = 26,100.
+A 30,000 grant leaves 3,900 test credits after buying every variant once.
+Do not describe this as an unlimited entitlement or a guarantee of every
+rarity/player. If repeated exhaustive inspection requires more, record that
+scope rather than silently issuing extra credits.
+
+Runtime limitation
+
+This grant uses the existing credits_sandbox beta pack engine. It does not
+fund commercial_billing. Verify the normal reviewer routes on the exact
+submitted backend still use this TEST engine; a later non-beta public runtime
+that routes packs to commercial_billing would not automatically expose this
+test balance. Do not convert beta funds/inventory into commercial entitlements
+or claim that this plan alone closes full access for a different runtime.
+Preserve the three existing weekly Core packs and their independent schedules.
+
+Approval question for the owner
+
+May I grant the existing nominated Google reviewer account a one-time 30,000
+non-redeemable TEST-credit allocation using the exact request/recipient above,
+so Google can inspect Standard/Premium packs without a real payment? This
+changes only that account's beta test balance. Commercial balances, permanent
+inventory, Google products, public registration, withdrawals and prizes stay off.
+
+This was a concrete new test grant, not another approval of the commercial model.
+Specific owner approval was received and the grant executed as described above.
+No full-access attestation was ticked by this operation. The original question
+is retained here as the approval scope, not a request for duplicate approval.

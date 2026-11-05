@@ -1,0 +1,32 @@
+{
+  "recordedAt": "2026-11-05T12:45:49.3105899Z",
+  "package": "docked.fantasy",
+  "versionCode": 30,
+  "versionName": "1.29",
+  "aabBytes": 9214095,
+  "aabSha256": "d3837d7191e0a6bbd64a572a9ac3288fd37b440eb36e67408648fb4b3c879e29",
+  "aabRebuilt": false,
+  "nativeDiagnosticsReleased": false,
+  "unchangedScopeTests": {
+    "command": "node --import tsx --test tests/platform/customer-sports.test.ts tests/platform/store-credit-package-drafts.test.ts tests/platform/apple-store-verification.test.ts",
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0
+  },
+  "consoleObserved": {
+    "savedChanges": 10,
+    "managedPublishing": true,
+    "actionedDeclarations": 10,
+    "needsAttention": 0,
+    "australianRating": "M",
+    "targetAudience": "18+",
+    "nbaInListing": false,
+    "appName": "Docked",
+    "paidCreditProductsInactive": true
+  },
+  "latestProduction": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f",
+  "submitted": false,
+  "approved": false,
+  "published": false,
+  "paymentsActive": false
+}

@@ -1,0 +1,102 @@
+{
+  "preparedAt": "2026-11-05T12:57:32.544Z",
+  "status": "OWNER_APPROVED_PROSPECTIVE_DATABASE_BINDING_APPLIED_DORMANT",
+  "purpose": "Prospective public signup Terms/Privacy document binding; no reapproval of commercial model or v2 wording requested",
+  "operator": {
+    "legalName": "Ginty United Investments Pty Ltd",
+    "abn": "78606187106",
+    "identityEvidence": "official-entity-readback.json",
+    "legalClearanceImplied": false
+  },
+  "existingApprovedPublication": {
+    "source": "config/launch-policy-content.json",
+    "version": "2026-11-02-release-preparation-v2",
+    "sha256": "9655ebb36bd5410ff07e18001d26c999ab51d4f85345252aab9ca9b293e89b93",
+    "checksumEncoding": "UTF-8 source with Git LF line endings",
+    "workingCopySha256": "d95a486e23245b6c3128476697d6ba1c7069596527151466d16346d3f130c7f0",
+    "published": true,
+    "wordingChanged": false
+  },
+  "proposedProspectiveBinding": {
+    "TERMS_VERSION": "2026-11-02-release-preparation-v2",
+    "PRIVACY_POLICY_VERSION": "2026-11-02-release-preparation-v2",
+    "LEGAL_ENTITY_VERIFIED": "true",
+    "DOCKED_LEGAL_NAME": "Ginty United Investments Pty Ltd",
+    "DOCKED_ABN": "78606187106",
+    "DOCKED_SUPPORT_EMAIL": "support@docked.com.au",
+    "terms": {
+      "id": "commercial-policy",
+      "title": "Service and commercial release policy",
+      "url": "https://docked.com.au/commercial-policy",
+      "sha256CanonicalDocument": "2d39952896e22486e5749c0ebb1e98d1ee30ae725f8a6541b246bbb190366448",
+      "entryUrl": "https://docked.com.au/terms",
+      "decision": "Adopt this already-published document as the Terms linked by future public signup; source already has the redirect under public-customer mode"
+    },
+    "privacy": {
+      "id": "privacy",
+      "title": "Privacy notice",
+      "url": "https://docked.com.au/privacy",
+      "sha256CanonicalDocument": "2deaad106bd18ca20e21c3269f410a3ee7f5269cd1d6d1b4f8db80f4aa3f592b"
+    },
+    "relatedDocuments": [
+      {
+        "id": "refund-policy",
+        "title": "Purchases and refunds",
+        "url": "https://docked.com.au/refund-policy",
+        "sha256CanonicalDocument": "1fca0880afcb0f4b2c1067b1d4be3cc0ec585e52ef448fed11eb63f72dd44833"
+      },
+      {
+        "id": "retention",
+        "title": "Retention and deletion",
+        "url": "https://docked.com.au/retention",
+        "sha256CanonicalDocument": "b0fd514b713808395685e16d1be404168909c9e236a86c89db261a3b8706319d"
+      }
+    ],
+    "documentHashFormat": "SHA-256 of UTF-8 JSON.stringify of the unmodified document object in the pinned source packet"
+  },
+  "databaseBinding": {
+    "relation": "public_gameplay.policy",
+    "enabled": false,
+    "terms_version": "2026-11-02-release-preparation-v2",
+    "privacy_version": "2026-11-02-release-preparation-v2",
+    "authority": null,
+    "valid_until": null,
+    "note": "Authority/expiry require a reviewed release record; this preparation writes no database value"
+  },
+  "preservedDisabledControls": {
+    "publicRegistration": false,
+    "realPayments": false,
+    "withdrawals": false,
+    "paidCompetitionEntry": false,
+    "prizes": false,
+    "commercialTransfers": false,
+    "nbaVisible": false,
+    "irreversibleCleanup": false
+  },
+  "consentHandling": {
+    "newSignup": "Separate unticked age, Terms and Privacy confirmations",
+    "oldConsents": "Preserve events and snapshots. Require new affirmative consent if a public account's applicable version differs; never rewrite historical acceptance.",
+    "staffMfa": "Unchanged"
+  },
+  "exactOwnerDecision": "Adopt the already approved and published Service and commercial release policy v2 as the Terms for future public-account registration, with Privacy v2 as its separate Privacy notice, using the pinned IDs/hashes in this manifest. This adoption enables no registration, payment, competition, transfer or cleanup switch.",
+  "materialBeforePublicActivation": [
+    "The exact v2 wording still describes an invitation-only beta, closed public registration and disabled purchases. Before any state changes, publish a separately versioned current-service availability notice matching the actually enabled flags, with owner approval of those text changes.",
+    "Do not describe publication approval as prospective contractual adoption, independent legal review or regulatory clearance."
+  ],
+  "changesApplied": 1,
+  "applicationReadback": {
+    "appliedAt": "2026-11-05T13:17:13.949Z",
+    "evidence": "../qa/public-configuration-20261105/au-policy-applied.json",
+    "integrityEvidence": "../qa/public-configuration-20261105/committed-readback.json",
+    "note": "The proposal and databaseBinding fields above retain their pre-apply snapshot. Actual adopted Terms/privacy v2 binding and eight AU18 policy additions are recorded in the applied receipt. The programme remains disabled, no historical consents changed and no public form was submitted. A separately reviewed SDK privacy-only v3 clarification is pending publication approval; it has not replaced these bindings."
+  },
+  "ownerDecision": {
+    "recordedAt": "2026-11-05T13:09:11.3406828Z",
+    "answer": "Approve prospective consent and AU eligibility configuration",
+    "modelReapproval": false,
+    "documentWordingChanged": false,
+    "historicalConsentsRewritten": false,
+    "registrationsOpened": false,
+    "paymentsActivated": false
+  }
+}

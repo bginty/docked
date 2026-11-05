@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-11-05T13:43:26.100Z",
+  "scope": "anonymous GET readback only; no account/auth/document/deletion mutation",
+  "records": [
+    {
+      "route": "/api/analytics",
+      "method": "GET",
+      "authenticated": false,
+      "status": 200,
+      "finalUrl": "https://docked.com.au/api/analytics",
+      "cacheControl": "private, no-store",
+      "contentType": "application/json",
+      "projected": {
+        "enabled": false
+      }
+    },
+    {
+      "route": "/api/identity-verification",
+      "method": "GET",
+      "authenticated": false,
+      "status": 403,
+      "finalUrl": "https://docked.com.au/api/identity-verification",
+      "cacheControl": "private, no-store",
+      "contentType": "application/json",
+      "projected": {
+        "error": "Identity verification is unavailable for this session."
+      }
+    },
+    {
+      "route": "/account-deletion",
+      "method": "GET",
+      "authenticated": false,
+      "status": 200,
+      "finalUrl": "https://docked.com.au/account-deletion",
+      "cacheControl": "private, no-store",
+      "contentType": "text/html; charset=utf-8",
+      "projected": {
+        "title": "Delete your Docked account | Docked",
+        "accountDeletionContent": true,
+        "loginLink": true
+      }
+    }
+  ]
+}

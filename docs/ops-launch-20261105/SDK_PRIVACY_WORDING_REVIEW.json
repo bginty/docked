@@ -1,0 +1,72 @@
+{
+  "preparedAt": "2026-11-05T13:42:25.967Z",
+  "status": "IMPLEMENTED_LOCALLY_VERIFIED_AWAITING_OWNER_PUBLICATION_AND_PROSPECTIVE_PRIVACY_BINDING_APPROVAL",
+  "published": false,
+  "environmentChanged": false,
+  "databaseChanged": false,
+  "existingApprovalReused": "v2 commercial model, all unchanged wording and Terms adoption; no new business-model approval sought",
+  "proposedPrivacyVersion": "2026-11-06-privacy-sdk-v3",
+  "sourcePacketSha256": "9655ebb36bd5410ff07e18001d26c999ab51d4f85345252aab9ca9b293e89b93",
+  "proposedPacketSha256": "da2b3a0067443e0fdd43e0b5080ad0d65370febd451bf7bc3db5dc972a8fc080",
+  "proposedPrivacyDocumentSha256": "1c0b80619c604f4b86842cdb36b046b9e274c9c66871358414aed5097a53e171",
+  "proposedRendererSha256": "2b364a30fbb74077ce680d3501d54e3382d9fcfc7717b2a6241ee43ea4f98bc5",
+  "proposedPatchSha256": "8206d948366e4c8b3d84a013748e502c3d9fa4aa858725bddcf3c04bf3d074bf",
+  "checks": {
+    "unchangedPacketDefaultVersion": true,
+    "unchangedTermsRefundRetention": true,
+    "onlyOnePrivacySectionChanged": true,
+    "noHistoricalConsentRewrites": true
+  },
+  "unchangedDocuments": [
+    {
+      "id": "refund-policy",
+      "canonicalDocumentSha256": "1fca0880afcb0f4b2c1067b1d4be3cc0ec585e52ef448fed11eb63f72dd44833",
+      "version": "2026-11-02-release-preparation-v2",
+      "changed": false
+    },
+    {
+      "id": "retention",
+      "canonicalDocumentSha256": "b0fd514b713808395685e16d1be404168909c9e236a86c89db261a3b8706319d",
+      "version": "2026-11-02-release-preparation-v2",
+      "changed": false
+    },
+    {
+      "id": "commercial-policy",
+      "canonicalDocumentSha256": "2d39952896e22486e5749c0ebb1e98d1ee30ae725f8a6541b246bbb190366448",
+      "version": "2026-11-02-release-preparation-v2",
+      "changed": false
+    }
+  ],
+  "publicationFiles": [
+    "config/launch-policy-content.json",
+    "src/components/release-policy-page.tsx"
+  ],
+  "proposedFutureBindings": {
+    "TERMS_VERSION": "2026-11-02-release-preparation-v2",
+    "PRIVACY_POLICY_VERSION": "2026-11-06-privacy-sdk-v3",
+    "public_gameplay.policy.terms_version": "2026-11-02-release-preparation-v2",
+    "public_gameplay.policy.privacy_version": "2026-11-06-privacy-sdk-v3",
+    "registration": "remains disabled; this approval/publication does not activate it",
+    "existingConsents": "remain unchanged; members who need public access must accept the new privacy version through normal onboarding",
+    "betaConsents": "existing beta policy versions remain unchanged"
+  },
+  "rollback": "Restore the prior policy/renderer deployment and prospective privacy binding together; keep both version texts and all original acceptance events. Publication rollback does not erase consents or enable registration/payments.",
+  "sourceAppliedLocally": true,
+  "localCommit": "a71c6acb3e8451c21929f0d7ab7e9b6a240dd4f0",
+  "localVerification": {
+    "typecheck": "passed",
+    "targetedTests": 11,
+    "lint": "passed",
+    "format": "passed",
+    "routeChecks": 6,
+    "viewports": [
+      320,
+      390,
+      1440
+    ],
+    "scope": "Actual local SSR policy routes with JavaScript disabled; no unrelated full-app hydration, hosted or authenticated acceptance claimed",
+    "mutationRequests": 0,
+    "rendererEvidence": "sdk-privacy-local-rendered.json",
+    "hosted": false
+  }
+}

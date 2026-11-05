@@ -1,0 +1,67 @@
+NARROW PRIVACY CLARIFICATION — READY FOR OWNER REVIEW, NOT PUBLISHED
+
+The new evidence is automatic diagnostic traffic in the existing signed v30 Google
+Billing SDK. It does not change the commercial model, prices, gameplay or payment
+availability. No replacement approval of those decisions is requested.
+
+Exact proposed wording, in the existing Device information and analytics section:
+
+The app has no advertising SDK. Android and Google Play may provide operating-system
+diagnostics under their own settings.
+
+The Android app also includes Google Play Billing Library. When the library is
+initialised or used, it sends billing-operation results, technical app/device
+information and a per-session identifier to Google for billing reliability,
+performance improvement and error support. This automatic SDK processing can occur
+without a completed purchase. It is separate from Docked's optional usage analytics
+and is not disabled by that analytics preference. Google handles this information
+under its own privacy terms.
+
+Optional media selection and notification preferences follow device permissions
+and application controls. Contacts, microphone and location access are not required
+to buy a pack. We do not use identity documents or purchase tokens in Docked's
+optional usage analytics.
+
+The existing first paragraph of that section is unchanged. No other privacy
+section or commercial/refund/retention wording changes.
+
+Review artifacts
+- launch-policy-content.sdk-clarification.proposed.json is the exact proposed
+  packet. SHA-256, UTF-8/LF:
+  da2b3a0067443e0fdd43e0b5080ad0d65370febd451bf7bc3db5dc972a8fc080
+- privacy-sdk-clarification.proposed.patch is the exact two-file patch, now applied locally only in commit a71c6acb3e8451c21929f0d7ab7e9b6a240dd4f0.
+  SHA-256: 8206d948366e4c8b3d84a013748e502c3d9fa4aa858725bddcf3c04bf3d074bf
+- SDK_PRIVACY_WORDING_REVIEW.json records hashes, invariants and binding effects.
+- DATA_SAFETY_COMPARISON.txt gives source/SDK evidence and Console field guidance.
+
+Precise prospective effect if approved
+1. Publish this exact privacy wording at /privacy with privacy-only version
+   2026-11-06-privacy-sdk-v3 and date 6 November 2026.
+2. Existing renderer gains document-specific version/date overrides. Its default
+   remains v2, so unchanged Terms, refund and retention pages remain labelled v2.
+3. For eligible future public onboarding set PRIVACY_POLICY_VERSION and
+   public_gameplay.policy.privacy_version to 2026-11-06-privacy-sdk-v3 together.
+   TERMS_VERSION and policy.terms_version remain the previously approved v2.
+4. Do not rewrite accepted_version, consent events or locked historical rules.
+   A member requiring new public access must accept the new current privacy version
+   through the normal current-consent workflow; no forced consent is created.
+5. Keep registration, cash payments, withdrawals, prizes, NBA, retention cleanup
+   and all other activation flags unchanged. Beta consent versions stay unchanged.
+
+This is a publication and prospective privacy-binding decision only. It does not
+claim independent legal review or authorise new data uses, SDKs or payments.
+The code already contains the SDK processing; this wording corrects its disclosure.
+
+Validation actually completed
+- Source v2 canonical hash matched the previously approved packet.
+- Terms/refund/retention document objects are unchanged.
+- Privacy changes are restricted to one existing section plus its own metadata.
+- Default packet version/date are unchanged.
+- git apply --check passed, and the exact patch is applied only to local source. Typecheck, targeted auth/consent tests (11/11), ESLint and formatting passed. Six actual local server-rendered route/viewport checks passed at 320/390/1440 pixels without overflow or mutation requests. No hosted publication or consent binding was changed.
+- Signed v30 hash and DEX telemetry markers verified; Google 9.1.0 AAR disassembly
+  confirms the transport path. No purchase, network capture or customer mutation.
+
+Rollback
+Restore the prior policy/renderer deployment and prospective privacy binding as
+one operation. Preserve both published texts and every historical acceptance event.
+A rollback does not erase recorded consent or activate registration/payments.

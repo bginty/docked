@@ -1,0 +1,134 @@
+- progressbar
+- generic: Loading Google Play Console
+- banner:
+  - link "Google Play Console logo":
+    - /url: /console/u/0/developers/6139268121863991375/home
+    - button "Google Play Console logo"
+  - button "Unread notifications Open notification center":
+    - img: notifications_unread
+    - generic: Unread notifications
+  - button "Switch developer accounts":
+    - img: more_vert
+  - 'button "Google Account: briant ginty (briantg_21@hotmail.com), Google membership"':
+- navigation:
+  - list:
+    - listitem "Home":
+      - button "Home":
+        - img: home
+    - listitem "Manage account":
+      - button "Manage account":
+        - img: badge
+    - listitem "Docked":
+      - button "Docked":
+        - img: play_prism
+    - listitem "Dashboard":
+      - button "Dashboard":
+        - img: dashboard
+    - listitem "Statistics":
+      - button "Statistics":
+        - img: bar_chart
+    - listitem "Publishing overview":
+      - button "Publishing overview":
+        - img: overview
+    - listitem "Protected with Play":
+      - button "Protected with Play":
+        - img: shield
+    - listitem "Test and release":
+      - button "Test and release":
+        - img: rocket_launch
+    - listitem "Monitor and improve":
+      - button "Monitor and improve":
+        - img: vital_signs
+    - listitem "Grow users":
+      - button "Grow users":
+        - img: finance_mode
+    - listitem "Monetize with Play":
+      - button "Monetize with Play":
+        - img: sell
+- link "Go back to Store listings":
+  - /url: /console/u/0/developers/6139268121863991375/app/4973145400906008303/store-listings
+  - img: keyboard_backspace
+  - generic: Store listings
+- heading "Default store listing" [level=1]
+- list:
+  - img: info
+  - generic: Ready to send for review
+  - generic: Draft changes
+- img: brightness_1
+- text: Edit your app's name, icon, screenshots and more to present how your app looks to users on Google Play.
+- tablist:
+  - tab "Step 1 of 2, Assets" [disabled]:
+    - img: check
+    - generic: Assets
+  - tab "Step 2 of 2, Review" [active] [selected]:
+    - generic: "2"
+    - generic: Review
+- tabpanel:
+  - heading "AI asset declaration" [level=2]
+  - paragraph:
+    - text: Regulations require that content that uses AI-generated assets be labeled under certain circumstances.
+    - link "Learn more about AI-generated content declarations, Opens in a new tab":
+      - /url: https://support.google.com/googleplay/android-developer/answer/17262077?hl=en
+      - text: Learn more
+  - radiogroup "AI asset declaration options":
+    - radio "Don't label assets"
+    - generic: Don't label assets
+    - radio "Label assets as created or edited using AI"
+    - text: Label assets as created or edited using AI
+    - generic: You will label individual assets on the next step
+  - heading "Review assets" [level=2]
+  - generic: View assets for
+  - button "Default – English (United States) – en-US":
+    - generic: Default – English (United States) – en-US
+    - img: arrow_drop_down
+  - generic: App name
+  - generic: Docked
+  - generic: Short description
+  - generic: Collect cards, build fantasy teams and connect across NFL, AFL and NRL.
+  - generic: Full description
+  - generic: "Docked brings fantasy teams and digital sports-card collecting into one account for Australian adults aged 18 and over. Play across NFL, AFL and NRL. Build eligible teams using free Core player selections and enter free fantasy competitions without buying packs. Follow your lineup, available player statistics and round rankings. Free Core selections are gameplay eligibility, not automatically owned collectible cards. Optional purchases: use Google Play Billing to buy Docked Credits, then choose Standard or Premium digital card packs. Pack contents are random. Card quantities, credit prices and rarity probabilities are shown before confirmation. Rarity multipliers apply under the saved competition rules; paid cards can change a player’s fantasy contribution. Purchases are not required to participate. View your owned cards and pack history, manage your teams, and connect with members through posts, comments, reactions and communities. Your account and eligible collections are shared with docked.com.au. Email confirmation and any required multi-factor authentication still apply. Docked Credits are for use within Docked. There are no withdrawals, paid competition entries or cash prizes in this release. Cards do not promise a resale value or investment return. Clearly labelled practice fixtures are separate from official results. Statistics update when verified data is available; Docked does not promise live play-by-play coverage. Refund support remains available after opening a pack. Confirmed refunds of spent credits can place restricted purchase or transfer activity under review; statutory consumer rights remain unaffected. See the purchase terms and refund policy in the app. Support: support@docked.com.au"
+  - generic: App icon
+  - img "App icon"
+  - generic: Feature graphic
+  - img "Feature graphic"
+  - generic: Video
+  - generic: "--"
+  - generic: Phone screenshots
+  - img "store-current-nfl-play-432.jpg"
+  - img "store-current-nrl-packs-432.jpg"
+  - img "store-current-nfl-field-432.jpg"
+  - img "store-current-afl-packs-432.jpg"
+  - generic: 7-inch tablet screenshots
+  - generic: "--"
+  - generic: 10-inch tablet screenshots
+  - generic: "--"
+  - generic: Desktop screenshots
+  - generic: "--"
+  - generic: Android XR screenshots
+  - generic: "--"
+  - generic: Spatial XR video
+  - generic: "--"
+  - generic: Non-spatial XR video
+  - generic: "--"
+- generic: If you save, changes will be saved in Publishing overview, ready for you to send for review
+- button "Discard":
+  - generic: Discard
+- button "Back":
+  - generic: Back
+- button "Save as draft":
+  - generic: Save as draft
+- button "Save":
+  - generic: Save
+- link "Product updates":
+  - /url: https://play.google.com/console/about/whats-new/
+- link "Status dashboard":
+  - /url: https://status.play.google.com/
+- link "Help":
+  - /url: /console/u/0/developers/6139268121863991375/help-and-support?app=4973145400906008303
+- generic: © 2026 Google
+- link "Privacy":
+  - /url: https://www.google.com/policies/privacy/
+- link "Developer Distribution Agreement":
+  - /url: https://play.google.com/about/developer-distribution-agreement.html
+- link "Terms of Service":
+  - /url: https://play.google.com/about/console/terms-of-service/

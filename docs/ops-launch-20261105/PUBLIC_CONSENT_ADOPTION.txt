@@ -1,0 +1,112 @@
+Public signup consent — exact preparation and review
+5 November 2026. No publication, environment flag, database or consent changed.
+
+Established cause
+
+The current beta runtime is intentionally different from public customer mode.
+Live GET https://docked.com.au/terms returned HTTP 200 after a redirect to
+https://docked.com.au/beta-policies#terms. That does not prove public Terms are
+missing from source: src/app/[section]/page.tsx already redirects /terms to
+/commercial-policy when publicCustomersEnabled() is true.
+
+The non-beta Production consent resolver separately requires an entity check
+and explicit TERMS_VERSION and PRIVACY_POLICY_VERSION values. It refuses unset
+or draft/preview/pending identifiers. Enabling a presentation flag or relabelling
+the beta Terms cannot satisfy these gates. The SQL public_gameplay.policy must
+bind the same versions, valid authority and unexpired eligibility; an active
+region policy and explicit member consent are also enforced. No RLS bypass or
+beta allowlist is needed or appropriate for ordinary public users.
+
+What is already approved
+
+The owner's commercial-model, prices, player-name position and refund-hold
+decisions remain approved. On 2 November the exact v2 policy packet was approved
+for publication, source config/launch-policy-content.json, version
+2026-11-02-release-preparation-v2. Its approved Git LF UTF-8 checksum is
+9655ebb36bd5410ff07e18001d26c999ab51d4f85345252aab9ca9b293e89b93.
+This Windows checkout has CRLF translation; its raw byte checksum differs,
+but LF-normalised bytes match and git reports no policy content change.
+
+No new standalone Terms document is technically required by the existing
+implementation. The prepared minimal route uses the already published
+Service and commercial release policy as the Terms document, with Privacy as
+a separate consent. This is a statement about the implementation, not an
+independent legal opinion on contractual sufficiency.
+
+Only new owner adoption decision
+
+"Adopt the already approved and published Service and commercial release policy
+v2 as the Terms for future public-account registration, with Privacy v2 as its
+separate Privacy notice, using the pinned IDs and hashes in
+PUBLIC_CONSENT_ADOPTION_REVIEW.json. This adoption enables no registration,
+payment, competition, transfer or cleanup switch."
+
+This does not request approval of the same v2 wording or business model again.
+It fills a different gap: prospective contractual/consent adoption and precise
+server/database binding. The 2 November publication record expressly said it
+did not silently replace anyone's previously accepted Terms.
+
+Prepared exact values, not applied
+
+TERMS_VERSION=2026-11-02-release-preparation-v2
+PRIVACY_POLICY_VERSION=2026-11-02-release-preparation-v2
+LEGAL_ENTITY_VERIFIED=true
+DOCKED_LEGAL_NAME=Ginty United Investments Pty Ltd
+DOCKED_ABN=78606187106
+DOCKED_SUPPORT_EMAIL=support@docked.com.au
+
+Terms entry: /terms; public destination: /commercial-policy.
+Terms document object checksum:
+2d39952896e22486e5749c0ebb1e98d1ee30ae725f8a6541b246bbb190366448.
+Privacy destination: /privacy. Privacy document object checksum:
+2deaad106bd18ca20e21c3269f410a3ee7f5269cd1d6d1b4f8db80f4aa3f592b.
+Object checksums use UTF-8 JSON.stringify of the unchanged document object.
+
+The public_gameplay.policy terms_version/privacy_version must match these
+values, with the reviewed release authority and expiry. Keep enabled=false
+until the actual activation gate passes. No new schema migration is required
+to populate existing version fields. Do not overwrite historical beta policy
+versions, competition snapshots or consent events.
+
+New signup keeps separate unticked age, Terms and Privacy confirmations.
+An existing account whose applicable public version differs must affirmatively
+accept the new applicable documents through normal onboarding. Do not bulk
+mark acceptance, alter old events or bypass email confirmation/staff MFA.
+
+Material availability wording at activation
+
+The approved v2 pages honestly say the service is invitation-only, registration
+is closed and real purchasing is disabled. Those statements remain correct
+for the current closed runtime. They must not be presented as current facts
+after registration or payments actually open. Before that change, prepare and
+approve a separately versioned current-service notice changing only factual
+availability/status passages and their consent binding. Keep approved prices,
+odds, fees, recovery safeguards and non-excludable rights intact. This is the
+remaining material wording change; it is not permission to invent new terms
+or silently activate payments. No revised live wording was published here.
+
+Official entity evidence
+
+Normal anonymous ABN Lookup search resolved to:
+https://abr.business.gov.au/ABN/View?id=78606187106
+
+Official record extracted 5 November 2026: GINTY UNITED INVESTMENTS PTY LTD,
+ABN 78 606 187 106, Active from 23 June 2015, Australian Private Company,
+ACN 606 187 106; GST registered from 1 July 2024. See
+official-entity-readback.json. This supports the technical entity-identity
+check. It does not establish a player/statistics licence, brand registration,
+regulatory clearance, Google approval or acceptance of legal attestations.
+
+Checks actually performed
+
+- Official public ABR identity/status matched; no paid lookup or agreement.
+- Live closed /terms redirect inspected read-only.
+- Approved v2 source checksum matched after Git newline normalization.
+- Exact proposed versions accepted by currentConsentVersions locally.
+- Registration remains unavailable with its flag false.
+- Historical beta consent requires new public acceptance when applicable.
+- Unticked Terms rejected by explicitSignupConsent.
+- Preparation scripts passed node syntax and formatting checks.
+
+No claim of signed-in hosted public-terms acceptance is made. The manifest is
+a review package, not applied configuration, owner approval or a new licence.

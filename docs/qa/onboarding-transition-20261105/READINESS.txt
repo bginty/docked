@@ -1,0 +1,107 @@
+Existing confirmed member -> ordinary public onboarding
+5-6 November 2026, Australia/Sydney
+
+Established defect
+
+The nominated reviewer has a confirmed Auth identity and beta namespace profile
+and consent, but no ordinary public profile. Profile-backed identity() prevents
+/app/onboarding from rendering the form that creates that missing record. Signup
+correctly refuses to replace an existing Auth identity. This is a circular route
+dependency, not a reason to copy beta consent or create another account.
+
+Implemented; deployment and actual member submission remain separate
+
+Two independently gated routes let an admitted existing member explicitly set up
+their own ordinary public profile while global public mode remains disabled:
+
+GET /app/onboarding/public
+POST /api/auth/public-member-setup
+
+Required server-only configuration:
+DOCKED_PUBLIC_MEMBER_SETUP=true
+DOCKED_PUBLIC_MEMBER_SETUP_POLICY_APPROVED=true
+LEGAL_ENTITY_VERIFIED=true
+DOCKED_PUBLIC_TERMS_VERSION=2026-11-02-release-preparation-v2
+DOCKED_PUBLIC_PRIVACY_VERSION=2026-11-02-release-preparation-v2
+DOCKED_PUBLIC_MEMBER_SETUP_DATABASE_URL=<existing restricted docked_app URL>
+
+Entity verification is independent of policy-text approval; neither proves
+third-party licensing or regulatory clearance. Unset/false bindings fail closed.
+No global public-customer, registration, gameplay, payment, withdrawal or prize
+flag needs to be enabled for this setup form.
+
+The existing beta requireIdentity() admission, confirmed session and MFA boundary
+is preserved. A separate existing restricted ordinary docked_app connection is
+used because the beta mapper/role deliberately cannot access ordinary records.
+No new grants, Auth administration, BYPASSRLS, migration or role projection is
+introduced. Only the restricted database URL is required. The neighbouring
+privileged service secret is not used or copied.
+
+Ordinary read state runs in a read-only transaction with its own subject,
+session and AAL claims, and checks active confirmed Auth/session and ordinary
+role MFA. The write path rechecks session, roles, disabled profile and latest
+approved AU adult eligibility transactionally. Profile creation reuses existing
+retry-safe persistInvitedProfile with advisory locking. Existing ordinary
+profiles are not silently renewed or rewritten. Legacy beta roles and ordinary
+staff roles are not created or copied. Privileged endpoints retain their
+existing role and MFA checks.
+
+The existing AppOnboardingForm uses a fixed scoped endpoint and return URL,
+Terms /commercial-policy and Privacy /privacy. Location/username are personally
+entered; age, Terms and privacy choices start unticked. Beta age, location and
+consent are never copied. No password, Auth identity, wallet balance, permanent
+inventory or entry is created by the form. Exact /app/onboarding/public is an
+MFA-return allowlist entry; external/query destinations stay rejected.
+
+The later normal public-mode /app/onboarding path is also corrected using an
+onboarding-only verified own-session helper. Normal gameplay/wallet identity
+and requireRole stay profile-backed. Verified enrolled factors and ordinary
+owner/staff roles require AAL2 even when the ordinary profile is absent.
+Identity, provider and role lookups fail closed.
+
+Current dependent configuration (separate authorised task)
+
+Eight owner-approved ordinary AU18 regional rows are now applied, version
+docked-au-adult-closed-loop-v1. Public policy is bound to v2 documents; see
+../public-configuration-20261105/au-policy-applied.json. Programme, registration,
+sport visibility and payments remain off. No member profile, consent, wallet or
+inventory was written by that configuration task.
+
+Actual targeted verification
+
+- 20 targeted SQL/platform tests passed together: six isolated PGlite bootstrap
+  scenarios plus authentication/invitation/MFA regressions. Explicit consent,
+  cross-account sid denial, expiry, unconfirmed/anonymous/banned sessions,
+  owner/enrolled-factor MFA, policy restrictions, disabled profiles, idempotency
+  and unchanged unrelated fixture wallet were exercised.
+- One scoped-config test passed: default-off, independent entity verification,
+  public consent IDs, no beta-ID inheritance or global environment mutation.
+- One full-migration restricted docked_app integration test passed: own creation,
+  retry, current-consent state refresh from stale other-user RLS context,
+  cross-account sid denial, no staff grant and no encrypted-password access.
+- One actual shared-form Playwright test passed in headless Edge at 390x844 and
+  1440x900: legal URLs, unchecked consent, empty location, no NBA, recoverable
+  mocked 503 retaining input, no localStorage and no page overflow.
+- Actual POST gate-off handler returned 503 before Auth/database access; see
+  route-gate-check.json. No hosted identity was mutated.
+- TypeScript, targeted ESLint and git diff checks passed. No migration/RLS/grant
+  changes. The two form screenshots were visually inspected.
+
+These are isolated/local checks. No Production account write, member consent
+submission, authenticated hosted acceptance or deployment is claimed here.
+
+Exact member action after reviewed deployment and configuration
+
+Sign in normally as briantginty21@gmail.com, complete existing MFA if prompted,
+then visit https://docked.com.au/app/onboarding/public. Choose an available public
+username, actual Australian state/territory and current consent choices
+personally. Do not send the password or one-time code to an agent. Submission
+saves only that member's ordinary public setup and shows completion; separate
+public/gameplay activation gates stay unchanged.
+
+Staged-origin constraint
+
+The unchanged sameOrigin guard compares POST origin to configured siteUrl.
+An unassigned Vercel candidate configured with canonical docked.com.au correctly
+rejects candidate-origin POST. Use a correctly bound protected test origin or
+the canonical host after reviewed promotion; do not weaken the origin check.
