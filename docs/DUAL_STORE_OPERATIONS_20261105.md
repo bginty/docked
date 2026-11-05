@@ -1,4 +1,4 @@
-# Store operations and incident procedure — 5 November 2026
+# Store operations and incident procedure — updated 6 November 2026
 
 Prepared for the existing services; no new paid service, payment activation, retention cleanup, support email or customer mutation occurred. Existing owner/admin MFA remains required. Assign named operational and recovery owners before commercial activation; this runbook does not create staff permissions.
 
@@ -11,7 +11,7 @@ Prepared for the existing services; no new paid service, payment activation, ret
 5. Explain the specific held amount and affected spending restriction privately, offer support review, and preserve applicable Australian consumer remedies. An opened pack is not automatically excluded from a lawful remedy. A hold is not a new debt-collection authority. Release/adjustment requires an authorised, audited recovery action; preserve the original purchase/refund events.
 6. Escalate disputed ownership, account replay, refund reversal, unsupported provider evidence or inconsistent balances. Freeze only the affected payment admission if necessary. Do not delete the original record or extend a hold to unrelated wallets.
 
-Google case **4-5905000041947** concerns offer eligibility, not a failed customer charge. Both current products remain inactive. Preserve the submitted evidence and await a specific correction; no repeated activation/cache/device cycles while the cause is unknown.
+Google case **4-5905000041947** concerned offer eligibility, not a failed customer charge. Both Australian products subsequently passed genuine v30 licence-TEST checkout, acknowledgement, pack fulfilment and refund reconciliation. The owner-approved closure request was sent; Google closure confirmation is not asserted. Bank verification preceded success, but causation was not established. Both products remain inactive. Preserve evidence; do not repeat activation/cache/device cycles without a new failure or specific Google instruction.
 
 ## Financial reconciliation
 
@@ -22,6 +22,8 @@ Reuse the existing `CommercialLedger.financialReport` and MFA-protected `/admin/
 - Credit sale fees, pack purchase/issuance linkage and serial ownership separately from store credit purchases. No rewriting historical commission.
 - Google/Apple settlement reports, taxes and fees as a separate finance review. The current report explicitly says provider payout is **not reconciled** and leaves fee/revenue amounts unavailable. Do not label gross credit transactions as cash revenue or invent provider settlement totals.
 
+The independently prepared `ccd7e7c4` report correction uses one `REPEATABLE READ READ ONLY` snapshot and a database `asOf` timestamp. Four real PostgreSQL concurrency scenarios passed. It is **not included in the frozen `7319dddd` Google review release**. Promote it through the ordinary reviewed release process before relying on the report for concurrent live commercial activity; do not describe the old three-statement projection as one consistent financial snapshot. See [the exact operational continuation](ops-launch-20261105/COMMERCIAL_OPERATIONS_CONTINUATION_20261106.txt).
+
 Read-only Production snapshot `qa/dual-store-20261105/production-operations.json`: commercial receipt/lot/outstanding/recovery counts were zero, with no negative commercial balance. This is a census, not a new real-payment acceptance or a claim that all historical beta wallets are zero. Production was not mutated.
 
 ## Monitoring and escalation
@@ -30,12 +32,14 @@ The nine existing scheduled jobs reported successful database invocations in the
 
 Before public launch, name the primary/on-call substitute and verify an alert delivery drill with an authorised test recipient. Use existing tools to alert on billing queue backlog/attention, authenticated verification failures, negative-balance invariant failures, authentication/mail failures and stale ingestion. Measure backend response status and actual downstream outcomes; do not monitor secrets or document payloads. No test support notification was sent in this task.
 
+The 6 November readback found four known TEST receipts cancelled, all four consumption jobs complete, and seven preserved attention hints with no binding to those Production TEST receipts. They are not seven verified commercial refund failures. Do not invent a binding, delete rows or blindly replay fulfilment to clear health. The new aggregate-only alert adapter is default-disabled and unbound; its mock tests are not actual email delivery. The [alert preparation package](ops-launch-20261105/alerts-preparation/READINESS.txt) records the purpose-scoped queue/permission and delivery work required before activation. Auth-email authority must not silently become general operations-mail authority.
+
 Operational response:
 
 1. Capture release ID, route, timestamp and sanitised error/queue reference. Classify auth, payment, ownership, data-feed or outage scope.
-2. Disable the narrow affected admission gate if approved/necessary; keep the read-only ledger and reconciliation evidence. Stop new commercial purchases before investigating incorrect settlement; do not assume hiding a button stops server purchases.
+2. Disable the narrow affected admission gate if approved/necessary; keep the read-only ledger and reconciliation evidence. Stop new commercial purchases before investigating incorrect settlement; do not assume hiding a button stops server purchases. Keep authorised receipt verification, authenticated notification persistence and durable reconciliation available while checkout admission is closed. `DOCKED_COMMERCIAL_SERVICE=false` also prevents the commercial notification receiver from persisting work; it is not the routine checkout-only incident switch. If service credentials are compromised, isolate that service deliberately, preserve provider retries/queue evidence and restore reconciliation through the incident procedure rather than discarding notifications.
 3. Preserve completed receipt/pack IDs. A worker crash is recovered through lease expiry and idempotent retry, not reissuance. Failed statistics remain awaiting data, not confirmed zero.
-4. For a code regression, promote the verified compatible rollback deployment after checking current database compatibility. Current Production is `4a44b269`; its recorded rollback is `da24e69d` / `dpl_DPuRZZ6E86VURysBJJmieGEVZ3zW`, which retains the native login fix. The older `f0eb28e7` does not. Never roll back by deleting paid receipts, ownership or historical migrations. The public-access/wallet improvements would be absent after rollback and must remain gated.
+4. For a code regression, promote the verified compatible rollback deployment after checking current database compatibility. Current canonical Production is `7319dddd` / `dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ`; its exact CLOSED rollback is `dfed57b2` / `dpl_Hxyw3omGaXcGAG1qEhFtjdgYs5En`, retaining the native login and billing acknowledgement fixes. Do not use an older baseline or temporary TEST transport. Coordinate the dormant prospective privacy binding with the version actually published, preserve old accepted versions and do not rewrite historical consents. Never roll back by deleting paid receipts, ownership or historical migrations, or by restoring a broad database snapshot over later legitimate transactions. Keep public/customer/checkout gates closed during rollback verification.
 5. Validate the affected path read-only first; use isolated mutations for acceptance. Record remediation, remaining restrictions and next review. Do not announce resolution from a passing build alone.
 
 ## Retention and custody
@@ -53,4 +57,6 @@ Activation checklist:
 - Use the already tested least-privilege retention role and bounded dry-run first. Review legal holds, unreconciled refunds and expiry. A passed hold review date does not release a hold.
 - Enable apply/cleanup only after recorded operational approval. Stop by setting apply off, then service off; retain schema/audit/archives. Do not issue destructive cleanup as a rollback.
 
-Published policies remain the approved v2: `/privacy`, `/refund-policy`, `/commercial-policy`, `/retention`, `/account-deletion`. The present Google-focused wording was not expanded to claim active Apple processing. Apple production data flows and any material policy changes require review before an Apple release.
+Published `/privacy` is the narrowly approved `2026-11-06-privacy-sdk-v3`, including automatic Google Billing SDK diagnostics separate from optional Docked analytics. The dormant prospective privacy binding is v3; historical consents are unchanged. Refund, commercial and retention policy documents remain `2026-11-02-release-preparation-v2`; `/account-deletion` remains the existing workflow. The Google-focused wording was not expanded to claim active Apple processing. Apple production data flows and any material policy changes require review before an Apple release.
+
+The ten Australian Google Play changes are now **in review**, with managed publishing ON. This is not publication or payment activation. Keep NBA, commercial trading, public registration, live purchases, withdrawals, paid entry and prizes disabled until their separately controlled final activation. Initial review uses the existing confirmed reviewer, genuine free Core gameplay and non-redeemable TEST credits, without permanent-card issuance.
