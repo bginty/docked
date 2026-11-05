@@ -9,6 +9,10 @@ import {
   type SignupTransaction,
 } from "../../src/server/signup-profile";
 import {
+  persistExistingMemberProfile,
+  readExistingMemberProfile,
+} from "../../src/server/existing-member-onboarding";
+import {
   leaseDeletionJobQuery,
   recoverDeletionJobsQuery,
   communityRetentionQueries,
@@ -105,6 +109,94 @@ const tx: SignupTransaction = {
     }
   },
 };
+test("existing-member public bootstrap uses restricted ordinary role and grants no staff access", async () => {
+  await reset();
+  await pg.exec("begin");
+  try {
+    await pg.exec(
+      "insert into private.region_policies(country,state,version,effective_from,effective_to,review_at,approved,minimum_age,features,evidence)values('AU','NSW','isolated-member-setup','2020-01-01','2100-01-01','2100-01-01',true,18,array['community_social'],'Isolated setup test only, not regulatory approval')",
+    );
+    await asApp();
+    await pg.query(
+      "select set_config('request.jwt.claim.sub',$1,true),set_config('request.jwt.claims',$2,true)",
+      [member, JSON.stringify({ sub: member, session_id: sid, aal: "aal1" })],
+    );
+    const input = {
+      username: "scoped_setup_fixture",
+      country: "AU",
+      state: "NSW",
+      age: true,
+      terms: true,
+      privacy: true,
+    };
+    const versions = {
+      terms: "reviewed-terms-test",
+      privacy: "reviewed-privacy-test",
+    };
+    assert.equal(
+      (
+        await persistExistingMemberProfile(
+          tx,
+          { userId: member, sessionId: sid, aal: "aal1", mfaRequired: false },
+          input,
+          versions,
+        )
+      ).created,
+      true,
+    );
+    assert.equal(
+      (
+        await persistExistingMemberProfile(
+          tx,
+          { userId: member, sessionId: sid, aal: "aal1", mfaRequired: false },
+          input,
+          versions,
+        )
+      ).created,
+      false,
+    );
+    // A pooled connection may have no subject or the preceding request's subject.
+    // The actual state reader must restore its own RLS context on every read.
+    await pg.query("select set_config('request.jwt.claim.sub',$1,true)", [
+      other,
+    ]);
+    const state = await readExistingMemberProfile(
+      tx,
+      { userId: member, sessionId: sid, aal: "aal1" },
+      versions,
+    );
+    assert.equal(state?.id, member);
+    assert.equal(state?.privacy_current, true);
+    await assert.rejects(
+      readExistingMemberProfile(
+        tx,
+        { userId: other, sessionId: sid, aal: "aal1" },
+        versions,
+      ),
+      /Authentication required/,
+    );
+    await assert.rejects(
+      persistExistingMemberProfile(
+        tx,
+        { userId: other, sessionId: sid, aal: "aal1", mfaRequired: false },
+        { ...input, username: "other_setup_fixture" },
+        versions,
+      ),
+      /session inactive/,
+    );
+    await pg.exec("savepoint deny_setup_role");
+    await deny(
+      `insert into private.roles(user_id,role)values('${member}','owner')`,
+    );
+    await pg.exec("rollback to savepoint deny_setup_role");
+    await pg.exec("savepoint deny_setup_auth");
+    await deny("select encrypted_password from auth.users");
+    await pg.exec("rollback to savepoint deny_setup_auth");
+  } finally {
+    await pg.exec("rollback");
+    await reset();
+  }
+});
 test("invitation setup uses restricted views, denies another session and rolls back expired-session consent", async () => {
   await asApp();
   await pg.exec("begin");

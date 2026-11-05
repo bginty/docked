@@ -74,6 +74,23 @@ test("MFA AAL2 session persists without another code or new factor", async () =>
   assert.equal((await mfaFlow(f.auth, "mfa_status")).redirect, "/app");
   assert.deepEqual(f.calls, []);
 });
+
+test("existing-member profile completion returns to onboarding only after the MFA challenge", async () => {
+  const f = fixture();
+  assert.equal(
+    (await mfaFlow(f.auth, "mfa_status", undefined, "/app/onboarding")).mode,
+    "challenge",
+  );
+  assert.equal(
+    (await mfaFlow(f.auth, "mfa_verify", "123456", "/app/onboarding")).redirect,
+    "/app/onboarding",
+  );
+  assert.deepEqual(f.calls, ["internal-never-shown:123456"]);
+  assert.equal(
+    mfaDestination("/app/onboarding?next=https://attacker.invalid"),
+    "/app",
+  );
+});
 test("First enrolment provides a QR image and once-only setup key; pending factor is reused", async () => {
   const f = fixture([]);
   assert.equal((await mfaFlow(f.auth, "mfa_status")).mode, "enroll");

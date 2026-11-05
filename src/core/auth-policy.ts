@@ -24,6 +24,14 @@ export function passwordResetFailure(error: { code?: string; name?: string }) {
   return "The password update was not confirmed. Contact support before requesting another recovery email.";
 }
 export type StaffRole = (typeof staffRoles)[number];
+/** Verified Auth.getUser factors only, never client input or user_metadata.
+ * Profile completion preserves an enrolled challenge without granting a role. */
+export function onboardingMfaRequired(
+  hasRole: boolean,
+  factors: readonly { status: string }[] = [],
+) {
+  return hasRole || factors.some((factor) => factor.status === "verified");
+}
 export const operationRoles = {
   read_operations: [...staffRoles],
   publish: ["owner", "admin", "analyst"],
