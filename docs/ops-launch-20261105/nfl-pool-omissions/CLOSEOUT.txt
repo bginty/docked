@@ -1,0 +1,66 @@
+NFL COMMERCIAL POOL OMISSIONS — BOUNDED READ-ONLY FOLLOW-UP
+6 November 2026, Australia/Sydney
+
+Exact omitted teams
+ARI — Arizona Cardinals
+MIA — Miami Dolphins
+TEN — Tennessee Titans
+
+The existing candidate includes 385 NFL identities from 29 teams. The existing
+officialTeams registry contains all 32 identities; this is not a missing team alias.
+
+Established cause
+scripts/prepare-commercial-pool.ts requires official current_evidence.checked_at
+within the preceding 72 hours, in addition to active player/status, verified
+identity, supported fantasy position and authoritative position compatibility.
+The server-enforced read-only query at 2026-11-05T20:46:51.658Z found ZERO fresh
+saved observations for each omitted team:
+
+Team   Saved evidence rows   Saved active rows   Otherwise eligible mapped players
+ARI    30                    17                  15
+MIA    32                    16                  15
+TEN    27                    14                  14
+
+ARI/MIA observations date from 17 October. TEN observations date from 17 October
+or 29 October; both are outside the 72-hour window. The 44 otherwise eligible
+mapped players therefore fail freshness even though their older records contain
+verified identities and compatible existing positions. Other recorded inactive,
+reserve or unverified rows must not be included as a shortcut.
+
+Authoritative saved-source references
+https://www.azcardinals.com/team/players-roster/
+https://www.miamidolphins.com/team/players-roster/
+https://www.tennesseetitans.com/team/players-roster/
+Some excluded non-active evidence also cites official transaction pages. The
+readback preserves row-specific sources, hashes and timestamps. It does not
+assert these older observations prove the player's current status today.
+
+Scope and conclusion
+The omitted records already exist with stable player/provider identifiers. A
+current compatible observation from the same existing official source could
+support a reviewed draft addition without inventing positions or requesting a
+new general player-name approval. That new observation was NOT collected in this
+bounded follow-up. No source agreement, live refresh or broad scrape was started.
+
+No deterministic correction is justified from the existing stale evidence alone.
+Do not relax 72 hours, backdate/refresh timestamps without a real observation,
+declare the provider unavailable without evidence, or presume all 44 players
+remain eligible. Once genuinely current evidence exists, rerun the same candidate
+projection, compare stable identities/positions and prepare an isolated dated
+candidate. Do not import, approve or issue it through this read-only procedure.
+
+This establishes the exclusion/filter cause. It does not establish why an
+earlier scheduled source refresh retained the older observations.
+
+AFL/NRL remain dated October 22 snapshots. The separate provenance check confirms
+882 identities match that saved source; it is not a new current roster check.
+Their dated eligibility/freshness review still remains before final permanent
+pool activation. NBA, lifetime supply and approved probabilities are unchanged.
+
+Evidence and safeguards
+nfl-pool-omissions-readonly.ts — exact reproducible inspection, normal existing
+operator connection, repeatable-read READ ONLY transaction and 30-second query
+timeout. readback.json — observed factual rows/aggregates and view/schema evidence.
+No customer identity, wallet, receipt, card, competition or ownership mutation;
+no external provider request, permanent issuance, import, approval or activation.
+No new source hash or freshness timestamp was substituted into the candidate.
