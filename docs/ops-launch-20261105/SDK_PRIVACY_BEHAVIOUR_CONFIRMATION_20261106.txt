@@ -1,0 +1,32 @@
+APPROVED SDK PRIVACY WORDING — INDEPENDENT TECHNICAL CONFIRMATION
+
+The exact approved paragraph is unchanged. Its scope is consistent with the
+existing signed Android v30/1.29 implementation and current official documentation.
+No new SDK, personal-data use, device test or purchase was introduced by this check.
+
+Google's current Billing release-notes page confirms 9.1.0 and describes API-result
+and service-connection logging for library performance/error support from PBL 6.
+https://developer.android.com/google/play/billing/release-notes
+
+The prior exact-AAB/AAR inspection remains valid: v30 AAB SHA-256
+d3837d7191e0a6bbd64a572a9ac3288fd37b440eb36e67408648fb4b3c879e29;
+Google 9.1.0 AAR SHA-256
+d28286d4e4c18725510980de01211d9b72501e7146d96817fa0c9999af9b0d22.
+The AAB contains the library log source, billing-client session identifier and
+CCT backend. The distributed library initialises the transport and sends combined
+API events/technical metadata. Its constructor supplies library/app/Android version
+metadata and a random per-client identifier. The native plugin is eagerly loaded
+by Capacitor and does not gate that SDK configuration on optional Docked analytics.
+
+The paragraph accurately distinguishes SDK processing from OS diagnostic settings
+and optional first-party analytics. It does not assert receipt of full payment-card
+numbers, advertising profiles, player likenesses or real identity documents. It
+does not claim a purchase must complete before diagnostic processing is possible.
+No claim is made here about every exact payload, every start-up causing a request,
+Google's server-side retention duration or new observed network packet delivery.
+
+Published/privacy-consent binding status is recorded by the root release task;
+this confirmation changes no wording, environment variable or account acceptance.
+Keep the exact wording/hash and historical privacy versions; do not rewrite prior
+consent events. Console Diagnostics and associated IDs must reflect actual SDK
+handling, rather than being confused with Docked's ephemeral diagnostic display.

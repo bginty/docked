@@ -1,0 +1,306 @@
+{
+  "at": "2026-11-05T20:30:38.787Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "readOnly": true,
+  "productionWrites": 0,
+  "reviewer": {
+    "confirmed": true,
+    "admitted": true,
+    "gameplay": true,
+    "grantAmount": 30000,
+    "matchingGrantEvents": 1,
+    "matchingGrantJournals": 1,
+    "matchingNormalizedJournals": 1,
+    "existingRequestRecorded": true,
+    "currentWallet": {
+      "available": 30000,
+      "pending": 0,
+      "reserved": 0,
+      "withdrawable": 0,
+      "total": 30000,
+      "heldAvailable": 0,
+      "spendable": 30000,
+      "label": "Docked Credits · financial sandbox · no cash value",
+      "withdrawableIsSubset": true,
+      "restricted": 30000
+    },
+    "grantReason": "Owner-authorised one-time 30,000 non-cash TEST Docked Credits for nominated Google Play reviewer NFL/AFL/NRL pack access; no cash value, withdrawals, conversion, real funds or permanent issuance",
+    "grantAt": "2026-11-05T13:24:24.152Z",
+    "access": [
+      {
+        "enabled": true,
+        "expires_at": "2027-01-31T00:00:00.000Z"
+      }
+    ],
+    "entries": [
+      {
+        "sport": "afl",
+        "mode": "SALARY_CAP",
+        "players": 22,
+        "locks_at": "2027-01-31T00:00:00.000Z"
+      },
+      {
+        "sport": "nfl",
+        "mode": "SALARY_CAP",
+        "players": 7,
+        "locks_at": "2027-01-31T00:00:00.000Z"
+      },
+      {
+        "sport": "nrl",
+        "mode": "SALARY_CAP",
+        "players": 13,
+        "locks_at": "2027-01-31T00:00:00.000Z"
+      }
+    ],
+    "admissionEvidence": "Existing confirmed Auth identity, accepted admission, active beta profile and enabled named friends roster/control; runtime functions acquiring row locks were not invoked in the read-only transaction.",
+    "grantIdempotencyEvidence": "One persisted promotion event, one persisted request result and one matching document/normalized journal. No mutation replay executed."
+  },
+  "freeCore": {
+    "programmes": [
+      {
+        "sport": "afl",
+        "enabled": true,
+        "version": "public-free-core-v1"
+      },
+      {
+        "sport": "nfl",
+        "enabled": true,
+        "version": "public-free-core-v1"
+      },
+      {
+        "sport": "nrl",
+        "enabled": true,
+        "version": "public-free-core-v1"
+      }
+    ],
+    "roster": [
+      {
+        "sport": "afl",
+        "season": "2026 Practice",
+        "players": 545,
+        "valid_until": "2027-01-31T00:00:00.000Z",
+        "current": true
+      },
+      {
+        "sport": "nfl",
+        "season": "2026 Practice",
+        "players": 386,
+        "valid_until": "2027-01-31T00:00:00.000Z",
+        "current": true
+      },
+      {
+        "sport": "nrl",
+        "season": "2026 Practice",
+        "players": 337,
+        "valid_until": "2027-01-31T00:00:00.000Z",
+        "current": true
+      }
+    ]
+  },
+  "publicRounds": [
+    {
+      "id": "0073858d-b14b-49ce-8cda-56c2357490c5",
+      "sport": "afl",
+      "mode": "OPEN",
+      "season": "2026 Practice",
+      "round": 2,
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "matching_rules": true,
+      "lineup_version": "docked-australian-owner-2026-10-24-v1-afl",
+      "salary_cap": 13800000,
+      "players": 22,
+      "prize": "No cash prize",
+      "awards": [],
+      "entry_fee": "0",
+      "reward_active": "false",
+      "in_beta": false,
+      "in_nfl_beta": false,
+      "effectiveSalaryCap": null
+    },
+    {
+      "id": "38f8e2da-a8cd-41ec-b34b-008084be7722",
+      "sport": "afl",
+      "mode": "SALARY_CAP",
+      "season": "2026 Practice",
+      "round": 2,
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "matching_rules": true,
+      "lineup_version": "docked-australian-owner-2026-10-24-v1-afl",
+      "salary_cap": 13800000,
+      "players": 22,
+      "prize": "No cash prize",
+      "awards": [],
+      "entry_fee": "0",
+      "reward_active": "false",
+      "in_beta": false,
+      "in_nfl_beta": false,
+      "effectiveSalaryCap": 13800000
+    },
+    {
+      "id": "fa53ab81-b8fd-4d4e-bf5e-214c5209b09f",
+      "sport": "nfl",
+      "mode": "OPEN",
+      "season": "2026 Practice",
+      "round": 2,
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "matching_rules": true,
+      "lineup_version": "public-nfl-round-wide-practice-v1",
+      "salary_cap": 4400000,
+      "players": 7,
+      "prize": "No cash prize",
+      "awards": [],
+      "entry_fee": "0",
+      "reward_active": "false",
+      "in_beta": false,
+      "in_nfl_beta": false,
+      "effectiveSalaryCap": null
+    },
+    {
+      "id": "11edf5ac-262b-41ad-a6d9-06a53053a051",
+      "sport": "nfl",
+      "mode": "SALARY_CAP",
+      "season": "2026 Practice",
+      "round": 2,
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "matching_rules": true,
+      "lineup_version": "public-nfl-round-wide-practice-v1",
+      "salary_cap": 4400000,
+      "players": 7,
+      "prize": "No cash prize",
+      "awards": [],
+      "entry_fee": "0",
+      "reward_active": "false",
+      "in_beta": false,
+      "in_nfl_beta": false,
+      "effectiveSalaryCap": 4400000
+    },
+    {
+      "id": "3e19ab97-7cff-490c-aa9c-aeba3a8e6207",
+      "sport": "nrl",
+      "mode": "OPEN",
+      "season": "2026 Practice",
+      "round": 2,
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "matching_rules": true,
+      "lineup_version": "docked-australian-owner-2026-10-24-v1-nrl",
+      "salary_cap": 8200000,
+      "players": 13,
+      "prize": "No cash prize",
+      "awards": [],
+      "entry_fee": "0",
+      "reward_active": "false",
+      "in_beta": false,
+      "in_nfl_beta": false,
+      "effectiveSalaryCap": null
+    },
+    {
+      "id": "c49a6684-8d34-4411-92f5-50393d55386e",
+      "sport": "nrl",
+      "mode": "SALARY_CAP",
+      "season": "2026 Practice",
+      "round": 2,
+      "locks_at": "2026-11-15T12:00:00.000Z",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "matching_rules": true,
+      "lineup_version": "docked-australian-owner-2026-10-24-v1-nrl",
+      "salary_cap": 8200000,
+      "players": 13,
+      "prize": "No cash prize",
+      "awards": [],
+      "entry_fee": "0",
+      "reward_active": "false",
+      "in_beta": false,
+      "in_nfl_beta": false,
+      "effectiveSalaryCap": 8200000
+    }
+  ],
+  "commercial": {
+    "environment": "commercial",
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false,
+    "gameplay_enabled": false,
+    "policy_version": "commercial-launch-awaiting-approval-v1",
+    "definitions": 0,
+    "cards": 0,
+    "receipts": 0,
+    "approved_products": 0
+  },
+  "publicPolicy": {
+    "enabled": false,
+    "terms_version": "2026-11-02-release-preparation-v2",
+    "privacy_version": "2026-11-02-release-preparation-v2",
+    "valid_until": "2027-02-03T13:03:30.607Z"
+  },
+  "publicSports": [
+    {
+      "sport": "afl",
+      "visible": false,
+      "play_enabled": false
+    },
+    {
+      "sport": "nfl",
+      "visible": false,
+      "play_enabled": false
+    },
+    {
+      "sport": "nrl",
+      "visible": false,
+      "play_enabled": false
+    }
+  ],
+  "registrationEnabled": false,
+  "passed": true,
+  "localCandidate": {
+    "sha256": "6df8ec2bc3b455f8e03081422b7b0aa7a735d824fed3eef485972df7219d4276",
+    "definitions": 6335,
+    "allUnapproved": true,
+    "issued": 0,
+    "legacyIssued": 0,
+    "sourcePermanentIssuanceEligible": false,
+    "sports": [
+      {
+        "sport": "nfl",
+        "players": 385,
+        "definitions": 1925,
+        "oldestSourceCheck": "2026-11-05T12:15:06.947Z",
+        "newestSourceCheck": "2026-11-05T12:15:13.593Z",
+        "teamCount": 29,
+        "verifiedNumbers": 385,
+        "sourcePermanentIssuanceApproved": false
+      },
+      {
+        "sport": "afl",
+        "players": 545,
+        "definitions": 2725,
+        "oldestSourceCheck": "2026-10-22T22:17:12.912Z",
+        "newestSourceCheck": "2026-10-22T22:17:37.394Z",
+        "teamCount": 18,
+        "verifiedNumbers": 542,
+        "sourcePermanentIssuanceApproved": false
+      },
+      {
+        "sport": "nrl",
+        "players": 337,
+        "definitions": 1685,
+        "oldestSourceCheck": "2026-10-22T22:17:37.394Z",
+        "newestSourceCheck": "2026-10-22T22:24:35.432Z",
+        "teamCount": 17,
+        "verifiedNumbers": 0,
+        "sourcePermanentIssuanceApproved": false
+      }
+    ]
+  },
+  "scope": "Independent read-only SQL metadata snapshot; preserves prior genuine browser acceptance, does not claim a new authenticated UI or purchase test."
+}

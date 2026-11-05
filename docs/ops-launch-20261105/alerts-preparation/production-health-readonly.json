@@ -1,0 +1,56 @@
+{
+  "at": "2026-11-05T20:35:08.182Z",
+  "readOnly": true,
+  "productionWrites": 0,
+  "scope": "Aggregate health only. No emails, identity contents, tokens, receipt IDs, leases or queue mutations.",
+  "commercialJobs": [],
+  "commercialRecoveries": [],
+  "testNotifications": [
+    {
+      "state": "attention",
+      "count": 7,
+      "overdue": 0,
+      "max_attempts": 12
+    },
+    {
+      "state": "done",
+      "count": 10,
+      "overdue": 0,
+      "max_attempts": 1
+    }
+  ],
+  "testConsumption": [
+    {
+      "state": "done",
+      "count": 4,
+      "overdue": 0,
+      "max_attempts": 1
+    }
+  ],
+  "testReceipts": [
+    {
+      "status": "CANCELLED",
+      "count": 4
+    }
+  ],
+  "authMail": [
+    {
+      "state": "accepted",
+      "count": 8,
+      "max_attempts": 1
+    }
+  ],
+  "authMailScheduler": [
+    {
+      "enabled": true,
+      "scheduler_jobs": 1
+    }
+  ],
+  "customerOutbox": [],
+  "betaOutbox": [
+    {
+      "state": "queued",
+      "count": 1
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+COMMERCIAL OPERATIONS — TARGETED CONTINUATION, 6 NOVEMBER 2026
+
+Implemented independently; not promoted into the frozen Google review release
+
+Commit ccd7e7c499f124ae3cdb96af944d884f228cbab7 fixes a real financial-reporting
+consistency defect. The old report issued three independent statements. A real
+isolated PostgreSQL test committed a second synthetic purchase after the receipt
+aggregate: the old report combined 4,900 cents of charges with 14,800 outstanding
+credits, values from different committed states. It failed 14800 !== 4900.
+
+The method now uses one REPEATABLE READ READ ONLY transaction for receipt, lot
+and recovery aggregates, with a database asOf timestamp. It acquires no write
+locks and changes no ledger, account, recovery, pack or card record. Numeric SQL
+result types are explicit. Provider payout remains unreconciled; provider fees
+and recognised revenue remain null. This does not turn an internal credit balance
+into cash revenue or assert that a real commercial order/payout occurred.
+
+Verification actually completed
+- Existing disposable loopback PostgreSQL runner, no external provider calls.
+- Concurrent purchase: old receipt and new wallet totals cannot be mixed.
+- Concurrent refund: reversal and remaining credits appear together on the next
+  snapshot; the other synthetic member's wallet remains correct.
+- Concurrent provider review: an older snapshot cannot include a newer open
+  recovery case. The next snapshot shows the correct review/case counts.
+- Read-only transaction setting, asOf freshness, unchanged full financial-table
+  fingerprint during reporting, zero issued cards/packs, and honest payout fields.
+- All four scenarios passed. Earlier old-source run reproduced the defect.
+- Typecheck, targeted ESLint, Prettier and changed-file whitespace checks passed.
+- No Production write, account/balance alteration, card issue, notification,
+  new access, schema migration, service or payment activation.
+
+Run only when relevant: node scripts/commercial-local-postgres.mjs --report-snapshot
+Evidence: financial-report-snapshot/postgres.json. This preparation is separate
+from the already accepted Google TEST journeys and does not justify repeating them.
+The owner-authorised closed privacy/Auth release intentionally excludes this commit.
+
+Existing support/recovery controls — reuse, do not replace
+
+/api/admin/commercial-billing requires the existing owner role/MFA. Its report is
+read-only; its only supported mutation is waiver of a completed-refund hold with
+an exact case revision, a fresh same reviewer session and an independent reviewer.
+A REVIEW/partial-refund case cannot be waived as a completed refund. A waiver
+records support/audit evidence; it does not credit a wallet, send cash, reissue a
+pack, remove another member's cards, or override another case. General support
+access is not reviewer permission. The case list and queue health are current
+operational readbacks; financial totals have the separately identified asOf.
+
+Use support@docked.com.au and the existing private owner workflow. Confirm the
+signed-in account, provider order, bound receipt and event state; never request
+passwords, MFA codes, raw purchase tokens, full payment-card details or identity
+documents. Retry the verifier/durable job after checking its lease. Never ask a
+customer to buy twice or manually overwrite a journal. Explain spent-credit holds
+and the review path; consumer remedies do not disappear because a pack was opened.
+
+Monitoring/readiness — implementation versus actual delivery
+
+Authenticated notifications already persist before 204, deduplicate references,
+and schedule bounded work. Periodic reconciliation revisits consumed receipts,
+uses durable leases/backoff, and moves repeated failures to attention. One queue's
+failure does not prevent the other configured queue from running. Current log
+events contain aggregate counters and bounded error classifications, not tokens.
+
+Separate work in alerts-preparation and billing-ops-alerts.mjs prepares the
+existing-mail adapter with explicit default-off authority/expiry/recipient guards
+and mocked delivery tests. Its owner is the companion alert-preparation task; this
+report does not claim a durable Production queue binding or external delivery.
+No live email or new recipient/permission was authorised or created by this work.
+
+The current aggregate health readback at 2026-11-05T20:35:08Z records no commercial
+jobs/recoveries, four cancelled isolated TEST receipts, four completed consumption
+jobs and seven TEST notification attention rows. Those are not seven commercial
+payment failures. Read alerts-preparation/test-attention-triage.json for the scoped
+classification; do not delete, blindly requeue or hide them to clear a dashboard.
+
+Exact operational actions before live paid admission
+1. Record the existing owner responsible for support/finance/incident response
+   and a named substitute. Do not silently grant a new staff role. Agree who checks
+   receipt/queue/recovery health when the primary is unavailable.
+2. Bind the prepared alert path only through a reviewed existing durable outbox
+   with a dispatch fence, purpose scope and documented uncertainty handling. The
+   existing mail authority does not itself authorise operational emails. Arrange
+   a separately authorised non-financial drill to the agreed recipient and record
+   actual receipt. Graph acceptance alone is not inbox-delivery proof.
+3. Keep a private versioned inventory/recovery record for the commercial receipt
+   encryption keyring (DOCKED_COMMERCIAL_REFERENCE_KEYS / active KEY_ID), account
+   binding secret, restricted runtime database credentials and provider verifier
+   credentials. Record custodians and independent encrypted recovery; never put
+   secret values in Git, reports, issue trackers or alert messages. Do not rotate
+   an account-binding secret arbitrarily or lose old receipt-decryption key IDs.
+4. Existing logical-backup authentication and isolated 550-table restore are valid
+   evidence. Independent key recovery, Storage object bodies and provider/secret
+   configuration restoration remain distinct proofs. Rehearse those using existing
+   resources; do not create another paid service or imply database rows include
+   Storage objects. A recovery must preserve deletion suppression and idempotency.
+5. At the first authorised real reporting period, reconcile Google's order/payout,
+   fees and tax evidence to immutable internal AUD journals. A verified bank account
+   and successful TEST checkout do not prove a real payout. No real charge is needed
+   merely to prepare this procedure, and none is authorised by this document.
+
+Retention activation remains separate
+
+Keep service/apply and irreversible cleanup disabled. The twelve previously tested
+PostgreSQL groups remain applicable. Covered company financial records have the
+documented at-least-seven-year rule; it is not a blanket period for every token,
+log, support message or personal field. The 90-day completed-job/30-day encrypted
+archive periods are proposed operational controls, not invented legal minima.
+Before apply: approve the category schedule, independent archive-key custody,
+provider-copy limits and purchase-reference/tombstone retirement rule; run bounded
+dry-run and restore/suppression checks. An overdue review date never releases a
+legal hold. Do not reuse the logical-backup key as a retention archive key.
+These disabled optional cleanup operations do not themselves prevent Google review
+of an accurate restricted release with payments and public registration closed.
+
+Permanent pool — concrete readiness, not a new business-model approval request
+
+The candidate SHA remains 6df8ec2bc3b455f8e03081422b7b0aa7a735d824fed3eef485972df7219d4276:
+6,335 definitions, all unapproved, issued=0 and legacy_issued=0. NFL: 385 identities
+across 29teams; AFL: 545 across 18; NRL: 337 across 17. The later read-only source check
+matched all 385 NFL identities and 882 AFL/NRL identities and deterministically
+regenerated the same candidate. It proves provenance consistency, not a new current
+roster observation or approval to issue permanent cards. No pool import occurred.
+
+Before immutable commercial import/approval:
+- Refresh/review dated AFL/NRL associations and eligibility for the actual offered
+  season, using a new dated derivative snapshot and existing attribution. Do not
+  overwrite the published Oct23 snapshot or silently label 2027 source templates
+  as 2026. The existing refresh scripts bundle NBA and hardcode the old catalogue;
+  they must be scoped/versioned before reuse. NBA remains excluded.
+- Establish intended NFL pool coverage. The reviewed candidate is explicitly29
+  teams, not a verified complete 32-team catalogue. Do not infer a source/licensing
+  failure merely because a mapped eligible identity is missing from this candidate.
+- NRL 337 covers the existing supported-position snapshot, not every roster member;
+  its review explicitly excluded hooker-only records. Do not relabel unsupported
+  positions as middles. Match the actual saved eligibility/formation contract.
+- Recheck original no-logo artwork, source attribution, exact lifetime caps and
+  TEST-only exclusion evidence. The 447 legacy limited TEST instances remain
+  outside commercial supply under saved rules; preserve ownership and serials.
+- Preserve the final source/hash/approval evidence before import. Existing
+  definition_guard makes snapshot/rights_reference/caps immutable from insertion;
+  only approved/issued can change. Do not import an unreviewed draft expecting to
+  edit identity or source metadata later. No new destructive migration is needed.
+- Only after those technical checks, use the existing exact-snapshot release gate,
+  dormant importer, fresh backup/integrity checks and final activation authority.
+  Product/definition approval and sales/issuance stay off here. No new generic
+  player-name licence or repeat commercial-model approval is requested.
+
+This remaining pool/source work is technically actionable. Actual permanent
+issuance/payment activation and independent key/operational responsibility are
+separate owner-controlled actions. Commercial trading, cash redemption, paid entry,
+prizes, unlicensed statistics and NBA remain disabled. Initial no-transfer review
+does not require pretending that the future commercial marketplace is already
+customer-accepted. No new broad release cycle is needed for this read projection.

@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-05T20:36:44.392Z",
+  "readOnly": true,
+  "productionWrites": 0,
+  "groups": [
+    {
+      "kind": "purchase",
+      "bound_receipt": false,
+      "receipt_status": null,
+      "count": 4,
+      "min_attempts": 12,
+      "max_attempts": 12,
+      "error_category": "other-sanitized-internal-error"
+    },
+    {
+      "kind": "voided",
+      "bound_receipt": false,
+      "receipt_status": null,
+      "count": 3,
+      "min_attempts": 12,
+      "max_attempts": 12,
+      "error_category": "other-sanitized-internal-error"
+    }
+  ],
+  "classification": "All attention rows are unbound TEST hints; no corresponding known customer receipt can be reconciled from those rows. Preserve for operator review; do not manufacture an account binding.",
+  "rawErrorsOrReferencesExcluded": true
+}
