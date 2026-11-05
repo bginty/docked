@@ -1,0 +1,122 @@
+Public lineup compatibility for the dormant paid roster, 6 November 2026 AEDT
+
+Production comparison
+
+The 2026-11-05T22:15:07.465Z read-only snapshot checked the exact v2 pool
+candidate f436a9883a1ddda433fe81248533ad1d68d1aa02de8ca69d0863c465d8de60fc
+against the canonical player and Free Core rows for both prepared rounds in each
+sport. All 1,293 stable IDs exist. The public owned-card SQL starts with the same
+Free Core rows as the picker and joins an owned definition by player ID and sport.
+It projects the picker team's name and position mask with the owned rarity and
+card identity. A collectible artwork snapshot alone cannot make a card eligible.
+The private readback SHA256 is
+f6aa70509c191b802917c2ca941d2516598aba887aef7603938a94bcd9f92c3c.
+
+NFL has 384 of 426 structurally eligible IDs. The 42 without a prepared Core
+join are absent from the saved November 5 public roster: Arizona 11, Miami 16,
+Dallas 13, Minnesota 1 and Cleveland 1. Fourteen `LA` versus `LAR` differences
+are existing Rams aliases. Two real team differences are Arizona to Houston
+and Houston to Miami. The latter is among the 42 missing Core joins. NFL needs
+43 unique forward overlays. No NFL position differences were found in the
+existing eligible set.
+
+AFL has 537 of 537 exact team and position matches. NRL has 330 of 330 stable
+Core joins, with six distinct metadata differences. Two have team changes, two
+have primary-position changes and five have eligibility-set differences. Four
+current masks permit positions absent from the refreshed evidence and three omit
+newly verified positions. The differences overlap. The prepared packet records
+the exact current and proposed values for all 49 affected IDs.
+
+All six existing mappings are disabled `2026 Practice` round-2 bindings with
+no commercial inventory policy. Both the competition rules and public binding
+are immutable under existing triggers. The transition prepares six new disabled
+round-3 mappings and preserves all six original bindings, hashes and history.
+
+Prepared transition
+
+The SQL in public-paid-lineup-v2.prepared.sql has SHA256
+22962aa966391b4bf3ea33bebdfb1b07a0199241e576d3890872b9d12cca77b1.
+Hashes pin the original UTF-8 LF bytes stored in Git.
+It uses one serializable transaction. It checks the recorded source
+window, all closed switches, exact original rules and practice bindings, no
+entries or drafts, no beta exposure, exact source deltas and no round collision.
+It stages 49 round-scoped overlays with no new runtime grants and retains the
+existing Free Core reader for every scope outside the new public round IDs.
+
+The replacement rules preserve the same lineup configuration, salary units,
+scoring, deadline, modes, zero fee and zero prize. Their only rule additions
+or changes are the forward template and roster version and the explicit
+commercial-owned-v1 opt-in. The original six bindings remain disabled. The
+42 added NFL IDs are also included in the forward practice fixture lists.
+Core remains unowned, uses the same stable identity formula and carries no
+serial. Owned cards use the existing commercial owner, lock and recovery checks.
+The source override is shared by the picker and server lineup validation.
+
+The source review expires 8 November 2026 12:15:06.947 UTC. The admitted roster
+snapshot remains valid until the existing 15 November 2026 12:00 UTC round lock.
+Source freshness applies to preparation and the separate activation preflight.
+Admitted players keep their verified positions through lock. Saved entries
+remain readable after the picker closes at the original lock.
+
+Actual local verification
+
+postgres.json records the native loopback PostgreSQL rehearsal with existing
+platform migrations and fixture Auth. It primed the old public and parent
+inventory readers before installing the wrapper, prepared and replayed the
+exact packet, and checked the normal public read and entry functions. The six
+replacement bindings stayed disabled until the local test explicitly opened
+only those six. All 1,293 stable IDs resolved with the intended positions in
+both modes. Fifteen owned fixture cards covered all five limited rarities in all
+three sports. The stale NRL position was rejected and the verified position
+confirmed after the source-review cutoff. The locked entry remained readable.
+The loopback fixture harness is retained in the private v2 candidate directory
+as verify-forward.ts, using the existing commercial-local-postgres runner.
+No customer, wallet, receipt, card, registration or competition was changed in
+Production. The packet and activation check are prepared, unapplied artifacts.
+
+Activation and rollback boundary
+
+Review the exact packet and candidate hashes together. Rehearse the same packet
+against a current protected restore before requesting the separate Production
+preparation approval. Execute the self-contained transaction with stop-on-error
+enabled. A guard failure aborts the whole transaction. The existing round bindings and
+registered roster sources remain untouched.
+
+After an authorised dormant preparation, run activation-preflight.readonly.sql
+before any switch. Its SHA256 is
+906ce9ff74674ca4a380ce045874d20802ee6e5dc03429f1bb6539c0599a48f1.
+It requires fresh source evidence and checks exact scope,
+immutable original bindings, 49 overlay rows, validity, zero entry history and
+the closed gates. If the evidence or round window has expired, generate a fresh
+reviewed packet and future mappings. Verify the full public picker and entry
+flow on protected hosting before launch. Under separate activation authority,
+leave the six original round-2 mappings disabled and enable only the six exact
+forward mappings. The commercial gameplay gate and payment/issuance gates
+remain separate. There is no need to remove a staged packet while it is dormant.
+Once customers confirm entries, preserve their saved bindings and snapshots
+through any incident response. Keep payment and issuance rollback separate
+from historical competition visibility.
+
+Reproducible packet and fixture
+
+The following bounded tools are retained under
+private-data/commercial-pool-20261106-v2/. Their SHA256 values pin this rehearsal.
+
+gameplay-mapping-check.ts  a8349f5986d4a1477df189f49795c5e816150b9985add5d5adf10f7283177012
+prepare-forward.mjs       582efdd00b733b9d3ea20b069ea3468bbece07a79a46517d3ab799e5a76b0a3c
+forward-template.sql      075ba2fbf3e40bc61042b664d15c7885e09bd806a26ec3fdbfd3c099ce8fef5b
+verify-forward.ts          783fe7752955706b499135e656829bc2b5d6988fa710365d58992a96395323c4
+forward-packet.json        59d2f8d2758aa2e3f5a669374bf235ea86db022c9983ce50896c17ce584b9942
+
+The mapping script reads existing roster and round metadata in a single read-only
+transaction. The generator joins that capture to the immutable paid candidate,
+approved prior round plan and six applied binding IDs. It refuses to overwrite
+the prepared file. Rendering the retained packet into the retained template was
+checked byte-for-byte against the final prepared SQL. Generate a new source
+revision with prepare-commercial-pool.ts, repeat the bounded mapping comparison,
+and review the new source hash, deltas and still-future round bindings in the
+generator inputs before producing a new packet. Keep earlier packets intact.
+
+The exact native rehearsal used this command from the repository root.
+
+node --input-type=module -e 'import {readFileSync} from "node:fs"; const path="scripts/commercial-local-postgres.mjs"; const source=readFileSync(path,"utf8"); const original="tests/database/commercial-lineup.test.ts"; if(!source.includes(original))throw Error("Existing loopback runner route moved"); process.argv.push("--gameplay"); await import("data:text/javascript;base64,"+Buffer.from(source.replace(original,"private-data/commercial-pool-20261106-v2/verify-forward.ts")).toString("base64"));'

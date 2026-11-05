@@ -1,0 +1,54 @@
+Exact forward roster eligibility deltas
+
+Columns are sport, stable player ID, current registry team and picker positions, and proposed team and picker positions.
+Rows marked no Core mapping have an existing player registry identity but no prepared public Core eligibility.
+
+NFL 0821f75c-8da7-4ceb-a6c0-7912ef182829  ARI / no Core mapping  ->  ARI / WR
+NFL 1a409b13-f665-4d5a-b7f9-0dcdbac4e955  ARI / no Core mapping  ->  ARI / WR
+NFL 27777202-13b5-485b-af4f-391ae88b2565  ARI / no Core mapping  ->  ARI / RB
+NFL 4f52fd2b-413d-44d2-ae85-96bc4e4dddaf  ARI / no Core mapping  ->  ARI / QB
+NFL 503e99aa-5db5-4841-b133-d8221a80dea6  ARI / no Core mapping  ->  ARI / WR
+NFL 5f4bb62e-3257-45c9-bd3d-4a9a353aeb86  ARI / no Core mapping  ->  ARI / TE
+NFL 6346d784-4798-43c0-93fa-362dba501fbc  ARI / no Core mapping  ->  ARI / QB
+NFL 650dcee5-3d37-4c06-989c-22382d5b58fa  ARI / no Core mapping  ->  ARI / RB
+NFL 88df1c23-1a25-425b-9227-8b393e23f17e  ARI / no Core mapping  ->  ARI / TE
+NFL accf1827-5936-421a-9660-9e29008db971  ARI / no Core mapping  ->  ARI / WR
+NFL f5793c45-f163-4218-b7fa-075445d07288  ARI / no Core mapping  ->  ARI / TE
+NFL 1fdb1816-5b5c-48ce-9ad9-e11a7c1d76d8  CLE / no Core mapping  ->  CLE / TE
+NFL 0c51661c-9fcf-44a7-ab7b-93a7de956071  DAL / no Core mapping  ->  DAL / WR
+NFL 0e191352-47e4-4474-bb6b-9f58de74dbe8  DAL / no Core mapping  ->  DAL / WR
+NFL 1390e6fe-a2fd-4a73-9b41-78d8f23f01c7  DAL / no Core mapping  ->  DAL / WR
+NFL 35ea5449-7db0-4b01-bf09-ca7502a65381  DAL / no Core mapping  ->  DAL / TE
+NFL 3da11c3b-d558-40b6-8461-18fce4ddb9b9  DAL / no Core mapping  ->  DAL / TE
+NFL 42ae6242-8c2d-42d3-bae0-479aa2c0b902  DAL / no Core mapping  ->  DAL / RB
+NFL 5481b91e-f0a6-4e67-86e1-6c106e8f70ed  DAL / no Core mapping  ->  DAL / WR
+NFL 736270a6-dfb6-40d4-958a-d503dd46ae1d  DAL / no Core mapping  ->  DAL / RB
+NFL 7ee7efea-de86-44dc-89d9-ec36cac8a0d4  DAL / no Core mapping  ->  DAL / QB
+NFL 8cf31178-84bd-41d7-970f-d347c3c8c71d  DAL / no Core mapping  ->  DAL / WR
+NFL a6b3f39b-19a6-45b2-abb4-5b91f61fbc1f  DAL / no Core mapping  ->  DAL / RB
+NFL aa774263-9528-471a-8682-60c69d3048c7  DAL / no Core mapping  ->  DAL / QB
+NFL fcf5ae26-2304-4b66-b8be-e778084761d1  DAL / no Core mapping  ->  DAL / TE
+NFL a384091f-1a1e-48b9-bd75-0615a9dd3177  ARI / WR  ->  HOU / WR
+NFL 00bfa13e-170d-423a-ac97-a3d4fa0c491f  MIA / no Core mapping  ->  MIA / RB
+NFL 0ab9433f-a5cc-4b7c-bfdb-9e88e31ad2cd  MIA / no Core mapping  ->  MIA / WR
+NFL 0b68267f-1696-4d13-b8f8-7065de785252  MIA / no Core mapping  ->  MIA / TE
+NFL 3b318475-1f5f-4e2a-9b4e-975550688abd  MIA / no Core mapping  ->  MIA / QB
+NFL 45a5016e-0946-4581-ae0c-2314e953bced  MIA / no Core mapping  ->  MIA / TE
+NFL 49f2eb42-321f-4a18-a5b2-8f67e25a1c5a  MIA / no Core mapping  ->  MIA / QB
+NFL 5e394568-4430-4f87-b167-95638279b73c  MIA / no Core mapping  ->  MIA / RB
+NFL 81e1afad-e98d-46db-a922-859f93d4e415  MIA / no Core mapping  ->  MIA / WR
+NFL 8b9b0fdc-00f2-4cf2-ac8c-546e271b13c2  MIA / no Core mapping  ->  MIA / TE
+NFL 979b4f2c-eda3-4f3d-ae95-98ce1186e9ef  MIA / no Core mapping  ->  MIA / WR
+NFL aea0db08-3c8c-48ad-a559-e73cf2eea2e0  HOU / no Core mapping  ->  MIA / WR
+NFL b4daa4e6-5ca3-4f1d-8c92-f6f09862eb06  MIA / no Core mapping  ->  MIA / RB
+NFL c86b42d6-5db9-4ffb-9a1f-5ce5f917d383  MIA / no Core mapping  ->  MIA / RB
+NFL cdc89ded-7621-4269-abd0-e48709e35b2f  MIA / no Core mapping  ->  MIA / WR
+NFL d791a49d-d0ec-4136-abd2-03d7d2202689  MIA / no Core mapping  ->  MIA / TE
+NFL e67843a7-b6d4-4a0b-9355-d69471cf8b71  MIA / no Core mapping  ->  MIA / WR
+NFL 1ed9ba1b-fa2b-451b-8f4c-bb2347e5d8be  MIN / no Core mapping  ->  MIN / RB
+NRL a6cf3153-fb83-4467-a366-69824e63b427  New Zealand Warriors / CTR  ->  Brisbane Broncos / WFB
+NRL b3c0a882-3e07-4565-aaf1-6b7dc3adef9e  Brisbane Broncos / WFB,CTR  ->  Brisbane Broncos / WFB
+NRL c328fdfe-e050-400e-ab76-ac814456831e  Brisbane Broncos / CTR  ->  Brisbane Broncos / WFB
+NRL fcc2f7e9-feee-4b33-a3e1-7f759edff5c1  Brisbane Broncos / MID,EDG  ->  Brisbane Broncos / MID
+NRL 92598a3a-ff3c-4407-a55d-80752296899f  New Zealand Warriors / EDG  ->  New Zealand Warriors / EDG,CTR
+NRL 941240a9-a338-40ab-a1df-34a57f16447f  New Zealand Warriors / EDG  ->  North Queensland Cowboys / EDG

@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-05T22:36:13.151Z",
+  "engine": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
+  "sqlSha256": "22962aa966391b4bf3ea33bebdfb1b07a0199241e576d3890872b9d12cca77b1",
+  "scope": "Native loopback PostgreSQL with existing platform migrations and fixture Auth",
+  "checks": [
+    "original public read and parent lineup SQL executed on same connection before the wrapper rename",
+    "active-gate and canonical-source drift fail before any persistent change",
+    "idempotent preparation preserves every prior binding, historical entry, registry and rules; zero grants, cards or accounts",
+    "read-only activation preflight accepts exact dormant bindings and rejects expired source evidence",
+    "all 1,293 stable identities in both modes, authoritative team and exact positions, unowned Core, only new rounds exposed",
+    "owned cards in all five limited rarities and three sports share exact Core position masks in both modes, cross-account rejected",
+    "source-age cutoff does not remove a saved round roster; stale position rejected, new position confirmed, and locked entry remains readable without picker inventory"
+  ],
+  "candidatePlayers": 1293,
+  "overlayRows": 49,
+  "forwardRounds": 6,
+  "priorRoundsPreserved": 6,
+  "ownedFixtureCards": 15,
+  "productionWrites": 0,
+  "passed": true
+}
