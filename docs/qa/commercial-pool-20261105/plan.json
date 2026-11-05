@@ -1,0 +1,101 @@
+{
+  "at": "2026-11-05T12:37:16.803Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "readOnly": true,
+  "productionWrites": 0,
+  "planSha256": "6df8ec2bc3b455f8e03081422b7b0aa7a735d824fed3eef485972df7219d4276",
+  "datasetSha256": "6d668ba8658b843077120cc1c31d7f92ce5e60d10f76accc56c6db638b75f6f7",
+  "sports": [
+    {
+      "sport": "nfl",
+      "players": 385,
+      "definitions": 1925,
+      "oldestSourceCheck": "2026-11-05T12:15:06.947Z",
+      "newestSourceCheck": "2026-11-05T12:15:13.593Z",
+      "teamCount": 29,
+      "verifiedNumbers": 385,
+      "sourcePermanentIssuanceApproved": false
+    },
+    {
+      "sport": "afl",
+      "players": 545,
+      "definitions": 2725,
+      "oldestSourceCheck": "2026-10-22T22:17:12.912Z",
+      "newestSourceCheck": "2026-10-22T22:17:37.394Z",
+      "teamCount": 18,
+      "verifiedNumbers": 542,
+      "sourcePermanentIssuanceApproved": false
+    },
+    {
+      "sport": "nrl",
+      "players": 337,
+      "definitions": 1685,
+      "oldestSourceCheck": "2026-10-22T22:17:37.394Z",
+      "newestSourceCheck": "2026-10-22T22:24:35.432Z",
+      "teamCount": 17,
+      "verifiedNumbers": 0,
+      "sourcePermanentIssuanceApproved": false
+    }
+  ],
+  "definitions": 6335,
+  "approved": 0,
+  "issued": 0,
+  "coreDefinitions": 0,
+  "nbaDefinitions": 0,
+  "reconciliation": {
+    "version": "existing-test-allocation-exclusion-v1",
+    "commercialBaseline": 0,
+    "excludedInstances": 447,
+    "authority": "docs/NFL_CARD_ECONOMY_DELIVERY.md; docs/NFL_CARD_ECONOMY_V2.md; TEST_ONLY saved pack receipts",
+    "recordsPreserved": true,
+    "rows": [
+      {
+        "sport": "nfl",
+        "rarity": "ELITE",
+        "instances": 39,
+        "matchedTestReceipts": 39
+      },
+      {
+        "sport": "nfl",
+        "rarity": "ICON",
+        "instances": 2,
+        "matchedTestReceipts": 2
+      },
+      {
+        "sport": "nfl",
+        "rarity": "LEGENDARY",
+        "instances": 36,
+        "matchedTestReceipts": 36
+      },
+      {
+        "sport": "nfl",
+        "rarity": "RARE",
+        "instances": 95,
+        "matchedTestReceipts": 95
+      },
+      {
+        "sport": "nfl",
+        "rarity": "ULTRA_RARE",
+        "instances": 275,
+        "matchedTestReceipts": 275
+      }
+    ]
+  },
+  "productionGates": {
+    "environment": "commercial",
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false,
+    "policy_version": "commercial-launch-awaiting-approval-v1",
+    "definitions": 0,
+    "cards": 0,
+    "receipts": 0,
+    "approved_products": 0
+  },
+  "activationBlockers": [
+    "Every definition remains unapproved; source facts are not permanent issuance approval",
+    "Dated AFL/NRL snapshot requires a current eligibility review before permanent issuance",
+    "Review original artwork/source attribution and saved pool snapshot before immutable import",
+    "Commercial control approval references, product approval, supply pool and activation remain separate"
+  ]
+}
