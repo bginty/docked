@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { z } from "zod";
 import { limitedRarities, rarityRule } from "./card-rarity";
 import { commercialCardSnapshot } from "./commercial-presentation";
+import { digest } from "./scoring-engine";
 
 export const poolRosterCandidate = z.object({
   id: z.string().uuid(),
@@ -81,6 +82,47 @@ export function dormantCommercialPool(input: unknown[]) {
         },
       })),
     );
+}
+
+/** Import only exact rows recomputed from the existing source/rarity contract.
+ * Reject malformed, duplicate or conflicting immutable metadata before a SQL
+ * transaction can strand a bad definition. Partial rarity batches are allowed;
+ * they still have to match their one authoritative generated definition.
+ */
+export function validateDormantCommercialPool(rows: DormantPoolDefinition[]) {
+  if (!Array.isArray(rows) || !rows.length)
+    throw Error("Non-empty dormant pool required");
+  const players = new Map<string, PoolRosterCandidate>();
+  const rowKeys = new Set<string>();
+  for (const row of rows) {
+    const p = poolRosterCandidate.parse({
+      id: row.player_id,
+      sport: row.sport,
+      provider: row.snapshot?.provider,
+      providerId: row.snapshot?.providerId,
+      eligiblePositions: row.snapshot?.eligiblePositions,
+      snapshot: row.snapshot,
+      source: row.snapshot?.source,
+    });
+    const playerKey = `${p.sport}:${p.id}`;
+    const rowKey = `${playerKey}:${row.rarity}`;
+    if (rowKeys.has(rowKey)) throw Error("Duplicate dormant definition");
+    rowKeys.add(rowKey);
+    const prior = players.get(playerKey);
+    if (prior && digest(prior) !== digest(p))
+      throw Error("Player source or snapshot differs between rarities");
+    players.set(playerKey, p);
+  }
+  const canonical = new Map(
+    dormantCommercialPool([...players.values()]).map((r) => [r.id, r]),
+  );
+  for (const row of rows) {
+    const expected = canonical.get(row.id);
+    if (!expected || digest(expected) !== digest(row))
+      throw Error(
+        "Dormant definition differs from authoritative source/supply plan",
+      );
+  }
 }
 
 /** Evidence check only: immutable invited TEST allocations are excluded from the

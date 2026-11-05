@@ -22,6 +22,7 @@ import { rarityRule } from "../core/card-rarity";
 import { sellerQuote } from "../core/credits-policy";
 import { digest } from "../core/scoring-engine";
 import { commercialCardSnapshot } from "../core/commercial-presentation";
+import { hasRequiredPackSupply } from "../core/commercial-pack-supply";
 type Authorize = (tx: Sql, member: string) => Promise<void>;
 type Funding = { lot: string; receipt: string; amount: number }[];
 const uuid = z.string().uuid();
@@ -334,7 +335,11 @@ export class CommercialLedger {
           environment: r.environment,
           credited: Boolean(old?.credited || state === "PURCHASED"),
         });
-      return { state, receipt: r.key };
+      return {
+        state,
+        receipt: r.key,
+        duplicateObservation: newObservation.length === 0,
+      };
     });
   }
   async reference(key: string) {
@@ -428,6 +433,23 @@ export class CommercialLedger {
         if (integer(d.lifetime_cap) !== rarityRule(d.rarity).lifetimeCap)
           throw Error("Approved lifetime supply mismatch");
       }
+      const availablePlayers = new Map<string, Set<string>>();
+      for (const d of pool) {
+        if (integer(d.issued) >= integer(d.lifetime_cap)) continue;
+        const players = availablePlayers.get(d.rarity) ?? new Set<string>();
+        players.add(d.player_id);
+        availablePlayers.set(d.rarity, players);
+      }
+      if (
+        !hasRequiredPackSupply(
+          p,
+          [...availablePlayers].map(([rarity, players]) => ({
+            rarity,
+            players: players.size,
+          })),
+        )
+      )
+        throw Error("Pack supply unavailable; no charge or substitution");
       const chosen: (typeof pool)[number][] = [];
       const players = new Set<string>();
       const evidence = [];

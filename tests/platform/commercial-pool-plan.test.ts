@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   dormantCommercialPool,
   reconcileExcludedTestSupply,
+  validateDormantCommercialPool,
 } from "../../src/core/commercial-pool-plan";
 const player = {
   id: "0058d801-be72-4ba3-ad83-1325b2e8bcfc",
@@ -48,6 +49,49 @@ test("dormant real roster definitions retain identity, eligibility and source wi
   );
   assert.deepEqual(rows[0].snapshot.eligiblePositions, ["MID", "FWD"]);
   assert.deepEqual(dormantCommercialPool([player]), rows);
+});
+test("dormant import validation rejects bad immutable rows before SQL", () => {
+  const rows = dormantCommercialPool([player]);
+  validateDormantCommercialPool(rows);
+  validateDormantCommercialPool([rows[0]]);
+  assert.throws(() => validateDormantCommercialPool([]), /Non-empty/);
+  assert.throws(
+    () => validateDormantCommercialPool([rows[0], rows[0]]),
+    /Duplicate/,
+  );
+  for (const change of [
+    { lifetime_cap: rows[0].lifetime_cap + 1 },
+    { approved: true },
+    { issued: 1 },
+    { legacy_issued: 1 },
+    { rights_reference: "unreviewed replacement" },
+    { id: "0058d801-be72-4ba3-ad83-1325b2e8bcfc" },
+    { rarity: "CORE" },
+    { unreviewedExtra: true },
+  ])
+    assert.throws(
+      () => validateDormantCommercialPool([{ ...rows[0], ...change } as never]),
+      /differs/,
+    );
+  assert.throws(
+    () =>
+      validateDormantCommercialPool([
+        rows[0],
+        {
+          ...rows[1],
+          snapshot: { ...rows[1].snapshot, team: "A different team" },
+        },
+      ]),
+    /differs between rarities/,
+  );
+  assert.throws(() =>
+    validateDormantCommercialPool([
+      {
+        ...rows[0],
+        snapshot: { ...rows[0].snapshot, synthetic: true },
+      } as never,
+    ]),
+  );
 });
 test("duplicate aliases, synthetic identities, NBA and silent eligibility changes fail closed", () => {
   assert.throws(() => dormantCommercialPool([player, player]), /Duplicate/);
