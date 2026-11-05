@@ -1,0 +1,199 @@
+{
+  "at": "2026-11-05T22:28:24.729Z",
+  "deployment": "dpl_4mNaWxtLGQQ3ZXmewtABHHf2UcSK",
+  "commit": "0e7085af174e503014dccf0f9fac0b3239cfc2dc",
+  "url": "https://docked-production-db05bj3z1-briant-s-projects.vercel.app",
+  "state": "READY",
+  "protectedAnonymousStatus": 302,
+  "protectedVercelMarker": true,
+  "protectedSsoRedirect": "https://vercel.com/sso-api",
+  "canonical": {
+    "url": "https://docked.com.au",
+    "deployment": "dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ",
+    "commit": "7319dddd1227b294fb38542cdee2044e01c89bd4",
+    "unchanged": true,
+    "checks": [
+      {
+        "route": "/api/beta-release",
+        "status": 200
+      },
+      {
+        "route": "/api/store/google/commercial",
+        "status": 403
+      },
+      {
+        "route": "/api/public-gameplay?sport=nfl",
+        "status": 403
+      },
+      {
+        "route": "/api/public-gameplay?sport=basketball",
+        "status": 403
+      },
+      {
+        "route": "/profile/qa_billing",
+        "status": 503
+      }
+    ]
+  },
+  "aliasPromoted": false,
+  "immutableParent": "7319dddd1227b294fb38542cdee2044e01c89bd4",
+  "exactSourcePaths": [
+    {
+      "path": "src/core/commercial-pack-supply.ts",
+      "mode": "100644",
+      "blob": "6da739e40fe4a9ccdbec18b25f59af90fbaa0300"
+    },
+    {
+      "path": "src/server/commercial-ledger.ts",
+      "mode": "100644",
+      "blob": "c7eb24f12a9d938933f73d994cde03de1d5ec878"
+    },
+    {
+      "path": "src/server/commercial-member-view.ts",
+      "mode": "100644",
+      "blob": "a1663167c66c99999f999f6d18f85fc950622684"
+    },
+    {
+      "path": "src/server/member-commercial.ts",
+      "mode": "100644",
+      "blob": "85f0f5e034a0d555e4d6fede2b8cceec35e61fe0"
+    },
+    {
+      "path": "src/server/commercial-reconciliation.ts",
+      "mode": "100644",
+      "blob": "22c36b15bae669511ed94d4e5330c8deef0237f5"
+    },
+    {
+      "path": "src/server/billing-ops-monitor.ts",
+      "mode": "100644",
+      "blob": "4e5fc4a07c6d5b327b95fd21fee61cdd888dcd27"
+    },
+    {
+      "path": "src/server/outbox-lease.ts",
+      "mode": "100644",
+      "blob": "b3bf39ac4f1e4c8751f6ad6a9ebe8528f8db7c97"
+    },
+    {
+      "path": "src/server/official-roster-refresh.ts",
+      "mode": "100644",
+      "blob": "4f1f785caacbd2092e49f92c1ce2d7defc9e1bb3"
+    },
+    {
+      "path": "src/core/official-roster-refresh.ts",
+      "mode": "100644",
+      "blob": "a903a1e00b3b7960119769c530a1dee67d007713"
+    },
+    {
+      "path": "src/core/official-roster-diagnostics.ts",
+      "mode": "100644",
+      "blob": "de13d2d83e3e9483652e7243a14f28bfaa41ac06"
+    }
+  ],
+  "archiveFiles": 863,
+  "archiveBlobMatches": true,
+  "normalizedTextFiles": 774,
+  "cronSourceUnchanged": true,
+  "activeCron": {
+    "deployment": "dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ",
+    "updatedAt": "2026-11-05T20:42:26.606Z",
+    "lastUpdatePrecedesCandidate": true,
+    "definitions": [
+      {
+        "path": "/api/store/google/scheduled",
+        "schedule": "*/5 * * * *"
+      }
+    ],
+    "workerInvokedForVerification": false
+  },
+  "policyHash": "da2b3a0067443e0fdd43e0b5080ad0d65370febd451bf7bc3db5dc972a8fc080",
+  "normalFlags": {
+    "REGISTRATION_ENABLED": false,
+    "COMPETITIONS_ENABLED": false,
+    "PRIZES_ENABLED": false,
+    "DOCKED_MULTI_SPORT_SANDBOX": false,
+    "DOCKED_MEMBER_GOOGLE_TEST": false,
+    "DOCKED_COMMERCIAL_SERVICE": false,
+    "DOCKED_COMMERCIAL_SURFACES": false,
+    "DOCKED_COMMERCIAL_CHECKOUT": false,
+    "DOCKED_PUBLIC_CUSTOMERS": false
+  },
+  "opsFlags": {
+    "DOCKED_BILLING_OPS_ALERTS": false,
+    "DOCKED_BILLING_OPS_SIGNALS": false
+  },
+  "noTestTransport": true,
+  "customerNbaVisible": false,
+  "noMigrations": true,
+  "customerMutations": 0,
+  "signedInAcceptance": false,
+  "commercialReadinessProven": false,
+  "checks": [
+    {
+      "route": "/account-deletion",
+      "status": 200
+    },
+    {
+      "route": "/api/beta-release",
+      "status": 200
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "status": 401
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403
+    },
+    {
+      "route": "/api/store/apple/test",
+      "status": 404
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403
+    },
+    {
+      "route": "/app/login",
+      "status": 200
+    },
+    {
+      "route": "/app/onboarding",
+      "status": 200,
+      "loginRedirect": true
+    },
+    {
+      "route": "/app/onboarding/public",
+      "status": 200,
+      "loginRedirect": true
+    },
+    {
+      "route": "/commercial-policy",
+      "status": 200
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/profile/qa_billing",
+      "status": 503
+    },
+    {
+      "route": "/refund-policy",
+      "status": 200
+    },
+    {
+      "route": "/retention",
+      "status": 200
+    }
+  ],
+  "passed": true
+}

@@ -1,0 +1,17 @@
+{
+  "sourceCommit": "0e7085af174e503014dccf0f9fac0b3239cfc2dc",
+  "baseline": "7319dddd1227b294fb38542cdee2044e01c89bd4",
+  "changedRuntimeKeys": [
+    "DOCKED_BILLING_OPS_ALERTS",
+    "DOCKED_BILLING_OPS_SIGNALS"
+  ],
+  "opsFlags": {
+    "DOCKED_BILLING_OPS_ALERTS": false,
+    "DOCKED_BILLING_OPS_SIGNALS": false
+  },
+  "unchangedClosedRecipe": true,
+  "normalActivationGatesAllFalse": true,
+  "noTransport": true,
+  "noSecretValuesWritten": true,
+  "environmentProjectUpdated": false
+}
