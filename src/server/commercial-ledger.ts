@@ -648,20 +648,44 @@ export class CommercialLedger {
     });
   }
   async financialReport() {
-    const [money] = await this
-      .sql`select count(*) filter(where money_recorded)::int purchases,coalesce(sum(gross_cents) filter(where money_recorded),0)::text gross_cents,coalesce(sum(refunded_cents) filter(where money_recorded),0)::text refund_cents,count(*) filter(where state='REVIEW')::int review from commercial_billing.receipts`;
-    const [credits] = await this
-      .sql`select coalesce(sum(remaining),0)::text outstanding from commercial_billing.lots`;
-    const [cases] = await this
-      .sql`select count(*)::int open_cases,coalesce(sum(exposure_credits),0)::text exposure_credits from commercial_billing.recovery_cases where state='OPEN'`;
-    return {
-      environment: this.environment,
-      ...money,
-      outstandingCredits: integer(credits.outstanding),
-      ...cases,
-      providerPayoutReconciled: false,
-      providerFees: null,
-      recognizedRevenue: null,
-    };
+    // All aggregates must describe the same committed ledger state. A purchase
+    // or refund may finish between queries without mixing old receipt totals
+    // with newer lot/recovery balances. Reporting never takes a write lock.
+    return this.sql.begin(
+      "isolation level repeatable read read only",
+      async (transaction) => {
+        const tx = transaction as unknown as Sql;
+        const [snapshot] = await tx`select transaction_timestamp() as as_of`;
+        const [money] = await tx<
+          {
+            purchases: number;
+            gross_cents: string;
+            refund_cents: string;
+            review: number;
+          }[]
+        >`select count(*) filter(where money_recorded)::int purchases,coalesce(sum(gross_cents) filter(where money_recorded),0)::text gross_cents,coalesce(sum(refunded_cents) filter(where money_recorded),0)::text refund_cents,count(*) filter(where state='REVIEW')::int review from commercial_billing.receipts`;
+        const [credits] = await tx<
+          {
+            outstanding: string;
+          }[]
+        >`select coalesce(sum(remaining),0)::text outstanding from commercial_billing.lots`;
+        const [cases] = await tx<
+          {
+            open_cases: number;
+            exposure_credits: string;
+          }[]
+        >`select count(*)::int open_cases,coalesce(sum(exposure_credits),0)::text exposure_credits from commercial_billing.recovery_cases where state='OPEN'`;
+        return {
+          environment: this.environment,
+          asOf: new Date(snapshot.as_of).toISOString(),
+          ...money,
+          outstandingCredits: integer(credits.outstanding),
+          ...cases,
+          providerPayoutReconciled: false,
+          providerFees: null,
+          recognizedRevenue: null,
+        };
+      },
+    );
   }
 }
