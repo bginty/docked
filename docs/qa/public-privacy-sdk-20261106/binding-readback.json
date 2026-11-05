@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-05T20:39:35.885Z",
+  "readOnly": true,
+  "policy": {
+    "id": true,
+    "enabled": false,
+    "terms_version": "2026-11-02-release-preparation-v2",
+    "privacy_version": "2026-11-06-privacy-sdk-v3",
+    "valid_until": "2027-02-03T13:03:30.607Z",
+    "authority": "Owner expressly approved prospective v2 Terms/Privacy binding and AU adult eligibility for ACT/NSW/NT/QLD/SA/TAS/VIC/WA on 6 November 2026 Sydney, with commercial marketplace transfers, swaps, paid entry, withdrawals and prizes OFF. Scope basis: owner decisions plus FINAL_MARKETPLACE_COMMERCIAL_ASSESSMENT_20261105.txt; no independent legal/regulatory approval is asserted. Public programme and registration remain disabled.",
+    "version": "au-adult-free-play-v1"
+  },
+  "gates": {
+    "public_sports": false,
+    "public_rounds": false,
+    "registration": false,
+    "commercial": false
+  },
+  "security": {
+    "missing_rls": false,
+    "direct_public_execute": false
+  },
+  "disabled_maps": 6,
+  "approved_au_regions": 8,
+  "telemetryDriftIndependentlyReviewed": true,
+  "passed": true
+}

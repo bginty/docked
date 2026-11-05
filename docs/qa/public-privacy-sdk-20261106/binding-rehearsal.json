@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-05T20:34:18.933Z",
+  "engine": "real PostgreSQL17.11",
+  "isolatedTarget": "docked-commercial-restore-20261105b-attempt-4",
+  "network": "none",
+  "rehearsalScope": "policy-only SQL fixture using exact saved policy/sports/rounds DDL and closed gate projections; prior full restored-database compatibility evidence retained",
+  "newMigrations": 0,
+  "sqlSha256": "cdbc1f6895dfeca72861069446327ce7802d6fffcd2763b6d0d132ac9416af0a",
+  "appliedTwice": true,
+  "idempotencyPassed": true,
+  "termsUnchanged": true,
+  "programmeRemainsDisabled": true,
+  "transactionRolledBack": true,
+  "noFixtureSchemaRetained": true,
+  "regions": 8,
+  "mappings": 6,
+  "passed": true
+}

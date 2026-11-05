@@ -1,0 +1,46 @@
+APPROVED SDK PRIVACY PUBLICATION — STAGED READINESS
+6 November2026, Australia/Sydney
+
+Owner approved exact narrow packet SHA256:
+da2b3a0067443e0fdd43e0b5080ad0d65370febd451bf7bc3db5dc972a8fc080.
+Privacy only:2026-11-06-privacy-sdk-v3. Terms, refund and retention remain2026-11-02-release-preparation-v2. Existing beta consent identifiers remain unchanged.
+
+IMMUTABLE APPLICATION SOURCE
+7319dddd1227b294fb38542cdee2044e01c89bd4 on pushed branch codex/public-privacy-sdk-release-20261106.
+Exact dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f plus Auth6fc7a31d's20 paths and privacya71c6acb's2 paths. All other baseline blobs/modes preserved. Optional Android diagnostics, pool preparation, tooling and documentation excluded.
+
+READY UNASSIGNED CANDIDATE
+dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ
+https://docked-production-ocrqeork7-briant-s-projects.vercel.app
+18 anonymous HTTP/origin/redirect checks passed. Actual privacy HTML includes v3 and the SDK per-session identifier disclosure. Unchanged policy pages retain v2. Public setup unauthenticated requests redirect to login (including Next streamed redirects), unauthorized/cross-origin POSTs fail, billing/public gameplay gates remain closed, and the TEST operator route remains closed.
+
+All9 normal activation gates false. No TEST transport. Only6 scoped setup/entity configuration differences from the exact prior CLOSED runtime: restricted existing docked_app connection, setup admission/policy booleans, prospective Terms/Privacy IDs and independently verified legal-entity signal. No new roles, grants, services or privileged key copied into the setup connection.
+
+PRODUCTION DORMANT PRIVACY BINDING
+Applied only public_gameplay.policy.privacy_version from v2 to v3 at2026-11-05T20:37:42.722Z.
+Terms, policy authority/expiry/enabledfalse and every other policy-row field preserved.43 separate protected table groups unchanged; the target policy row is checked separately. Schema/RLS metadata unchanged. All6 public mappings remain disabled; all8 owner-approved AU18 policies preserved. Registration, commercial controls and public sport controls remain false. No customer profile, consent, wallet, entry or inventory mutation.
+
+Exact SQL SHA256:
+cdbc1f6895dfeca72861069446327ce7802d6fffcd2763b6d0d132ac9416af0a.
+No migration/DDL. Applying the same guarded update twice is idempotent.
+
+FRESH BACKUP AND BOUNDED REHEARSAL
+Fresh full logical Production capture at2026-11-05T20:33:06.965Z,88,297,824 bytes.
+Archive SHA256970c6f32a955840ee407555325690343550ea71d58bc85c3943ee886d66f3ec6.
+AES-256-GCM existing operator-held key. Authenticated archive/digest verified without plaintext files. Existing complete restored-database compatibility evidence retained; no550-table/full-platform/billing repetition.
+Policy-only real PostgreSQL17.11 rehearsal used exact saved policy/sports/rounds DDL and closed-gate projections. Exact SQL applied twice; Terms/gates/8region/6map invariants checked; transaction rolled back and fixture schema absent. Temporary network-isolated local container stopped afterward.
+Backup-to-apply NFL round hash drift was independently resolved against the actual authenticated archive. All8 round rows preserved except existing scheduler last_checked/next_check/lease_until fields; fixtures/rules/streams/locks/issues unchanged. No drift was excused solely by a table name.
+
+REMAINING STEP
+Canonical Production is still dpl_Hxyw3omGaXcGAG1qEhFtjdgYs5En / dfed. Candidate publication requires root review and promotion authority. No public registration, Google product activation, live payment, prize, withdrawal or public competition activation is included.
+After promotion run the same targeted live identity/policy/security checks. Actual member public setup must use the authenticated form with fresh unticked public choices; do not copy beta age/region/consents or submit on the owner's behalf.
+
+ROLLBACK
+Candidate rollback target is the exact CLOSED Hxyw/dfed application. If rollback of privacy publication is necessary, coordinate the prospective privacy binding with the prior published version while the public programme remains disabled; preserve v2/v3 source texts and every historical consent. Never rewrite account acceptance rows, delete evidence, restore a broad snapshot over later legitimate transactions or reactivate billing. Restoring the old app alone is a safe closed-gate operational fallback but does not mean the new privacy disclosure is published.
+
+EVIDENCE
+docs/qa/public-privacy-sdk-20261106/source-boundary.json
+candidate-verified.json / deployment-submitted.json / rollback.json
+binding-rehearsal.json / binding-applied.json / binding-readback.json
+round-telemetry-review.json
+backup/capture.json / backup/archive-integrity.json

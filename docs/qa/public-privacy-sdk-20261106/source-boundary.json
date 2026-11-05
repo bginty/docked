@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-05T20:35:36.352Z",
+  "sourceCommit": "7319dddd1227b294fb38542cdee2044e01c89bd4",
+  "baseline": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f",
+  "authPatch": "6fc7a31d8d7923bf478f291e97d2a0a72bbce6e2",
+  "privacyPatch": "a71c6acb3e8451c21929f0d7ab7e9b6a240dd4f0",
+  "changedPathCount": 22,
+  "authPaths": [
+    "src/app/api/auth/public-member-setup/route.ts",
+    "src/app/api/auth/route.ts",
+    "src/app/api/member/route.ts",
+    "src/app/app/onboarding/page.tsx",
+    "src/app/app/onboarding/public/page.tsx",
+    "src/components/app-auth-forms.tsx",
+    "src/core/auth-policy.ts",
+    "src/core/mfa-flow.ts",
+    "src/core/public-member-setup.ts",
+    "src/server/app-onboarding.ts",
+    "src/server/community-social.ts",
+    "src/server/existing-member-onboarding.ts",
+    "src/server/onboarding-identity.ts",
+    "src/server/public-member-setup.ts",
+    "tests/browser/public-member-setup.test.ts",
+    "tests/database/existing-member-onboarding.test.ts",
+    "tests/database/production-runtime-role.test.ts",
+    "tests/fixtures/public-member-setup.tsx",
+    "tests/platform/mfa-flow.test.ts",
+    "tests/platform/public-member-setup.test.ts"
+  ],
+  "privacyPaths": [
+    "config/launch-policy-content.json",
+    "src/components/release-policy-page.tsx"
+  ],
+  "allOtherBlobsAndModesUnchanged": true,
+  "preservedBaselinePathCount": 12140,
+  "policyHash": "da2b3a0067443e0fdd43e0b5080ad0d65370febd451bf7bc3db5dc972a8fc080",
+  "optionalDiagnosticsExcluded": true,
+  "dirtyTreeExcluded": true,
+  "passed": true
+}

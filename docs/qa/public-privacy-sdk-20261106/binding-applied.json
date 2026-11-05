@@ -1,0 +1,50 @@
+{
+  "at": "2026-11-05T20:37:42.722Z",
+  "project": "pojoymtniryarxxunyvz",
+  "mode": "--apply-owner-approved-privacy",
+  "sqlSha256": "cdbc1f6895dfeca72861069446327ce7802d6fffcd2763b6d0d132ac9416af0a",
+  "backupAt": "2026-11-05T20:33:06.965Z",
+  "archiveSha256": "970c6f32a955840ee407555325690343550ea71d58bc85c3943ee886d66f3ec6",
+  "backupAuthenticated": true,
+  "ownerApprovedPacket": "da2b3a0067443e0fdd43e0b5080ad0d65370febd451bf7bc3db5dc972a8fc080",
+  "before": {
+    "id": true,
+    "enabled": false,
+    "version": "au-adult-free-play-v1",
+    "authority": "Owner expressly approved prospective v2 Terms/Privacy binding and AU adult eligibility for ACT/NSW/NT/QLD/SA/TAS/VIC/WA on 6 November 2026 Sydney, with commercial marketplace transfers, swaps, paid entry, withdrawals and prizes OFF. Scope basis: owner decisions plus FINAL_MARKETPLACE_COMMERCIAL_ASSESSMENT_20261105.txt; no independent legal/regulatory approval is asserted. Public programme and registration remain disabled.",
+    "valid_until": "2027-02-03T13:03:30.607+00:00",
+    "terms_version": "2026-11-02-release-preparation-v2",
+    "privacy_version": "2026-11-02-release-preparation-v2"
+  },
+  "after": {
+    "id": true,
+    "enabled": false,
+    "version": "au-adult-free-play-v1",
+    "authority": "Owner expressly approved prospective v2 Terms/Privacy binding and AU adult eligibility for ACT/NSW/NT/QLD/SA/TAS/VIC/WA on 6 November 2026 Sydney, with commercial marketplace transfers, swaps, paid entry, withdrawals and prizes OFF. Scope basis: owner decisions plus FINAL_MARKETPLACE_COMMERCIAL_ASSESSMENT_20261105.txt; no independent legal/regulatory approval is asserted. Public programme and registration remain disabled.",
+    "valid_until": "2027-02-03T13:03:30.607+00:00",
+    "terms_version": "2026-11-02-release-preparation-v2",
+    "privacy_version": "2026-11-06-privacy-sdk-v3"
+  },
+  "changedTableGroups": [
+    "public_gameplay.policy"
+  ],
+  "protectedGroups": 43,
+  "protectedGroupsUnchanged": 43,
+  "backupDriftGroups": [
+    "sports_feed.nfl_rounds"
+  ],
+  "schemaAndRlsMetadataHashBefore": "9bce7a9ef36589e3b5deca2a89be2342",
+  "schemaAndRlsMetadataHashAfter": "9bce7a9ef36589e3b5deca2a89be2342",
+  "idempotencyVerified": true,
+  "privacyOnly": true,
+  "allProgrammeAndFinancialGatesRemainDisabled": true,
+  "noMigrations": true,
+  "customerRecordsChanged": 0,
+  "passed": true,
+  "protectedTableGroupsChanged": [],
+  "changedTargetPolicyFields": [
+    "privacy_version"
+  ],
+  "targetPolicyCheckedSeparately": true,
+  "protectedGroupsExcludeTargetPolicy": true
+}
