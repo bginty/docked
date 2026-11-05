@@ -1,7 +1,11 @@
 import "server-only";
 import { DateTime } from "luxon";
 import { db } from "./db";
-import { requireIdentity } from "./auth";
+import { requireOnboardingIdentity } from "./onboarding-identity";
+import { persistExistingMemberProfile } from "./existing-member-onboarding";
+import type { SignupTransaction } from "./signup-profile";
+import type { TransactionSql } from "postgres";
+import { publicCustomersEnabled, isPublicSport } from "../core/public-customer";
 import { setCommunityClaims } from "./community-social";
 import { previewCommunityContext } from "@/core/preview-community";
 import { appOnboardingSchema } from "@/core/preview-testers";
@@ -15,6 +19,7 @@ export type AppOnboardingState = {
   legalRequired: boolean;
   usernameRequired: boolean;
   minimumAge: number | null;
+  configurationPending?: boolean;
   preferences: {
     sports: string[];
     interests: "edges" | "community" | "both";
@@ -31,10 +36,37 @@ export type AppOnboardingState = {
 export async function appOnboardingState(
   userId: string,
 ): Promise<AppOnboardingState> {
-  const who = await requireIdentity();
+  const who = await requireOnboardingIdentity();
   if (who.user.id !== userId) throw Error("Own account required");
   const sql = db();
   const versions = currentConsentVersions();
+  if (!who.profile && publicCustomersEnabled()) {
+    const [policy] = await sql`select exists(select 1 from (
+      select distinct on(country,state) * from private.region_policies
+      where country='AU' and not preview_community_only
+      and effective_from<=clock_timestamp() and effective_to>clock_timestamp()
+      order by country,state,effective_from desc,id desc
+    ) p where p.approved and p.minimum_age=18 and p.review_at>clock_timestamp()
+      and length(trim(p.evidence))>0 and 'community_social'=any(p.features)) ready`;
+    return {
+      completed: false,
+      legalRequired: true,
+      usernameRequired: true,
+      minimumAge: policy?.ready ? 18 : null,
+      configurationPending: policy?.ready !== true,
+      preferences: {
+        sports: [],
+        interests: "both",
+        officialEdges: false,
+        followedMembers: false,
+        replies: false,
+        timezone: "Australia/Sydney",
+        country: "",
+        state: "",
+        username: "",
+      },
+    };
+  }
   const [row] = await sql`select p.*,o.interests,o.completed_at,s.handle,
     n.official_edges,n.followed_members,n.social,
     coalesce((select granted from private.consent_events where user_id=p.id and purpose='privacy' order by created_at desc,id desc limit 1),false) privacy,
@@ -74,16 +106,39 @@ export async function appOnboardingState(
 }
 export async function saveAppOnboarding(input: unknown) {
   const v = appOnboardingSchema.parse(input),
-    who = await requireIdentity();
+    who = await requireOnboardingIdentity();
   // Existing in-flight forms must also avoid the closed community gate. No
   // preference, consent or completion record is written by this redirect.
   if (betaOwnerAuthenticationOnly(process.env))
-    return { ok: true, redirect: "/app/owner-setup", message: "Continue secure owner setup." };
+    return {
+      ok: true,
+      redirect: "/app/owner-setup",
+      message: "Continue secure owner setup.",
+    };
   if (!DateTime.now().setZone(v.timezone).isValid)
     throw Error("Valid timezone required");
   const versions = currentConsentVersions();
   await db().begin(async (tx) => {
     await setCommunityClaims(tx, who);
+    if (publicCustomersEnabled() && !who.profile) {
+      if (!v.sports.every(isPublicSport)) throw Error("Sport unavailable");
+      const transaction = (sql: TransactionSql): SignupTransaction => ({
+        query: async (text, args) => [...(await sql.unsafe(text, args))],
+        savepoint: async (run) =>
+          sql.savepoint((nested) => run(transaction(nested))),
+      });
+      await persistExistingMemberProfile(
+        transaction(tx),
+        {
+          userId: who.user.id,
+          sessionId: who.sessionId,
+          aal: who.aal,
+          mfaRequired: who.mfaRequired,
+        },
+        v,
+        versions,
+      );
+    }
     const [p] =
       await tx`select * from public.profiles where id=${who.user.id} and disabled_at is null for update`;
     const [active] = await tx`select private.active_member_session() active`;

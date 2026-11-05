@@ -60,7 +60,7 @@ const iso = (v: unknown) => (v instanceof Date ? v.toISOString() : String(v));
 const mediaUrl = (id: string) => `/api/community?view=media&id=${id}`;
 export async function setCommunityClaims(
   tx: CommunityTransaction,
-  who: CommunityActor,
+  who: Pick<CommunityActor, "user" | "sessionId" | "aal">,
 ) {
   await setPreviewCommunityContext(tx);
   await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true)`;
@@ -239,7 +239,9 @@ async function projectPosts(
     );
     return {
       id: String(r.id),
-      cardSnapshots: attachments.cards.filter((card) => !isHiddenCustomerSport(card.sport)),
+      cardSnapshots: attachments.cards.filter(
+        (card) => !isHiddenCustomerSport(card.sport),
+      ),
       unavailableCards: attachments.unavailable,
       playerId: r.player_id ? String(r.player_id) : null,
       communityId: r.community_id ? String(r.community_id) : null,

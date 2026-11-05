@@ -6,6 +6,7 @@ import { processAccountDeletion } from "@/server/account-deletion";
 import { currentConsentVersions } from "@/core/auth-readiness";
 import { exportCommunityData } from "@/server/community-social";
 import { saveAppOnboarding } from "@/server/app-onboarding";
+import { requireOnboardingIdentity } from "@/server/onboarding-identity";
 import { boundedCommunityBody } from "@/core/community-social";
 import { exportPreviewFixtureData } from "@/server/preview-export";
 export async function GET() {
@@ -64,15 +65,19 @@ export async function POST(request: Request) {
   if (!sameOrigin(request))
     return NextResponse.json({ error: "Origin denied" }, { status: 403 });
   try {
+    const body = JSON.parse(
+      new TextDecoder().decode(await boundedCommunityBody(request, 16000)),
+    );
+    if (body.action === "app_onboarding") {
+      const who = await requireOnboardingIdentity();
+      if (!(await rateLimit(`member:${who.user.id}`, 30)))
+        return NextResponse.json({ error: "Rate limit" }, { status: 429 });
+      return NextResponse.json(await saveAppOnboarding(body));
+    }
     const who = await requireIdentity(),
       sql = db();
     if (!(await rateLimit(`member:${who.user.id}`, 30)))
       return NextResponse.json({ error: "Rate limit" }, { status: 429 });
-    const body = JSON.parse(
-      new TextDecoder().decode(await boundedCommunityBody(request, 16000)),
-    );
-    if (body.action === "app_onboarding")
-      return NextResponse.json(await saveAppOnboarding(body));
     if (body.action === "jurisdiction") {
       const v = z
         .object({
