@@ -367,11 +367,17 @@ export function AppOnboardingForm({
   usernameRequired,
   minimumAge,
   preferences,
+  endpoint = "/api/member",
+  completionPath = "/fantasy/play",
+  termsHref = "/terms",
 }: {
   legalRequired: boolean;
   usernameRequired: boolean;
   minimumAge: number | null;
   preferences: AppOnboardingPreferences;
+  endpoint?: "/api/member" | "/api/auth/public-member-setup";
+  completionPath?: "/fantasy/play" | "/app/onboarding/public";
+  termsHref?: "/terms" | "/commercial-policy";
 }) {
   const router = useRouter();
   const {
@@ -413,7 +419,7 @@ export function AppOnboardingForm({
     setBusy(true);
     setMessage("");
     try {
-      const response = await fetch("/api/member", {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -436,7 +442,7 @@ export function AppOnboardingForm({
       router.replace(
         result.redirect === "/app/owner-setup"
           ? "/app/owner-setup"
-          : "/fantasy/play",
+          : completionPath,
       );
       router.refresh();
     } catch {
@@ -452,7 +458,7 @@ export function AppOnboardingForm({
       onSubmit={submit}
       className="app-auth-form app-onboarding"
       method="post"
-      action="/api/member"
+      action={endpoint}
       data-api-ready={String(ready)}
     >
       <p className="app-auth-step">
@@ -522,7 +528,7 @@ export function AppOnboardingForm({
                     "terms",
                     <>
                       I accept the{" "}
-                      <Link href="/terms" target="_blank">
+                      <Link href={termsHref} target="_blank">
                         Terms
                       </Link>
                       .

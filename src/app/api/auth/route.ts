@@ -190,6 +190,11 @@ export async function POST(request: Request) {
     } | null,
     fallback: string,
   ) => {
+    if (publicCustomersEnabled() && user?.email_confirmed_at) {
+      const profiles =
+        await sql`select id from public.profiles where id=${user.id}`;
+      if (!profiles.length) return "/app/onboarding";
+    }
     if (customerOnboardingEnabled() && user?.email_confirmed_at) {
       const [customer] =
         await sql`select private.customer_signup_identity(${user.id}::uuid) allowed, private.pending_beta_consent(${user.id}::uuid) renewal`;

@@ -4,6 +4,14 @@ import policies from "../../config/launch-policy-content.json";
 export function ReleasePolicyPage({ id }: { id: string }) {
   const document = policies.documents.find((item) => item.id === id);
   if (!document) throw new Error("Unknown policy document");
+  const version =
+    "version" in document && typeof document.version === "string"
+      ? document.version
+      : policies.version;
+  const date =
+    "date" in document && typeof document.date === "string"
+      ? document.date
+      : policies.date;
   return (
     <article className="page narrow" aria-labelledby="policy-title">
       <p className="eyebrow">Docked policies</p>
@@ -11,7 +19,7 @@ export function ReleasePolicyPage({ id }: { id: string }) {
       <p>{document.status}</p>
       <p>
         <small>
-          Published {policies.date} · Version {policies.version}
+          Published {date} · Version {version}
         </small>
       </p>
       <nav aria-label="Policy documents">
