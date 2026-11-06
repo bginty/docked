@@ -20,16 +20,19 @@ test("touch viewport, compact pack discovery and keyboard-safe reveal controls",
   const page = await context.newPage();
   await page.goto(base + "/fantasy/cards");
   await page.getByRole("link", { name: /Open packs/ }).tap();
+  await page.locator("summary").filter({ hasText: "My packs & history" }).tap();
   await expect(
     page.getByText("No unopened packs.", { exact: false }),
   ).toBeVisible();
   await page.goto(base + "/fantasy/reveal");
   await page.getByRole("button", { name: "Open nine-card preview" }).tap();
+  await page.getByRole("button", { name: "Reveal card" }).tap({ force: true });
   await expect(
     page.getByRole("button", { name: "Reveal next card" }),
   ).toBeEnabled();
   await page.getByRole("button", { name: "Reveal next card" }).tap();
-  await expect(page.getByText("2 of 9 · RARE")).toBeVisible();
+  await expect(page.getByText("Card 2 of 9", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Reveal card" }).tap({ force: true });
   await page.setViewportSize({ width: 360, height: 640 });
   await expect(
     page.getByRole("button", { name: "Reveal next card" }),
@@ -146,13 +149,16 @@ test("nine distinct animations, short viewport fit, rapid taps, skip and reopen 
   await page.getByRole("button", { name: "Open nine-card preview" }).click();
   for (let i = 0; i < 3; i++) {
     await expect(
-      page.locator(`[data-reveal-index="${i}"].pack-rising`),
+      page.locator(
+        `[data-reveal-index="${i}"][data-pack-reveal-phase="mystery"]`,
+      ),
     ).toBeVisible();
-    expect(
-      await page
-        .locator(".pack-arrival")
-        .evaluate((e) => getComputedStyle(e).animationName),
-    ).toBe("docked-single-reveal");
+    await page
+      .getByRole("button", { name: "Reveal card" })
+      .click({ force: true });
+    await expect(
+      page.locator('[data-pack-reveal-phase="flipping"]'),
+    ).toBeVisible();
     await expect(
       page.getByRole("button", { name: "Reveal next card" }),
     ).toBeEnabled();
@@ -177,7 +183,7 @@ test("nine distinct animations, short viewport fit, rapid taps, skip and reopen 
           b.click();
         });
   }
-  await page.getByRole("button", { name: "Skip remaining reveals" }).click();
+  await page.getByRole("button", { name: "Reveal All" }).click();
   await expect(page.locator(".pack-summary li")).toHaveCount(9);
   await page.getByRole("button", { name: "Close panel" }).click();
   await page.reload();
@@ -188,8 +194,13 @@ test("nine distinct animations, short viewport fit, rapid taps, skip and reopen 
     .click();
   for (let i = 0; i < 9; i++) {
     await expect(
-      page.locator(`[data-reveal-index="${i}"].pack-rising`),
+      page.locator(
+        `[data-reveal-index="${i}"][data-pack-reveal-phase="mystery"]`,
+      ),
     ).toBeVisible();
+    await page
+      .getByRole("button", { name: "Reveal card" })
+      .click({ force: true });
     const next = page.getByRole("button", {
       name: i === 8 ? "View pack summary" : "Reveal next card",
     });
@@ -201,7 +212,12 @@ test("nine distinct animations, short viewport fit, rapid taps, skip and reopen 
   await page
     .getByRole("button", { name: "Replay saved result · no new cards" })
     .click();
-  await expect(page.locator(".pack-rising")).toHaveCount(0);
+  await page
+    .getByRole("button", { name: "Reveal card" })
+    .click({ force: true });
+  await expect(
+    page.locator('[data-pack-reveal-phase="revealed"]'),
+  ).toBeVisible();
   for (const height of [915, 720, 640]) {
     await page.setViewportSize({ width: 412, height });
     expect(

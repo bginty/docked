@@ -28,38 +28,20 @@ test("outer reveal frames, single forward turn and Icon celebration preserve the
   for (let i = 0; i < 6; i++) {
     const stage = page.locator(`[data-reveal-index="${i}"]`);
     await expect(stage).toBeVisible();
+    await expect(stage).toHaveAttribute("data-pack-reveal-phase", "mystery");
+    await page
+      .getByRole("button", { name: "Reveal card" })
+      .click({ force: true });
+    await expect(stage).toHaveAttribute("data-pack-reveal-phase", "rarity");
     if (i === 5) {
-      await expect(page.locator(".pack-icon-celebration")).toHaveCount(1);
-      await page.waitForTimeout(1100);
+      await expect(stage).toHaveAttribute("data-tier", "ICON");
+      await expect(stage.locator(".pack-reveal-rays")).toHaveCount(1);
+      await expect(stage.locator(".pack-reveal-spark")).toHaveCount(32);
       await page.screenshot({
         path: `${evidence}/icon-celebration.png`,
       });
-    } else {
-      await expect(page.locator(".pack-icon-celebration")).toHaveCount(0);
-      if (i === 1) {
-        const samples = await page
-          .locator(".pack-arrival")
-          .evaluate(async (el) => {
-            const values: number[] = [];
-            const start = performance.now();
-            await new Promise<void>((resolve) => {
-              const tick = () => {
-                values.push(
-                  new DOMMatrixReadOnly(getComputedStyle(el).transform).m11,
-                );
-                if (performance.now() - start > 2100) resolve();
-                else requestAnimationFrame(tick);
-              };
-              tick();
-            });
-            return values;
-          });
-        expect(samples.length).toBeGreaterThan(10);
-        for (let s = 1; s < samples.length; s++)
-          expect(samples[s]).toBeGreaterThanOrEqual(samples[s - 1] - 0.035);
-        expect(samples.at(-1)).toBeCloseTo(1, 4);
-      }
     }
+    await expect(stage).toHaveAttribute("data-pack-reveal-phase", "flipping");
     const next = page.getByRole("button", {
       name: i === 5 ? "View pack summary" : "Reveal next card",
     });
@@ -97,9 +79,16 @@ test("outer reveal frames, single forward turn and Icon celebration preserve the
   await page
     .getByRole("button", { name: "Replay saved result · no new cards" })
     .click();
-  for (let i = 0; i < 5; i++)
+  for (let i = 0; i < 5; i++) {
+    await page
+      .getByRole("button", { name: "Reveal card" })
+      .click({ force: true });
     await page.getByRole("button", { name: "Reveal next card" }).click();
-  await expect(page.locator(".pack-icon-celebration")).toHaveCount(0);
+  }
+  await page
+    .getByRole("button", { name: "Reveal card" })
+    .click({ force: true });
+  await expect(page.locator(".pack-reveal-effects")).toHaveCount(0);
   await expect(
     page.getByRole("button", { name: "View pack summary" }),
   ).toBeEnabled();
@@ -162,9 +151,7 @@ test("six rarity frames preserve jersey, identity, focus and legacy context acro
     await page.getByLabel("Team palette").selectOption("CHI");
     await page.getByLabel("Long player name").check();
     await expect(
-      cards
-        .first()
-        .getByText("Alex Northbridge-Wellington", { exact: true }),
+      cards.first().getByText("Alex Northbridge-Wellington", { exact: true }),
     ).toBeVisible();
     expect(
       await page.evaluate(

@@ -1,0 +1,406 @@
+.pack-viewport .pack-opening .pack-cinematic {
+  --reveal-accent: var(--tier, #54c9ff);
+  --reveal-white: #f3f9ff;
+  /* Leave space for the sheet header, progress and both reveal actions. */
+  --reveal-width: min(286px, 72vw, max(164px, calc((100dvh - 322px) * 0.665)));
+  flex: 1 0 auto;
+  min-height: 0;
+  padding: 16px 8px;
+  overflow: hidden;
+  overflow: clip;
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at 50% 76%, #102944 0%, transparent 53%),
+    radial-gradient(ellipse at center, #0c1b30 0%, #050914 78%);
+}
+
+@media (max-height: 600px) {
+  .pack-viewport .pack-opening .pack-cinematic {
+    padding-block: 10px;
+  }
+}
+
+.pack-viewport .pack-cinematic[data-tier="ULTRA_RARE"] {
+  /* Pink lightning belongs to the reveal. The owned card keeps its cyan frame. */
+  --reveal-accent: #ff56d8;
+}
+
+.pack-viewport .pack-cinematic[data-tier="LEGENDARY"] {
+  --reveal-accent: #ffc24b;
+}
+
+.pack-viewport .pack-cinematic[data-tier="ICON"] {
+  --reveal-accent: #f6faff;
+}
+
+.pack-viewport .pack-opening .pack-cinematic .pack-arrival,
+.pack-cinematic .pack-reveal-object {
+  width: var(--reveal-width);
+  max-width: 100%;
+  position: relative;
+}
+
+.pack-cinematic .pack-reveal-object {
+  display: block;
+  aspect-ratio: 2 / 3;
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.pack-cinematic .pack-mystery-trigger {
+  animation: docked-reveal-float 3s ease-in-out 2;
+}
+
+.pack-reveal-back-face,
+.pack-reveal-far-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12%;
+  overflow: hidden;
+  border: 2px solid var(--reveal-accent);
+  border-radius: inherit;
+  background:
+    repeating-linear-gradient(132deg, #d5efff08 0 1px, transparent 1px 7px),
+    linear-gradient(145deg, #101f36, #050d1d 56%, #102846);
+  box-shadow:
+    inset 0 0 16px #071227,
+    0 0 25px color-mix(in srgb, var(--reveal-accent) 53%, transparent);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.pack-reveal-back-face::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid color-mix(in srgb, var(--reveal-accent) 45%, #101b2f);
+  border-radius: 10px;
+  background: radial-gradient(
+    ellipse at 50% 48%,
+    color-mix(in srgb, var(--reveal-accent) 20%, transparent),
+    transparent 66%
+  );
+  pointer-events: none;
+}
+
+.pack-reveal-back-face > * {
+  position: relative;
+}
+.pack-reveal-back-face img {
+  width: 68%;
+  height: auto;
+  object-fit: contain;
+}
+
+.pack-reveal-tier,
+.pack-reveal-call {
+  max-width: 90%;
+  border: 1px solid var(--reveal-accent);
+  border-radius: 999px;
+  padding: 0.48em 0.9em;
+  background: #060e1d;
+  color: var(--reveal-white);
+  font-size: clamp(0.8rem, 3.5vw, 1.2rem);
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.pack-reveal-tier {
+  color: color-mix(in srgb, var(--reveal-accent) 65%, white);
+}
+.pack-reveal-sigil {
+  width: 18%;
+  aspect-ratio: 1;
+  border: 1px solid var(--reveal-accent);
+  border-radius: 20% 48% 20% 48%;
+  box-shadow:
+    inset 0 0 14px var(--reveal-accent),
+    0 0 18px color-mix(in srgb, var(--reveal-accent) 65%, transparent);
+  transform: rotate(45deg);
+}
+.pack-reveal-mark {
+  width: 29%;
+  height: auto;
+  color: var(--reveal-accent);
+  filter: drop-shadow(0 0 8px var(--reveal-accent));
+}
+.pack-reveal-far-face {
+  transform: rotateY(180deg);
+}
+
+[data-pack-reveal-phase="rarity"] .pack-reveal-object {
+  animation: docked-reveal-charge var(--charge-time) ease-out both;
+}
+[data-pack-reveal-phase="flipping"] .pack-reveal-object {
+  animation: docked-reveal-flip var(--flip-time)
+    cubic-bezier(0.36, 0.05, 0.28, 1) both;
+}
+
+.pack-reveal-effects,
+.pack-cinematic-afterglow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+[data-tier="LEGENDARY"] .pack-reveal-effects,
+[data-tier="ICON"] .pack-reveal-effects {
+  background: radial-gradient(
+    ellipse at 50% 49%,
+    color-mix(in srgb, var(--reveal-accent) 25%, transparent),
+    transparent 67%
+  );
+}
+[data-tier="LEGENDARY"] .pack-reveal-spark,
+[data-tier="ICON"] .pack-reveal-spark {
+  z-index: 1;
+}
+.pack-cinematic-afterglow {
+  background: radial-gradient(
+    ellipse at 50% 48%,
+    color-mix(in srgb, var(--reveal-accent) 26%, transparent),
+    transparent 63%
+  );
+}
+.pack-reveal-aura,
+.pack-reveal-rays,
+.pack-reveal-orbit,
+.pack-reveal-spark,
+.pack-reveal-flash {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+}
+.pack-reveal-aura,
+.pack-reveal-rays {
+  width: min(94%, 580px);
+  aspect-ratio: 1;
+  background: radial-gradient(circle, var(--reveal-accent), transparent 65%);
+  opacity: 0.38;
+  animation: docked-reveal-burst 760ms ease-out both;
+}
+.pack-reveal-rays {
+  width: min(100%, 680px);
+  background: repeating-conic-gradient(
+    from -16deg,
+    transparent 0 13deg,
+    var(--reveal-accent) 15deg,
+    transparent 20deg 30deg
+  );
+  mask-image: radial-gradient(circle, #000c, transparent 72%);
+  opacity: 0.52;
+}
+.pack-reveal-orbit {
+  width: min(86%, 430px);
+  aspect-ratio: 2.25;
+  border: 1px solid var(--reveal-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 12px color-mix(in srgb, var(--reveal-accent) 70%, transparent);
+  opacity: 0.46;
+  animation: docked-reveal-orbit calc(var(--charge-time) + var(--flip-time))
+    ease-out both;
+  animation-delay: calc(var(--orbit) * 80ms);
+}
+[data-tier="LEGENDARY"] .pack-reveal-orbit,
+[data-tier="ICON"] .pack-reveal-orbit {
+  width: min(96%, 500px);
+  border-width: 2px;
+}
+.pack-reveal-spark {
+  width: var(--spark-size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--reveal-white);
+  box-shadow: 0 0 8px 2px var(--reveal-accent);
+  animation: docked-reveal-spark calc(var(--charge-time) + 100ms) ease-out both;
+  animation-delay: var(--spark-delay);
+}
+[data-tier="ICON"] .pack-reveal-spark {
+  border-radius: 0;
+}
+.pack-reveal-lightning {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  stroke: var(--reveal-accent);
+  stroke-width: 1.8;
+  filter: drop-shadow(0 0 4px var(--reveal-accent));
+  animation: docked-reveal-lightning 800ms ease-out both;
+}
+.pack-reveal-flash {
+  z-index: 1;
+  opacity: 0;
+  width: min(93%, 470px);
+  aspect-ratio: 1;
+  background: radial-gradient(
+    circle,
+    var(--reveal-white),
+    color-mix(in srgb, var(--reveal-accent) 35%, transparent) 23%,
+    transparent 66%
+  );
+}
+[data-pack-reveal-phase="flipping"] .pack-reveal-flash {
+  animation: docked-reveal-flash var(--flip-time) ease-out both;
+}
+
+.pack-reveal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.pack-viewport .pack-reveal-actions .pack-next.pack-control {
+  margin: 0;
+}
+.pack-cinematic-skip {
+  align-self: center;
+  min-width: 145px;
+}
+.pack-summary-cinematic {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 255px), 1fr));
+}
+.pack-summary-cinematic .pack-best-pull {
+  animation: docked-best-pull 430ms ease-out both;
+}
+.pack-viewport .pack-summary .pack-premium-pull,
+.pack-viewport .pack-summary .pack-best-pull {
+  padding-inline: 8px;
+  border: 1px solid color-mix(in srgb, var(--tier) 60%, #0b1424);
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--tier) 13%, #0b1424);
+}
+.pack-best-label {
+  display: inline-block;
+  margin-inline-start: 0.5em;
+  color: color-mix(in srgb, var(--tier) 70%, white);
+  font-size: 0.72em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+@keyframes docked-reveal-float {
+  0%,
+  100% {
+    transform: translate3d(0, 2px, 0);
+  }
+  50% {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+@keyframes docked-best-pull {
+  from {
+    opacity: 0.65;
+    transform: translate3d(0, 5px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes docked-reveal-charge {
+  0% {
+    transform: scale(0.96);
+  }
+  25% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes docked-reveal-flip {
+  from {
+    transform: rotateY(0);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
+}
+@keyframes docked-reveal-burst {
+  from {
+    transform: translate(-50%, -50%) scale(0.38);
+    opacity: 0;
+  }
+  33% {
+    opacity: 0.68;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.36;
+  }
+}
+@keyframes docked-reveal-orbit {
+  from {
+    transform: translate(-50%, -50%) rotate(calc(var(--orbit) * 63deg - 34deg))
+      scale(0.75);
+    opacity: 0;
+  }
+  31% {
+    opacity: 0.85;
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(calc(var(--orbit) * 63deg + 115deg));
+    opacity: 0.32;
+  }
+}
+@keyframes docked-reveal-spark {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.25);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.95;
+  }
+  78% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translate3d(var(--spark-x), var(--spark-y), 0) rotate(60deg)
+      scale(0.7);
+    opacity: 0.08;
+  }
+}
+@keyframes docked-reveal-lightning {
+  0%,
+  100% {
+    opacity: 0.17;
+  }
+  28% {
+    opacity: 0.92;
+  }
+  61% {
+    opacity: 0.35;
+  }
+}
+@keyframes docked-reveal-flash {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  46% {
+    opacity: 0.67;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.pack-simple .pack-reveal-object,
+.pack-simple .pack-reveal-effects * {
+  animation: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pack-cinematic .pack-reveal-object,
+  .pack-cinematic .pack-reveal-effects * {
+    animation: none !important;
+  }
+}

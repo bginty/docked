@@ -65,6 +65,8 @@ async function main() {
     "fantasy",
     "fantasy-play",
     "pack-opening",
+    "pack-cinematic",
+    "pack-pull-share",
     "scoring",
     "test-wallet",
     "marketplace",

@@ -4,6 +4,7 @@ import { readFile, mkdir } from "node:fs/promises";
 import { bundleCommunityFixture } from "../fixtures/bundle-community";
 import { previewReceipt as starterReceipt } from "../../src/components/pack-opening-preview";
 import type { PackReceipt } from "../../src/core/pack-opening";
+import { revealPhase } from "../fixtures/pack-browser";
 import {
   rarityConfiguration,
   rarityRule,
@@ -33,6 +34,9 @@ const previewReceipt: PackReceipt = {
     multiplier: rarityRule(tiers[i]).multiplierTenths / 10,
   })),
 };
+const evidence =
+  (process.env.DOCKED_VISUAL_EVIDENCE ?? "docs/qa/social-upgrade") +
+  "/nine-card-regression";
 for (const width of [360, 412, 1366])
   test(`confirmed nine-card reveal, resume, replay and accessibility ${width}`, async ({
     page,
@@ -76,6 +80,7 @@ for (const width of [360, 412, 1366])
         "fantasy",
         "fantasy-play",
         "pack-opening",
+        "pack-cinematic",
       ])
         await page.addStyleTag({
           content: await readFile(`src/app/${name}.css`, "utf8"),
@@ -84,11 +89,11 @@ for (const width of [360, 412, 1366])
       await page.getByRole("button", { name: "Open viewer" }).click();
     }
     await mount();
-    await mkdir("docs/qa/social-upgrade/reveal-regression", {
+    await mkdir(evidence, {
       recursive: true,
     });
     await page.screenshot({
-      path: `docs/qa/social-upgrade/reveal-regression/sealed-${width}.png`,
+      path: `${evidence}/sealed-${width}.png`,
       fullPage: true,
     });
     await page.getByRole("button", { name: "Open pack seal" }).dblclick();
@@ -96,13 +101,23 @@ for (const width of [360, 412, 1366])
     expect(opens).toBe(1);
     // Response was lost AFTER the server committed. Reopening reads that same result.
     await mount();
-    await expect(page.getByText("1 of 9 · RARE")).toBeVisible();
+    await expect(page.getByText("Card 1 of 9", { exact: true })).toBeVisible();
+    const phase = page.locator(revealPhase);
+    await page
+      .getByRole("button", { name: "Reveal card" })
+      .click({ force: true });
+    await expect(phase).toHaveAttribute("data-tier", "RARE");
     expect(opens).toBe(1);
     await page.getByRole("button", { name: "Reveal next card" }).click();
-    await expect(page.getByText("2 of 9 · ULTRA RARE")).toBeVisible();
+    await expect(page.getByText("Card 2 of 9", { exact: true })).toBeVisible();
     await page.getByRole("button", { name: "Close panel" }).click();
     await page.getByRole("button", { name: "Open viewer" }).click();
-    await expect(page.getByText("2 of 9 · ULTRA RARE")).toBeVisible();
+    await expect(phase).toHaveAttribute("data-pack-reveal-phase", "mystery");
+    await expect(page.getByText("Card 2 of 9", { exact: true })).toBeVisible();
+    await page
+      .getByRole("button", { name: "Reveal card" })
+      .click({ force: true });
+    await expect(phase).toHaveAttribute("data-tier", "ULTRA_RARE");
     const inspect = page.getByRole("group", { name: /Inspect Preview QB 2/ });
     await expect(
       page.getByRole("button", { name: "Reveal next card" }),
@@ -116,15 +131,13 @@ for (const width of [360, 412, 1366])
     const axe = await new AxeBuilder({ page }).include("dialog").analyze();
     expect(axe.violations).toEqual([]);
     await page.screenshot({
-      path: `docs/qa/social-upgrade/reveal-regression/revealed-${width}.png`,
+      path: `${evidence}/revealed-${width}.png`,
       fullPage: true,
     });
-    await page
-      .getByRole("button", { name: "Skip remaining reveals", exact: true })
-      .click();
+    await page.getByRole("button", { name: "Reveal All", exact: true }).click();
     await expect(page.locator(".pack-summary li")).toHaveCount(9);
     await page.screenshot({
-      path: `docs/qa/social-upgrade/reveal-regression/summary-${width}.png`,
+      path: `${evidence}/summary-${width}.png`,
       fullPage: true,
     });
     await mount();
@@ -133,13 +146,13 @@ for (const width of [360, 412, 1366])
     await page
       .getByRole("button", { name: "Replay saved result · no new cards" })
       .click();
-    await expect(
-      page.getByRole("button", { name: "Reveal next card" }),
-    ).toBeEnabled({ timeout: 10000 });
-    await expect(page.getByText("1 of 9 · RARE")).toBeVisible();
+    await expect(page.getByRole("button", { name: "Reveal card" })).toBeEnabled(
+      { timeout: 10000 },
+    );
+    await expect(page.getByText("Card 1 of 9", { exact: true })).toBeVisible();
     expect(opens).toBe(1);
     await expect(page.getByRole("button", { name: "Sound off" })).toBeVisible();
-    await page.getByRole("button", { name: "Skip remaining reveals" }).click();
+    await page.getByRole("button", { name: "Reveal All" }).click();
     await expect(page.locator(".pack-summary li")).toHaveCount(9);
     expect(opens).toBe(1);
     expect(
@@ -184,6 +197,7 @@ test("single card, reduced motion, keyboard opening and duplicate taps", async (
     "fantasy",
     "fantasy-play",
     "pack-opening",
+    "pack-cinematic",
   ])
     await page.addStyleTag({
       content: await readFile(`src/app/${name}.css`, "utf8"),
@@ -201,13 +215,15 @@ test("single card, reduced motion, keyboard opening and duplicate taps", async (
   await page.getByRole("button", { name: "Close panel" }).click();
   await confirmed;
   await page.getByRole("button", { name: "Open viewer" }).click();
-  await expect(page.getByText("1 of 1 · RARE")).toBeVisible();
+  await expect(page.getByText("Card 1 of 1", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "Reveal card" }).press("Enter");
+  await expect(page.locator(revealPhase)).toHaveAttribute("data-tier", "RARE");
   expect(opens).toBe(1);
   await expect(
     page.getByRole("button", { name: "Skip animation" }),
   ).toHaveCount(0);
   await expect(
-    page.getByRole("button", { name: "Skip remaining reveals", exact: true }),
+    page.getByRole("button", { name: "Reveal All", exact: true }),
   ).toBeVisible();
   expect(
     await page

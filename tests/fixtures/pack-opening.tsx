@@ -24,7 +24,9 @@ function Fixture() {
       {open && (
         <PackOpening
           userId="isolated-test"
-          name="NFL starter pack"
+          name={receipt?.name ?? "Docked pack"}
+          sport={receipt?.cards[0]?.sport}
+          cardCount={receipt?.cards.length}
           receipt={receipt}
           onClose={close}
           ownedIds={receipt?.cards.map((c) => c.id) ?? []}

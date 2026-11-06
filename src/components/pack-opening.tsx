@@ -23,9 +23,44 @@ import { AppIcon } from "./app-icon";
 import { packSound } from "./pack-feedback";
 import { AcquisitionShare } from "./acquisition-share";
 import { IconCelebration } from "./icon-celebration";
-import { rarityRule } from "@/core/card-rarity";
+import { rarities, rarityRule } from "@/core/card-rarity";
 import { NavigationShortcut } from "./navigation-shortcut";
 import { packShopHref } from "@/core/pack-presentation";
+import {
+  PackCinematicBackdrop,
+  PackCinematicBack,
+  revealTiming,
+} from "./pack-cinematic";
+import { PackPullShare } from "./pack-pull-share";
+
+type PackStage =
+  | "sealed"
+  | "waiting"
+  | "mystery"
+  | "rarity"
+  | "flipping"
+  | "opening"
+  | "revealed"
+  | "summary";
+
+function supportsCinematicReveal(card: AwardedCard | undefined) {
+  return (
+    card?.sport === "nfl" || card?.sport === "afl" || card?.sport === "nrl"
+  );
+}
+
+function firstCardStage(
+  card: AwardedCard | undefined,
+  motionOff: boolean,
+): PackStage {
+  if (!card) return "summary";
+  if (supportsCinematicReveal(card)) return "mystery";
+  return motionOff ? "revealed" : "opening";
+}
+
+function headlinePull(card: AwardedCard) {
+  return card.tier === "LEGENDARY" || card.tier === "ICON";
+}
 
 export type PackOpeningProps = {
   userId: string;
@@ -40,7 +75,7 @@ export type PackOpeningProps = {
   ownedIds: string[];
   replay?: boolean;
   preview?: boolean;
-  commercial?:boolean;
+  commercial?: boolean;
   autoOpen?: boolean;
   collectionHref?: string;
   teamHref?: string | null;
@@ -53,12 +88,11 @@ export type PackOpeningProps = {
 export default function PackOpening(props: PackOpeningProps) {
   const initialReceipt = useRef(props.receipt).current;
   const [receipt, setReceipt] = useState(props.receipt ?? null);
-  const [stage, setStage] = useState<
-    "sealed" | "waiting" | "opening" | "revealed" | "summary"
-  >("sealed");
+  const [stage, setStage] = useState<PackStage>("sealed");
   const [index, setIndex] = useState(0);
   const [error, setError] = useState("");
   const [muted, setMuted] = useState(true);
+  const [haptics, setHaptics] = useState(false);
   const [simple, setSimple] = useState(false);
   const [replaying, setReplaying] = useState(Boolean(props.receipt));
   const [reduced, setReduced] = useState(true);
@@ -70,6 +104,14 @@ export default function PackOpening(props: PackOpeningProps) {
   const title = useRef<HTMLHeadingElement>(null);
   const arrival = useRef<HTMLDivElement>(null);
   const autoStarted = useRef(false);
+  const issued = useRef(Boolean(initialReceipt));
+  const presentationReplay = useRef(Boolean(props.replay));
+  const revealControl = useRef<HTMLButtonElement>(null);
+  const skipControl = useRef<HTMLButtonElement>(null);
+  const card = receipt?.cards[index];
+  const motionOff = reduced || simple;
+  const cinematic = supportsCinematicReveal(card);
+  const inMotion = stage === "rarity" || stage === "flipping";
   const save = useCallback(
     (r: PackReceipt, next: number) => {
       try {
@@ -88,6 +130,7 @@ export default function PackOpening(props: PackOpeningProps) {
     motion.addEventListener("change", change);
     try {
       setMuted(localStorage.getItem("docked:pack:sound") !== "on");
+      setHaptics(localStorage.getItem("docked:pack:haptics") === "on");
       setSimple(localStorage.getItem("docked:pack:reduce-motion") === "on");
     } catch {}
     const r = initialReceipt;
@@ -101,7 +144,7 @@ export default function PackOpening(props: PackOpeningProps) {
       } catch {}
       if (props.replay) next = 0;
       setIndex(next);
-      setStage(next === r.cards.length ? "summary" : "opening");
+      setStage(firstCardStage(r.cards[next], false));
     }
     return () => {
       alive.current = false;
@@ -138,9 +181,38 @@ export default function PackOpening(props: PackOpeningProps) {
     };
   }, [stage, index, reduced, simple]);
   useEffect(() => {
+    if (!inMotion || !card) return;
+    const finish = () =>
+      setStage((current) => (current === stage ? "revealed" : current));
+    if (motionOff || document.hidden) {
+      finish();
+      return;
+    }
+    const next = stage === "rarity" ? "flipping" : "revealed";
+    const timing = revealTiming(card.tier);
+    const duration = stage === "rarity" ? timing.rarity : timing.flip;
+    // Animation events drive the normal path. Recover if WebView drops one.
+    const timer = setTimeout(() => {
+      setStage((current) => (current === stage ? next : current));
+    }, duration + 250);
+    const hidden = () => {
+      if (document.hidden) finish();
+    };
+    document.addEventListener("visibilitychange", hidden);
+    window.addEventListener("pagehide", finish);
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("visibilitychange", hidden);
+      window.removeEventListener("pagehide", finish);
+    };
+  }, [stage, card, inMotion, motionOff]);
+  useEffect(() => {
     advancing.current = false;
     if (stage === "revealed" || stage === "summary")
       title.current?.focus({ preventScroll: true });
+    if (stage === "mystery")
+      revealControl.current?.focus({ preventScroll: true });
+    if (stage === "rarity") skipControl.current?.focus({ preventScroll: true });
   }, [stage, index]);
   useEffect(() => {
     if (reduced || simple) {
@@ -148,32 +220,30 @@ export default function PackOpening(props: PackOpeningProps) {
       swipe.current = null;
     }
   }, [reduced, simple]);
-  function feedback() {
+  function feedback(legacy = false) {
     if (!muted && !document.hidden) packSound();
-    if (!reduced && !simple)
+    if ((haptics || legacy) && !motionOff && !document.hidden) {
       void import("./native-share")
-        .then((m) => m.lightNativeFeedback())
+        .then((m) => m.lightNativeFeedback(legacy ? undefined : true))
         .catch(() => {});
+    }
   }
   async function open() {
-    if (busy.current || receipt) return;
+    if (busy.current || issued.current) return;
     busy.current = true;
     setStage("waiting");
     setError("");
-    feedback();
+    feedback(props.sport === "basketball");
     try {
       const result = await props.openPack();
       if (!result.cards.length) throw Error("No confirmed cards yet.");
       // The award already exists at this point. No animation chooses a player or tier.
       if (!alive.current) return;
+      issued.current = true;
       setReceipt(result);
       setIndex(0);
       save(result, 0);
-      setStage(
-        matchMedia("(prefers-reduced-motion: reduce)").matches || simple
-          ? "revealed"
-          : "opening",
-      );
+      setStage(firstCardStage(result.cards[0], motionOff));
     } catch {
       if (alive.current) {
         setError(
@@ -192,24 +262,33 @@ export default function PackOpening(props: PackOpeningProps) {
     }
     // One attempt for this mounted entitlement; retries use the visible button.
   }, [props.autoOpen, initialReceipt]);
+  function beginReveal() {
+    if (stage !== "mystery" || !card || advancing.current) return;
+    advancing.current = true;
+    feedback();
+    setStage(motionOff ? "revealed" : "rarity");
+  }
   function advance(all = false) {
     if (!receipt || advancing.current || (!all && stage !== "revealed")) return;
     advancing.current = true;
     const next = all ? receipt.cards.length : index + 1;
-    save(receipt, next);
+    if (!cinematic || !presentationReplay.current) save(receipt, next);
     setIndex(next);
     setTilt({ x: 0, y: 0 });
-    setStage(
-      next === receipt.cards.length
-        ? "summary"
-        : motionOff
-          ? "revealed"
-          : "opening",
-    );
-    feedback();
+    setStage(firstCardStage(receipt.cards[next], motionOff));
+    if (!cinematic) feedback(true);
   }
-  const card = receipt?.cards[index];
-  const motionOff = reduced || simple;
+  const bestTier =
+    stage === "summary" && receipt
+      ? rarities[
+          Math.max(
+            ...receipt.cards.map((item) =>
+              rarities.findIndex((tier) => tier === item.tier),
+            ),
+          )
+        ]
+      : undefined;
+  const cinematicSummary = supportsCinematicReveal(receipt?.cards[0]);
   return (
     <FantasySheet
       className={`pack-sheet pack-viewport pack-stage-${stage}`}
@@ -226,9 +305,9 @@ export default function PackOpening(props: PackOpeningProps) {
               type="button"
               className="pack-control secondary"
               onClick={() => advance(true)}
-              aria-label="Skip remaining reveals"
+              aria-label={cinematic ? "Reveal All" : "Skip remaining reveals"}
             >
-              Reveal all / Skip
+              {cinematic ? "Reveal All" : "Reveal all / Skip"}
             </button>
           )}
           <button
@@ -289,6 +368,25 @@ export default function PackOpening(props: PackOpeningProps) {
               </label>
               <p>Reduce tilt and reveal animations.</p>
               {reduced && <small>Enabled by your device preference.</small>}
+              {props.sport !== "basketball" &&
+                receipt?.cards[0]?.sport !== "basketball" && (
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={haptics}
+                      onChange={(event) => {
+                        setHaptics(event.target.checked);
+                        try {
+                          localStorage.setItem(
+                            "docked:pack:haptics",
+                            event.target.checked ? "on" : "off",
+                          );
+                        } catch {}
+                      }}
+                    />
+                    Haptic feedback
+                  </label>
+                )}
             </div>
           </details>
         </div>
@@ -370,8 +468,68 @@ export default function PackOpening(props: PackOpeningProps) {
               </p>
             )}
             <p className="pack-disclosure">
-              {props.commercial?'The animation does not determine your cards or their rarity. No cash redemption.':'Test cards. No cash value. The animation does not determine your cards or their tier.'}
+              {props.commercial
+                ? "The animation does not determine your cards or their rarity. No cash redemption."
+                : "Test cards. No cash value. The animation does not determine your cards or their tier."}
             </p>
+          </>
+        )}
+        {(stage === "mystery" || inMotion) && receipt && card && (
+          <>
+            <p className="pack-count" aria-live="polite">
+              Card {index + 1} of {receipt.cards.length}
+              {inMotion && <> · {rarityRule(card.tier).label}</>}
+            </p>
+            <div
+              className="pack-stage pack-card-stage pack-cinematic"
+              data-reveal-index={index}
+              data-pack-reveal-phase={stage}
+              data-tier={inMotion ? card.tier : undefined}
+              style={
+                inMotion
+                  ? ({
+                      ...rarityStyle(card.tier),
+                      "--charge-time": `${revealTiming(card.tier).rarity}ms`,
+                      "--flip-time": `${revealTiming(card.tier).flip}ms`,
+                    } as CSSProperties)
+                  : undefined
+              }
+            >
+              {inMotion && <PackCinematicBackdrop tier={card.tier} />}
+              <PackCinematicBack
+                phase={
+                  stage === "mystery"
+                    ? "mystery"
+                    : stage === "rarity"
+                      ? "rarity"
+                      : "flipping"
+                }
+                tier={inMotion ? card.tier : undefined}
+                controlRef={revealControl}
+                onReveal={beginReveal}
+                onPhaseEnd={() =>
+                  setStage((current) =>
+                    current === stage
+                      ? stage === "rarity"
+                        ? "flipping"
+                        : "revealed"
+                      : current,
+                  )
+                }
+              />
+            </div>
+            {inMotion ? (
+              <button
+                ref={skipControl}
+                type="button"
+                className="pack-control secondary pack-cinematic-skip"
+                onClick={() => setStage("revealed")}
+              >
+                Skip animation
+              </button>
+            ) : (
+              <p className="pack-inspect-hint">Tap the card to reveal it</p>
+            )}
           </>
         )}
         {(stage === "opening" || stage === "revealed") && receipt && card && (
@@ -380,6 +538,7 @@ export default function PackOpening(props: PackOpeningProps) {
               {card.name}
             </h3>
             <p className="pack-count" aria-live="polite">
+              {cinematic ? "Card " : ""}
               {index + 1} of {receipt.cards.length} ·{" "}
               {rarityRule(card.tier).label.toUpperCase()}
             </p>
@@ -387,8 +546,13 @@ export default function PackOpening(props: PackOpeningProps) {
               key={`${receipt.id}:${index}`}
               style={rarityStyle(card.tier)}
               data-reveal-index={index}
-              className={`pack-stage pack-card-stage tier-${card.tier.toLowerCase()} ${stage === "opening" ? "pack-rising" : ""}`}
+              data-pack-reveal-phase={cinematic ? "revealed" : undefined}
+              data-tier={cinematic ? card.tier : undefined}
+              className={`pack-stage pack-card-stage tier-${card.tier.toLowerCase()} ${cinematic ? "pack-cinematic" : ""} ${stage === "opening" ? "pack-rising" : ""}`}
             >
+              {cinematic && headlinePull(card) && (
+                <div className="pack-cinematic-afterglow" aria-hidden="true" />
+              )}
               {stage === "opening" && (
                 <>
                   <div className="pack-blue-light" aria-hidden="true" />
@@ -417,7 +581,7 @@ export default function PackOpening(props: PackOpeningProps) {
               )}
               <div
                 ref={arrival}
-                className={`pack-arrival ${motionOff ? "" : "pack-turn"}`}
+                className={`pack-arrival ${motionOff || cinematic ? "" : "pack-turn"}`}
                 onAnimationEnd={(e) => {
                   if (
                     stage === "opening" &&
@@ -515,24 +679,30 @@ export default function PackOpening(props: PackOpeningProps) {
                 </div>
               </div>
             </div>
-            <button
-              className="pack-next pack-control pack-primary"
-              type="button"
-              aria-label={
-                index + 1 === receipt.cards.length
-                  ? "View pack summary"
-                  : "Reveal next card"
-              }
-              disabled={stage === "opening"}
-              onClick={() => advance()}
-            >
-              {index + 1 === receipt.cards.length
-                ? "View all cards"
-                : "Reveal Next"}{" "}
-              →
-            </button>
+            <div className={cinematic ? "pack-reveal-actions" : undefined}>
+              {cinematic && (
+                <PackPullShare card={card} prominent={headlinePull(card)} />
+              )}
+              <button
+                className="pack-next pack-control pack-primary"
+                type="button"
+                aria-label={
+                  index + 1 === receipt.cards.length
+                    ? "View pack summary"
+                    : "Reveal next card"
+                }
+                disabled={stage === "opening"}
+                onClick={() => advance()}
+              >
+                {index + 1 === receipt.cards.length
+                  ? "View all cards"
+                  : "Reveal Next"}{" "}
+                →
+              </button>
+            </div>
             <p className="pack-inspect-hint">
-              {motionOff ? "Reduced movement" : "Drag to tilt"} · {props.commercial?'No cash redemption':'No cash value'}
+              {motionOff ? "Reduced movement" : "Drag to tilt"} ·{" "}
+              {props.commercial ? "No cash redemption" : "No cash value"}
             </p>
           </>
         )}
@@ -541,16 +711,43 @@ export default function PackOpening(props: PackOpeningProps) {
             <h3 ref={title} tabIndex={-1}>
               {props.replay || replaying
                 ? "Your original pack result"
-                : props.commercial ? 'Your collection' : props.teamHref === null
-                  ? "Your test collection"
-                  : "Ready to build your team"}
+                : props.commercial
+                  ? "Your collection"
+                  : props.teamHref === null
+                    ? "Your test collection"
+                    : "Ready to build your team"}
             </h3>
             <p>
-              {receipt.cards.length} confirmed cards · {props.commercial?'No cash redemption.':'Test cards, no cash value.'}
+              {receipt.cards.length} confirmed cards ·{" "}
+              {props.commercial
+                ? "No cash redemption."
+                : "Test cards, no cash value."}
             </p>
-            <ul className="pack-summary">
+            <ul
+              className={
+                cinematicSummary
+                  ? "pack-summary pack-summary-cinematic"
+                  : "pack-summary"
+              }
+            >
               {receipt.cards.map((c) => (
-                <li key={c.id}>
+                <li
+                  key={c.id}
+                  className={
+                    cinematicSummary
+                      ? c.tier === bestTier && c.tier !== "CORE"
+                        ? "pack-best-pull"
+                        : headlinePull(c)
+                          ? "pack-premium-pull"
+                          : undefined
+                      : undefined
+                  }
+                  style={
+                    cinematicSummary && (c.tier === bestTier || headlinePull(c))
+                      ? rarityStyle(c.tier)
+                      : undefined
+                  }
+                >
                   <span
                     className={`pack-position tier-${c.tier.toLowerCase()}`}
                     style={rarityStyle(c.tier)}
@@ -559,6 +756,11 @@ export default function PackOpening(props: PackOpeningProps) {
                   </span>
                   <span>
                     <strong>{c.name}</strong>
+                    {cinematicSummary &&
+                      c.tier === bestTier &&
+                      c.tier !== "CORE" && (
+                        <span className="pack-best-label">Best pull</span>
+                      )}
                     <small>
                       {c.team} · {rarityRule(c.tier).label} ·{" "}
                       {c.tier === "CORE" ? "Unlimited Core" : `#${c.serial}`}
@@ -647,10 +849,11 @@ export default function PackOpening(props: PackOpeningProps) {
               type="button"
               className="pack-control"
               onClick={() => {
+                presentationReplay.current = true;
                 setIndex(0);
                 setTilt({ x: 0, y: 0 });
                 setReplaying(true);
-                setStage(motionOff ? "revealed" : "opening");
+                setStage(firstCardStage(receipt.cards[0], motionOff));
               }}
             >
               Replay saved result · no new cards

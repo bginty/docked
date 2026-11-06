@@ -1,124 +1,120 @@
-const evidence = process.env.DOCKED_VISUAL_EVIDENCE ?? "docs/qa/mobile-cleanup";
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { readFile, mkdir } from "node:fs/promises";
-import { bundleCommunityFixture } from "../fixtures/bundle-community";
+import { mkdir } from "node:fs/promises";
 import { previewReceipt } from "../../src/components/pack-opening-preview";
 import type { PackReceipt } from "../../src/core/pack-opening";
-for (const width of [360, 412, 1366])
-  test(`confirmed multi-card reveal, resume, replay and accessibility ${width}`, async ({
-    page,
-  }) => {
-    let receipt: PackReceipt | null = null,
-      opens = 0,
-      fail = true;
-    const errors: string[] = [];
-    page.on("pageerror", (e) => errors.push(e.message));
-    await page.setViewportSize({ width, height: 915 });
-    await page.route("**/*", async (route) => {
-      const path = new URL(route.request().url()).pathname;
-      if (path === "/receipt") return route.fulfill({ json: receipt });
-      if (path === "/open-pack") {
-        opens++;
-        receipt = previewReceipt;
-        if (fail) {
-          fail = false;
+import {
+  mountPackFixture,
+  packFixtureMarkup,
+  revealPhase,
+} from "../fixtures/pack-browser";
+
+const evidence = process.env.DOCKED_VISUAL_EVIDENCE ?? "docs/qa/mobile-cleanup";
+
+for (const width of [360, 412, 1366]) {
+  test(
+    "lost receipt response, saved progress, replay and accessibility at " +
+      width,
+    async ({ page }) => {
+      let committedReceipt: PackReceipt | null = null;
+      let opens = 0;
+      const errors: string[] = [];
+      page.on("pageerror", (error) => errors.push(error.message));
+      await page.setViewportSize({ width, height: 915 });
+      await page.route("**/*", async (route) => {
+        const path = new URL(route.request().url()).pathname;
+        if (path === "/receipt")
+          return route.fulfill({ json: committedReceipt });
+        if (path === "/open-pack") {
+          opens++;
+          committedReceipt = previewReceipt;
           return route.abort();
         }
-        return route.fulfill({ json: receipt });
-      }
-      if (path.startsWith("/brand/"))
-        return route.fulfill({
-          body: await readFile("public" + path),
-          contentType: "image/webp",
-        });
-      return route.fulfill({
-        contentType: "text/html",
-        body: '<!doctype html><html lang="en"><head><title>Isolated pack acceptance</title></head><body class="fantasy-mode"><main id="fixture-root"></main></body></html>',
+        return route.fulfill(await packFixtureMarkup(path));
       });
-    });
-    const script = await bundleCommunityFixture(
-      "tests/fixtures/pack-opening.tsx",
-    );
-    async function mount() {
-      await page.goto("https://fixture.invalid/pack");
-      for (const name of [
-        "brand-theme",
-        "globals",
-        "fantasy",
-        "fantasy-play",
-        "pack-opening",
-        "mobile-cleanup",
-      ])
-        await page.addStyleTag({
-          content: await readFile(`src/app/${name}.css`, "utf8"),
-        });
-      await page.addScriptTag({ content: script });
+      await mountPackFixture(page);
+      const output = evidence + "/reveal-regression";
+      await mkdir(output, { recursive: true });
+      await page.screenshot({ path: output + "/sealed-" + width + ".png" });
+      await page.getByRole("button", { name: "Open pack seal" }).dblclick();
+      await expect(page.getByRole("alert")).toContainText("Retry");
+      expect(opens).toBe(1);
+
+      // The response was lost after the server committed. Reload reads that receipt.
+      await mountPackFixture(page);
+      const phase = page.locator(revealPhase);
+      await expect(phase).toHaveAttribute("data-pack-reveal-phase", "mystery");
+      await expect(
+        page.getByText("Card 1 of 10", { exact: true }),
+      ).toBeVisible();
+      await expect(phase).not.toHaveAttribute("data-tier");
+      await expect(page.locator(".pack-case")).toHaveCount(0);
+      await page
+        .getByRole("button", { name: "Reveal card" })
+        .click({ force: true });
+      await expect(phase).toHaveAttribute("data-pack-reveal-phase", "revealed");
+      await page.getByRole("button", { name: "Reveal next card" }).click();
+      await expect(
+        page.getByText("Card 2 of 10", { exact: true }),
+      ).toBeVisible();
+
+      await page.getByRole("button", { name: "Close panel" }).click();
       await page.getByRole("button", { name: "Open viewer" }).click();
-    }
-    await mount();
-    await mkdir(`${evidence}/reveal-regression`, {
-      recursive: true,
-    });
-    await page.screenshot({
-      path: `${evidence}/reveal-regression/sealed-${width}.png`,
-      fullPage: true,
-    });
-    await page.getByRole("button", { name: "Open pack seal" }).dblclick();
-    await expect(page.getByRole("alert")).toContainText("Retry");
-    expect(opens).toBe(1);
-    // Response was lost AFTER the server committed. Reopening reads that same result.
-    await mount();
-    await expect(page.getByText("1 of 10 · CORE")).toBeVisible();
-    expect(opens).toBe(1);
-    await page.getByRole("button", { name: "Reveal next card" }).click();
-    await expect(page.getByText("2 of 10 · CORE")).toBeVisible();
-    await page.getByRole("button", { name: "Close panel" }).click();
-    await page.getByRole("button", { name: "Open viewer" }).click();
-    await expect(page.getByText("2 of 10 · CORE")).toBeVisible();
-    const inspect = page.getByRole("group", { name: /Inspect Preview QB 2/ });
-    await inspect.focus();
-    await inspect.press("ArrowRight");
-    expect(
-      await inspect.evaluate((el) => getComputedStyle(el).transform),
-    ).not.toBe("none");
-    await inspect.press("Escape");
-    const axe = await new AxeBuilder({ page }).include("dialog").analyze();
-    expect(axe.violations).toEqual([]);
-    await page.screenshot({
-      path: `${evidence}/reveal-regression/revealed-${width}.png`,
-      fullPage: true,
-    });
-    await page
-      .getByRole("button", { name: "Skip remaining reveals", exact: true })
-      .click();
-    await expect(page.locator(".pack-summary li")).toHaveCount(10);
-    await page.screenshot({
-      path: `${evidence}/reveal-regression/summary-${width}.png`,
-      fullPage: true,
-    });
-    await mount();
-    await expect(page.locator(".pack-summary li")).toHaveCount(10);
-    expect(opens).toBe(1);
-    await page
-      .getByRole("button", { name: "Replay saved result · no new cards" })
-      .click();
-    await expect(
-      page.getByRole("button", { name: "Reveal next card" }),
-    ).toBeEnabled();
-    await expect(page.getByText("1 of 10 · CORE")).toBeVisible();
-    expect(opens).toBe(1);
-    await expect(page.getByRole("button", { name: "Sound off" })).toBeVisible();
-    expect(
-      await page.evaluate(
-        () => document.documentElement.scrollWidth <= innerWidth,
-      ),
-    ).toBe(true);
-    expect(errors).toEqual([]);
-  });
-test("single card, reduced motion, keyboard opening and duplicate taps", async ({
+      await expect(
+        page.getByText("Card 2 of 10", { exact: true }),
+      ).toBeVisible();
+      await expect(phase).toHaveAttribute("data-pack-reveal-phase", "mystery");
+      await page
+        .getByRole("button", { name: "Reveal card" })
+        .click({ force: true });
+      await expect(phase).toHaveAttribute("data-pack-reveal-phase", "revealed");
+      const inspect = page.getByRole("group", {
+        name: new RegExp("Inspect " + previewReceipt.cards[1].name),
+      });
+      await inspect.focus();
+      await inspect.press("ArrowRight");
+      expect(
+        await inspect.evaluate((el) => getComputedStyle(el).transform),
+      ).not.toBe("none");
+      await inspect.press("Escape");
+      expect(
+        (await new AxeBuilder({ page }).include("dialog").analyze()).violations,
+      ).toEqual([]);
+      await page.screenshot({ path: output + "/revealed-" + width + ".png" });
+
+      await page
+        .getByRole("button", { name: "Reveal All", exact: true })
+        .click();
+      const summary = page.locator(".pack-summary li");
+      await expect(summary).toHaveCount(10);
+      await page.screenshot({ path: output + "/summary-" + width + ".png" });
+      await mountPackFixture(page);
+      await expect(summary).toHaveCount(10);
+      await page
+        .getByRole("button", { name: "Replay saved result · no new cards" })
+        .click();
+      await expect(phase).toHaveAttribute("data-pack-reveal-phase", "mystery");
+      await expect(
+        page.getByText("Card 1 of 10", { exact: true }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: "Sound off" }),
+      ).toBeVisible();
+      expect(opens).toBe(1);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= innerWidth,
+        ),
+      ).toBe(true);
+      expect(errors).toEqual([]);
+    },
+  );
+}
+
+test("reduced motion, keyboard opening and duplicate input", async ({
   page,
 }) => {
+  let committedReceipt: PackReceipt | null = null;
   let opens = 0;
   const receipt = {
     ...previewReceipt,
@@ -127,61 +123,68 @@ test("single card, reduced motion, keyboard opening and duplicate taps", async (
   };
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.route("**/*", async (route) => {
-    const p = new URL(route.request().url()).pathname;
-    if (p === "/receipt") return route.fulfill({ json: null });
-    if (p === "/open-pack") {
+    const path = new URL(route.request().url()).pathname;
+    if (path === "/receipt") return route.fulfill({ json: committedReceipt });
+    if (path === "/open-pack") {
       opens++;
-      await new Promise((r) => setTimeout(r, 150));
+      await new Promise((resolve) => setTimeout(resolve, 150));
+      committedReceipt = receipt;
       return route.fulfill({ json: receipt });
     }
-    if (p.startsWith("/brand/"))
-      return route.fulfill({
-        body: await readFile("public" + p),
-        contentType: "image/webp",
-      });
-    return route.fulfill({
-      contentType: "text/html",
-      body: '<html lang="en"><title>Pack test</title><body class="fantasy-mode"><main id="fixture-root"></main></body></html>',
-    });
+    return route.fulfill(await packFixtureMarkup(path));
   });
-  await page.goto("https://fixture.invalid");
-  for (const name of [
-    "brand-theme",
-    "globals",
-    "fantasy",
-    "fantasy-play",
-    "pack-opening",
-    "mobile-cleanup",
-  ])
-    await page.addStyleTag({
-      content: await readFile(`src/app/${name}.css`, "utf8"),
-    });
-  await page.addScriptTag({
-    content: await bundleCommunityFixture("tests/fixtures/pack-opening.tsx"),
-  });
-  await page.getByRole("button", { name: "Open viewer" }).click();
+  await mountPackFixture(page);
   await page.getByRole("button", { name: "Open pack seal" }).focus();
   const confirmed = page.waitForResponse(
-    (r) => new URL(r.url()).pathname === "/open-pack",
+    (response) => new URL(response.url()).pathname === "/open-pack",
   );
   await page.keyboard.press("Enter");
   await page.keyboard.press("Enter");
   await page.getByRole("button", { name: "Close panel" }).click();
   await confirmed;
-  await page.getByRole("button", { name: "Open viewer" }).click();
-  await expect(page.getByText("1 of 1 · CORE")).toBeVisible();
-  expect(opens).toBe(1);
+  await mountPackFixture(page);
+  const phase = page.locator(revealPhase);
+  await expect(phase).toHaveAttribute("data-pack-reveal-phase", "mystery");
+  await page.getByRole("button", { name: "Reveal card" }).press("Enter");
+  await expect(phase).toHaveAttribute("data-pack-reveal-phase", "revealed");
   await expect(
-    page.getByRole("button", { name: "Skip remaining reveals" }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("button", { name: "Skip remaining reveals", exact: true }),
-  ).toBeVisible();
+    page.getByRole("button", { name: "Skip animation" }),
+  ).toHaveCount(0);
   expect(
     await page
       .locator(".pack-case")
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("none");
+  await page.getByRole("button", { name: "View pack summary" }).click();
+  await expect(page.locator(".pack-summary li")).toHaveCount(1);
+  expect(opens).toBe(1);
+});
+
+test("an existing NBA receipt keeps its original read-only reveal", async ({
+  page,
+}) => {
+  const receipt = {
+    ...previewReceipt,
+    id: "legacy-nba",
+    cards: [{ ...previewReceipt.cards[0], sport: "basketball" }],
+  };
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.route("**/*", async (route) => {
+    const path = new URL(route.request().url()).pathname;
+    if (path === "/receipt") return route.fulfill({ json: receipt });
+    if (path === "/open-pack")
+      throw new Error("Saved receipt was submitted again");
+    return route.fulfill(await packFixtureMarkup(path));
+  });
+  await mountPackFixture(page);
+  await expect(page.getByText("1 of 1 · CORE")).toBeVisible();
+  await expect(page.locator(revealPhase)).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Share My Pull" })).toHaveCount(
+    0,
+  );
+  await expect(
+    page.getByRole("button", { name: "Skip remaining reveals" }),
+  ).toBeVisible();
   await page.getByRole("button", { name: "View pack summary" }).click();
   await expect(page.locator(".pack-summary li")).toHaveCount(1);
 });

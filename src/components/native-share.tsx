@@ -2,14 +2,15 @@
 import { useState } from "react";
 import { safeSharePath } from "@/core/native-navigation";
 import { isDockedNative } from "./native-bridge";
-export async function lightNativeFeedback() {
-  if (
-    !isDockedNative() ||
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  )
-    return;
+export async function lightNativeFeedback(optIn?: boolean) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   try {
-    if (localStorage.getItem("docked-native-haptics") !== "true") return;
+    if (!isDockedNative()) {
+      if (optIn) navigator.vibrate?.(28);
+      return;
+    }
+    if (!(optIn ?? localStorage.getItem("docked-native-haptics") === "true"))
+      return;
     const { Haptics, ImpactStyle } = await import("@capacitor/haptics");
     await Haptics.impact({ style: ImpactStyle.Light });
   } catch {}
