@@ -528,7 +528,7 @@ export default function PackOpening(props: PackOpeningProps) {
                 </h3>
               )}
               <Suspense
-                fallback={<p role="status">Preparing cinematic preview…</p>}
+                fallback={<p role="status">Preparing your card…</p>}
               >
                 <PackCinemaV2
                   key={`${receipt.id}:${index}`}

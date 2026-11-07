@@ -78,6 +78,8 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
     frames = 0,
     slow = 0;
   let balanced = (navigator.hardwareConcurrency ?? 8) <= 4;
+  let economy = (navigator.hardwareConcurrency ?? 8) <= 2;
+  let lastDraw = 0;
   let renderTotal = 0;
   let overBudget = 0;
   let palette = cinemaPalettes[scene.tier];
@@ -114,12 +116,16 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
     cardWidth = surface.card.offsetWidth;
     cardHeight = surface.card.offsetHeight;
     // Canvas effects need less resolution than the crisp DOM/SVG card face.
-    dpr = Math.min(devicePixelRatio || 1, balanced ? 1 : 1.5);
+    dpr = Math.min(devicePixelRatio || 1, economy ? 0.75 : balanced ? 1 : 1.5);
     for (const canvas of [surface.back, surface.front]) {
       canvas.width = Math.max(1, Math.round(width * dpr));
       canvas.height = Math.max(1, Math.round(height * dpr));
     }
-    surface.host.dataset.vfxQuality = balanced ? "balanced" : "high";
+    surface.host.dataset.vfxQuality = economy
+      ? "economy"
+      : balanced
+        ? "balanced"
+        : "high";
     if (scene.reduced) draw(performance.now());
   }
   function light(
@@ -148,6 +154,9 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
       [2.5, 0.9, palette.main],
       [0.8, 1, palette.hot],
     ] as const) {
+      // Keep the hot core and coloured halo; omit only the widest faint pass on
+      // severely constrained devices. The crisp SVG frame is never degraded.
+      if (economy && size === 15) continue;
       c.globalAlpha = clamp(alpha * opacity);
       c.strokeStyle = colour;
       c.lineWidth = size * line;
@@ -210,7 +219,7 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
       0.65 * charge,
     );
     // Stadium floodlights: long, softly feathered cones in the dark environment.
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < (economy ? 2 : 4); i++) {
       const x = width * (0.06 + i * 0.29);
       const sway = Math.sin(t * 0.24 + i) * width * 0.1;
       back.save();
@@ -228,7 +237,7 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
       light(back, star, x, 13, 90, 14, 0.24 * charge);
     }
     // Atmospheric haze uses cached low-frequency sprites, with no per-frame blur.
-    for (let i = 0; i < (balanced ? 3 : 5); i++) {
+    for (let i = 0; i < (economy ? 1 : balanced ? 3 : 5); i++) {
       light(
         back,
         mystery ? blue : fog,
@@ -272,7 +281,10 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
       );
     // Rays radiate from behind the card, lengthening at the turn midpoint.
     if (!mystery && !settled) {
-      const rayCount = Math.min(profile.rays, balanced ? 16 : profile.rays);
+      const rayCount = Math.min(
+        profile.rays,
+        economy ? 8 : balanced ? 16 : profile.rays,
+      );
       for (let i = 0; i < rayCount; i++) {
         const ray = beams[i];
         const a = ray.angle + t * (icon ? -0.025 : 0.035);
@@ -298,7 +310,10 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
     // passes IN FRONT of the card instead of being hidden under the DOM plane.
     const rings = mystery
       ? 0
-      : Math.min(profile.rings, settled ? 2 : balanced ? 3 : profile.rings);
+      : Math.min(
+          profile.rings,
+          economy || settled ? 2 : balanced ? 3 : profile.rings,
+        );
     for (let ring = 0; ring < rings; ring++) {
       const r =
         Math.min(width * 0.455, cardWidth * 0.76) *
@@ -319,7 +334,7 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
         const ctx = isFront ? front : back;
         const path = new Path2D();
         let continuing = false;
-        const segments = balanced ? 56 : 90;
+        const segments = economy ? 40 : balanced ? 56 : 90;
         for (let n = 0; n <= segments; n++) {
           const a = (n / segments) * TAU;
           const z = Math.sin(a);
@@ -357,7 +372,10 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
       ? 18
       : settled
         ? Math.min(26, profile.particles)
-        : Math.min(profile.particles, balanced ? 85 : profile.particles);
+        : Math.min(
+            profile.particles,
+            economy ? 35 : balanced ? 85 : profile.particles,
+          );
     for (let i = 0; i < count; i++) {
       const p = particles[i];
       const loop = (p.phase + t * p.speed * 0.22) % 1;
@@ -453,15 +471,25 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
     last = now;
     if (!balanced && (slow >= 18 || overBudget >= 10)) {
       balanced = true;
+      slow = overBudget = 0;
+      resize();
+    } else if (balanced && !economy && (slow >= 24 || overBudget >= 12)) {
+      economy = true;
       resize();
     }
-    draw(now);
+    // Preserve the DOM card's full-rate 3D movement while bounding expensive
+    // atmospheric drawing to ~30fps on the fallback. No React/timeline changes.
+    if (!economy || scene.reduced || !lastDraw || now - lastDraw >= 30) {
+      draw(now);
+      lastDraw = now;
+    }
     if (!scene.reduced) frame = requestAnimationFrame(tick);
     else frame = 0;
   }
   function restart() {
     cancelAnimationFrame(frame);
     last = 0;
+    lastDraw = 0;
     if (!document.hidden && !stopped) frame = requestAnimationFrame(tick);
   }
   const observer = new ResizeObserver(resize);

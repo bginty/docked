@@ -226,29 +226,41 @@ test("V3 Share My Pull still exports the awarded Icon at 1080 × 1920", async ({
   expect(opens()).toBe(1);
 });
 
-test("V3 low-power quality keeps the card and caps the Canvas resolution", async ({
-  page,
-}) => {
-  await page.addInitScript(() =>
-    Object.defineProperty(navigator, "hardwareConcurrency", {
-      value: 2,
-      configurable: true,
-    }),
-  );
-  await mount(page, previewPackReceipt("afl", "LEGENDARY"));
-  const scene = page.locator(".cinema-v2");
-  await expect(scene).toHaveAttribute("data-vfx-quality", "balanced");
-  expect(
-    await scene.evaluate(
-      (el) => el.querySelector("canvas")!.width <= el.clientWidth + 1,
-    ),
-  ).toBe(true);
-  await page.getByRole("button", { name: "Reveal card", exact: true }).click();
-  await expect(scene).toHaveAttribute("data-pack-reveal-phase", "revealed", {
-    timeout: 6000,
+for (const [cores, quality, scale] of [
+  [2, "economy", 0.75],
+  [4, "balanced", 1],
+] as const)
+  test(`V3 ${quality} quality keeps the card and caps the Canvas resolution`, async ({
+    page,
+  }) => {
+    await page.addInitScript(
+      (cores) =>
+        Object.defineProperty(navigator, "hardwareConcurrency", {
+          value: cores,
+          configurable: true,
+        }),
+      cores,
+    );
+    await mount(page, previewPackReceipt("afl", "LEGENDARY"));
+    const scene = page.locator(".cinema-v2");
+    await expect(scene).toHaveAttribute("data-vfx-quality", quality);
+    expect(
+      await scene.evaluate(
+        (el, scale) =>
+          el.querySelector("canvas")!.width <= el.clientWidth * scale + 1,
+        scale,
+      ),
+    ).toBe(true);
+    await page
+      .getByRole("button", { name: "Reveal card", exact: true })
+      .click();
+    await expect(scene).toHaveAttribute("data-pack-reveal-phase", "revealed", {
+      timeout: 6000,
+    });
+    await expect(scene.locator(".fantasy-card")).toContainText(
+      "Casey Hartwell",
+    );
   });
-  await expect(scene.locator(".fantasy-card")).toContainText("Casey Hartwell");
-});
 
 test("V3 original layered audio renders six distinct scores without clipping", async ({
   page,

@@ -1,0 +1,70 @@
+{
+  "at": "2026-11-07T01:00:13.664Z",
+  "target": "https://docked-production-4h1p9nzpm-briant-s-projects.vercel.app",
+  "deployment": "dpl_DAydspknh9eophAcff3QxggdFywJ",
+  "commit": "7a2dd88db2789b0384b693dbd4e123f3bd8bfb58",
+  "passed": true,
+  "checks": [
+    {
+      "route": "/account-deletion",
+      "status": 200
+    },
+    {
+      "route": "/api/beta-release",
+      "status": 200
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "status": 401
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403
+    },
+    {
+      "route": "/app/login",
+      "status": 200
+    },
+    {
+      "route": "/preview/pack-opening",
+      "status": 404
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/profile/qa_billing",
+      "status": 503
+    }
+  ],
+  "sixRarityStylesServed": true,
+  "closedFlags": [
+    "REGISTRATION_ENABLED",
+    "COMPETITIONS_ENABLED",
+    "PRIZES_ENABLED",
+    "DOCKED_MULTI_SPORT_SANDBOX",
+    "DOCKED_MEMBER_GOOGLE_TEST",
+    "DOCKED_COMMERCIAL_SERVICE",
+    "DOCKED_COMMERCIAL_SURFACES",
+    "DOCKED_COMMERCIAL_CHECKOUT",
+    "DOCKED_PUBLIC_CUSTOMERS"
+  ],
+  "cronConfigurationUnchanged": true,
+  "migrations": [],
+  "customerMutations": 0,
+  "authenticatedCustomerAcceptance": false,
+  "packOpened": false
+}

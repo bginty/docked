@@ -40,6 +40,8 @@ Acceptance executed
   store lifecycle, permanent supply and card economy protections.
 - Fresh full Edge reveal browser run: 25/25 passed.
 - Chrome V3 browser run: 12/12 passed.
+- After the severe-load fallback change, Edge V3 acceptance passed 13/13,
+  including explicit two-core economy and four-core balanced rendering.
 - All six rarity stages across NFL/AFL/NRL; player identity hidden until the turn;
   correct receipt card; complete nine-card individual sequence; best-pull summary.
 - Reveal All, skip, rapid taps, interrupted/backgrounded reveals, receipt resume,
@@ -65,7 +67,13 @@ The equal-window desktop/mobile-viewport run measured 58.1–59.6 fps for Rare t
 0.41–1.46 ms average Canvas draw, and 49.4–50.9 fps under 4x CPU slowdown with automatic
 balanced quality. Core's first development-page run contained an approximately 865 ms
 stall and averaged 48.7 fps; the p95 frame interval was 16.8 ms. Raw results are retained.
-An isolated production-mode fixture measurement investigates that development startup outlier.
+The additional production-mode fixture also showed startup stalls and much lower
+throughput (16.5–18.3 fps) at 4x CPU slowdown. This prompted an economy fallback:
+0.75x backing resolution, bounded atmosphere at about 30fps, fewer decorative
+particles/rays and two rings. The DOM card, emblem and crisp frame retain their
+normal animation rate and visual detail. High quality is unchanged. Follow-up
+measurements are retained as performance-fallback.json when available; the slower
+initial results are preserved rather than presented as device acceptance.
 These are Windows browser measurements, not Samsung hardware results.
 ADB reported no connected device. No physical Android playback, speaker or native-share
 acceptance is claimed. The installed app receives web changes; no new AAB is deployed.

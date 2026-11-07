@@ -1,0 +1,23 @@
+
+Running 13 tests using 1 worker
+
+(node:576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\pack-cinema-v2.test.ts:28:7 › V3 afl: all six tiers use the confirmed card, preserve identity until turn, one issuance (32.6s)
+  ok  2 tests\browser\pack-cinema-v2.test.ts:28:7 › V3 nfl: all six tiers use the confirmed card, preserve identity until turn, one issuance (21.9s)
+  ok  3 tests\browser\pack-cinema-v2.test.ts:28:7 › V3 nrl: all six tiers use the confirmed card, preserve identity until turn, one issuance (19.6s)
+  ok  4 tests\browser\pack-cinema-v2.test.ts:88:5 › V3 is the ordinary receipt default; original V1 remains a design-only comparison (3.5s)
+  ok  5 tests\browser\pack-cinema-v2.test.ts:105:5 › V3 rapid inputs, skip, Reveal All, resume and replay do not reissue nine cards (3.1s)
+  ok  6 tests\browser\pack-cinema-v2.test.ts:143:5 › V3 reduced motion has no animation, no Canvas loop; reveal and share stay accessible at 320px (4.1s)
+  ok  7 tests\browser\pack-cinema-v2.test.ts:179:5 › V3 tolerates unavailable Canvas and backgrounding without losing the receipt (2.2s)
+  ok  8 tests\browser\pack-cinema-v2.test.ts:205:5 › V3 Share My Pull still exports the awarded Icon at 1080 × 1920 (5.1s)
+  ok  9 tests\browser\pack-cinema-v2.test.ts:233:7 › V3 economy quality keeps the card and caps the Canvas resolution (5.8s)
+  ok 10 tests\browser\pack-cinema-v2.test.ts:233:7 › V3 balanced quality keeps the card and caps the Canvas resolution (5.6s)
+AUDIO_V3 [{"tier":"CORE","duration":1.52,"peak":0.25565916299819946,"energy":32.12500827191216,"rms":0.021891752794902214},{"tier":"RARE","duration":2.12,"peak":0.3168807029724121,"energy":47.764428318816975,"rms":0.022602947009722724},{"tier":"ELITE","duration":2.8,"peak":0.24235773086547852,"energy":63.16100307875539,"rms":0.0226165417657335},{"tier":"ULTRA_RARE","duration":3.6,"peak":0.23457053303718567,"energy":72.95779701728394,"rms":0.021437064310123165},{"tier":"LEGENDARY","duration":4.6000000000000005,"peak":0.22526076436042786,"energy":88.99904319512672,"rms":0.02094567971077615},{"tier":"ICON","duration":5.450000000000001,"peak":0.21269181370735168,"energy":95.66525632577071,"rms":0.019950765954314904}]
+  ok 11 tests\browser\pack-cinema-v2.test.ts:265:5 › V3 original layered audio renders six distinct scores without clipping (1.3s)
+  ok 12 tests\browser\pack-cinema-v2.test.ts:320:5 › V3 audio follows visual phases, reuses one context per pack, and stops on mute/close (6.9s)
+  ok 13 tests\browser\pack-cinema-v2.test.ts:375:5 › V3 complete nine-card sequence keeps order, best pull and a single issuance (24.8s)
+
+  13 passed (2.4m)
