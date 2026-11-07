@@ -6,6 +6,8 @@ import {
   useEffect,
   useRef,
   useState,
+  lazy,
+  Suspense,
   type CSSProperties,
 } from "react";
 import Link from "next/link";
@@ -32,6 +34,14 @@ import {
   revealTiming,
 } from "./pack-cinematic";
 import { PackPullShare } from "./pack-pull-share";
+import {
+  cinemaV2Eligible,
+  cinemaV2Timing,
+  type CinemaTier,
+} from "./pack-cinema-v2-model";
+import { playCinemaAudio } from "./pack-cinema-audio";
+
+const PackCinemaV2 = lazy(() => import("./pack-cinema-v2"));
 
 type PackStage =
   | "sealed"
@@ -75,6 +85,8 @@ export type PackOpeningProps = {
   ownedIds: string[];
   replay?: boolean;
   preview?: boolean;
+  /** Local design preview only; never enabled for real pack callers. */
+  cinematicPrototype?: boolean;
   commercial?: boolean;
   autoOpen?: boolean;
   collectionHref?: string;
@@ -109,6 +121,13 @@ export default function PackOpening(props: PackOpeningProps) {
   const revealControl = useRef<HTMLButtonElement>(null);
   const skipControl = useRef<HTMLButtonElement>(null);
   const card = receipt?.cards[index];
+  const prototype = cinemaV2Eligible(
+    props.preview,
+    props.cinematicPrototype,
+    card?.sport,
+    card?.tier,
+  );
+  const cinemaSound = useRef<(() => void) | null>(null);
   const motionOff = reduced || simple;
   const cinematic = supportsCinematicReveal(card);
   const inMotion = stage === "rarity" || stage === "flipping";
@@ -189,7 +208,9 @@ export default function PackOpening(props: PackOpeningProps) {
       return;
     }
     const next = stage === "rarity" ? "flipping" : "revealed";
-    const timing = revealTiming(card.tier);
+    const timing = prototype
+      ? cinemaV2Timing(card.tier)
+      : revealTiming(card.tier);
     const duration = stage === "rarity" ? timing.rarity : timing.flip;
     // Animation events drive the normal path. Recover if WebView drops one.
     const timer = setTimeout(() => {
@@ -205,7 +226,17 @@ export default function PackOpening(props: PackOpeningProps) {
       document.removeEventListener("visibilitychange", hidden);
       window.removeEventListener("pagehide", finish);
     };
-  }, [stage, card, inMotion, motionOff]);
+  }, [stage, card, inMotion, motionOff, prototype]);
+  useEffect(() => {
+    if (muted || motionOff || (!inMotion && stage !== "revealed"))
+      cinemaSound.current?.();
+  }, [muted, motionOff, inMotion, stage]);
+  useEffect(
+    () => () => {
+      cinemaSound.current?.();
+    },
+    [],
+  );
   useEffect(() => {
     advancing.current = false;
     if (stage === "revealed" || stage === "summary")
@@ -220,8 +251,8 @@ export default function PackOpening(props: PackOpeningProps) {
       swipe.current = null;
     }
   }, [reduced, simple]);
-  function feedback(legacy = false) {
-    if (!muted && !document.hidden) packSound();
+  function feedback(legacy = false, sound = true) {
+    if (sound && !muted && !document.hidden) packSound();
     if ((haptics || legacy) && !motionOff && !document.hidden) {
       void import("./native-share")
         .then((m) => m.lightNativeFeedback(legacy ? undefined : true))
@@ -265,7 +296,11 @@ export default function PackOpening(props: PackOpeningProps) {
   function beginReveal() {
     if (stage !== "mystery" || !card || advancing.current) return;
     advancing.current = true;
-    feedback();
+    feedback(false, !prototype);
+    if (prototype && !muted && !motionOff && !document.hidden) {
+      cinemaSound.current?.();
+      cinemaSound.current = playCinemaAudio(card.tier as CinemaTier);
+    }
     setStage(motionOff ? "revealed" : "rarity");
   }
   function advance(all = false) {
@@ -291,7 +326,7 @@ export default function PackOpening(props: PackOpeningProps) {
   const cinematicSummary = supportsCinematicReveal(receipt?.cards[0]);
   return (
     <FantasySheet
-      className={`pack-sheet pack-viewport pack-stage-${stage}`}
+      className={`pack-sheet pack-viewport pack-stage-${stage}${prototype ? " pack-cinema-v2-sheet" : ""}`}
       title={props.replay ? "Replay pack result" : props.name}
       onClose={props.onClose}
     >
@@ -474,7 +509,87 @@ export default function PackOpening(props: PackOpeningProps) {
             </p>
           </>
         )}
-        {(stage === "mystery" || inMotion) && receipt && card && (
+        {prototype &&
+          (stage === "mystery" || inMotion || stage === "revealed") &&
+          receipt &&
+          card && (
+            <>
+              <p className="pack-count" aria-live="polite">
+                Card {index + 1} of {receipt.cards.length}
+                {stage !== "mystery" && <> · {rarityRule(card.tier).label}</>}
+              </p>
+              {stage === "revealed" && (
+                <h3 className="sr-only" ref={title} tabIndex={-1}>
+                  {card.name}
+                </h3>
+              )}
+              <Suspense
+                fallback={<p role="status">Preparing cinematic preview…</p>}
+              >
+                <PackCinemaV2
+                  key={`${receipt.id}:${index}`}
+                  card={card}
+                  phase={
+                    stage === "mystery"
+                      ? "mystery"
+                      : stage === "rarity"
+                        ? "rarity"
+                        : stage === "flipping"
+                          ? "flipping"
+                          : "revealed"
+                  }
+                  reduced={motionOff}
+                  revealRef={revealControl}
+                  onReveal={beginReveal}
+                  onInspect={() => props.onViewCard(card)}
+                  onPhaseEnd={() =>
+                    setStage((current) =>
+                      current === stage
+                        ? stage === "rarity"
+                          ? "flipping"
+                          : "revealed"
+                        : current,
+                    )
+                  }
+                />
+              </Suspense>
+              {inMotion ? (
+                <button
+                  ref={skipControl}
+                  type="button"
+                  className="pack-control secondary pack-cinematic-skip"
+                  onClick={() => {
+                    cinemaSound.current?.();
+                    setStage("revealed");
+                  }}
+                >
+                  Skip animation
+                </button>
+              ) : stage === "revealed" ? (
+                <div className="pack-reveal-actions">
+                  <PackPullShare card={card} prominent />
+                  <button
+                    className="pack-next pack-control pack-primary"
+                    type="button"
+                    onClick={() => advance()}
+                    aria-label={
+                      index + 1 === receipt.cards.length
+                        ? "View pack summary"
+                        : "Reveal next card"
+                    }
+                  >
+                    {index + 1 === receipt.cards.length
+                      ? "View all cards"
+                      : "Reveal Next"}{" "}
+                    →
+                  </button>
+                </div>
+              ) : (
+                <p className="pack-inspect-hint">Tap the card to reveal it</p>
+              )}
+            </>
+          )}
+        {!prototype && (stage === "mystery" || inMotion) && receipt && card && (
           <>
             <p className="pack-count" aria-live="polite">
               Card {index + 1} of {receipt.cards.length}
@@ -532,180 +647,186 @@ export default function PackOpening(props: PackOpeningProps) {
             )}
           </>
         )}
-        {(stage === "opening" || stage === "revealed") && receipt && card && (
-          <>
-            <h3 className="sr-only" ref={title} tabIndex={-1}>
-              {card.name}
-            </h3>
-            <p className="pack-count" aria-live="polite">
-              {cinematic ? "Card " : ""}
-              {index + 1} of {receipt.cards.length} ·{" "}
-              {rarityRule(card.tier).label.toUpperCase()}
-            </p>
-            <div
-              key={`${receipt.id}:${index}`}
-              style={rarityStyle(card.tier)}
-              data-reveal-index={index}
-              data-pack-reveal-phase={cinematic ? "revealed" : undefined}
-              data-tier={cinematic ? card.tier : undefined}
-              className={`pack-stage pack-card-stage tier-${card.tier.toLowerCase()} ${cinematic ? "pack-cinematic" : ""} ${stage === "opening" ? "pack-rising" : ""}`}
-            >
-              {cinematic && headlinePull(card) && (
-                <div className="pack-cinematic-afterglow" aria-hidden="true" />
-              )}
-              {stage === "opening" && (
-                <>
-                  <div className="pack-blue-light" aria-hidden="true" />
-                  {index === 0 && !replaying && (
-                    <div className="pack-opening-envelope" aria-hidden="true">
-                      <span className="pack-torn-seal" />
-                      <PackArtwork
-                        core={props.packType === "WEEKLY_CORE"}
-                        premium={props.packType === "PREMIUM"}
-                        name={props.name}
-                        sport={
-                          props.sport ??
-                          new URLSearchParams(
-                            props.collectionHref?.split("?")[1],
-                          ).get("sport") ??
-                          undefined
-                        }
-                        count={props.cardCount ?? receipt.cards.length}
-                      />
-                    </div>
-                  )}
-                </>
-              )}
-              {card.tier === "ICON" && stage === "opening" && !motionOff && (
-                <IconCelebration />
-              )}
+        {!prototype &&
+          (stage === "opening" || stage === "revealed") &&
+          receipt &&
+          card && (
+            <>
+              <h3 className="sr-only" ref={title} tabIndex={-1}>
+                {card.name}
+              </h3>
+              <p className="pack-count" aria-live="polite">
+                {cinematic ? "Card " : ""}
+                {index + 1} of {receipt.cards.length} ·{" "}
+                {rarityRule(card.tier).label.toUpperCase()}
+              </p>
               <div
-                ref={arrival}
-                className={`pack-arrival ${motionOff || cinematic ? "" : "pack-turn"}`}
-                onAnimationEnd={(e) => {
-                  if (
-                    stage === "opening" &&
-                    e.target === e.currentTarget &&
-                    e.animationName === "docked-single-reveal"
-                  )
-                    setStage("revealed");
-                }}
+                key={`${receipt.id}:${index}`}
+                style={rarityStyle(card.tier)}
+                data-reveal-index={index}
+                data-pack-reveal-phase={cinematic ? "revealed" : undefined}
+                data-tier={cinematic ? card.tier : undefined}
+                className={`pack-stage pack-card-stage tier-${card.tier.toLowerCase()} ${cinematic ? "pack-cinematic" : ""} ${stage === "opening" ? "pack-rising" : ""}`}
               >
-                <div className="pack-card-back" aria-hidden="true" />
+                {cinematic && headlinePull(card) && (
+                  <div
+                    className="pack-cinematic-afterglow"
+                    aria-hidden="true"
+                  />
+                )}
+                {stage === "opening" && (
+                  <>
+                    <div className="pack-blue-light" aria-hidden="true" />
+                    {index === 0 && !replaying && (
+                      <div className="pack-opening-envelope" aria-hidden="true">
+                        <span className="pack-torn-seal" />
+                        <PackArtwork
+                          core={props.packType === "WEEKLY_CORE"}
+                          premium={props.packType === "PREMIUM"}
+                          name={props.name}
+                          sport={
+                            props.sport ??
+                            new URLSearchParams(
+                              props.collectionHref?.split("?")[1],
+                            ).get("sport") ??
+                            undefined
+                          }
+                          count={props.cardCount ?? receipt.cards.length}
+                        />
+                      </div>
+                    )}
+                  </>
+                )}
+                {card.tier === "ICON" && stage === "opening" && !motionOff && (
+                  <IconCelebration />
+                )}
                 <div
-                  className="pack-case"
-                  tabIndex={0}
-                  role="group"
-                  aria-label={`Inspect ${card.name}. Drag or use arrow keys to tilt; Escape resets tilt.`}
-                  style={
-                    {
-                      "--tilt-x": `${tilt.x}deg`,
-                      "--tilt-y": `${tilt.y}deg`,
-                    } as CSSProperties
-                  }
-                  onPointerDown={(e) => {
-                    if (!motionOff && stage === "revealed") {
-                      e.currentTarget.setPointerCapture(e.pointerId);
-                      swipe.current = { x: e.clientX, y: e.clientY };
-                    }
-                  }}
-                  onPointerMove={(e) => {
-                    const p = swipe.current;
+                  ref={arrival}
+                  className={`pack-arrival ${motionOff || cinematic ? "" : "pack-turn"}`}
+                  onAnimationEnd={(e) => {
                     if (
-                      p &&
-                      e.currentTarget.hasPointerCapture(e.pointerId) &&
-                      !motionOff &&
-                      stage === "revealed"
+                      stage === "opening" &&
+                      e.target === e.currentTarget &&
+                      e.animationName === "docked-single-reveal"
                     )
-                      setTilt({
-                        x: Math.max(-12, Math.min(12, (p.y - e.clientY) / 7)),
-                        y: Math.max(-16, Math.min(16, (e.clientX - p.x) / 7)),
-                      });
-                  }}
-                  onPointerUp={() => {
-                    swipe.current = null;
-                  }}
-                  onPointerCancel={() => {
-                    swipe.current = null;
-                    setTilt({ x: 0, y: 0 });
-                  }}
-                  onKeyDown={(e) => {
-                    if (e.key === "Escape") {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setTilt({ x: 0, y: 0 });
-                    }
-                    if (
-                      !motionOff &&
-                      stage === "revealed" &&
-                      [
-                        "ArrowLeft",
-                        "ArrowRight",
-                        "ArrowUp",
-                        "ArrowDown",
-                      ].includes(e.key)
-                    ) {
-                      e.preventDefault();
-                      setTilt((t) => ({
-                        x: Math.max(
-                          -12,
-                          Math.min(
-                            12,
-                            t.x +
-                              (e.key === "ArrowUp"
-                                ? -3
-                                : e.key === "ArrowDown"
-                                  ? 3
-                                  : 0),
-                          ),
-                        ),
-                        y: Math.max(
-                          -16,
-                          Math.min(
-                            16,
-                            t.y +
-                              (e.key === "ArrowLeft"
-                                ? -3
-                                : e.key === "ArrowRight"
-                                  ? 3
-                                  : 0),
-                          ),
-                        ),
-                      }));
-                    }
+                      setStage("revealed");
                   }}
                 >
-                  <FantasyCardArtwork card={card} faceOnly variant="reveal" />
+                  <div className="pack-card-back" aria-hidden="true" />
+                  <div
+                    className="pack-case"
+                    tabIndex={0}
+                    role="group"
+                    aria-label={`Inspect ${card.name}. Drag or use arrow keys to tilt; Escape resets tilt.`}
+                    style={
+                      {
+                        "--tilt-x": `${tilt.x}deg`,
+                        "--tilt-y": `${tilt.y}deg`,
+                      } as CSSProperties
+                    }
+                    onPointerDown={(e) => {
+                      if (!motionOff && stage === "revealed") {
+                        e.currentTarget.setPointerCapture(e.pointerId);
+                        swipe.current = { x: e.clientX, y: e.clientY };
+                      }
+                    }}
+                    onPointerMove={(e) => {
+                      const p = swipe.current;
+                      if (
+                        p &&
+                        e.currentTarget.hasPointerCapture(e.pointerId) &&
+                        !motionOff &&
+                        stage === "revealed"
+                      )
+                        setTilt({
+                          x: Math.max(-12, Math.min(12, (p.y - e.clientY) / 7)),
+                          y: Math.max(-16, Math.min(16, (e.clientX - p.x) / 7)),
+                        });
+                    }}
+                    onPointerUp={() => {
+                      swipe.current = null;
+                    }}
+                    onPointerCancel={() => {
+                      swipe.current = null;
+                      setTilt({ x: 0, y: 0 });
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === "Escape") {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setTilt({ x: 0, y: 0 });
+                      }
+                      if (
+                        !motionOff &&
+                        stage === "revealed" &&
+                        [
+                          "ArrowLeft",
+                          "ArrowRight",
+                          "ArrowUp",
+                          "ArrowDown",
+                        ].includes(e.key)
+                      ) {
+                        e.preventDefault();
+                        setTilt((t) => ({
+                          x: Math.max(
+                            -12,
+                            Math.min(
+                              12,
+                              t.x +
+                                (e.key === "ArrowUp"
+                                  ? -3
+                                  : e.key === "ArrowDown"
+                                    ? 3
+                                    : 0),
+                            ),
+                          ),
+                          y: Math.max(
+                            -16,
+                            Math.min(
+                              16,
+                              t.y +
+                                (e.key === "ArrowLeft"
+                                  ? -3
+                                  : e.key === "ArrowRight"
+                                    ? 3
+                                    : 0),
+                            ),
+                          ),
+                        }));
+                      }
+                    }}
+                  >
+                    <FantasyCardArtwork card={card} faceOnly variant="reveal" />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={cinematic ? "pack-reveal-actions" : undefined}>
-              {cinematic && (
-                <PackPullShare card={card} prominent={headlinePull(card)} />
-              )}
-              <button
-                className="pack-next pack-control pack-primary"
-                type="button"
-                aria-label={
-                  index + 1 === receipt.cards.length
-                    ? "View pack summary"
-                    : "Reveal next card"
-                }
-                disabled={stage === "opening"}
-                onClick={() => advance()}
-              >
-                {index + 1 === receipt.cards.length
-                  ? "View all cards"
-                  : "Reveal Next"}{" "}
-                →
-              </button>
-            </div>
-            <p className="pack-inspect-hint">
-              {motionOff ? "Reduced movement" : "Drag to tilt"} ·{" "}
-              {props.commercial ? "No cash redemption" : "No cash value"}
-            </p>
-          </>
-        )}
+              <div className={cinematic ? "pack-reveal-actions" : undefined}>
+                {cinematic && (
+                  <PackPullShare card={card} prominent={headlinePull(card)} />
+                )}
+                <button
+                  className="pack-next pack-control pack-primary"
+                  type="button"
+                  aria-label={
+                    index + 1 === receipt.cards.length
+                      ? "View pack summary"
+                      : "Reveal next card"
+                  }
+                  disabled={stage === "opening"}
+                  onClick={() => advance()}
+                >
+                  {index + 1 === receipt.cards.length
+                    ? "View all cards"
+                    : "Reveal Next"}{" "}
+                  →
+                </button>
+              </div>
+              <p className="pack-inspect-hint">
+                {motionOff ? "Reduced movement" : "Drag to tilt"} ·{" "}
+                {props.commercial ? "No cash redemption" : "No cash value"}
+              </p>
+            </>
+          )}
         {stage === "summary" && receipt && (
           <>
             <h3 ref={title} tabIndex={-1}>

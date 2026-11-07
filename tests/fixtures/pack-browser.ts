@@ -24,6 +24,7 @@ const styles = [
   "pack-shop",
   "premium-ux",
   "member-surfaces",
+  "pack-cinema-v2",
 ];
 
 const mimeTypes: Record<string, string> = {
@@ -58,7 +59,7 @@ export async function packFixtureMarkup(path: string) {
 
 let assets: Promise<[string, string[]]> | undefined;
 
-export async function mountPackFixture(page: Page) {
+export async function mountPackFixture(page: Page, prototype = false) {
   assets ??= Promise.all([
     bundleCommunityFixture("tests/fixtures/pack-opening.tsx"),
     Promise.all(
@@ -66,7 +67,7 @@ export async function mountPackFixture(page: Page) {
     ),
   ]);
   const [script, css] = await assets;
-  await page.goto(packFixtureOrigin + "/pack");
+  await page.goto(packFixtureOrigin + "/pack" + (prototype ? "?cinema=v2" : ""));
   await page.addStyleTag({ content: css.join("\n") });
   await page.addScriptTag({ content: script });
   await page.getByRole("button", { name: "Open viewer" }).click();

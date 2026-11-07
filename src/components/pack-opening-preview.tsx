@@ -145,10 +145,12 @@ export function PackOpeningPreview() {
   const [open, setOpen] = useState(false);
   const [receipt, setReceipt] = useState<PackReceipt | null>(null);
   const [detail, setDetail] = useState<AwardedCard | null>(null);
+  const [prototype, setPrototype] = useState(false);
   const close = useCallback(() => setOpen(false), []);
   const closeDetail = useCallback(() => setDetail(null), []);
 
-  function start(tier?: Rarity) {
+  function start(tier?: Rarity, v2 = false) {
+    setPrototype(v2);
     setSample(previewPackReceipt(sport, tier));
     setReceipt(null);
     setOpen(true);
@@ -167,7 +169,7 @@ export function PackOpeningPreview() {
         alt="Docked"
       />
       <p className="eyebrow">PACK OPENING · DESIGN PREVIEW</p>
-      <h1>Your collection, revealed.</h1>
+      <h1>A bigger moment.</h1>
       <p>
         Explore a nine-card pack or try a single rarity. This preview uses
         sample players and does not award cards or charge credits.
@@ -190,6 +192,34 @@ export function PackOpeningPreview() {
           ))}
         </select>
       </label>
+      <div className="cinema-prototype-intro">
+        <p className="eyebrow">CINEMATIC V2 · OWNER REVIEW</p>
+        <h2>Legendary. Then extraordinary.</h2>
+        <p>
+          Layered light, orbiting energy and a dimensional reveal. Legendary and
+          Icon are the two new prototypes. Sound is optional. The other four
+          rarities retain the existing reveal.
+        </p>
+        <div className="actions">
+          <button
+            type="button"
+            className="button"
+            onClick={() => start("LEGENDARY", true)}
+          >
+            V2 Legendary
+          </button>
+          <button
+            type="button"
+            className="button"
+            onClick={() => start("ICON", true)}
+          >
+            V2 Icon
+          </button>
+          <button type="button" onClick={() => start(undefined, true)}>
+            V2 nine-card preview
+          </button>
+        </div>
+      </div>
       <div className="actions">
         <button className="button" type="button" onClick={() => start()}>
           Preview nine-card pack
@@ -200,7 +230,7 @@ export function PackOpeningPreview() {
           </button>
         )}
       </div>
-      <h2>Single-card reveals</h2>
+      <h2>Original V1 · compare</h2>
       <div className="actions" role="group" aria-label="Single-card rarity">
         {rarities.map((tier) => (
           <button
@@ -225,6 +255,7 @@ export function PackOpeningPreview() {
               packType="PREMIUM"
               receipt={receipt}
               preview
+              cinematicPrototype={prototype}
               teamHref={null}
               collectionHref={"/fantasy/cards?sport=" + sample.cards[0].sport}
               ownedIds={[]}

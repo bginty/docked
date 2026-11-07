@@ -32,6 +32,7 @@ import "./startup-loading.css";
 import { StartupBoundary } from "@/components/startup-loading";
 import "./pack-shop.css";
 import "./pack-cinematic.css";
+import "./pack-cinema-v2.css";
 import "./premium-ux.css";
 import "./multi-sport.css";
 import "./owned-collection.css";
