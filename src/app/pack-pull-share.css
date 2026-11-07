@@ -15,6 +15,8 @@
 dialog.fantasy-sheet.pack-pull-preview[open] {
   position: fixed;
   inset: 0;
+  /* This is a full-screen preview, not the desktop sheet's centred panel. */
+  transform: none;
   margin: 0;
   width: 100%;
   max-width: none;

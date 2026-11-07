@@ -449,3 +449,33 @@ for (const sport of ["nfl", "afl", "nrl"] as const) {
     ).toBe(true);
   });
 }
+
+test("share preview fills the viewport without the desktop sheet translation", async ({
+  page,
+}) => {
+  const receipt = previewPackReceipt("afl", "LEGENDARY");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await mount(page, receipt);
+  await page.getByRole("button", { name: "Reveal All", exact: true }).click();
+  await page
+    .getByRole("button", {
+      name: `Share ${receipt.cards[0].name}`,
+      exact: true,
+    })
+    .click();
+  const share = page.getByRole("dialog", { name: "Share your pull" });
+  for (const width of [360, 768, 1536]) {
+    await page.setViewportSize({ width, height: 800 });
+    await expect(
+      share.getByRole("button", { name: "Save Image" }),
+    ).toBeEnabled();
+    const box = await share.boundingBox();
+    expect(box?.x).toBeCloseTo(0, 0);
+    expect(box?.y).toBeCloseTo(0, 0);
+    expect(box?.width).toBeCloseTo(width, 0);
+    await expect(
+      share.getByRole("button", { name: "Close panel" }),
+    ).toBeInViewport();
+    await expect(share.getByRole("img")).toBeInViewport();
+  }
+});

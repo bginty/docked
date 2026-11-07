@@ -8,11 +8,11 @@ import { createHash } from "node:crypto";
 import { assertHostedBeta } from "../src/core/hosted-beta.mjs";
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
   team = "team_tf6xweKKyVCj9bTppUKttJ4l";
-const baseline = "6f8f713a7b38795ad78d3a74568d972666dcbdd7",
-  baselineId = "dpl_95gY31TBffUW7EsSQ2vkyFmSLQYD";
+const baseline = "c66173a62347d385c0fb051378bac021121a9e2f",
+  baselineId = "dpl_DeP6YRZEZU2EtcW5FRFePtgUqJ3p";
 const main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
 const approved =
-  "C:/Users/61412/.codex/worktrees/cinematic-reveal-v3/Docked.com.au/private-data/cinema-v3-release/" +
+  "C:/Users/61412/.codex/worktrees/purchase-performance-sharing/Docked.com.au/private-data/purchase-performance-release/" +
   baseline;
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";
