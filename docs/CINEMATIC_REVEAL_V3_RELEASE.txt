@@ -1,5 +1,11 @@
 DOCKED CINEMATIC REVEAL V3 — RELEASE RECORD
 
+LIVE RELEASE: 6f8f713a7b38795ad78d3a74568d972666dcbdd7
+Deployment: dpl_95gY31TBffUW7EsSQ2vkyFmSLQYD
+URL: https://docked.com.au
+Verified live: 2026-11-07 01:10:52 UTC. Eleven hosted checks passed after promotion.
+Vercel cloud production build and TypeScript passed; alias points to this deployment.
+
 Scope
 The production candidate starts from live 7319dddd1227b294fb38542cdee2044e01c89bd4.
 Only the reveal/share implementation from afa144cd and approved V2 e5dec994
@@ -42,6 +48,8 @@ Acceptance executed
 - Chrome V3 browser run: 12/12 passed.
 - After the severe-load fallback change, Edge V3 acceptance passed 13/13,
   including explicit two-core economy and four-core balanced rendering.
+- Chrome additionally passed both updated fallback checks (2/2). The final whole
+  repository TypeScript check passed after the fallback change.
 - All six rarity stages across NFL/AFL/NRL; player identity hidden until the turn;
   correct receipt card; complete nine-card individual sequence; best-pull summary.
 - Reveal All, skip, rapid taps, interrupted/backgrounded reveals, receipt resume,
@@ -72,8 +80,14 @@ throughput (16.5–18.3 fps) at 4x CPU slowdown. This prompted an economy fallba
 0.75x backing resolution, bounded atmosphere at about 30fps, fewer decorative
 particles/rays and two rings. The DOM card, emblem and crisp frame retain their
 normal animation rate and visual detail. High quality is unchanged. Follow-up
-measurements are retained as performance-fallback.json when available; the slower
+measurements are retained as performance-fallback.json; the slower
 initial results are preserved rather than presented as device acceptance.
+The final isolated run measured 48.9–59 fps for Rare through Icon, with Core at
+38.2 fps including a 1.33-second cold startup stall. At 4x CPU slowdown the economy
+fallback activated, but measured throughput was still 14.1–21.2 fps. The fallback
+bounds effect work; these measurements do NOT establish a 60fps performance pass.
+The differing Next-page/fixture runs and cold stalls require confirmation on physical
+hardware. No further visual reduction of approved high-quality hero effects was made.
 These are Windows browser measurements, not Samsung hardware results.
 ADB reported no connected device. No physical Android playback, speaker or native-share
 acceptance is claimed. The installed app receives web changes; no new AAB is deployed.
@@ -85,6 +99,10 @@ No prices, odds, supply, balances, receipts, ownership, registration, competitio
 marketplace economics, scoring, sport visibility or access grants are changed.
 Barry's account was checked read-only: one matching account, confirmed email, current
 beta membership and accepted admission. This is eligibility evidence, not a login as Barry.
+The shared normal member renderer enables V3 for all supported receipts, with no new
+owner-only flag. Signed-in live replay was not observed: the owner enabled Local browser
+use and the setting visibly showed On, but the current CUA session continued to report
+browser access disabled even after a fresh connection. No browser security bypass was used.
 NBA retains the original read-only reveal and remains hidden under the unchanged server rules.
 Deployment copies the exact current closed runtime; only the source commit identifier changes.
 The design-preview route remains closed in Production. No test packs are issued on live data.
@@ -99,5 +117,6 @@ Release procedure
 6. If a critical regression occurs, restore deployment dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ.
    No database rollback is needed because this release has no data/schema mutations.
 
-The staged/live JSON records under docs/qa/cinema-v3-release are the authority for
-actual deployment status and SHA. This document alone does not assert deployment success.
+The staged/live JSON records under docs/qa/cinema-v3-release contain the deployment
+identity, closed gates, unchanged schedule, hosted six-rarity CSS checks and HTTP results.
+No pack was opened, wallet changed or card issued during Production verification.

@@ -1,5 +1,5 @@
 {
-  "commit": "7a2dd88db2789b0384b693dbd4e123f3bd8bfb58",
+  "commit": "6f8f713a7b38795ad78d3a74568d972666dcbdd7",
   "branch": "codex/cinematic-reveal-v3",
   "baseline": "7319dddd1227b294fb38542cdee2044e01c89bd4",
   "baselineId": "dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ",
@@ -13,13 +13,20 @@
     "docs/CINEMATIC_REVEAL_V2_OWNER_REVIEW_20261107.md",
     "docs/CINEMATIC_REVEAL_V3_RELEASE.txt",
     "docs/qa/cinema-v3-release/audio-samples.txt",
+    "docs/qa/cinema-v3-release/candidate-verified.json",
     "docs/qa/cinema-v3-release/chrome-browser.txt",
     "docs/qa/cinema-v3-release/dependency-audit.json",
     "docs/qa/cinema-v3-release/edge-browser.txt",
+    "docs/qa/cinema-v3-release/fallback-browser.txt",
+    "docs/qa/cinema-v3-release/first-candidate-staged.json",
+    "docs/qa/cinema-v3-release/first-candidate-verified.json",
     "docs/qa/cinema-v3-release/local-build.txt",
     "docs/qa/cinema-v3-release/local-next-visual.json",
     "docs/qa/cinema-v3-release/performance-dev.json",
+    "docs/qa/cinema-v3-release/performance-fixture.json",
     "docs/qa/cinema-v3-release/platform.txt",
+    "docs/qa/cinema-v3-release/prepared.json",
+    "docs/qa/cinema-v3-release/staged.json",
     "playwright.pack.config.ts",
     "scripts/cinema-v2-android-check.ts",
     "scripts/cinema-v2-final-capture.ts",
@@ -76,5 +83,5 @@
   ],
   "customerMutations": 0,
   "migrations": [],
-  "runtimeDigest": "58d13a5919e13470e2ba84fd678106400427ec12ab928b6a1b30d51065e88b3f"
+  "runtimeDigest": "19987c35ae490cacccd1ffb2d5a33ccc944f80cf45cc5eaefbe8c5d3b8f0b938"
 }
