@@ -39,6 +39,7 @@ import "./owned-collection.css";
 import "./marketplace.css";
 import "./owner-command.css";
 import "./member-surfaces.css";
+import "./foil-pack-artwork.css";
 import { SportProvider } from "@/components/sport-context";
 import { fantasyTagline } from "@/core/fantasy";
 import { fantasyAssets } from "@/brand/fantasy-assets";

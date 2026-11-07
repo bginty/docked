@@ -1,6 +1,15 @@
 import { fantasyAssets } from "@/brand/fantasy-assets";
+import { finishedFoilPack, type FoilPackProps } from "@/core/foil-pack-artwork";
+import { FoilPackArtwork } from "./foil-pack-artwork";
+
+/** Only approved exact variants use baked foil artwork; all others retain their labels. */
+export function PackArtwork(props: FoilPackProps) {
+  if (finishedFoilPack(props)) return <FoilPackArtwork {...props} />;
+  return <ClassicPackArtwork {...props} />;
+}
+
 /** Original logo, live labels and lightweight foil styling; no flattened mockup. */
-export function PackArtwork({
+function ClassicPackArtwork({
   name,
   premium = false,
   compact = false,

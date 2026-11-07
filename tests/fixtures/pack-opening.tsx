@@ -4,6 +4,7 @@ import PackOpening from "../../src/components/pack-opening";
 import { CollectibleViewer } from "../../src/components/collectible-viewer";
 import type { AwardedCard, PackReceipt } from "../../src/core/pack-opening";
 function Fixture() {
+  const query = new URLSearchParams(location.search);
   const [receipt, setReceipt] = useState<PackReceipt | null>(null),
     [open, setOpen] = useState(false),
     [ready, setReady] = useState(false);
@@ -33,9 +34,12 @@ function Fixture() {
             new URLSearchParams(location.search).get("cinema") !== "v3"
           }
           userId="isolated-test"
-          name={receipt?.name ?? "Docked pack"}
-          sport={receipt?.cards[0]?.sport}
-          cardCount={receipt?.cards.length}
+          name={receipt?.name ?? query.get("name") ?? "Docked pack"}
+          sport={receipt?.cards[0]?.sport ?? query.get("sport") ?? undefined}
+          cardCount={
+            receipt?.cards.length ?? (Number(query.get("count")) || undefined)
+          }
+          packType={query.get("type") === "PREMIUM" ? "PREMIUM" : "STANDARD"}
           receipt={receipt}
           onClose={close}
           ownedIds={receipt?.cards.map((c) => c.id) ?? []}

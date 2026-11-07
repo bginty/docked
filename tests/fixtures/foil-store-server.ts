@@ -14,18 +14,17 @@ export async function startFoilStore(port = 0) {
   styles.splice(styles.indexOf("pack-opening"), 0, "test-wallet");
   const artwork = resolve("src/components/pack-artwork.tsx");
   const original = await readFile(artwork, "utf8");
-  // Only the local fixture substitutes artwork. The production file is unchanged.
-  const replacement = `import { FoilPackArtwork } from "./foil-pack-artwork";
-    import { finishedFoilPack } from "@/core/foil-pack-artwork";
-    ${original.replace("export function PackArtwork", "function ClassicPackArtwork")}
-    export function PackArtwork(props: Parameters<typeof ClassicPackArtwork>[0]) {
-      return finishedFoilPack(props) ? <FoilPackArtwork {...props} /> : <ClassicPackArtwork {...props} />;
-    }`;
+  // Normal acceptance bundles the actual production renderer unchanged.
+  // The optional before-comparison disables only the exact-variant branch.
+  const classic = original.replace(
+    "if (finishedFoilPack(props)) return <FoilPackArtwork {...props} />;",
+    "",
+  );
   const [script, classicScript, css, reviewCss] = await Promise.all([
-    bundleCommunityFixture("tests/fixtures/foil-store.tsx", {
-      [artwork]: replacement,
-    }),
     bundleCommunityFixture("tests/fixtures/foil-store.tsx"),
+    bundleCommunityFixture("tests/fixtures/foil-store.tsx", {
+      [artwork]: classic,
+    }),
     Promise.all(styles.map((s) => readFile(`src/app/${s}.css`, "utf8"))),
     readFile("src/app/foil-pack-review.css", "utf8"),
   ]);

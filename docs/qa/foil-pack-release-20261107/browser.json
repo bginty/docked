@@ -1,0 +1,1089 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.foil-release.config.ts"
+    ],
+    "configFile": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\playwright.foil-release.config.ts",
+    "rootDir": "C:/Users/61412/.codex/worktrees/foil-pack-prototype/Docked.com.au/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/61412/.codex/worktrees/foil-pack-prototype/Docked.com.au/test-results/foil-release",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/61412/.codex/worktrees/foil-pack-prototype/Docked.com.au/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "foil-pack-review.test.ts",
+          "foil-pack-release.test.ts",
+          "purchase-recovery.test.ts",
+          "nine-card-reveal.test.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "docs/qa/foil-pack-release-20261107/browser.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "foil-pack-release.test.ts",
+      "file": "foil-pack-release.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "afl real sealed pack, one opening and nine-card summary at 320",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6486,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:02:21.149Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-release-afl-real-4cdb4-nd-nine-card-summary-at-320\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "235d495507d5d81930fe-470e31472b01af3f0125",
+          "file": "foil-pack-release.test.ts",
+          "line": 12,
+          "column": 9
+        },
+        {
+          "title": "nrl real sealed pack, one opening and nine-card summary at 320",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2265,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:02:28.587Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-release-nrl-real-4554a-nd-nine-card-summary-at-320\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "235d495507d5d81930fe-f4dcf421a4e5abd73f2a",
+          "file": "foil-pack-release.test.ts",
+          "line": 12,
+          "column": 9
+        },
+        {
+          "title": "afl real sealed pack, one opening and nine-card summary at 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2827,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:02:30.896Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-release-afl-real-8ef25-nd-nine-card-summary-at-390\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "235d495507d5d81930fe-52e7fd98b44233910124",
+          "file": "foil-pack-release.test.ts",
+          "line": 12,
+          "column": 9
+        },
+        {
+          "title": "nrl real sealed pack, one opening and nine-card summary at 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3207,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:02:33.761Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-release-nrl-real-95b8a-nd-nine-card-summary-at-390\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "235d495507d5d81930fe-0d16eda13c4e9308e864",
+          "file": "foil-pack-release.test.ts",
+          "line": 12,
+          "column": 9
+        },
+        {
+          "title": "afl real sealed pack, one opening and nine-card summary at 1366",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2565,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:02:37.028Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-release-afl-real-f4d75-d-nine-card-summary-at-1366\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "235d495507d5d81930fe-601be3ecfb3eaa6042f8",
+          "file": "foil-pack-release.test.ts",
+          "line": 12,
+          "column": 9
+        },
+        {
+          "title": "nrl real sealed pack, one opening and nine-card summary at 1366",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3128,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:02:39.644Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-release-nrl-real-e2602-d-nine-card-summary-at-1366\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "235d495507d5d81930fe-1e6c0a7134ea89ce1736",
+          "file": "foil-pack-release.test.ts",
+          "line": 12,
+          "column": 9
+        }
+      ]
+    },
+    {
+      "title": "foil-pack-review.test.ts",
+      "file": "foil-pack-review.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "nfl: all six real catalogue variants keep correct sport, quantity and price",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2276,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:02:43.364Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-review-nfl-all-s-1c23c-ct-sport-quantity-and-price\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bc368eceb2e47d54ae9f-52fb229143dbecf228ae",
+          "file": "foil-pack-review.test.ts",
+          "line": 20,
+          "column": 7
+        },
+        {
+          "title": "afl: all six real catalogue variants keep correct sport, quantity and price",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1758,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:02:48.881Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-review-afl-all-s-f271c-ct-sport-quantity-and-price\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bc368eceb2e47d54ae9f-57db408d226a43aad871",
+          "file": "foil-pack-review.test.ts",
+          "line": 20,
+          "column": 7
+        },
+        {
+          "title": "nrl: all six real catalogue variants keep correct sport, quantity and price",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2093,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:02:50.674Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-review-nrl-all-s-7b48a-ct-sport-quantity-and-price\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bc368eceb2e47d54ae9f-a8ee4ffcfe3154a9b1cf",
+          "file": "foil-pack-review.test.ts",
+          "line": 20,
+          "column": 7
+        },
+        {
+          "title": "afl finished store tile and enlarged pack at 320px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3914,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:02:52.813Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-review-afl-finis-0b78d--and-enlarged-pack-at-320px\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bc368eceb2e47d54ae9f-6ff36d7b21f502022e84",
+          "file": "foil-pack-review.test.ts",
+          "line": 104,
+          "column": 9
+        },
+        {
+          "title": "nrl finished store tile and enlarged pack at 320px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3318,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:02:56.788Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-review-nrl-finis-53d8e--and-enlarged-pack-at-320px\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bc368eceb2e47d54ae9f-08c57ea0d44550d508f9",
+          "file": "foil-pack-review.test.ts",
+          "line": 104,
+          "column": 9
+        },
+        {
+          "title": "afl finished store tile and enlarged pack at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3383,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:03:00.148Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-review-afl-finis-d05d9--and-enlarged-pack-at-390px\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bc368eceb2e47d54ae9f-5efca8d09d663b219d69",
+          "file": "foil-pack-review.test.ts",
+          "line": 104,
+          "column": 9
+        },
+        {
+          "title": "nrl finished store tile and enlarged pack at 390px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3269,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:03:03.566Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-review-nrl-finis-31598--and-enlarged-pack-at-390px\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bc368eceb2e47d54ae9f-e9a758f7d994252dd604",
+          "file": "foil-pack-review.test.ts",
+          "line": 104,
+          "column": 9
+        },
+        {
+          "title": "afl finished store tile and enlarged pack at 1366px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3607,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:03:06.876Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-review-afl-finis-9e623-and-enlarged-pack-at-1366px\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bc368eceb2e47d54ae9f-5ec33b28e578348f3eb6",
+          "file": "foil-pack-review.test.ts",
+          "line": 104,
+          "column": 9
+        },
+        {
+          "title": "nrl finished store tile and enlarged pack at 1366px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4582,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:03:10.521Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-review-nrl-finis-df4fc-and-enlarged-pack-at-1366px\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bc368eceb2e47d54ae9f-ed864e9b492831c60211",
+          "file": "foil-pack-review.test.ts",
+          "line": 104,
+          "column": 9
+        },
+        {
+          "title": "premium tear, nine-card fan and existing Legendary reveal",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12440,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:03:15.144Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-review-premium-t-3678c-d-existing-Legendary-reveal\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bc368eceb2e47d54ae9f-14bdeba682deab5398dd",
+          "file": "foil-pack-review.test.ts",
+          "line": 159,
+          "column": 5
+        },
+        {
+          "title": "before image uses the unchanged store artwork",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2296,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:03:27.630Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\foil-pack-review-before-im-292dc-the-unchanged-store-artwork\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "bc368eceb2e47d54ae9f-86e695fce78cd9ead8ee",
+          "file": "foil-pack-review.test.ts",
+          "line": 217,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "nine-card-reveal.test.ts",
+      "file": "nine-card-reveal.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "confirmed nine-card reveal, resume, replay and accessibility 360",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 19577,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:03:30.145Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\nine-card-reveal-confirmed-7d5ac-eplay-and-accessibility-360\\video.webm"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\nine-card-reveal-confirmed-7d5ac-eplay-and-accessibility-360\\video-1.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "76806bdfc26f15443c69-8d7bfc73cb288b1e6de0",
+          "file": "nine-card-reveal.test.ts",
+          "line": 41,
+          "column": 7
+        },
+        {
+          "title": "confirmed nine-card reveal, resume, replay and accessibility 412",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13686,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:03:49.758Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\nine-card-reveal-confirmed-e67a2-eplay-and-accessibility-412\\video-1.webm"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\nine-card-reveal-confirmed-e67a2-eplay-and-accessibility-412\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "76806bdfc26f15443c69-cc6e5d613605bcc9743b",
+          "file": "nine-card-reveal.test.ts",
+          "line": 41,
+          "column": 7
+        },
+        {
+          "title": "confirmed nine-card reveal, resume, replay and accessibility 1366",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15428,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:04:03.500Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\nine-card-reveal-confirmed-27bdd-play-and-accessibility-1366\\video-1.webm"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\nine-card-reveal-confirmed-27bdd-play-and-accessibility-1366\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "76806bdfc26f15443c69-c2b1e701e40ca557df07",
+          "file": "nine-card-reveal.test.ts",
+          "line": 41,
+          "column": 7
+        },
+        {
+          "title": "single card, reduced motion, keyboard opening and duplicate taps",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4837,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:04:18.987Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\nine-card-reveal-single-ca-3e680--opening-and-duplicate-taps\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "76806bdfc26f15443c69-cd12dfdb1db3690f4319",
+          "file": "nine-card-reveal.test.ts",
+          "line": 165,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "purchase-recovery.test.ts",
+      "file": "purchase-recovery.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "lost purchase response recovers once through dialog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4720,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:04:23.894Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\purchase-recovery-lost-pur-9425f-ecovers-once-through-dialog\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5e747224289cc0d7a445-d2888c72eacfb8f12ba7",
+          "file": "purchase-recovery.test.ts",
+          "line": 9,
+          "column": 7
+        },
+        {
+          "title": "lost purchase response recovers once through refresh",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5953,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:04:28.655Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\purchase-recovery-lost-pur-703b9-covers-once-through-refresh\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5e747224289cc0d7a445-17b046929b7f767130a6",
+          "file": "purchase-recovery.test.ts",
+          "line": 9,
+          "column": 7
+        },
+        {
+          "title": "lost purchase response recovers once through timeout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 23745,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-07T11:04:34.658Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\foil-pack-prototype\\Docked.com.au\\test-results\\foil-release\\purchase-recovery-lost-pur-1bb77-covers-once-through-timeout\\video.webm"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5e747224289cc0d7a445-5bf7b01f962f68d4ffcc",
+          "file": "purchase-recovery.test.ts",
+          "line": 9,
+          "column": 7
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-07T11:02:15.457Z",
+    "duration": 163896.875,
+    "expected": 24,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

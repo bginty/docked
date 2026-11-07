@@ -25,6 +25,7 @@ const styles = [
   "premium-ux",
   "member-surfaces",
   "pack-cinema-v2",
+  "foil-pack-artwork",
 ];
 
 const mimeTypes: Record<string, string> = {
@@ -59,7 +60,11 @@ export async function packFixtureMarkup(path: string) {
 
 let assets: Promise<[string, string[]]> | undefined;
 
-export async function mountPackFixture(page: Page, prototype = false) {
+export async function mountPackFixture(
+  page: Page,
+  prototype = false,
+  product?: { name: string; sport: string; count: number; premium: boolean },
+) {
   assets ??= Promise.all([
     bundleCommunityFixture("tests/fixtures/pack-opening.tsx"),
     Promise.all(
@@ -67,9 +72,14 @@ export async function mountPackFixture(page: Page, prototype = false) {
     ),
   ]);
   const [script, css] = await assets;
-  await page.goto(
-    packFixtureOrigin + "/pack" + (prototype ? "?cinema=v3" : "?cinema=legacy"),
-  );
+  const query = new URLSearchParams({ cinema: prototype ? "v3" : "legacy" });
+  if (product) {
+    query.set("name", product.name);
+    query.set("sport", product.sport);
+    query.set("count", String(product.count));
+    query.set("type", product.premium ? "PREMIUM" : "STANDARD");
+  }
+  await page.goto(packFixtureOrigin + "/pack?" + query.toString());
   await page.addStyleTag({ content: css.join("\n") });
   await page.addScriptTag({ content: script });
   await page.getByRole("button", { name: "Open viewer" }).click();

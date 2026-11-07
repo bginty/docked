@@ -1,0 +1,51 @@
+Approved foil artwork release — 7 November 2026
+
+Owner instruction: "deploy please", following review of the two finished packs.
+Scope: Standard AFL 9 and Premium NRL 9, with DOCKED/family/sport/count baked
+into the artwork. The shared renderer selects only these exact variants.
+Other quantities, sports and Starter packs retain their existing labelled art.
+
+Integration
+The actual PackArtwork component now renders the approved images in the shop,
+purchase review, My Packs/history, supported reward thumbnails and pre-opening
+pack view. A shared stylesheet preserves portrait proportions and compact
+thumbnails, and enlarges the real opening view. The previous local store fixture
+now tests the production renderer directly. Synthetic opening/demo components
+remain unreferenced by production routes.
+
+Preservation
+No changes to server services, economy, catalogue, odds, supply, wallet,
+ownership, receipt handling, refunds, permissions or activation configuration.
+No database migration. The existing production runtime is copied verbatim,
+except its source commit identifier. NBA and commercial gates remain unchanged.
+Navigation commit 4e327c8d is intentionally not merged or deployed here.
+
+Executed checks before staging
+- TypeScript --noEmit and targeted ESLint passed.
+- 24 browser cases passed in one run: actual production sealed pack at 320,
+  390 and 1366px; all 18 sport/quantity labels and prices; images loaded;
+  nine-card summary; rapid double tap calls opening once; reduced motion;
+  replay/resume/accessibility; lost-response recovery and purchase retry.
+- 35 platform cases passed: 1/3/9 catalogue pricing/counts; secure issuance;
+  refund before and after pack opening; transfer preservation; pending/declined
+  receipts; progress isolation; retry/idempotency.
+- Build and hosted acceptance results are recorded in the release evidence.
+  The initial local Turbopack attempt could not resolve junctioned node_modules;
+  no production configuration was changed to bypass that local limitation.
+
+Deployment gates
+- Exact baseline: 8205cde5b46125d4414a6fd545b1063b3913a90a.
+- Rollback: dpl_7pPpuuq3GzvCTWft8mtr6dW6K46f.
+- Target: docked-production, prj_l0rpVDPRuIRp9UcBUkudeyUK5yST,
+  team_tf6xweKKyVCj9bTppUKttJ4l.
+- Export committed source, verify CLI project, preserve protected runtime,
+  stage with --prod --skip-domain, verify hosted gates/assets and promote.
+- Post-promotion: verify deployed SHA, asset hashes, policies, authentication,
+  unchanged cron configuration and closed public/payment gates.
+- Read-only signed-in browser checks do not buy or open a new pack.
+
+Limits
+Only two baked foil product variants were approved and released. This does not
+claim a complete 18-variant artwork conversion or deploy the independent pack
+navigation fix. No Android APK/AAB change is needed for this hosted artwork;
+physical Samsung acceptance has not been performed for this release.

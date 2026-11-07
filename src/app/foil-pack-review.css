@@ -1,101 +1,4 @@
-/* Loaded only by the isolated foil design-review fixture. */
-.foil-pack-art {
-  position: relative;
-  width: min(100%, 300px);
-  aspect-ratio: 2 / 3;
-  margin: 0 auto;
-  isolation: isolate;
-  transform: perspective(1000px) rotateX(var(--foil-x, 0deg))
-    rotateY(var(--foil-y, 0deg));
-  transition: transform 250ms ease;
-  --foil-light: #096cff;
-}
-.foil-pack-premium {
-  --foil-light: #b9832e;
-}
-.foil-pack-art img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 15px 15px #0008);
-}
-.foil-pack-art::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 8% -10% -4%;
-  background: radial-gradient(
-    ellipse at 50% 80%,
-    var(--foil-light),
-    transparent 67%
-  );
-  opacity: 0.17;
-  pointer-events: none;
-}
-.foil-pack-art::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    115deg,
-    transparent 30%,
-    #fff0 36%,
-    #d9efff40 47%,
-    #fff9 50%,
-    #ffffff10 55%,
-    transparent 65%
-  );
-  mask-image: var(--foil-mask);
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  opacity: 0;
-  mix-blend-mode: screen;
-}
-.foil-pack-art:hover::after {
-  opacity: 0.22;
-}
-.foil-pack-compact {
-  width: 78px;
-}
-.pack-family .pack-product:has(> .foil-pack-art) {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-  overflow: visible;
-  padding: 20px;
-  background:
-    radial-gradient(ellipse at 50% 25%, #16375966, transparent 70%), #0a1525;
-  border: 1px solid #2b455e;
-}
-.pack-family .pack-product:has(> .foil-pack-art) > h3 {
-  font-size: 1.2rem;
-  width: 100%;
-  text-align: center;
-}
-.pack-family .pack-product:has(> .foil-pack-art) > p {
-  text-align: center;
-}
-.pack-family .pack-product:has(> .foil-pack-art) > button {
-  width: 100%;
-  max-width: 280px;
-  min-height: 46px;
-  margin-top: 4px;
-}
-.pack-product:has(> .foil-pack-premium) {
-  background:
-    radial-gradient(ellipse at 50% 25%, #59401d44, transparent 70%), #0a1525;
-  border-color: #66502e;
-}
-.pack-product > .foil-pack-art {
-  width: min(100%, 260px);
-}
-.pack-purchase-review > .foil-pack-art {
-  width: min(70vw, 300px);
-}
+/* Local design-review controls and prototype opening only. */
 .foil-review-toolbar {
   border: 1px solid #34536e;
   border-radius: 14px;
@@ -337,24 +240,16 @@
   }
 }
 @media (max-width: 600px) {
-  .pack-product-grid:has(.foil-pack-art) {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .pack-product > .foil-pack-art {
-    width: min(64vw, 250px);
-  }
   .foil-opening-sheet .sheet-inner {
     padding: 12px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .foil-pack-art,
   .foil-open-hero {
     transform: none !important;
     transition: none !important;
   }
-  .foil-opening-sheet *,
-  .foil-pack-art::after {
+  .foil-opening-sheet * {
     animation: none !important;
   }
   .foil-opening-tearing .foil-awarded-fan {
