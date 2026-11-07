@@ -1,0 +1,74 @@
+DOCKED FINISHED FOIL PACKS — OWNER DESIGN REVIEW
+7 November 2026 — local preview only, not deployed
+
+Requested finished products
+- Standard, AFL, 9 cards: electric blue metallic wrapper.
+- Premium, NRL, 9 cards: black/obsidian and metallic gold wrapper.
+- Original Docked wordmark supplied as the branding reference.
+- DOCKED, family, sport and quantity are baked into each finished bitmap.
+  No HTML lettering is placed over the pack. Accessible product labels remain
+  ordinary UI text beneath it. Only ambient lighting and tilt are dynamic.
+- The earlier blue and black/gold renders were unbranded base assets.
+
+Customer interface evidence
+- Real AppShell, sport selector, PackShop, purchase review and existing card
+  reveal components, rendered with local synthetic read-only data.
+- The fixture substitutes the two artwork variants without modifying the
+  production PackArtwork component or any production route.
+- Connected Chrome captures: chrome-afl-store.jpg, chrome-nrl-store.jpg,
+  chrome-afl-enlarged.jpg and chrome-nrl-enlarged.jpg.
+- Contact sheets reproduce those captures without retouching or cropping.
+- Enlarged preview includes a short split-seal/light/fan transition into the
+  existing Legendary card reveal. This is a lightweight 2.5D prototype, not
+  a physical foil simulation. Sample cards do not represent pack probabilities.
+- Local preview rejects non-GET requests and has no customer credentials,
+  production database connection, purchase callback or inventory mutation.
+
+Variant coverage
+- Exact keys STANDARD:afl:9 and PREMIUM:nrl:9 use the new baked artwork.
+- NFL/AFL/NRL x Standard/Premium x 1/3/9 = 18 combinations were checked against
+  the existing catalogue for the correct sport, quantity and credit price.
+- The other 16 combinations keep their existing correctly-labelled artwork.
+  They do not reuse one of these 9-card images. Their finished foil exports are
+  pending approval of this design; this is not a complete 18-asset rollout.
+- NBA remains absent. Starter artwork is outside this two-product review.
+
+Checks executed
+- 11/11 targeted Playwright checks passed in the final run, no failures/flakes:
+  2026-11-07T10:50:32.840Z, duration 46.8 seconds (browser.json).
+- Layouts at 320, 390 and 1366px, loaded image dimensions, no horizontal
+  overflow, real purchase-review rendering, enlarged pack, reduced motion,
+  nine-card summary and the full animated opening transition.
+- All 18 catalogue variant records: nfl-variants.json, afl-variants.json,
+  nrl-variants.json. Correct sample paid-pack tier floors also checked.
+- Full TypeScript check (tsc --noEmit --incremental false), targeted ESLint,
+  Prettier validation and staged Git whitespace checks passed. A fixture-only
+  type annotation was corrected after the browser run; emitted logic unchanged.
+- Browser frame sampling: desktop headless Edge, 390x844, 384 intervals;
+  median 16.6ms, p95 19ms, mean 48fps, four intervals over 50ms across opening
+  and existing reveal. This is diagnostic evidence, not a sustained 60fps claim.
+- No physical Android artwork acceptance was performed. No production build
+  or production deployment was performed for this isolated design preview.
+
+Asset delivery
+- Optimised 480px and 800px WebP variants, intrinsic 2:3 aspect ratio,
+  object-fit contain and reserved dimensions.
+- Standard: 89,492 / 209,302 bytes. Premium: 89,228 / 199,990 bytes.
+- Master images and generation prompts are retained in design/foil-pack-prototype.
+- No player photographs, third-party logos or mixed-sport packaging added.
+
+Preview
+  npx tsx scripts/serve-foil-pack-review.ts
+  http://127.0.0.1:4188/fantasy/cards?view=packs&sport=afl&focus=standard
+  http://127.0.0.1:4188/fantasy/cards?view=packs&sport=nrl&focus=premium
+  Use Enlarged opening preview; Open pack uses fixed sample cards only.
+
+Isolation and approval
+- Artwork branch: codex/foil-pack-prototype, based on 83af63e3.
+- Navigation fix remains in separate branch codex/pack-reveal-navigation,
+  commit 4e327c8d; it has not been merged here.
+- Neither this artwork nor that navigation fix has been deployed by this task.
+- Prices, probabilities, supply, accounts, wallets, ownership and payments
+  remain unchanged. No owner approval of this finished artwork is inferred.
+- Next decision: approve or revise these complete customer-facing designs.
+  Remaining variant artwork and production integration follow that review.
