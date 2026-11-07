@@ -217,11 +217,16 @@ test("Close, Escape and repeated browser Back cannot discard an unfinished revea
   await page.getByRole("button", { name: "Reveal card", exact: true }).click();
   await page.getByRole("button", { name: "Close panel", exact: true }).click();
   await expect(page.locator(".pack-exit-confirmation")).toBeVisible();
+  await expect(page.locator(".pack-opening")).toBeHidden();
+  await expect(
+    page.getByRole("button", { name: "Next Card →", exact: true }),
+  ).toHaveCount(0);
   await page.keyboard.press("Escape");
   await expect(page.locator(".pack-opening")).toBeVisible();
   for (let n = 0; n < 3; n++) {
     await page.goBack();
     await expect(page.locator(".pack-exit-confirmation")).toBeVisible();
+    await expect(page.locator(".pack-opening")).toBeHidden();
     await page.goBack();
     await expect(page.locator(".pack-opening")).toBeVisible();
     await expect(page.locator(".pack-count")).toContainText("Card 1 of 3");

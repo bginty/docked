@@ -14,6 +14,11 @@
 .pack-sheet .pack-opening h3 {
   scroll-margin-top: 90px;
 }
+/* The mobile layout sets display:flex; retain native hidden behaviour while
+   the exit decision owns focus, without unmounting the active reveal. */
+.pack-sheet .pack-opening[hidden] {
+  display: none;
+}
 .pack-opening,
 .pack-exit-confirmation {
   --pack-ink: var(--fantasy-navy, #0b0f1a);
