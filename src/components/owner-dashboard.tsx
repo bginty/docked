@@ -337,6 +337,8 @@ export function OwnerDashboard({
               >
                 <PackArtwork
                   name={pack.name}
+                  sport={pack.sport}
+                  count={pack.cards}
                   premium={pack.type === "PREMIUM"}
                   compact
                 />

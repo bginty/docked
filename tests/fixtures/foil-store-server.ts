@@ -1,6 +1,7 @@
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
 import { extname, resolve, sep } from "node:path";
+import { execFileSync } from "node:child_process";
 import { bundleCommunityFixture } from "./bundle-community";
 import { packFixture, packMember, packNow } from "./pack-economy";
 import { memberTestView } from "../../src/core/member-test-wallet";
@@ -20,20 +21,49 @@ export async function startFoilStore(port = 0) {
     "if (finishedFoilPack(props)) return <FoilPackArtwork {...props} />;",
     "",
   );
-  const [script, classicScript, css, reviewCss] = await Promise.all([
-    bundleCommunityFixture("tests/fixtures/foil-store.tsx"),
-    bundleCommunityFixture("tests/fixtures/foil-store.tsx", {
-      [artwork]: classic,
-    }),
-    Promise.all(styles.map((s) => readFile(`src/app/${s}.css`, "utf8"))),
-    readFile("src/app/foil-pack-review.css", "utf8"),
-  ]);
+  const previous = original.replace(
+    "if (finishedFoilPack(props)) return <FoilPackArtwork {...props} />;",
+    'if (!props.core && props.count === 9 && ((props.sport === "afl" && !props.premium) || (props.sport === "nrl" && props.premium))) return <FoilPackArtwork {...props} />;',
+  );
+  const beforeCss = execFileSync(
+    "git",
+    ["show", "864df277:src/app/foil-pack-artwork.css"],
+    { encoding: "utf8" },
+  );
+  const [script, classicScript, beforeScript, css, reviewCss] =
+    await Promise.all([
+      bundleCommunityFixture("tests/fixtures/foil-store.tsx"),
+      bundleCommunityFixture("tests/fixtures/foil-store.tsx", {
+        [artwork]: classic,
+      }),
+      bundleCommunityFixture("tests/fixtures/foil-store.tsx", {
+        [artwork]: previous,
+      }),
+      Promise.all(styles.map((s) => readFile(`src/app/${s}.css`, "utf8"))),
+      readFile("src/app/foil-pack-review.css", "utf8"),
+    ]);
   const stateFor = (sport: string) => {
     const visibleSport = sport === "afl" || sport === "nrl" ? sport : "nfl";
     const state = packFixture(visibleSport);
     if (visibleSport === "nfl")
       paidPackCatalogueUpgrade(state.economy!, packNow);
-    return memberTestView(state, packMember.id, [], false, packNow);
+    const view = memberTestView(state, packMember.id, [], false, packNow);
+    // Presentation fixtures only; no issuance endpoint or customer inventory.
+    view.packs = view.products.map((p, i) => ({
+      id: `local-history-${visibleSport}-${i}`,
+      status: i % 2 ? ("OPENED" as const) : ("SEALED" as const),
+      product: p.id,
+      type: p.tier === "PREMIUM" ? ("PREMIUM" as const) : ("STANDARD" as const),
+      sport: visibleSport,
+      purchasedAt: packNow - i * 1000,
+      paidCredits: p.price,
+      coupon: null,
+      cardCount: p.cards,
+      configuration: "isolated-artwork-review",
+      name: p.name,
+      receipt: null,
+    }));
+    return view;
   };
   const states = {
     nfl: stateFor("nfl"),
@@ -52,20 +82,34 @@ export async function startFoilStore(port = 0) {
       if (url.pathname === "/" || url.pathname === "/fantasy/cards") {
         res.setHeader("Content-Type", "text/html; charset=utf-8");
         const classic = url.searchParams.get("classic") === "1";
+        const suffix = url.searchParams.has("before")
+          ? "?before=1"
+          : classic
+            ? "?classic=1"
+            : "";
         return res.end(
-          `<!doctype html><html lang="en"><head><title>Docked · Finished foil packs review</title><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="stylesheet" href="/fixture.css${classic ? "?classic=1" : ""}"></head><body class="fantasy-mode"><div id="fixture-root"></div><script src="/fixture.js${classic ? "?classic=1" : ""}"></script></body></html>`,
+          `<!doctype html><html lang="en"><head><title>Docked · Finished foil packs review</title><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="stylesheet" href="/fixture.css${suffix}"></head><body class="fantasy-mode"><div id="fixture-root"></div><script src="/fixture.js${suffix}"></script></body></html>`,
         );
       }
       if (url.pathname === "/fixture.js") {
         res.setHeader("Content-Type", "application/javascript; charset=utf-8");
         return res.end(
-          url.searchParams.get("classic") === "1" ? classicScript : script,
+          url.searchParams.has("before")
+            ? beforeScript
+            : url.searchParams.get("classic") === "1"
+              ? classicScript
+              : script,
         );
       }
       if (url.pathname === "/fixture.css") {
         res.setHeader("Content-Type", "text/css");
         return res.end(
-          css.join("\n") +
+          (url.searchParams.has("before")
+            ? css.map((value, i) =>
+                styles[i] === "foil-pack-artwork" ? beforeCss : value,
+              )
+            : css
+          ).join("\n") +
             (url.searchParams.get("classic") === "1" ? "" : reviewCss),
         );
       }

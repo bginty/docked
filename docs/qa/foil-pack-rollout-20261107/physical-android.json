@@ -1,0 +1,166 @@
+{
+  "status": "passed",
+  "model": "SM-S921B",
+  "android": "17",
+  "startedAt": "2026-11-07T12:10:01.504Z",
+  "browser": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Mobile Safari/537.36",
+  "viewport": {
+    "width": 360,
+    "height": 641,
+    "dpr": 3
+  },
+  "environment": "Physical Samsung Chrome via USB; isolated synthetic local fixture; not installed Docked WebView",
+  "checks": [
+    {
+      "kind": "store-artwork",
+      "key": "STANDARD:nfl:9",
+      "width": 97.19792175292969,
+      "height": 145.79689025878906
+    },
+    {
+      "kind": "store-artwork",
+      "key": "STANDARD:nfl:3",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "STANDARD:nfl:1",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "PREMIUM:nfl:9",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "PREMIUM:nfl:3",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "PREMIUM:nfl:1",
+      "width": 97.19792175292969,
+      "height": 145.79689025878906
+    },
+    {
+      "kind": "starter-artwork",
+      "key": "STARTER:nfl:4"
+    },
+    {
+      "kind": "confirmation-and-cancel",
+      "sport": "nfl"
+    },
+    {
+      "kind": "store-artwork",
+      "key": "STANDARD:afl:9",
+      "width": 97.19792175292969,
+      "height": 145.79689025878906
+    },
+    {
+      "kind": "store-artwork",
+      "key": "STANDARD:afl:3",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "STANDARD:afl:1",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "PREMIUM:afl:9",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "PREMIUM:afl:3",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "PREMIUM:afl:1",
+      "width": 97.19792175292969,
+      "height": 145.79689025878906
+    },
+    {
+      "kind": "starter-artwork",
+      "key": "STARTER:afl:4"
+    },
+    {
+      "kind": "confirmation-and-cancel",
+      "sport": "afl"
+    },
+    {
+      "kind": "store-artwork",
+      "key": "STANDARD:nrl:9",
+      "width": 97.19792175292969,
+      "height": 145.79689025878906
+    },
+    {
+      "kind": "store-artwork",
+      "key": "STANDARD:nrl:3",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "STANDARD:nrl:1",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "PREMIUM:nrl:9",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "PREMIUM:nrl:3",
+      "width": 97.19792175292969,
+      "height": 145.796875
+    },
+    {
+      "kind": "store-artwork",
+      "key": "PREMIUM:nrl:1",
+      "width": 97.19792175292969,
+      "height": 145.79689025878906
+    },
+    {
+      "kind": "starter-artwork",
+      "key": "STARTER:nrl:4"
+    },
+    {
+      "kind": "confirmation-and-cancel",
+      "sport": "nrl"
+    },
+    {
+      "kind": "synthetic-opening-and-summary",
+      "key": "STANDARD:nfl:1",
+      "cards": 1
+    },
+    {
+      "kind": "synthetic-opening-and-summary",
+      "key": "STANDARD:afl:3",
+      "cards": 3
+    },
+    {
+      "kind": "synthetic-opening-and-summary",
+      "key": "PREMIUM:nrl:9",
+      "cards": 9
+    }
+  ],
+  "errors": [],
+  "requests": [],
+  "finishedAt": "2026-11-07T12:10:47.775Z",
+  "video": "samsung-physical-walkthrough.mp4"
+}

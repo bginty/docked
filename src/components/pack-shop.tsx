@@ -386,6 +386,7 @@ export function PackShop({
                   {products.map((p) => (
                     <article className="pack-product" key={p.id}>
                       <PackArtwork
+                        presentation="catalogue"
                         sport={sport}
                         count={p.cards}
                         name={title(p)}

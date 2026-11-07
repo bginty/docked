@@ -1,5 +1,4 @@
 "use client";
-import type { CSSProperties } from "react";
 import { finishedFoilPack, type FoilPackProps } from "@/core/foil-pack-artwork";
 
 /** All visible lettering is baked into the foil. No HTML text overlays the pack. */
@@ -10,7 +9,6 @@ export function FoilPackArtwork(props: FoilPackProps) {
     <div
       className={`foil-pack-art foil-pack-${asset.tier.toLowerCase()}${props.compact ? " foil-pack-compact" : ""}`}
       data-foil-variant={asset.key}
-      style={{ "--foil-mask": `url("${asset.src}")` } as CSSProperties}
       onPointerMove={(event) => {
         if (event.pointerType !== "mouse") return;
         const box = event.currentTarget.getBoundingClientRect();
@@ -27,11 +25,20 @@ export function FoilPackArtwork(props: FoilPackProps) {
       <img
         src={asset.src}
         srcSet={asset.srcSet}
-        sizes={props.compact ? "90px" : "(max-width: 600px) 280px, 340px"}
+        sizes={
+          props.compact
+            ? "78px"
+            : props.presentation === "catalogue"
+              ? "(max-width: 600px) 116px, 180px"
+              : "(max-width: 600px) 260px, 300px"
+        }
         width={1024}
         height={1536}
         alt={asset.label}
         decoding="async"
+        loading={
+          props.compact || props.presentation === "catalogue" ? "lazy" : "eager"
+        }
         draggable={false}
       />
     </div>

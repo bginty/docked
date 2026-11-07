@@ -6,6 +6,7 @@ import { EnvironmentProvider } from "../../src/components/environment-context";
 import { PackShop } from "../../src/components/pack-shop";
 import { FoilPackOpeningReview } from "../../src/components/foil-pack-opening-review";
 import type { PackShopState } from "../../src/core/pack-shop-state";
+import { FoilGallery } from "./foil-gallery";
 
 Object.assign(window, {
   demoPath: "/fantasy/cards",
@@ -50,6 +51,9 @@ function ReviewStore() {
           changes
         </p>
         <nav aria-label="Pack design review">
+          <a className="pack-control secondary" href="/fantasy/cards?gallery=1">
+            All 21 designs
+          </a>
           <a
             className="pack-control secondary"
             href="/fantasy/cards?view=packs&sport=afl&focus=standard"
@@ -96,6 +100,8 @@ function ReviewStore() {
   );
 }
 function Fixture() {
+  if (new URLSearchParams(location.search).has("gallery"))
+    return <FoilGallery />;
   return (
     <EnvironmentProvider
       value={{

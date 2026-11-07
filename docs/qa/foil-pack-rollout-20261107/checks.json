@@ -1,0 +1,45 @@
+{
+  "baseline": "864df2779b258f01d66717170e624a89e5b22ee4",
+  "deployment": "Not deployed. Owner review/approval required.",
+  "productionReadOnlyCatalogue": true,
+  "paidVariants": 18,
+  "starterVariants": 3,
+  "assets": 63,
+  "browser": {
+    "startTime": "2026-11-07T11:49:17.865Z",
+    "duration": 293733.188,
+    "expected": 62,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "existingPlatformPassed": 751,
+  "addedInventoryTestsPassed": 2,
+  "typecheck": "Passed",
+  "lint": "Full source/scripts/tests passed; later fixture edits also linted",
+  "build": "Next.js 16.4.3 production webpack build passed. Existing external node_modules junction prevents local Turbopack; no remote deployment was used.",
+  "clientBoundary": "233 generated assets scanned; no build-canary markers found. Dedicated canary environment was not injected.",
+  "mobileViewports": [
+    320,
+    360,
+    375,
+    390,
+    430
+  ],
+  "otherViewports": [
+    768,
+    1440
+  ],
+  "mobileProductHeightPx": {
+    "min": 180.828125,
+    "max": 207.34375
+  },
+  "thumbnailBytes": {
+    "max": 30592
+  },
+  "physicalAndroid": "passed: SM-S921B, Android 17, Chrome. 27 recorded checks. Local synthetic fixture; installed Docked WebView was not tested.",
+  "sevenGoogleTestAlerts": "Pre-existing; not modified or reconciled.",
+  "productionWrites": 0,
+  "backendChanges": false,
+  "nativeAppChanges": false
+}

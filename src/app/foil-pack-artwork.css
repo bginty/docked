@@ -13,6 +13,9 @@
 .foil-pack-premium {
   --foil-light: #b9832e;
 }
+.foil-pack-starter {
+  --foil-light: #9cc7df;
+}
 .foil-pack-art img {
   display: block;
   width: 100%;
@@ -33,48 +36,31 @@
   opacity: 0.17;
   pointer-events: none;
 }
-.foil-pack-art::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    115deg,
-    transparent 30%,
-    #fff0 36%,
-    #d9efff40 47%,
-    #fff9 50%,
-    #ffffff10 55%,
-    transparent 65%
-  );
-  mask-image: var(--foil-mask);
-  mask-size: contain;
-  mask-repeat: no-repeat;
-  opacity: 0;
-  mix-blend-mode: screen;
-}
-.foil-pack-art:hover::after {
-  opacity: 0.22;
-}
 .foil-pack-compact {
   width: 78px;
+  flex: 0 0 78px;
+}
+.pack-family .pack-product-grid:has(.foil-pack-art) {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .pack-family .pack-product:has(> .foil-pack-art) {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 10px;
+  gap: 8px;
   overflow: visible;
-  padding: 20px;
+  padding: 16px;
   background:
     radial-gradient(ellipse at 50% 25%, #16375966, transparent 70%), #0a1525;
   border: 1px solid #2b455e;
 }
 .pack-family .pack-product:has(> .foil-pack-art) > h3 {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   width: 100%;
   text-align: center;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 .pack-family .pack-product:has(> .foil-pack-art) > p {
   text-align: center;
@@ -83,7 +69,8 @@
   width: 100%;
   max-width: 280px;
   min-height: 46px;
-  margin-top: 4px;
+  margin-top: auto;
+  white-space: normal;
 }
 .pack-product:has(> .foil-pack-premium) {
   background:
@@ -91,10 +78,13 @@
   border-color: #66502e;
 }
 .pack-product > .foil-pack-art {
-  width: min(100%, 260px);
+  width: min(100%, 180px);
 }
 .pack-purchase-review > .foil-pack-art {
-  width: min(70vw, 300px);
+  width: min(55vw, 240px);
+}
+.weekly-core-panel > .foil-pack-art {
+  width: min(100%, 130px);
 }
 .pack-stage:has(> .branded-seal > .foil-pack-art) {
   min-height: 0;
@@ -117,11 +107,40 @@
   width: 100%;
 }
 @media (max-width: 600px) {
-  .pack-product-grid:has(.foil-pack-art) {
+  .pack-family .pack-product-grid:has(.foil-pack-art) {
     grid-template-columns: minmax(0, 1fr);
   }
-  .pack-product > .foil-pack-art {
-    width: min(64vw, 250px);
+  .pack-family .pack-product:has(> .foil-pack-art) {
+    display: grid;
+    grid-template-columns: clamp(82px, 27vw, 116px) minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto;
+    gap: 5px 14px;
+    padding: 12px;
+    text-align: left;
+    align-content: center;
+  }
+  .pack-family .pack-product > .foil-pack-art {
+    width: 100%;
+    grid-column: 1;
+    grid-row: 1 / span 6;
+    align-self: center;
+  }
+  .pack-family .pack-product:has(> .foil-pack-art) > h3,
+  .pack-family .pack-product:has(> .foil-pack-art) > p,
+  .pack-family .pack-product:has(> .foil-pack-art) > button {
+    min-width: 0;
+    grid-column: 2;
+    text-align: left;
+    margin: 0;
+  }
+  .pack-family .pack-product:has(> .foil-pack-art) > button {
+    text-align: center;
+    min-height: 44px;
+    padding: 8px 6px;
+  }
+  .weekly-core-panel > .foil-pack-art {
+    width: min(100%, 116px);
+    margin-inline: 0;
   }
   .pack-opening .branded-seal:has(> .foil-pack-art) {
     width: min(280px, 66vw, max(155px, calc((100svh - 340px) * 0.66)));

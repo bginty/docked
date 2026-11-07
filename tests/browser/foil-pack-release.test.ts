@@ -3,7 +3,7 @@ import { mkdir } from "node:fs/promises";
 import { previewPackReceipt } from "../../src/components/pack-opening-preview";
 import { mountPackFixture, packFixtureMarkup } from "../fixtures/pack-browser";
 
-const output = "docs/qa/foil-pack-release-20261107";
+const output = process.env.FOIL_QA_OUTPUT ?? "docs/qa/foil-pack-release-20261107";
 for (const width of [320, 390, 1366]) {
   for (const [sport, premium] of [
     ["afl", false],
