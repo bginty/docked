@@ -111,7 +111,8 @@ for (const width of [360, 412, 1366])
     await page.getByRole("button", { name: "Next Card →" }).click();
     await expect(page.getByText("Card 2 of 9", { exact: true })).toBeVisible();
     await page.getByRole("button", { name: "Close panel" }).click();
-    await page.getByRole("button", { name: "Open viewer" }).click();
+    await page.getByRole("button", { name: "Continue revealing" }).click();
+    await mount(); // A document interruption still resumes the saved card.
     await expect(phase).toHaveAttribute("data-pack-reveal-phase", "mystery");
     await expect(page.getByText("Card 2 of 9", { exact: true })).toBeVisible();
     await page

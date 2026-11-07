@@ -1,5 +1,10 @@
 /** Browser-only leases: nested panels share one scroll lock and one Back handler. */
-type Panel = { node: HTMLDialogElement; dismiss: () => void };
+type Panel = {
+  node: HTMLDialogElement;
+  dismiss: () => unknown;
+  historyKey: string | null;
+  url: string;
+};
 const panels: Panel[] = [];
 let previousOverflow = "";
 let pendingBacks = 0;
@@ -10,14 +15,23 @@ function back() {
       window.removeEventListener("popstate", back);
     return;
   }
-  panels.at(-1)?.dismiss();
+  const panel = panels.at(-1);
+  if (!panel) return;
+  // A guarded unfinished flow can decline Back. Restore its consumed entry so
+  // a second Back cannot escape underneath its confirmation sheet.
+  if (panel.dismiss() === false && panel.historyKey && panels.includes(panel))
+    window.history.pushState(
+      { ...window.history.state, dockedModal: panel.historyKey },
+      "",
+      panel.url,
+    );
 }
 export function topModal() {
   return panels.at(-1)?.node;
 }
 export function registerModal(
   node: HTMLDialogElement,
-  dismiss: () => void,
+  dismiss: () => unknown,
   historyEntry = false,
 ) {
   if (!panels.length) {
@@ -25,9 +39,14 @@ export function registerModal(
     document.body.style.overflow = "hidden";
     window.addEventListener("popstate", back);
   }
-  const panel = { node, dismiss };
-  panels.push(panel);
   const historyKey = historyEntry ? crypto.randomUUID() : null;
+  const panel = {
+    node,
+    dismiss,
+    historyKey,
+    url: historyKey ? window.location.href : "",
+  };
+  panels.push(panel);
   if (historyKey)
     window.history.pushState(
       { ...window.history.state, dockedModal: historyKey },

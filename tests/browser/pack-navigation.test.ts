@@ -153,7 +153,7 @@ for (const sport of ["nfl", "afl", "nrl"] as const) {
   }
 }
 
-test("exit, reload and Resume Pack preserve a revealed current card and do not call issuance again", async ({
+test("exit guard, reload and Resume Pack preserve a revealed current card and do not call issuance again", async ({
   page,
 }) => {
   const { receipt, opens } = await mount(page, 9);
@@ -167,6 +167,13 @@ test("exit, reload and Resume Pack preserve a revealed current card and do not c
         .click();
   }
   await page.getByRole("button", { name: "Exit Pack", exact: true }).click();
+  await expect(page.locator(".pack-exit-confirmation")).toBeVisible();
+  await page
+    .getByRole("button", { name: "Continue revealing", exact: true })
+    .click();
+  await expect(page.locator(".pack-count")).toContainText("Card 3 of 9");
+  // A genuine document interruption retains progress; ordinary Close no longer exits.
+  await mountPackFixture(page, true, undefined, false);
   await expect(page.locator(".pack-opening")).toHaveCount(0);
   await expect(
     page.getByRole("complementary", { name: "Unfinished pack reveal" }),
@@ -200,6 +207,57 @@ test("exit, reload and Resume Pack preserve a revealed current card and do not c
   await expect(
     page.getByRole("button", { name: "Resume Pack", exact: true }),
   ).toHaveCount(0);
+  expect(opens()).toBe(1);
+});
+
+test("Close, Escape and repeated browser Back cannot discard an unfinished reveal", async ({
+  page,
+}) => {
+  const { opens } = await mount(page, 3);
+  await page.getByRole("button", { name: "Reveal card", exact: true }).click();
+  await page.getByRole("button", { name: "Close panel", exact: true }).click();
+  await expect(page.locator(".pack-exit-confirmation")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.locator(".pack-opening")).toBeVisible();
+  for (let n = 0; n < 3; n++) {
+    await page.goBack();
+    await expect(page.locator(".pack-exit-confirmation")).toBeVisible();
+    await page.goBack();
+    await expect(page.locator(".pack-opening")).toBeVisible();
+    await expect(page.locator(".pack-count")).toContainText("Card 1 of 3");
+  }
+  await page
+    .locator(".pack-sheet")
+    .evaluate((el) =>
+      el.dispatchEvent(new Event("cancel", { cancelable: true })),
+    );
+  await expect(page.locator(".pack-exit-confirmation")).toBeVisible();
+  await page
+    .getByRole("button", { name: "Skip All & Exit", exact: true })
+    .click();
+  await expect(page.locator(".pack-sheet")).toHaveCount(0);
+  await expect(
+    page.getByRole("button", { name: "Resume Pack", exact: true }),
+  ).toHaveCount(0);
+  await page.getByRole("button", { name: "Open viewer", exact: true }).click();
+  await expect(page.locator(".pack-summary > li")).toHaveCount(3);
+  expect(opens()).toBe(1);
+});
+
+test("a fully revealed final card can exit without skipping or issuing again", async ({
+  page,
+}) => {
+  const { opens } = await mount(page, 1);
+  await page.getByRole("button", { name: "Reveal card", exact: true }).click();
+  await page.getByRole("button", { name: "View Player", exact: true }).click();
+  await page.getByRole("button", { name: "Back to Pack" }).click();
+  await expect(
+    page.getByRole("button", { name: "View Pack Summary", exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Exit Pack", exact: true }).click();
+  await expect(page.locator(".pack-sheet")).toHaveCount(0);
+  await page.getByRole("button", { name: "Open viewer", exact: true }).click();
+  await expect(page.locator(".pack-summary > li")).toHaveCount(1);
   expect(opens()).toBe(1);
 });
 

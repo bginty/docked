@@ -59,7 +59,8 @@ for (const width of [360, 412, 1366]) {
       ).toBeVisible();
 
       await page.getByRole("button", { name: "Close panel" }).click();
-      await page.getByRole("button", { name: "Open viewer" }).click();
+      await page.getByRole("button", { name: "Continue revealing" }).click();
+      await mountPackFixture(page); // An actual reload retains unfinished progress.
       await expect(
         page.getByText("Card 2 of 10", { exact: true }),
       ).toBeVisible();

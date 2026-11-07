@@ -64,6 +64,7 @@ export async function mountPackFixture(
   page: Page,
   prototype = false,
   product?: { name: string; sport: string; count: number; premium: boolean },
+  openViewer = true,
 ) {
   assets ??= Promise.all([
     bundleCommunityFixture("tests/fixtures/pack-opening.tsx"),
@@ -84,5 +85,6 @@ export async function mountPackFixture(
   await page.goto(packFixtureOrigin + "/pack?" + query.toString());
   await page.addStyleTag({ content: css.join("\n") });
   await page.addScriptTag({ content: script });
-  await page.getByRole("button", { name: "Open viewer" }).click();
+  if (openViewer)
+    await page.getByRole("button", { name: "Open viewer" }).click();
 }

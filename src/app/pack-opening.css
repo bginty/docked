@@ -14,7 +14,8 @@
 .pack-sheet .pack-opening h3 {
   scroll-margin-top: 90px;
 }
-.pack-opening {
+.pack-opening,
+.pack-exit-confirmation {
   --pack-ink: var(--fantasy-navy, #0b0f1a);
   --pack-blue: var(--fantasy-blue, #1a2aff);
   --pack-light: var(--fantasy-cyan, #00d1ff);
@@ -41,7 +42,8 @@
 .pack-opening button:disabled {
   cursor: wait;
 }
-.pack-opening :focus-visible {
+.pack-opening :focus-visible,
+.pack-exit-confirmation :focus-visible {
   outline: 3px solid var(--pack-light);
   outline-offset: 4px;
 }

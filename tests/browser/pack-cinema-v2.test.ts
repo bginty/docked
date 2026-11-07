@@ -132,6 +132,9 @@ test("V3 rapid inputs, skip, Reveal All, resume and replay do not reissue nine c
   );
   await page.getByRole("button", { name: "Reveal card", exact: true }).click();
   await page.getByRole("button", { name: "Close panel" }).click();
+  await page
+    .getByRole("button", { name: "Skip All & Exit", exact: true })
+    .click();
   await expect(page.locator(".cinema-v2")).toHaveCount(0);
   await page.getByRole("button", { name: "Open viewer" }).click();
   await expect(page.locator(".pack-summary > li")).toHaveCount(9);

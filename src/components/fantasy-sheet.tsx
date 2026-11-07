@@ -9,7 +9,8 @@ export function FantasySheet({
   historyEntry = false,
 }: {
   title: string;
-  onClose: () => void;
+  /** Return false to retain this sheet when browser Back requests dismissal. */
+  onClose: () => void | false;
   children: ReactNode;
   className?: string;
   historyEntry?: boolean;

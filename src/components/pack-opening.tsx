@@ -121,6 +121,8 @@ export default function PackOpening(props: PackOpeningProps) {
   const [reduced, setReduced] = useState(true);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [inspected, setInspected] = useState<AwardedCard | null>(null);
+  const [exitRequested, setExitRequested] = useState(false);
+  const continueRevealing = useRef<HTMLButtonElement>(null);
   const [resume, setResume] = useState<RevealProgress | null>(null);
   const closeDetails = useCallback(() => setInspected(null), []);
   const advancing = useRef(false);
@@ -144,6 +146,14 @@ export default function PackOpening(props: PackOpeningProps) {
   const motionOff = reduced || simple;
   const cinematic = supportsCinematicReveal(card);
   const inMotion = stage === "rarity" || stage === "flipping";
+  useEffect(() => {
+    if (!exitRequested) return;
+    const active = document.activeElement as HTMLElement | null;
+    continueRevealing.current?.focus();
+    return () => {
+      if (active?.isConnected) active.focus({ preventScroll: true });
+    };
+  }, [exitRequested]);
   const save = useCallback(
     (r: PackReceipt, next: number, revealed = false) => {
       try {
@@ -216,6 +226,38 @@ export default function PackOpening(props: PackOpeningProps) {
       cinemaSound.current?.stop();
       setInspected(selected);
     } else props.onViewCard(selected);
+  }
+  function requestClose(): false | void {
+    if (inspected) {
+      closeDetails();
+      return false;
+    }
+    if (exitRequested) {
+      setExitRequested(false);
+      return false;
+    }
+    if (
+      receipt &&
+      supportsCinematicReveal(receipt.cards[0]) &&
+      stage !== "summary" &&
+      !(stage === "revealed" && index === receipt.cards.length - 1)
+    ) {
+      cinemaSound.current?.stop();
+      setExitRequested(true);
+      return false;
+    }
+    if (
+      receipt &&
+      !presentationReplay.current &&
+      supportsCinematicReveal(receipt.cards[0])
+    )
+      save(receipt, receipt.cards.length);
+    props.onClose();
+  }
+  function skipAllAndExit() {
+    if (receipt && !presentationReplay.current)
+      save(receipt, receipt.cards.length);
+    props.onClose();
   }
   useEffect(() => {
     if (stage !== "opening") return;
@@ -414,7 +456,7 @@ export default function PackOpening(props: PackOpeningProps) {
         <button
           type="button"
           className="pack-control secondary"
-          onClick={props.onClose}
+          onClick={requestClose}
         >
           Exit Pack
         </button>
@@ -426,7 +468,7 @@ export default function PackOpening(props: PackOpeningProps) {
       <FantasySheet
         className={`pack-sheet pack-viewport pack-stage-${stage}${prototype ? " pack-cinema-v2-sheet" : ""}`}
         title={props.replay ? "Replay pack result" : props.name}
-        onClose={props.onClose}
+        onClose={requestClose}
         historyEntry={
           props.sport !== "basketball" &&
           receipt?.cards[0]?.sport !== "basketball"
@@ -435,6 +477,7 @@ export default function PackOpening(props: PackOpeningProps) {
         <section
           className={`pack-opening ${motionOff ? "pack-simple" : ""}`}
           aria-label="Docked pack opening"
+          hidden={exitRequested}
         >
           <div className="pack-tools">
             {receipt &&
@@ -1123,6 +1166,35 @@ export default function PackOpening(props: PackOpeningProps) {
             </>
           )}
         </section>
+        {exitRequested && (
+          <section
+            className="pack-exit-confirmation"
+            aria-label="Keep revealing your pack?"
+          >
+            <h3>Keep revealing your pack?</h3>
+            <p>
+              You still have unrevealed cards. Your issued cards are already
+              saved.
+            </p>
+            <div className="pack-actions">
+              <button
+                ref={continueRevealing}
+                type="button"
+                className="pack-control pack-primary"
+                onClick={() => setExitRequested(false)}
+              >
+                Continue revealing
+              </button>
+              <button
+                type="button"
+                className="pack-control secondary"
+                onClick={skipAllAndExit}
+              >
+                Skip All & Exit
+              </button>
+            </div>
+          </section>
+        )}
       </FantasySheet>
       {inspected && (
         <FantasySheet
