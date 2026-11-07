@@ -1,0 +1,75 @@
+DOCKED COMPLETE FOIL PACK ROLLOUT — PRODUCTION RELEASE
+7 November 2026
+
+STATUS
+Deployed with owner approval to https://docked.com.au.
+Application commit: 5e043af5a0e52f32b7f7c8842ffe4ea817146f0a
+Deployment: dpl_2bvEkSSi9Gte5H8Zdyvyj6BPXDoC (READY)
+Deployment URL: https://docked-production-o01r5oaxy-briant-s-projects.vercel.app
+Branch: codex/foil-pack-complete-rollout
+The later release-evidence commit is documentation/tooling only; it is not the deployed application SHA.
+
+SCOPE
+All 21 existing NFL/AFL/NRL combinations now share the approved foil artwork:
+silver Starter 4; blue Standard 1/3/9; black/gold Premium 1/3/9.
+Branding, tier, sport and quantity are baked into transparent WebP artwork.
+Mobile catalogue images and tiles are bounded consistently. Existing shared
+pack components cover store, confirmation, history, My Packs and opening.
+No new products, price/odds changes, inventory changes or database migrations.
+The separate player-detail/reveal-navigation fix was not included.
+
+RELEASE SAFEGUARDS
+The deployed source was exported from the exact approved commit.
+Production still matched baseline 864df277 immediately before promotion.
+The prior private runtime was verified against its recorded SHA-256 digest;
+only VERCEL_GIT_COMMIT_SHA changed. Nine disabled runtime flags and cron
+configuration were preserved. NBA remains hidden. Commercial payments,
+public registration and other existing closed capabilities remain closed.
+No customer purchases, new pack openings, grants or balance mutations were
+performed during release acceptance. Existing ownership and financial code
+was not changed. This does not claim a new database-wide integrity audit.
+
+VERIFICATION
+Pre-release: 751 existing platform tests, 2 new inventory tests, 62 browser
+checks, typecheck, full lint and local production webpack build passed.
+Physical Samsung SM-S921B / Android 17 / Chrome: all 21 variants, three
+purchase-review/cancel flows and synthetic 1/3/9-card openings passed.
+That was local synthetic Chrome acceptance, not installed Docked WebView.
+Hosted Linux Production build passed and the staged deployment was checked
+before promotion. After promotion every one of 63 image files returned 200
+and matched its approved SHA-256 hash. Public routes and closed API gates
+passed; all six reveal rarity styles remain served.
+Genuine signed-in Production Chrome acceptance at 390 x 844 verified all
+21 loaded variants, no horizontal overflow, three correct purchase previews
+followed by Cancel, unchanged displayed balance and NBA absent. No captured
+browser warning/error entries. The viewport override was reset afterward.
+
+MONITORING
+Post-deployment runtime logs checked through 2026-11-07T12:55:18Z.
+Only the existing /api/store/google/scheduled reconciliation alert appeared:
+7 legacy TEST cases requiring attention, 7 overdue, unchanged from baseline.
+Those seven alerts were not modified or reconciled. No other warning/error/
+fatal records were returned in the checked deployment window. Existing cron
+execution was observed. No external log drain is configured; no monitoring
+permissions or services were changed for this visual release.
+
+EVIDENCE
+docs/qa/foil-pack-rollout-20261107/review.html
+docs/qa/foil-pack-rollout-20261107/release/prepared.json
+docs/qa/foil-pack-rollout-20261107/release/candidate-verified.json
+docs/qa/foil-pack-rollout-20261107/release/live-verified.json
+docs/qa/foil-pack-rollout-20261107/release/signed-in-verified.json
+docs/qa/foil-pack-rollout-20261107/release/runtime-observation.json
+Production screenshots are retained privately because they include the
+signed-in account balance. Synthetic comparison/gallery images are in the
+review report and the physical Samsung recording is included there.
+
+ROLLBACK
+No rollback was needed. The previous verified deployment is retained:
+dpl_9EcDsyEHY7oH48PDx9t3Q2NYtLmH
+https://docked-production-po4x75lz8-briant-s-projects.vercel.app
+Commit: 864df2779b258f01d66717170e624a89e5b22ee4
+If a critical regression is confirmed, promote that existing deployment in
+the same Vercel project, then verify /api/beta-release and the signed-in
+catalogue. No database rollback is needed because this release has no schema
+or customer-data mutations. Do not change the seven reconciliation alerts.

@@ -1,6 +1,195 @@
 {
   "baseline": "864df2779b258f01d66717170e624a89e5b22ee4",
-  "deployment": "Not deployed. Owner review/approval required.",
+  "deployment": "Deployed to https://docked.com.au; commit 5e043af5a0e52f32b7f7c8842ffe4ea817146f0a.",
+  "liveAcceptance": {
+    "verifiedAt": "2026-11-07T12:54:51.482Z",
+    "commit": "5e043af5a0e52f32b7f7c8842ffe4ea817146f0a",
+    "url": "https://docked.com.au",
+    "authenticated": true,
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "variantsLoaded": 21,
+    "all21Loaded": true,
+    "noHorizontalOverflow": true,
+    "purchaseReviewsOpenedAndCancelled": 3,
+    "purchasesConfirmed": 0,
+    "newPacksOpened": 0,
+    "displayedBalanceUnchanged": true,
+    "nbaVisible": false,
+    "consoleWarningsOrErrors": 0,
+    "checks": {
+      "nrl": {
+        "overflow": false,
+        "variants": [
+          {
+            "height": 158.10000610351562,
+            "key": "PREMIUM:nrl:9",
+            "loaded": true,
+            "src": "/brand/docked/packs/foil-v2/premium-nrl-9-800.webp",
+            "width": 105.4000015258789
+          },
+          {
+            "height": 158.10000610351562,
+            "key": "PREMIUM:nrl:3",
+            "loaded": true,
+            "src": "/brand/docked/packs/foil-v2/premium-nrl-3-800.webp",
+            "width": 105.4000015258789
+          },
+          {
+            "height": 158.10000610351562,
+            "key": "PREMIUM:nrl:1",
+            "loaded": true,
+            "src": "/brand/docked/packs/foil-v2/premium-nrl-1-800.webp",
+            "width": 105.4000015258789
+          },
+          {
+            "height": 158.10000610351562,
+            "key": "STANDARD:nrl:9",
+            "loaded": true,
+            "src": "/brand/docked/packs/foil-v2/standard-nrl-9-800.webp",
+            "width": 105.4000015258789
+          },
+          {
+            "height": 158.10000610351562,
+            "key": "STANDARD:nrl:3",
+            "loaded": true,
+            "src": "/brand/docked/packs/foil-v2/standard-nrl-3-800.webp",
+            "width": 105.4000015258789
+          },
+          {
+            "height": 158.10000610351562,
+            "key": "STANDARD:nrl:1",
+            "loaded": true,
+            "src": "/brand/docked/packs/foil-v2/standard-nrl-1-800.webp",
+            "width": 105.4000015258789
+          },
+          {
+            "height": 114,
+            "key": "STARTER:nrl:4",
+            "loaded": true,
+            "src": "/brand/docked/packs/foil-v2/starter-nrl-4-800.webp",
+            "width": 76
+          }
+        ],
+        "viewport": {
+          "height": 844,
+          "width": 390
+        },
+        "purchaseReview": {
+          "key": "STANDARD:nrl:1",
+          "loaded": true
+        }
+      },
+      "afl": {
+        "purchaseReview": {
+          "key": "STANDARD:afl:3",
+          "loaded": true
+        },
+        "overflow": false,
+        "variants": [
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/premium-afl-9-240.webp",
+            "key": "PREMIUM:afl:9",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/premium-afl-3-240.webp",
+            "key": "PREMIUM:afl:3",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/premium-afl-1-240.webp",
+            "key": "PREMIUM:afl:1",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/standard-afl-9-240.webp",
+            "key": "STANDARD:afl:9",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/standard-afl-3-240.webp",
+            "key": "STANDARD:afl:3",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/standard-afl-1-240.webp",
+            "key": "STANDARD:afl:1",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/starter-afl-4-480.webp",
+            "key": "STARTER:afl:4",
+            "loaded": true,
+            "width": 76
+          }
+        ]
+      },
+      "nfl": {
+        "purchaseReview": {
+          "key": "PREMIUM:nfl:9",
+          "loaded": true
+        },
+        "overflow": false,
+        "variants": [
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/premium-nfl-9-240.webp",
+            "key": "PREMIUM:nfl:9",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/premium-nfl-3-240.webp",
+            "key": "PREMIUM:nfl:3",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/premium-nfl-1-240.webp",
+            "key": "PREMIUM:nfl:1",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/standard-nfl-9-240.webp",
+            "key": "STANDARD:nfl:9",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/standard-nfl-3-240.webp",
+            "key": "STANDARD:nfl:3",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/standard-nfl-1-240.webp",
+            "key": "STANDARD:nfl:1",
+            "loaded": true,
+            "width": 105.4000015258789
+          },
+          {
+            "currentSrc": "https://docked.com.au/brand/docked/packs/foil-v2/starter-nfl-4-480.webp",
+            "key": "STARTER:nfl:4",
+            "loaded": true,
+            "width": 76
+          }
+        ],
+        "viewport": {
+          "height": 844,
+          "width": 390
+        }
+      }
+    }
+  },
   "productionReadOnlyCatalogue": true,
   "paidVariants": 18,
   "starterVariants": 3,
@@ -17,7 +206,7 @@
   "addedInventoryTestsPassed": 2,
   "typecheck": "Passed",
   "lint": "Full source/scripts/tests passed; later fixture edits also linted",
-  "build": "Next.js 16.4.3 production webpack build passed. Existing external node_modules junction prevents local Turbopack; no remote deployment was used.",
+  "build": "Local Next.js 16.4.3 production webpack build and hosted Linux Production build passed. All 63 live asset hashes match.",
   "clientBoundary": "233 generated assets scanned; no build-canary markers found. Dedicated canary environment was not injected.",
   "mobileViewports": [
     320,
@@ -39,7 +228,7 @@
   },
   "physicalAndroid": "passed: SM-S921B, Android 17, Chrome. 27 recorded checks. Local synthetic fixture; installed Docked WebView was not tested.",
   "sevenGoogleTestAlerts": "Pre-existing; not modified or reconciled.",
-  "productionWrites": 0,
+  "productionCustomerWrites": 0,
   "backendChanges": false,
   "nativeAppChanges": false
 }

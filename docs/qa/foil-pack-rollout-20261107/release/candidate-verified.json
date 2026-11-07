@@ -1,0 +1,326 @@
+{
+  "at": "2026-11-07T12:45:44.338Z",
+  "target": "https://docked-production-o01r5oaxy-briant-s-projects.vercel.app",
+  "deployment": "dpl_2bvEkSSi9Gte5H8Zdyvyj6BPXDoC",
+  "commit": "5e043af5a0e52f32b7f7c8842ffe4ea817146f0a",
+  "passed": true,
+  "checks": [
+    {
+      "route": "/account-deletion",
+      "status": 200
+    },
+    {
+      "route": "/api/beta-release",
+      "status": 200
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "status": 401
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403
+    },
+    {
+      "route": "/app/login",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-1-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-1-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-1-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-3-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-3-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-3-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-9-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-9-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-9-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nfl-1-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nfl-1-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nfl-1-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nfl-3-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nfl-3-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nfl-3-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nfl-9-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nfl-9-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nfl-9-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nrl-1-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nrl-1-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nrl-1-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nrl-3-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nrl-3-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nrl-3-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nrl-9-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nrl-9-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-nrl-9-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-afl-1-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-afl-1-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-afl-1-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-afl-3-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-afl-3-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-afl-3-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-afl-9-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-afl-9-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-afl-9-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nfl-1-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nfl-1-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nfl-1-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nfl-3-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nfl-3-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nfl-3-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nfl-9-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nfl-9-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nfl-9-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nrl-1-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nrl-1-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nrl-1-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nrl-3-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nrl-3-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nrl-3-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nrl-9-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nrl-9-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/standard-nrl-9-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/starter-afl-4-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/starter-afl-4-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/starter-afl-4-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/starter-nfl-4-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/starter-nfl-4-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/starter-nfl-4-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/starter-nrl-4-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/starter-nrl-4-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/starter-nrl-4-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/preview/pack-opening",
+      "status": 404
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/profile/qa_billing",
+      "status": 503
+    }
+  ],
+  "sixRarityStylesServed": true,
+  "approvedFoilStylesAndAssetsServed": true,
+  "foilVariants": 21,
+  "foilFiles": 63,
+  "allAssetHashesVerified": false,
+  "closedFlags": [
+    "REGISTRATION_ENABLED",
+    "COMPETITIONS_ENABLED",
+    "PRIZES_ENABLED",
+    "DOCKED_MULTI_SPORT_SANDBOX",
+    "DOCKED_MEMBER_GOOGLE_TEST",
+    "DOCKED_COMMERCIAL_SERVICE",
+    "DOCKED_COMMERCIAL_SURFACES",
+    "DOCKED_COMMERCIAL_CHECKOUT",
+    "DOCKED_PUBLIC_CUSTOMERS"
+  ],
+  "cronConfigurationUnchanged": true,
+  "migrations": [],
+  "customerMutations": 0,
+  "authenticatedCustomerAcceptance": false,
+  "packOpened": false
+}

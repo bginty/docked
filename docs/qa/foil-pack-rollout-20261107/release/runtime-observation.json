@@ -1,0 +1,58 @@
+{
+  "checkedThrough": "2026-11-07T12:55:18.272Z",
+  "deployment": "dpl_2bvEkSSi9Gte5H8Zdyvyj6BPXDoC",
+  "query": {
+    "since": "30m",
+    "levels": ["error", "warning", "fatal"],
+    "limit": 30
+  },
+  "returnedRecords": 2,
+  "events": [
+    {
+      "event": "google-test-reconciliation",
+      "scheduled": 0,
+      "completed": 0,
+      "pending": 0,
+      "working": 0,
+      "attention": 7,
+      "overdue": 7,
+      "attentionRequired": true,
+      "services": {
+        "legacy": {
+          "scheduled": 0,
+          "completed": 0,
+          "pending": 0,
+          "working": 0,
+          "attention": 7,
+          "overdue": 7,
+          "attentionRequired": true
+        }
+      }
+    },
+    {
+      "event": "google-test-reconciliation",
+      "scheduled": 0,
+      "completed": 0,
+      "pending": 0,
+      "working": 0,
+      "attention": 7,
+      "overdue": 7,
+      "attentionRequired": true,
+      "services": {
+        "legacy": {
+          "scheduled": 0,
+          "completed": 0,
+          "pending": 0,
+          "working": 0,
+          "attention": 7,
+          "overdue": 7,
+          "attentionRequired": true
+        }
+      }
+    }
+  ],
+  "onlyExistingSevenLegacyTestAlerts": true,
+  "alertsChanged": false,
+  "externalLogDrains": 0,
+  "note": "Bounded runtime log observation; not a claim that all past or future errors are absent."
+}
