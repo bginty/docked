@@ -73,7 +73,7 @@ for (const sport of ["afl", "nfl", "nrl"] as PreviewSport[]) {
       ).toBeVisible();
       await page
         .getByRole("button", {
-          name: card.tier === "ICON" ? "View pack summary" : "Reveal next card",
+          name: card.tier === "ICON" ? "View Pack Summary" : "Next Card →",
         })
         .click();
     }
@@ -161,7 +161,7 @@ test("V3 reduced motion has no animation, no Canvas loop; reveal and share stay 
     page.getByRole("button", { name: "Share My Pull", exact: true }),
   ).toBeInViewport();
   await expect(
-    page.getByRole("button", { name: "View pack summary" }),
+    page.getByRole("button", { name: "View Pack Summary" }),
   ).toBeInViewport();
   expect(
     await page.evaluate(
@@ -353,9 +353,7 @@ test("V3 audio follows visual phases, reuses one context per pack, and stops on 
     "revealed",
     { timeout: 6000 },
   );
-  await page
-    .getByRole("button", { name: "Reveal next card", exact: true })
-    .click();
+  await page.getByRole("button", { name: "Next Card →", exact: true }).click();
   await page.getByRole("button", { name: "Reveal card", exact: true }).click();
   await expect.poll(states).toEqual(["closed", "running"]); // no ninth-context buildup
   await page.getByRole("button", { name: "Sound on", exact: true }).click();
@@ -394,7 +392,7 @@ test("V3 complete nine-card sequence keeps order, best pull and a single issuanc
     );
     await page
       .getByRole("button", {
-        name: i === 8 ? "View pack summary" : "Reveal next card",
+        name: i === 8 ? "View Pack Summary" : "Next Card →",
         exact: true,
       })
       .click();
@@ -429,7 +427,10 @@ for (const sport of ["nfl", "afl", "nrl"] as const) {
     await page
       .getByRole("button", { name: `View ${card.name}`, exact: true })
       .click();
+    // The pack now stays mounted beneath details. Scope to the active child,
+    // not the identically labelled summary action behind its modal backdrop.
     await page
+      .locator(".pack-player-details")
       .getByRole("button", { name: `Share ${card.name}`, exact: true })
       .click();
     share = page.getByRole("dialog", { name: "Share your pull" });

@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client";
 import { useCallback, useEffect, useState } from "react";
 import PackOpening from "../../src/components/pack-opening";
 import { CollectibleViewer } from "../../src/components/collectible-viewer";
+import { PackResumeNotice } from "../../src/components/pack-resume-notice";
 import type { AwardedCard, PackReceipt } from "../../src/core/pack-opening";
 function Fixture() {
   const query = new URLSearchParams(location.search);
@@ -24,6 +25,20 @@ function Fixture() {
       <button disabled={!ready} onClick={() => setOpen(true)}>
         Open viewer
       </button>
+      {receipt && (
+        <PackResumeNotice
+          member="isolated-test"
+          packs={[
+            {
+              ...receipt,
+              status: "OPENED",
+              cardCount: receipt.cards.length,
+              receipt,
+            },
+          ]}
+          onResume={() => setOpen(true)}
+        />
+      )}
       {selected && (
         <CollectibleViewer card={selected} onClose={() => setSelected(null)} />
       )}

@@ -1,0 +1,103 @@
+DOCKED PACK REVEAL NAVIGATION — REVIEW CANDIDATE
+2026-11-07 — Not deployed. Owner approval required before Production.
+
+ROOT CAUSE
+PackOpening passed card inspection to its parent. Several callers closed the
+pack before opening player details, unmounting the active reveal session.
+The old local progress value stored an index but not whether that card had
+already been revealed. Ordinary browser Back also needed separate pack and
+player-detail history entries.
+
+IMPLEMENTATION
+NFL/AFL/NRL player inspection is now owned by the mounted pack component.
+The existing collectible artwork, statistics and detail controls are reused
+inside a child sheet. Back to Pack, Close, browser Back and the native cancel
+contract dismiss only that sheet. The pack's current card and reveal phase
+remain intact.
+
+Under the revealed card: secondary View Player and primary blue Next Card →.
+The last card uses View Pack Summary. Share My Pull, Reveal All and Exit Pack
+remain available as smaller controls. Progress remains Card N of M.
+
+Device-local v2 progress stores only index, revealed and updatedAt, keyed by
+member and server receipt. Resume Pack uses the existing authenticated pack
+reader; the local record is never a source of cards, rarity or ownership.
+Legacy progress is readable. Explicit replay does not overwrite an incomplete
+normal session. Disabled storage still allows in-memory navigation.
+
+SERVER / DATA BOUNDARY
+No migration, API, purchase, price, odds, supply, wallet, issuance, ownership,
+refund, authentication or sport-visibility code changed. NBA stays on its
+existing reveal path. All testing used synthetic receipts and isolated fixtures.
+No live purchases, balance adjustments or inventory changes were made.
+
+EXECUTED VERIFICATION
+18 new browser navigation tests passed, zero failures/flakes (browser.json).
+  NFL/AFL/NRL x 1/3/9 cards; actual detail content; Back to Pack; Close;
+  browser Back; native cancel contract; summary inspection; nested game log;
+  rapid repeated input; sharing; background interruption; reload/resume;
+  storage denial; 320/360/412/1366px layout and focus containment.
+1 recorded full nine-card browser demonstration passed (recording.json).
+33 existing pack browser tests passed in the final run (5.9 minutes).
+  Includes all rarity reveals, reduced motion, share-image export, original
+  NBA receipt behaviour and interrupted purchase-response recovery.
+30 platform checks passed, including pack lifecycle/refund and modal tests.
+Targeted ESLint, TypeScript, git diff --check and production webpack build passed.
+Client-boundary scan passed for 233 client assets; no penetration-test claim.
+
+Commands:
+  npx playwright test --config playwright.pack-navigation.config.ts
+      --grep-invert "recorded mobile browser demonstration"
+  DOCKED_NAV_RECORD=true npx playwright test
+      --config playwright.pack-navigation.config.ts
+      --grep "recorded mobile browser demonstration"
+  npx playwright test --config playwright.pack.config.ts --reporter=list
+  npx tsx --test tests/platform/pack-reveal-progress.test.ts
+      tests/platform/pack-opening.test.ts tests/platform/statistics-modal.test.ts
+      tests/platform/master-v2.test.ts tests/platform/store-pack-lifecycle.test.ts
+  npx tsc --noEmit --incremental false
+  npx next build --webpack
+  npm run check:client
+
+PHYSICAL SAMSUNG ACCEPTANCE
+Samsung Galaxy S24 (SM-S921B), Chrome, loopback preview over authorised USB.
+Observed and recorded:
+  Card 1 → View Player → Back to Pack → same revealed Card 1.
+  Next Card → reveal Card 2 → tap player → Android system Back → same Card 2.
+Owner then continued through the remaining cards. The saved final screenshot
+shows revealed Card 9 of 9 and the View Pack Summary button.
+The physical recording is 179.999 seconds, 540x1170; playback was decoded and
+sampled successfully in Edge. It records the first two return paths and Card 3.
+Physical Pack Summary was not observed. The full nine-card summary journey is
+recorded separately in the mobile browser automated demonstration.
+
+This is physical Samsung Chrome acceptance, NOT installed Capacitor-app or
+signed-in hosted Production acceptance. The native bridge's cancel contract
+was also exercised in automated browser tests. No APK was rebuilt or installed.
+
+REVIEW MATERIALS
+before-player-details.png / before-pack-lost.png: reproduced old failure.
+after-revealed-360.png / after-details-360.png: corrected mobile controls.
+after-nine-card-summary.png: confirmed nine-card summary.
+samsung-back-to-pack.png: physical return-to-pack evidence.
+samsung-final-card.png: physical final-card controls.
+afl-nine-card-navigation-mobile-browser.webm: complete nine-card demonstration.
+samsung-pack-navigation.mp4: local physical capture (not committed due to size).
+evidence.json: hashes and result metadata.
+
+LOCAL PREVIEW
+Run npx tsx scripts/serve-pack-navigation-preview.ts and open
+http://127.0.0.1:4187/pack?cinema=v3 . It uses synthetic AFL cards and has no
+database credentials or purchase/inventory service. Statistics are deliberately
+unconnected. It is not a hosted customer acceptance environment.
+
+REMAINING RELEASE GATE
+Owner review/approval before integration, push or Production deployment.
+After approval, build with a normal dependency install in the release checkout
+and verify a genuine previously opened pack without issuing or purchasing.
+The local production build used a shared node_modules junction; Next reported
+27 standalone file-tracing warnings for dependencies outside that checkout.
+Compilation, TypeScript and page generation succeeded, but that local standalone
+output must not be used as the deployment artifact.
+
+The separate realistic foil-pack design prototype is not included in this fix.

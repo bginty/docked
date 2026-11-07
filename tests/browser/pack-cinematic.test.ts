@@ -240,13 +240,11 @@ for (const sport of previewSports) {
             await share.getByRole("button", { name: /close/i }).click();
           }
           if (index < cards.length - 1) {
-            await page
-              .getByRole("button", { name: "Reveal next card" })
-              .click();
+            await page.getByRole("button", { name: "Next Card →" }).click();
           }
         }
         if (mobile) {
-          await page.getByRole("button", { name: "View pack summary" }).click();
+          await page.getByRole("button", { name: "View Pack Summary" }).click();
         } else {
           await page
             .getByRole("button", { name: "Reveal All", exact: true })
@@ -331,7 +329,7 @@ test("skip, rapid taps and background interruption finish the same awarded card"
     receipt.cards[0].name,
   );
 
-  const next = page.getByRole("button", { name: "Reveal next card" });
+  const next = page.getByRole("button", { name: "Next Card →" });
   await next.evaluate((button: HTMLButtonElement) => {
     button.click();
     button.click();

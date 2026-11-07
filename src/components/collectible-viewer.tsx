@@ -312,17 +312,33 @@ export function CollectibleViewer({
       onClose={onClose}
       className="collectible-viewer"
     >
-      <div className="card-detail-art">
-        <FlippableCard
-          key={card.id}
-          card={card}
-          appliedMultiplier={appliedMultiplier}
-        />
-        <div className="card-detail-share">
-          <PackPullShare key={card.id} card={card} />
-        </div>
-        <CardSellAction key={card.id} card={card} />
-      </div>
+      <CollectibleCardDetails
+        card={card}
+        appliedMultiplier={appliedMultiplier}
+      />
     </FantasySheet>
+  );
+}
+
+/** Shared player inspection content; the caller owns its navigation layer. */
+export function CollectibleCardDetails({
+  card,
+  appliedMultiplier,
+}: {
+  card: ViewerCard;
+  appliedMultiplier?: number;
+}) {
+  return (
+    <div className="card-detail-art">
+      <FlippableCard
+        key={card.id}
+        card={card}
+        appliedMultiplier={appliedMultiplier}
+      />
+      <div className="card-detail-share">
+        <PackPullShare key={card.id} card={card} />
+      </div>
+      <CardSellAction key={card.id} card={card} />
+    </div>
   );
 }

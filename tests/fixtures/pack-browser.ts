@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { extname } from "node:path";
 import { bundleCommunityFixture } from "./bundle-community";
 
-const styles = [
+export const packFixtureStyles = [
   "brand-theme",
   "globals",
   "sports-visuals",
@@ -68,7 +68,9 @@ export async function mountPackFixture(
   assets ??= Promise.all([
     bundleCommunityFixture("tests/fixtures/pack-opening.tsx"),
     Promise.all(
-      styles.map((name) => readFile("src/app/" + name + ".css", "utf8")),
+      packFixtureStyles.map((name) =>
+        readFile("src/app/" + name + ".css", "utf8"),
+      ),
     ),
   ]);
   const [script, css] = await assets;

@@ -40,8 +40,19 @@ import {
   type CinemaTier,
 } from "./pack-cinema-v2-model";
 import { createCinemaAudioPlayer } from "./pack-cinema-audio";
+import {
+  readRevealProgress,
+  revealProgressKey,
+  revealProgressEvent,
+  type RevealProgress,
+} from "@/core/pack-reveal-progress";
 
 const PackCinemaV2 = lazy(() => import("./pack-cinema-v2"));
+const PackPlayerDetails = lazy(() =>
+  import("./collectible-viewer").then((m) => ({
+    default: m.CollectibleCardDetails,
+  })),
+);
 
 type PackStage =
   | "sealed"
@@ -109,6 +120,9 @@ export default function PackOpening(props: PackOpeningProps) {
   const [replaying, setReplaying] = useState(Boolean(props.receipt));
   const [reduced, setReduced] = useState(true);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [inspected, setInspected] = useState<AwardedCard | null>(null);
+  const [resume, setResume] = useState<RevealProgress | null>(null);
+  const closeDetails = useCallback(() => setInspected(null), []);
   const advancing = useRef(false);
   const busy = useRef(false),
     alive = useRef(true);
@@ -131,9 +145,15 @@ export default function PackOpening(props: PackOpeningProps) {
   const cinematic = supportsCinematicReveal(card);
   const inMotion = stage === "rarity" || stage === "flipping";
   const save = useCallback(
-    (r: PackReceipt, next: number) => {
+    (r: PackReceipt, next: number, revealed = false) => {
       try {
-        localStorage.setItem(revealKey(props.userId, r), String(next));
+        if (supportsCinematicReveal(r.cards[0])) {
+          localStorage.setItem(
+            revealProgressKey(props.userId, r),
+            JSON.stringify({ index: next, revealed, updatedAt: Date.now() }),
+          );
+          window.dispatchEvent(new Event(revealProgressEvent));
+        } else localStorage.setItem(revealKey(props.userId, r), String(next));
       } catch {
         /* Storage denial affects presentation only. */
       }
@@ -154,21 +174,49 @@ export default function PackOpening(props: PackOpeningProps) {
     const r = initialReceipt;
     if (r) {
       let next = 0;
+      let alreadyRevealed = false;
       try {
-        next = revealIndex(
-          localStorage.getItem(revealKey(props.userId, r)),
-          r.cards.length,
-        );
+        if (supportsCinematicReveal(r.cards[0])) {
+          const progress = readRevealProgress(localStorage, props.userId, r);
+          next = progress?.index ?? 0;
+          alreadyRevealed = progress?.revealed ?? false;
+          if (props.replay && progress && progress.index < r.cards.length)
+            setResume(progress);
+        } else
+          next = revealIndex(
+            localStorage.getItem(revealKey(props.userId, r)),
+            r.cards.length,
+          );
       } catch {}
-      if (props.replay) next = 0;
+      if (props.replay) {
+        next = 0;
+        alreadyRevealed = false;
+      }
       setIndex(next);
-      setStage(firstCardStage(r.cards[next], false));
+      setStage(
+        alreadyRevealed ? "revealed" : firstCardStage(r.cards[next], false),
+      );
     }
     return () => {
       alive.current = false;
       motion.removeEventListener("change", change);
     };
   }, [initialReceipt, props.replay, props.userId]);
+  useEffect(() => {
+    if (
+      receipt &&
+      supportsCinematicReveal(receipt.cards[0]) &&
+      !presentationReplay.current &&
+      (stage === "revealed" || stage === "mystery" || stage === "summary")
+    )
+      save(receipt, index, stage === "revealed");
+  }, [stage, index, receipt, save]);
+  function inspectCard(selected: AwardedCard) {
+    if (supportsCinematicReveal(selected)) {
+      cinemaSound.current?.stop();
+      setInspected(selected);
+    } else props.onViewCard(selected);
+  }
   useEffect(() => {
     if (stage !== "opening") return;
     if (reduced || simple || document.hidden) {
@@ -328,674 +376,773 @@ export default function PackOpening(props: PackOpeningProps) {
         ]
       : undefined;
   const cinematicSummary = supportsCinematicReveal(receipt?.cards[0]);
+  const revealActions = receipt && card && (
+    <div className="pack-reveal-actions pack-navigation-actions">
+      <div className="pack-player-actions">
+        <button
+          type="button"
+          className="pack-control secondary"
+          disabled={stage !== "revealed"}
+          onClick={() => inspectCard(card)}
+        >
+          View Player
+        </button>
+        <button
+          type="button"
+          className="pack-next pack-control pack-primary"
+          disabled={stage !== "revealed"}
+          onClick={() => advance()}
+        >
+          {index + 1 === receipt.cards.length
+            ? "View Pack Summary"
+            : "Next Card →"}
+        </button>
+      </div>
+      <div className="pack-minor-actions">
+        <PackPullShare
+          card={card}
+          prominent={headlinePull(card)}
+          label="Share My Pull"
+        />
+        <button
+          type="button"
+          className="pack-control secondary"
+          onClick={() => advance(true)}
+        >
+          Reveal All
+        </button>
+        <button
+          type="button"
+          className="pack-control secondary"
+          onClick={props.onClose}
+        >
+          Exit Pack
+        </button>
+      </div>
+    </div>
+  );
   return (
-    <FantasySheet
-      className={`pack-sheet pack-viewport pack-stage-${stage}${prototype ? " pack-cinema-v2-sheet" : ""}`}
-      title={props.replay ? "Replay pack result" : props.name}
-      onClose={props.onClose}
-    >
-      <section
-        className={`pack-opening ${motionOff ? "pack-simple" : ""}`}
-        aria-label="Docked pack opening"
+    <>
+      <FantasySheet
+        className={`pack-sheet pack-viewport pack-stage-${stage}${prototype ? " pack-cinema-v2-sheet" : ""}`}
+        title={props.replay ? "Replay pack result" : props.name}
+        onClose={props.onClose}
+        historyEntry={
+          props.sport !== "basketball" &&
+          receipt?.cards[0]?.sport !== "basketball"
+        }
       >
-        <div className="pack-tools">
-          {receipt && stage !== "summary" && (
-            <button
-              type="button"
-              className="pack-control secondary"
-              onClick={() => advance(true)}
-              aria-label={cinematic ? "Reveal All" : "Skip remaining reveals"}
-            >
-              {cinematic ? "Reveal All" : "Reveal all / Skip"}
-            </button>
-          )}
-          <button
-            type="button"
-            className="pack-control secondary pack-tool-icon"
-            aria-pressed={!muted}
-            aria-label={muted ? "Sound off" : "Sound on"}
-            onClick={() => {
-              const next = !muted;
-              setMuted(next);
-              try {
-                localStorage.setItem("docked:pack:sound", next ? "off" : "on");
-              } catch {}
-              if (!next) packSound();
-            }}
-          >
-            <svg
-              viewBox="0 0 24 24"
-              width="20"
-              height="20"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.7"
-              aria-hidden="true"
-            >
-              <path d="M3 9h4l5-4v14l-5-4H3Z" />
-              {muted ? (
-                <path d="m16 9 5 6m0-6-5 6" />
-              ) : (
-                <path d="M16 8q5 4 0 8M19 5q8 7 0 14" />
-              )}
-            </svg>
-          </button>
-          <details className="pack-settings">
-            <summary
-              className="pack-control secondary pack-tool-icon"
-              aria-label="Opening settings"
-            >
-              <AppIcon name="settings" />
-            </summary>
-            <div className="pack-settings-content">
-              <label>
-                <input
-                  type="checkbox"
-                  checked={simple || reduced}
-                  disabled={reduced}
-                  onChange={(event) => {
-                    setSimple(event.target.checked);
-                    try {
-                      localStorage.setItem(
-                        "docked:pack:reduce-motion",
-                        event.target.checked ? "on" : "off",
-                      );
-                    } catch {}
-                  }}
-                />{" "}
-                Reduce motion
-              </label>
-              <p>Reduce tilt and reveal animations.</p>
-              {reduced && <small>Enabled by your device preference.</small>}
-              {props.sport !== "basketball" &&
-                receipt?.cards[0]?.sport !== "basketball" && (
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={haptics}
-                      onChange={(event) => {
-                        setHaptics(event.target.checked);
-                        try {
-                          localStorage.setItem(
-                            "docked:pack:haptics",
-                            event.target.checked ? "on" : "off",
-                          );
-                        } catch {}
-                      }}
-                    />
-                    Haptic feedback
-                  </label>
-                )}
-            </div>
-          </details>
-        </div>
-        <p className="pack-kicker">
-          {props.preview
-            ? "DESIGN PREVIEW · NO CARDS AWARDED"
-            : props.replay || replaying
-              ? "REPLAY · NO NEW AWARDS"
-              : brand.tagline}
-        </p>
-        {receipt?.notice && <p role="status">{receipt.notice}</p>}
-        {(stage === "sealed" || stage === "waiting") && (
-          <>
-            <h3 ref={title} tabIndex={-1}>
-              Your next team starts here.
-            </h3>
-            <div className="pack-stage">
-              <div className="pack-tunnel pack-tunnel-idle" aria-hidden="true">
-                {[0, 1, 2, 3, 4].map((n) => (
-                  <i key={n} style={{ "--ring": n } as CSSProperties} />
-                ))}
-              </div>
-              <button
-                type="button"
-                className="branded-seal"
-                disabled={stage === "waiting"}
-                aria-label="Open pack seal"
-                onClick={() => void open()}
-                onPointerDown={(e) => {
-                  swipe.current = { x: e.clientX, y: e.clientY };
-                }}
-                onPointerUp={(e) => {
-                  const p = swipe.current;
-                  swipe.current = null;
-                  if (p && Math.hypot(e.clientX - p.x, e.clientY - p.y) > 45)
-                    void open();
-                }}
-                onPointerCancel={() => {
-                  swipe.current = null;
-                }}
-              >
-                <PackArtwork
-                  core={props.packType === "WEEKLY_CORE"}
-                  premium={props.packType === "PREMIUM"}
-                  name={props.name}
-                  sport={
-                    props.sport ??
-                    new URLSearchParams(
-                      props.collectionHref?.split("?")[1],
-                    ).get("sport") ??
-                    undefined
-                  }
-                  count={props.cardCount ?? receipt?.cards.length}
-                />
-              </button>
-            </div>
-            <button
-              type="button"
-              className="pack-open-button pack-control pack-primary"
-              disabled={stage === "waiting"}
-              onClick={() => void open()}
-            >
-              Open pack
-            </button>
-            <p role="status">
-              {stage === "waiting"
-                ? "Confirming your cards…"
-                : "Tap the pack or swipe across its top seal."}
-            </p>
-            {stage === "waiting" && (
-              <p>
-                You can close this panel safely. Your result can be retrieved
-                from Cards.
-              </p>
-            )}
-            {error && (
-              <p className="pack-error" role="alert">
-                {error}
-              </p>
-            )}
-            <p className="pack-disclosure">
-              {props.commercial
-                ? "The animation does not determine your cards or their rarity. No cash redemption."
-                : "Test cards. No cash value. The animation does not determine your cards or their tier."}
-            </p>
-          </>
-        )}
-        {prototype &&
-          (stage === "mystery" || inMotion || stage === "revealed") &&
-          receipt &&
-          card && (
-            <>
-              <p className="pack-count" aria-live="polite">
-                Card {index + 1} of {receipt.cards.length}
-                {stage !== "mystery" && <> · {rarityRule(card.tier).label}</>}
-              </p>
-              {stage === "revealed" && (
-                <h3 className="sr-only" ref={title} tabIndex={-1}>
-                  {card.name}
-                </h3>
-              )}
-              <Suspense fallback={<p role="status">Preparing your card…</p>}>
-                <PackCinemaV2
-                  key={`${receipt.id}:${index}`}
-                  card={card}
-                  phase={
-                    stage === "mystery"
-                      ? "mystery"
-                      : stage === "rarity"
-                        ? "rarity"
-                        : stage === "flipping"
-                          ? "flipping"
-                          : "revealed"
-                  }
-                  reduced={motionOff}
-                  revealRef={revealControl}
-                  onReveal={beginReveal}
-                  onPhaseStart={(phase) => cinemaSound.current?.phase(phase)}
-                  onInspect={() => props.onViewCard(card)}
-                  onPhaseEnd={() =>
-                    setStage((current) =>
-                      current === stage
-                        ? stage === "rarity"
-                          ? "flipping"
-                          : "revealed"
-                        : current,
-                    )
-                  }
-                />
-              </Suspense>
-              {inMotion ? (
-                <button
-                  ref={skipControl}
-                  type="button"
-                  className="pack-control secondary pack-cinematic-skip"
-                  onClick={() => {
-                    cinemaSound.current?.stop();
-                    setStage("revealed");
-                  }}
-                >
-                  Skip animation
-                </button>
-              ) : stage === "revealed" ? (
-                <div className="pack-reveal-actions">
-                  <PackPullShare
-                    card={card}
-                    prominent={headlinePull(card)}
-                    label="Share My Pull"
-                  />
-                  <button
-                    className="pack-next pack-control pack-primary"
-                    type="button"
-                    onClick={() => advance()}
-                    aria-label={
-                      index + 1 === receipt.cards.length
-                        ? "View pack summary"
-                        : "Reveal next card"
-                    }
-                  >
-                    {index + 1 === receipt.cards.length
-                      ? "View all cards"
-                      : "Reveal Next"}{" "}
-                    →
-                  </button>
-                </div>
-              ) : (
-                <p className="pack-inspect-hint">Tap the card to reveal it</p>
-              )}
-            </>
-          )}
-        {!prototype && (stage === "mystery" || inMotion) && receipt && card && (
-          <>
-            <p className="pack-count" aria-live="polite">
-              Card {index + 1} of {receipt.cards.length}
-              {inMotion && <> · {rarityRule(card.tier).label}</>}
-            </p>
-            <div
-              className="pack-stage pack-card-stage pack-cinematic"
-              data-reveal-index={index}
-              data-pack-reveal-phase={stage}
-              data-tier={inMotion ? card.tier : undefined}
-              style={
-                inMotion
-                  ? ({
-                      ...rarityStyle(card.tier),
-                      "--charge-time": `${revealTiming(card.tier).rarity}ms`,
-                      "--flip-time": `${revealTiming(card.tier).flip}ms`,
-                    } as CSSProperties)
-                  : undefined
-              }
-            >
-              {inMotion && <PackCinematicBackdrop tier={card.tier} />}
-              <PackCinematicBack
-                phase={
-                  stage === "mystery"
-                    ? "mystery"
-                    : stage === "rarity"
-                      ? "rarity"
-                      : "flipping"
-                }
-                tier={inMotion ? card.tier : undefined}
-                controlRef={revealControl}
-                onReveal={beginReveal}
-                onPhaseEnd={() =>
-                  setStage((current) =>
-                    current === stage
-                      ? stage === "rarity"
-                        ? "flipping"
-                        : "revealed"
-                      : current,
-                  )
-                }
-              />
-            </div>
-            {inMotion ? (
-              <button
-                ref={skipControl}
-                type="button"
-                className="pack-control secondary pack-cinematic-skip"
-                onClick={() => setStage("revealed")}
-              >
-                Skip animation
-              </button>
-            ) : (
-              <p className="pack-inspect-hint">Tap the card to reveal it</p>
-            )}
-          </>
-        )}
-        {!prototype &&
-          (stage === "opening" || stage === "revealed") &&
-          receipt &&
-          card && (
-            <>
-              <h3 className="sr-only" ref={title} tabIndex={-1}>
-                {card.name}
-              </h3>
-              <p className="pack-count" aria-live="polite">
-                {cinematic ? "Card " : ""}
-                {index + 1} of {receipt.cards.length} ·{" "}
-                {rarityRule(card.tier).label.toUpperCase()}
-              </p>
-              <div
-                key={`${receipt.id}:${index}`}
-                style={rarityStyle(card.tier)}
-                data-reveal-index={index}
-                data-pack-reveal-phase={cinematic ? "revealed" : undefined}
-                data-tier={cinematic ? card.tier : undefined}
-                className={`pack-stage pack-card-stage tier-${card.tier.toLowerCase()} ${cinematic ? "pack-cinematic" : ""} ${stage === "opening" ? "pack-rising" : ""}`}
-              >
-                {cinematic && headlinePull(card) && (
-                  <div
-                    className="pack-cinematic-afterglow"
-                    aria-hidden="true"
-                  />
-                )}
-                {stage === "opening" && (
-                  <>
-                    <div className="pack-blue-light" aria-hidden="true" />
-                    {index === 0 && !replaying && (
-                      <div className="pack-opening-envelope" aria-hidden="true">
-                        <span className="pack-torn-seal" />
-                        <PackArtwork
-                          core={props.packType === "WEEKLY_CORE"}
-                          premium={props.packType === "PREMIUM"}
-                          name={props.name}
-                          sport={
-                            props.sport ??
-                            new URLSearchParams(
-                              props.collectionHref?.split("?")[1],
-                            ).get("sport") ??
-                            undefined
-                          }
-                          count={props.cardCount ?? receipt.cards.length}
-                        />
-                      </div>
-                    )}
-                  </>
-                )}
-                {card.tier === "ICON" && stage === "opening" && !motionOff && (
-                  <IconCelebration />
-                )}
-                <div
-                  ref={arrival}
-                  className={`pack-arrival ${motionOff || cinematic ? "" : "pack-turn"}`}
-                  onAnimationEnd={(e) => {
-                    if (
-                      stage === "opening" &&
-                      e.target === e.currentTarget &&
-                      e.animationName === "docked-single-reveal"
-                    )
-                      setStage("revealed");
-                  }}
-                >
-                  <div className="pack-card-back" aria-hidden="true" />
-                  <div
-                    className="pack-case"
-                    tabIndex={0}
-                    role="group"
-                    aria-label={`Inspect ${card.name}. Drag or use arrow keys to tilt; Escape resets tilt.`}
-                    style={
-                      {
-                        "--tilt-x": `${tilt.x}deg`,
-                        "--tilt-y": `${tilt.y}deg`,
-                      } as CSSProperties
-                    }
-                    onPointerDown={(e) => {
-                      if (!motionOff && stage === "revealed") {
-                        e.currentTarget.setPointerCapture(e.pointerId);
-                        swipe.current = { x: e.clientX, y: e.clientY };
-                      }
-                    }}
-                    onPointerMove={(e) => {
-                      const p = swipe.current;
-                      if (
-                        p &&
-                        e.currentTarget.hasPointerCapture(e.pointerId) &&
-                        !motionOff &&
-                        stage === "revealed"
-                      )
-                        setTilt({
-                          x: Math.max(-12, Math.min(12, (p.y - e.clientY) / 7)),
-                          y: Math.max(-16, Math.min(16, (e.clientX - p.x) / 7)),
-                        });
-                    }}
-                    onPointerUp={() => {
-                      swipe.current = null;
-                    }}
-                    onPointerCancel={() => {
-                      swipe.current = null;
-                      setTilt({ x: 0, y: 0 });
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Escape") {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        setTilt({ x: 0, y: 0 });
-                      }
-                      if (
-                        !motionOff &&
-                        stage === "revealed" &&
-                        [
-                          "ArrowLeft",
-                          "ArrowRight",
-                          "ArrowUp",
-                          "ArrowDown",
-                        ].includes(e.key)
-                      ) {
-                        e.preventDefault();
-                        setTilt((t) => ({
-                          x: Math.max(
-                            -12,
-                            Math.min(
-                              12,
-                              t.x +
-                                (e.key === "ArrowUp"
-                                  ? -3
-                                  : e.key === "ArrowDown"
-                                    ? 3
-                                    : 0),
-                            ),
-                          ),
-                          y: Math.max(
-                            -16,
-                            Math.min(
-                              16,
-                              t.y +
-                                (e.key === "ArrowLeft"
-                                  ? -3
-                                  : e.key === "ArrowRight"
-                                    ? 3
-                                    : 0),
-                            ),
-                          ),
-                        }));
-                      }
-                    }}
-                  >
-                    <FantasyCardArtwork card={card} faceOnly variant="reveal" />
-                  </div>
-                </div>
-              </div>
-              <div className={cinematic ? "pack-reveal-actions" : undefined}>
-                {cinematic && (
-                  <PackPullShare
-                    card={card}
-                    prominent={headlinePull(card)}
-                    label="Share My Pull"
-                  />
-                )}
-                <button
-                  className="pack-next pack-control pack-primary"
-                  type="button"
-                  aria-label={
-                    index + 1 === receipt.cards.length
-                      ? "View pack summary"
-                      : "Reveal next card"
-                  }
-                  disabled={stage === "opening"}
-                  onClick={() => advance()}
-                >
-                  {index + 1 === receipt.cards.length
-                    ? "View all cards"
-                    : "Reveal Next"}{" "}
-                  →
-                </button>
-              </div>
-              <p className="pack-inspect-hint">
-                {motionOff ? "Reduced movement" : "Drag to tilt"} ·{" "}
-                {props.commercial ? "No cash redemption" : "No cash value"}
-              </p>
-            </>
-          )}
-        {stage === "summary" && receipt && (
-          <>
-            <h3 ref={title} tabIndex={-1}>
-              {props.replay || replaying
-                ? "Your original pack result"
-                : props.commercial
-                  ? "Your collection"
-                  : props.teamHref === null
-                    ? "Your test collection"
-                    : "Ready to build your team"}
-            </h3>
-            <p>
-              {receipt.cards.length} confirmed cards ·{" "}
-              {props.commercial
-                ? "No cash redemption."
-                : "Test cards, no cash value."}
-            </p>
-            <ul
-              className={
-                cinematicSummary
-                  ? "pack-summary pack-summary-cinematic"
-                  : "pack-summary"
-              }
-            >
-              {receipt.cards.map((c) => (
-                <li
-                  key={c.id}
-                  className={
-                    cinematicSummary
-                      ? c.tier === bestTier && c.tier !== "CORE"
-                        ? "pack-best-pull"
-                        : headlinePull(c)
-                          ? "pack-premium-pull"
-                          : undefined
-                      : undefined
-                  }
-                  style={
-                    cinematicSummary && (c.tier === bestTier || headlinePull(c))
-                      ? rarityStyle(c.tier)
-                      : undefined
-                  }
-                >
-                  <span
-                    className={`pack-position tier-${c.tier.toLowerCase()}`}
-                    style={rarityStyle(c.tier)}
-                  >
-                    {c.position}
-                  </span>
-                  <span>
-                    <strong>{c.name}</strong>
-                    {cinematicSummary &&
-                      c.tier === bestTier &&
-                      c.tier !== "CORE" && (
-                        <span className="pack-best-label">Best pull</span>
-                      )}
-                    <small>
-                      {c.team} · {rarityRule(c.tier).label} ·{" "}
-                      {c.tier === "CORE" ? "Unlimited Core" : `#${c.serial}`}
-                    </small>
-                  </span>
-                  <div className="pack-summary-card-actions">
-                    <PackPullShare card={c} />
-                    <button
-                      type="button"
-                      className="pack-control secondary"
-                      aria-label={`View ${c.name}`}
-                      onClick={() => props.onViewCard(c)}
-                    >
-                      View
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            {!props.preview && !props.replay && !replaying && (
-              <AcquisitionShare
-                member={props.userId}
-                reference={receipt.id}
-                cards={receipt.cards.filter((c) =>
-                  props.ownedIds.includes(c.id),
-                )}
-              />
-            )}
-            <div className="pack-actions pack-completion-actions">
-              {props.onBuyAnother ? (
-                <button
-                  type="button"
-                  className="pack-control primary"
-                  disabled={props.completionBusy}
-                  onClick={props.onBuyAnother}
-                >
-                  {props.completionBusy ? "Checking pack…" : "Buy another pack"}
-                </button>
-              ) : (
-                <NavigationShortcut
-                  compact
-                  href={packShopHref(receipt.cards[0]?.sport)}
-                >
-                  Browse packs
-                </NavigationShortcut>
-              )}
-              {props.nextPack && (
+        <section
+          className={`pack-opening ${motionOff ? "pack-simple" : ""}`}
+          aria-label="Docked pack opening"
+        >
+          <div className="pack-tools">
+            {receipt &&
+              stage !== "summary" &&
+              !(cinematic && stage === "revealed") && (
                 <button
                   type="button"
                   className="pack-control secondary"
-                  disabled={props.completionBusy}
-                  onClick={props.nextPack.open}
+                  onClick={() => advance(true)}
+                  aria-label={
+                    cinematic ? "Reveal All" : "Skip remaining reveals"
+                  }
                 >
-                  Open next pack · {props.nextPack.name}
+                  {cinematic ? "Reveal All" : "Reveal all / Skip"}
                 </button>
               )}
-              {props.teamHref !== null && (
-                <NavigationShortcut
-                  compact
-                  icon="trophy"
-                  href={props.teamHref ?? "/fantasy/play"}
-                  onClick={props.onClose}
-                >
-                  Build team
-                </NavigationShortcut>
-              )}
-              <NavigationShortcut
-                compact
-                icon="save"
-                href={props.collectionHref ?? "/fantasy/cards"}
-                onClick={props.onClose}
-              >
-                View Collection
-              </NavigationShortcut>
-            </div>
-            {props.completionError && (
-              <p role="alert">
-                {props.completionError}{" "}
-                <Link href={packShopHref(receipt.cards[0]?.sport)}>
-                  Browse this sport’s packs
-                </Link>
-              </p>
-            )}
-            <p className="pack-disclosure">
-              Your pack result is saved. Replaying it never awards additional
-              cards.
-            </p>
             <button
               type="button"
-              className="pack-control"
+              className="pack-control secondary pack-tool-icon"
+              aria-pressed={!muted}
+              aria-label={muted ? "Sound off" : "Sound on"}
               onClick={() => {
-                presentationReplay.current = true;
-                setIndex(0);
-                setTilt({ x: 0, y: 0 });
-                setReplaying(true);
-                setStage(firstCardStage(receipt.cards[0], motionOff));
+                const next = !muted;
+                setMuted(next);
+                try {
+                  localStorage.setItem(
+                    "docked:pack:sound",
+                    next ? "off" : "on",
+                  );
+                } catch {}
+                if (!next) packSound();
               }}
             >
-              Replay saved result · no new cards
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.7"
+                aria-hidden="true"
+              >
+                <path d="M3 9h4l5-4v14l-5-4H3Z" />
+                {muted ? (
+                  <path d="m16 9 5 6m0-6-5 6" />
+                ) : (
+                  <path d="M16 8q5 4 0 8M19 5q8 7 0 14" />
+                )}
+              </svg>
             </button>
-          </>
-        )}
-      </section>
-    </FantasySheet>
+            <details className="pack-settings">
+              <summary
+                className="pack-control secondary pack-tool-icon"
+                aria-label="Opening settings"
+              >
+                <AppIcon name="settings" />
+              </summary>
+              <div className="pack-settings-content">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={simple || reduced}
+                    disabled={reduced}
+                    onChange={(event) => {
+                      setSimple(event.target.checked);
+                      try {
+                        localStorage.setItem(
+                          "docked:pack:reduce-motion",
+                          event.target.checked ? "on" : "off",
+                        );
+                      } catch {}
+                    }}
+                  />{" "}
+                  Reduce motion
+                </label>
+                <p>Reduce tilt and reveal animations.</p>
+                {reduced && <small>Enabled by your device preference.</small>}
+                {props.sport !== "basketball" &&
+                  receipt?.cards[0]?.sport !== "basketball" && (
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={haptics}
+                        onChange={(event) => {
+                          setHaptics(event.target.checked);
+                          try {
+                            localStorage.setItem(
+                              "docked:pack:haptics",
+                              event.target.checked ? "on" : "off",
+                            );
+                          } catch {}
+                        }}
+                      />
+                      Haptic feedback
+                    </label>
+                  )}
+              </div>
+            </details>
+          </div>
+          <p className="pack-kicker">
+            {props.preview
+              ? "DESIGN PREVIEW · NO CARDS AWARDED"
+              : props.replay || replaying
+                ? "REPLAY · NO NEW AWARDS"
+                : brand.tagline}
+          </p>
+          {receipt?.notice && <p role="status">{receipt.notice}</p>}
+          {resume && receipt && (
+            <button
+              className="pack-control secondary"
+              onClick={() => {
+                presentationReplay.current = false;
+                setIndex(resume.index);
+                setStage(
+                  resume.revealed
+                    ? "revealed"
+                    : firstCardStage(receipt.cards[resume.index], motionOff),
+                );
+                setResume(null);
+              }}
+            >
+              Resume pack · Card {resume.index + 1} of {receipt.cards.length}
+            </button>
+          )}
+          {(stage === "sealed" || stage === "waiting") && (
+            <>
+              <h3 ref={title} tabIndex={-1}>
+                Your next team starts here.
+              </h3>
+              <div className="pack-stage">
+                <div
+                  className="pack-tunnel pack-tunnel-idle"
+                  aria-hidden="true"
+                >
+                  {[0, 1, 2, 3, 4].map((n) => (
+                    <i key={n} style={{ "--ring": n } as CSSProperties} />
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  className="branded-seal"
+                  disabled={stage === "waiting"}
+                  aria-label="Open pack seal"
+                  onClick={() => void open()}
+                  onPointerDown={(e) => {
+                    swipe.current = { x: e.clientX, y: e.clientY };
+                  }}
+                  onPointerUp={(e) => {
+                    const p = swipe.current;
+                    swipe.current = null;
+                    if (p && Math.hypot(e.clientX - p.x, e.clientY - p.y) > 45)
+                      void open();
+                  }}
+                  onPointerCancel={() => {
+                    swipe.current = null;
+                  }}
+                >
+                  <PackArtwork
+                    core={props.packType === "WEEKLY_CORE"}
+                    premium={props.packType === "PREMIUM"}
+                    name={props.name}
+                    sport={
+                      props.sport ??
+                      new URLSearchParams(
+                        props.collectionHref?.split("?")[1],
+                      ).get("sport") ??
+                      undefined
+                    }
+                    count={props.cardCount ?? receipt?.cards.length}
+                  />
+                </button>
+              </div>
+              <button
+                type="button"
+                className="pack-open-button pack-control pack-primary"
+                disabled={stage === "waiting"}
+                onClick={() => void open()}
+              >
+                Open pack
+              </button>
+              <p role="status">
+                {stage === "waiting"
+                  ? "Confirming your cards…"
+                  : "Tap the pack or swipe across its top seal."}
+              </p>
+              {stage === "waiting" && (
+                <p>
+                  You can close this panel safely. Your result can be retrieved
+                  from Cards.
+                </p>
+              )}
+              {error && (
+                <p className="pack-error" role="alert">
+                  {error}
+                </p>
+              )}
+              <p className="pack-disclosure">
+                {props.commercial
+                  ? "The animation does not determine your cards or their rarity. No cash redemption."
+                  : "Test cards. No cash value. The animation does not determine your cards or their tier."}
+              </p>
+            </>
+          )}
+          {prototype &&
+            (stage === "mystery" || inMotion || stage === "revealed") &&
+            receipt &&
+            card && (
+              <>
+                <p className="pack-count" aria-live="polite">
+                  Card {index + 1} of {receipt.cards.length}
+                  {stage !== "mystery" && <> · {rarityRule(card.tier).label}</>}
+                </p>
+                {stage === "revealed" && (
+                  <h3 className="sr-only" ref={title} tabIndex={-1}>
+                    {card.name}
+                  </h3>
+                )}
+                <Suspense fallback={<p role="status">Preparing your card…</p>}>
+                  <PackCinemaV2
+                    key={`${receipt.id}:${index}`}
+                    card={card}
+                    phase={
+                      stage === "mystery"
+                        ? "mystery"
+                        : stage === "rarity"
+                          ? "rarity"
+                          : stage === "flipping"
+                            ? "flipping"
+                            : "revealed"
+                    }
+                    reduced={motionOff || Boolean(inspected)}
+                    revealRef={revealControl}
+                    onReveal={beginReveal}
+                    onPhaseStart={(phase) => cinemaSound.current?.phase(phase)}
+                    onInspect={() => inspectCard(card)}
+                    onPhaseEnd={() =>
+                      setStage((current) =>
+                        current === stage
+                          ? stage === "rarity"
+                            ? "flipping"
+                            : "revealed"
+                          : current,
+                      )
+                    }
+                  />
+                </Suspense>
+                {inMotion ? (
+                  <button
+                    ref={skipControl}
+                    type="button"
+                    className="pack-control secondary pack-cinematic-skip"
+                    onClick={() => {
+                      cinemaSound.current?.stop();
+                      setStage("revealed");
+                    }}
+                  >
+                    Skip animation
+                  </button>
+                ) : stage === "revealed" ? (
+                  revealActions
+                ) : (
+                  <p className="pack-inspect-hint">Tap the card to reveal it</p>
+                )}
+              </>
+            )}
+          {!prototype &&
+            (stage === "mystery" || inMotion) &&
+            receipt &&
+            card && (
+              <>
+                <p className="pack-count" aria-live="polite">
+                  Card {index + 1} of {receipt.cards.length}
+                  {inMotion && <> · {rarityRule(card.tier).label}</>}
+                </p>
+                <div
+                  className="pack-stage pack-card-stage pack-cinematic"
+                  data-reveal-index={index}
+                  data-pack-reveal-phase={stage}
+                  data-tier={inMotion ? card.tier : undefined}
+                  style={
+                    inMotion
+                      ? ({
+                          ...rarityStyle(card.tier),
+                          "--charge-time": `${revealTiming(card.tier).rarity}ms`,
+                          "--flip-time": `${revealTiming(card.tier).flip}ms`,
+                        } as CSSProperties)
+                      : undefined
+                  }
+                >
+                  {inMotion && <PackCinematicBackdrop tier={card.tier} />}
+                  <PackCinematicBack
+                    phase={
+                      stage === "mystery"
+                        ? "mystery"
+                        : stage === "rarity"
+                          ? "rarity"
+                          : "flipping"
+                    }
+                    tier={inMotion ? card.tier : undefined}
+                    controlRef={revealControl}
+                    onReveal={beginReveal}
+                    onPhaseEnd={() =>
+                      setStage((current) =>
+                        current === stage
+                          ? stage === "rarity"
+                            ? "flipping"
+                            : "revealed"
+                          : current,
+                      )
+                    }
+                  />
+                </div>
+                {inMotion ? (
+                  <button
+                    ref={skipControl}
+                    type="button"
+                    className="pack-control secondary pack-cinematic-skip"
+                    onClick={() => setStage("revealed")}
+                  >
+                    Skip animation
+                  </button>
+                ) : (
+                  <p className="pack-inspect-hint">Tap the card to reveal it</p>
+                )}
+              </>
+            )}
+          {!prototype &&
+            (stage === "opening" || stage === "revealed") &&
+            receipt &&
+            card && (
+              <>
+                <h3 className="sr-only" ref={title} tabIndex={-1}>
+                  {card.name}
+                </h3>
+                <p className="pack-count" aria-live="polite">
+                  {cinematic ? "Card " : ""}
+                  {index + 1} of {receipt.cards.length} ·{" "}
+                  {rarityRule(card.tier).label.toUpperCase()}
+                </p>
+                <div
+                  key={`${receipt.id}:${index}`}
+                  style={rarityStyle(card.tier)}
+                  data-reveal-index={index}
+                  data-pack-reveal-phase={cinematic ? "revealed" : undefined}
+                  data-tier={cinematic ? card.tier : undefined}
+                  className={`pack-stage pack-card-stage tier-${card.tier.toLowerCase()} ${cinematic ? "pack-cinematic" : ""} ${stage === "opening" ? "pack-rising" : ""}`}
+                >
+                  {cinematic && headlinePull(card) && (
+                    <div
+                      className="pack-cinematic-afterglow"
+                      aria-hidden="true"
+                    />
+                  )}
+                  {stage === "opening" && (
+                    <>
+                      <div className="pack-blue-light" aria-hidden="true" />
+                      {index === 0 && !replaying && (
+                        <div
+                          className="pack-opening-envelope"
+                          aria-hidden="true"
+                        >
+                          <span className="pack-torn-seal" />
+                          <PackArtwork
+                            core={props.packType === "WEEKLY_CORE"}
+                            premium={props.packType === "PREMIUM"}
+                            name={props.name}
+                            sport={
+                              props.sport ??
+                              new URLSearchParams(
+                                props.collectionHref?.split("?")[1],
+                              ).get("sport") ??
+                              undefined
+                            }
+                            count={props.cardCount ?? receipt.cards.length}
+                          />
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {card.tier === "ICON" &&
+                    stage === "opening" &&
+                    !motionOff && <IconCelebration />}
+                  <div
+                    ref={arrival}
+                    className={`pack-arrival ${motionOff || cinematic ? "" : "pack-turn"}`}
+                    onAnimationEnd={(e) => {
+                      if (
+                        stage === "opening" &&
+                        e.target === e.currentTarget &&
+                        e.animationName === "docked-single-reveal"
+                      )
+                        setStage("revealed");
+                    }}
+                  >
+                    <div className="pack-card-back" aria-hidden="true" />
+                    <div
+                      className="pack-case"
+                      tabIndex={0}
+                      role="group"
+                      aria-label={`Inspect ${card.name}. Drag or use arrow keys to tilt; Escape resets tilt.`}
+                      style={
+                        {
+                          "--tilt-x": `${tilt.x}deg`,
+                          "--tilt-y": `${tilt.y}deg`,
+                        } as CSSProperties
+                      }
+                      onPointerDown={(e) => {
+                        if (!motionOff && stage === "revealed") {
+                          e.currentTarget.setPointerCapture(e.pointerId);
+                          swipe.current = { x: e.clientX, y: e.clientY };
+                        }
+                      }}
+                      onPointerMove={(e) => {
+                        const p = swipe.current;
+                        if (
+                          p &&
+                          e.currentTarget.hasPointerCapture(e.pointerId) &&
+                          !motionOff &&
+                          stage === "revealed"
+                        )
+                          setTilt({
+                            x: Math.max(
+                              -12,
+                              Math.min(12, (p.y - e.clientY) / 7),
+                            ),
+                            y: Math.max(
+                              -16,
+                              Math.min(16, (e.clientX - p.x) / 7),
+                            ),
+                          });
+                      }}
+                      onPointerUp={() => {
+                        swipe.current = null;
+                      }}
+                      onPointerCancel={() => {
+                        swipe.current = null;
+                        setTilt({ x: 0, y: 0 });
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Escape") {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setTilt({ x: 0, y: 0 });
+                        }
+                        if (
+                          !motionOff &&
+                          stage === "revealed" &&
+                          [
+                            "ArrowLeft",
+                            "ArrowRight",
+                            "ArrowUp",
+                            "ArrowDown",
+                          ].includes(e.key)
+                        ) {
+                          e.preventDefault();
+                          setTilt((t) => ({
+                            x: Math.max(
+                              -12,
+                              Math.min(
+                                12,
+                                t.x +
+                                  (e.key === "ArrowUp"
+                                    ? -3
+                                    : e.key === "ArrowDown"
+                                      ? 3
+                                      : 0),
+                              ),
+                            ),
+                            y: Math.max(
+                              -16,
+                              Math.min(
+                                16,
+                                t.y +
+                                  (e.key === "ArrowLeft"
+                                    ? -3
+                                    : e.key === "ArrowRight"
+                                      ? 3
+                                      : 0),
+                              ),
+                            ),
+                          }));
+                        }
+                      }}
+                    >
+                      <FantasyCardArtwork
+                        card={card}
+                        faceOnly
+                        variant="reveal"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {cinematic ? (
+                  revealActions
+                ) : (
+                  <div>
+                    {cinematic && (
+                      <PackPullShare
+                        card={card}
+                        prominent={headlinePull(card)}
+                        label="Share My Pull"
+                      />
+                    )}
+                    <button
+                      className="pack-next pack-control pack-primary"
+                      type="button"
+                      aria-label={
+                        index + 1 === receipt.cards.length
+                          ? "View pack summary"
+                          : "Reveal next card"
+                      }
+                      disabled={stage === "opening"}
+                      onClick={() => advance()}
+                    >
+                      {index + 1 === receipt.cards.length
+                        ? "View all cards"
+                        : "Reveal Next"}{" "}
+                      →
+                    </button>
+                  </div>
+                )}
+                <p className="pack-inspect-hint">
+                  {motionOff ? "Reduced movement" : "Drag to tilt"} ·{" "}
+                  {props.commercial ? "No cash redemption" : "No cash value"}
+                </p>
+              </>
+            )}
+          {stage === "summary" && receipt && (
+            <>
+              <h3 ref={title} tabIndex={-1}>
+                {props.replay || replaying
+                  ? "Your original pack result"
+                  : props.commercial
+                    ? "Your collection"
+                    : props.teamHref === null
+                      ? "Your test collection"
+                      : "Ready to build your team"}
+              </h3>
+              <p>
+                {receipt.cards.length} confirmed cards ·{" "}
+                {props.commercial
+                  ? "No cash redemption."
+                  : "Test cards, no cash value."}
+              </p>
+              <ul
+                className={
+                  cinematicSummary
+                    ? "pack-summary pack-summary-cinematic"
+                    : "pack-summary"
+                }
+              >
+                {receipt.cards.map((c) => (
+                  <li
+                    key={c.id}
+                    className={
+                      cinematicSummary
+                        ? c.tier === bestTier && c.tier !== "CORE"
+                          ? "pack-best-pull"
+                          : headlinePull(c)
+                            ? "pack-premium-pull"
+                            : undefined
+                        : undefined
+                    }
+                    style={
+                      cinematicSummary &&
+                      (c.tier === bestTier || headlinePull(c))
+                        ? rarityStyle(c.tier)
+                        : undefined
+                    }
+                  >
+                    <span
+                      className={`pack-position tier-${c.tier.toLowerCase()}`}
+                      style={rarityStyle(c.tier)}
+                    >
+                      {c.position}
+                    </span>
+                    <span>
+                      <strong>{c.name}</strong>
+                      {cinematicSummary &&
+                        c.tier === bestTier &&
+                        c.tier !== "CORE" && (
+                          <span className="pack-best-label">Best pull</span>
+                        )}
+                      <small>
+                        {c.team} · {rarityRule(c.tier).label} ·{" "}
+                        {c.tier === "CORE" ? "Unlimited Core" : `#${c.serial}`}
+                      </small>
+                    </span>
+                    <div className="pack-summary-card-actions">
+                      <PackPullShare card={c} />
+                      <button
+                        type="button"
+                        className="pack-control secondary"
+                        aria-label={`View ${c.name}`}
+                        onClick={() => inspectCard(c)}
+                      >
+                        View
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              {!props.preview && !props.replay && !replaying && (
+                <AcquisitionShare
+                  member={props.userId}
+                  reference={receipt.id}
+                  cards={receipt.cards.filter((c) =>
+                    props.ownedIds.includes(c.id),
+                  )}
+                />
+              )}
+              <div className="pack-actions pack-completion-actions">
+                {props.onBuyAnother ? (
+                  <button
+                    type="button"
+                    className="pack-control primary"
+                    disabled={props.completionBusy}
+                    onClick={props.onBuyAnother}
+                  >
+                    {props.completionBusy
+                      ? "Checking pack…"
+                      : "Buy another pack"}
+                  </button>
+                ) : (
+                  <NavigationShortcut
+                    compact
+                    href={packShopHref(receipt.cards[0]?.sport)}
+                  >
+                    Browse packs
+                  </NavigationShortcut>
+                )}
+                {props.nextPack && (
+                  <button
+                    type="button"
+                    className="pack-control secondary"
+                    disabled={props.completionBusy}
+                    onClick={props.nextPack.open}
+                  >
+                    Open next pack · {props.nextPack.name}
+                  </button>
+                )}
+                {props.teamHref !== null && (
+                  <NavigationShortcut
+                    compact
+                    icon="trophy"
+                    href={props.teamHref ?? "/fantasy/play"}
+                    onClick={props.onClose}
+                  >
+                    Build team
+                  </NavigationShortcut>
+                )}
+                <NavigationShortcut
+                  compact
+                  icon="save"
+                  href={props.collectionHref ?? "/fantasy/cards"}
+                  onClick={props.onClose}
+                >
+                  View Collection
+                </NavigationShortcut>
+              </div>
+              {props.completionError && (
+                <p role="alert">
+                  {props.completionError}{" "}
+                  <Link href={packShopHref(receipt.cards[0]?.sport)}>
+                    Browse this sport’s packs
+                  </Link>
+                </p>
+              )}
+              <p className="pack-disclosure">
+                Your pack result is saved. Replaying it never awards additional
+                cards.
+              </p>
+              <button
+                type="button"
+                className="pack-control"
+                onClick={() => {
+                  presentationReplay.current = true;
+                  setIndex(0);
+                  setTilt({ x: 0, y: 0 });
+                  setReplaying(true);
+                  setStage(firstCardStage(receipt.cards[0], motionOff));
+                }}
+              >
+                Replay saved result · no new cards
+              </button>
+            </>
+          )}
+        </section>
+      </FantasySheet>
+      {inspected && (
+        <FantasySheet
+          title={inspected.name}
+          className="collectible-viewer pack-player-details"
+          onClose={closeDetails}
+          historyEntry
+        >
+          <button
+            type="button"
+            className="pack-back-to-pack pack-control secondary"
+            onClick={closeDetails}
+          >
+            ← Back to Pack
+          </button>
+          <Suspense fallback={<p role="status">Loading player details…</p>}>
+            <PackPlayerDetails key={inspected.id} card={inspected} />
+          </Suspense>
+        </FantasySheet>
+      )}
+    </>
   );
 }

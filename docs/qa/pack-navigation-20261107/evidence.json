@@ -1,0 +1,91 @@
+{
+  "date": "2026-11-07",
+  "baseCommit": "83af63e3",
+  "deployed": false,
+  "productionApprovalRequired": true,
+  "browserNavigation": {
+    "startTime": "2026-11-07T10:10:28.526Z",
+    "duration": 108954.663,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "recordedBrowserDemo": {
+    "startTime": "2026-11-07T10:09:19.073Z",
+    "duration": 65794.76,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "existingPackBrowserPassed": 33,
+  "platformPassed": 30,
+  "physical": {
+    "device": "Samsung Galaxy S24 SM-S921B",
+    "surface": "Chrome, isolated loopback preview",
+    "installedAppTested": false,
+    "backToPackPassed": true,
+    "androidBackPassed": true,
+    "card9Observed": true,
+    "summaryObserved": false,
+    "recordingDurationSeconds": 179.999356,
+    "recordingSize": "540x1170"
+  },
+  "files": [
+    {
+      "file": "before-player-details.png",
+      "bytes": 182912,
+      "sha256": "af1f40e69aaa03c9c215d1bfe1ddc4be64454f3dda16f4125d28d6f998a8fd96",
+      "committed": true
+    },
+    {
+      "file": "before-pack-lost.png",
+      "bytes": 15147,
+      "sha256": "83e868a9ac31b69ad52052b0876a784d30ef209e84ef397fb14e6d275c247e11",
+      "committed": true
+    },
+    {
+      "file": "after-revealed-360.png",
+      "bytes": 212004,
+      "sha256": "7333273769e32ef489d59f3b08d59420fac505574ad33dda49b80c9aa26c4bec",
+      "committed": true
+    },
+    {
+      "file": "after-details-360.png",
+      "bytes": 160005,
+      "sha256": "511b5f815ae07588dd48a823b7d014b374f6d671d241b12bb76bb7f5332059e2",
+      "committed": true
+    },
+    {
+      "file": "after-nine-card-summary.png",
+      "bytes": 59952,
+      "sha256": "1346f44694ed547e7d63c85da9148dcb785b9571a9139608ec19e45c15c0bf63",
+      "committed": true
+    },
+    {
+      "file": "samsung-back-to-pack.png",
+      "bytes": 1131570,
+      "sha256": "bd7cd353fb60ca1416f009cadb26882b0646001359bf57b818ae1b092f6c54a4",
+      "committed": true
+    },
+    {
+      "file": "samsung-final-card.png",
+      "bytes": 980657,
+      "sha256": "0c0ff57b65f0290eeae128cc1c758c9855eacb973b6a440264972e39f936909c",
+      "committed": true
+    },
+    {
+      "file": "afl-nine-card-navigation-mobile-browser.webm",
+      "bytes": 4583855,
+      "sha256": "8b31a13aba4104426459db2de0d6fef7a02387e89ca96f7ac1674c9881892bbf",
+      "committed": true
+    },
+    {
+      "file": "samsung-pack-navigation.mp4",
+      "bytes": 20469664,
+      "sha256": "5700ca05787ba67962042a87311276b5a572b3c0f1d52c9e7dbb879e6860ece1",
+      "committed": false
+    }
+  ]
+}

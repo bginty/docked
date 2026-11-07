@@ -53,7 +53,7 @@ for (const width of [360, 412, 1366]) {
         .getByRole("button", { name: "Reveal card" })
         .click({ force: true });
       await expect(phase).toHaveAttribute("data-pack-reveal-phase", "revealed");
-      await page.getByRole("button", { name: "Reveal next card" }).click();
+      await page.getByRole("button", { name: "Next Card →" }).click();
       await expect(
         page.getByText("Card 2 of 10", { exact: true }),
       ).toBeVisible();
@@ -155,7 +155,7 @@ test("reduced motion, keyboard opening and duplicate input", async ({
       .locator(".pack-case")
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("none");
-  await page.getByRole("button", { name: "View pack summary" }).click();
+  await page.getByRole("button", { name: "View Pack Summary" }).click();
   await expect(page.locator(".pack-summary li")).toHaveCount(1);
   expect(opens).toBe(1);
 });
@@ -185,6 +185,6 @@ test("an existing NBA receipt keeps its original read-only reveal", async ({
   await expect(
     page.getByRole("button", { name: "Skip remaining reveals" }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "View pack summary" }).click();
+  await page.getByRole("button", { name: "View Pack Summary" }).click();
   await expect(page.locator(".pack-summary li")).toHaveCount(1);
 });

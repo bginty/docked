@@ -37,6 +37,58 @@
 .pack-cinema-v2-sheet .pack-reveal-actions button {
   font-size: 0.8rem;
 }
+.pack-viewport .pack-navigation-actions {
+  display: grid;
+  width: 100%;
+  gap: 8px;
+}
+.pack-player-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: 10px;
+  width: 100%;
+}
+.pack-viewport .pack-player-actions button {
+  min-width: 0;
+  min-height: 50px;
+  padding: 10px 12px;
+  font-size: 0.94rem;
+  line-height: 1.25;
+  white-space: normal;
+}
+.pack-viewport .pack-player-actions .pack-primary {
+  background: #0769e6;
+  border: 1px solid #5badff;
+  color: #fff;
+  box-shadow: 0 4px 20px #0875f535;
+  font-weight: 800;
+}
+.pack-minor-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.pack-viewport .pack-minor-actions button {
+  padding: 7px 9px;
+  min-height: 44px;
+  background: transparent;
+  color: #b9cbe0;
+  border-color: #52657d;
+  font-size: 0.75rem;
+}
+.pack-back-to-pack {
+  display: block;
+  margin: 12px 0;
+  min-height: 48px;
+}
+.pack-player-details :focus-visible {
+  outline: 3px solid #79cfff;
+  outline-offset: 3px;
+}
+.pack-stage-revealed .cinema-v2 {
+  --cinema-width: min(310px, 73vw, max(146px, calc((100dvh - 350px) * 0.61)));
+}
 .cinema-v2 {
   --cinema-colour: #ffbd39;
   --cinema-hot: #fff3bc;

@@ -15,6 +15,7 @@ import { FantasySheet } from "./fantasy-player-sheet";
 import { PackArtwork } from "./pack-artwork";
 import { WeeklyCorePanel } from "./weekly-core-panel";
 import { StarterPackHistory } from "./starter-pack-history";
+import { PackResumeNotice } from "./pack-resume-notice";
 import { boundedFetch } from "@/core/bounded-request";
 import type { CouponQuote } from "@/core/pack-coupons";
 import type { memberCoupon } from "@/server/pack-coupons";
@@ -287,6 +288,14 @@ export function PackShop({
           </button>
         ))}
       </nav>
+      {sport !== "basketball" && (
+        <PackResumeNotice
+          member={s.member}
+          packs={historyPacks}
+          disabled={busy || recovery}
+          onResume={(id) => open(id, false)}
+        />
+      )}
       {tab === "buy" && (
         <div className="pack-families">
           {!commercial && ["nfl", "afl", "nrl"].includes(sport) && (

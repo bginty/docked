@@ -108,7 +108,7 @@ for (const width of [360, 412, 1366])
       .click({ force: true });
     await expect(phase).toHaveAttribute("data-tier", "RARE");
     expect(opens).toBe(1);
-    await page.getByRole("button", { name: "Reveal next card" }).click();
+    await page.getByRole("button", { name: "Next Card →" }).click();
     await expect(page.getByText("Card 2 of 9", { exact: true })).toBeVisible();
     await page.getByRole("button", { name: "Close panel" }).click();
     await page.getByRole("button", { name: "Open viewer" }).click();
@@ -119,9 +119,9 @@ for (const width of [360, 412, 1366])
       .click({ force: true });
     await expect(phase).toHaveAttribute("data-tier", "ULTRA_RARE");
     const inspect = page.getByRole("group", { name: /Inspect Preview QB 2/ });
-    await expect(
-      page.getByRole("button", { name: "Reveal next card" }),
-    ).toBeEnabled({ timeout: 10000 });
+    await expect(page.getByRole("button", { name: "Next Card →" })).toBeEnabled(
+      { timeout: 10000 },
+    );
     await inspect.focus();
     await inspect.press("ArrowRight");
     expect(
@@ -230,6 +230,6 @@ test("single card, reduced motion, keyboard opening and duplicate taps", async (
       .locator(".pack-case")
       .evaluate((el) => getComputedStyle(el).animationName),
   ).toBe("none");
-  await page.getByRole("button", { name: "View pack summary" }).click();
+  await page.getByRole("button", { name: "View Pack Summary" }).click();
   await expect(page.locator(".pack-summary li")).toHaveCount(1);
 });
