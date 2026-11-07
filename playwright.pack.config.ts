@@ -6,6 +6,7 @@ export default defineConfig({
     "pack-cinematic.test.ts",
     "nine-card-reveal.test.ts",
     "pack-cinema-v2.test.ts",
+    "purchase-recovery.test.ts",
   ],
   timeout: 60000,
   workers: 1,

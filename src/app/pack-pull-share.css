@@ -111,3 +111,26 @@ dialog.fantasy-sheet.pack-pull-preview[open] > .sheet-inner {
     max-height: max(18rem, calc(100dvh - 8.5rem));
   }
 }
+
+/* Keep both sharing entry points visible and reachable on narrow screens. */
+.card-detail-share {
+  display: flex;
+  justify-content: center;
+  margin-block: 1rem;
+}
+.pack-summary-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  max-width: 11rem;
+}
+@media (max-width: 480px) {
+  .pack-summary-card-actions {
+    flex-direction: column;
+    max-width: 5rem;
+  }
+  .pack-summary-card-actions button {
+    min-height: 44px;
+  }
+}

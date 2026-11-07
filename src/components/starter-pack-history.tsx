@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { boundedFetch } from "@/core/bounded-request";
 import type { AwardedCard, PackReceipt } from "@/core/pack-opening";
-import PackOpening from "./pack-opening";
+import PackOpening from "./pack-opening-lazy";
 import { CollectibleViewer } from "./collectible-viewer";
 /** Read the original allocation receipt; never recreate or award the starter. */
 export function StarterPackHistory({ member }: { member: string }) {

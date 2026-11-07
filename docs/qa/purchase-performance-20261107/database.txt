@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: member snapshots support real admission row locks without weakening access
+ok 1 - member snapshots support real admission row locks without weakening access
+  ---
+  duration_ms: 18084.6896
+  ...
+# Subtest: NBA synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 2 - NBA synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 16944.6351
+  ...
+# Subtest: AFL synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 3 - AFL synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 13318.5454
+  ...
+# Subtest: NRL synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 4 - NRL synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 15513.4733
+  ...
+# Subtest: NBA real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 5 - NBA real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 23064.4436
+  ...
+# Subtest: AFL real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 6 - AFL real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 19287.3114
+  ...
+# Subtest: NRL real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 7 - NRL real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 19269.337
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 135069.8552

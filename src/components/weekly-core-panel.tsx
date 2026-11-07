@@ -8,7 +8,7 @@ import { weeklyCountdown, type WeeklyCoreView } from "@/core/weekly-core";
 import type { AwardedCard, PackReceipt } from "@/core/pack-opening";
 import { useServerClock } from "./use-server-clock";
 import { PackArtwork } from "./pack-artwork";
-import PackOpening from "./pack-opening";
+import PackOpening from "./pack-opening-lazy";
 import { CollectibleViewer } from "./collectible-viewer";
 
 export function WeeklyCorePanel({

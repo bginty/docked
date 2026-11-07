@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { FantasyState, FantasyCard } from "@/core/fantasy";
 import type { PackReceipt } from "@/core/pack-opening";
 import { boundedFetch } from "@/core/bounded-request";
-import PackOpening from "./pack-opening";
+import PackOpening from "./pack-opening-lazy";
 import { CollectibleViewer } from "./collectible-viewer";
 /** On-demand access to existing starter/reward receipts, using the existing commands. */
 export function CollectionLegacyPacks({ member }: { member: string }) {

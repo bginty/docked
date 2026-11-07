@@ -5,7 +5,7 @@ import type { PackShopState } from "@/core/pack-shop-state";
 import type { AwardedCard, PackReceipt } from "@/core/pack-opening";
 import { boundedFetch } from "@/core/bounded-request";
 import { PackShop } from "./pack-shop";
-import PackOpening from "./pack-opening";
+import PackOpening from "./pack-opening-lazy";
 import { CollectibleViewer } from "./collectible-viewer";
 import { GoogleCommercialCredits } from "./google-test-credits";
 import { NavigationShortcut } from "./navigation-shortcut";

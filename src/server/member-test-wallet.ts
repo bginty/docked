@@ -170,7 +170,6 @@ export async function memberTestSource(
     const other = command.kind === "offer" ? command.other : null;
     if (other && !peers.some((p) => p.id === other))
       throw Error("Counterparty not admitted");
-    assertMemberTestEconomy(await store.read());
     try {
       result = await store.execute(
         command.kind === "swap-window"
@@ -208,7 +207,10 @@ export async function memberTestSource(
       const s = await new CreditsSandboxStore(
         tx as unknown as typeof sql,
       ).read();
-      if (refreshCatalogue) await refreshEconomyCatalogue(tx, s);
+      // Mutations already refreshed the catalogue under the settlement lock.
+      // Re-reading it here adds another expensive view query after commit.
+      if (refreshCatalogue && input === undefined)
+        await refreshEconomyCatalogue(tx, s);
       assertMemberTestEconomy(s);
       const fixtures = await fixtureCommerceVisibility(tx, s);
       return {

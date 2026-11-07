@@ -1,4 +1,5 @@
 "use client";
+import { PackPullShare } from "./pack-pull-share";
 import { MarketListingDialog } from "./market-listing-dialog";
 import { useEffect, useId, useRef, useState } from "react";
 import type { AwardedCard } from "@/core/pack-opening";
@@ -317,6 +318,9 @@ export function CollectibleViewer({
           card={card}
           appliedMultiplier={appliedMultiplier}
         />
+        <div className="card-detail-share">
+          <PackPullShare key={card.id} card={card} />
+        </div>
         <CardSellAction key={card.id} card={card} />
       </div>
     </FantasySheet>

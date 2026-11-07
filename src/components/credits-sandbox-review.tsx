@@ -2,7 +2,7 @@
 import { sellerQuote } from "@/core/credits-policy";
 import { sevenTransferNotice } from "@/core/nfl-seven";
 import { useEffect, useRef, useState } from "react";
-import PackOpening from "./pack-opening";
+import PackOpening from "./pack-opening-lazy";
 import type { PackReceipt } from "../core/pack-opening";
 type Review = {
   wallets: Record<

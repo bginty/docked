@@ -1,11 +1,13 @@
 import { createRoot } from "react-dom/client";
 import { useCallback, useEffect, useState } from "react";
 import PackOpening from "../../src/components/pack-opening";
-import type { PackReceipt } from "../../src/core/pack-opening";
+import { CollectibleViewer } from "../../src/components/collectible-viewer";
+import type { AwardedCard, PackReceipt } from "../../src/core/pack-opening";
 function Fixture() {
   const [receipt, setReceipt] = useState<PackReceipt | null>(null),
     [open, setOpen] = useState(false),
     [ready, setReady] = useState(false);
+  const [selected, setSelected] = useState<AwardedCard | null>(null);
   useEffect(() => {
     void fetch("/receipt")
       .then((r) => r.json())
@@ -21,6 +23,9 @@ function Fixture() {
       <button disabled={!ready} onClick={() => setOpen(true)}>
         Open viewer
       </button>
+      {selected && (
+        <CollectibleViewer card={selected} onClose={() => setSelected(null)} />
+      )}
       {open && (
         <PackOpening
           preview={new URLSearchParams(location.search).get("cinema") !== "v3"}
@@ -34,7 +39,10 @@ function Fixture() {
           receipt={receipt}
           onClose={close}
           ownedIds={receipt?.cards.map((c) => c.id) ?? []}
-          onViewCard={() => {}}
+          onViewCard={(card) => {
+            setOpen(false);
+            setSelected(card);
+          }}
           openPack={async () => {
             const r = await fetch("/open-pack", { method: "POST" });
             if (!r.ok) throw Error("offline");

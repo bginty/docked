@@ -74,6 +74,7 @@ export async function GET(req: Request) {
   }
 }
 export async function POST(req: Request) {
+  const started = performance.now();
   if (!sameOrigin(req))
     return NextResponse.json(
       { error: "Origin denied" },
@@ -83,16 +84,24 @@ export async function POST(req: Request) {
     const body = JSON.parse(
       new TextDecoder().decode(await boundedCommunityBody(req, 8192)),
     );
-    return NextResponse.json(
-      await memberTestWallet(
-        body,
-        new URL(req.url).searchParams.get("view") === "packs"
-          ? "packs"
-          : "wallet",
-      ),
-      { headers },
+    const data = await memberTestWallet(
+      body,
+      new URL(req.url).searchParams.get("view") === "packs"
+        ? "packs"
+        : "wallet",
     );
+    const durationMs = Math.round(performance.now() - started);
+    console.info("test_wallet_command", { outcome: "completed", durationMs });
+    return NextResponse.json(data, {
+      headers: { ...headers, "Server-Timing": `wallet;dur=${durationMs}` },
+    });
   } catch (error) {
+    const rejected =
+      error instanceof CreditsRejected || error instanceof ZodError;
+    console.warn("test_wallet_command", {
+      outcome: rejected ? "rejected" : "unknown",
+      durationMs: Math.round(performance.now() - started),
+    });
     return NextResponse.json(
       {
         error:
@@ -104,7 +113,7 @@ export async function POST(req: Request) {
             ? "rejected"
             : "unknown",
       },
-      { status: 400, headers },
+      { status: rejected ? 400 : 503, headers },
     );
   }
 }

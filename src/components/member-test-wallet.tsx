@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { MemberTestView } from "@/core/member-test-wallet";
 import type { PackReceipt } from "@/core/pack-opening";
-import PackOpening from "./pack-opening";
+import PackOpening from "./pack-opening-lazy";
 import { PackShop } from "./pack-shop";
 import { packTitle } from "@/core/pack-presentation";
 import { EconomyOwnerReport } from "./economy-owner-report";
@@ -195,6 +195,11 @@ export function MemberTestWallet({
             state={s}
             busy={busy}
             recovery={recovery}
+            recover={async () => {
+              if (!pending.current)
+                throw Error("No pending request. Refresh your packs.");
+              return send(JSON.parse(pending.current.key));
+            }}
             repeatRequest={repeatRequest}
             repeatStatus={(loading, message) => {
               setRepeatBusy(loading);

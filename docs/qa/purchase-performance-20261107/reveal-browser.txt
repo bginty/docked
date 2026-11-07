@@ -1,0 +1,99 @@
+
+Running 16 tests using 1 worker
+
+(node:12900) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12900) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\pack-cinema-v2.test.ts:28:7 › V3 afl: all six tiers use the confirmed card, preserve identity until turn, one issuance (25.8s)
+  ok  2 tests\browser\pack-cinema-v2.test.ts:28:7 › V3 nfl: all six tiers use the confirmed card, preserve identity until turn, one issuance (19.5s)
+  ok  3 tests\browser\pack-cinema-v2.test.ts:28:7 › V3 nrl: all six tiers use the confirmed card, preserve identity until turn, one issuance (21.1s)
+  ok  4 tests\browser\pack-cinema-v2.test.ts:86:5 › V3 is the ordinary receipt default; original V1 remains a design-only comparison (4.2s)
+  ok  5 tests\browser\pack-cinema-v2.test.ts:103:5 › V3 rapid inputs, skip, Reveal All, resume and replay do not reissue nine cards (4.4s)
+  ok  6 tests\browser\pack-cinema-v2.test.ts:141:5 › V3 reduced motion has no animation, no Canvas loop; reveal and share stay accessible at 320px (4.9s)
+  ok  7 tests\browser\pack-cinema-v2.test.ts:177:5 › V3 tolerates unavailable Canvas and backgrounding without losing the receipt (2.9s)
+  ok  8 tests\browser\pack-cinema-v2.test.ts:203:5 › V3 Share My Pull still exports the awarded Icon at 1080 × 1920 (4.9s)
+  ok  9 tests\browser\pack-cinema-v2.test.ts:231:7 › V3 economy quality keeps the card and caps the Canvas resolution (5.5s)
+  ok 10 tests\browser\pack-cinema-v2.test.ts:231:7 › V3 balanced quality keeps the card and caps the Canvas resolution (6.7s)
+AUDIO_V3 [{"tier":"CORE","duration":1.52,"peak":0.25565916299819946,"energy":32.12500833402415,"rms":0.021891752816065483},{"tier":"RARE","duration":2.12,"peak":0.3168807625770569,"energy":47.76442843646822,"rms":0.022602947037560016},{"tier":"ELITE","duration":2.8,"peak":0.24235773086547852,"energy":63.16100301751524,"rms":0.022616541754769137},{"tier":"ULTRA_RARE","duration":3.6,"peak":0.23457053303718567,"energy":72.95779708830932,"rms":0.021437064320557798},{"tier":"LEGENDARY","duration":4.6000000000000005,"peak":0.22526076436042786,"energy":88.99904327645193,"rms":0.020945679720345983},{"tier":"ICON","duration":5.450000000000001,"peak":0.21269184350967407,"energy":95.6652563234571,"rms":0.019950765954073656}]
+  ok 11 tests\browser\pack-cinema-v2.test.ts:263:5 › V3 original layered audio renders six distinct scores without clipping (2.4s)
+  ok 12 tests\browser\pack-cinema-v2.test.ts:318:5 › V3 audio follows visual phases, reuses one context per pack, and stops on mute/close (8.5s)
+  ok 13 tests\browser\pack-cinema-v2.test.ts:373:5 › V3 complete nine-card sequence keeps order, best pull and a single issuance (25.3s)
+  x  14 tests\browser\pack-cinema-v2.test.ts:408:7 › nfl summary and existing card details share the actual card without another opening (1.0m)
+(node:9996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:9996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  15 tests\browser\pack-cinema-v2.test.ts:408:7 › afl summary and existing card details share the actual card without another opening (1.0m)
+(node:13408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:13408) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  16 tests\browser\pack-cinema-v2.test.ts:408:7 › nrl summary and existing card details share the actual card without another opening (1.0m)
+
+
+  1) tests\browser\pack-cinema-v2.test.ts:408:7 › nfl summary and existing card details share the actual card without another opening 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Reveal all', exact: true })
+
+
+      411 |     const receipt = previewPackReceipt(sport, "LEGENDARY");
+      412 |     const opens = await mount(page, receipt);
+    > 413 |     await page.getByRole("button", { name: "Reveal all", exact: true }).click();
+          |                                                                         ^
+      414 |     const card = receipt.cards[0];
+      415 |     await page.getByRole("button", { name: `Share ${card.name}`, exact: true }).click();
+      416 |     let share = page.getByRole("dialog", { name: "Share your pull" });
+        at C:\Users\61412\.codex\worktrees\purchase-performance-sharing\Docked.com.au\tests\browser\pack-cinema-v2.test.ts:413:73
+
+    Error Context: test-results\pack-cinema-v2-nfl-summary-6330a-ard-without-another-opening\error-context.md
+
+  2) tests\browser\pack-cinema-v2.test.ts:408:7 › afl summary and existing card details share the actual card without another opening 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Reveal all', exact: true })
+
+
+      411 |     await page.setViewportSize({ width: 360, height: 800 });
+      412 |     await page.emulateMedia({ reducedMotion: "reduce" });
+    > 413 |     const receipt = previewPackReceipt(sport, "LEGENDARY");
+          |                                                            ^
+      414 |     const opens = await mount(page, receipt);
+      415 |     await page.getByRole("button", { name: "Reveal All", exact: true }).click();
+      416 |     const card = receipt.cards[0];
+        at C:\Users\61412\.codex\worktrees\purchase-performance-sharing\Docked.com.au\tests\browser\pack-cinema-v2.test.ts:413:73
+
+    Error Context: test-results\pack-cinema-v2-afl-summary-7a429-ard-without-another-opening\error-context.md
+
+  3) tests\browser\pack-cinema-v2.test.ts:408:7 › nrl summary and existing card details share the actual card without another opening 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Reveal all', exact: true })
+
+
+      411 |     await page.setViewportSize({ width: 360, height: 800 });
+      412 |     await page.emulateMedia({ reducedMotion: "reduce" });
+    > 413 |     const receipt = previewPackReceipt(sport, "LEGENDARY");
+          |                                                            ^
+      414 |     const opens = await mount(page, receipt);
+      415 |     await page.getByRole("button", { name: "Reveal All", exact: true }).click();
+      416 |     const card = receipt.cards[0];
+        at C:\Users\61412\.codex\worktrees\purchase-performance-sharing\Docked.com.au\tests\browser\pack-cinema-v2.test.ts:413:73
+
+    Error Context: test-results\pack-cinema-v2-nrl-summary-ba6f7-ard-without-another-opening\error-context.md
+
+  3 failed
+    tests\browser\pack-cinema-v2.test.ts:408:7 › nfl summary and existing card details share the actual card without another opening 
+    tests\browser\pack-cinema-v2.test.ts:408:7 › afl summary and existing card details share the actual card without another opening 
+    tests\browser\pack-cinema-v2.test.ts:408:7 › nrl summary and existing card details share the actual card without another opening 
+  13 passed (5.8m)

@@ -1,0 +1,60 @@
+Scoped Production purchase/performance/sharing fix — 7 November 2026
+
+Baseline application: 6f8f713a7b38795ad78d3a74568d972666dcbdd7.
+Rollback deployment: dpl_95gY31TBffUW7EsSQ2vkyFmSLQYD.
+
+Root cause and scope
+The browser has a 15-second transaction deadline. Production pg_stat_statements
+showed state UPDATE averaging 11,469 ms and reaching 16,562 ms, before the
+remaining request work. The 3.7 MB expanded JSONB state was repeatedly detoasted
+inside per-card validation loops. This is independent of the reveal animation.
+The isolated restored database attributed 51.6 seconds of a 56.3-second update
+to the lifetime guard. Materialising the same JSONB once per invocation in three
+guards reduced the isolated update to 8.1 seconds. These are local measurements,
+not a claim that Production has the same timing.
+
+Migration 20261107023819_cache_transaction_guard_documents.sql was applied through
+Supabase after a fresh AES-256-GCM backup and isolated PostgreSQL 17 restore.
+All 550 durable table hashes matched. No network/cron was enabled in the restore.
+The migration changes only three existing trigger-function bodies, retaining
+all validations, supply/serial checks, ownership rules, SECURITY DEFINER settings,
+owners, ACLs and search paths. In-transaction checks asserted protected data and
+function permissions unchanged. Production revision remained 259, journals 116,
+pack receipts 83, unique allocated cards 687. No unmatched receipts or negative
+spendable balances were found. Barry has one enabled, admitted beta account.
+The remote tool assigned the timestamp; the local migration uses that exact ID.
+Rollback: restore the three function definitions in
+qa/purchase-performance-20261107/rollback-guards.sql. No customer-data restoration
+is necessary. This rollback preserves any legitimate intervening transactions.
+
+Application changes
+Keep the original persisted idempotency envelope. Recover directly inside the
+purchase review; close does not imply cancellation. Unknown server outcomes use
+503 and remain pending. Log duration/outcome only, never wallet or identity data.
+Remove the redundant pre-write aggregate read (validation remains under lock),
+and the duplicate post-write roster refresh. Replays still reauthorize admission.
+Load the reveal/audio module only when a pack viewer opens. Load share-image
+rasterisation and native export code only after a Share tap.
+Show Share My Pull after every supported reveal, Share beside every summary card,
+and Share in existing card details. All use the same privacy-filtered exporter.
+
+Verification already completed
+46 targeted platform cases; seven full-migration database cases including
+NFL preservation, synthetic/verified AFL/NRL inventory, hidden NBA boundaries
+and real admission locks. Real PostgreSQL eight-connection scarcity contention
+passed: one last-Icon winner, failed purchases no debit/partial allocation,
+repeated openings the same nine cards. Browser all six rarities, audio/mute,
+reduced motion, skip/replay, nine-card order and interruption passed. Sharing
+from summary/details passed NFL/AFL/NRL at 360 px. Lost-response recovery passed
+in-dialog and after refresh; a real 16.5-second delayed fixture response exercised
+the unchanged 15-second deadline, recovered using the same request, one debit,
+one pack and nine unique cards. The first three new share tests used the wrong
+case for the Reveal All label; corrected selectors passed. No application
+behaviour was changed to accommodate that test-harness error.
+Production build and TypeScript passed. Scoped lint passed. Client-boundary scan
+passed; no new canary secrets were injected, so it is not standalone leak proof.
+
+No prices, probabilities, supply, wallet permissions, commercial activation,
+NBA visibility, registration, prizes or competition rules are changed.
+Production promotion and signed-in acceptance evidence are recorded separately
+under qa/purchase-performance-20261107/release and live browser evidence.

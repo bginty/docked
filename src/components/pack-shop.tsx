@@ -93,6 +93,7 @@ export function PackShop({
   state: s,
   busy,
   recovery,
+  recover,
   purchase,
   refresh,
   open,
@@ -103,6 +104,7 @@ export function PackShop({
   sport?: "nfl" | "basketball" | "afl" | "nrl";
   busy: boolean;
   recovery: boolean;
+  recover?: () => Promise<unknown>;
   purchase: (product: Product, coupon?: CouponQuote) => Promise<unknown>;
   refresh: () => Promise<PackShopState>;
   open: (id: string, replay: boolean) => void;
@@ -651,10 +653,42 @@ export function PackShop({
             <FamilyDisclosures p={review} expanded />
             {error && <p role="alert">{error}</p>}
             {recovery && !submitting && (
-              <p role="status">
-                The outcome needs confirmation. Close this review and use “Retry
-                pending transaction” to retrieve the same purchase safely.
-              </p>
+              <div role="status">
+                <p>
+                  Your purchase is awaiting confirmation. Checking it again uses
+                  the same request and cannot charge you twice.
+                </p>
+                {recover ? (
+                  <button
+                    type="button"
+                    className="pack-control primary"
+                    disabled={busy}
+                    onClick={async () => {
+                      if (flight.current) return;
+                      flight.current = true;
+                      setSubmitting(true);
+                      setError("");
+                      try {
+                        await recover();
+                        setReview(null);
+                      } catch (e) {
+                        setError(
+                          e instanceof Error
+                            ? e.message
+                            : "Still awaiting confirmation. Try checking again.",
+                        );
+                      } finally {
+                        flight.current = false;
+                        setSubmitting(false);
+                      }
+                    }}
+                  >
+                    Check pending purchase
+                  </button>
+                ) : (
+                  <p>Close this review and use “Retry pending transaction”.</p>
+                )}
+              </div>
             )}
             {error && !recovery && (
               <button
@@ -679,7 +713,7 @@ export function PackShop({
                 className="pack-control secondary"
                 onClick={() => setReview(null)}
               >
-                Cancel
+                {recovery || submitting ? "Close review" : "Cancel"}
               </button>
               <button
                 className="pack-control primary"
@@ -699,8 +733,8 @@ export function PackShop({
               </button>
             </div>
             <p className="pack-no-cash">
-              {submitting
-                ? "Confirming your purchase. Closing this review does not cancel a submitted request."
+              {submitting || recovery
+                ? "Closing this review does not cancel a submitted request. Your request is saved for recovery, including after a refresh."
                 : commercial
                   ? "No credits deducted until you confirm. Docked Credits cannot be withdrawn."
                   : "No credits deducted until you confirm. Test credits have no cash value."}

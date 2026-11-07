@@ -67,9 +67,7 @@ for (const sport of ["afl", "nfl", "nrl"] as PreviewSport[]) {
       );
       await expect(
         page.getByRole("button", {
-          name: ["LEGENDARY", "ICON"].includes(card.tier)
-            ? "Share My Pull"
-            : `Share ${card.name}`,
+          name: "Share My Pull",
           exact: true,
         }),
       ).toBeVisible();
@@ -405,3 +403,49 @@ test("V3 complete nine-card sequence keeps order, best pull and a single issuanc
   expect(opens()).toBe(1);
   await expect(page.locator(".pack-best-pull")).toContainText("Icon");
 });
+
+for (const sport of ["nfl", "afl", "nrl"] as const) {
+  test(`${sport} summary and existing card details share the actual card without another opening`, async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 360, height: 800 });
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    const receipt = previewPackReceipt(sport, "LEGENDARY");
+    const opens = await mount(page, receipt);
+    await page.getByRole("button", { name: "Reveal All", exact: true }).click();
+    const card = receipt.cards[0];
+    await page
+      .getByRole("button", { name: `Share ${card.name}`, exact: true })
+      .click();
+    let share = page.getByRole("dialog", { name: "Share your pull" });
+    await expect(
+      share.getByRole("button", { name: "Save Image" }),
+    ).toBeEnabled();
+    await expect(share.getByRole("img")).toHaveAttribute(
+      "alt",
+      new RegExp(card.name),
+    );
+    await share.getByRole("button", { name: "Close panel" }).click();
+    await page
+      .getByRole("button", { name: `View ${card.name}`, exact: true })
+      .click();
+    await page
+      .getByRole("button", { name: `Share ${card.name}`, exact: true })
+      .click();
+    share = page.getByRole("dialog", { name: "Share your pull" });
+    await expect(
+      share.getByRole("button", { name: "Save Image" }),
+    ).toBeEnabled();
+    expect(
+      await share
+        .getByRole("img")
+        .evaluate((i: HTMLImageElement) => [i.naturalWidth, i.naturalHeight]),
+    ).toEqual([1080, 1920]);
+    expect(opens()).toBe(1);
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  });
+}

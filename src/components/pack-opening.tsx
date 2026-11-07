@@ -527,9 +527,7 @@ export default function PackOpening(props: PackOpeningProps) {
                   {card.name}
                 </h3>
               )}
-              <Suspense
-                fallback={<p role="status">Preparing your card…</p>}
-              >
+              <Suspense fallback={<p role="status">Preparing your card…</p>}>
                 <PackCinemaV2
                   key={`${receipt.id}:${index}`}
                   card={card}
@@ -572,7 +570,11 @@ export default function PackOpening(props: PackOpeningProps) {
                 </button>
               ) : stage === "revealed" ? (
                 <div className="pack-reveal-actions">
-                  <PackPullShare card={card} prominent={headlinePull(card)} />
+                  <PackPullShare
+                    card={card}
+                    prominent={headlinePull(card)}
+                    label="Share My Pull"
+                  />
                   <button
                     className="pack-next pack-control pack-primary"
                     type="button"
@@ -807,7 +809,11 @@ export default function PackOpening(props: PackOpeningProps) {
               </div>
               <div className={cinematic ? "pack-reveal-actions" : undefined}>
                 {cinematic && (
-                  <PackPullShare card={card} prominent={headlinePull(card)} />
+                  <PackPullShare
+                    card={card}
+                    prominent={headlinePull(card)}
+                    label="Share My Pull"
+                  />
                 )}
                 <button
                   className="pack-next pack-control pack-primary"
@@ -892,14 +898,17 @@ export default function PackOpening(props: PackOpeningProps) {
                       {c.tier === "CORE" ? "Unlimited Core" : `#${c.serial}`}
                     </small>
                   </span>
-                  <button
-                    type="button"
-                    className="pack-control secondary"
-                    aria-label={`View ${c.name}`}
-                    onClick={() => props.onViewCard(c)}
-                  >
-                    View
-                  </button>
+                  <div className="pack-summary-card-actions">
+                    <PackPullShare card={c} />
+                    <button
+                      type="button"
+                      className="pack-control secondary"
+                      aria-label={`View ${c.name}`}
+                      onClick={() => props.onViewCard(c)}
+                    >
+                      View
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>

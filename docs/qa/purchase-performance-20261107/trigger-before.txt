@@ -1,0 +1,133 @@
+BEGIN
+SET
+[
+  {
+    "Plan": {
+      "Node Type": "ModifyTable",
+      "Operation": "Update",
+      "Parallel Aware": false,
+      "Async Capable": false,
+      "Relation Name": "state",
+      "Alias": "state",
+      "Startup Cost": 0.00,
+      "Total Cost": 1.01,
+      "Plan Rows": 0,
+      "Plan Width": 0,
+      "Actual Startup Time": 53000.254,
+      "Actual Total Time": 53000.255,
+      "Actual Rows": 0,
+      "Actual Loops": 1,
+      "Shared Hit Blocks": 900436,
+      "Shared Read Blocks": 99,
+      "Shared Dirtied Blocks": 1,
+      "Shared Written Blocks": 22,
+      "Local Hit Blocks": 0,
+      "Local Read Blocks": 0,
+      "Local Dirtied Blocks": 0,
+      "Local Written Blocks": 0,
+      "Temp Read Blocks": 310,
+      "Temp Written Blocks": 310,
+      "Plans": [
+        {
+          "Node Type": "Seq Scan",
+          "Parent Relationship": "Outer",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Relation Name": "state",
+          "Alias": "state",
+          "Startup Cost": 0.00,
+          "Total Cost": 1.01,
+          "Plan Rows": 1,
+          "Plan Width": 38,
+          "Actual Startup Time": 0.012,
+          "Actual Total Time": 0.015,
+          "Actual Rows": 1,
+          "Actual Loops": 1,
+          "Filter": "id",
+          "Rows Removed by Filter": 0,
+          "Shared Hit Blocks": 1,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        }
+      ]
+    },
+    "Planning": {
+      "Shared Hit Blocks": 66,
+      "Shared Read Blocks": 4,
+      "Shared Dirtied Blocks": 0,
+      "Shared Written Blocks": 3,
+      "Local Hit Blocks": 0,
+      "Local Read Blocks": 0,
+      "Local Dirtied Blocks": 0,
+      "Local Written Blocks": 0,
+      "Temp Read Blocks": 0,
+      "Temp Written Blocks": 0
+    },
+    "Planning Time": 0.667,
+    "Triggers": [
+      {
+        "Trigger Name": "audit_listing_terms",
+        "Relation": "state",
+        "Time": 56.098,
+        "Calls": 1
+      },
+      {
+        "Trigger Name": "lifetime_economy_guard",
+        "Relation": "state",
+        "Time": 51632.353,
+        "Calls": 1
+      },
+      {
+        "Trigger Name": "marketplace_guard",
+        "Relation": "state",
+        "Time": 1062.482,
+        "Calls": 1
+      },
+      {
+        "Trigger Name": "pack_coupon_guard",
+        "Relation": "state",
+        "Time": 18.744,
+        "Calls": 1
+      },
+      {
+        "Trigger Name": "private_offer_integrity",
+        "Relation": "state",
+        "Time": 6.835,
+        "Calls": 1
+      },
+      {
+        "Trigger Name": "project_fixture_inventory",
+        "Relation": "state",
+        "Time": 3240.097,
+        "Calls": 1
+      },
+      {
+        "Trigger Name": "rarity_lineup_transfer",
+        "Relation": "state",
+        "Time": 10.485,
+        "Calls": 1
+      },
+      {
+        "Trigger Name": "redemption_boundary",
+        "Relation": "state",
+        "Time": 265.492,
+        "Calls": 1
+      },
+      {
+        "Trigger Name": "sale_receipt_outbox",
+        "Relation": "state",
+        "Time": 46.109,
+        "Calls": 1
+      }
+    ],
+    "Execution Time": 56342.694
+  }
+]
+ROLLBACK

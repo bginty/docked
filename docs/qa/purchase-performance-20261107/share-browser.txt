@@ -1,0 +1,12 @@
+
+Running 3 tests using 1 worker
+
+(node:7516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\pack-cinema-v2.test.ts:408:7 › nfl summary and existing card details share the actual card without another opening (15.4s)
+  ok 2 tests\browser\pack-cinema-v2.test.ts:408:7 › afl summary and existing card details share the actual card without another opening (7.4s)
+  ok 3 tests\browser\pack-cinema-v2.test.ts:408:7 › nrl summary and existing card details share the actual card without another opening (7.2s)
+
+  3 passed (47.5s)
