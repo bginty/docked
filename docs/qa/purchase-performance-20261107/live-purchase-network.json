@@ -1,0 +1,78 @@
+[
+  {
+    "path": "/api/test-wallet",
+    "type": "Fetch",
+    "method": "POST",
+    "start": 777276.477683,
+    "kind": "buy-pack",
+    "status": 200,
+    "serverTiming": "wallet;dur=8177",
+    "ms": 8406,
+    "bytes": 34743
+  },
+  {
+    "path": "/api/test-wallet",
+    "type": "Fetch",
+    "method": "GET",
+    "start": 777284.889327,
+    "status": 200,
+    "ms": 725,
+    "bytes": 5104
+  },
+  {
+    "path": "/api/sports-beta",
+    "type": "Fetch",
+    "method": "GET",
+    "start": 777284.889682,
+    "status": 200,
+    "ms": 320,
+    "bytes": 162
+  },
+  {
+    "path": "/api/weekly-core",
+    "type": "Fetch",
+    "method": "GET",
+    "start": 777284.890119,
+    "status": 200,
+    "ms": 1217,
+    "bytes": 3023
+  },
+  {
+    "path": "/api/test-wallet",
+    "type": "Fetch",
+    "method": "POST",
+    "start": 777284.912241,
+    "kind": "open-pack",
+    "status": 200,
+    "serverTiming": "wallet;dur=8198",
+    "ms": 9481,
+    "bytes": 36033
+  },
+  {
+    "path": "/api/test-wallet",
+    "type": "Fetch",
+    "method": "GET",
+    "start": 777294.400073,
+    "status": 200,
+    "ms": 631,
+    "bytes": 5267
+  },
+  {
+    "path": "/api/sports-beta",
+    "type": "Fetch",
+    "method": "GET",
+    "start": 777294.400377,
+    "status": 200,
+    "ms": 493,
+    "bytes": 152
+  },
+  {
+    "path": "/api/weekly-core",
+    "type": "Fetch",
+    "method": "GET",
+    "start": 777294.400709,
+    "status": 200,
+    "ms": 284,
+    "bytes": 2986
+  }
+]

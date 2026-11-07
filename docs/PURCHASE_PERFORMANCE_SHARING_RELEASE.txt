@@ -58,3 +58,76 @@ No prices, probabilities, supply, wallet permissions, commercial activation,
 NBA visibility, registration, prizes or competition rules are changed.
 Production promotion and signed-in acceptance evidence are recorded separately
 under qa/purchase-performance-20261107/release and live browser evidence.
+
+Final Production acceptance
+Application commit: 8205cde5b46125d4414a6fd545b1063b3913a90a.
+Purchase fix commit: c66173a62347d385c0fb051378bac021121a9e2f.
+Live URL: https://docked.com.au.
+Final deployment: dpl_7pPpuuq3GzvCTWft8mtr6dW6K46f.
+The final cloud build was READY and all 11 hosted route/gate checks passed.
+Runtime flags and cron configuration were preserved. The final change after
+c66173a6 only resets the full-screen share preview's inherited desktop transform.
+It fixes an observed clipping defect, with a new 360/768/1536 px browser test.
+
+Genuine signed-in Chrome acceptance on Production:
+- The owner's saved Premium 3 purchase was recovered using its persisted request.
+  Recovery returned in 2,038 ms (server 1,894 ms). It was already purchased:
+  balance remained 28,300, no additional receipt or card allocation was created.
+  Opening that saved pack completed in 7,574 ms (server 7,429 ms).
+- One expressly authorised Standard AFL 9 Pack TEST purchase cost 700 credits.
+  Purchase returned in 8,406 ms (server 8,177 ms); opening returned in 9,481 ms
+  (server 8,198 ms). Each operation completed inside the unchanged 15-second
+  deadline. No real payment was processed. Final balance: 27,600 TEST credits.
+- Nine confirmed cards appeared in the summary with separate Share/View actions.
+  Replay returned the identical result and generated zero POST requests.
+- Share My Pull worked after an Ultra Rare reveal. Share also worked on the
+  pre-existing Legendary Beau McCreery card directly from My Cards.
+- Actual Chrome downloads were verified on disk: Ultra Rare PNG 1,713,218 bytes,
+  Legendary PNG 1,800,532 bytes, both 1080 x 1920. The browser download-event
+  listener timed out, but the actual PNG and UI download confirmation prove save.
+- Full-screen sharing was visually checked on desktop and a 390 x 844 browser
+  viewport: no horizontal overflow, readable controls, correct artwork and no
+  account/transaction/card identifiers in the exported image. Temporary viewport
+  and cache overrides were reset. No social post was sent.
+
+Final read-only reconciliation: revision 262, journals 117, pack receipts 84,
+696 unique allocated pack cards; zero duplicates, unmatched receipts or negative
+spendable balances. One account changed by exactly -700 credits / +1 pack /
++9 cards. All four other admitted account records, including Barry, were
+unchanged. All pre-existing card records were byte-for-byte unchanged. Barry's
+admission was verified read-only; no login as Barry or change to his account.
+
+Measured browser performance (one cold sample each, not a statistical benchmark):
+                                Before        After
+Cards document response          553 ms        477 ms
+Collection API response          274 ms        267 ms
+Navigation to collection data   2,616 ms      1,813 ms
+Transferred initial scripts   274,278 bytes 274,108 bytes
+Initial script count                 16            16
+Initial script transfer is effectively unchanged on My Cards; its reveal was
+already conditional. The new lazy boundaries protect the other pack consumers
+and defer image export until Share. No Canvas was mounted outside a reveal.
+Play, Cards, Packs, Market and Profile rendered successfully with NFL/AFL/NRL
+navigation and NBA hidden. Market reads still took approximately 1.5-2.3 seconds;
+the existing aggregate architecture remains a scaling limit. Play displayed a
+saved-selection warning; no lineup was edited or entered during these checks.
+
+Limits / remaining observations
+Purchases and opening are now successful but still take several seconds; this
+release does not claim instant settlement or eliminate the aggregate-state
+scaling limit. The 56.3-to-8.1-second database comparison is the isolated restore
+benchmark, not a Production API comparison. Production timings above are actual
+requests, not extrapolations. A Samsung was connected but in another application;
+no phone interaction or physical Android/native-share acceptance is claimed.
+Mobile acceptance here is Chrome viewport testing plus isolated browser cases.
+The existing leaked-password-protection advisory is unchanged; no auth setting
+or RLS permission was weakened. There are no new schema grants or activation flags.
+
+Rollback
+For the complete application rollback, promote dpl_95gY31TBffUW7EsSQ2vkyFmSLQYD.
+The immediate prior deployment dpl_DeP6YRZEZU2EtcW5FRFePtgUqJ3p retains the purchase
+fix but lacks the desktop preview correction. The trigger optimisation is
+compatible with either app. If necessary restore only the original three guard
+definitions from rollback-guards.sql; do not restore the old customer snapshot
+over the newly authorised purchase. Encrypted pre-migration backup and verified
+550-table isolated restore remain available to the operator.

@@ -1,0 +1,39 @@
+{
+  "commit": "8205cde5b46125d4414a6fd545b1063b3913a90a",
+  "branch": "codex/purchase-performance-sharing",
+  "baseline": "c66173a62347d385c0fb051378bac021121a9e2f",
+  "baselineId": "dpl_DeP6YRZEZU2EtcW5FRFePtgUqJ3p",
+  "rollbackUrl": "https://docked-production-q2gp80vx8-briant-s-projects.vercel.app",
+  "project": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "team": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "files": 872,
+  "changedFiles": [
+    "docs/qa/purchase-performance-20261107/release-initial/candidate-verified.json",
+    "docs/qa/purchase-performance-20261107/release-initial/live-verified.json",
+    "docs/qa/purchase-performance-20261107/release-initial/prepared.json",
+    "docs/qa/purchase-performance-20261107/release-initial/staged.json",
+    "docs/qa/purchase-performance-20261107/share-desktop-browser.txt",
+    "scripts/purchase-performance-release.mjs",
+    "src/app/pack-pull-share.css",
+    "tests/browser/pack-cinema-v2.test.ts"
+  ],
+  "runtimeChangedKeys": [
+    "VERCEL_GIT_COMMIT_SHA"
+  ],
+  "closedFlags": [
+    "REGISTRATION_ENABLED",
+    "COMPETITIONS_ENABLED",
+    "PRIZES_ENABLED",
+    "DOCKED_MULTI_SPORT_SANDBOX",
+    "DOCKED_MEMBER_GOOGLE_TEST",
+    "DOCKED_COMMERCIAL_SERVICE",
+    "DOCKED_COMMERCIAL_SURFACES",
+    "DOCKED_COMMERCIAL_CHECKOUT",
+    "DOCKED_PUBLIC_CUSTOMERS"
+  ],
+  "customerMutations": 0,
+  "migrations": [
+    "20261107023819_cache_transaction_guard_documents.sql"
+  ],
+  "runtimeDigest": "abbb0334ab04107152c63089c12c7401eb5b302fd7b6f0d253a5cf718534e505"
+}
