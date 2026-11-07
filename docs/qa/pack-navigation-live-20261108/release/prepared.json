@@ -1,0 +1,31 @@
+{
+  "commit": "be8dea392a8d5e0eb4349a3c46c54e080299d266",
+  "branch": "codex/pack-navigation-live",
+  "baseline": "9e452f88520b694d277f81a08a4f8e09700e733d",
+  "baselineId": "dpl_EBeUuRUtK4Hd4m2ZvHGd7pQMYDNE",
+  "rollbackUrl": "https://docked-production-7dayl83xy-briant-s-projects.vercel.app",
+  "project": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "team": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "files": 950,
+  "changedFiles": [
+    "src/app/pack-opening.css",
+    "tests/browser/pack-navigation.test.ts"
+  ],
+  "runtimeChangedKeys": [
+    "VERCEL_GIT_COMMIT_SHA"
+  ],
+  "closedFlags": [
+    "REGISTRATION_ENABLED",
+    "COMPETITIONS_ENABLED",
+    "PRIZES_ENABLED",
+    "DOCKED_MULTI_SPORT_SANDBOX",
+    "DOCKED_MEMBER_GOOGLE_TEST",
+    "DOCKED_COMMERCIAL_SERVICE",
+    "DOCKED_COMMERCIAL_SURFACES",
+    "DOCKED_COMMERCIAL_CHECKOUT",
+    "DOCKED_PUBLIC_CUSTOMERS"
+  ],
+  "customerMutations": 0,
+  "migrations": [],
+  "runtimeDigest": "554e7709980d54312c1b8102e47642a67dca165c64a264d7f37fe1204279ee09"
+}

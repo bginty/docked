@@ -1,0 +1,15 @@
+{
+  "finalDeployment": "dpl_T4kuTeoUKYnFemre2yQnuQMMxwqs",
+  "observedWindowUtc": ["2026-11-07T22:38:45.288Z", "2026-11-07T22:48:45.288Z"],
+  "levels": ["error", "warning", "fatal"],
+  "matchingLogs": 0,
+  "limitation": "Bounded post-release sample, not continuous monitoring or a claim that all historical errors are resolved",
+  "earlierIntegratedDeployment": "dpl_EBeUuRUtK4Hd4m2ZvHGd7pQMYDNE",
+  "legacyGoogleTestReconciliation": {
+    "observedUtc": "2026-11-07T22:40:09.850Z",
+    "attention": 7,
+    "overdue": 7,
+    "changedByThisTask": false,
+    "note": "Existing legacy TEST alerts explicitly outside this navigation/artwork task"
+  }
+}

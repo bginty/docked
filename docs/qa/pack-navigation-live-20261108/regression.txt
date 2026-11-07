@@ -1,0 +1,43 @@
+
+Running 33 tests using 1 worker
+
+(node:28904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:28904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\nine-card-reveal.test.ts:41:7 › confirmed nine-card reveal, resume, replay and accessibility 360 (16.7s)
+  ok  2 tests\browser\nine-card-reveal.test.ts:41:7 › confirmed nine-card reveal, resume, replay and accessibility 412 (14.7s)
+  ok  3 tests\browser\nine-card-reveal.test.ts:41:7 › confirmed nine-card reveal, resume, replay and accessibility 1366 (16.0s)
+  ok  4 tests\browser\nine-card-reveal.test.ts:166:5 › single card, reduced motion, keyboard opening and duplicate taps (5.0s)
+  ok  5 tests\browser\pack-cinema-v2.test.ts:28:7 › V3 afl: all six tiers use the confirmed card, preserve identity until turn, one issuance (24.5s)
+  ok  6 tests\browser\pack-cinema-v2.test.ts:28:7 › V3 nfl: all six tiers use the confirmed card, preserve identity until turn, one issuance (18.8s)
+  ok  7 tests\browser\pack-cinema-v2.test.ts:28:7 › V3 nrl: all six tiers use the confirmed card, preserve identity until turn, one issuance (19.8s)
+  ok  8 tests\browser\pack-cinema-v2.test.ts:86:5 › V3 is the ordinary receipt default; original V1 remains a design-only comparison (3.8s)
+  ok  9 tests\browser\pack-cinema-v2.test.ts:103:5 › V3 rapid inputs, skip, Reveal All, resume and replay do not reissue nine cards (3.7s)
+  ok 10 tests\browser\pack-cinema-v2.test.ts:144:5 › V3 reduced motion has no animation, no Canvas loop; reveal and share stay accessible at 320px (6.2s)
+  ok 11 tests\browser\pack-cinema-v2.test.ts:180:5 › V3 tolerates unavailable Canvas and backgrounding without losing the receipt (3.4s)
+  ok 12 tests\browser\pack-cinema-v2.test.ts:206:5 › V3 Share My Pull still exports the awarded Icon at 1080 × 1920 (6.1s)
+  ok 13 tests\browser\pack-cinema-v2.test.ts:234:7 › V3 economy quality keeps the card and caps the Canvas resolution (6.7s)
+  ok 14 tests\browser\pack-cinema-v2.test.ts:234:7 › V3 balanced quality keeps the card and caps the Canvas resolution (6.6s)
+AUDIO_V3 [{"tier":"CORE","duration":1.52,"peak":0.25565916299819946,"energy":32.125008283123826,"rms":0.02189175279872234},{"tier":"RARE","duration":2.12,"peak":0.3168807625770569,"energy":47.764428398384624,"rms":0.022602947028549113},{"tier":"ELITE","duration":2.8,"peak":0.24235773086547852,"energy":63.1610029623522,"rms":0.02261654174489281},{"tier":"ULTRA_RARE","duration":3.6,"peak":0.23457053303718567,"energy":72.95779708039414,"rms":0.021437064319394947},{"tier":"LEGENDARY","duration":4.6000000000000005,"peak":0.22526076436042786,"energy":88.99904320893069,"rms":0.020945679712400515},{"tier":"ICON","duration":5.450000000000001,"peak":0.21269181370735168,"energy":95.66525637118679,"rms":0.019950765959050612}]
+  ok 15 tests\browser\pack-cinema-v2.test.ts:266:5 › V3 original layered audio renders six distinct scores without clipping (2.4s)
+  ok 16 tests\browser\pack-cinema-v2.test.ts:321:5 › V3 audio follows visual phases, reuses one context per pack, and stops on mute/close (8.4s)
+  ok 17 tests\browser\pack-cinema-v2.test.ts:374:5 › V3 complete nine-card sequence keeps order, best pull and a single issuance (27.7s)
+  ok 18 tests\browser\pack-cinema-v2.test.ts:409:7 › nfl summary and existing card details share the actual card without another opening (6.2s)
+  ok 19 tests\browser\pack-cinema-v2.test.ts:409:7 › afl summary and existing card details share the actual card without another opening (6.2s)
+  ok 20 tests\browser\pack-cinema-v2.test.ts:409:7 › nrl summary and existing card details share the actual card without another opening (6.1s)
+  ok 21 tests\browser\pack-cinema-v2.test.ts:457:5 › share preview fills the viewport without the desktop sheet translation (3.9s)
+  ok 22 tests\browser\pack-cinematic.test.ts:21:7 › cinematic rarity, turn and awarded player match the afl receipt (35.0s)
+  ok 23 tests\browser\pack-cinematic.test.ts:21:7 › cinematic rarity, turn and awarded player match the nfl receipt (19.7s)
+  ok 24 tests\browser\pack-cinematic.test.ts:21:7 › cinematic rarity, turn and awarded player match the nrl receipt (20.2s)
+  ok 25 tests\browser\pack-cinematic.test.ts:301:5 › skip, rapid taps and background interruption finish the same awarded card (10.0s)
+  ok 26 tests\browser\pack-opening.test.ts:15:7 › lost receipt response, saved progress, replay and accessibility at 360 (11.5s)
+  ok 27 tests\browser\pack-opening.test.ts:15:7 › lost receipt response, saved progress, replay and accessibility at 412 (11.1s)
+  ok 28 tests\browser\pack-opening.test.ts:15:7 › lost receipt response, saved progress, replay and accessibility at 1366 (11.0s)
+  ok 29 tests\browser\pack-opening.test.ts:115:5 › reduced motion, keyboard opening and duplicate input (4.5s)
+  ok 30 tests\browser\pack-opening.test.ts:164:5 › an existing NBA receipt keeps its original read-only reveal (2.7s)
+  ok 31 tests\browser\purchase-recovery.test.ts:9:7 › lost purchase response recovers once through dialog (6.5s)
+  ok 32 tests\browser\purchase-recovery.test.ts:9:7 › lost purchase response recovers once through refresh (12.2s)
+  ok 33 tests\browser\purchase-recovery.test.ts:9:7 › lost purchase response recovers once through timeout (24.9s)
+
+  33 passed (6.6m)

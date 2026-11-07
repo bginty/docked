@@ -1,0 +1,32 @@
+{
+  "applicationCommit": "be8dea392a8d5e0eb4349a3c46c54e080299d266",
+  "deployment": "dpl_T4kuTeoUKYnFemre2yQnuQMMxwqs",
+  "target": "https://docked.com.au",
+  "authenticated": true,
+  "browser": "Chrome, genuine existing member session",
+  "viewport": { "width": 412, "height": 915 },
+  "receipt": "Existing opened NFL Premium 9; Replay only",
+  "checks": {
+    "actualPlayerDetailsLoad": true,
+    "backToPackReturnsToSameRevealedCard": true,
+    "viewPlayerAndNextCardVisibleBelowCard": true,
+    "closeShowsExplicitUnfinishedExitDecision": true,
+    "confirmationHidesCardAndUnrelatedControls": true,
+    "continueRevealingRestoresExactCard": true,
+    "nextCardAdvancesToCard2": true,
+    "skipAllAndExitReturnsToHistory": true,
+    "displayedWalletUnchanged": true,
+    "displayedUnopenedPackCountUnchanged": true,
+    "nbaHidden": true,
+    "temporaryViewportReset": true
+  },
+  "additionalUnchangedJavascriptAcceptance": "../initial-release/signed-in-verified.json covers detail Close, browser Back and nine-card summary before this CSS-only follow-up",
+  "newPurchases": 0,
+  "newPackOpenings": 0,
+  "physicalAndroidAcceptance": false,
+  "screenshotsPrivate": [
+    "final-mobile-back-to-pack.jpg",
+    "final-mobile-next-card.jpg",
+    "final-mobile-exit-guard.jpg"
+  ]
+}

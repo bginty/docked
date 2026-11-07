@@ -1,0 +1,81 @@
+DOCKED PACK NAVIGATION — PRODUCTION CORRECTION
+
+Status: deployed and verified at https://docked.com.au on 8 November 2026.
+Deployment: dpl_T4kuTeoUKYnFemre2yQnuQMMxwqs
+Immutable URL: https://docked-production-ozfte7dcs-briant-s-projects.vercel.app
+
+Application: be8dea392a8d5e0eb4349a3c46c54e080299d266
+Integrated navigation: 9e452f88520b694d277f81a08a4f8e09700e733d
+Original reviewed fix: 4e327c8d2238a3c32c2ddbd2cfd2ed380d48bdaa
+
+WHY THE LIVE BUG REMAINED
+The earlier player-detail navigation fix was kept separate from the foil
+artwork release and was absent from Production 5e043af5. The old parent
+onViewCard callback called closePack before displaying player details, which
+unmounted the entire reveal. The card viewer could therefore only return to
+pack history. This was reproduced in the genuine signed-in live browser with
+an already-opened nine-card receipt before making the correction.
+
+CORRECTED BEHAVIOUR
+The mounted pack owns its player-detail sheet. Tapping the player, View Player,
+Back to Pack, the detail Close button and browser/native Back retain the same
+card, revealed phase and remaining cards. Next Card stays prominent; the final
+card offers View Pack Summary. Existing share and animation features remain.
+
+An unfinished pack cannot exit through Close, backdrop, Escape or Back without
+an explicit decision. Continue revealing returns to the same card. Skip All &
+Exit intentionally ends the presentation. Fully revealed/final summary flows
+can close normally. Browser Back veto restores its consumed modal history
+entry, preventing repeated Back from escaping underneath the confirmation.
+
+The live visual check caught a CSS conflict: the mobile pack layout's explicit
+display:flex overrode the native hidden attribute on the retained reveal.
+The follow-up be8dea39 scopes display:none to the hidden pack section. Tests
+now assert both the confirmation and the absence of the hidden Next Card UI.
+
+Minimal local progress stores index, revealed and timestamp, scoped to member
+and authenticated receipt. Resume uses existing issued cards. Explicit replay
+does not overwrite an unfinished ordinary reveal. Storage failure does not
+break in-memory navigation.
+
+VERIFICATION
+20 navigation browser tests and 33 existing pack regression tests passed.
+32 targeted platform checks passed, including receipt/issuance/refund contracts
+and all 21 foil pack variants. Six targeted follow-up tests passed after the
+hidden-layout correction. TypeScript, full lint, diff checks, production
+webpack build and client-boundary scan passed. The local shared node_modules
+junction caused standalone tracing warnings; Production is built from clean
+source on Vercel instead of uploading that standalone output.
+
+See docs/qa/pack-navigation-live-20261108/checks.json and release evidence.
+The staged and live receipts identify the exact deployed application commit.
+Genuine signed-in Production replay passed: tap card -> details -> Back to
+Pack -> same revealed card -> Next Card. Close and browser Back also returned
+to the same card; Reveal All showed the original nine-card summary. Final
+412x915px hosted checks verified the corrected exit screen, Continue revealing
+and explicit Skip All & Exit. Displayed credits and unopened packs were unchanged.
+No new physical Samsung test occurred in this turn. Earlier Samsung Chrome
+proof is preserved with its scope clearly stated in the 20261107 acceptance.
+Automated tests exercise the native dialog-cancel and browser Back contracts.
+
+SCOPE AND DATA SAFETY
+No database migration, purchase/API logic, card issuance, price, probabilities,
+catalogue, supply, wallet, ownership, refund, competition or registration change.
+All 63 served artwork files are checked against the approved 21-variant hashes.
+NBA remains hidden. Nine closed launch flags and scheduled jobs remain unchanged.
+Signed-in acceptance only replays a saved result; no live purchase or new pack
+opening is used. Private account screenshots remain outside Git.
+
+MONITORING
+The seven existing legacy Google TEST reconciliation alerts remain unchanged.
+They are not part of this navigation correction and were not acknowledged,
+cleared or modified. Bounded release runtime observations are saved separately.
+
+ROLLBACK
+The immediately previous navigation deployment is
+dpl_EBeUuRUtK4Hd4m2ZvHGd7pQMYDNE (9e452f88).
+The original foil deployment is dpl_2bvEkSSi9Gte5H8Zdyvyj6BPXDoC (5e043af5).
+Use an authorised Vercel rollback/promote to the required saved deployment.
+No data rollback or migration reversal is needed; the foil baseline would
+restore the original navigation defect and should only be used for a critical
+unrelated regression. Public activation flags must remain unchanged.

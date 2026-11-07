@@ -1,0 +1,26 @@
+{
+  "applicationCommit": "be8dea392a8d5e0eb4349a3c46c54e080299d266",
+  "integratedNavigationCommit": "9e452f88520b694d277f81a08a4f8e09700e733d",
+  "navigationBrowser": { "passed": 20, "failed": 0, "evidence": "browser.json" },
+  "packRegression": { "passed": 33, "failed": 0, "evidence": "regression.txt" },
+  "followupExitLayout": {
+    "passed": 6,
+    "failed": 0,
+    "scope": "Close/Escape/repeated Back veto, final-card exit, and 320/360/412/1366px layout after hidden-rule correction"
+  },
+  "platform": {
+    "passed": 32,
+    "failed": 0,
+    "scope": "Reveal progress, modal lifecycle, pack lifecycle, master scoring/card contracts, receipt replay/refunds and all 21 foil variants"
+  },
+  "typecheck": "passed",
+  "lint": "passed",
+  "productionWebpackBuild": "passed",
+  "localBuildLimitation": "Shared node_modules junction caused standalone file-tracing warnings. Production uses a clean Vercel source build, not this local standalone output.",
+  "clientBoundaryScan": "passed: 233 browser assets; not a penetration test",
+  "databaseMigrations": [],
+  "customerMutations": 0,
+  "purchases": 0,
+  "physicalAndroidThisTurn": "not performed: no device available",
+  "priorPhysicalEvidence": "../pack-navigation-20261107/ACCEPTANCE.txt distinguishes Samsung Chrome proof from installed-app acceptance"
+}

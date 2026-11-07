@@ -1,0 +1,29 @@
+{
+  "applicationCommit": "9e452f88520b694d277f81a08a4f8e09700e733d",
+  "deployment": "dpl_EBeUuRUtK4Hd4m2ZvHGd7pQMYDNE",
+  "surface": "Genuine signed-in Chrome at docked.com.au",
+  "usedExistingOpenedReceiptOnly": true,
+  "sport": "nfl",
+  "pack": "Premium 9",
+  "checks": {
+    "reproducedOldDetailCloseExitsPackBeforeDeployment": true,
+    "cardTapOpensNestedPlayerDetails": true,
+    "backToPackReturnsToSameRevealedCard1": true,
+    "nextCardAdvancesToCard2": true,
+    "viewPlayerButtonOpensDetails": true,
+    "detailCloseReturnsToSameRevealedCard2": true,
+    "browserBackReturnsToSameRevealedCard2": true,
+    "unfinishedClosePromptsInsteadOfExiting": true,
+    "continueRevealingRetainsCard2": true,
+    "revealAllShowsNineSavedCards": true,
+    "summaryCloseReturnsToPackHistory": true,
+    "visibleWalletBalanceUnchangedDuringReplay": true,
+    "visibleUnopenedPackCountUnchanged": true,
+    "nbaNotShown": true
+  },
+  "visualFinding": "Mobile display:flex overrode hidden on the retained reveal section. Follow-up be8dea39 corrects this; final live visual acceptance recorded separately.",
+  "newPurchases": 0,
+  "newPackOpenings": 0,
+  "physicalAndroidAcceptance": false,
+  "screenshots": "Local private-data/pack-navigation-live; account screenshots excluded from Git"
+}
