@@ -23,9 +23,9 @@ function Fixture() {
       </button>
       {open && (
         <PackOpening
-          preview={new URLSearchParams(location.search).get("cinema") === "v2"}
-          cinematicPrototype={
-            new URLSearchParams(location.search).get("cinema") === "v2"
+          preview={new URLSearchParams(location.search).get("cinema") !== "v3"}
+          legacyRevealPreview={
+            new URLSearchParams(location.search).get("cinema") !== "v3"
           }
           userId="isolated-test"
           name={receipt?.name ?? "Docked pack"}

@@ -25,13 +25,13 @@ async function mount(page: Page, receipt: PackReceipt, prototype = true) {
 }
 
 for (const sport of ["afl", "nfl", "nrl"] as PreviewSport[]) {
-  test(`V2 ${sport}: both tiers use the confirmed card, preserve identity until turn, one issuance`, async ({
+  test(`V3 ${sport}: all six tiers use the confirmed card, preserve identity until turn, one issuance`, async ({
     page,
   }) => {
     await page.setViewportSize({ width: 412, height: 850 });
     await page.emulateMedia({ reducedMotion: "no-preference" });
     const receipt = previewPackReceipt(sport);
-    receipt.cards = receipt.cards.slice(4, 6);
+    receipt.cards = receipt.cards.slice(0, 6);
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(e.message));
     const opens = await mount(page, receipt);
@@ -46,7 +46,7 @@ for (const sport of ["afl", "nfl", "nrl"] as PreviewSport[]) {
       await expect(scene).toHaveAttribute("data-pack-reveal-phase", "rarity");
       await expect(scene.locator(".fantasy-card")).toHaveCount(0);
       await expect(scene.locator(".cinema-v2-announcement")).toContainText(
-        card.tier,
+        card.tier.replaceAll("_", " "),
       );
       await expect(scene.locator("canvas")).toHaveCount(2);
       await expect(scene).toHaveAttribute(
@@ -66,7 +66,12 @@ for (const sport of ["afl", "nfl", "nrl"] as PreviewSport[]) {
         "false",
       );
       await expect(
-        page.getByRole("button", { name: "Share My Pull", exact: true }),
+        page.getByRole("button", {
+          name: ["LEGENDARY", "ICON"].includes(card.tier)
+            ? "Share My Pull"
+            : `Share ${card.name}`,
+          exact: true,
+        }),
       ).toBeVisible();
       await page
         .getByRole("button", {
@@ -74,26 +79,30 @@ for (const sport of ["afl", "nfl", "nrl"] as PreviewSport[]) {
         })
         .click();
     }
-    await expect(page.locator(".pack-summary > li")).toHaveCount(2);
+    await expect(page.locator(".pack-summary > li")).toHaveCount(6);
     expect(opens()).toBe(1);
     expect(errors).toEqual([]);
   });
 }
 
-test("V2 is opt-in: ordinary receipts and lower rarities keep V1", async ({
+test("V3 is the ordinary receipt default; original V1 remains a design-only comparison", async ({
   page,
 }) => {
   await mount(page, previewPackReceipt("afl", "LEGENDARY"), false);
   await expect(page.locator(".cinema-v2")).toHaveCount(0);
-  await expect(page.locator(".pack-cinematic")).toHaveCount(1);
   await page.getByRole("button", { name: "Close panel" }).click();
   await page.unrouteAll();
   await mount(page, previewPackReceipt("afl", "CORE"));
-  await expect(page.locator(".cinema-v2")).toHaveCount(0);
-  await expect(page.locator(".pack-cinematic")).toHaveCount(1);
+  await expect(page.locator(".cinema-v2")).toHaveAttribute(
+    "data-reveal-version",
+    "3",
+  );
+  await expect(page.locator(".pack-kicker")).not.toContainText(
+    "DESIGN PREVIEW",
+  );
 });
 
-test("V2 rapid inputs, skip, Reveal All, resume and replay do not reissue nine cards", async ({
+test("V3 rapid inputs, skip, Reveal All, resume and replay do not reissue nine cards", async ({
   page,
 }) => {
   const receipt = previewPackReceipt("afl");
@@ -131,7 +140,7 @@ test("V2 rapid inputs, skip, Reveal All, resume and replay do not reissue nine c
   expect(opens()).toBe(1);
 });
 
-test("V2 reduced motion has no animation, no Canvas loop; reveal and share stay accessible at 320px", async ({
+test("V3 reduced motion has no animation, no Canvas loop; reveal and share stay accessible at 320px", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 320, height: 640 });
@@ -167,7 +176,7 @@ test("V2 reduced motion has no animation, no Canvas loop; reveal and share stay 
   expect(accessibility.violations).toEqual([]);
 });
 
-test("V2 tolerates unavailable Canvas and backgrounding without losing the receipt", async ({
+test("V3 tolerates unavailable Canvas and backgrounding without losing the receipt", async ({
   page,
 }) => {
   await page.addInitScript(() => {
@@ -193,7 +202,7 @@ test("V2 tolerates unavailable Canvas and backgrounding without losing the recei
   expect(opens()).toBe(1);
 });
 
-test("V2 Share My Pull still exports the awarded Icon at 1080 × 1920", async ({
+test("V3 Share My Pull still exports the awarded Icon at 1080 × 1920", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -217,7 +226,7 @@ test("V2 Share My Pull still exports the awarded Icon at 1080 × 1920", async ({
   expect(opens()).toBe(1);
 });
 
-test("V2 low-power quality keeps the card and caps the Canvas resolution", async ({
+test("V3 low-power quality keeps the card and caps the Canvas resolution", async ({
   page,
 }) => {
   await page.addInitScript(() =>
@@ -241,7 +250,7 @@ test("V2 low-power quality keeps the card and caps the Canvas resolution", async
   await expect(scene.locator(".fantasy-card")).toContainText("Casey Hartwell");
 });
 
-test("V2 original layered audio renders both distinct scores without clipping", async ({
+test("V3 original layered audio renders six distinct scores without clipping", async ({
   page,
 }) => {
   await page.setContent(
@@ -252,11 +261,18 @@ test("V2 original layered audio renders both distinct scores without clipping", 
   });
   const measured = await page.evaluate(async () => {
     const results = [];
-    for (const tier of ["LEGENDARY", "ICON"] as const) {
+    for (const tier of [
+      "CORE",
+      "RARE",
+      "ELITE",
+      "ULTRA_RARE",
+      "LEGENDARY",
+      "ICON",
+    ] as const) {
       const context = new OfflineAudioContext(1, 44100 * 6, 44100);
       const duration = (
         window as unknown as {
-          cinemaAudio: (c: BaseAudioContext, t: "LEGENDARY" | "ICON") => number;
+          cinemaAudio: (c: BaseAudioContext, t: string) => number;
         }
       ).cinemaAudio(context, tier);
       const buffer = await context.startRendering();
@@ -267,7 +283,13 @@ test("V2 original layered audio renders both distinct scores without clipping", 
         peak = Math.max(peak, Math.abs(value));
         energy += value * value;
       }
-      results.push({ tier, duration, peak, energy });
+      results.push({
+        tier,
+        duration,
+        peak,
+        energy,
+        rms: Math.sqrt(energy / (duration * 44100)),
+      });
     }
     return results;
   });
@@ -276,6 +298,98 @@ test("V2 original layered audio renders both distinct scores without clipping", 
     expect(result.peak).toBeLessThan(1);
     expect(result.energy).toBeGreaterThan(1);
   }
-  expect(measured[0].duration).not.toBe(measured[1].duration);
-  expect(measured[0].energy).not.toBe(measured[1].energy);
+  expect(new Set(measured.map((v) => v.energy)).size).toBe(6);
+  const rms = measured.map((v) => v.rms);
+  // Comparable programme loudness, while duration/texture distinguish rarity.
+  expect(20 * Math.log10(Math.max(...rms) / Math.min(...rms))).toBeLessThan(8);
+  console.log("AUDIO_V3 " + JSON.stringify(measured));
+});
+
+test("V3 audio follows visual phases, reuses one context per pack, and stops on mute/close", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const contexts: AudioContext[] = [];
+    const Original = window.AudioContext;
+    window.AudioContext = class extends Original {
+      constructor() {
+        super();
+        contexts.push(this);
+      }
+    };
+    Object.assign(window, { testAudioContexts: contexts });
+  });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  const receipt = previewPackReceipt("afl");
+  receipt.cards = receipt.cards.slice(4, 6);
+  await mount(page, receipt);
+  const states = () =>
+    page.evaluate(() =>
+      (
+        window as unknown as { testAudioContexts: AudioContext[] }
+      ).testAudioContexts.map((c) => c.state),
+    );
+  expect(await states()).toEqual([]);
+  await page.getByRole("button", { name: "Sound off", exact: true }).click();
+  await page.waitForTimeout(350); // the short explicit preference-confirmation sound
+  await page.getByRole("button", { name: "Reveal card", exact: true }).click();
+  await expect(page.locator(".cinema-v2")).toHaveAttribute(
+    "data-pack-reveal-phase",
+    "rarity",
+  );
+  await expect.poll(states).toEqual(["closed", "running"]);
+  await expect(page.locator(".cinema-v2")).toHaveAttribute(
+    "data-pack-reveal-phase",
+    "revealed",
+    { timeout: 6000 },
+  );
+  await page
+    .getByRole("button", { name: "Reveal next card", exact: true })
+    .click();
+  await page.getByRole("button", { name: "Reveal card", exact: true }).click();
+  await expect.poll(states).toEqual(["closed", "running"]); // no ninth-context buildup
+  await page.getByRole("button", { name: "Sound on", exact: true }).click();
+  await expect.poll(states).toEqual(["closed", "closed"]);
+  await page
+    .getByRole("button", { name: "Skip animation", exact: true })
+    .click();
+  await page.getByRole("button", { name: "Close panel", exact: true }).click();
+  expect(await states()).toEqual(["closed", "closed"]);
+  expect(
+    await page.evaluate(() => localStorage.getItem("docked:pack:sound")),
+  ).toBe("off");
+});
+
+test("V3 complete nine-card sequence keeps order, best pull and a single issuance", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  const receipt = previewPackReceipt("afl");
+  const opens = await mount(page, receipt);
+  for (let i = 0; i < receipt.cards.length; i++) {
+    await expect(page.locator(".pack-count")).toContainText(
+      `Card ${i + 1} of 9`,
+    );
+    await page
+      .getByRole("button", { name: "Reveal card", exact: true })
+      .click();
+    await expect(page.locator(".cinema-v2")).toHaveAttribute(
+      "data-pack-reveal-phase",
+      "revealed",
+      { timeout: 6500 },
+    );
+    await expect(page.locator(".cinema-v2 .fantasy-card")).toContainText(
+      receipt.cards[i].name,
+    );
+    await page
+      .getByRole("button", {
+        name: i === 8 ? "View pack summary" : "Reveal next card",
+        exact: true,
+      })
+      .click();
+  }
+  await expect(page.locator(".pack-summary > li")).toHaveCount(9);
+  expect(opens()).toBe(1);
+  await expect(page.locator(".pack-best-pull")).toContainText("Icon");
 });

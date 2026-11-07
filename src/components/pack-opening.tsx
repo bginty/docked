@@ -35,11 +35,11 @@ import {
 } from "./pack-cinematic";
 import { PackPullShare } from "./pack-pull-share";
 import {
-  cinemaV2Eligible,
+  cinemaEligible,
   cinemaV2Timing,
   type CinemaTier,
 } from "./pack-cinema-v2-model";
-import { playCinemaAudio } from "./pack-cinema-audio";
+import { createCinemaAudioPlayer } from "./pack-cinema-audio";
 
 const PackCinemaV2 = lazy(() => import("./pack-cinema-v2"));
 
@@ -85,8 +85,8 @@ export type PackOpeningProps = {
   ownedIds: string[];
   replay?: boolean;
   preview?: boolean;
-  /** Local design preview only; never enabled for real pack callers. */
-  cinematicPrototype?: boolean;
+  /** Comparison-only option, ignored by real pack callers. */
+  legacyRevealPreview?: boolean;
   commercial?: boolean;
   autoOpen?: boolean;
   collectionHref?: string;
@@ -121,13 +121,12 @@ export default function PackOpening(props: PackOpeningProps) {
   const revealControl = useRef<HTMLButtonElement>(null);
   const skipControl = useRef<HTMLButtonElement>(null);
   const card = receipt?.cards[index];
-  const prototype = cinemaV2Eligible(
-    props.preview,
-    props.cinematicPrototype,
-    card?.sport,
-    card?.tier,
+  const prototype =
+    cinemaEligible(card?.sport, card?.tier) &&
+    !(props.preview && props.legacyRevealPreview);
+  const cinemaSound = useRef<ReturnType<typeof createCinemaAudioPlayer> | null>(
+    null,
   );
-  const cinemaSound = useRef<(() => void) | null>(null);
   const motionOff = reduced || simple;
   const cinematic = supportsCinematicReveal(card);
   const inMotion = stage === "rarity" || stage === "flipping";
@@ -228,12 +227,12 @@ export default function PackOpening(props: PackOpeningProps) {
     };
   }, [stage, card, inMotion, motionOff, prototype]);
   useEffect(() => {
-    if (muted || motionOff || (!inMotion && stage !== "revealed"))
-      cinemaSound.current?.();
+    if (muted || motionOff) cinemaSound.current?.close();
+    else if (!inMotion && stage !== "revealed") cinemaSound.current?.stop();
   }, [muted, motionOff, inMotion, stage]);
   useEffect(
     () => () => {
-      cinemaSound.current?.();
+      cinemaSound.current?.close();
     },
     [],
   );
@@ -298,8 +297,13 @@ export default function PackOpening(props: PackOpeningProps) {
     advancing.current = true;
     feedback(false, !prototype);
     if (prototype && !muted && !motionOff && !document.hidden) {
-      cinemaSound.current?.();
-      cinemaSound.current = playCinemaAudio(card.tier as CinemaTier);
+      try {
+        if (!cinemaSound.current || cinemaSound.current.closed)
+          cinemaSound.current = createCinemaAudioPlayer();
+        cinemaSound.current.start(card.tier as CinemaTier);
+      } catch {
+        /* Optional audio never blocks a confirmed receipt. */
+      }
     }
     setStage(motionOff ? "revealed" : "rarity");
   }
@@ -541,6 +545,7 @@ export default function PackOpening(props: PackOpeningProps) {
                   reduced={motionOff}
                   revealRef={revealControl}
                   onReveal={beginReveal}
+                  onPhaseStart={(phase) => cinemaSound.current?.phase(phase)}
                   onInspect={() => props.onViewCard(card)}
                   onPhaseEnd={() =>
                     setStage((current) =>
@@ -559,7 +564,7 @@ export default function PackOpening(props: PackOpeningProps) {
                   type="button"
                   className="pack-control secondary pack-cinematic-skip"
                   onClick={() => {
-                    cinemaSound.current?.();
+                    cinemaSound.current?.stop();
                     setStage("revealed");
                   }}
                 >
@@ -567,7 +572,7 @@ export default function PackOpening(props: PackOpeningProps) {
                 </button>
               ) : stage === "revealed" ? (
                 <div className="pack-reveal-actions">
-                  <PackPullShare card={card} prominent />
+                  <PackPullShare card={card} prominent={headlinePull(card)} />
                   <button
                     className="pack-next pack-control pack-primary"
                     type="button"

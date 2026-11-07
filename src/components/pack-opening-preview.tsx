@@ -145,12 +145,12 @@ export function PackOpeningPreview() {
   const [open, setOpen] = useState(false);
   const [receipt, setReceipt] = useState<PackReceipt | null>(null);
   const [detail, setDetail] = useState<AwardedCard | null>(null);
-  const [prototype, setPrototype] = useState(false);
+  const [legacy, setLegacy] = useState(false);
   const close = useCallback(() => setOpen(false), []);
   const closeDetail = useCallback(() => setDetail(null), []);
 
-  function start(tier?: Rarity, v2 = false) {
-    setPrototype(v2);
+  function start(tier?: Rarity, compareLegacy = false) {
+    setLegacy(compareLegacy);
     setSample(previewPackReceipt(sport, tier));
     setReceipt(null);
     setOpen(true);
@@ -193,31 +193,18 @@ export function PackOpeningPreview() {
         </select>
       </label>
       <div className="cinema-prototype-intro">
-        <p className="eyebrow">CINEMATIC V2 · OWNER REVIEW</p>
-        <h2>Legendary. Then extraordinary.</h2>
+        <p className="eyebrow">CINEMATIC V3 � ALL SIX RARITIES</p>
+        <h2>Every card has its moment.</h2>
         <p>
-          Layered light, orbiting energy and a dimensional reveal. Legendary and
-          Icon are the two new prototypes. Sound is optional. The other four
-          rarities retain the existing reveal.
+          From a clean Core flip to Icon's diamond storm. Enable Sound to hear
+          the six original scores. All results below are design samples.
         </p>
-        <div className="actions">
-          <button
-            type="button"
-            className="button"
-            onClick={() => start("LEGENDARY", true)}
-          >
-            V2 Legendary
-          </button>
-          <button
-            type="button"
-            className="button"
-            onClick={() => start("ICON", true)}
-          >
-            V2 Icon
-          </button>
-          <button type="button" onClick={() => start(undefined, true)}>
-            V2 nine-card preview
-          </button>
+        <div className="actions" role="group" aria-label="V3 rarity previews">
+          {rarities.map((tier) => (
+            <button type="button" key={tier} onClick={() => start(tier)}>
+              V3 {rarityRule(tier).label}
+            </button>
+          ))}
         </div>
       </div>
       <div className="actions">
@@ -237,7 +224,7 @@ export function PackOpeningPreview() {
             key={tier}
             type="button"
             style={{ borderColor: rarityPresentation(tier).accent }}
-            onClick={() => start(tier)}
+            onClick={() => start(tier, true)}
           >
             Preview {rarityRule(tier).label}
           </button>
@@ -255,7 +242,7 @@ export function PackOpeningPreview() {
               packType="PREMIUM"
               receipt={receipt}
               preview
-              cinematicPrototype={prototype}
+              legacyRevealPreview={legacy}
               teamHref={null}
               collectionHref={"/fantasy/cards?sport=" + sample.cards[0].sport}
               ownedIds={[]}

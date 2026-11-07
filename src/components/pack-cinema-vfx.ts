@@ -1,5 +1,6 @@
 import {
   cinemaPalettes,
+  cinemaProfiles,
   cinemaV2Timing,
   type CinemaPhase,
   type CinemaTier,
@@ -130,6 +131,7 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
     h: number,
     alpha: number,
   ) {
+    if (alpha <= 0.001) return;
     c.globalAlpha = clamp(alpha);
     c.drawImage(texture, x - w / 2, y - h / 2, w, h);
   }
@@ -161,21 +163,30 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
     const flipping = scene.phase === "flipping";
     const revealed = scene.phase === "revealed";
     const icon = scene.tier === "ICON" && !mystery;
+    const profile = cinemaProfiles[scene.tier];
+    const intensity = mystery ? 1 : profile.light;
     const settled = revealed && elapsed > 3;
-    const charge = mystery
-      ? 0.1
-      : revealed
-        ? 0.48 + 0.52 * Math.exp(-elapsed * 1.7)
-        : ease(elapsed / 0.65);
+    const charge =
+      intensity *
+      (mystery
+        ? 0.1
+        : revealed
+          ? 0.48 + 0.52 * Math.exp(-elapsed * 1.7)
+          : ease(
+              elapsed /
+                Math.min(0.65, cinemaV2Timing(scene.tier).rarity / 1200),
+            ));
     const turn = clamp((elapsed * 1000) / cinemaV2Timing(scene.tier).flip);
     // One eased reveal pulse, never a repeating strobe.
-    const flash = scene.reduced
-      ? 0
-      : flipping
-        ? Math.exp(-(((turn - 0.53) / 0.14) ** 2))
-        : revealed
-          ? 0.65 * Math.exp(-elapsed * 3)
-          : 0;
+    const flash =
+      intensity *
+      (scene.reduced
+        ? 0
+        : flipping
+          ? Math.exp(-(((turn - 0.53) / 0.14) ** 2))
+          : revealed
+            ? 0.65 * Math.exp(-elapsed * 3)
+            : 0);
     const impact = revealed && !scene.reduced ? ease(elapsed / 1.25) : 0;
     const cx = width / 2;
     const cy = (height - 42) / 2;
@@ -205,7 +216,7 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
       back.save();
       back.translate(x, -30);
       back.rotate(-Math.atan2(cx + sway - x, height * 0.75));
-      back.globalAlpha = 0.15 + charge * 0.25;
+      back.globalAlpha = 0.15 * intensity + charge * 0.25;
       back.drawImage(
         mystery ? blueRay : rayTexture,
         -width * 0.2,
@@ -220,7 +231,7 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
     for (let i = 0; i < (balanced ? 3 : 5); i++) {
       light(
         back,
-        fog,
+        mystery ? blue : fog,
         cx + Math.sin(t * 0.15 + i * 2.1) * width * 0.42,
         cy + Math.cos(t * 0.11 + i) * height * 0.3,
         width * 0.95,
@@ -261,7 +272,7 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
       );
     // Rays radiate from behind the card, lengthening at the turn midpoint.
     if (!mystery && !settled) {
-      const rayCount = balanced ? 16 : icon ? 36 : 26;
+      const rayCount = Math.min(profile.rays, balanced ? 16 : profile.rays);
       for (let i = 0; i < rayCount; i++) {
         const ray = beams[i];
         const a = ray.angle + t * (icon ? -0.025 : 0.035);
@@ -285,13 +296,20 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
     }
     // Orbit paths are projected in 3D and split by depth. Their foreground half
     // passes IN FRONT of the card instead of being hidden under the DOM plane.
-    const rings = mystery ? 0 : settled ? 2 : balanced ? 3 : icon ? 5 : 4;
+    const rings = mystery
+      ? 0
+      : Math.min(profile.rings, settled ? 2 : balanced ? 3 : profile.rings);
     for (let ring = 0; ring < rings; ring++) {
-      const r = Math.min(width * 0.455, cardWidth * 0.76) * (1 - ring * 0.025);
+      const r =
+        Math.min(width * 0.455, cardWidth * 0.76) *
+        profile.ringScale *
+        (1 - ring * 0.025);
       const rotation =
         [-0.38, 0.42, -0.82, 0.88, 1.35][ring] +
         t * (ring % 2 ? 0.22 : -0.18) +
         Math.sin(t * 0.4 + ring) * 0.08;
+      const cosine = Math.cos(rotation),
+        sine = Math.sin(rotation);
       const offsetY = (ring % 2 ? -1 : 1) * cardHeight * 0.12;
       const ry = cardHeight * (0.16 + (ring % 3) * 0.045);
       const ringOpacity = revealed
@@ -312,9 +330,8 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
           const ripple = Math.sin(a * 13 + t * 4 + ring) * 1.2;
           const x = Math.cos(a) * (r + ripple);
           const y = Math.sin(a) * ry;
-          const px = cx + x * Math.cos(rotation) - y * Math.sin(rotation);
-          const py =
-            cy + offsetY + x * Math.sin(rotation) + y * Math.cos(rotation);
+          const px = cx + x * cosine - y * sine;
+          const py = cy + offsetY + x * sine + y * cosine;
           if (continuing) path.lineTo(px, py);
           else path.moveTo(px, py);
           continuing = true;
@@ -330,8 +347,8 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
       const a = t * (1.1 + ring * 0.22) + ring * 1.7;
       const x = Math.cos(a) * r,
         y = Math.sin(a) * ry;
-      const px = cx + x * Math.cos(rotation) - y * Math.sin(rotation);
-      const py = cy + offsetY + x * Math.sin(rotation) + y * Math.cos(rotation);
+      const px = cx + x * cosine - y * sine;
+      const py = cy + offsetY + x * sine + y * cosine;
       light(Math.sin(a) >= 0 ? front : back, star, px, py, 45, 45, ringOpacity);
     }
     // Depth-scaled sparks/crystals. Each has a trail; hero particles cross the
@@ -339,12 +356,8 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
     const count = mystery
       ? 18
       : settled
-        ? 26
-        : balanced
-          ? 85
-          : icon
-            ? 210
-            : 155;
+        ? Math.min(26, profile.particles)
+        : Math.min(profile.particles, balanced ? 85 : profile.particles);
     for (let i = 0; i < count; i++) {
       const p = particles[i];
       const loop = (p.phase + t * p.speed * 0.22) % 1;
@@ -382,7 +395,7 @@ export function createCinemaVfx(surface: Surface, initial: Scene) {
       );
       ctx.globalAlpha = clamp(alpha);
       ctx.fillStyle = mystery ? "#e3f3ff" : palette.hot;
-      if (icon && i % 4 === 0) {
+      if (!mystery && profile.crystals && i % 4 === 0) {
         ctx.beginPath();
         ctx.moveTo(px, py - size * 2.3);
         ctx.lineTo(px + size, py);

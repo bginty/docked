@@ -1,0 +1,95 @@
+DOCKED CINEMATIC REVEAL V3 — RELEASE RECORD
+
+Scope
+The production candidate starts from live 7319dddd1227b294fb38542cdee2044e01c89bd4.
+Only the reveal/share implementation from afa144cd and approved V2 e5dec994
+was selected. Unrelated commercial-supply work on that branch was not included.
+The original workspaces are unchanged. The release branch is codex/cinematic-reveal-v3.
+
+Visuals
+Core: restrained silver-blue frame, original geometric emblem, no orbit rings,
+12-particle ceiling, 0.90-second charge/flip.
+Rare: electric blue, bolt emblem, one orbit ring, 35 particles, 1.30 seconds.
+Elite: purple star, layered platform lighting, two rings, 70 particles, 1.75 seconds.
+Ultra Rare: magenta crystal cluster, three rings, 115 particles, 2.35 seconds.
+Legendary: approved crown, gold frame/rings, 155 particles and 3.10-second
+charge/flip preserved. Icon: approved diamond, white-blue light, five rings,
+210 particles and 3.70-second charge/flip preserved.
+Existing player cards, card information, nine-card receipts, summary and sharing remain.
+The existing V2 filenames are deliberately retained; the renderer identifies itself as V3.
+
+Audio compared with V2
+V2 used a small scheduled tone sequence for Legendary/Icon. V3 has six original
+synthesised scores with filtered-noise whooshes, rising energy, stereo harmonics,
+bass transients and rarity-specific endings. There are no downloaded recordings,
+new services or audio-file downloads in the application.
+Core: digital flip and two-note confirmation. Rare: whoosh and brighter shimmer.
+Elite: rising layered energy, impact and sparkle. Ultra Rare: deeper bass and
+detuned crystal resonance. Legendary: longer cinematic charge, deep impact and
+golden chord. Icon: distinctive three-note ascent, deepest impact and diamond finish.
+Charge, flip and arrival cues follow actual CSS animation-start events. The impact
+is aligned to the Canvas midpoint flash. One AudioContext is reused across a pack.
+Skip/advance cancels pending notes; mute, backgrounding and closing release resources.
+Sound remains opt-in. Reduced motion uses the existing quiet/static presentation.
+Offline stereo exports are 268–961 KB for review only. Application audio is generated.
+Six measured mono peaks: 0.256, 0.317, 0.242, 0.235, 0.225, 0.213; no clipping.
+Measured RMS spans about 1.1 dB. This is not a formal LUFS or listening-panel assessment.
+
+Acceptance executed
+- 42 targeted platform tests passed: reveal gating, pack opening/shopping/coupons,
+  store lifecycle, permanent supply and card economy protections.
+- Fresh full Edge reveal browser run: 25/25 passed.
+- Chrome V3 browser run: 12/12 passed.
+- All six rarity stages across NFL/AFL/NRL; player identity hidden until the turn;
+  correct receipt card; complete nine-card individual sequence; best-pull summary.
+- Reveal All, skip, rapid taps, interrupted/backgrounded reveals, receipt resume,
+  replay without issuing again, reduced motion, keyboard and accessibility checks.
+- Icon export at 1080x1920; original share controls and saved-image fallback.
+- Audio phase timing, one-context reuse, mute/close and zero default autoplay.
+- Six actual local Next-rendered previews captured at 412x850: no page errors
+  or horizontal overflow. Browser fixture coverage includes 320, 360, 412 and desktop.
+- TypeScript, full lint and production build passed. Dependency audit (production
+  dependencies) reported zero vulnerabilities. Client-marker scan covered 100 assets;
+  this build did not inject new canary secrets, so that scan alone is not a leak proof.
+
+Earlier acceptance-harness failures were corrected: legacy fixtures needed an explicit
+legacy comparison mode; lower-rarity Share buttons use player-specific accessible names;
+the isolated build copy initially lacked existing Supabase function source files.
+These were rerun successfully. No database migrations or runtime financial changes are required.
+
+Performance and limitations
+Canvas sprite caching and orbit calculations are shared. Near-transparent sprites are
+skipped. Adaptive rendering lowers particle budgets and backing resolution under load.
+Hidden tabs stop the loop; reduced motion renders a static scene.
+The equal-window desktop/mobile-viewport run measured 58.1–59.6 fps for Rare through Icon,
+0.41–1.46 ms average Canvas draw, and 49.4–50.9 fps under 4x CPU slowdown with automatic
+balanced quality. Core's first development-page run contained an approximately 865 ms
+stall and averaged 48.7 fps; the p95 frame interval was 16.8 ms. Raw results are retained.
+An isolated production-mode fixture measurement investigates that development startup outlier.
+These are Windows browser measurements, not Samsung hardware results.
+ADB reported no connected device. No physical Android playback, speaker or native-share
+acceptance is claimed. The installed app receives web changes; no new AAB is deployed.
+The optional native image-share plugin inherited from V1 requires a compatible future
+Android build; current builds keep the existing web sharing/download fallback.
+
+Customer and release safety
+No prices, odds, supply, balances, receipts, ownership, registration, competitions,
+marketplace economics, scoring, sport visibility or access grants are changed.
+Barry's account was checked read-only: one matching account, confirmed email, current
+beta membership and accepted admission. This is eligibility evidence, not a login as Barry.
+NBA retains the original read-only reveal and remains hidden under the unchanged server rules.
+Deployment copies the exact current closed runtime; only the source commit identifier changes.
+The design-preview route remains closed in Production. No test packs are issued on live data.
+
+Release procedure
+1. Commit the checked presentation, tests and scripts; push the release branch.
+2. scripts/cinema-v3-release.mjs prepare verifies the live baseline and exports immutable Git source.
+3. Stage with --prod --skip-domain; the docked.com.au alias remains on the current release.
+4. Verify build, source identity, closed gates, policies, authentication denials, six hosted
+   rarity styles and unchanged schedules using scripts/cinema-v3-verify-release.mjs.
+5. Promote only after these checks pass. Verify again with --live.
+6. If a critical regression occurs, restore deployment dpl_2YxdbcCi584D1zQPVmyewM8QPxiQ.
+   No database rollback is needed because this release has no data/schema mutations.
+
+The staged/live JSON records under docs/qa/cinema-v3-release are the authority for
+actual deployment status and SHA. This document alone does not assert deployment success.

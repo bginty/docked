@@ -1,0 +1,220 @@
+TAP version 13
+# Subtest: six authoritative rarities total 7951 limited cards; Core is unlimited and free
+ok 1 - six authoritative rarities total 7951 limited cards; Core is unlimited and free
+  ---
+  duration_ms: 2.0788
+  ...
+# Subtest: changed product consent, pause and client override cannot buy a new pack
+ok 2 - changed product consent, pause and client override cannot buy a new pack
+  ---
+  duration_ms: 47.6986
+  ...
+# Subtest: both packs yield nine unique non-Core cards and allow a deterministic Icon
+ok 3 - both packs yield nine unique non-Core cards and allow a deterministic Icon
+  ---
+  duration_ms: 10.0249
+  ...
+# Subtest: insufficient supply is atomic and no rarity substitution occurs
+ok 4 - insufficient supply is atomic and no rarity substitution occurs
+  ---
+  duration_ms: 3.5315
+  ...
+# Subtest: inactive/stale players abstain, preserve existing supply and never become retired by absence
+ok 5 - inactive/stale players abstain, preserve existing supply and never become retired by absence
+  ---
+  duration_ms: 3.5348
+  ...
+# Subtest: provider aliases cannot establish another allocation
+ok 6 - provider aliases cannot establish another allocation
+  ---
+  duration_ms: 0.4844
+  ...
+# Subtest: team/artwork/season do not reset player rarity serials
+ok 7 - team/artwork/season do not reset player rarity serials
+  ---
+  duration_ms: 3.6291
+  ...
+# Subtest: wallet retries preserve nine awards and one debit; open/replay never remints
+ok 8 - wallet retries preserve nine awards and one debit; open/replay never remints
+  ---
+  duration_ms: 17.4337
+  ...
+# Subtest: new products reject insufficient balance and legacy purchases; old sealed entitlements still open
+ok 9 - new products reject insufficient balance and legacy purchases; old sealed entitlements still open
+  ---
+  duration_ms: 27.8272
+  ...
+# Subtest: rarity rounding applies to negative complete totals; old competition has no snapshot
+ok 10 - rarity rounding applies to negative complete totals; old competition has no snapshot
+  ---
+  duration_ms: 2.0266
+  ...
+# Subtest: all six receipt tiers use V3 for NFL/AFL/NRL; hidden sports stay unchanged
+ok 11 - all six receipt tiers use V3 for NFL/AFL/NRL; hidden sports stay unchanged
+  ---
+  duration_ms: 2.5109
+  ...
+# Subtest: quote is free; successful coupon purchase is atomic, single-use and replay-safe
+ok 12 - quote is free; successful coupon purchase is atomic, single-use and replay-safe
+  ---
+  duration_ms: 75.6713
+  ...
+# Subtest: failure, stale review, permission and campaign caps cannot consume a redemption
+ok 13 - failure, stale review, permission and campaign caps cannot consume a redemption
+  ---
+  duration_ms: 26.5476
+  ...
+# Subtest: whole-credit half-up savings, zero policy, first purchase and product restrictions
+ok 14 - whole-credit half-up savings, zero policy, first purchase and product restrictions
+  ---
+  duration_ms: 35.7043
+  ...
+# Subtest: AFL and NRL coupons require explicit product eligibility; failed purchases never redeem
+ok 15 - AFL and NRL coupons require explicit product eligibility; failed purchases never redeem
+  ---
+  duration_ms: 35.1081
+  ...
+# Subtest: design Preview flag never activates on production or by a client flag
+ok 16 - design Preview flag never activates on production or by a client flag
+  ---
+  duration_ms: 2.041
+  ...
+# Subtest: reveal progress is bounded and separated by user, receipt and awarded card order
+ok 17 - reveal progress is bounded and separated by user, receipt and awarded card order
+  ---
+  duration_ms: 0.801
+  ...
+# Subtest: review arithmetic, safe pack tabs and stable newest-first history
+ok 18 - review arithmetic, safe pack tabs and stable newest-first history
+  ---
+  duration_ms: 21.0307
+  ...
+# Subtest: stale purchase review cannot charge a different price; confirmed retry issues once
+ok 19 - stale purchase review cannot charge a different price; confirmed retry issues once
+  ---
+  duration_ms: 38.001
+  ...
+# Subtest: nfl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 20 - nfl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 103.0334
+  ...
+# Subtest: nfl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 21 - nfl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 26.4819
+  ...
+# Subtest: nfl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 22 - nfl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 24.4679
+  ...
+# Subtest: nfl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 23 - nfl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 26.132
+  ...
+# Subtest: nfl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 24 - nfl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 28.13
+  ...
+# Subtest: nfl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 25 - nfl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 23.4549
+  ...
+# Subtest: afl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 26 - afl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 32.2343
+  ...
+# Subtest: afl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 27 - afl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 28.2114
+  ...
+# Subtest: afl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 28 - afl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 23.9627
+  ...
+# Subtest: afl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 29 - afl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 19.5362
+  ...
+# Subtest: afl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 30 - afl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 20.0889
+  ...
+# Subtest: afl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 31 - afl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 15.6916
+  ...
+# Subtest: nrl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 32 - nrl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 19.953
+  ...
+# Subtest: nrl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 33 - nrl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 16.8231
+  ...
+# Subtest: nrl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 34 - nrl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 17.6403
+  ...
+# Subtest: nrl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 35 - nrl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 18.2676
+  ...
+# Subtest: nrl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 36 - nrl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 19.3102
+  ...
+# Subtest: nrl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 37 - nrl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 16.3329
+  ...
+# Subtest: member wallet accepts only verified TEST provenance, never client claims or real deposits
+ok 38 - member wallet accepts only verified TEST provenance, never client claims or real deposits
+  ---
+  duration_ms: 8.7385
+  ...
+# Subtest: refund after transfer preserves recipient ownership and locked fantasy card metadata
+ok 39 - refund after transfer preserves recipient ownership and locked fantasy card metadata
+  ---
+  duration_ms: 31.8814
+  ...
+# Subtest: failed pack fulfilment preserves verified credits; full unspent refund reverses exactly once
+ok 40 - failed pack fulfilment preserves verified credits; full unspent refund reverses exactly once
+  ---
+  duration_ms: 10.5638
+  ...
+# Subtest: refund before opening preserves the already-issued entitlement without issuing another pack
+ok 41 - refund before opening preserves the already-issued entitlement without issuing another pack
+  ---
+  duration_ms: 14.4045
+  ...
+# Subtest: declined or pending Google receipts cannot fund any paid pack
+ok 42 - declined or pending Google receipts cannot fund any paid pack
+  ---
+  duration_ms: 6.539
+  ...
+1..42
+# tests 42
+# suites 0
+# pass 42
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5373.5931

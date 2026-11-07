@@ -67,7 +67,9 @@ export async function mountPackFixture(page: Page, prototype = false) {
     ),
   ]);
   const [script, css] = await assets;
-  await page.goto(packFixtureOrigin + "/pack" + (prototype ? "?cinema=v2" : ""));
+  await page.goto(
+    packFixtureOrigin + "/pack" + (prototype ? "?cinema=v3" : "?cinema=legacy"),
+  );
   await page.addStyleTag({ content: css.join("\n") });
   await page.addScriptTag({ content: script });
   await page.getByRole("button", { name: "Open viewer" }).click();

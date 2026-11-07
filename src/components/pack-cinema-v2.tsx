@@ -13,11 +13,14 @@ import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { createCinemaVfx } from "./pack-cinema-vfx";
 import {
   cinemaV2Timing,
+  cinemaProfiles,
   type CinemaPhase,
   type CinemaTier,
 } from "./pack-cinema-v2-model";
 
-function CinemaEmblem({ icon }: { icon: boolean }) {
+function CinemaEmblem({ tier }: { tier: CinemaTier }) {
+  const icon = tier === "ICON";
+  const hero = icon || tier === "LEGENDARY";
   const id = useId().replace(/:/g, "");
   return (
     <svg className="cinema-v2-emblem" viewBox="0 0 160 110" aria-hidden="true">
@@ -37,7 +40,54 @@ function CinemaEmblem({ icon }: { icon: boolean }) {
           <stop offset="1" stopColor={icon ? "#76caff" : "#ffac1a"} />
         </linearGradient>
       </defs>
-      {icon ? (
+      {!hero ? (
+        <g
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="3"
+          strokeLinejoin="round"
+        >
+          {tier === "CORE" ? (
+            <>
+              <path d="m80 19 34 20v37L80 96 46 76V39Z" />
+              <path d="m62 58 13 13 26-28" />
+              <path d="M59 31 80 43l21-12M80 43v13" opacity=".45" />
+            </>
+          ) : tier === "RARE" ? (
+            <>
+              <path
+                d="m91 8-48 55h33l-7 40 48-61H84Z"
+                fill="currentColor"
+                fillOpacity=".23"
+              />
+              <path d="M32 41 21 58l12 18m95-39 12 19-13 20" opacity=".5" />
+            </>
+          ) : tier === "ELITE" ? (
+            <>
+              <path
+                d="m80 7 14 32 36 4-27 24 8 36-31-19-31 19 8-36-27-24 36-4Z"
+                fill="currentColor"
+                fillOpacity=".24"
+              />
+              <path d="m80 30 7 23 23 2-18 13 5 20-17-11-18 11 6-20-18-13 23-2Z" />
+            </>
+          ) : (
+            <>
+              <path
+                d="m80 4 25 32-25 66-25-66Z"
+                fill="currentColor"
+                fillOpacity=".3"
+              />
+              <path
+                d="m48 19-27 30 40 43-12-42Zm64 0 27 30-40 43 12-42Z"
+                fill="currentColor"
+                fillOpacity=".22"
+              />
+              <path d="m80 4 2 40-27-8m27 8 23-8-25 66" />
+            </>
+          )}
+        </g>
+      ) : icon ? (
         <g
           fill={`url(#${id})`}
           stroke="#edffff"
@@ -109,7 +159,7 @@ function CinemaFrame() {
   );
 }
 
-/** Opt-in visual prototype. Production PackOpening callers cannot select it. */
+/** Receipt-driven shared reveal. No awards, inventory mutations or network calls. */
 export default function PackCinemaV2({
   card,
   phase,
@@ -117,6 +167,7 @@ export default function PackCinemaV2({
   revealRef,
   onReveal,
   onPhaseEnd,
+  onPhaseStart,
   onInspect,
 }: {
   card: AwardedCard;
@@ -125,6 +176,7 @@ export default function PackCinemaV2({
   revealRef: RefObject<HTMLButtonElement | null>;
   onReveal: () => void;
   onPhaseEnd: () => void;
+  onPhaseStart: (phase: CinemaPhase) => void;
   onInspect: () => void;
 }) {
   const host = useRef<HTMLDivElement>(null);
@@ -136,7 +188,7 @@ export default function PackCinemaV2({
   const tilt = useRef({ x: 0, y: 0 });
   const drag = useRef<{ x: number; y: number; moved: boolean } | null>(null);
   const tier = card.tier as CinemaTier;
-  const icon = tier === "ICON";
+  const profile = cinemaProfiles[tier];
   const state = useRef({ phase, tier, reduced });
   useEffect(() => {
     if (!host.current || !shell.current || !back.current || !front.current)
@@ -179,10 +231,16 @@ export default function PackCinemaV2({
       className={`cinema-v2 ${reduced ? "cinema-v2-reduced" : ""}`}
       data-pack-reveal-phase={phase}
       data-tier={phase === "mystery" ? undefined : tier}
+      data-reveal-version="3"
       style={
         {
           "--cinema-charge": `${timing.rarity}ms`,
           "--cinema-flip": `${timing.flip}ms`,
+          "--cinema-materialise": `${profile.level >= 4 ? 800 : timing.rarity * 0.55}ms`,
+          "--cinema-travel":
+            phase === "mystery"
+              ? 1
+              : [0.35, 0.55, 0.75, 0.9, 1, 1][profile.level],
         } as CSSProperties
       }
     >
@@ -195,6 +253,15 @@ export default function PackCinemaV2({
         <div
           className="cinema-v2-shell"
           ref={shell}
+          onAnimationStart={(event) => {
+            if (
+              event.target === event.currentTarget &&
+              ["cinema-v2-charge", "cinema-v2-turn", "cinema-v2-land"].includes(
+                event.animationName,
+              )
+            )
+              onPhaseStart(phase);
+          }}
           onAnimationEnd={(event) => {
             if (
               event.target === event.currentTarget &&
@@ -236,12 +303,12 @@ export default function PackCinemaV2({
                 </g>
               </svg>
             ) : (
-              <CinemaEmblem icon={icon} />
+              <CinemaEmblem tier={tier} />
             )}
             <span className="cinema-v2-announcement">
               <span className="cinema-v2-rule" />
               <strong>
-                {phase === "mystery" ? "REVEAL" : icon ? "ICON" : "LEGENDARY"}
+                {phase === "mystery" ? "REVEAL" : profile.label.toUpperCase()}
               </strong>
               <span className="cinema-v2-rule" />
             </span>
@@ -382,7 +449,7 @@ export default function PackCinemaV2({
       <div className="cinema-v2-stage-caption" aria-hidden="true">
         {phase === "revealed" ? (
           <>
-            <span>{icon ? "AN ICON IS YOURS" : "A LEGEND HAS ARRIVED"}</span>
+            <span>{profile.arrival}</span>
             <small>
               {card.sport.toUpperCase()} · {card.position}
             </small>
@@ -390,7 +457,7 @@ export default function PackCinemaV2({
         ) : phase === "mystery" ? (
           <small>TAP TO REVEAL</small>
         ) : (
-          <small>{icon ? "BEYOND EXTRAORDINARY" : "BUILT FOR GREATNESS"}</small>
+          <small>{profile.caption}</small>
         )}
       </div>
     </div>

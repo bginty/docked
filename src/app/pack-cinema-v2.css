@@ -1,4 +1,4 @@
-/* Owner-review prototype only. No existing rarity/card or production styles. */
+/* Receipt-only reveal. Hero tiers preserve the approved V2 composition. */
 .pack-viewport.pack-cinema-v2-sheet {
   width: min(100%, 620px);
   background: #030711;
@@ -360,11 +360,12 @@
     cubic-bezier(0.2, 0.7, 0.3, 1) both;
 }
 .cinema-v2[data-pack-reveal-phase="rarity"] .cinema-v2-emblem {
-  animation: cinema-v2-materialise 0.8s 0.15s cubic-bezier(0.2, 0.8, 0.2, 1)
-    both;
+  animation: cinema-v2-materialise var(--cinema-materialise, 0.8s) 0.1s
+    cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 .cinema-v2[data-pack-reveal-phase="rarity"] .cinema-v2-announcement {
-  animation: cinema-v2-materialise 0.55s 0.45s both;
+  animation: cinema-v2-materialise min(0.55s, var(--cinema-materialise))
+    calc(var(--cinema-charge) * 0.16) both;
 }
 .cinema-v2[data-pack-reveal-phase="flipping"] .cinema-v2-shell {
   animation: cinema-v2-turn var(--cinema-flip) cubic-bezier(0.4, 0.05, 0.18, 1)
@@ -394,10 +395,20 @@
     transform: translate3d(0, 0, 0);
   }
   32% {
-    transform: translate3d(0, -10px, 35px) rotateX(5deg) rotateY(-5deg);
+    transform: translate3d(
+        0,
+        calc(-10px * var(--cinema-travel, 1)),
+        calc(35px * var(--cinema-travel, 1))
+      )
+      rotateX(5deg) rotateY(-5deg);
   }
   100% {
-    transform: translate3d(0, -7px, 25px) rotateX(4deg) rotateY(0);
+    transform: translate3d(
+        0,
+        calc(-7px * var(--cinema-travel, 1)),
+        calc(25px * var(--cinema-travel, 1))
+      )
+      rotateX(4deg) rotateY(0);
   }
 }
 @keyframes cinema-v2-materialise {
@@ -416,19 +427,32 @@
 }
 @keyframes cinema-v2-turn {
   0% {
-    transform: translate3d(0, -7px, 25px) rotateX(4deg) rotateY(0) rotateZ(0);
+    transform: translate3d(
+        0,
+        calc(-7px * var(--cinema-travel, 1)),
+        calc(25px * var(--cinema-travel, 1))
+      )
+      rotateX(4deg) rotateY(0) rotateZ(0);
   }
   32% {
-    transform: translate3d(-6px, -6px, 55px) rotateX(8deg) rotateY(-40deg)
-      rotateZ(-5deg);
+    transform: translate3d(
+        calc(-6px * var(--cinema-travel, 1)),
+        calc(-6px * var(--cinema-travel, 1)),
+        calc(55px * var(--cinema-travel, 1))
+      )
+      rotateX(8deg) rotateY(-40deg) rotateZ(-5deg);
   }
   52% {
-    transform: translate3d(0, 0, 30px) rotateX(5deg) rotateY(-90deg)
-      rotateZ(-5deg) scale(0.93);
+    transform: translate3d(0, 0, calc(30px * var(--cinema-travel, 1)))
+      rotateX(5deg) rotateY(-90deg) rotateZ(-5deg) scale(0.93);
   }
   78% {
-    transform: translate3d(4px, -4px, 45px) rotateX(-3deg) rotateY(-165deg)
-      rotateZ(2deg);
+    transform: translate3d(
+        calc(4px * var(--cinema-travel, 1)),
+        calc(-4px * var(--cinema-travel, 1)),
+        calc(45px * var(--cinema-travel, 1))
+      )
+      rotateX(-3deg) rotateY(-165deg) rotateZ(2deg);
   }
   100% {
     transform: translate3d(0, 0, 0) rotateX(0) rotateY(-180deg) rotateZ(0);
@@ -490,4 +514,90 @@
 }
 .pack-preview .cinema-prototype-intro p {
   color: #b9c9df;
+}
+
+/* Lower tiers increase light, structure and scale in deliberate steps. */
+.cinema-v2[data-tier="CORE"] {
+  --cinema-colour: #9bc5e8;
+  --cinema-hot: #f0f7ff;
+  --cinema-deep: #476782;
+}
+.cinema-v2[data-tier="RARE"] {
+  --cinema-colour: #278dff;
+  --cinema-hot: #d4f2ff;
+  --cinema-deep: #1644be;
+}
+.cinema-v2[data-tier="ELITE"] {
+  --cinema-colour: #b45eff;
+  --cinema-hot: #f0d4ff;
+  --cinema-deep: #6220b4;
+}
+.cinema-v2[data-tier="ULTRA_RARE"] {
+  --cinema-colour: #ff48c8;
+  --cinema-hot: #ffe2fa;
+  --cinema-deep: #a51091;
+}
+.cinema-v2[data-tier="CORE"] .cinema-v2-emblem {
+  width: 38%;
+  color: var(--cinema-hot);
+  filter: drop-shadow(0 0 8px var(--cinema-colour));
+}
+.cinema-v2[data-tier="RARE"] .cinema-v2-emblem {
+  width: 44%;
+  color: var(--cinema-hot);
+  filter: drop-shadow(0 0 12px var(--cinema-colour));
+}
+.cinema-v2[data-tier="ELITE"] .cinema-v2-emblem {
+  width: 49%;
+  color: var(--cinema-hot);
+}
+.cinema-v2[data-tier="ULTRA_RARE"] .cinema-v2-emblem {
+  width: 53%;
+  color: var(--cinema-hot);
+}
+.cinema-v2:is([data-tier="CORE"], [data-tier="RARE"]) .cinema-v2-laurel {
+  opacity: 0;
+}
+.cinema-v2[data-tier="CORE"] .cinema-frame-bloom {
+  opacity: 0.25;
+  stroke-width: 3;
+}
+.cinema-v2[data-tier="CORE"] .cinema-frame-metal {
+  stroke-width: 1.8;
+}
+.cinema-v2[data-tier="CORE"] .cinema-frame-corners {
+  stroke-width: 1;
+}
+.cinema-v2[data-tier="RARE"] .cinema-frame-bloom {
+  opacity: 0.45;
+  stroke-width: 4;
+}
+.cinema-v2[data-tier="RARE"] .cinema-frame-metal {
+  stroke-width: 2.5;
+}
+.cinema-v2[data-tier="ELITE"] .cinema-frame-bloom {
+  opacity: 0.65;
+  stroke-width: 5;
+}
+.cinema-v2[data-tier="ULTRA_RARE"] .cinema-frame-bloom {
+  opacity: 0.8;
+  stroke-width: 6;
+}
+.cinema-v2[data-tier="ULTRA_RARE"] .cinema-v2-announcement strong {
+  font-size: clamp(0.9rem, 4vw, 1.3rem);
+  letter-spacing: 0.06em;
+}
+.cinema-v2:is([data-tier="CORE"], [data-tier="RARE"])
+  .cinema-v2-front
+  .cinema-v2-frame {
+  opacity: 0.4;
+}
+.cinema-v2[data-tier="LEGENDARY"] .cinema-v2-emblem,
+.cinema-v2[data-tier="ICON"] .cinema-v2-emblem {
+  animation-delay: 0.15s;
+}
+.cinema-v2[data-tier="LEGENDARY"] .cinema-v2-announcement,
+.cinema-v2[data-tier="ICON"] .cinema-v2-announcement {
+  animation-duration: 0.55s;
+  animation-delay: 0.45s;
 }

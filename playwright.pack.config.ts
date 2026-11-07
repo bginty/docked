@@ -9,7 +9,11 @@ export default defineConfig({
   ],
   timeout: 60000,
   workers: 1,
-  use: { headless: true, channel: "msedge" },
+  use: {
+    headless: true,
+    channel:
+      process.env.DOCKED_BROWSER_CHANNEL === "chrome" ? "chrome" : "msedge",
+  },
   reporter: [
     ["list"],
     ["json", { outputFile: "docs/qa/android-v20/pack-browser.json" }],
