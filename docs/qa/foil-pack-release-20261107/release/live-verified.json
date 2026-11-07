@@ -1,0 +1,87 @@
+{
+  "at": "2026-11-07T11:14:52.804Z",
+  "target": "https://docked.com.au",
+  "deployment": "dpl_9EcDsyEHY7oH48PDx9t3Q2NYtLmH",
+  "commit": "864df2779b258f01d66717170e624a89e5b22ee4",
+  "passed": true,
+  "checks": [
+    {
+      "route": "/account-deletion",
+      "status": 200
+    },
+    {
+      "route": "/api/beta-release",
+      "status": 200
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "status": 401
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403
+    },
+    {
+      "route": "/app/login",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v1/premium-nrl-9-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v1/premium-nrl-9-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v1/standard-afl-9-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v1/standard-afl-9-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/preview/pack-opening",
+      "status": 404
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/profile/qa_billing",
+      "status": 503
+    }
+  ],
+  "sixRarityStylesServed": true,
+  "approvedFoilStylesAndAssetsServed": true,
+  "closedFlags": [
+    "REGISTRATION_ENABLED",
+    "COMPETITIONS_ENABLED",
+    "PRIZES_ENABLED",
+    "DOCKED_MULTI_SPORT_SANDBOX",
+    "DOCKED_MEMBER_GOOGLE_TEST",
+    "DOCKED_COMMERCIAL_SERVICE",
+    "DOCKED_COMMERCIAL_SURFACES",
+    "DOCKED_COMMERCIAL_CHECKOUT",
+    "DOCKED_PUBLIC_CUSTOMERS"
+  ],
+  "cronConfigurationUnchanged": true,
+  "migrations": [],
+  "customerMutations": 0,
+  "authenticatedCustomerAcceptance": false,
+  "packOpened": false
+}

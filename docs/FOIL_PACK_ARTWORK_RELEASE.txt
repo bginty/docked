@@ -49,3 +49,31 @@ Only two baked foil product variants were approved and released. This does not
 claim a complete 18-variant artwork conversion or deploy the independent pack
 navigation fix. No Android APK/AAB change is needed for this hosted artwork;
 physical Samsung acceptance has not been performed for this release.
+
+Completed release
+- Application commit: 864df2779b258f01d66717170e624a89e5b22ee4.
+- Deployment: dpl_9EcDsyEHY7oH48PDx9t3Q2NYtLmH, READY, production.
+- Build URL: https://docked-production-po4x75lz8-briant-s-projects.vercel.app.
+- Live URL: https://docked.com.au. Domain promotion verified through Vercel.
+- Vercel's clean-install production build passed. The local webpack build
+  also passed; its junction-related standalone tracing warnings were not
+  deployed. Client-marker scan passed across 233 generated browser assets.
+- Candidate and live checks passed: release SHA, login, privacy, account
+  deletion, denied unauthenticated/member billing surfaces, closed preview
+  route, all four approved image files, exact live image bytes and shared CSS.
+- Cron configuration and all nine checked activation flags remain unchanged.
+- Genuine signed-in Chrome acceptance at 390x844: AFL Standard 9 and NRL
+  Premium 9 images loaded in the actual store; both purchase reviews displayed
+  the correct product and artwork, and were cancelled without confirming.
+  The displayed balance stayed unchanged. Browser error log was empty.
+- Screenshots remain in ignored private-data/foil-pack-release/<commit>/;
+  no customer screenshots or credentials were pushed to Git.
+- Runtime error scan found one scheduled Google TEST reconciliation alert,
+  with seven attention/overdue records. The previous deployment logged the
+  same seven at 11:05 and 11:10 UTC before promotion; the new release logged
+  them at 11:15 UTC. No artwork/frontend error was observed. The existing
+  test reconciliation backlog needs separate operational attention.
+- Vercel lists zero external log drains. Existing schedule/log-based checks
+  remain in place; this artwork release does not configure new monitoring.
+- No database writes, migrations, purchases or card openings were performed
+  in Production acceptance. Existing beta restrictions are preserved.
