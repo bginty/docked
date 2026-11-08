@@ -74,6 +74,23 @@ after-text125-{320,360,412,1366}.png: retained draft/error at increased text siz
 before-measurements.json and after-measurements.json: raw measured values.
 after-focused-measurements.json: additional attachment/accessibility run.
 
+Samsung dirty-composer follow-up
+Physical review found attachment labels painting outside their buttons once
+Cancel appeared. The two flexible form columns were being squeezed by the
+auto-sized Post/Cancel column. The document itself did not overflow, so the
+earlier document-width assertion did not cover this defect.
+Dirty mobile forms now use two attachment columns followed by an equal-width
+Post/Cancel row. The existing blue Post action fills its column. Clean three-
+button forms and the collapsed composer retain their layout and behaviour.
+PASS: --dirty-only --baseline reproduces clipped labels using cda9d3e4 source.
+PASS: --dirty-only measures all four labels inside their button content bounds
+at 320/360px and 100%/125% text. Attachment widths changed from 26/44px to
+122/142px respectively. Post/Cancel fill 126/146px cells. Clean controls remain
+on one row and Cancel returns to the collapsed prompt. No post was submitted.
+Evidence: before-dirty/after-dirty measurements and text100/text125 screenshots.
+The physical finding came from the coordinating agent's Samsung check; final
+physical recheck remains recorded separately by that agent.
+
 Limits and release safety
 These are real rendered components with synthetic browser fixtures, not hosted
 signed-in or physical Samsung acceptance. No Production deployment was made.

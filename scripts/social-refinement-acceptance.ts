@@ -8,10 +8,17 @@ import { profile } from "../tests/fixtures/global-sport-data";
 async function main() {
   const baseline = process.argv.includes("--baseline");
   const focused = process.argv.includes("--focused");
-  const phase = baseline ? "before" : focused ? "after-focused" : "after";
+  const dirtyOnly = process.argv.includes("--dirty-only");
+  const phase = dirtyOnly
+    ? `${baseline ? "before" : "after"}-dirty`
+    : baseline
+      ? "before"
+      : focused
+        ? "after-focused"
+        : "after";
   const out = "docs/qa/ux-refinement-20261108/social";
   await mkdir(out, { recursive: true });
-  const revision = "1cabfc48";
+  const revision = dirtyOnly ? "cda9d3e4" : "1cabfc48";
   const previous = (path: string) =>
     execFileSync("git", ["show", `${revision}:${path}`], {
       encoding: "utf8",
@@ -42,7 +49,11 @@ async function main() {
   const browser = await chromium.launch({ channel: "msedge", headless: true });
   const measurements = [];
   try {
-    for (const width of focused ? [412] : [320, 360, 412, 1366]) {
+    for (const width of dirtyOnly
+      ? [320, 360]
+      : focused
+        ? [412]
+        : [320, 360, 412, 1366]) {
       const page = await browser.newPage({ viewport: { width, height: 915 } });
       page.setDefaultTimeout(15000);
       let hubs = 0,
@@ -164,7 +175,7 @@ async function main() {
         path: `${out}/${phase}-${width}.png`,
         fullPage: true,
       });
-      if (!baseline) {
+      if (!baseline || dirtyOnly) {
         await expect(
           page.getByRole("button", { name: "What’s happening?", exact: true }),
         ).toBeVisible();
@@ -172,9 +183,98 @@ async function main() {
           .getByRole("button", { name: "What’s happening?", exact: true })
           .click();
       }
+      const cleanActions = dirtyOnly
+        ? await Promise.all(
+            ["Attach cards", "Add image", "Post"].map(async (name) => ({
+              name,
+              box: await page
+                .getByRole("button", { name, exact: true })
+                .boundingBox(),
+            })),
+          )
+        : [];
+      if (dirtyOnly)
+        expect(
+          Math.max(...cleanActions.map((x) => x.box!.y)) -
+            Math.min(...cleanActions.map((x) => x.box!.y)),
+        ).toBeLessThan(1);
       await page
         .getByRole("textbox", { name: "Post to Docked" })
         .fill("A fixture draft stays safe through inspection and errors.");
+      if (dirtyOnly) {
+        const sizes = [];
+        for (const textScale of [100, 125]) {
+          await page.evaluate((scale) => {
+            document.documentElement.style.fontSize = `${(16 * scale) / 100}px`;
+          }, textScale);
+          const buttons = await Promise.all(
+            ["Attach cards", "Add image", "Post", "Cancel"].map((name) =>
+              page
+                .getByRole("button", { name, exact: true })
+                .evaluate((element) => {
+                  const box = element.getBoundingClientRect();
+                  const css = getComputedStyle(element);
+                  const range = document.createRange();
+                  range.selectNodeContents(element);
+                  const lines = [...range.getClientRects()].filter(
+                    (rect) => rect.width && rect.height,
+                  );
+                  const left =
+                    box.left +
+                    parseFloat(css.borderLeftWidth) +
+                    parseFloat(css.paddingLeft);
+                  const right =
+                    box.right -
+                    parseFloat(css.borderRightWidth) -
+                    parseFloat(css.paddingRight);
+                  return {
+                    label: element.textContent?.trim(),
+                    width: box.width,
+                    y: box.y,
+                    bottom: box.bottom,
+                    textFits: lines.every(
+                      (rect) =>
+                        rect.left >= left - 1 &&
+                        rect.right <= right + 1 &&
+                        rect.top >= box.top &&
+                        rect.bottom <= box.bottom,
+                    ),
+                    textLineWidths: lines.map((rect) => rect.width),
+                  };
+                }),
+            ),
+          );
+          expect(buttons.every((button) => button.textFits)).toBe(!baseline);
+          if (!baseline) {
+            expect(buttons[2].y).toBeGreaterThanOrEqual(buttons[0].bottom);
+            expect(buttons[3].y).toBe(buttons[2].y);
+            expect(buttons[2].width).toBeGreaterThanOrEqual(
+              buttons[0].width - 1,
+            );
+            expect(buttons[3].width).toBe(buttons[2].width);
+          }
+          sizes.push({ textScale, buttons });
+          await page.screenshot({
+            path: `${out}/${phase}-${width}-text${textScale}.png`,
+            fullPage: true,
+          });
+        }
+        await page.getByRole("button", { name: "Cancel", exact: true }).click();
+        await expect(
+          page.getByRole("button", { name: "What’s happening?", exact: true }),
+        ).toBeVisible();
+        expect(posts).toBe(0);
+        expect(errors).toEqual([]);
+        measurements.push({
+          width,
+          cleanThreeButtonRow: true,
+          collapsedAfterCancel: true,
+          sizes,
+          postAttempts: posts,
+        });
+        await page.close();
+        continue;
+      }
       const started = performance.now();
       await page
         .getByRole("button", { name: "Attach cards", exact: true })

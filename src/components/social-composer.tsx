@@ -260,6 +260,7 @@ export function SocialComposer({
         <form
           id={formId}
           hidden={compact && !expanded}
+          data-dirty={Boolean(body || cardIds.length || mediaIds.length)}
           ref={postForm}
           className="app-form"
           method="post"
