@@ -8,6 +8,7 @@ import type {
 import { formatBasePoints } from "@/core/card-score-display";
 import { nflPostgameWeights } from "@/core/nfl-postgame-policy";
 import { historyScoringLabel } from "@/core/scoring-context";
+import { competitionRoundWord } from "@/core/competition-display";
 import {
   compactColumns,
   historyGameRows,
@@ -90,15 +91,18 @@ function GameTable({
   category,
   compact,
   onGame,
+  sport,
 }: {
   history: PlayerHistory;
   category: StatCategory;
   compact: boolean;
   onGame: (game: PlayerGameHistory) => void;
+  sport: string;
 }) {
   const rows = historyGameRows(history),
     shown = compact ? rows.slice(0, 3) : rows;
   const columns = compact ? compactColumns(category) : category.columns;
+  const roundWord = competitionRoundWord(sport);
   return (
     <div className="statistics-table-wrap">
       <table className="statistics-table">
@@ -109,7 +113,9 @@ function GameTable({
         <thead>
           <tr>
             <th scope="col">
-              <abbr title="Week or round">WK</abbr>
+              <abbr title={roundWord}>
+                {roundWord === "Week" ? "WK" : "RD"}
+              </abbr>
             </th>
             <th scope="col">
               <abbr title="Opponent">OPP</abbr>
@@ -137,7 +143,7 @@ function GameTable({
                     type="button"
                     className="statistics-game-link"
                     onClick={() => onGame(game)}
-                    aria-label={`View week ${game.week} game details`}
+                    aria-label={`View ${roundWord.toLowerCase()} ${game.week} game details`}
                   >
                     {game.week}
                   </button>
@@ -214,6 +220,7 @@ export function PlayerStatistics({
     category = categories.find((c) => c.id === requested) ?? categories[0];
   const panel = useId();
   const [gameId, setGameId] = useState<string | null>(null);
+  const roundWord = competitionRoundWord(sport);
   const game = historyGameRows(history).find((g) => g.id === gameId);
   const partial = (history.feed?.complete ?? history.complete) === false;
   const coverageIncomplete = history.games?.some((g) => g.incomplete);
@@ -277,6 +284,7 @@ export function PlayerStatistics({
               history={history}
               category={category}
               compact={compact}
+              sport={sport}
               onGame={(g) => setGameId(g.id)}
             />
           </div>
@@ -301,11 +309,11 @@ export function PlayerStatistics({
           {game && (
             <section
               className="statistics-game-detail"
-              aria-label={`Week ${game.week} details`}
+              aria-label={`${roundWord} ${game.week} details`}
             >
               <div>
                 <h3>
-                  Week {game.week}
+                  {roundWord} {game.week}
                   {game.opponent ? ` · ${game.opponent}` : ""}
                 </h3>
                 <button type="button" onClick={() => setGameId(null)}>

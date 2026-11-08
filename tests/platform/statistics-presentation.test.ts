@@ -63,5 +63,37 @@ test("compact presentation keeps missing scores distinct from verified zero with
   assert.match(html, /View Full Game Log/);
   assert.match(html, /Base points · Full-PPR · No card multiplier/);
   assert.match(html, /Base fantasy points before card multipliers/);
+  assert.match(html, /<abbr title="Round">RD<\/abbr>/);
   assert.ok(!html.includes("statistics-disclosure"));
+});
+
+test("game-log terminology matches the selected sport without changing source week data", () => {
+  for (const sport of ["nfl", "afl", "nrl", "basketball"]) {
+    const example = examples.examples[0];
+    const history = structuredClone(example.history) as PlayerHistory;
+    const before = JSON.stringify(history);
+    const html = renderToStaticMarkup(
+      createElement(PlayerStatistics, {
+        history,
+        name: example.name,
+        sport,
+        position: "QB",
+        category: "passing",
+        categoryChange: () => {},
+        seasonChange: () => {},
+      }),
+    );
+    if (sport === "nfl" || sport === "afl") {
+      assert.ok(html.includes('title="Round"'));
+      assert.ok(
+        html.includes(`View round ${history.games![0].week} game details`),
+      );
+    } else {
+      // These sports do not currently have this detailed statistics renderer.
+      // A naming refinement must not fabricate support or a game table.
+      assert.ok(html.includes("Statistics for this sport are not available."));
+      assert.ok(!html.includes("statistics-table"));
+    }
+    assert.equal(JSON.stringify(history), before);
+  }
 });

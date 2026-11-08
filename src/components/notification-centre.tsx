@@ -63,6 +63,16 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
       setBusy(false);
     }
   }
+  if (data.status !== "ready")
+    return (
+      <section className="app-empty" role="alert">
+        <h2>Notifications unavailable</h2>
+        <p>{data.message || "Notifications couldn’t load."}</p>
+        <button className="button ghost" onClick={() => router.refresh()}>
+          Retry notifications
+        </button>
+      </section>
+    );
   const groups = [...new Set(data.items.map((n) => n.groupKey))];
   return (
     <>
@@ -78,14 +88,7 @@ export function NotificationCentre({ data }: { data: CommunityNotifications }) {
           </button>
         )}
       </div>
-      {data.status !== "ready" ? (
-        <div role="alert">
-          <p>{data.message || "Notifications couldn’t load."}</p>
-          <button className="button ghost" onClick={() => router.refresh()}>
-            Retry notifications
-          </button>
-        </div>
-      ) : data.items.length ? (
+      {data.items.length ? (
         groups.map((group) => (
           <section key={group}>
             <h2 className="notification-group-title">

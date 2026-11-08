@@ -1,9 +1,5 @@
 import { AppShell } from "@/components/app-shell";
-import {
-  AppHeading,
-  AccessGate,
-  CommunityEmpty,
-} from "@/components/community-basics";
+import { AppHeading, AccessGate } from "@/components/community-basics";
 import { NotificationCentre } from "@/components/notification-centre";
 import { appViewer } from "@/server/app-view";
 import { communityNotifications } from "@/server/community-social";
@@ -26,10 +22,6 @@ export default async function Notifications() {
       </AppHeading>
       {!who ? (
         <AccessGate configured={configured} />
-      ) : data.status !== "ready" ? (
-        <CommunityEmpty title="Notifications unavailable">
-          {data.message}
-        </CommunityEmpty>
       ) : (
         <NotificationCentre data={data} />
       )}

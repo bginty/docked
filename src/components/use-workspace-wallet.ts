@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { boundedFetch } from "@/core/bounded-request";
+import { createRefreshQueue } from "@/core/refresh-queue";
 import { usePathname } from "next/navigation";
 import { useEnvironmentPresentation } from "./environment-context";
 type WalletProjection = {
@@ -40,8 +41,7 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
     if (!enabled || hasShared) return;
     let current: AbortController | undefined;
     let disposed = false;
-    const read = async () => {
-      current?.abort();
+    const read = async (isCurrent: () => boolean) => {
       const controller = new AbortController();
       current = controller;
       setStatus("Updating balance…");
@@ -56,7 +56,10 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
           },
         );
         if (!response.ok) {
-          if (response.status === 401 || response.status === 403)
+          if (
+            isCurrent() &&
+            (response.status === 401 || response.status === 403)
+          )
             setValue(null);
           throw Error();
         }
@@ -69,18 +72,26 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
           !Array.isArray(state.packs)
         )
           throw Error();
-        if (!disposed && !controller.signal.aborted) {
+        if (isCurrent() && !disposed && !controller.signal.aborted) {
           setValue({
             member: state.member,
             commercial: state.environment === "commercial",
             balance: state.wallet.spendable,
             portfolio: state.portfolio ?? null,
-            unopened: state.environment==='commercial'&&Number.isSafeInteger(state.unopened)?state.unopened:state.packs.filter(
-              (p: { status: string }) => p.status === "SEALED",
-            ).length,
-            openedPacks: state.environment==='commercial'&&Number.isSafeInteger(state.openedPacks)?state.openedPacks:state.packs.filter(
-              (p: { status: string }) => p.status === "OPENED",
-            ).length,
+            unopened:
+              state.environment === "commercial" &&
+              Number.isSafeInteger(state.unopened)
+                ? state.unopened
+                : state.packs.filter(
+                    (p: { status: string }) => p.status === "SEALED",
+                  ).length,
+            openedPacks:
+              state.environment === "commercial" &&
+              Number.isSafeInteger(state.openedPacks)
+                ? state.openedPacks
+                : state.packs.filter(
+                    (p: { status: string }) => p.status === "OPENED",
+                  ).length,
             completedTrades: Array.isArray(state.swaps)
               ? state.swaps.filter(
                   (s: { status: string }) => s.status === "ACCEPTED",
@@ -90,14 +101,13 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
           setStatus("");
         }
       } catch {
-        if (!disposed && !controller.signal.aborted) {
+        if (isCurrent() && !disposed && !controller.signal.aborted) {
           setStatus("Balance refresh unavailable");
         }
       }
     };
-    const resume = () => {
-      void read();
-    };
+    const refresh = createRefreshQueue(read);
+    const resume = () => refresh.request();
     const visible = () => {
       if (document.visibilityState === "visible") resume();
     };
@@ -107,6 +117,7 @@ export function useWorkspaceWallet(member: string, enabled: boolean) {
     document.addEventListener("visibilitychange", visible);
     return () => {
       disposed = true;
+      refresh.dispose();
       current?.abort();
       window.removeEventListener("online", resume);
       window.removeEventListener("docked-app-resume", resume);
