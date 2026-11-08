@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-08",
+  "environment": "Production",
+  "url": "https://docked.com.au",
+  "deployment": "dpl_8pdKF956L5tTYFLxyhvonkHorQhu",
+  "commit": "f89ed4a9fe23eb9238becad3e545b6a48150cf35",
+  "session": "Genuine existing signed-in Chrome session, normal account security retained",
+  "checks": {
+    "nflPlay": "Passed: compact Round selector, Rounds 6/7 closed, Practice labelled, 4.4m cap",
+    "aflPlay": "Passed: actual private-test Round 4, 22 positions, Traditional13.8m and All-Star uncapped",
+    "nrlPlay": "Passed: actual private-test Round 4, 13 positions, Traditional8.2m and All-Star uncapped",
+    "nba": "Not present in visible selector",
+    "wallet": "Read completed, displayed test balance unchanged",
+    "social": "Compact composer; unsent synthetic text persisted through minimise/reopen then cleared with Cancel; no post",
+    "marketplace": "Existing NRL listing loaded; no transaction",
+    "notifications": "Unread notices/preferences rendered; no Mark read or Save action",
+    "replay": {
+      "receipt": "Existing opened NFL Premium 9 result",
+      "card1": "Ultra Rare: reveal, View Player, Back to Pack returns to exact revealed card",
+      "next": "Card 2 of9 began unrevealed and revealed Legendary",
+      "nestedClose": "Player-detail Close returned to exact revealed Card2 instead of exiting pack",
+      "summary": "Reveal All showed original nine confirmed cards, best-pull labels and saved-result notice",
+      "sound": "Kept muted; no new sound-performance claim"
+    }
+  },
+  "purchases": 0,
+  "newPackOpenings": 0,
+  "teamSubmissions": 0,
+  "posts": 0,
+  "migrations": [],
+  "physicalAndroidRetest": false,
+  "notes": [
+    "Existing physical Samsung isolated-candidate evidence is retained; no new native/WebView test claimed.",
+    "No signed-in staged-candidate check was claimed; protected staged HTTP/build checks preceded promotion and genuine signed-in acceptance followed promotion."
+  ]
+}

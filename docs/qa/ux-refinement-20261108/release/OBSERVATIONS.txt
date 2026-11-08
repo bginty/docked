@@ -1,0 +1,42 @@
+Production promotion — 8 November 2026, Australia/Sydney
+
+Deployed candidate: f89ed4a9fe23eb9238becad3e545b6a48150cf35.
+Deployment: dpl_8pdKF956L5tTYFLxyhvonkHorQhu.
+Production alias: https://docked.com.au.
+Previous release remains available for application rollback.
+
+The clean Vercel npm ci/build passed. It used the existing Node engines range,
+which selected Node 26, and emitted existing dependency/install-script warnings.
+No dependency, Node setting or build configuration changed. The local Windows
+junction-related standalone omissions did not occur in this cloud build.
+
+The staged and live anonymous boundary checks passed. Login, privacy and account
+deletion pages are accessible. Commercial billing/public gameplay remain blocked,
+native member capabilities still require authentication, QA billing remains closed,
+and the design preview route is not exposed. The exact nine closed runtime flags
+and existing Google scheduled job are preserved. Runtime changes are limited to
+the deployed commit marker. No SQL migration, account/wallet/card update, prize
+activation, new round publication or Android binary release was performed.
+
+Genuine signed-in Chrome checks on the promoted release:
+- NFL Play renders the compact selector, closed Rounds 6/7 and separately labelled
+  Practice round, with the existing $4.4m cap and saved draft.
+- AFL and NRL Play render existing rounds and formations. Switching to Traditional
+  shows $13.8m and $8.2m respectively; All-Star remains uncapped.
+- The sport selector contains NFL/AFL/NRL, with NBA absent.
+- Social has no sport selector. The compact composer expands, retains an unsent
+  synthetic draft through minimise/reopen, and Cancel clears it. Nothing posted.
+- NRL Marketplace finishes loading and displays its existing listing. No Buy,
+  sell, price-edit or cancellation action was used.
+- Notifications renders the existing unread notices and preferences. Nothing
+  marked read and no preference saved.
+- Wallet reads settle and the displayed test balance is unchanged during checks.
+
+The deployment-specific error scan found two scheduled log entries at 02:15 and
+02:20 UTC. Both report the SAME seven pre-existing Google TEST attention/overdue
+items, with zero newly scheduled/completed/pending/working items. No changed-route
+error appeared in that scan. The seven items were not modified or cleared.
+
+Signed-in pack replay outcome is recorded in signed-in-acceptance.json. Chrome
+acceptance is not a new physical Android/Capacitor test. The pre-release physical
+Samsung Chrome evidence remains valid for the unchanged application source.

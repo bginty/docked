@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-08T02:18:09.913Z",
+  "promotionRequestedAt": "2026-11-08T02:13:35.888Z",
+  "url": "https://docked.com.au",
+  "deploymentId": "dpl_8pdKF956L5tTYFLxyhvonkHorQhu",
+  "commit": "f89ed4a9fe23eb9238becad3e545b6a48150cf35",
+  "state": "READY",
+  "previousDeployment": "dpl_T4kuTeoUKYnFemre2yQnuQMMxwqs",
+  "rollbackUrl": "https://docked-production-ozfte7dcs-briant-s-projects.vercel.app",
+  "ownerApproval": "User requested deploy after candidate f89ed4a9 report; no new rounds, payments or features activated",
+  "migrations": [],
+  "runtimeChangedKeys": [
+    "VERCEL_GIT_COMMIT_SHA"
+  ]
+}
