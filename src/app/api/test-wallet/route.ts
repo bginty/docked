@@ -8,6 +8,7 @@ import { memberAccessFailure } from "@/core/member-access-recovery";
 import { boundedCommunityBody } from "@/core/community-social";
 import { CreditsRejected } from "@/server/credits-sandbox-store";
 import { ZodError } from "zod";
+import { purchaseResponse } from "@/server/purchase-timing";
 import {
   reconciliationCsv,
   reconciliationRange,
@@ -73,7 +74,10 @@ export async function GET(req: Request) {
     );
   }
 }
-export async function POST(req: Request) {
+export function POST(req: Request) {
+  return purchaseResponse(() => command(req));
+}
+async function command(req: Request) {
   const started = performance.now();
   if (!sameOrigin(req))
     return NextResponse.json(

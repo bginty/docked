@@ -1,6 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { requireIdentity } from "./auth";
+import { timePurchase } from "./purchase-timing";
 import { db, rateLimit } from "./db";
 import { authSessionsRelation } from "../core/auth-relations";
 import { commercialPolicyVersion } from "../core/commercial-billing";
@@ -20,7 +21,7 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
     process.env.DOCKED_BETA_STAGING === "true"
   )
     throw Error("Commercial checkout disabled");
-  const who = await requireIdentity(),
+  const who = await timePurchase("purchase_auth", requireIdentity),
     sql = db();
   const isolatedReadOnly = isolatedPreviewReadOnlyIdentity(
     process.env,
@@ -59,7 +60,7 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
     if (!p)
       throw Error("Current customer eligibility and policy consent required");
   };
-  await authorize();
+  await timePurchase("purchase_admission", authorize);
   // Header, collection, history and current-price reads must not consume the
   // receipt/purchase quota. Preserve the existing mutation key and limit.
   if (
@@ -99,28 +100,33 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
         })
         .strict()
         .parse(body);
-      const receipt = await verifier.verify(token, account);
-      const result = await ledger.accept(
-        receipt,
-        who.user.id,
-        token,
-        authorize,
+      const receipt = await timePurchase("purchase_verify", () =>
+        verifier.verify(token, account),
+      );
+      const result = await timePurchase("purchase_transaction", () =>
+        ledger.accept(receipt, who.user.id, token, authorize),
       );
       // Google requires acknowledgement after fulfilment. The durable consume
       // job exists before this call; a failed attempt never rolls back or repeats
       // wallet crediting, and its persisted lease/backoff supports recovery.
       const acknowledged =
         result.state === "PURCHASED" &&
-        (await worker
-          .acknowledgeReceipt(result.receipt, who.user.id)
-          .catch(() => false));
+        (await timePurchase("purchase_ack", () =>
+          worker
+            .acknowledgeReceipt(result.receipt, who.user.id)
+            .catch(() => false),
+        ));
       if (result.state === "PURCHASED" && !acknowledged)
         console.warn(
-          JSON.stringify({ event: "google-commercial-acknowledgement-deferred" }),
+          JSON.stringify({
+            event: "google-commercial-acknowledgement-deferred",
+          }),
         );
       return {
         ...result,
-        wallet: await ledger.wallet(who.user.id),
+        wallet: await timePurchase("purchase_view", () =>
+          ledger.wallet(who.user.id),
+        ),
         acknowledgement: acknowledged ? "acknowledged" : "durable-worker",
       };
     },
@@ -151,7 +157,9 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
         })
         .strict()
         .parse(body);
-      return ledger.buyPack(who.user.id, v.request, v, authorize);
+      return timePurchase("purchase_transaction", () =>
+        ledger.buyPack(who.user.id, v.request, v, authorize),
+      );
     },
     openPack: async (body: unknown) => {
       assertTransactionIdentity();
@@ -162,7 +170,9 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
         })
         .strict()
         .parse(body);
-      const r = await ledger.openPack(who.user.id, id, authorize);
+      const r = await timePurchase("purchase_transaction", () =>
+        ledger.openPack(who.user.id, id, authorize),
+      );
       return {
         id,
         name: r.product.name,

@@ -1,6 +1,7 @@
 import "server-only";
 import type { Sql, TransactionSql } from "postgres";
 import { requireIdentity } from "./auth";
+import { timePurchase } from "./purchase-timing";
 import { db, rateLimit } from "./db";
 import { setCommunityClaims } from "./community-social";
 import {
@@ -24,7 +25,7 @@ export async function memberGoogleTest() {
     process.env.DOCKED_BETA_STAGING !== "true"
   )
     throw Error("Google test purchasing is disabled");
-  const who = await requireIdentity(),
+  const who = await timePurchase("purchase_auth", requireIdentity),
     sql = db();
   const key = process.env.DOCKED_STORE_REFERENCE_KEY ?? "";
   if (!/^[a-f0-9]{64}$/.test(key))
@@ -81,10 +82,12 @@ export async function memberGoogleTest() {
       // Consume only after atomic fulfilment. A failure stays in the durable
       // outbox; it does not reverse crediting or report an unsuccessful purchase.
       try {
-        await inbox.deliverOne(async (provider, reference, product) => {
-          if (provider !== "google") throw Error("Unsupported provider");
-          await verifier.consume(reference, product, account);
-        }, receipt.key);
+        await timePurchase("purchase_ack", () =>
+          inbox.deliverOne(async (provider, reference, product) => {
+            if (provider !== "google") throw Error("Unsupported provider");
+            await verifier.consume(reference, product, account);
+          }, receipt.key),
+        );
       } catch {
         /* Retry through authenticated reconciliation. */
       }

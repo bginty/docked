@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { sameOrigin } from "@/server/auth";
 import { boundedCommunityBody } from "@/core/community-social";
 import { memberGoogleTest } from "@/server/member-google-test";
+import { purchaseResponse } from "@/server/purchase-timing";
 export const runtime = "nodejs";
 const headers = {
   "Cache-Control": "private, no-store",
@@ -25,7 +26,10 @@ export async function GET() {
     return unavailable();
   }
 }
-export async function POST(req: Request) {
+export function POST(req: Request) {
+  return purchaseResponse(() => command(req));
+}
+async function command(req: Request) {
   if (!sameOrigin(req)) return unavailable();
   try {
     const body = JSON.parse(

@@ -1,5 +1,6 @@
 import { sameOrigin } from "@/server/auth";
 import { boundedCommunityBody } from "@/core/community-social";
+import { purchaseResponse } from "@/server/purchase-timing";
 import {
   CommercialRateLimit,
   memberCommercial,
@@ -40,7 +41,10 @@ export async function GET(req: Request) {
     return unavailable();
   }
 }
-export async function POST(req: Request) {
+export function POST(req: Request) {
+  return purchaseResponse(() => command(req));
+}
+async function command(req: Request) {
   if (!sameOrigin(req)) return unavailable();
   try {
     const body = JSON.parse(

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { timePurchase } from "./purchase-timing";
 import {
   storeAccountId,
   assertStoreProduct,
@@ -103,7 +104,10 @@ export class MemberStoreTestPurchases {
     };
   }
   async receipt(input: unknown) {
-    const { who, grant, account } = await this.admitted();
+    const { who, grant, account } = await timePurchase(
+      "purchase_admission",
+      () => this.admitted(),
+    );
     let token: string;
     try {
       token = receiptBody(this.deps.provider === "apple" ? 16000 : 4096).parse(
@@ -114,7 +118,9 @@ export class MemberStoreTestPurchases {
     }
     let receipt: StoreReceipt;
     try {
-      receipt = await this.deps.verify(token, account);
+      receipt = await timePurchase("purchase_verify", () =>
+        this.deps.verify(token, account),
+      );
     } catch {
       throw Error(
         "Purchase not verified. Retry reconciliation; no fulfilment confirmed.",
@@ -136,7 +142,9 @@ export class MemberStoreTestPurchases {
     // Verification is remote I/O. Recheck revocation/session and product approval
     // before handing off to the atomic inbox; admission must also be enforced in
     // the hosted transaction when this service is eventually wired to a route.
-    const current = await this.admitted();
+    const current = await timePurchase("purchase_admission", () =>
+      this.admitted(),
+    );
     if (
       current.who.member !== who.member ||
       current.who.session !== who.session ||

@@ -2,6 +2,7 @@ import "server-only";
 import { memberReadIsolation } from "./member-read-isolation";
 import { z } from "zod";
 import { requireIdentity } from "./auth";
+import { timePurchase } from "./purchase-timing";
 import { db, rateLimit } from "./db";
 import { CreditsSandboxStore, CreditsRejected } from "./credits-sandbox-store";
 import { creditsCommand } from "@/core/credits-sandbox";
@@ -37,7 +38,7 @@ export async function memberTestSource(
     process.env.DOCKED_BETA_STAGING !== "true"
   )
     throw Error("Test wallet unavailable");
-  const who = await requireIdentity(),
+  const who = await timePurchase("purchase_auth", requireIdentity),
     sql = db();
   const [access] =
     await sql`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled and beta_private.admitted(user_id)`;
@@ -196,36 +197,37 @@ export async function memberTestSource(
   }
   // MVCC provides a consistent read without queueing every page load behind the
   // global settlement lock. Mutations still use the store's exclusive lock.
-  const { s, hidden, trading, fixtureSports } = await sql.begin(
-    memberReadIsolation,
-    async (tx) => {
-      await setCommunityClaims(tx, who);
-      const [access] =
-        await tx`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled and beta_private.admitted(user_id)`;
-      if (!access || (access.kind === "owner" && who.aal !== "aal2"))
-        throw Error("Admission revoked");
-      const s = await new CreditsSandboxStore(
-        tx as unknown as typeof sql,
-      ).read();
-      // Mutations already refreshed the catalogue under the settlement lock.
-      // Re-reading it here adds another expensive view query after commit.
-      if (refreshCatalogue && input === undefined)
-        await refreshEconomyCatalogue(tx, s);
-      assertMemberTestEconomy(s);
-      const fixtures = await fixtureCommerceVisibility(tx, s);
-      return {
-        s,
-        hidden: [
-          ...(await hiddenMarketCards(tx, s, who.user.id)),
-          ...fixtures.hidden,
-        ],
-        fixtureSports: fixtures.allowed,
-        trading: await betaTradingAccess(
+  const { s, hidden, trading, fixtureSports } = await timePurchase(
+    "purchase_view",
+    () =>
+      sql.begin(memberReadIsolation, async (tx) => {
+        await setCommunityClaims(tx, who);
+        const [access] =
+          await tx`select kind from credits_sandbox.access where user_id=${who.user.id}::uuid and enabled and beta_private.admitted(user_id)`;
+        if (!access || (access.kind === "owner" && who.aal !== "aal2"))
+          throw Error("Admission revoked");
+        const s = await new CreditsSandboxStore(
           tx as unknown as typeof sql,
-          who.user.id,
-        ),
-      };
-    },
+        ).read();
+        // Mutations already refreshed the catalogue under the settlement lock.
+        // Re-reading it here adds another expensive view query after commit.
+        if (refreshCatalogue && input === undefined)
+          await refreshEconomyCatalogue(tx, s);
+        assertMemberTestEconomy(s);
+        const fixtures = await fixtureCommerceVisibility(tx, s);
+        return {
+          s,
+          hidden: [
+            ...(await hiddenMarketCards(tx, s, who.user.id)),
+            ...fixtures.hidden,
+          ],
+          fixtureSports: fixtures.allowed,
+          trading: await betaTradingAccess(
+            tx as unknown as typeof sql,
+            who.user.id,
+          ),
+        };
+      }),
   );
   if (command?.kind === "open-pack")
     result = testReceipt(s, command.entitlement, who.user.id);
