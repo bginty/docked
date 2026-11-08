@@ -1,0 +1,49 @@
+{
+  "commit": "f31c886b827711510ce82939488ed13b741f9dab",
+  "branch": "codex/scoring-pack-refinement",
+  "baseline": "aef423eb043b208dbaeadd21b3caa2806cebe936",
+  "baselineId": "dpl_BjhdVwfK43tLc4s52KEXnkvf1qt9",
+  "rollbackUrl": "https://docked-production-lo1ctia5k-briant-s-projects.vercel.app",
+  "project": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "team": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "files": 961,
+  "changedFiles": [
+    "android/app/build.gradle",
+    "docs/qa/native-share-rounds-20261108/ROUND10_PREPARATION.txt",
+    "docs/qa/native-share-rounds-20261108/acceptance.json",
+    "docs/qa/native-share-rounds-20261108/android-artifacts.json",
+    "docs/qa/native-share-rounds-20261108/browser.json",
+    "docs/qa/native-share-rounds-20261108/browser/after-details-1366.png",
+    "docs/qa/native-share-rounds-20261108/browser/after-details-320.png",
+    "docs/qa/native-share-rounds-20261108/browser/after-details-412.png",
+    "docs/qa/native-share-rounds-20261108/browser/after-revealed-1366.png",
+    "docs/qa/native-share-rounds-20261108/browser/after-revealed-320.png",
+    "docs/qa/native-share-rounds-20261108/browser/after-revealed-412.png",
+    "docs/qa/native-share-rounds-20261108/calendar-readonly.json",
+    "docs/qa/native-share-rounds-20261108/web-release/live-verified.json",
+    "docs/qa/native-share-rounds-20261108/web-release/prepared.json",
+    "docs/qa/native-share-rounds-20261108/web-release/staged-mcp-checks.json",
+    "docs/qa/native-share-rounds-20261108/web-release/staged.json",
+    "scripts/scoring-pack-refinement-release.mjs",
+    "scripts/scoring-pack-refinement-verify-release.mjs",
+    "src/app/app/invitation-setup/page.tsx"
+  ],
+  "runtimeChangedKeys": [
+    "VERCEL_GIT_COMMIT_SHA"
+  ],
+  "sourceInventoryDigest": "7d89ce844938ba8d4c7e372b365e43097e1dd835dd31c16c4a77ae11ae5afa51",
+  "closedFlags": [
+    "REGISTRATION_ENABLED",
+    "COMPETITIONS_ENABLED",
+    "PRIZES_ENABLED",
+    "DOCKED_MULTI_SPORT_SANDBOX",
+    "DOCKED_MEMBER_GOOGLE_TEST",
+    "DOCKED_COMMERCIAL_SERVICE",
+    "DOCKED_COMMERCIAL_SURFACES",
+    "DOCKED_COMMERCIAL_CHECKOUT",
+    "DOCKED_PUBLIC_CUSTOMERS"
+  ],
+  "customerMutations": 0,
+  "migrations": [],
+  "runtimeDigest": "e3c143b48c0650b87f96a1581d0db8c16952cc07520957df59b204ba13b3b130"
+}

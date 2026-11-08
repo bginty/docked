@@ -1,0 +1,48 @@
+{
+  "at": "2026-11-08T06:47:41.294Z",
+  "checks": [
+    {
+      "route": "/app/invitation-setup",
+      "status": 200,
+      "loginLink": true,
+      "login": false
+    },
+    {
+      "route": "/app/login",
+      "status": 200,
+      "loginLink": false,
+      "login": true
+    },
+    {
+      "route": "/api/beta-release",
+      "status": 200,
+      "loginLink": false,
+      "login": false,
+      "release": {
+        "channel": "beta",
+        "origin": "https://docked.com.au",
+        "hostingProvider": "vercel",
+        "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+        "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+        "commit": "f31c886b827711510ce82939488ed13b741f9dab",
+        "deploymentId": "dpl_HEZqxHVW8Y8qECNduznbwNZkL6Wj",
+        "projectRef": "pojoymtniryarxxunyvz",
+        "publicRegistration": false,
+        "invitedAuthentication": true
+      }
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403,
+      "loginLink": false,
+      "login": false
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403,
+      "loginLink": false,
+      "login": false
+    }
+  ],
+  "scope": "Navigation link only; no authentication or account writes"
+}
