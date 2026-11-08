@@ -1,7 +1,4 @@
-import {
-  competitionNames,
-  reviewCompetitionLabel,
-} from "@/core/competition-display";
+import { competitionNames } from "@/core/competition-display";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { fantasyRequest } from "@/server/fantasy";
@@ -17,13 +14,15 @@ import { rarities, rarityRule } from "@/core/card-rarity";
 import { ScoringRulesTable } from "@/components/scoring-rules-table";
 import { NflScoringReference } from "@/components/nfl-scoring-reference";
 import { sportSandbox } from "@/server/sport-sandbox";
+import { requireIdentity } from "@/server/auth";
+import { SportScoringReference } from "@/components/sport-scoring-reference";
 import {
   australianSalaryLabel,
   usesApprovedAustralianSalary,
 } from "@/core/approved-australian-rules";
 export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "Competition rules",
+  title: "Scoring rules",
   robots: { index: false, follow: false },
 };
 export default async function RulesPage({
@@ -36,6 +35,22 @@ export default async function RulesPage({
   }>;
 }) {
   const query = await searchParams;
+  if (!query.competition && !query.version) {
+    try {
+      await requireIdentity();
+    } catch (error) {
+      redirect(
+        error instanceof Error && error.message === "Privileged MFA required"
+          ? "/mfa"
+          : "/app/login",
+      );
+    }
+    return (
+      <AppShell authenticated>
+        <SportScoringReference />
+      </AppShell>
+    );
+  }
   if (query.sport === "afl" || query.sport === "nrl") {
     let data;
     try {
@@ -70,6 +85,11 @@ export default async function RulesPage({
       <AppShell authenticated>
         <section className="scoring-review">
           <h1>{query.sport.toUpperCase()} competition rules</h1>
+          <p>
+            <Link href={`/fantasy/scoring/how-it-works?sport=${query.sport}`}>
+              {query.sport.toUpperCase()} scoring and player statistics
+            </Link>
+          </p>
           <p>
             {round.name} · Round {round.round}
           </p>
@@ -168,20 +188,11 @@ export default async function RulesPage({
             ? "Rarity scoring: the locked card multiplier applies."
             : "Legacy equal-scoring competition: all card tiers use 1.0×. Historical rules are unchanged."}
         </p>
-        <form>
-          <label>
-            Competition
-            <select name="competition" defaultValue={selected?.id ?? ""}>
-              <option value="">Player game-log reference</option>
-              {rounds.map((r) => (
-                <option value={r.id} key={r.id}>
-                  {reviewCompetitionLabel(r)}
-                </option>
-              ))}
-            </select>
-          </label>
-          <button>View saved rules</button>
-        </form>
+        <p>
+          <Link href="/fantasy/scoring/how-it-works?sport=nfl">
+            NFL scoring and player statistics by round
+          </Link>
+        </p>
         <NflScoringReference savedWeights={rules.weights} />
         {selected && (
           <details>

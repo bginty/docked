@@ -418,7 +418,7 @@ function StatisticsInformation({
           </>
         )}
         {sport.toLowerCase() === "nfl" && (
-          <a href="/fantasy/scoring/how-it-works">
+          <a href={`/fantasy/scoring/how-it-works?sport=${sport}`}>
             Competition scoring rules ↗
           </a>
         )}

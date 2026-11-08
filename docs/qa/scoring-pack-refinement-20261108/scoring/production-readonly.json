@@ -1,0 +1,30 @@
+{
+  "observedDate": "2026-11-08",
+  "scope": "Read-only Production NFL historical publication; no user, wallet, ownership or competition mutations",
+  "source": "nfl_history.records joined to consumer.active, generations and mappings",
+  "filter": "not removed and payload.synthetic = false",
+  "season": "2026",
+  "seasonType": "REG",
+  "publication": {
+    "lastSuccess": "2026-11-07T21:48:00.706186Z",
+    "hasError": false,
+    "publishing": false,
+    "records": 8491,
+    "recordsWithScoringVersion": 0
+  },
+  "rounds": [
+    { "round": 1, "records": 1117, "games": 16, "mappedRecords": 316 },
+    { "round": 2, "records": 1106, "games": 16, "mappedRecords": 329 },
+    { "round": 3, "records": 1113, "games": 16, "mappedRecords": 334 },
+    { "round": 4, "records": 1109, "games": 16, "mappedRecords": 340 },
+    { "round": 5, "records": 1056, "games": 15, "mappedRecords": 333 },
+    { "round": 6, "records": 981, "games": 14, "mappedRecords": 298 },
+    { "round": 7, "records": 958, "games": 14, "mappedRecords": 278 },
+    { "round": 8, "records": 980, "games": 14, "mappedRecords": 272 },
+    { "round": 9, "records": 71, "games": 1, "mappedRecords": 21 }
+  ],
+  "identity": "Display names come from nfl_history.players.payload.name; player joins use reviewed canonical mappings, not names.",
+  "limits": "Raw record counts include positions outside Docked's supported offensive card catalogue. Mapped counts are not a claim that every field is complete or a round is final. Raw history has no per-record scoring_version; visible base points explicitly use the existing nflPlayerHistory Full-PPR reference version. Historical fantasy-entry scores retain their separately saved competition rules.",
+  "aflNrl": "Existing config/history archives explicitly declare player_games=0 and player_statistics_available=false. Match results must not be presented as player fantasy scores.",
+  "schemaChanges": false
+}

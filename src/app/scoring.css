@@ -1,3 +1,197 @@
+.sport-scoring-reference {
+  color: #edf5ff;
+  max-width: 1040px;
+  margin: auto;
+  min-width: 0;
+  padding-bottom: calc(28px + env(safe-area-inset-bottom));
+}
+.sport-scoring-reference :is(h1, h2, h3, td, dt, dd, label, strong, small) {
+  color: #edf5ff;
+}
+.sport-scoring-reference .form-help {
+  color: #a9bdd4;
+}
+.sport-scoring-filters input::placeholder {
+  color: #9bb3cc;
+  opacity: 1;
+}
+.sport-scoring-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0 12px;
+}
+.sport-scoring-header h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+}
+.sport-scoring-header p {
+  margin: 6px 0 0;
+  color: #a6d5ff;
+}
+.sport-scoring-header .button {
+  background: #0f2845;
+  border-color: #385676;
+  color: #d7eaff;
+  padding: 12px 16px;
+  min-height: 44px;
+  border-radius: 12px;
+}
+.sport-scoring-panel {
+  margin-top: 18px;
+  padding: clamp(14px, 3vw, 24px);
+  background: #0b1b30;
+  border: 1px solid #29415b;
+  border-radius: 18px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.sport-scoring-panel h2 {
+  margin-top: 0;
+  font-size: 1.35rem;
+}
+.sport-scoring-panel :is(th, td) {
+  text-align: left;
+  vertical-align: top;
+  white-space: normal;
+  padding: 10px 8px;
+}
+.sport-scoring-panel table {
+  table-layout: fixed;
+}
+.sport-scoring-panel th:first-child {
+  width: 72%;
+}
+.sport-scoring-panel th {
+  background: #142b46;
+  color: #edf5ff;
+}
+.sport-scoring-panel :is(th, td):last-child {
+  text-align: right;
+}
+.sport-scoring-panel summary {
+  cursor: pointer;
+  padding: 12px 0;
+  color: #a6d5ff;
+}
+.sport-scoring-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+  margin: 16px 0;
+}
+.sport-scoring-filters label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+.sport-scoring-filters form {
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  flex: 1 1 230px;
+  min-width: 0;
+}
+.sport-scoring-filters form label {
+  flex: 1;
+}
+.sport-scoring-filters :is(input, select, button) {
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
+}
+.sport-scoring-filters input {
+  width: 100%;
+}
+.sport-scoring-filters :is(input, select) {
+  background: #0a1526;
+  color: #edf5ff;
+  border: 1px solid #385676;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.sport-scoring-filters button,
+.sport-scoring-pagination button {
+  background: #12345b;
+  color: #edf5ff;
+  border: 1px solid #385676;
+  border-radius: 12px;
+  padding: 10px 12px;
+  min-height: 44px;
+}
+.sport-scoring-players {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.sport-scoring-player {
+  padding: 14px;
+  border: 1px solid #29415b;
+  border-radius: 14px;
+  min-width: 0;
+  background: #0a1526;
+}
+.sport-scoring-player header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.sport-scoring-player header > div {
+  min-width: 0;
+}
+.sport-scoring-player h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+.sport-scoring-player p {
+  margin: 6px 0;
+}
+.sport-scoring-player strong {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  font-size: 1.2rem;
+  text-align: right;
+}
+.sport-scoring-player strong small {
+  display: block;
+  color: #9bb3cc;
+  font-size: 0.6rem;
+  letter-spacing: 0.05em;
+}
+.sport-scoring-player dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.sport-scoring-player dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.sport-scoring-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+.sport-scoring-reference :focus-visible {
+  outline: 2px solid #84e6ff;
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {
+  .sport-scoring-players {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sport-scoring-filters > label {
+    flex: 1 1 100%;
+  }
+}
 .scoring-review {
   color: #edf5ff;
   background: #0b1d35;
@@ -241,8 +435,19 @@
   }
 }
 /* Rules and rankings have different column counts from statistical breakdowns. */
-.scoring-review :is(th, td) { white-space: normal; overflow-wrap: anywhere; }
-.scoring-review .rules-rarity-table th:first-child { width: 38%; }
-.scoring-review .rules-rarity-table :is(th, td) { vertical-align: top; }
-.scoring-review .competition-standings-table th:first-child { width: 16%; }
-.scoring-review .competition-standings-table th:nth-child(2) { width: 32%; }
+.scoring-review :is(th, td) {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.scoring-review .rules-rarity-table th:first-child {
+  width: 38%;
+}
+.scoring-review .rules-rarity-table :is(th, td) {
+  vertical-align: top;
+}
+.scoring-review .competition-standings-table th:first-child {
+  width: 16%;
+}
+.scoring-review .competition-standings-table th:nth-child(2) {
+  width: 32%;
+}
