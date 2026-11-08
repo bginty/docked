@@ -32,6 +32,11 @@ const tabs = [
   ["activity", "Activity"],
 ] as const;
 export function Marketplace({ member }: { member: string }) {
+  // An account change must clear every private result and nested view before
+  // the new account's read completes, even when its query string is unchanged.
+  return <MemberMarketplace key={member} member={member} />;
+}
+function MemberMarketplace({ member }: { member: string }) {
   const [acquisition, setAcquisition] = useState<CompletedAcquisition | null>(
     null,
   );

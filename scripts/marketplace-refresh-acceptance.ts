@@ -13,6 +13,7 @@ import { testCard } from "../src/core/member-test-wallet";
 import { marketplaceView, marketQuery } from "../src/core/marketplace";
 
 async function main() {
+  const identityOnly = process.argv.includes("--identity-only");
   const out = "docs/qa/ux-refinement-20261108/marketplace";
   await mkdir(out, { recursive: true });
   const entry = "tests/fixtures/marketplace-refresh.tsx";
@@ -21,9 +22,11 @@ async function main() {
     ["show", "1f8c6924:src/components/credit-marketplace.tsx"],
     { encoding: "utf8" },
   );
-  const before = await bundleCommunityFixture(entry, {
-    [resolve("src/components/credit-marketplace.tsx")]: original,
-  });
+  const before = identityOnly
+    ? ""
+    : await bundleCommunityFixture(entry, {
+        [resolve("src/components/credit-marketplace.tsx")]: original,
+      });
   const after = await bundleCommunityFixture(entry);
   const layout = await readFile("src/app/layout.tsx", "utf8");
   const css = (
@@ -40,6 +43,7 @@ async function main() {
     let state = marketplaceFixture(now);
     const seller = marketActors[1],
       buyer = marketActors[0];
+    let currentMember = buyer.id;
     const card = Object.keys(state.cards).find(
       (id) =>
         state.commerce.cards[id].owner === seller.id &&
@@ -70,7 +74,7 @@ async function main() {
     const view = (search = new URLSearchParams()) =>
       marketplaceView(
         state,
-        buyer.id,
+        currentMember,
         marketLabels,
         marketQuery.parse(Object.fromEntries(search)),
         {
@@ -149,9 +153,71 @@ async function main() {
       state: () => state,
       card,
       buyer,
+      switchMember: async (member: string) => {
+        currentMember = member;
+        await page.evaluate((next) => {
+          (
+            window as unknown as { fixtureSetMember: (member: string) => void }
+          ).fixtureSetMember(next);
+        }, member);
+      },
     };
   }
   try {
+    if (identityOnly) {
+      const a = await setup(after, true);
+      await expect(a.page.locator(".market-count")).toHaveText(
+        "1 active listing",
+      );
+      await a.page
+        .getByRole("button", { name: "Buy card", exact: true })
+        .click({ force: true });
+      await expect(a.page.getByRole("dialog")).toHaveCount(1);
+      a.setAutomatic(false);
+      await a.page.evaluate(() => window.dispatchEvent(new Event("focus")));
+      await expect.poll(() => a.reads.length).toBe(2);
+      await a.switchMember(marketActors[1].id);
+      await expect.poll(() => a.reads.length).toBe(3);
+      await expect(a.page.locator(".market-tile")).toHaveCount(0);
+      await expect(a.page.getByRole("dialog")).toHaveCount(0);
+      await expect(a.page.locator(".fixed-market")).toHaveAttribute(
+        "data-market-ready",
+        "false",
+      );
+      await a.finish(2);
+      await expect(
+        a.page.getByRole("button", { name: "View listing", exact: true }),
+      ).toBeVisible();
+      // A delayed previous-member snapshot must not replace the new account.
+      await a.finish(1);
+      await a.page.clock.runFor(1);
+      await expect(
+        a.page.getByRole("button", { name: "View listing", exact: true }),
+      ).toBeVisible();
+      await expect(
+        a.page.getByRole("button", { name: "Buy card", exact: true }),
+      ).toHaveCount(0);
+      expect(a.commands).toEqual([]);
+      expect(a.errors).toEqual([]);
+      await a.page.close();
+      const result = {
+        passed: true,
+        scope:
+          "Actual Marketplace component; in-place member prop switch, isolated identity and HTTP fixtures, no real account change or mutation",
+        oldRowsClearedBeforeNewResponse: true,
+        oldDetailClosedBeforeNewResponse: true,
+        latePreviousAccountReadIgnored: true,
+        newAccountListingOwnershipCorrect: true,
+        commands: a.commands,
+        pageErrors: a.errors,
+      };
+      await writeFile(
+        `${out}/identity-acceptance.json`,
+        JSON.stringify(result, null, 2),
+      );
+      console.log(JSON.stringify(result));
+      return;
+    }
     for (const [phase, script] of [
       ["before", before],
       ["after", after],

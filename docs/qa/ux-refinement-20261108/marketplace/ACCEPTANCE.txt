@@ -43,6 +43,16 @@ Failure/navigation checks:
 - Switching to Activity invalidates an in-flight Browse read.
 - Late Browse data cannot replace the current Activity result.
 
+Account-isolation follow-up:
+The exported Marketplace renders its internal state with key=member. An in-place
+authenticated account change therefore clears rows, nested details, receipts and
+pending UI together, before the next account's read resolves. The existing
+member-scoped command recovery and server identity validation are unchanged.
+PASS: the same script with --identity-only holds a previous-member response,
+switches accounts with a listing detail open, verifies no old rows/dialog before
+the new read resolves, then delivers the old response last. New-account ownership
+presentation remains correct. No commands execute. See identity-acceptance.json.
+
 Evidence: acceptance.json, before-slow-read.png, after-slow-read.png.
 These are isolated rendered-component results, not authenticated hosted or
 physical-device acceptance. No real wallet, inventory, listing, permission,
