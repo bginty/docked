@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "scope": "Actual Marketplace component, deterministic browser clock, isolated HTTP and transaction-core fixtures. No real customer writes or hosted/device acceptance.",
+  "evidence": [
+    {
+      "phase": "before",
+      "simulatedResponseMs": 12000,
+      "pollIntervalMs": 10000,
+      "requestCount": 2,
+      "rendered": "false",
+      "pageErrors": []
+    },
+    {
+      "phase": "after",
+      "simulatedResponseMs": 12000,
+      "pollIntervalMs": 10000,
+      "requestCount": 1,
+      "rendered": "true",
+      "pageErrors": []
+    },
+    {
+      "scenario": "actual-component synthetic purchase",
+      "reads": 4,
+      "commands": [
+        "review-buy",
+        "buy"
+      ],
+      "burstSignalsJoinedRead": true,
+      "stalePrePurchaseSnapshotIgnored": true,
+      "currentListingCount": 0,
+      "pageErrors": []
+    },
+    {
+      "scenario": "read failure and query change",
+      "recoveryPassed": true,
+      "previousQueryReadCancelled": true,
+      "readCount": 4,
+      "pageErrors": []
+    }
+  ]
+}

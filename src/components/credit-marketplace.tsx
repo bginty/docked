@@ -52,6 +52,12 @@ export function Marketplace({ member }: { member: string }) {
     [receipt, setReceipt] = useState<Record<string, unknown> | null>(null);
   const generation = useRef(0),
     busyRef = useRef(false);
+  const activeRead = useRef<AbortController | null>(null);
+  const invalidateRead = useCallback(() => {
+    generation.current++;
+    activeRead.current?.abort();
+    activeRead.current = null;
+  }, []);
   const tab = ["browse", "listings", "activity"].includes(
     params.get("tab") ?? "",
   )
@@ -76,6 +82,9 @@ export function Marketplace({ member }: { member: string }) {
     pending,
     send,
   } = useMarketCommand(member, (r, c) => {
+    // A pre-command read must not overwrite the confirmed command's state.
+    // marketChanged schedules the fresh read after the busy state has settled.
+    invalidateRead();
     if (c.kind === "review-buy") setReview(r as Review);
     else {
       setAcquisition(completedAcquisition(r, c));
@@ -90,12 +99,17 @@ export function Marketplace({ member }: { member: string }) {
   }, [commandError, pending]);
   const refresh = useCallback(
     async (background = false) => {
-      if (busyRef.current) return;
+      // Poll/resume signals join the current read. Superseding a 10–15s read
+      // every 10s would discard every response before it could be displayed.
+      if (busyRef.current || activeRead.current) return;
+      const controller = new AbortController();
+      activeRead.current = controller;
       const token = ++generation.current;
       if (!background) setLoading(true);
       try {
         const r = await boundedFetch(`/api/marketplace?${queryString}`, {
           cache: "no-store",
+          signal: controller.signal,
         });
         const d = await r.json();
         if (!r.ok) throw Error(d.error || "Marketplace unavailable.");
@@ -113,6 +127,7 @@ export function Marketplace({ member }: { member: string }) {
               e instanceof Error ? e.message : "Marketplace unavailable.",
           });
       } finally {
+        if (activeRead.current === controller) activeRead.current = null;
         if (token === generation.current) setLoading(false);
       }
     },
@@ -129,28 +144,26 @@ export function Marketplace({ member }: { member: string }) {
     const update = () => {
       if (!document.hidden) void refresh(true);
     };
+    const changed = () => {
+      // Mutation signals are different from polling: invalidate even while
+      // hidden so a later resume never joins a read started before the write.
+      invalidateRead();
+      update();
+    };
     const timer = setInterval(update, 10000);
-    for (const event of [
-      "focus",
-      "online",
-      "docked-app-resume",
-      "docked-market-changed",
-    ])
+    for (const event of ["focus", "online", "docked-app-resume"])
       window.addEventListener(event, update);
+    window.addEventListener("docked-market-changed", changed);
     document.addEventListener("visibilitychange", update);
     return () => {
-      generation.current++;
+      invalidateRead();
       clearInterval(timer);
-      for (const event of [
-        "focus",
-        "online",
-        "docked-app-resume",
-        "docked-market-changed",
-      ])
+      for (const event of ["focus", "online", "docked-app-resume"])
         window.removeEventListener(event, update);
+      window.removeEventListener("docked-market-changed", changed);
       document.removeEventListener("visibilitychange", update);
     };
-  }, [refresh]);
+  }, [refresh, invalidateRead]);
   const navigate = (changes: Record<string, string>, cursor = false) => {
     if (busy) return;
     const p = new URLSearchParams(params);
@@ -521,7 +534,10 @@ export function Marketplace({ member }: { member: string }) {
           card={manage.card}
           listing={manage}
           onClose={() => setManage(null)}
-          onSaved={() => void refresh(true)}
+          onSaved={() => {
+            invalidateRead();
+            void refresh(true);
+          }}
         />
       )}
       {selected && (

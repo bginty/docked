@@ -1,0 +1,50 @@
+Marketplace slow-read correction — 8 November 2026
+
+Verified cause
+The visible marketplace polled every 10 seconds. Each poll increased the request
+generation, although boundedFetch permits up to 15 seconds for headers and body.
+A valid response taking 10–15 seconds was therefore ignored after the next poll
+started. Sustained slow responses could keep the first screen loading indefinitely.
+Focus/resume events also started overlapping reads. Generation checks prevented
+out-of-order writes to UI state, but inadvertently starved useful slow reads.
+
+Correction
+One component-local AbortController tracks the active read. Poll, focus, online
+and resume signals join it instead of starting another read. No data cache was
+added. Query/account cleanup aborts the old read and retains generation checks.
+Successful commands, listing-save callbacks and docked-market-changed explicitly
+invalidate pre-mutation reads. Mutation signals invalidate even while hidden;
+the fresh read runs when visible and after command busy state settles. Existing
+idempotency envelopes, receipt verification, transaction core and payments are
+unchanged. An old request's finally callback cannot clear a newer active read.
+
+Targeted actual-component acceptance
+Command: node node_modules/tsx/dist/cli.mjs scripts/marketplace-refresh-acceptance.ts
+PASS, no browser page errors.
+Baseline source: credit-marketplace.tsx at 1f8c6924.
+Browser: headless Edge, 412x915, actual Marketplace component and application CSS.
+Time: deterministic Playwright browser clock, not measured production latency.
+Data: existing in-memory transaction-core fixtures, all HTTP intercepted.
+
+Same 12,000ms response with 10,000ms polling:
+Before: 2 GET requests, market-ready=false, loading placeholders remain.
+After: 1 GET request, market-ready=true, actual listing displayed.
+
+Confirmed synthetic purchase ordering:
+- Initial view and reviewed quote load.
+- Four focus/online/app-resume/visibility signals join a held pre-purchase read.
+- One review-buy and one buy command execute against the isolated fixture.
+- Successful purchase invalidates the old read; a fresh read shows zero listings.
+- Delivering the pre-purchase snapshot last cannot restore the sold listing.
+- Buyer ownership matches the fixture result; no duplicate command occurred.
+
+Failure/navigation checks:
+- Read503 shows an error; Retry starts a new read and displays the listing.
+- Switching to Activity invalidates an in-flight Browse read.
+- Late Browse data cannot replace the current Activity result.
+
+Evidence: acceptance.json, before-slow-read.png, after-slow-read.png.
+These are isolated rendered-component results, not authenticated hosted or
+physical-device acceptance. No real wallet, inventory, listing, permission,
+configuration, price, odds or feature flag was changed. No migration or Android
+binary change is required. No deployment was performed.
