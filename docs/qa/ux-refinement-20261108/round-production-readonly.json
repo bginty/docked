@@ -1,0 +1,551 @@
+{
+  "checkedAt": "2026-11-08",
+  "project": "pojoymtniryarxxunyvz",
+  "access": "SELECT-only; no writes or published rounds",
+  "competitions": [
+    {
+      "id": "315280d3-7413-4c2d-8a63-fef6d7e37003",
+      "name": "NFL Week 6 · Open · TEST",
+      "sport": "nfl",
+      "season": "2026",
+      "round": 6,
+      "opens_at": "2026-10-13 07:24:30.380671+00",
+      "locks_at": "2026-10-16 00:15:00+00",
+      "scored_at": null,
+      "mode": "OPEN",
+      "lineup_version": "nfl-seven-test-v1",
+      "fixture_kind": null,
+      "release_channel": "beta",
+      "enabled": null,
+      "standings_visible": null,
+      "stream_id": "beta-real:nfl:seven:open:2026:6",
+      "purpose": "member",
+      "fixtures": 14,
+      "locked_at": "2026-10-16 00:15:00+00",
+      "last_checked": "2026-11-07 23:15:04.669473+00",
+      "next_check": "2026-11-07 23:30:04.669473+00",
+      "entries": 1,
+      "issueCount": 20
+    },
+    {
+      "id": "b828817d-0ba9-4edd-87a3-fe6dd23ad7a0",
+      "name": "NFL Week 6 · post-game beta",
+      "sport": "nfl",
+      "season": "2026",
+      "round": 6,
+      "opens_at": "2026-10-11 00:33:52.086229+00",
+      "locks_at": "2026-10-16 00:15:00+00",
+      "scored_at": null,
+      "mode": null,
+      "lineup_version": null,
+      "fixture_kind": null,
+      "release_channel": "beta",
+      "enabled": null,
+      "standings_visible": null,
+      "stream_id": "beta-real:nfl:2026:6",
+      "purpose": "member",
+      "fixtures": 14,
+      "locked_at": "2026-10-16 00:15:00.095586+00",
+      "last_checked": "2026-11-07 23:00:04.783415+00",
+      "next_check": "2026-11-07 23:15:04.783416+00",
+      "entries": 2,
+      "issueCount": 26
+    },
+    {
+      "id": "8841bf7d-5952-47c4-b926-40b04fdc5cba",
+      "name": "NFL Week 6 · RARITY TEST · no prizes",
+      "sport": "nfl",
+      "season": "2026",
+      "round": 6,
+      "opens_at": "2026-10-12 12:18:57.736149+00",
+      "locks_at": "2026-10-16 00:15:00+00",
+      "scored_at": null,
+      "mode": null,
+      "lineup_version": null,
+      "fixture_kind": null,
+      "release_channel": "beta",
+      "enabled": null,
+      "standings_visible": null,
+      "stream_id": "beta-real:nfl:rarity-test:2026:6",
+      "purpose": "member",
+      "fixtures": 14,
+      "locked_at": "2026-10-16 00:15:00.100974+00",
+      "last_checked": "2026-11-08 00:00:16.523658+00",
+      "next_check": "2026-11-08 00:15:16.523659+00",
+      "entries": 0,
+      "issueCount": 20
+    },
+    {
+      "id": "70de1f8e-b789-4331-99aa-6afb0c31a8a2",
+      "name": "NFL Week 6 · Salary Cap · TEST",
+      "sport": "nfl",
+      "season": "2026",
+      "round": 6,
+      "opens_at": "2026-10-13 07:24:29.664777+00",
+      "locks_at": "2026-10-16 00:15:00+00",
+      "scored_at": null,
+      "mode": "SALARY_CAP",
+      "lineup_version": "nfl-seven-test-v1",
+      "fixture_kind": null,
+      "release_channel": "beta",
+      "enabled": null,
+      "standings_visible": null,
+      "stream_id": "beta-real:nfl:seven:salary_cap:2026:6",
+      "purpose": "member",
+      "fixtures": 14,
+      "locked_at": "2026-10-16 00:15:00+00",
+      "last_checked": "2026-11-08 00:15:13.007646+00",
+      "next_check": "2026-11-08 00:30:13.007646+00",
+      "entries": 2,
+      "issueCount": 20
+    },
+    {
+      "id": "d3da95b4-a72a-4b40-87d9-09b562d92277",
+      "name": "NFL Week 7 · All-Star · TEST",
+      "sport": "nfl",
+      "season": "2026",
+      "round": 7,
+      "opens_at": "2026-10-19 12:10:25.667619+00",
+      "locks_at": "2026-10-23 00:15:00+00",
+      "scored_at": null,
+      "mode": "OPEN",
+      "lineup_version": "nfl-seven-test-v1",
+      "fixture_kind": null,
+      "release_channel": "beta",
+      "enabled": null,
+      "standings_visible": null,
+      "stream_id": "beta-real:nfl:seven:open:2026:7",
+      "purpose": "member",
+      "fixtures": 14,
+      "locked_at": "2026-10-23 00:15:00+00",
+      "last_checked": "2026-11-07 23:45:03.545243+00",
+      "next_check": "2026-11-08 00:00:03.545244+00",
+      "entries": 2,
+      "issueCount": 142
+    },
+    {
+      "id": "9286cca8-c7a3-487e-b687-f9614a2b87b5",
+      "name": "NFL Week 7 · Traditional · TEST",
+      "sport": "nfl",
+      "season": "2026",
+      "round": 7,
+      "opens_at": "2026-10-19 12:10:24.901467+00",
+      "locks_at": "2026-10-23 00:15:00+00",
+      "scored_at": null,
+      "mode": "SALARY_CAP",
+      "lineup_version": "nfl-seven-test-v1",
+      "fixture_kind": null,
+      "release_channel": "beta",
+      "enabled": null,
+      "standings_visible": null,
+      "stream_id": "beta-real:nfl:seven:salary_cap:2026:7",
+      "purpose": "member",
+      "fixtures": 14,
+      "locked_at": "2026-10-23 00:15:00+00",
+      "last_checked": "2026-11-07 23:30:05.540299+00",
+      "next_check": "2026-11-07 23:45:05.540299+00",
+      "entries": 2,
+      "issueCount": 142
+    },
+    {
+      "id": "026edc2d-b51d-4525-b0da-072a8e42ebed",
+      "name": "NFL Practice · All-Star · no prizes",
+      "sport": "nfl",
+      "season": "2026 Practice",
+      "round": 1,
+      "opens_at": "2026-11-01 10:25:27.286239+00",
+      "locks_at": "2027-01-31 00:00:00+00",
+      "scored_at": null,
+      "mode": "OPEN",
+      "lineup_version": "nfl-seven-test-v1",
+      "fixture_kind": null,
+      "release_channel": "beta",
+      "enabled": true,
+      "standings_visible": true,
+      "stream_id": "beta-real:qa:review-practice-20261101:open",
+      "purpose": "member",
+      "fixtures": 1,
+      "locked_at": null,
+      "last_checked": null,
+      "next_check": "infinity",
+      "entries": 0,
+      "issueCount": 0
+    },
+    {
+      "id": "2a94395d-71c5-4f83-bf83-f8e867aca682",
+      "name": "NFL Practice · Traditional · no prizes",
+      "sport": "nfl",
+      "season": "2026 Practice",
+      "round": 1,
+      "opens_at": "2026-11-01 10:25:20.47961+00",
+      "locks_at": "2027-01-31 00:00:00+00",
+      "scored_at": null,
+      "mode": "SALARY_CAP",
+      "lineup_version": "nfl-seven-test-v1",
+      "fixture_kind": null,
+      "release_channel": "beta",
+      "enabled": true,
+      "standings_visible": true,
+      "stream_id": "beta-real:qa:review-practice-20261101:salary_cap",
+      "purpose": "member",
+      "fixtures": 1,
+      "locked_at": null,
+      "last_checked": null,
+      "next_check": "infinity",
+      "entries": 2,
+      "issueCount": 0
+    },
+    {
+      "id": "fa53ab81-b8fd-4d4e-bf5e-214c5209b09f",
+      "name": "NFL Roster Practice · All-Star",
+      "sport": "nfl",
+      "season": "2026 Practice",
+      "round": 2,
+      "opens_at": "2026-11-05 13:17:00.785006+00",
+      "locks_at": "2026-11-15 12:00:00+00",
+      "scored_at": null,
+      "mode": "OPEN",
+      "lineup_version": "public-nfl-round-wide-practice-v1",
+      "fixture_kind": null,
+      "release_channel": null,
+      "enabled": null,
+      "standings_visible": null,
+      "stream_id": null,
+      "purpose": null,
+      "fixtures": null,
+      "locked_at": null,
+      "last_checked": null,
+      "next_check": null,
+      "entries": 0,
+      "issueCount": 0
+    },
+    {
+      "id": "11edf5ac-262b-41ad-a6d9-06a53053a051",
+      "name": "NFL Roster Practice · Traditional",
+      "sport": "nfl",
+      "season": "2026 Practice",
+      "round": 2,
+      "opens_at": "2026-11-05 13:17:00.769575+00",
+      "locks_at": "2026-11-15 12:00:00+00",
+      "scored_at": null,
+      "mode": "SALARY_CAP",
+      "lineup_version": "public-nfl-round-wide-practice-v1",
+      "fixture_kind": null,
+      "release_channel": null,
+      "enabled": null,
+      "standings_visible": null,
+      "stream_id": null,
+      "purpose": null,
+      "fixtures": null,
+      "locked_at": null,
+      "last_checked": null,
+      "next_check": null,
+      "entries": 0,
+      "issueCount": 0
+    }
+  ],
+  "journal": [
+    {
+      "stream_id": "beta-real:nfl:seven:salary_cap:2026:7",
+      "finalised_at": null,
+      "sources": 14,
+      "entries": 2
+    },
+    {
+      "stream_id": "beta-real:nfl:seven:open:2026:6",
+      "finalised_at": null,
+      "sources": 32,
+      "entries": 1
+    },
+    {
+      "stream_id": "beta-real:nfl:seven:open:2026:7",
+      "finalised_at": null,
+      "sources": 14,
+      "entries": 2
+    },
+    {
+      "stream_id": "beta-real:nfl:seven:salary_cap:2026:6",
+      "finalised_at": null,
+      "sources": 32,
+      "entries": 2
+    }
+  ],
+  "history": [
+    {
+      "active": "4bad67fc-dcfe-4531-a859-d591eef115b3",
+      "last_success": "2026-11-07 21:48:00.706186+00",
+      "dataset": "a78ff31f-6f3f-4ac6-9d45-34208626e325",
+      "created_at": "2026-10-17 12:49:45.087859+00"
+    }
+  ],
+  "historyRounds": [
+    {
+      "season": "2026",
+      "season_type": "REG",
+      "round": 1,
+      "records": 1117,
+      "games": 16,
+      "non_provisional": 1117
+    },
+    {
+      "season": "2026",
+      "season_type": "REG",
+      "round": 2,
+      "records": 1106,
+      "games": 16,
+      "non_provisional": 1106
+    },
+    {
+      "season": "2026",
+      "season_type": "REG",
+      "round": 3,
+      "records": 1113,
+      "games": 16,
+      "non_provisional": 1113
+    },
+    {
+      "season": "2026",
+      "season_type": "REG",
+      "round": 4,
+      "records": 1109,
+      "games": 16,
+      "non_provisional": 1109
+    },
+    {
+      "season": "2026",
+      "season_type": "REG",
+      "round": 5,
+      "records": 1056,
+      "games": 15,
+      "non_provisional": 1056
+    },
+    {
+      "season": "2026",
+      "season_type": "REG",
+      "round": 6,
+      "records": 981,
+      "games": 14,
+      "non_provisional": 981
+    },
+    {
+      "season": "2026",
+      "season_type": "REG",
+      "round": 7,
+      "records": 958,
+      "games": 14,
+      "non_provisional": 958
+    },
+    {
+      "season": "2026",
+      "season_type": "REG",
+      "round": 8,
+      "records": 980,
+      "games": 14,
+      "non_provisional": 980
+    },
+    {
+      "season": "2026",
+      "season_type": "REG",
+      "round": 9,
+      "records": 71,
+      "games": 1,
+      "non_provisional": 71
+    }
+  ],
+  "historyCalendar": [
+    {
+      "round": 1,
+      "fixtures": 16,
+      "first_kickoff": "2026-09-10 00:20:00+00",
+      "last_kickoff": "2026-09-15 00:15:00+00",
+      "complete": 15
+    },
+    {
+      "round": 2,
+      "fixtures": 16,
+      "first_kickoff": "2026-09-18 00:15:00+00",
+      "last_kickoff": "2026-09-22 00:15:00+00",
+      "complete": 15
+    },
+    {
+      "round": 3,
+      "fixtures": 16,
+      "first_kickoff": "2026-09-25 00:15:00+00",
+      "last_kickoff": "2026-09-29 00:15:00+00",
+      "complete": 15
+    },
+    {
+      "round": 4,
+      "fixtures": 16,
+      "first_kickoff": "2026-10-02 00:15:00+00",
+      "last_kickoff": "2026-10-06 00:15:00+00",
+      "complete": 15
+    },
+    {
+      "round": 5,
+      "fixtures": 15,
+      "first_kickoff": "2026-10-09 00:15:00+00",
+      "last_kickoff": "2026-10-13 00:15:00+00",
+      "complete": 14
+    },
+    {
+      "round": 6,
+      "fixtures": 14,
+      "first_kickoff": "2026-10-16 00:15:00+00",
+      "last_kickoff": "2026-10-20 00:15:00+00",
+      "complete": 13
+    },
+    {
+      "round": 7,
+      "fixtures": 14,
+      "first_kickoff": "2026-10-23 00:15:00+00",
+      "last_kickoff": "2026-10-27 00:15:00+00",
+      "complete": 13
+    },
+    {
+      "round": 8,
+      "fixtures": 14,
+      "first_kickoff": "2026-10-30 00:15:00+00",
+      "last_kickoff": "2026-11-03 01:15:00+00",
+      "complete": 13
+    },
+    {
+      "round": 9,
+      "fixtures": 15,
+      "first_kickoff": "2026-11-06 01:15:00+00",
+      "last_kickoff": "2026-11-10 01:15:00+00",
+      "complete": 0
+    },
+    {
+      "round": 10,
+      "fixtures": 14,
+      "first_kickoff": "2026-11-13 01:15:00+00",
+      "last_kickoff": "2026-11-17 01:15:00+00",
+      "complete": 0
+    },
+    {
+      "round": 11,
+      "fixtures": 13,
+      "first_kickoff": "2026-11-20 01:15:00+00",
+      "last_kickoff": "2026-11-24 01:15:00+00",
+      "complete": 0
+    },
+    {
+      "round": 12,
+      "fixtures": 16,
+      "first_kickoff": "2026-11-26 01:00:00+00",
+      "last_kickoff": "2026-12-01 01:15:00+00",
+      "complete": 0
+    },
+    {
+      "round": 13,
+      "fixtures": 14,
+      "first_kickoff": "2026-12-04 01:15:00+00",
+      "last_kickoff": "2026-12-08 01:15:00+00",
+      "complete": 0
+    },
+    {
+      "round": 14,
+      "fixtures": 15,
+      "first_kickoff": "2026-12-11 01:15:00+00",
+      "last_kickoff": "2026-12-15 01:15:00+00",
+      "complete": 0
+    },
+    {
+      "round": 15,
+      "fixtures": 16,
+      "first_kickoff": "2026-12-18 01:15:00+00",
+      "last_kickoff": "2026-12-22 01:15:00+00",
+      "complete": 0
+    },
+    {
+      "round": 16,
+      "fixtures": 16,
+      "first_kickoff": "2026-12-25 01:15:00+00",
+      "last_kickoff": "2026-12-29 01:15:00+00",
+      "complete": 0
+    },
+    {
+      "round": 17,
+      "fixtures": 16,
+      "first_kickoff": "2027-01-01 01:15:00+00",
+      "last_kickoff": "2027-01-05 01:15:00+00",
+      "complete": 0
+    },
+    {
+      "round": 18,
+      "fixtures": 16,
+      "first_kickoff": "2027-01-10 18:00:00+00",
+      "last_kickoff": "2027-01-10 18:00:00+00",
+      "complete": 0
+    }
+  ],
+  "publicPreparedRounds": [
+    {
+      "id": "0073858d-b14b-49ce-8cda-56c2357490c5",
+      "sport": "afl",
+      "season": "2026 Practice",
+      "round": 2,
+      "opens_at": "2026-11-05 13:17:00.791719+00",
+      "locks_at": "2026-11-15 12:00:00+00",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "source_reference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 892886107366a3f445ffd7e0825f5f848036ee4773f1e4934403c1b9a7ed5530"
+    },
+    {
+      "id": "38f8e2da-a8cd-41ec-b34b-008084be7722",
+      "sport": "afl",
+      "season": "2026 Practice",
+      "round": 2,
+      "opens_at": "2026-11-05 13:17:00.788606+00",
+      "locks_at": "2026-11-15 12:00:00+00",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "source_reference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 892886107366a3f445ffd7e0825f5f848036ee4773f1e4934403c1b9a7ed5530"
+    },
+    {
+      "id": "fa53ab81-b8fd-4d4e-bf5e-214c5209b09f",
+      "sport": "nfl",
+      "season": "2026 Practice",
+      "round": 2,
+      "opens_at": "2026-11-05 13:17:00.785006+00",
+      "locks_at": "2026-11-15 12:00:00+00",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "source_reference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 8053bbef1019f7ef14a6ee96c397d09d4e45f0e23384965be12f0c429d3db9ba"
+    },
+    {
+      "id": "11edf5ac-262b-41ad-a6d9-06a53053a051",
+      "sport": "nfl",
+      "season": "2026 Practice",
+      "round": 2,
+      "opens_at": "2026-11-05 13:17:00.769575+00",
+      "locks_at": "2026-11-15 12:00:00+00",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "source_reference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 8053bbef1019f7ef14a6ee96c397d09d4e45f0e23384965be12f0c429d3db9ba"
+    },
+    {
+      "id": "3e19ab97-7cff-490c-aa9c-aeba3a8e6207",
+      "sport": "nrl",
+      "season": "2026 Practice",
+      "round": 2,
+      "opens_at": "2026-11-05 13:17:00.797093+00",
+      "locks_at": "2026-11-15 12:00:00+00",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "source_reference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 11cda30bd1444ad96d19521298c3998ff1d4c37d8ed6ebd0685effa7ff6ec14b"
+    },
+    {
+      "id": "c49a6684-8d34-4411-92f5-50393d55386e",
+      "sport": "nrl",
+      "season": "2026 Practice",
+      "round": 2,
+      "opens_at": "2026-11-05 13:17:00.794037+00",
+      "locks_at": "2026-11-15 12:00:00+00",
+      "enabled": false,
+      "fixture_kind": "practice",
+      "source_reference": "Dated recorded roster practice; public-roster-practice-20261105-v1; roster SHA-256 11cda30bd1444ad96d19521298c3998ff1d4c37d8ed6ebd0685effa7ff6ec14b"
+    }
+  ]
+}

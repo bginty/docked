@@ -1,0 +1,123 @@
+NFL round/calendar audit — 8 November 2026
+
+Scope and evidence
+Production was inspected with SELECT-only Supabase queries against project
+pojoymtniryarxxunyvz. No competitions, rules, schedules, entries, scores, cards,
+wallets, permissions or publication flags were changed. Aggregated evidence and
+competition identifiers are in round-production-readonly.json. No customer
+identity or lineup contents are included.
+
+Established cause
+Round 8 is absent, not merely hidden by a frontend filter. Genuine NFL season
+2026 competition records and sports_feed.nfl_rounds registrations stop at Round
+7. The existing registration script, scripts/seven-round-prepare.ts, is a manual
+operator action. The scheduled ingestion/reconciliation worker only processes
+registered member rounds after their entry deadline. It never creates future
+rounds. Player history is a separate revisioned publication path; historyStore
+explicitly does not install or invoke a competition bridge.
+
+The active history generation last succeeded at 2026-11-07T21:48:00.706186Z.
+It contains 980 non-provisional player-game records across 14 Round 8 games and
+71 across one Round 9 game. The season is 2026 REG, matching the genuine
+competitions' season; this is not a season-average or other-season confusion.
+History completion is not permission to open a competition retroactively.
+
+Existing genuine seven-card competitions, preserved unchanged:
+Round 6 All-Star: 315280d3-7413-4c2d-8a63-fef6d7e37003 (1 entry)
+Round 6 Traditional: 70de1f8e-b789-4331-99aa-6afb0c31a8a2 (2 entries)
+Round 7 All-Star: d3da95b4-a72a-4b40-87d9-09b562d92277 (2 entries)
+Round 7 Traditional: 9286cca8-c7a3-487e-b687-f9614a2b87b5 (2 entries)
+All four scored_at and journal finalisedAt values are null. Deadlines have
+passed, but reconciliation still reports mapping issues. Label them Entries
+closed, not Final. This task does not rewrite their locked snapshots or results.
+
+The published private-beta practice round is season '2026 Practice', Round 1,
+with a January 31 deadline and a deliberately paused collector. It is not the
+current NFL calendar. Separately, all six prepared public practice competitions
+remain disabled. NFL practice Round 2 identifiers are:
+fa53ab81-b8fd-4d4e-bf5e-214c5209b09f and 11edf5ac-262b-41ad-a6d9-06a53053a051.
+None has been promoted into the beta production round registry by this work.
+
+Deadline and operational blockers
+Round 8 first kickoff: 2026-10-30T00:15:00Z; last: 2026-11-03T01:15:00Z.
+Round 9 first kickoff: 2026-11-06T01:15:00Z; last: 2026-11-10T01:15:00Z.
+Both have started. Do not create or reopen either for new entries.
+Round 10 is the next wholly future calendar round: 14 fixtures, first kickoff
+2026-11-13T01:15:00Z, last kickoff 2026-11-17T01:15:00Z. Re-fetch and review the
+calendar and roster before any preparation/publication; these are audit-time
+values, not a permanent schedule override.
+
+config/nfl-postgame-permit.json currently expires at 2026-11-10T00:00:00Z,
+before Round 10. The existing isolated-free-beta authorisation configuration
+therefore needs an expressly reviewed renewal before preparing playable rounds.
+This is a configuration fact, not a claim that an external commercial licence
+exists or has expired. The permit was not changed. Original data-use controls
+and all NBA visibility restrictions remain intact.
+
+Current active jobs inspected: NFL lock every minute, weekly data at 00:05 and
+12:05 UTC, play-by-play at 00:10/12:10, rosters at 00:15/12:15, reconciliation
+every 15 minutes and raw-data expiry hourly. No calendar-generation job exists.
+
+Candidate implementation
+src/core/nfl-round-calendar.ts provides a deterministic readiness plan from the
+complete calendar, not the latest statistic. It checks the current approved
+272-game/32-team/17-games-per-team regular-season shape, unique fixtures and
+teams, explicit kickoff times, freshness, existing mode streams and provider
+authorisation expiry. Unknown kickoffs fail closed. The calendar hash is stable
+under row ordering and changes if the underlying calendar changes.
+
+scripts/nfl-calendar-readiness.ts is read-only by default and can be run by the
+existing authorised operator infrastructure without adding a paid service:
+  npx tsx scripts/nfl-calendar-readiness.ts --season 2026
+It downloads the existing configured source only while the current scoped
+provider permission allows it, reads registered streams and writes a local
+readiness report. It does not publish or edit competitions.
+
+After reviewing the exact plan, and only after release approval, the operator
+can prepare ONE wholly future round with the same tool:
+  npx tsx scripts/nfl-calendar-readiness.ts --season 2026 --prepare-drafts
+    --round N --plan-hash EXACT_REVIEWED_SHA256
+The command requires a matching current calendar hash, authorised coverage
+through the last kickoff, recent active verified player mappings, both teams
+mapped in each fixture, the existing immutable NFL seven-card rules and the
+original whole-round entry deadline. No real round was prepared in this task.
+
+The existing registerNflRound transaction now supports an explicit draft option.
+Drafts have disabled entry/standings controls, no production_rounds publication,
+and next_check=infinity so the collector cannot process them. The journal records
+that they are unpublished and collection is paused. Existing caller behaviour
+is retained. The existing advisory transaction lock and unique stream constraint
+prevent duplicate registrations. Retrying preserves existing rule snapshots;
+retrying with a publication option cannot publish a pre-existing draft.
+
+Publish only through a separately reviewed owner action before the entry
+deadline, after verifying roster, calendar, collection rights, eligibility,
+rules and deadlines. That action must explicitly enable the intended controls,
+publication and collector together. Never publish a missed deadline; prepare
+the next eligible calendar round instead. No auto-publication, SQL permission
+change, new migration, cron change or production deployment is part of this
+candidate. The operator can schedule the read-only readiness command in existing
+CI/operations after approval; no background job is silently enabled here.
+
+Verification performed
+- Seven calendar-planner tests passed: source freshness, complete calendar,
+  deterministic hash, partial modes, old deadlines, unknown kickoffs and expiry.
+- PGlite ran all repository migrations and the real registration SQL. It passed
+  unpublished draft controls, paused collection, repeat registration, inability
+  to promote by retry, preservation of the old beta caller contract and full
+  transaction rollback after an injected registration failure.
+- No native multi-connection PostgreSQL concurrency claim is made for that
+  embedded test; the existing lock/unique-constraint mechanism remains unchanged.
+- Scoped ESLint passed for all five changed source/test files; git diff --check
+  passed. Full typecheck and the combined release regression results belong in
+  the parent release report. Production investigation is read-only evidence,
+  not acceptance of a newly published real Round 10.
+
+Remaining live work after approval
+1. Explicitly resolve the scoped provider-permission expiry and verify roster
+   mapping quality (Round 7 has 142 unresolved collector issues per mode).
+2. Run the readiness check against the then-current authorised calendar.
+3. Review/prepare the next future round; review and publish both modes together
+   before kickoff using existing controls, without changing historical rounds.
+4. Monitor the readiness report ahead of each deadline. Registration and
+   publication remain separate from automatic statistics ingestion.
