@@ -14,8 +14,8 @@ assert(/^[a-f0-9]{40}$/.test(staged.commit), "Invalid staged commit");
 assert.equal(prepared.commit, staged.commit, "Prepared/staged commit mismatch");
 assert.equal(prepared.project, "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST");
 assert.equal(prepared.team, "team_tf6xweKKyVCj9bTppUKttJ4l");
-assert.equal(prepared.baseline, "f89ed4a9fe23eb9238becad3e545b6a48150cf35");
-assert.equal(prepared.baselineId, "dpl_8pdKF956L5tTYFLxyhvonkHorQhu");
+assert.equal(prepared.baseline, "8b73ef728156b9139ee48605d57d068b5c19efa6");
+assert.equal(prepared.baselineId, "dpl_wGaDeimzDBobhc7KfWBs3UGxmNrF");
 const target = live ? "https://docked.com.au" : staged.url;
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";

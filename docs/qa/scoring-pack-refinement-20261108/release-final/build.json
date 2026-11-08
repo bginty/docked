@@ -1,0 +1,34 @@
+{
+  "deployment": "dpl_6R3u15HzAWESyyuSpVrDMfFavsbK",
+  "commit": "477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1",
+  "status": "READY",
+  "events": [
+    {
+      "type": "stderr",
+      "text": "Warning: Due to \"engines\": { \"node\": \">=22\" } in your `package.json` file, the Node.js Version defined in your Project Settings (\"24.x\") will not apply, Node.js Version \"26.x\" will be used instead. Learn More: https://vercel.link/node-version"
+    },
+    {
+      "type": "stderr",
+      "text": "Warning: Detected \"engines\": { \"node\": \">=22\" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version"
+    },
+    {
+      "type": "stdout",
+      "text": "✓ Compiled successfully in 957ms"
+    },
+    {
+      "type": "stdout",
+      "text": "  Running TypeScript ..."
+    },
+    {
+      "type": "stdout",
+      "text": "  Finished TypeScript in 2.7s ..."
+    },
+    {
+      "type": "stderr",
+      "text": "Build Completed in /vercel/output [57s]"
+    }
+  ],
+  "fullLocalTypecheck": "passed after test adapter typing fix",
+  "productionDependencyAudit": "0 vulnerabilities",
+  "localBuild": "Turbopack junction failure; redundant Webpack build stopped; clean cloud build passed"
+}

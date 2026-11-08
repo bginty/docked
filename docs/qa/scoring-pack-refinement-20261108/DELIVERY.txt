@@ -1,7 +1,7 @@
 DOCKED SCORING, PACK REVIEW, SHARING AND PURCHASE PERFORMANCE
-Prepared 2026-11-08. Application candidate: 8b73ef728156b9139ee48605d57d068b5c19efa6.
-Production deployment and hosted acceptance are pending; the release lead will
-append the confirmed deployment result. No claim of deployment is made here.
+Released 2026-11-08. Final application: 477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1.
+Production: https://docked.com.au
+Deployment: dpl_6R3u15HzAWESyyuSpVrDMfFavsbK (READY).
 Evidence paths below are relative to this directory unless prefixed repo:.
 
 SCORING HISTORY
@@ -51,10 +51,11 @@ calls, mean 8,400.4 ms). No financial guard, lock or verification was bypassed.
 This release attributes authentication, provider verification, transaction/lock,
 issuance, persistence, view and acknowledgement through private Server-Timing
 headers and client journey timings. Nested spans must not be added together.
-Reveal modules/assets preload while existing operations run. Non-essential
-history refresh no longer delays or invalidates an already committed purchase;
+Reveal JavaScript modules preload while existing operations run. Non-essential
+history refresh no longer delays an already committed pack-opening receipt;
+a failed purchase-history refresh preserves the confirmed purchase for recovery;
 confirmed receipts and pending request identities support safe recovery/reload.
-The animated transition starts immediately, uses real processing/securing/ready
+The animated transition starts immediately, uses real processing/securing/pending
 states, adds no artificial delay and respects reduced motion. Ready requires the
 authoritative committed receipt. No card is presented as owned before commit.
 
@@ -82,9 +83,11 @@ EXECUTED ACCEPTANCE
   commercial repository in isolated embedded PostgreSQL (PGlite). Auth/HTTP and
   starting Google receipt were synthetic. Failed history/reload reused the same
   committed request instead of charging or issuing again.
-- Combined TypeScript check passed. Local Turbopack production build failed on the
-  external node_modules junction; Webpack/cloud build verification is pending,
-  not reported as passed. See final release-lead addendum for later results.
+- Final full TypeScript check passed after correcting a test-only PostgreSQL
+  adapter cast. Scoped lint and production dependency audit passed (0 reported
+  vulnerabilities). Local Turbopack could not resolve the external node_modules
+  junction; a redundant Webpack build was stopped. Both clean cloud production
+  builds passed, including TypeScript. Final cloud build completed in 57 seconds.
 
 PHYSICAL ANDROID SCOPE
 Samsung Galaxy S24 (SM-S921B), Chrome, isolated preview over USB: actual Ultra Rare
@@ -111,7 +114,32 @@ Commits: fc0e8077 (purchase evidence), fced9b77 (review/sharing), 6da8f4d1 (scor
 Android evidence). Release preparation: release/prepared.json, including the
 previous production rollback URL and unchanged closed flags.
 
-Remaining before claiming Production completion: successful production build,
-candidate/hosted route checks, promotion, deployed commit verification and scoped
-live acceptance. The existing authorisation permits deployment after these pass;
-none of these pending checks may be represented as completed in this document.
+FINAL RELEASE ACCEPTANCE
+The final deployed commit is 477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1.
+The first release 8b73ef72 passed all route checks and genuine signed-in NFL
+scoring rendered Round 9 with 21 player results. Full-page acceptance found a
+duplicate sport selector; 477adbdd removes the redundant local selector while
+keeping AppShell navigation. The application delta is exactly that removal.
+
+Final clean hosted build and TypeScript passed. Eighteen live route/asset probes
+passed, served CSS includes new scoring/purchase/review and existing reveal/foil
+styles, sample foil hashes match, all 9 closed flags and cron configuration remain
+unchanged. No database migration, customer mutation or Android rebuild occurred.
+Runtime error/fatal scan scoped to final deployment returned no groups in the
+checked 10-minute window. This is a point-in-time scan, not ongoing monitoring.
+
+Computer control ended because its safety check could not confidently verify
+Chrome's current URL. No bypass was attempted. Live existing-pack replay and
+signed-in AFL/NRL pages were not verified after deployment; their isolated
+browser/device acceptance is reported separately above. No fresh genuine Google
+TEST checkout/refund notification was run, and no hosted post-release purchase
+percentiles are claimed. The dominant guarded beta database write remains a
+performance limitation; no backend speedup was established by the isolated run.
+
+release-final/live-verified.json contains final deployment identity and checks.
+release-final/build.json contains final build/typecheck evidence.
+release/signed-in-scoring.json records precisely the customer UI observed.
+Rollback target for the final navigation correction: the prior 8b73ef72 release
+https://docked-production-fggisert9-briant-s-projects.vercel.app .
+Original pre-task baseline: f89ed4a9fe23eb9238becad3e545b6a48150cf35,
+dpl_8pdKF956L5tTYFLxyhvonkHorQhu.

@@ -1,0 +1,41 @@
+{
+  "commit": "477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1",
+  "branch": "codex/scoring-pack-refinement",
+  "baseline": "8b73ef728156b9139ee48605d57d068b5c19efa6",
+  "baselineId": "dpl_wGaDeimzDBobhc7KfWBs3UGxmNrF",
+  "rollbackUrl": "https://docked-production-fggisert9-briant-s-projects.vercel.app",
+  "project": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "team": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "files": 961,
+  "changedFiles": [
+    "docs/qa/scoring-pack-refinement-20261108/DELIVERY.txt",
+    "docs/qa/scoring-pack-refinement-20261108/PURCHASE_PERFORMANCE.txt",
+    "docs/qa/scoring-pack-refinement-20261108/release/build.json",
+    "docs/qa/scoring-pack-refinement-20261108/release/candidate-mcp-verified.json",
+    "docs/qa/scoring-pack-refinement-20261108/release/live-verified.json",
+    "docs/qa/scoring-pack-refinement-20261108/release/prepared.json",
+    "docs/qa/scoring-pack-refinement-20261108/release/staged.json",
+    "scripts/scoring-pack-refinement-release.mjs",
+    "scripts/scoring-pack-refinement-verify-release.mjs",
+    "src/components/sport-scoring-reference.tsx",
+    "tests/browser/commercial-purchase-recovery.test.ts"
+  ],
+  "runtimeChangedKeys": [
+    "VERCEL_GIT_COMMIT_SHA"
+  ],
+  "sourceInventoryDigest": "77069cedc15965ee35895fea3fd0539ba03913e070dd8144d9f8ffceb287d775",
+  "closedFlags": [
+    "REGISTRATION_ENABLED",
+    "COMPETITIONS_ENABLED",
+    "PRIZES_ENABLED",
+    "DOCKED_MULTI_SPORT_SANDBOX",
+    "DOCKED_MEMBER_GOOGLE_TEST",
+    "DOCKED_COMMERCIAL_SERVICE",
+    "DOCKED_COMMERCIAL_SURFACES",
+    "DOCKED_COMMERCIAL_CHECKOUT",
+    "DOCKED_PUBLIC_CUSTOMERS"
+  ],
+  "customerMutations": 0,
+  "migrations": [],
+  "runtimeDigest": "032359a0551db3a6de1c5d3c22d51390fdbe09e746dfc83110cc02026445781d"
+}

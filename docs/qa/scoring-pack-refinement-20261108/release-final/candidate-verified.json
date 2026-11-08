@@ -1,0 +1,30 @@
+{
+  "commit": "477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1",
+  "deployment": "dpl_6R3u15HzAWESyyuSpVrDMfFavsbK",
+  "passed": true,
+  "checks": [
+    {
+      "path": "/api/beta-release",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "path": "/api/fantasy/scoring-history?sport=nfl",
+      "status": 401,
+      "passed": true
+    },
+    {
+      "path": "/api/store/google/commercial",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "path": "/app/login",
+      "status": 200,
+      "passed": true
+    }
+  ],
+  "build": "READY; compiled; TypeScript passed",
+  "applicationDelta": "Remove duplicate local sport navigation; AppShell navigation retained.",
+  "priorFullChecks": "../release/live-verified.json"
+}

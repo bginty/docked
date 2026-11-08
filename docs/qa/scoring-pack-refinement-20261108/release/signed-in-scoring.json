@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-08T04:08:53.258Z",
+  "observedProductionCommit": "8b73ef728156b9139ee48605d57d068b5c19efa6",
+  "surface": "Existing signed-in Chrome session via native CUA",
+  "route": "https://docked.com.au/fantasy/scoring/how-it-works?sport=nfl",
+  "observed": {
+    "heading": "NFL Scoring",
+    "format": "Full PPR",
+    "competitionSelector": false,
+    "round": "Round 9",
+    "playerResults": 21,
+    "examples": [
+      {
+        "player": "Trevor Lawrence",
+        "basePoints": "13.58"
+      },
+      {
+        "player": "Justice Hill",
+        "basePoints": "18.20"
+      }
+    ],
+    "nbaVisible": false
+  },
+  "issueFound": "AppShell and local component both rendered sport navigation. Local duplicate removed in477adbdd.",
+  "stopped": "Computer-control safety stopped browser interaction because the current Chrome URL could not be verified reliably. No bypass attempted.",
+  "notVerifiedThisPass": [
+    "live existing-pack replay after deployment",
+    "signed-in AFL/NRL pages after deployment"
+  ],
+  "purchases": 0,
+  "customerMutations": 0
+}
