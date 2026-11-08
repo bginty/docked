@@ -11,11 +11,11 @@ import { createHash } from "node:crypto";
 import { assertHostedBeta } from "../src/core/hosted-beta.mjs";
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
   team = "team_tf6xweKKyVCj9bTppUKttJ4l";
-const baseline = "477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1",
-  baselineId = "dpl_6R3u15HzAWESyyuSpVrDMfFavsbK";
+const baseline = "aef423eb043b208dbaeadd21b3caa2806cebe936",
+  baselineId = "dpl_BjhdVwfK43tLc4s52KEXnkvf1qt9";
 const main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
 const approved =
-  "C:/Users/61412/.codex/worktrees/scoring-pack-refinement/Docked.com.au/private-data/scoring-pack-refinement-release/477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1";
+  "C:/Users/61412/.codex/worktrees/scoring-pack-refinement/Docked.com.au/private-data/scoring-pack-refinement-release/aef423eb043b208dbaeadd21b3caa2806cebe936";
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";
 const git = (...args) =>
@@ -46,7 +46,7 @@ const privateDir = path.join(
     sha,
   ),
   source = path.join(privateDir, "source");
-const evidence = "docs/qa/native-share-rounds-20261108/web-release";
+const evidence = "docs/qa/native-share-rounds-20261108/login-recovery-release";
 await fs.mkdir(privateDir, { recursive: true });
 await fs.mkdir(evidence, { recursive: true });
 async function run(args, env = {}) {
@@ -192,7 +192,6 @@ if (mode === "prepare") {
       "--",
       "public",
       "config",
-      "android",
       "ios",
       "supabase",
       "package.json",
@@ -202,6 +201,13 @@ if (mode === "prepare") {
     ),
     "",
     "Protected runtime/assets/economics changed",
+  );
+  // Android v31 was released independently after the web baseline. Native files
+  // are not in the web export; require them to match that exact reviewed build.
+  assert.equal(
+    git("diff", "--name-only", "3c1d73eacdf6426f263ace1c6eb2c54d2cfe94dc", sha, "--", "android"),
+    "",
+    "Android differs from the released v31 build",
   );
   const extras = [
     "package.json",
@@ -287,7 +293,7 @@ if (mode === "prepare") {
   );
   const previous = JSON.parse(
     await fs.readFile(
-      "docs/qa/scoring-pack-refinement-20261108/release-final/prepared.json",
+      "docs/qa/native-share-rounds-20261108/web-release/prepared.json",
       "utf8",
     ),
   );

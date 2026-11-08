@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { createHash } from "node:crypto";
-const evidence = "docs/qa/native-share-rounds-20261108/web-release";
+const evidence = "docs/qa/native-share-rounds-20261108/login-recovery-release";
 const staged = JSON.parse(await fs.readFile(evidence + "/staged.json", "utf8"));
 const prepared = JSON.parse(
   await fs.readFile(evidence + "/prepared.json", "utf8"),
@@ -14,8 +14,8 @@ assert(/^[a-f0-9]{40}$/.test(staged.commit), "Invalid staged commit");
 assert.equal(prepared.commit, staged.commit, "Prepared/staged commit mismatch");
 assert.equal(prepared.project, "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST");
 assert.equal(prepared.team, "team_tf6xweKKyVCj9bTppUKttJ4l");
-assert.equal(prepared.baseline, "477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1");
-assert.equal(prepared.baselineId, "dpl_6R3u15HzAWESyyuSpVrDMfFavsbK");
+assert.equal(prepared.baseline, "aef423eb043b208dbaeadd21b3caa2806cebe936");
+assert.equal(prepared.baselineId, "dpl_BjhdVwfK43tLc4s52KEXnkvf1qt9");
 const target = live ? "https://docked.com.au" : staged.url;
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";
@@ -60,6 +60,7 @@ assert.deepEqual(deployment.crons, baseline.crons);
 const cases = [
   ["/api/beta-release", 200],
   ["/app/login", 200],
+  ["/app/invitation-setup", 200],
   ["/privacy", 200],
   ["/api/store/google/commercial", 403],
   ["/api/public-gameplay?sport=nfl", 403],
@@ -131,6 +132,10 @@ await Promise.all(
         assert(result.body.includes('"publicRegistration":false'));
       }
       if (route === "/app/login") assert(result.body.includes("Welcome back"));
+      if (route === "/app/invitation-setup") {
+        assert(result.body.includes("Log in to an existing account"));
+        assert(result.body.includes('href="/app/login"'));
+      }
       if (route === "/privacy") {
         assert(result.body.includes(runtime.DOCKED_PUBLIC_PRIVACY_VERSION));
         assert(result.body.includes("per-session identifier"));
