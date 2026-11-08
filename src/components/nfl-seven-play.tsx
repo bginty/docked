@@ -4,7 +4,11 @@ import { NavigationShortcut } from "./navigation-shortcut";
 import { SevenField } from "./seven-field";
 import { TeamNameSetup } from "./team-name-setup";
 import { useSportDraftGuard } from "./sport-context";
-import { competitionName, competitionLabel } from "@/core/competition-display";
+import {
+  competitionName,
+  competitionLabel,
+  hasFutureCompetition,
+} from "@/core/competition-display";
 import { slotPool, filterSlotPool } from "@/core/lineup-picker";
 import { CollectibleFace } from "./collectible-face";
 import { rarityFrame, rarityStyle } from "@/core/rarity-theme";
@@ -572,6 +576,17 @@ export function NflSevenPlay({
         now={now}
         disabled={busy}
       />
+      {!hasFutureCompetition(rounds, now) && (
+        <p className="play-round-availability" role="status">
+          No upcoming NFL competition has been published. Practice and existing
+          results remain available. For player scores across all available
+          rounds,{" "}
+          <Link href="/fantasy/scoring/how-it-works?sport=nfl">
+            view scoring history
+          </Link>
+          .
+        </p>
+      )}
       {closed && !entry && (
         <p role="status">
           Entry is closed for this round. No submitted lineup is recorded. A

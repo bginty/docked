@@ -7,6 +7,7 @@ import {
   competitionRoundOption,
   competitionLabel,
   seasonLabel,
+  hasFutureCompetition,
 } from "../../src/core/competition-display";
 const now = Date.parse("2026-11-08T00:00:00Z");
 const round = {
@@ -19,6 +20,31 @@ const round = {
   scored_at: null,
   rules: { mode: "SALARY_CAP", lineup_version: "saved-v1" },
 };
+test("practice does not conceal missing published future competitions", () => {
+  const closed = { ...round, locks_at: "2026-11-01T00:00:00Z" };
+  const practice = { ...round, season: "2026 Practice" };
+  assert.equal(hasFutureCompetition([closed, practice], now), false);
+  assert.equal(hasFutureCompetition([closed, practice, round], now), true);
+  assert.equal(
+    hasFutureCompetition([{ ...round, opens_at: "2026-11-08T12:00:00Z" }], now),
+    true,
+  );
+  assert.equal(
+    hasFutureCompetition([{ ...round, rules: { disabled: true } }], now),
+    false,
+  );
+  assert.equal(
+    hasFutureCompetition([{ ...round, locks_at: "unknown" }], now),
+    false,
+  );
+  assert.equal(
+    hasFutureCompetition(
+      [{ ...round, scored_at: "2026-11-07T00:00:00Z" }],
+      now,
+    ),
+    false,
+  );
+});
 test("round labels are presentation-only and preserve basketball weekly terminology", () => {
   for (const sport of ["nfl", "afl", "nrl"])
     assert.equal(competitionRoundWord(sport), "Round");

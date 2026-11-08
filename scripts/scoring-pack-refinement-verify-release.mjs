@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { createHash } from "node:crypto";
-const evidence = "docs/qa/scoring-pack-refinement-20261108/release-final";
+const evidence = "docs/qa/native-share-rounds-20261108/web-release";
 const staged = JSON.parse(await fs.readFile(evidence + "/staged.json", "utf8"));
 const prepared = JSON.parse(
   await fs.readFile(evidence + "/prepared.json", "utf8"),
@@ -14,8 +14,8 @@ assert(/^[a-f0-9]{40}$/.test(staged.commit), "Invalid staged commit");
 assert.equal(prepared.commit, staged.commit, "Prepared/staged commit mismatch");
 assert.equal(prepared.project, "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST");
 assert.equal(prepared.team, "team_tf6xweKKyVCj9bTppUKttJ4l");
-assert.equal(prepared.baseline, "8b73ef728156b9139ee48605d57d068b5c19efa6");
-assert.equal(prepared.baselineId, "dpl_wGaDeimzDBobhc7KfWBs3UGxmNrF");
+assert.equal(prepared.baseline, "477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1");
+assert.equal(prepared.baselineId, "dpl_6R3u15HzAWESyyuSpVrDMfFavsbK");
 const target = live ? "https://docked.com.au" : staged.url;
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";

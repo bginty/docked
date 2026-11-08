@@ -56,9 +56,10 @@ export default function PullImagePreview({
   const [busy, setBusy] = useState(false);
   const operation = useRef(false);
   const autoShareAttempted = useRef(false);
-  const native =
-    Capacitor.isNativePlatform() &&
-    Capacitor.isPluginAvailable("DockedPullImage");
+  const nativePlatform = Capacitor.isNativePlatform();
+  const nativeImage =
+    nativePlatform && Capacitor.isPluginAvailable("DockedPullImage");
+  const native = nativeImage && Capacitor.isPluginAvailable("Share");
 
   useEffect(() => {
     let active = true;
@@ -106,7 +107,10 @@ export default function PullImagePreview({
       setBusy(true);
       setMessage("");
       try {
-        if (native) {
+        if (
+          (action === "save" && nativeImage) ||
+          (action === "share" && native)
+        ) {
           const payload = {
             data: image.source.slice("data:image/png;base64,".length),
             filename: image.file.name,
@@ -148,7 +152,7 @@ export default function PullImagePreview({
         setBusy(false);
       }
     },
-    [image, native, download],
+    [image, native, nativeImage, download],
   );
 
   useEffect(() => {
@@ -224,7 +228,11 @@ export default function PullImagePreview({
             </button>
           </div>
           {image && !native && !canShareFile(image.file) && (
-            <p>Save the image to share it in your preferred app.</p>
+            <p>
+              {nativePlatform
+                ? "Image sharing requires a newer Docked app build. You can save this image for now."
+                : "Save the image to share it in your preferred app."}
+            </p>
           )}
           <p role="status">{message}</p>
         </div>

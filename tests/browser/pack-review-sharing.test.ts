@@ -265,6 +265,131 @@ test("unsupported sharing offers the exact-card download without a selection ste
   );
 });
 
+test("v30 native bridge reports the missing image capability instead of pretending file sharing works", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    Object.assign(window, {
+      androidBridge: {},
+      Capacitor: {
+        PluginHeaders: [
+          { name: "Share", methods: [{ name: "share", rtype: "promise" }] },
+        ],
+      },
+    });
+    Object.defineProperty(navigator, "canShare", {
+      value: () => false,
+      configurable: true,
+    });
+  });
+  await summary(page);
+  await page
+    .getByRole("button", {
+      name: "Share " + receipt.cards[4].name,
+      exact: true,
+    })
+    .click();
+  const preview = page.getByRole("dialog", { name: "Share your pull" });
+  await expect(
+    preview.getByText(
+      "Image sharing requires a newer Docked app build. You can save this image for now.",
+    ),
+  ).toBeVisible();
+  await expect(
+    preview.getByRole("button", { name: "Share Image" }),
+  ).toHaveCount(0);
+  await expect(
+    preview.getByRole("button", { name: "Save Image" }),
+  ).toBeEnabled();
+});
+
+test("installed native image bridge prepares only the chosen PNG and opens the Android share sheet", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const calls: {
+      plugin: string;
+      method: string;
+      keys: string[];
+      png?: boolean;
+      files?: string[];
+    }[] = [];
+    Object.assign(window, {
+      androidBridge: {},
+      nativeShareCalls: calls,
+      Capacitor: {
+        PluginHeaders: [
+          {
+            name: "DockedPullImage",
+            methods: [
+              { name: "prepareShare", rtype: "promise" },
+              { name: "save", rtype: "promise" },
+            ],
+          },
+          { name: "Share", methods: [{ name: "share", rtype: "promise" }] },
+        ],
+        nativePromise: async (
+          plugin: string,
+          method: string,
+          options: { data?: string; files?: string[] },
+        ) => {
+          calls.push({
+            plugin,
+            method,
+            keys: Object.keys(options),
+            png: options.data?.startsWith("iVBORw0KGgo"),
+            files: options.files,
+          });
+          if (method === "prepareShare")
+            return {
+              uri: "file:///data/user/0/docked.fantasy/cache/docked-pulls/isolated.png",
+            };
+          if (method === "share") throw new Error("Share canceled");
+          return { saved: false };
+        },
+      },
+    });
+    Object.defineProperty(navigator, "canShare", {
+      value: () => false,
+      configurable: true,
+    });
+  });
+  await summary(page);
+  await page
+    .getByRole("button", {
+      name: "Share " + receipt.cards[4].name,
+      exact: true,
+    })
+    .click();
+  const preview = page.getByRole("dialog", { name: "Share your pull" });
+  await expect(preview.getByRole("status")).toHaveText("Share cancelled.");
+  await expect(
+    preview.getByRole("button", { name: "Share Image" }),
+  ).toBeEnabled();
+  const calls = await page.evaluate(
+    () =>
+      (window as unknown as { nativeShareCalls: unknown[] }).nativeShareCalls,
+  );
+  expect(calls).toEqual([
+    {
+      plugin: "DockedPullImage",
+      method: "prepareShare",
+      keys: ["data", "filename"],
+      png: true,
+    },
+    {
+      plugin: "Share",
+      method: "share",
+      keys: ["files", "dialogTitle"],
+      files: [
+        "file:///data/user/0/docked.fantasy/cache/docked-pulls/isolated.png",
+      ],
+    },
+  ]);
+  await preview.getByRole("button", { name: "Close panel" }).click();
+  await expect(page.locator(".pack-review-card")).toHaveCount(9);
+});
+
 for (const width of [320, 390, 768, 1366]) {
   test(`nine-card review layout at ${width}`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });

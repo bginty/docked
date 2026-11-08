@@ -40,6 +40,16 @@ export function competitionRoundStatus(c: RoundDisplay, now: number) {
   if (opens > now) return "Upcoming";
   return Number.isFinite(opens) ? "Entries open" : "Open for planning";
 }
+/** Only published, selectable competitions supplied by the server are considered. */
+export function hasFutureCompetition(rounds: RoundDisplay[], now: number) {
+  return rounds.some(
+    (round) =>
+      competitionContextBadge(round) !== "Practice" &&
+      !round.scored_at &&
+      round.rules?.disabled !== true &&
+      Date.parse(round.locks_at) > now,
+  );
+}
 export function competitionRoundLabel(
   c: Pick<RoundDisplay, "round" | "sport">,
 ) {

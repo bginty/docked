@@ -11,11 +11,11 @@ import { createHash } from "node:crypto";
 import { assertHostedBeta } from "../src/core/hosted-beta.mjs";
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
   team = "team_tf6xweKKyVCj9bTppUKttJ4l";
-const baseline = "8b73ef728156b9139ee48605d57d068b5c19efa6",
-  baselineId = "dpl_wGaDeimzDBobhc7KfWBs3UGxmNrF";
+const baseline = "477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1",
+  baselineId = "dpl_6R3u15HzAWESyyuSpVrDMfFavsbK";
 const main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
 const approved =
-  "C:/Users/61412/.codex/worktrees/scoring-pack-refinement/Docked.com.au/private-data/scoring-pack-refinement-release/8b73ef728156b9139ee48605d57d068b5c19efa6";
+  "C:/Users/61412/.codex/worktrees/scoring-pack-refinement/Docked.com.au/private-data/scoring-pack-refinement-release/477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1";
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";
 const git = (...args) =>
@@ -46,7 +46,7 @@ const privateDir = path.join(
     sha,
   ),
   source = path.join(privateDir, "source");
-const evidence = "docs/qa/scoring-pack-refinement-20261108/release-final";
+const evidence = "docs/qa/native-share-rounds-20261108/web-release";
 await fs.mkdir(privateDir, { recursive: true });
 await fs.mkdir(evidence, { recursive: true });
 async function run(args, env = {}) {
@@ -287,7 +287,7 @@ if (mode === "prepare") {
   );
   const previous = JSON.parse(
     await fs.readFile(
-      "docs/qa/scoring-pack-refinement-20261108/release/prepared.json",
+      "docs/qa/scoring-pack-refinement-20261108/release-final/prepared.json",
       "utf8",
     ),
   );
