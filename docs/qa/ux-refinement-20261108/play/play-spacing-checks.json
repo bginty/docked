@@ -1,0 +1,43 @@
+{
+  "phase": "after",
+  "results": [
+    {
+      "width": 320,
+      "passed": true,
+      "geometry": {
+        "gap": 10,
+        "axis": "vertical",
+        "overflow": false
+      }
+    },
+    {
+      "width": 360,
+      "passed": true,
+      "geometry": {
+        "gap": 10,
+        "axis": "vertical",
+        "overflow": false
+      }
+    },
+    {
+      "width": 412,
+      "passed": true,
+      "geometry": {
+        "gap": 10,
+        "axis": "vertical",
+        "overflow": false
+      }
+    },
+    {
+      "width": 1366,
+      "passed": true,
+      "geometry": {
+        "gap": 6,
+        "axis": "horizontal",
+        "overflow": false
+      }
+    }
+  ],
+  "synthetic": true,
+  "customerMutations": 0
+}

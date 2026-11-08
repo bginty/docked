@@ -32,6 +32,7 @@ export function competitionContextBadge(
 /** A passed deadline is not evidence of final statistics or final results. */
 export function competitionRoundStatus(c: RoundDisplay, now: number) {
   if (c.scored_at) return "Final";
+  if (c.rules?.disabled === true) return "Entries unavailable";
   const locks = Date.parse(c.locks_at);
   if (!Number.isFinite(locks)) return "Schedule pending";
   if (locks <= now) return "Entries closed";

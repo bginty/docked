@@ -1,4 +1,5 @@
-.competition-weeks {
+.competition-weeks,
+.sport-sandbox .competition-weeks {
   display: grid;
   grid-template-columns: 44px minmax(0, 1fr) 44px;
   gap: 6px;
@@ -70,11 +71,22 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-block: 8px;
+  margin: 0;
+}
+.seven-play > .play-game-day {
+  margin: 0;
+}
+.seven-play > .play-game-day > .game-day-summary {
+  margin: 0;
 }
 .seven-play .play-round-links .navigation-shortcut {
   flex: 1 1 120px;
   min-width: 0;
+}
+@media (min-width: 900px) {
+  .seven-play .play-round-links .navigation-shortcut {
+    flex-basis: 160px;
+  }
 }
 .seven-play .round-timing {
   margin-block: 8px;

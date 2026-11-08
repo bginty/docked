@@ -31,6 +31,21 @@ test("round labels are presentation-only and preserve basketball weekly terminol
 test("deadline and final states do not infer finality from player stats or past rounds", () => {
   assert.equal(competitionRoundStatus(round, now), "Entries open");
   assert.equal(
+    competitionRoundStatus({ ...round, rules: { disabled: true } }, now),
+    "Entries unavailable",
+  );
+  assert.equal(
+    competitionRoundStatus(
+      {
+        ...round,
+        rules: { disabled: true },
+        scored_at: "2026-11-07T00:00:00Z",
+      },
+      now,
+    ),
+    "Final",
+  );
+  assert.equal(
     competitionRoundStatus({ ...round, opens_at: "2026-11-09T00:00:00Z" }, now),
     "Upcoming",
   );

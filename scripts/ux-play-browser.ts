@@ -8,6 +8,7 @@ import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 async function main() {
   const before = process.argv.includes("--before");
   const prizesOnly = process.argv.includes("--prizes-only");
+  const playOnly = process.argv.includes("--play-only");
   const phase = before ? "before" : "after";
   const out = "docs/qa/ux-refinement-20261108/play";
   mkdirSync(out, { recursive: true });
@@ -16,7 +17,7 @@ async function main() {
       "tests/fixtures/play-standings-visual.tsx",
       "tests/fixtures/ux-round-selector.tsx",
       "tests/fixtures/member-surfaces.tsx",
-    ].map(bundleCommunityFixture),
+    ].map((entry) => bundleCommunityFixture(entry)),
   );
   const css = [
     ...readFileSync("src/app/layout.tsx", "utf8").matchAll(
@@ -92,6 +93,32 @@ async function main() {
           path: `${out}/${phase}-play-${width}.png`,
           fullPage: true,
         });
+        if (playOnly) {
+          const geometry = await page.evaluate(() => {
+            const card = document
+              .querySelector(".play-game-day .game-day-summary")!
+              .getBoundingClientRect();
+            const links = document
+              .querySelector(".play-round-links")!
+              .getBoundingClientRect();
+            return {
+              gap:
+                links.left >= card.right
+                  ? links.left - card.right
+                  : links.top - card.bottom,
+              axis: links.left >= card.right ? "horizontal" : "vertical",
+              overflow: document.documentElement.scrollWidth > innerWidth + 1,
+            };
+          });
+          assert(!geometry.overflow);
+          assert(
+            geometry.gap >= 0 && geometry.gap <= 16,
+            JSON.stringify(geometry),
+          );
+          results.push({ width, passed: true, geometry });
+          await page.close();
+          continue;
+        }
         await page.goto(origin + "/selector");
         await expect(page.locator(".competition-weeks")).toBeVisible();
         if (before)
@@ -191,7 +218,7 @@ async function main() {
     server.close();
   }
   writeFileSync(
-    `${out}/${prizesOnly ? "prizes" : phase}-checks.json`,
+    `${out}/${prizesOnly ? "prizes" : playOnly ? "play-spacing" : phase}-checks.json`,
     JSON.stringify(
       { phase, results, synthetic: true, customerMutations: 0 },
       null,
