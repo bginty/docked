@@ -7,14 +7,16 @@ import { bundleCommunityFixture } from "../tests/fixtures/bundle-community";
 import { multiSportDatabase } from "../tests/fixtures/multi-sport-db";
 import { sportConfigurations } from "../src/core/sport-configuration";
 import { profile } from "../tests/fixtures/global-sport-data";
+import { previewPackReceipt } from "../src/components/pack-opening-preview";
 
 async function main() {
   assert(!process.env.AUSTRALIAN_SALARY_TEST_DB, "Embedded fixtures only");
   const scripts = await Promise.all(
     [
       "tests/fixtures/play-standings-visual.tsx",
-      "tests/fixtures/australian-salary-ui.tsx",
+      "tests/fixtures/device-australian-play.tsx",
       "tests/fixtures/social-refinement.tsx",
+      "tests/fixtures/pack-opening.tsx",
     ].map((entry) => bundleCommunityFixture(entry)),
   );
   const css = [
@@ -110,6 +112,18 @@ async function main() {
         });
       if (u.pathname === "/local-identity")
         return json({ member: "visual-member" });
+      if (u.pathname === "/receipt") {
+        const count =
+          new URL(req.headers.referer ?? "http://local").searchParams.get(
+            "count",
+          ) === "3"
+            ? 3
+            : 9;
+        const receipt = previewPackReceipt("afl");
+        receipt.id = `isolated-device-issued-${count}`;
+        receipt.cards = receipt.cards.slice(0, count);
+        return json(receipt);
+      }
       if (
         u.pathname === "/state" ||
         u.pathname === "/api/admin/sports-sandbox"
@@ -147,8 +161,14 @@ async function main() {
                 nextCursor: null,
               },
         );
-      if (u.pathname === "/api/sports-beta")
-        return json({ allowed: ["afl", "nrl"] });
+      if (u.pathname === "/api/sports-beta") {
+        const sport = u.searchParams.get("sport");
+        return json(
+          sport === "afl" || sport === "nrl"
+            ? { state: await states.get(sport), allowed: ["afl", "nrl"] }
+            : { allowed: ["afl", "nrl"] },
+        );
+      }
       if (u.pathname === "/api/test-wallet")
         return json({
           state: {
@@ -163,7 +183,9 @@ async function main() {
         res.setHeader("Content-Type", "text/css; charset=utf-8");
         return res.end(css);
       }
-      const script = ["/nfl.js", "/au.js", "/social.js"].indexOf(u.pathname);
+      const script = ["/nfl.js", "/au.js", "/social.js", "/pack.js"].indexOf(
+        u.pathname,
+      );
       if (script >= 0) {
         res.setHeader("Content-Type", "text/javascript; charset=utf-8");
         return res.end(scripts[script]);
@@ -189,14 +211,19 @@ async function main() {
           return res.end();
         }
       }
-      const entry = u.pathname.startsWith("/au/")
-        ? "/au.js"
-        : u.pathname.includes("social")
-          ? "/social.js"
-          : "/nfl.js";
+      const entry =
+        u.pathname === "/pack"
+          ? "/pack.js"
+          : u.pathname.startsWith("/au/") ||
+              (u.pathname === "/fantasy/play" &&
+                ["afl", "nrl"].includes(u.searchParams.get("sport") ?? ""))
+            ? "/au.js"
+            : u.pathname.includes("social")
+              ? "/social.js"
+              : "/nfl.js";
       res.setHeader("Content-Type", "text/html; charset=utf-8");
       res.end(
-        `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/fixture.css"><title>LOCAL DESIGN REVIEW</title></head><body class="fantasy-mode"><aside style="position:relative;z-index:99999;background:#fff0a8;color:#05162a;padding:8px;font:13px system-ui"><strong>LOCAL DESIGN REVIEW · Synthetic data</strong><div>No purchases, account or server changes.</div><nav style="display:flex;flex-wrap:wrap;gap:16px;padding-top:6px"><a href="/fantasy/play?scenario=entered">NFL</a><a href="/au/play?sport=afl&mode=SALARY_CAP">AFL</a><a href="/au/play?sport=nrl&mode=SALARY_CAP">NRL</a><a href="/fantasy/social">Social</a></nav></aside><div id="fixture-root"></div><script src="${entry}"></script></body></html>`,
+        `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="/fixture.css"><title>LOCAL DESIGN REVIEW</title></head><body class="fantasy-mode"><aside style="position:relative;z-index:99999;background:#fff0a8;color:#05162a;padding:8px;font:13px system-ui"><strong>LOCAL DESIGN REVIEW · Synthetic data</strong><div>No purchases, account or server changes.</div><nav style="display:flex;flex-wrap:wrap;gap:16px;padding-top:6px"><a href="/fantasy/play?sport=nfl&scenario=entered">NFL</a><a href="/fantasy/play?sport=afl&mode=SALARY_CAP">AFL</a><a href="/fantasy/play?sport=nrl&mode=SALARY_CAP">NRL</a><a href="/fantasy/social">Social</a><a href="/pack?cinema=v3&count=3">3-card replay</a><a href="/pack?cinema=v3&count=9">9-card replay</a></nav></aside><div id="fixture-root"></div><script>if(location.pathname==="/fantasy/play"&&!new URLSearchParams(location.search).has("sport")){let sport="nfl";try{const saved=localStorage.getItem("docked:active-sport");if(["nfl","afl","nrl"].includes(saved))sport=saved;}catch{}const url=new URL(location.href);url.searchParams.set("sport",sport);location.replace(url.href);}window.fixtureNavigate=url=>location.assign(url);window.addEventListener("docked:sport-changed",()=>location.reload());</script><script src="${entry}"></script></body></html>`,
       );
     } catch (error) {
       res.statusCode = 500;
@@ -205,7 +232,7 @@ async function main() {
   });
   server.listen(4191, "127.0.0.1", () =>
     console.log(
-      "LOCAL DESIGN REVIEW http://127.0.0.1:4191/fantasy/play?scenario=entered",
+      "LOCAL DESIGN REVIEW http://127.0.0.1:4191/fantasy/play?sport=nfl&scenario=entered",
     ),
   );
   // Warm one isolated snapshot at a time; no persistent database or external credentials.
