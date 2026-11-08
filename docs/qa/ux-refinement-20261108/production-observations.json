@@ -1,0 +1,25 @@
+{
+  "scope": "Read-only Production audit on 2026-11-08; no purchases, entries, configuration changes or deployment",
+  "runtime": {
+    "source": "Vercel runtime error clusters; counts are aggregated by the service, not a measured customer error rate",
+    "existingGoogleTestAttentionItems": 7,
+    "googleTestAlertsChanged": false,
+    "observedErrors": ["fantasy_screen_unavailable: service/play", "fantasy_screen_unavailable: service/profile", "fantasy_screen_unavailable: authentication/play"]
+  },
+  "database": {
+    "source": "pg_stat_statements cumulative aggregate, not isolated per-route benchmark",
+    "productionReadStateSamples": [
+      { "calls": 95, "meanMs": 2125.64, "maxMs": 12472.45 },
+      { "calls": 218, "meanMs": 884.26, "maxMs": 36006.46 }
+    ],
+    "finding": "Legacy whole-state JSON projections and shared advisory transaction lock remain a scaling/tail-latency bottleneck. This candidate preserves their correctness and permissions."
+  },
+  "purchaseTimeouts": {
+    "alreadyAppliedFix": "20261107023819_cache_transaction_guard_documents.sql",
+    "reapplied": false,
+    "currentMutationTest": "Isolated browser recovery regression only; no new customer purchase",
+    "preserved": ["15-second bounded request", "persisted idempotency request", "pending unknown outcome", "same-request recovery", "server-side locks and transaction guards"]
+  },
+  "androidInitialAudit": { "adbDevices": 0, "note": "Samsung connected later; final physical Chrome evidence is in final-results.json and android/" },
+  "browserLimitation": "Production Play was inspected in a genuine signed-in Chrome session and network metadata captured. Subsequent CUA tab reads timed out; later route acceptance uses isolated actual-component browser fixtures. No hosted candidate acceptance or field p75 claim."
+}

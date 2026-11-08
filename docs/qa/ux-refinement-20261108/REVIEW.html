@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docked UX candidate — owner review</title>
+<style>
+  :root { color-scheme:dark; font:16px/1.55 system-ui,sans-serif; background:#090f1d; color:#edf6ff }
+  body { max-width:1100px; margin:auto; padding:24px }
+  h1 { line-height:1.15; font-size:clamp(26px,4vw,42px) }
+  a { color:#80cdff }
+  .note { padding:16px; border:1px solid #35506b; border-radius:14px; background:#101e32 }
+  .pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; align-items:start }
+  figure { margin:0; min-width:0; padding:12px; border:1px solid #2d425b; border-radius:14px; background:#101a2b }
+  figcaption { font-weight:700; margin-bottom:10px }
+  img { display:block; width:100%; max-width:412px; height:auto; margin:auto; border-radius:9px }
+  table { width:100%; border-collapse:collapse; margin-block:24px }
+  th,td { padding:12px; text-align:left; border-bottom:1px solid #2d425b }
+  .screens { display:flex; flex-wrap:wrap; gap:12px; margin:16px 0 }
+  @media(max-width:600px) { body{padding:14px} .pair{gap:8px} figure{padding:6px} th,td{padding:8px;font-size:14px} }
+</style>
+<h1>Docked UX refinement</h1>
+<p class="note"><strong>Candidate for owner review — not deployed.</strong> Existing artwork, reveal effects, audio and commercial controls are preserved. Screens below use isolated synthetic data.</p>
+<p><a href="RELEASE_REVIEW.txt">Read the complete release report</a> · <a href="round-audit.txt">Round 8 investigation</a></p>
+<table>
+  <thead><tr><th>Measured scenario</th><th>Before</th><th>Candidate</th></tr></thead>
+  <tbody>
+    <tr><td>Social card-picker DOM nodes</td><td>19,448</td><td>2,604</td></tr>
+    <tr><td>Idle composer height</td><td>241–259px</td><td>124px</td></tr>
+    <tr><td>Wallet reads for one resume burst</td><td>3</td><td>1</td></tr>
+    <tr><td>Marketplace 12-second read</td><td>Discarded by polling</td><td>Listing displayed</td></tr>
+  </tbody>
+</table>
+<p>These are controlled component measurements, not a claimed Production latency improvement. The remaining server-side Play bottleneck is documented in the report.</p>
+<h2>Play — same 412px viewport</h2>
+<div class="pair">
+  <figure><figcaption>Before</figcaption><a href="play/before-play-412.png"><img src="play/before-play-412.png" alt="Original NFL Play screen"></a></figure>
+  <figure><figcaption>Candidate</figcaption><a href="play/after-play-412.png"><img src="play/after-play-412.png" alt="Candidate NFL Play with compact round selector and secondary links"></a></figure>
+</div>
+<h2>Social — same 320px viewport</h2>
+<div class="pair">
+  <figure><figcaption>Before</figcaption><a href="social/before-320.png"><img src="social/before-320.png" alt="Original Social screen with tall composer and clipped Announcements tab"></a></figure>
+  <figure><figcaption>Candidate</figcaption><a href="social/after-320.png"><img src="social/after-320.png" alt="Candidate Social with compact composer and all three tabs readable"></a></figure>
+</div>
+<h2>Physical Samsung evidence</h2>
+<p>Chrome over USB to the isolated candidate. This is not installed Production WebView acceptance.</p>
+<div class="pair">
+  <figure><figcaption>Phone finding: cramped draft actions</figcaption><a href="android/before-dirty-composer.png"><img src="android/before-dirty-composer.png" alt="Samsung Social draft before the two-row action fix"></a></figure>
+  <figure><figcaption>Fixed and rechecked on Samsung</figcaption><a href="android/after-dirty-composer.png"><img src="android/after-dirty-composer.png" alt="Samsung Social draft with readable Attach cards, Add image, Post and Cancel buttons"></a></figure>
+</div>
+<div class="screens">
+  <a href="android/nfl-play.png">NFL Traditional</a>
+  <a href="android/afl-round-picker.png">Native round picker</a>
+  <a href="android/afl-historical.png">Historical AFL round</a>
+  <a href="android/nrl-play.png">NRL Traditional</a>
+  <a href="android/nrl-all-star.png">NRL All-Star</a>
+  <a href="android/social.png">Social</a>
+  <a href="android/pack-player-details.png">Player details</a>
+  <a href="android/pack-back-preserved.png">Android Back preserves revealed card</a>
+  <a href="android/pack-next-unrevealed.png">Next unrevealed card</a>
+  <a href="android/pack-summary.png">Saved three-card summary</a>
+</div>
+<p>The reusable pack fixture keeps a nine-card preview title when set to three cards. The displayed progress and original receipt correctly contain three. No customer pack or purchase is involved.</p>
+</html>

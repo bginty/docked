@@ -1,0 +1,56 @@
+TAP version 13
+# Subtest: resume burst becomes one read without caching the next refresh
+ok 1 - resume burst becomes one read without caching the next refresh
+  ---
+  duration_ms: 16.46
+  ...
+# Subtest: in-flight purchase invalidation rejects old balance and reads fresh once
+ok 2 - in-flight purchase invalidation rejects old balance and reads fresh once
+  ---
+  duration_ms: 6.9944
+  ...
+# Subtest: account switch/unmount cancels queued work and rejects previous identity
+ok 3 - account switch/unmount cancels queued work and rejects previous identity
+  ---
+  duration_ms: 4.6646
+  ...
+# Subtest: member statistics omit internal metadata while keeping closed rules and attribution accessible
+ok 4 - member statistics omit internal metadata while keeping closed rules and attribution accessible
+  ---
+  duration_ms: 129.0552
+  ...
+# Subtest: compact presentation keeps missing scores distinct from verified zero without audit paragraphs
+ok 5 - compact presentation keeps missing scores distinct from verified zero without audit paragraphs
+  ---
+  duration_ms: 24.1672
+  ...
+# Subtest: game-log terminology matches the selected sport without changing source week data
+not ok 6 - game-log terminology matches the selected sport without changing source week data
+  ---
+  duration_ms: 379.8428
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\ux-refinement\\Docked.com.au\\tests\\platform\\statistics-presentation.test.ts:70:1'
+  failureType: 'testCodeFailure'
+  error: 'false == true'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\ux-refinement\Docked.com.au\tests\platform\statistics-presentation.test.ts:87:12)
+    Test.runInAsyncScope (node:async_hooks:211:14)
+    Test.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    Test.postRun (node:internal/test_runner/test:1090:19)
+    Test.run (node:internal/test_runner/test:1018:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 5
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8649.2351

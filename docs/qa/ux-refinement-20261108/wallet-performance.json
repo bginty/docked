@@ -1,0 +1,17 @@
+{
+  "scope": "Isolated real React wallet hook, deterministic100ms mocked reads; request counts, not Production latency",
+  "results": [
+    {
+      "version": "baseline-1cabfc48",
+      "initialRequestsForTwoConsumers": 1,
+      "requestsForThreeResumeSignals": 3,
+      "postInvalidationFreshRead": "not changed"
+    },
+    {
+      "version": "candidate",
+      "initialRequestsForTwoConsumers": 1,
+      "requestsForThreeResumeSignals": 1,
+      "postInvalidationFreshRead": "passed"
+    }
+  ]
+}

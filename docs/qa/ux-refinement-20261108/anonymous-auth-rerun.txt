@@ -1,0 +1,20 @@
+TAP version 13
+# Subtest: community quarantine codec decodes pixels, bounds size and strips private metadata
+ok 1 - community quarantine codec decodes pixels, bounds size and strips private metadata
+  ---
+  duration_ms: 646.2743
+  ...
+# Subtest: community quarantine rejects malformed, non-raster, oversized-byte and oversized-pixel inputs
+ok 2 - community quarantine rejects malformed, non-raster, oversized-byte and oversized-pixel inputs
+  ---
+  duration_ms: 242.177
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4889.6152

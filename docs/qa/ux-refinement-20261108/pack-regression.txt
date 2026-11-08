@@ -1,0 +1,16 @@
+
+Running 7 tests using 1 worker
+
+(node:16040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:16040) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\browser\pack-navigation.test.ts:51:5 › player inspection returns to the same revealed card instead of closing the pack (22.8s)
+  ok 2 tests\browser\pack-navigation.test.ts:83:9 › nfl 9 cards: inspect, native cancel, browser Back, next and summary preserve one receipt (23.2s)
+  ok 3 tests\browser\pack-navigation.test.ts:83:9 › afl 9 cards: inspect, native cancel, browser Back, next and summary preserve one receipt (31.5s)
+  ok 4 tests\browser\pack-navigation.test.ts:83:9 › nrl 9 cards: inspect, native cancel, browser Back, next and summary preserve one receipt (27.3s)
+  ok 5 tests\browser\purchase-recovery.test.ts:9:7 › lost purchase response recovers once through dialog (16.0s)
+  ok 6 tests\browser\purchase-recovery.test.ts:9:7 › lost purchase response recovers once through refresh (30.5s)
+  ok 7 tests\browser\purchase-recovery.test.ts:9:7 › lost purchase response recovers once through timeout (30.3s)
+
+  7 passed (4.2m)

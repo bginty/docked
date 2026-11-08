@@ -1,0 +1,3 @@
+scripts/ux-play-browser.ts(19,11): error TS2345: Argument of type '(entryPoint?: string, sourceOverrides?: Record<string, string>) => Promise<string>' is not assignable to parameter of type '(value: string, index: number, array: string[]) => Promise<string>'.
+  Types of parameters 'sourceOverrides' and 'index' are incompatible.
+    Type 'number' is not assignable to type 'Record<string, string>'.

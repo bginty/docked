@@ -1,0 +1,179 @@
+Docked UX refinement — release review, 8 November 2026
+
+Status
+Candidate branch: codex/ux-refinement.
+Workspace: C:/Users/61412/.codex/worktrees/ux-refinement/Docked.com.au.
+Baseline/evidence: 1cabfc48; existing Production application: be8dea39.
+This candidate is NOT deployed. No Production migration, configuration mutation,
+purchase, entry, wallet adjustment or card issuance was performed by this task.
+Production deployment remains subject to the owner's approval.
+
+1. Competition audit and calendar safeguards
+NFL Round 8 is missing in the database, not filtered out by the selector. Genuine
+2026 competitions and sports_feed registrations stop at Round 7. History imports
+advance independently; the scheduled collector reconciles registered rounds but
+does not create them. Production has 980 non-provisional Round 8 player-game records
+across 14 games, and Round 9 data. Statistics availability does not authorise a
+new entry window. Both rounds have already started; neither was reopened.
+
+Rounds 6/7 have no finalised scoring record and unresolved mapping issues. They
+are labelled Entries closed, not Final. The separate Practice competition remains
+identified as Practice. Historical snapshots, entries and results remain intact.
+
+Added a calendar readiness command with complete-calendar/freshness checks,
+deterministic plan hash, future deadlines, exact mode streams, provider-permit
+coverage and roster mapping guards. It is read-only by default. Explicit draft
+preparation is transactional and idempotent, with entry and standings disabled,
+no publication and collection paused. No cron or automatic publication enabled.
+
+At audit time the next wholly future NFL round is Round 10, first kickoff
+2026-11-13T01:15Z. Existing isolated-free-beta provider configuration expires
+2026-11-10T00:00Z, before that round. Its scope/expiry and roster mapping quality
+must be reviewed before preparation/publication. Renewed permission must cover
+post-game ingestion/reconciliation, not only kickoff; the planner itself checks
+through the last kickoff. This is a configured permission
+fact, not an assertion about an external commercial licence. See round-audit.txt
+for exact competition IDs, evidence and operator commands. There is no newly
+playable real round in Production from this work.
+
+2. Customer-facing changes
+- Compact native round picker replaces the oversized modal. Visible labels wrap,
+  keyboard focus remains visible, and device-native selection is available.
+- NFL/AFL/NRL use Round; NBA's existing Week terminology is preserved without
+  changing its hidden status. Seasons and internal identifiers remain stored.
+- Open, upcoming, unavailable, closed and final labels use actual saved fields.
+  Paused rounds cannot claim entry is open. Unknown opening times use planning
+  language. Practice/Test context remains visible where relevant.
+- Play secondary links are compact. Fixed a legacy sport-navigation CSS rule
+  that stacked the Australian selectors, narrow prize-label wrapping and additive
+  NFL spacing. Unsaved-draft guards, explicit historical links and rules remain.
+- Social has a compact expandable composer, fitting feed tabs and a 24-card
+  attachment page. Drafts and selection survive minimising, errors and paging;
+  first selection and last deselection retain keyboard focus across sport filters.
+  Physical Samsung testing additionally found cramped dirty-form buttons. They
+  now form two readable mobile rows, with Post prominent; clean forms retain
+  their original action layout. Text-fit checks cover 320/360px and 125% text.
+- Wallet resume signals are coalesced without value caching. An invalidation
+  during a read requires a fresh authoritative read; obsolete responses cannot
+  update the balance. No mutation is automatically retried by this mechanism.
+- Marketplace polls join an existing read rather than making every slow response
+  obsolete. Mutation signals still invalidate prior reads, and a confirmed command
+  triggers fresh state. Account changes remount private view state immediately.
+- Notifications now exposes the existing Retry action on load failure. Unavailable
+  data cannot present default notification preferences for accidental saving.
+- Supported player game-log labels use the same Round terminology. Unsupported
+  detailed statistics views remain unavailable rather than inventing data.
+
+3. Measured comparison
+All candidate measurements below are isolated real-component fixtures, not field
+latency or a hosted candidate benchmark. Baseline source is 1cabfc48.
+
+Measure                              Before             After
+Social attachment cards mounted      180                24
+Social picker descendant DOM nodes   19,448             2,604 (-86.6%)
+Idle Social composer height          241–259px          124px
+Wallet GETs for three resume signals 3                  1 (-66.7%)
+Marketplace: same 12s API response    2 GETs / loading    1 GET / rendered listing
+
+Social single-run picker readiness (before/after): 320px 1430/812ms;
+360px 1421/813ms; 412px 1323/1303ms; desktop 1553/2177ms. Shared-host load makes
+these noisy; desktop regressed in that sample. No uniform latency speedup claimed.
+Bounded DOM work and request counts are the deterministic improvements.
+
+One genuine signed-in Production warm Play reload measured document headers at
+239ms but stream completion at 10,398ms. Wallet read 602ms, sports visibility
+241ms, standings 231ms. Production cumulative database statistics show remaining
+whole-state projection/lock tail latency. That backend bottleneck is NOT solved
+by this candidate, and shared financial/ownership locks were not weakened.
+
+The previous purchase-timeout trigger optimisation is already applied as
+20261107023819_cache_transaction_guard_documents.sql and was not reapplied.
+Persisted request identity, the 15-second deadline, unknown-outcome handling and
+same-request recovery remain. New browser regression simulates lost responses;
+no new real or TEST customer purchase was made on Production.
+
+4. Verification and scope
+Full platform run: 768 tests, 766 passed initially. Two failures were resolved:
+- Existing anonymous early-auth child exceeded its unchanged 20s deadline while
+  concurrent jobs saturated the host. The official test file passed 2/2 on its
+  quiet rerun; no auth guard or test deadline was weakened.
+- New game-log test incorrectly assumed NRL/NBA detailed tables exist. Corrected
+  the test to preserve their unavailable state. Wallet/statistics rerun passed 6/6.
+The complete suite was not rerun after these focused corrections; do not describe
+the initial run as a clean all-pass run. Final follow-up checks are listed below.
+
+Database: 24/24 scoped full-migration PGlite cases passed, covering NFL/AFL/NRL
+rules/locks, member read isolation, privacy and Social. Additional exact-migration
+calendar-draft and owner-label tests passed separately. These are embedded
+PostgreSQL tests, not a new native multi-connection concurrency demonstration.
+
+Rendered Play: NFL 320/360/412/1366px and 150% text; AFL/NRL real SportSandbox
+12 sport/mode/width cases at 320/412/1366px. Salary picker/summary agreement,
+future defaults, historical reload/deep links, disabled labels and discard guards
+passed. Rankings/Prizes all three sports and four widths passed with no overflow.
+Social: 320/360/412/1366px, 125% text, search, pagination, selection limit, focus,
+image sheet and draft/error recovery passed. See Social evidence for raw timing.
+Marketplace: slow reads, resume bursts, query changes, 503 retry, synthetic buy
+ordering and delayed prior-account responses passed in isolated components.
+Pack regression: 7/7 browser cases passed for player inspection, all three sports'
+nine-card continuation, and purchase recovery in-dialog/after refresh/after timeout.
+Notifications: 1/1 browser retry/error-state case passed at 320px.
+
+Full ESLint and TypeScript passed; follow-up source changes passed scoped lint.
+Production webpack builds passed, including the final Samsung-found Social fix
+(build-reviewed.txt, exit 0). No application code changed after that build.
+The local node_modules junction produces standalone tracing warnings for files
+outside this worktree. Do not deploy that local standalone folder; the normal
+clean deployment export/install/build remains a promotion prerequisite. No
+Production tracing configuration was widened to hide this local limitation.
+Production-dependency npm audit: zero reported vulnerabilities. Client asset scan
+found no known credential canary markers in 233 browser assets; canaries were not
+injected in this build, so this is not a standalone proof of secret non-disclosure.
+No new dependencies, schema migrations or Android binary changes are required.
+
+Physical Samsung SM-S921B acceptance passed in Chrome against the isolated
+candidate over USB. Verified NFL Traditional $4.4m; AFL Traditional $13.8m and
+historical selection; NRL Traditional $8.2m and All-Star uncapped; native round
+picker and Android Back; Social keyboard dismissal, draft preservation and the
+corrected two-row dirty composer. Three-card issued-result replay passed:
+reveal card 1 -> View Player -> Android Back -> same revealed card 1 -> Next Card
+-> unrevealed card 2 -> reveal -> View Player -> Back to Pack -> same card 2
+-> Reveal All -> original three-card summary. No new cards or credits issued.
+The reused preview fixture's title says nine-card preview even when its count
+parameter is 3; progress and returned receipt correctly contain three cards.
+This is recorded as a fixture-title limitation, not a customer receipt defect.
+The installed Capacitor app/WebView was not tested in this task. The USB forward
+and temporary UI dump were removed after acceptance; the phone can disconnect.
+
+5. Major-screen audit boundaries
+Fresh rendered candidate checks cover Play/lineups, Rankings, Prizes, Social,
+Marketplace, pack purchase recovery, reveals/player details and notification errors.
+My Cards already uses server paging, lazy detail/reveal modules, abortable reads,
+account-scoped cache and fresh ownership checks before actions; retained.
+Profile retains sport/member validation, accurate collection counts and retry.
+Login/registration/MFA and Settings were source-reviewed, with platform/auth
+regressions executed. A new complete signed-in hosted journey across every major
+screen was NOT performed. CUA timed out after the genuine Production Play audit.
+
+Remaining measured/source risks: legacy whole-state database reads and shared-lock
+tail latency; Profile resume events can abort/restart summary reads (impact not
+measured); login and generic settings fetches lack a client deadline (stalled
+network risk, not newly reproduced). Avoid changing auth/mutation semantics
+without a focused recovery design and evidence. Seven existing Google TEST
+reconciliation attention items remain unchanged and are separate operational work.
+
+6. Safety, promotion and rollback
+No artwork, approved reveal/audio, foil assets, prices, rarity odds/multipliers,
+supply, wallets, ownership, billing settings, registration permissions or prize
+activation changes. NBA remains hidden. Public trading/payment controls unchanged.
+
+After owner approval: verify Production still matches the expected baseline or
+merge any intervening unrelated changes; build the approved candidate; deploy to
+protected Preview and repeat signed-in route checks; promote the exact verified
+application; perform read-only Production smoke checks. No SQL migration step.
+Round preparation/publication is a separate operator action with the guards above.
+Rollback only the application to the previous verified release; do not restore an
+old customer-data snapshot over legitimate intervening transactions.
+
+Screenshots: play/before-* and after-*; social/before-* and after-*.
+Physical Android evidence and final commit list are recorded in final-results.json.

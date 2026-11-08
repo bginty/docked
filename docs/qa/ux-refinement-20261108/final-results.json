@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-08",
+  "status": "Owner-review candidate; not deployed or activated",
+  "branch": "codex/ux-refinement",
+  "sourceCheckpoint": "ae16802c",
+  "productionApplication": "be8dea392a8d5e0eb4349a3c46c54e080299d266",
+  "comparisonBaseline": "1cabfc48",
+  "applicationCommits": ["83adf509", "08c9374a", "06bd47bd", "1f8c6924", "ab3a103c", "ed802152", "16eef512", "e8ff8f33", "cda9d3e4", "69429b97"],
+  "previewHelperCommits": ["14166b29", "ae16802c"],
+  "tests": {
+    "platformFullRun": {"total": 768, "passed": 766, "failed": 2, "evidence": "platform.txt", "cleanFullRerun": false},
+    "platformFailureFollowups": [
+      {"case": "Anonymous upload early authentication subprocess timeout under concurrent host load", "officialFileRerunPassed": 2, "failed": 0, "deadlineUnchanged": true, "evidence": "anonymous-auth-rerun.txt"},
+      {"case": "New statistics test wrongly expected unsupported NRL/NBA detailed tables", "correction": "Preserve unavailable state", "walletAndStatisticsRerunPassed": 6, "failed": 0, "evidence": "wallet-statistics-final.txt"}
+    ],
+    "database": {"engine": "PGlite using full migration fixture", "passed": 24, "failed": 0, "evidence": "database.txt", "nativeMultiConnectionConcurrencyClaimed": false},
+    "additionalScopedChecks": ["NFL calendar planner and exact migration-backed draft registration", "Owner/market sport-specific labels", "Marketplace slow read, mutation invalidation and prior-account response isolation", "Wallet invalidation queue and two-consumer request benchmark", "Australian full Play 12 sport/mode/width combinations", "NFL Play and all sports Rankings/Prizes at 320/360/412/1366px", "Social attachment pagination, focus, drafts and 125% text", "Samsung dirty-composer fix at 320/360px, 100/125% text"],
+    "packBrowser": {"passed": 7, "failed": 0, "evidence": "pack-regression.txt"},
+    "notificationBrowser": {"passed": 1, "failed": 0, "evidence": "notification-browser.txt"},
+    "lint": "Full run passed; late changes also passed scoped checks",
+    "typecheck": "Passed, typecheck-final.txt",
+    "build": {"result": "Passed", "exitCode": 0, "evidence": "build-reviewed.txt", "limitation": "Local node_modules junction produced standalone tracing omissions. Use normal clean export/install/cloud build before promotion; do not deploy this local standalone directory."},
+    "productionDependencyAudit": {"reportedVulnerabilities": 0, "evidence": "dependency-audit.json"},
+    "clientScan": {"result": "No known canary marker found", "assets": 233, "evidence": "client-boundary.txt", "limitation": "Canaries were not injected, so not an independent secret non-disclosure proof"}
+  },
+  "physicalAndroid": {
+    "device": "Samsung SM-S921B",
+    "surface": "Physical Chrome connected to isolated real-component candidate over USB",
+    "installedProductionWebViewClaimed": false,
+    "checksPassed": [
+      "NFL Traditional 4.4m rendering",
+      "AFL Traditional 13.8m and historical rules selection",
+      "NRL Traditional 8.2m and uncapped All-Star",
+      "Native round picker options and Android Back dismissal",
+      "Social keyboard dismissal and minimised/reopened draft preservation",
+      "Dirty Social action-row readability after device-found repair",
+      "Issued three-card replay: reveal -> View Player -> Android Back -> exact revealed card",
+      "Next Card -> next unrevealed card -> reveal -> View Player -> Back to Pack -> exact card",
+      "Reveal All -> saved original three-card summary"
+    ],
+    "customerPurchases": 0,
+    "customerWrites": 0,
+    "fixtureLimitation": "Reused preview title remains nine-card preview for count=3; actual receipt and progress are correctly three cards",
+    "cleanup": "Removed USB port forwarding and temporary device UI dump",
+    "evidenceDirectory": "android/"
+  },
+  "performance": {
+    "scope": "Controlled component fixture comparisons; not Production latency guarantees",
+    "socialPickerNodes": {"before": 19448, "after": 2604},
+    "walletResumeBurstRequests": {"before": 3, "after": 1},
+    "marketplace12SecondRead": {"before": "Repeated poll makes completed read obsolete", "after": "One read completes and renders listing"},
+    "remainingProductionRisk": "Single signed-in warm Play reload took 10,398ms to finish streaming; legacy whole-state database projection/lock latency remains"
+  },
+  "rounds": {
+    "rootCause": "NFL competition registrations stop at Round 7 while separate history imports include Round 8/9. Existing scheduler does not create competitions.",
+    "round8PlayerGameRecords": 980,
+    "newRoundCreatedInProduction": false,
+    "nextFutureRoundAtAudit": 10,
+    "blockers": ["Configured beta statistics permission expires before Round 10 and needs coverage through ingestion/reconciliation", "Roster/player mapping quality review", "Explicit future entry/publication review"],
+    "evidence": "round-audit.txt"
+  },
+  "safeguards": {
+    "migrationsRequired": false,
+    "androidBinaryRequired": false,
+    "productionWrites": false,
+    "nbaVisibilityChanged": false,
+    "artworkAudioOrRevealChanged": false,
+    "financialOrOwnershipRulesChanged": false,
+    "existingGoogleTestAttentionItemsChanged": false,
+    "deploymentApprovalRequired": true
+  },
+  "remaining": ["Owner review before deployment", "Clean deployment build and protected hosted candidate smoke check before Production promotion", "Calendar/provider/mapping gates before any new real round", "Remaining legacy server-read latency and source-reviewed Profile/auth stalled-network risks", "Seven pre-existing Google TEST reconciliation attention items, unchanged"]
+}
