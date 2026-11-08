@@ -16,8 +16,9 @@ android {
         applicationId storeInternalBuild ? "docked.fantasy" : "au.com.docked.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode commercialCandidateBuild ? 30 : (memberTestBuild ? 28 : (storeCandidateBuild ? 29 : (billingQaBuild ? 26 : 23)))
-        versionName commercialCandidateBuild ? "1.29" : (memberTestBuild ? "1.27" : (storeCandidateBuild ? "1.28" : (billingQaBuild ? "1.25" : "1.22")))
+        // v31 includes DockedPullImage; v30 cannot share generated card images.
+        versionCode commercialCandidateBuild ? 31 : (memberTestBuild ? 28 : (storeCandidateBuild ? 29 : (billingQaBuild ? 26 : 23)))
+        versionName commercialCandidateBuild ? "1.30" : (memberTestBuild ? "1.27" : (storeCandidateBuild ? "1.28" : (billingQaBuild ? "1.25" : "1.22")))
         buildConfigField 'String', 'DOCKED_MEMBER_TEST_PRODUCTS', '""'
         buildConfigField 'String', 'DOCKED_COMMERCIAL_PRODUCTS', '""'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
