@@ -1,0 +1,52 @@
+{
+  "observedAt": "2026-11-08T07:03:00Z",
+  "completedAt": "2026-11-08T07:04:00Z",
+  "scope": "Existing owned-card image sharing on the physical Samsung; not payment or whole-app acceptance",
+  "device": "Samsung Galaxy S24 / SM-S921B",
+  "package": "docked.fantasy",
+  "versionCode": 31,
+  "versionName": "1.30",
+  "installer": "com.android.vending",
+  "webCommit": "f31c886b827711510ce82939488ed13b741f9dab",
+  "androidCommit": "3c1d73eacdf6426f263ace1c6eb2c54d2cfe94dc",
+  "signIn": "Owner completed normal existing-account login",
+  "card": {
+    "player": "Sam Walsh",
+    "sport": "afl",
+    "rarity": "Ultra Rare",
+    "source": "Existing My Cards collection; no pack opened or card issued"
+  },
+  "steps": [
+    "Opened the existing card detail from My Cards.",
+    "Tapped Share once.",
+    "Generated branded Ultra Rare AFL image and automatically opened the Android share sheet.",
+    "Observed one image and installed app targets including Messenger, WhatsApp and Quick Share.",
+    "Confirmed Android foreground activity com.android.intentresolver/.ChooserActivityLauncher.",
+    "Pressed Android Back without selecting a recipient or destination.",
+    "Observed return to My Cards with unchanged displayed credit balance and owned-card count."
+  ],
+  "nativeShareSheetOpened": true,
+  "singleShareTap": true,
+  "cardReselectionRequired": false,
+  "chooserImageCount": 1,
+  "destinationSelected": false,
+  "postedOrSent": false,
+  "purchases": 0,
+  "issuedCards": 0,
+  "displayedBalanceUnchanged": true,
+  "displayedOwnedCardCountUnchanged": true,
+  "databaseIntegritySnapshotTaken": false,
+  "cancellationReturn": "My Cards collection; nested card/share dialogs were closed",
+  "rawScreenshot": {
+    "privateLocalPath": "private-data/native-share-v31/device/ultra-rare-native-share-sheet.png",
+    "sha256": "3bb8a78c9e01ab75458680c084a3d100bd54007c190257f79c3f070afc8e8aff",
+    "committed": false,
+    "reason": "Android chooser includes private contact suggestions"
+  },
+  "limitations": [
+    "No recipient was selected, so third-party delivery is not claimed.",
+    "This physical check covered one existing Ultra Rare AFL card; Legendary was not separately checked in this session.",
+    "No payment, ownership mutation or competition publication was performed."
+  ],
+  "phoneReleasedToOwner": true
+}
