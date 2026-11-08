@@ -1,0 +1,119 @@
+PURCHASE TIMING AND SAFETY — 2026-11-08
+
+Established hosted bottleneck
+
+The existing recorded production purchase network trace at
+docs/qa/purchase-performance-20261107/live-purchase-network.json contains one
+test-credit purchase/open pair. Buy: 8,406 ms network / 8,177 ms server.
+Open: 9,481 ms network / 8,198 ms server. That is 17,887 ms in two sequential
+requests. The observations are sample count 1, not p50/p95. The pair issues
+the owned nine cards during the buy transaction, then opens that existing
+entitlement. The UI must not bypass either authoritative state transition.
+
+Read-only Production pg_stat_statements inspection during this task found:
+- credits_sandbox.state revision/document UPDATE: 83 calls, mean 8,400.4 ms,
+  maximum 16,561.7 ms.
+- current_player_status/current_player_jerseys joined catalogue read:
+  364 calls, mean 1,076.9 ms, maximum 3,244.5 ms.
+- current_player_jerseys array read: 198 calls, mean 736.6 ms,
+  maximum 1,503.7 ms.
+These counters are cumulative across previous releases; they have no per-call
+timestamps or percentiles. They identify the guarded aggregate UPDATE as the
+largest observed database cost. They do not identify an individual trigger's
+share of that UPDATE, and are not post-release speed measurements.
+
+No protected state UPDATE, lock, admission recheck, ownership guard, receipt
+verification, acknowledgement, immutable audit entry or refund logic is removed
+to improve these figures. A future guard/query redesign needs an independent
+database rehearsal and reviewed migration. This release adds precise attribution
+and removes avoidable client work outside the commit path.
+
+Diagnostic contract
+
+POST /api/test-wallet, /api/store/google/test and
+/api/store/google/commercial return Server-Timing, including on handled errors.
+Existing wallet total timing is retained. Headers are private/no-store. No new
+telemetry transport or logs of tokens, account IDs, product IDs or error payloads
+are added. The timing context is local to each request using AsyncLocalStorage.
+
+purchase_total: complete handled server request up to response construction
+purchase_auth: existing verified authentication
+purchase_admission: receipt access/policy checks (including post-provider recheck)
+purchase_verify: Google receipt/order verification, including provider I/O
+purchase_transaction: complete atomic ledger transaction including commit
+purchase_lock: beta advisory lock plus locked aggregate read
+purchase_rules: existing under-lock admission/catalogue checks
+purchase_issue: existing synchronous state reducer/issuance calculation
+purchase_persist: beta journal/history/state writes and receipt/outbox work
+purchase_view: post-commit read and member projection; commercial wallet read
+purchase_ack: post-commit Google consumption/acknowledgement and durable fallback
+
+Spans are nested and MUST NOT be added together. A stage absent from the request
+is omitted, rather than given a fabricated zero. Timing is not a transaction state
+API: the UI only advances to ready after the existing committed receipt response.
+The Google native checkout/authorisation occurs on the device and is not measured
+by a server receipt endpoint.
+
+Isolated measurements
+
+scripts/purchase-timing-local.mjs reuses the already installed PostgreSQL 17.10
+runtime, creates a fresh loopback-only disposable database with random ephemeral
+credentials, executes scripts/purchase-timing-postgres.ts and stops that database.
+It never reads hosted credentials or mutates Production. No paid service is used.
+
+The recorded JSON reports 20 measured samples after 2 warmups for each operation;
+percentiles use nearest-rank ordering. Baseline is the actual f07f76e0 repository
+implementation loaded from git into an ignored temporary module. Candidate uses
+the timed implementation. Both execute the actual CreditsSandboxStore, core card
+issuance, native advisory/row locking, immutable journals/history and deferred
+balance constraints against synthetic 24-player data. This fixture deliberately
+does NOT include hosted Auth, catalogue transport, Production-only aggregate
+guards or realistic Production record volume. It cannot predict hosted latency.
+
+The Google fixture uses the actual commercial verifier parsing/account/product
+checks with deterministic mocked OAuth and provider HTTP responses, followed by
+the real migrated commercial PostgreSQL ledger and card issuance. It exercises
+both 4,900 and 9,900 credit products. Provider latency, Play checkout, genuine
+notifications and acknowledgement are NOT measured by this fixture.
+
+The Windows host was running other test/build workloads during this run.
+Before/after changes must not be interpreted as a hosted performance improvement;
+the comparison checks that instrumentation does not change accounting outcomes.
+
+Executed native PostgreSQL 17.10 results (milliseconds, 20 samples per row):
+                                      p50       p95       maximum
+Baseline internal buy                671.6    1419.2       1925.7
+Candidate internal buy               580.1    1648.3       3299.8
+Baseline internal open               323.4     667.1        951.4
+Candidate internal open              582.0    1140.8       1237.1
+Baseline post-commit view              85.3     215.9        417.4
+Candidate post-commit view            104.1     178.1        216.4
+Candidate buy locked-state read       52.4     141.1        446.1
+Candidate buy state reducer          166.7     534.8        685.9
+Candidate buy persistence            197.6     476.2        557.2
+Commercial receipt atomic commit      58.2     136.6        140.4
+Commercial nine-card pack commit     112.0     204.0        893.9
+Commercial existing pack open         16.3      29.9        127.2
+Google response parser (MOCK HTTP)      2.2      22.0         25.8
+
+The open median and some tails were higher in the candidate run. This run does
+not establish a backend speed improvement. All accounting assertions passed.
+There are no pre-change production stage percentiles to compare; new headers
+enable an honest future hosted measurement under an authorised test window.
+
+Verification scope
+
+49 targeted platform tests passed: timing concurrency/privacy/error preservation,
+both admission checks, Google identity/product/environment verification, pending
+and failed receipts, all NFL/AFL/NRL Standard/Premium 1/3/9 pack lifecycles,
+refund before opening/after spending/after transfer, replay and preserved ownership.
+Scoped ESLint passed. Root owns whole-release typecheck/build/browser regression.
+Native benchmark adds exact nine-card counts and concurrent duplicate buy/open
+replays with byte-equivalent final state and balanced journals.
+It also passed eight concurrent commercial receipt retries, cross-account replay
+denial and duplicate refunds after opening, preserving nine issued cards while
+placing precisely the spent pack price on a recovery hold with zero spendable.
+
+No Android was attached for this task. No new genuine Google checkout occurred;
+Google products remained inactive. Genuine device/provider timing and hosted
+post-release p50/p95 require an authorised test window and enough samples.

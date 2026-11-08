@@ -1,0 +1,858 @@
+{
+  "createdAt": "2026-11-08T03:30:31.613Z",
+  "baselineCommit": "f07f76e0",
+  "engine": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
+  "samples": 20,
+  "warmup": 2,
+  "synthetic": true,
+  "productionMutated": false,
+  "realProviderTransactions": 0,
+  "scope": "Native loopback PostgreSQL only. Stage diagnostics are nested and cannot be added. Before/after isolated totals measure instrumentation impact, not a claimed hosted speedup.",
+  "before": {
+    "buy": {
+      "purchase_total": {
+        "samples": 20,
+        "p50Ms": 671.6032999999879,
+        "p95Ms": 1419.1622000000061,
+        "maxMs": 1925.7052000000112
+      }
+    },
+    "open": {
+      "purchase_total": {
+        "samples": 20,
+        "p50Ms": 323.4198000000033,
+        "p95Ms": 667.146900000007,
+        "maxMs": 951.3987999999954
+      }
+    },
+    "postCommitView": {
+      "purchase_view": {
+        "samples": 20,
+        "p50Ms": 85.19700000000012,
+        "p95Ms": 215.8015000000014,
+        "maxMs": 417.3533000000025
+      },
+      "purchase_total": {
+        "samples": 20,
+        "p50Ms": 85.25920000000042,
+        "p95Ms": 215.88870000001043,
+        "maxMs": 417.4158999999927
+      }
+    },
+    "raw": {
+      "buy": [
+        {
+          "purchase_total": 860.1110000000044
+        },
+        {
+          "purchase_total": 1365.3800000000047
+        },
+        {
+          "purchase_total": 803.0877000000037
+        },
+        {
+          "purchase_total": 519.0462000000116
+        },
+        {
+          "purchase_total": 756.7349000000104
+        },
+        {
+          "purchase_total": 1039.7654000000039
+        },
+        {
+          "purchase_total": 814.8904000000039
+        },
+        {
+          "purchase_total": 779.6236000000063
+        },
+        {
+          "purchase_total": 1925.7052000000112
+        },
+        {
+          "purchase_total": 917.6477000000014
+        },
+        {
+          "purchase_total": 1419.1622000000061
+        },
+        {
+          "purchase_total": 625.3254000000015
+        },
+        {
+          "purchase_total": 344.8423000000039
+        },
+        {
+          "purchase_total": 295.1180000000022
+        },
+        {
+          "purchase_total": 224.01780000000144
+        },
+        {
+          "purchase_total": 234.84380000000237
+        },
+        {
+          "purchase_total": 238.48480000000563
+        },
+        {
+          "purchase_total": 671.6032999999879
+        },
+        {
+          "purchase_total": 216.363400000002
+        },
+        {
+          "purchase_total": 596.2955000000075
+        }
+      ],
+      "open": [
+        {
+          "purchase_total": 667.146900000007
+        },
+        {
+          "purchase_total": 109.07459999999264
+        },
+        {
+          "purchase_total": 276.0662000000011
+        },
+        {
+          "purchase_total": 182.23519999999553
+        },
+        {
+          "purchase_total": 355.7612000000081
+        },
+        {
+          "purchase_total": 404.35409999999683
+        },
+        {
+          "purchase_total": 452.04439999999886
+        },
+        {
+          "purchase_total": 528.5328000000009
+        },
+        {
+          "purchase_total": 661.1026000000129
+        },
+        {
+          "purchase_total": 951.3987999999954
+        },
+        {
+          "purchase_total": 598.8877000000066
+        },
+        {
+          "purchase_total": 332.92499999998836
+        },
+        {
+          "purchase_total": 157.12170000000333
+        },
+        {
+          "purchase_total": 234.89880000000994
+        },
+        {
+          "purchase_total": 169.95240000000922
+        },
+        {
+          "purchase_total": 180.95560000000114
+        },
+        {
+          "purchase_total": 230.70249999999942
+        },
+        {
+          "purchase_total": 196.47380000000703
+        },
+        {
+          "purchase_total": 323.4198000000033
+        },
+        {
+          "purchase_total": 498.53910000000906
+        }
+      ],
+      "view": [
+        {
+          "purchase_view": 85.46869999999763,
+          "purchase_total": 85.53500000000349
+        },
+        {
+          "purchase_view": 90.43910000000324,
+          "purchase_total": 90.50669999999809
+        },
+        {
+          "purchase_view": 138.21249999999418,
+          "purchase_total": 138.27040000000852
+        },
+        {
+          "purchase_view": 83.7719999999972,
+          "purchase_total": 83.92939999999362
+        },
+        {
+          "purchase_view": 142.17220000000088,
+          "purchase_total": 142.25759999999718
+        },
+        {
+          "purchase_view": 208.04640000000654,
+          "purchase_total": 208.12889999999607
+        },
+        {
+          "purchase_view": 116.9878999999928,
+          "purchase_total": 117.06489999999758
+        },
+        {
+          "purchase_view": 69.37859999999637,
+          "purchase_total": 69.81429999999818
+        },
+        {
+          "purchase_view": 215.8015000000014,
+          "purchase_total": 215.88870000001043
+        },
+        {
+          "purchase_view": 417.3533000000025,
+          "purchase_total": 417.4158999999927
+        },
+        {
+          "purchase_view": 130.82850000000326,
+          "purchase_total": 130.88330000000133
+        },
+        {
+          "purchase_view": 183.40700000000652,
+          "purchase_total": 183.4756999999954
+        },
+        {
+          "purchase_view": 52.324500000002445,
+          "purchase_total": 52.37819999999192
+        },
+        {
+          "purchase_view": 44.58960000000661,
+          "purchase_total": 44.64320000000589
+        },
+        {
+          "purchase_view": 60.25320000000647,
+          "purchase_total": 60.307300000000396
+        },
+        {
+          "purchase_view": 36.33320000000822,
+          "purchase_total": 36.38499999999476
+        },
+        {
+          "purchase_view": 62.82069999999658,
+          "purchase_total": 62.85859999999229
+        },
+        {
+          "purchase_view": 85.19700000000012,
+          "purchase_total": 85.25920000000042
+        },
+        {
+          "purchase_view": 49.40109999998822,
+          "purchase_total": 49.44920000000275
+        },
+        {
+          "purchase_view": 46.025699999998324,
+          "purchase_total": 46.077699999994365
+        }
+      ]
+    },
+    "databaseScope": "Actual CreditsSandboxStore, core issuance, native PostgreSQL advisory/row locks, durable journal/history and deferred balance guards; synthetic 24-player pool. Hosted catalogue, Auth, network and Production-only guard migrations are not included."
+  },
+  "after": {
+    "buy": {
+      "purchase_lock": {
+        "samples": 20,
+        "p50Ms": 52.42219999998633,
+        "p95Ms": 141.14869999999064,
+        "maxMs": 446.1198999999906
+      },
+      "purchase_issue": {
+        "samples": 20,
+        "p50Ms": 166.658500000005,
+        "p95Ms": 534.8378000000084,
+        "maxMs": 685.8776000000071
+      },
+      "purchase_persist": {
+        "samples": 20,
+        "p50Ms": 197.55909999999858,
+        "p95Ms": 476.18610000000626,
+        "maxMs": 557.164300000004
+      },
+      "purchase_transaction": {
+        "samples": 20,
+        "p50Ms": 580.0005999999994,
+        "p95Ms": 1648.2877000000008,
+        "maxMs": 3299.7764000000025
+      },
+      "purchase_total": {
+        "samples": 20,
+        "p50Ms": 580.0578999999998,
+        "p95Ms": 1648.3454999999958,
+        "maxMs": 3299.8303000000014
+      }
+    },
+    "open": {
+      "purchase_lock": {
+        "samples": 20,
+        "p50Ms": 38.61260000000766,
+        "p95Ms": 116.82859999999346,
+        "maxMs": 167.01070000001346
+      },
+      "purchase_issue": {
+        "samples": 20,
+        "p50Ms": 129.79090000000724,
+        "p95Ms": 315.60929999999644,
+        "maxMs": 318.7698999999993
+      },
+      "purchase_persist": {
+        "samples": 20,
+        "p50Ms": 249.97259999997914,
+        "p95Ms": 747.005600000004,
+        "maxMs": 863.457899999994
+      },
+      "purchase_transaction": {
+        "samples": 20,
+        "p50Ms": 581.8812999999936,
+        "p95Ms": 1140.7002999999968,
+        "maxMs": 1237.0774999999994
+      },
+      "purchase_total": {
+        "samples": 20,
+        "p50Ms": 581.9513000000006,
+        "p95Ms": 1140.7554999999993,
+        "maxMs": 1237.1425000000017
+      }
+    },
+    "postCommitView": {
+      "purchase_view": {
+        "samples": 20,
+        "p50Ms": 104.08770000000368,
+        "p95Ms": 178.06479999999283,
+        "maxMs": 216.31440000000293
+      },
+      "purchase_total": {
+        "samples": 20,
+        "p50Ms": 104.13919999999052,
+        "p95Ms": 178.1180000000022,
+        "maxMs": 216.3591000000015
+      }
+    },
+    "raw": {
+      "buy": [
+        {
+          "purchase_lock": 17.85590000000957,
+          "purchase_issue": 43.77589999999327,
+          "purchase_persist": 91.693299999999,
+          "purchase_transaction": 215.64509999999427,
+          "purchase_total": 215.69379999999364
+        },
+        {
+          "purchase_lock": 5.576900000000023,
+          "purchase_issue": 63.316600000005565,
+          "purchase_persist": 62.72959999999148,
+          "purchase_transaction": 195.9820000000036,
+          "purchase_total": 196.03570000000764
+        },
+        {
+          "purchase_lock": 6.619899999990594,
+          "purchase_issue": 65.99189999999362,
+          "purchase_persist": 140.64580000001297,
+          "purchase_transaction": 3299.7764000000025,
+          "purchase_total": 3299.8303000000014
+        },
+        {
+          "purchase_lock": 58.19210000000021,
+          "purchase_issue": 80.65670000000682,
+          "purchase_persist": 96.46340000000782,
+          "purchase_transaction": 342.1713000000018,
+          "purchase_total": 342.2280000000028
+        },
+        {
+          "purchase_lock": 52.42219999998633,
+          "purchase_issue": 166.658500000005,
+          "purchase_persist": 109.3871000000072,
+          "purchase_transaction": 399.1599000000133,
+          "purchase_total": 399.22090000000026
+        },
+        {
+          "purchase_lock": 13.372799999997369,
+          "purchase_issue": 88.93959999999788,
+          "purchase_persist": 194.77589999999327,
+          "purchase_transaction": 722.4591000000073,
+          "purchase_total": 722.5130000000063
+        },
+        {
+          "purchase_lock": 49.85080000000016,
+          "purchase_issue": 161.7962000000116,
+          "purchase_persist": 359.18309999999474,
+          "purchase_transaction": 619.5374000000011,
+          "purchase_total": 619.5923000000039
+        },
+        {
+          "purchase_lock": 48.607600000003,
+          "purchase_issue": 203.86690000000817,
+          "purchase_persist": 197.55909999999858,
+          "purchase_transaction": 456.11140000000887,
+          "purchase_total": 456.17729999999574
+        },
+        {
+          "purchase_lock": 55.76480000000447,
+          "purchase_issue": 335.9941000000108,
+          "purchase_persist": 476.18610000000626,
+          "purchase_transaction": 906.7633999999962,
+          "purchase_total": 906.8109000000113
+        },
+        {
+          "purchase_lock": 37.13379999999597,
+          "purchase_issue": 344.5411999999924,
+          "purchase_persist": 475.1655000000028,
+          "purchase_transaction": 908.5635000000038,
+          "purchase_total": 908.7571999999927
+        },
+        {
+          "purchase_lock": 47.359700000000885,
+          "purchase_issue": 118.5005999999994,
+          "purchase_persist": 403.6530000000057,
+          "purchase_transaction": 580.0005999999994,
+          "purchase_total": 580.0578999999998
+        },
+        {
+          "purchase_lock": 102.11560000000463,
+          "purchase_issue": 516.8157000000065,
+          "purchase_persist": 352.81269999999495,
+          "purchase_transaction": 1006.6830999999947,
+          "purchase_total": 1006.7324999999983
+        },
+        {
+          "purchase_lock": 85.12569999998959,
+          "purchase_issue": 191.31759999999485,
+          "purchase_persist": 167.67199999999139,
+          "purchase_transaction": 470.50040000000445,
+          "purchase_total": 470.5584999999992
+        },
+        {
+          "purchase_lock": 446.1198999999906,
+          "purchase_issue": 685.8776000000071,
+          "purchase_persist": 265.9667999999947,
+          "purchase_transaction": 1648.2877000000008,
+          "purchase_total": 1648.3454999999958
+        },
+        {
+          "purchase_lock": 27.47380000000703,
+          "purchase_issue": 88.03639999999723,
+          "purchase_persist": 175.920100000003,
+          "purchase_transaction": 319.777700000006,
+          "purchase_total": 324.98769999999786
+        },
+        {
+          "purchase_lock": 67.43839999999909,
+          "purchase_issue": 369.51260000000184,
+          "purchase_persist": 367.99529999999504,
+          "purchase_transaction": 891.2160000000003,
+          "purchase_total": 891.2729999999865
+        },
+        {
+          "purchase_lock": 53.51720000000205,
+          "purchase_issue": 133.23799999999756,
+          "purchase_persist": 336.54529999999795,
+          "purchase_transaction": 538.3986000000004,
+          "purchase_total": 538.4540999999881
+        },
+        {
+          "purchase_lock": 141.14869999999064,
+          "purchase_issue": 229.36410000000615,
+          "purchase_persist": 421.77700000000186,
+          "purchase_transaction": 824.0761000000057,
+          "purchase_total": 824.1260000000184
+        },
+        {
+          "purchase_lock": 109.37779999998747,
+          "purchase_issue": 534.8378000000084,
+          "purchase_persist": 557.164300000004,
+          "purchase_transaction": 1212.8107000000018,
+          "purchase_total": 1212.8546999999962
+        },
+        {
+          "purchase_lock": 101.60699999998906,
+          "purchase_issue": 214.87289999998757,
+          "purchase_persist": 131.23219999999856,
+          "purchase_transaction": 476.141100000008,
+          "purchase_total": 476.19510000001173
+        }
+      ],
+      "open": [
+        {
+          "purchase_lock": 5.883499999996275,
+          "purchase_issue": 15.283599999995204,
+          "purchase_persist": 57.01030000000901,
+          "purchase_transaction": 88.9033999999956,
+          "purchase_total": 88.9600999999966
+        },
+        {
+          "purchase_lock": 7.160599999988335,
+          "purchase_issue": 12.112999999997555,
+          "purchase_persist": 64.56710000000021,
+          "purchase_transaction": 94.07679999999527,
+          "purchase_total": 94.16099999999278
+        },
+        {
+          "purchase_lock": 10.27410000000964,
+          "purchase_issue": 9.303299999999581,
+          "purchase_persist": 584.6926999999996,
+          "purchase_transaction": 609.8637000000017,
+          "purchase_total": 609.9266999999963
+        },
+        {
+          "purchase_lock": 10.597300000008545,
+          "purchase_issue": 68.71709999999439,
+          "purchase_persist": 81.99309999999241,
+          "purchase_transaction": 168.16090000000258,
+          "purchase_total": 168.23119999999471
+        },
+        {
+          "purchase_lock": 18.920899999997346,
+          "purchase_issue": 32.282399999996414,
+          "purchase_persist": 68.38350000001083,
+          "purchase_transaction": 123.57520000000659,
+          "purchase_total": 123.63210000000254
+        },
+        {
+          "purchase_lock": 116.82859999999346,
+          "purchase_issue": 229.1631999999954,
+          "purchase_persist": 262.0234999999957,
+          "purchase_transaction": 628.2212,
+          "purchase_total": 628.27429999999
+        },
+        {
+          "purchase_lock": 38.61260000000766,
+          "purchase_issue": 318.7698999999993,
+          "purchase_persist": 108.02430000000459,
+          "purchase_transaction": 512.7688000000053,
+          "purchase_total": 512.8233999999939
+        },
+        {
+          "purchase_lock": 45.47050000001036,
+          "purchase_issue": 129.79090000000724,
+          "purchase_persist": 265.52909999999974,
+          "purchase_transaction": 471.08150000000023,
+          "purchase_total": 471.16999999999825
+        },
+        {
+          "purchase_lock": 50.42489999999816,
+          "purchase_issue": 315.60929999999644,
+          "purchase_persist": 863.457899999994,
+          "purchase_transaction": 1237.0774999999994,
+          "purchase_total": 1237.1425000000017
+        },
+        {
+          "purchase_lock": 56.15140000000247,
+          "purchase_issue": 158.29200000000128,
+          "purchase_persist": 315.3634999999922,
+          "purchase_transaction": 581.8812999999936,
+          "purchase_total": 581.9513000000006
+        },
+        {
+          "purchase_lock": 100.80289999999513,
+          "purchase_issue": 269.0546999999933,
+          "purchase_persist": 455.45070000000123,
+          "purchase_transaction": 861.6211000000039,
+          "purchase_total": 861.6821999999956
+        },
+        {
+          "purchase_lock": 35.91380000000936,
+          "purchase_issue": 126.17880000000878,
+          "purchase_persist": 131.28420000000915,
+          "purchase_transaction": 312.9594999999972,
+          "purchase_total": 313.0100999999995
+        },
+        {
+          "purchase_lock": 21.681700000001,
+          "purchase_issue": 60.61659999999392,
+          "purchase_persist": 206.16569999999774,
+          "purchase_transaction": 1067.344299999997,
+          "purchase_total": 1067.3958999999886
+        },
+        {
+          "purchase_lock": 60.52180000000226,
+          "purchase_issue": 275.8408000000054,
+          "purchase_persist": 412.01209999999264,
+          "purchase_transaction": 787.6285999999964,
+          "purchase_total": 787.6895999999979
+        },
+        {
+          "purchase_lock": 48.262000000002445,
+          "purchase_issue": 107.51219999999739,
+          "purchase_persist": 505.3216000000102,
+          "purchase_transaction": 736.5076000000117,
+          "purchase_total": 736.565300000002
+        },
+        {
+          "purchase_lock": 54.099499999996624,
+          "purchase_issue": 149.11049999999523,
+          "purchase_persist": 747.005600000004,
+          "purchase_transaction": 1140.7002999999968,
+          "purchase_total": 1140.7554999999993
+        },
+        {
+          "purchase_lock": 30.26459999999497,
+          "purchase_issue": 63.70009999998729,
+          "purchase_persist": 152.2262000000046,
+          "purchase_transaction": 295.55799999999,
+          "purchase_total": 295.6140000000014
+        },
+        {
+          "purchase_lock": 84.0570000000007,
+          "purchase_issue": 266.10639999998966,
+          "purchase_persist": 263.08929999999236,
+          "purchase_transaction": 621.4437000000034,
+          "purchase_total": 621.4911999999895
+        },
+        {
+          "purchase_lock": 167.01070000001346,
+          "purchase_issue": 147.4092000000237,
+          "purchase_persist": 249.97259999997914,
+          "purchase_transaction": 602.5641999999934,
+          "purchase_total": 602.6148000000103
+        },
+        {
+          "purchase_lock": 30.642299999977695,
+          "purchase_issue": 133.29120000000694,
+          "purchase_persist": 248.4375,
+          "purchase_transaction": 428.66460000001825,
+          "purchase_total": 428.7210999999952
+        }
+      ],
+      "view": [
+        {
+          "purchase_view": 15.55800000000454,
+          "purchase_total": 15.627800000002026
+        },
+        {
+          "purchase_view": 31.420800000007148,
+          "purchase_total": 31.473500000007334
+        },
+        {
+          "purchase_view": 50.908599999995204,
+          "purchase_total": 50.95539999999164
+        },
+        {
+          "purchase_view": 56.28770000000077,
+          "purchase_total": 56.34410000000207
+        },
+        {
+          "purchase_view": 25.262900000001537,
+          "purchase_total": 25.311700000005658
+        },
+        {
+          "purchase_view": 77.84990000000107,
+          "purchase_total": 77.9027999999962
+        },
+        {
+          "purchase_view": 50.59299999999348,
+          "purchase_total": 50.640400000003865
+        },
+        {
+          "purchase_view": 66.62640000000829,
+          "purchase_total": 66.67990000000282
+        },
+        {
+          "purchase_view": 159.79239999999118,
+          "purchase_total": 159.84870000000228
+        },
+        {
+          "purchase_view": 111.33120000000054,
+          "purchase_total": 111.38379999999597
+        },
+        {
+          "purchase_view": 178.06479999999283,
+          "purchase_total": 178.1180000000022
+        },
+        {
+          "purchase_view": 104.08770000000368,
+          "purchase_total": 104.13919999999052
+        },
+        {
+          "purchase_view": 216.31440000000293,
+          "purchase_total": 216.3591000000015
+        },
+        {
+          "purchase_view": 57.83040000000619,
+          "purchase_total": 57.869200000001
+        },
+        {
+          "purchase_view": 161.2109999999957,
+          "purchase_total": 161.26309999999648
+        },
+        {
+          "purchase_view": 153.75320000000647,
+          "purchase_total": 153.80299999999988
+        },
+        {
+          "purchase_view": 121.41039999999339,
+          "purchase_total": 121.45290000000386
+        },
+        {
+          "purchase_view": 132.3868000000075,
+          "purchase_total": 132.42660000000615
+        },
+        {
+          "purchase_view": 172.60490000000573,
+          "purchase_total": 172.66339999999036
+        },
+        {
+          "purchase_view": 148.5517000000109,
+          "purchase_total": 148.5958999999857
+        }
+      ]
+    },
+    "databaseScope": "Actual CreditsSandboxStore, core issuance, native PostgreSQL advisory/row locks, durable journal/history and deferred balance guards; synthetic 24-player pool. Hosted catalogue, Auth, network and Production-only guard migrations are not included."
+  },
+  "google": {
+    "stages": {
+      "verifyTransportMock": {
+        "samples": 20,
+        "p50Ms": 2.2402000000001863,
+        "p95Ms": 22.023099999991246,
+        "maxMs": 25.825199999992037
+      },
+      "receiptCommit": {
+        "samples": 20,
+        "p50Ms": 58.18289999998524,
+        "p95Ms": 136.5855000000156,
+        "maxMs": 140.43860000002314
+      },
+      "packCommit": {
+        "samples": 20,
+        "p50Ms": 111.97479999999632,
+        "p95Ms": 204.02079999999842,
+        "maxMs": 893.9452999999921
+      },
+      "openCommit": {
+        "samples": 20,
+        "p50Ms": 16.335599999991246,
+        "p95Ms": 29.890099999989616,
+        "maxMs": 127.22200000000885
+      }
+    },
+    "raw": [
+      {
+        "verifyTransportMock": 3.2065999999758787,
+        "receiptCommit": 140.43860000002314,
+        "packCommit": 893.9452999999921,
+        "openCommit": 127.22200000000885
+      },
+      {
+        "verifyTransportMock": 22.023099999991246,
+        "receiptCommit": 63.6592000000237,
+        "packCommit": 192.87059999999474,
+        "openCommit": 29.39749999999185
+      },
+      {
+        "verifyTransportMock": 25.825199999992037,
+        "receiptCommit": 72.46210000000428,
+        "packCommit": 133.96549999999115,
+        "openCommit": 16.168900000018766
+      },
+      {
+        "verifyTransportMock": 2.051500000001397,
+        "receiptCommit": 47.969599999982165,
+        "packCommit": 146.69720000002417,
+        "openCommit": 29.890099999989616
+      },
+      {
+        "verifyTransportMock": 3.4473999999754597,
+        "receiptCommit": 73.47880000001169,
+        "packCommit": 121.93359999998938,
+        "openCommit": 14.64890000000014
+      },
+      {
+        "verifyTransportMock": 8.482500000012806,
+        "receiptCommit": 37.44429999997374,
+        "packCommit": 199.07440000001225,
+        "openCommit": 17.726000000024214
+      },
+      {
+        "verifyTransportMock": 6.690799999982119,
+        "receiptCommit": 58.18289999998524,
+        "packCommit": 111.97479999999632,
+        "openCommit": 16.335599999991246
+      },
+      {
+        "verifyTransportMock": 1.4470000000146683,
+        "receiptCommit": 104.6469999999972,
+        "packCommit": 126.07469999999739,
+        "openCommit": 16.878400000015972
+      },
+      {
+        "verifyTransportMock": 3.11620000001858,
+        "receiptCommit": 74.9256999999925,
+        "packCommit": 107.54290000000037,
+        "openCommit": 23.476800000004005
+      },
+      {
+        "verifyTransportMock": 2.2402000000001863,
+        "receiptCommit": 89.63200000001234,
+        "packCommit": 129.34890000001178,
+        "openCommit": 19.896000000007916
+      },
+      {
+        "verifyTransportMock": 1.9029999999911524,
+        "receiptCommit": 136.5855000000156,
+        "packCommit": 204.02079999999842,
+        "openCommit": 12.358500000002095
+      },
+      {
+        "verifyTransportMock": 1.534799999993993,
+        "receiptCommit": 68.35620000000927,
+        "packCommit": 85.46790000001783,
+        "openCommit": 14.805400000012014
+      },
+      {
+        "verifyTransportMock": 1.267200000002049,
+        "receiptCommit": 46.93330000000424,
+        "packCommit": 68.0738999999885,
+        "openCommit": 14.142299999977695
+      },
+      {
+        "verifyTransportMock": 11.067200000019511,
+        "receiptCommit": 88.07080000001588,
+        "packCommit": 74.49459999997634,
+        "openCommit": 15.822700000018813
+      },
+      {
+        "verifyTransportMock": 3.4118000000016764,
+        "receiptCommit": 40.422400000010384,
+        "packCommit": 101.37189999999828,
+        "openCommit": 12.841000000014901
+      },
+      {
+        "verifyTransportMock": 1.3447999999916647,
+        "receiptCommit": 40.86899999997695,
+        "packCommit": 143.94899999999325,
+        "openCommit": 18.42379999998957
+      },
+      {
+        "verifyTransportMock": 1.7097000000067055,
+        "receiptCommit": 50.15189999999711,
+        "packCommit": 75.07989999998244,
+        "openCommit": 12.517699999996694
+      },
+      {
+        "verifyTransportMock": 1.5081999999820255,
+        "receiptCommit": 56.95689999999013,
+        "packCommit": 65.9548000000068,
+        "openCommit": 15.243500000011409
+      },
+      {
+        "verifyTransportMock": 1.4158999999926891,
+        "receiptCommit": 33.922300000005635,
+        "packCommit": 88.61919999998645,
+        "openCommit": 19.150900000007823
+      },
+      {
+        "verifyTransportMock": 8.394100000004983,
+        "receiptCommit": 44.48369999998249,
+        "packCommit": 80.15009999999893,
+        "openCommit": 21.523199999995995
+      }
+    ],
+    "providerScope": "No Google account, checkout, payment authorisation, network latency, notification push or acknowledgement measured. OAuth and Google response transport are deterministic fixtures; ledger and SQL are real."
+  },
+  "checks": [
+    "baseline: 22 nine-card purchases/openings; 8 concurrent duplicate buys and opens preserve exact state and balance; balanced journals",
+    "candidate: 22 nine-card purchases/openings; 8 concurrent duplicate buys and opens preserve exact state and balance; balanced journals",
+    "native commercial receipt: 8 concurrent retries credit once; cross-account replay denied; duplicate refund after nine-card opening yields zero spendable and exact recovery hold, preserving cards",
+    "commercial: both 4,900/9,900-credit mappings; actual verifier with mocked Google transport; native migration/ledger; 22 receipt, pack and nine-card open commits with exact remaining balances"
+  ]
+}
