@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-11-08T05:07:05.329Z",
+  "web": {
+    "url": "https://docked.com.au",
+    "commit": "aef423eb043b208dbaeadd21b3caa2806cebe936",
+    "deployment": "dpl_BjhdVwfK43tLc4s52KEXnkvf1qt9",
+    "liveVerification": "web-release/live-verified.json"
+  },
+  "android": {
+    "versionCode": 31,
+    "versionName": "1.30",
+    "package": "docked.fantasy",
+    "applicationCommit": "3c1d73eacdf6426f263ace1c6eb2c54d2cfe94dc",
+    "track": "internal",
+    "consoleStatus": "Active — Latest release: 31 (1.30) — native card image sharing",
+    "consoleWarnings": [
+      "No deobfuscation file (build does not enable code obfuscation)",
+      "Missing native debug symbols"
+    ],
+    "supportedPhones": 12612,
+    "deviceSupportChanged": false,
+    "installer": "com.android.vending",
+    "samsungInstalledVersionVerified": true,
+    "actualNativeShareSheetAcceptance": "pending device foreground access",
+    "publicReleaseChanged": false
+  },
+  "tests": {
+    "typecheck": "passed",
+    "scopedLint": "passed",
+    "browser": 31,
+    "platform": 11,
+    "androidBuildAndLint": "passed",
+    "productionBuild": "passed",
+    "liveReadOnlyProbes": 18,
+    "playNativeMocks": "passed; not physical-device proof",
+    "newDatabaseTests": "not required: no SQL/schema changes"
+  },
+  "limits": [
+    "Round 10 publication and beta data-use extension require confirmation; no new rounds written",
+    "Google production review was not modified",
+    "No purchases, wallet writes or new card issuance"
+  ],
+  "buildWarnings": [
+    "11 moderate npm audit findings reported by hosted build; dependencies unchanged in this patch",
+    "34 Android lint warnings; no lint suppressions added"
+  ],
+  "causes": {
+    "sharing": "Shipped v30 APK had Capacitor Share but lacked DockedPullImage bridge required to supply a generated PNG cache URI. v31 includes both plugins.",
+    "rounds": "Production competition/round registries stop at real round 7; historical player statistics are imported separately and did not generate rounds 8/9/10. Prior history UI fix could not add missing competition records."
+  }
+}

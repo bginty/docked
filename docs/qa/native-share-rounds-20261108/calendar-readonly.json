@@ -1,0 +1,2125 @@
+{
+  "version": "nfl-calendar-plan-v1",
+  "season": 2026,
+  "source": "https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv",
+  "verifiedAt": "2026-11-08T04:42:39.435Z",
+  "asOf": "2026-11-08T04:42:39.435Z",
+  "calendarHash": "1c365338d4d30284d7493bf6c058ba7822c0a17a1fc2f5055c55fc26374ec326",
+  "rounds": [
+    {
+      "round": 1,
+      "status": "past-deadline",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_01_ARI_LAC",
+          "round": 1,
+          "home": "LAC",
+          "away": "ARI",
+          "kickoff": "2026-09-13T20:25:00.000Z"
+        },
+        {
+          "id": "2026_01_ATL_PIT",
+          "round": 1,
+          "home": "PIT",
+          "away": "ATL",
+          "kickoff": "2026-09-13T17:00:00.000Z"
+        },
+        {
+          "id": "2026_01_BAL_IND",
+          "round": 1,
+          "home": "IND",
+          "away": "BAL",
+          "kickoff": "2026-09-13T17:00:00.000Z"
+        },
+        {
+          "id": "2026_01_BUF_HOU",
+          "round": 1,
+          "home": "HOU",
+          "away": "BUF",
+          "kickoff": "2026-09-13T17:00:00.000Z"
+        },
+        {
+          "id": "2026_01_CHI_CAR",
+          "round": 1,
+          "home": "CAR",
+          "away": "CHI",
+          "kickoff": "2026-09-13T17:00:00.000Z"
+        },
+        {
+          "id": "2026_01_CLE_JAX",
+          "round": 1,
+          "home": "JAX",
+          "away": "CLE",
+          "kickoff": "2026-09-13T17:00:00.000Z"
+        },
+        {
+          "id": "2026_01_DAL_NYG",
+          "round": 1,
+          "home": "NYG",
+          "away": "DAL",
+          "kickoff": "2026-09-14T00:20:00.000Z"
+        },
+        {
+          "id": "2026_01_DEN_KC",
+          "round": 1,
+          "home": "KC",
+          "away": "DEN",
+          "kickoff": "2026-09-15T00:15:00.000Z"
+        },
+        {
+          "id": "2026_01_GB_MIN",
+          "round": 1,
+          "home": "MIN",
+          "away": "GB",
+          "kickoff": "2026-09-13T20:25:00.000Z"
+        },
+        {
+          "id": "2026_01_MIA_LV",
+          "round": 1,
+          "home": "LV",
+          "away": "MIA",
+          "kickoff": "2026-09-13T20:25:00.000Z"
+        },
+        {
+          "id": "2026_01_NE_SEA",
+          "round": 1,
+          "home": "SEA",
+          "away": "NE",
+          "kickoff": "2026-09-10T00:20:00.000Z"
+        },
+        {
+          "id": "2026_01_NO_DET",
+          "round": 1,
+          "home": "DET",
+          "away": "NO",
+          "kickoff": "2026-09-13T17:00:00.000Z"
+        },
+        {
+          "id": "2026_01_NYJ_TEN",
+          "round": 1,
+          "home": "TEN",
+          "away": "NYJ",
+          "kickoff": "2026-09-13T17:00:00.000Z"
+        },
+        {
+          "id": "2026_01_SF_LA",
+          "round": 1,
+          "home": "LA",
+          "away": "SF",
+          "kickoff": "2026-09-11T00:35:00.000Z"
+        },
+        {
+          "id": "2026_01_TB_CIN",
+          "round": 1,
+          "home": "CIN",
+          "away": "TB",
+          "kickoff": "2026-09-13T17:00:00.000Z"
+        },
+        {
+          "id": "2026_01_WAS_PHI",
+          "round": 1,
+          "home": "PHI",
+          "away": "WAS",
+          "kickoff": "2026-09-13T20:25:00.000Z"
+        }
+      ],
+      "locksAt": "2026-09-10T00:20:00.000Z",
+      "lastKickoffAt": "2026-09-15T00:15:00.000Z"
+    },
+    {
+      "round": 2,
+      "status": "past-deadline",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_02_CAR_ATL",
+          "round": 2,
+          "home": "ATL",
+          "away": "CAR",
+          "kickoff": "2026-09-20T17:00:00.000Z"
+        },
+        {
+          "id": "2026_02_CIN_HOU",
+          "round": 2,
+          "home": "HOU",
+          "away": "CIN",
+          "kickoff": "2026-09-20T17:00:00.000Z"
+        },
+        {
+          "id": "2026_02_CLE_TB",
+          "round": 2,
+          "home": "TB",
+          "away": "CLE",
+          "kickoff": "2026-09-20T17:00:00.000Z"
+        },
+        {
+          "id": "2026_02_DET_BUF",
+          "round": 2,
+          "home": "BUF",
+          "away": "DET",
+          "kickoff": "2026-09-18T00:15:00.000Z"
+        },
+        {
+          "id": "2026_02_GB_NYJ",
+          "round": 2,
+          "home": "NYJ",
+          "away": "GB",
+          "kickoff": "2026-09-20T17:00:00.000Z"
+        },
+        {
+          "id": "2026_02_IND_KC",
+          "round": 2,
+          "home": "KC",
+          "away": "IND",
+          "kickoff": "2026-09-21T00:20:00.000Z"
+        },
+        {
+          "id": "2026_02_JAX_DEN",
+          "round": 2,
+          "home": "DEN",
+          "away": "JAX",
+          "kickoff": "2026-09-20T20:05:00.000Z"
+        },
+        {
+          "id": "2026_02_LV_LAC",
+          "round": 2,
+          "home": "LAC",
+          "away": "LV",
+          "kickoff": "2026-09-20T20:05:00.000Z"
+        },
+        {
+          "id": "2026_02_MIA_SF",
+          "round": 2,
+          "home": "SF",
+          "away": "MIA",
+          "kickoff": "2026-09-20T20:25:00.000Z"
+        },
+        {
+          "id": "2026_02_MIN_CHI",
+          "round": 2,
+          "home": "CHI",
+          "away": "MIN",
+          "kickoff": "2026-09-20T17:00:00.000Z"
+        },
+        {
+          "id": "2026_02_NO_BAL",
+          "round": 2,
+          "home": "BAL",
+          "away": "NO",
+          "kickoff": "2026-09-20T17:00:00.000Z"
+        },
+        {
+          "id": "2026_02_NYG_LA",
+          "round": 2,
+          "home": "LA",
+          "away": "NYG",
+          "kickoff": "2026-09-22T00:15:00.000Z"
+        },
+        {
+          "id": "2026_02_PHI_TEN",
+          "round": 2,
+          "home": "TEN",
+          "away": "PHI",
+          "kickoff": "2026-09-20T17:00:00.000Z"
+        },
+        {
+          "id": "2026_02_PIT_NE",
+          "round": 2,
+          "home": "NE",
+          "away": "PIT",
+          "kickoff": "2026-09-20T17:00:00.000Z"
+        },
+        {
+          "id": "2026_02_SEA_ARI",
+          "round": 2,
+          "home": "ARI",
+          "away": "SEA",
+          "kickoff": "2026-09-20T20:25:00.000Z"
+        },
+        {
+          "id": "2026_02_WAS_DAL",
+          "round": 2,
+          "home": "DAL",
+          "away": "WAS",
+          "kickoff": "2026-09-20T20:25:00.000Z"
+        }
+      ],
+      "locksAt": "2026-09-18T00:15:00.000Z",
+      "lastKickoffAt": "2026-09-22T00:15:00.000Z"
+    },
+    {
+      "round": 3,
+      "status": "past-deadline",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_03_ARI_SF",
+          "round": 3,
+          "home": "SF",
+          "away": "ARI",
+          "kickoff": "2026-09-27T20:05:00.000Z"
+        },
+        {
+          "id": "2026_03_ATL_GB",
+          "round": 3,
+          "home": "GB",
+          "away": "ATL",
+          "kickoff": "2026-09-25T00:15:00.000Z"
+        },
+        {
+          "id": "2026_03_BAL_DAL",
+          "round": 3,
+          "home": "DAL",
+          "away": "BAL",
+          "kickoff": "2026-09-27T20:25:00.000Z"
+        },
+        {
+          "id": "2026_03_CAR_CLE",
+          "round": 3,
+          "home": "CLE",
+          "away": "CAR",
+          "kickoff": "2026-09-27T17:00:00.000Z"
+        },
+        {
+          "id": "2026_03_CIN_PIT",
+          "round": 3,
+          "home": "PIT",
+          "away": "CIN",
+          "kickoff": "2026-09-27T17:00:00.000Z"
+        },
+        {
+          "id": "2026_03_HOU_IND",
+          "round": 3,
+          "home": "IND",
+          "away": "HOU",
+          "kickoff": "2026-09-27T17:00:00.000Z"
+        },
+        {
+          "id": "2026_03_KC_MIA",
+          "round": 3,
+          "home": "MIA",
+          "away": "KC",
+          "kickoff": "2026-09-27T17:00:00.000Z"
+        },
+        {
+          "id": "2026_03_LA_DEN",
+          "round": 3,
+          "home": "DEN",
+          "away": "LA",
+          "kickoff": "2026-09-28T00:20:00.000Z"
+        },
+        {
+          "id": "2026_03_LAC_BUF",
+          "round": 3,
+          "home": "BUF",
+          "away": "LAC",
+          "kickoff": "2026-09-27T17:00:00.000Z"
+        },
+        {
+          "id": "2026_03_LV_NO",
+          "round": 3,
+          "home": "NO",
+          "away": "LV",
+          "kickoff": "2026-09-27T20:25:00.000Z"
+        },
+        {
+          "id": "2026_03_MIN_TB",
+          "round": 3,
+          "home": "TB",
+          "away": "MIN",
+          "kickoff": "2026-09-27T20:05:00.000Z"
+        },
+        {
+          "id": "2026_03_NE_JAX",
+          "round": 3,
+          "home": "JAX",
+          "away": "NE",
+          "kickoff": "2026-09-27T17:00:00.000Z"
+        },
+        {
+          "id": "2026_03_NYJ_DET",
+          "round": 3,
+          "home": "DET",
+          "away": "NYJ",
+          "kickoff": "2026-09-27T17:00:00.000Z"
+        },
+        {
+          "id": "2026_03_PHI_CHI",
+          "round": 3,
+          "home": "CHI",
+          "away": "PHI",
+          "kickoff": "2026-09-29T00:15:00.000Z"
+        },
+        {
+          "id": "2026_03_SEA_WAS",
+          "round": 3,
+          "home": "WAS",
+          "away": "SEA",
+          "kickoff": "2026-09-27T17:00:00.000Z"
+        },
+        {
+          "id": "2026_03_TEN_NYG",
+          "round": 3,
+          "home": "NYG",
+          "away": "TEN",
+          "kickoff": "2026-09-27T17:00:00.000Z"
+        }
+      ],
+      "locksAt": "2026-09-25T00:15:00.000Z",
+      "lastKickoffAt": "2026-09-29T00:15:00.000Z"
+    },
+    {
+      "round": 4,
+      "status": "past-deadline",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_04_ARI_NYG",
+          "round": 4,
+          "home": "NYG",
+          "away": "ARI",
+          "kickoff": "2026-10-04T17:00:00.000Z"
+        },
+        {
+          "id": "2026_04_ATL_NO",
+          "round": 4,
+          "home": "NO",
+          "away": "ATL",
+          "kickoff": "2026-10-06T00:15:00.000Z"
+        },
+        {
+          "id": "2026_04_DAL_HOU",
+          "round": 4,
+          "home": "HOU",
+          "away": "DAL",
+          "kickoff": "2026-10-04T17:00:00.000Z"
+        },
+        {
+          "id": "2026_04_DEN_SF",
+          "round": 4,
+          "home": "SF",
+          "away": "DEN",
+          "kickoff": "2026-10-04T20:25:00.000Z"
+        },
+        {
+          "id": "2026_04_DET_CAR",
+          "round": 4,
+          "home": "CAR",
+          "away": "DET",
+          "kickoff": "2026-10-05T00:20:00.000Z"
+        },
+        {
+          "id": "2026_04_GB_TB",
+          "round": 4,
+          "home": "TB",
+          "away": "GB",
+          "kickoff": "2026-10-04T17:00:00.000Z"
+        },
+        {
+          "id": "2026_04_IND_WAS",
+          "round": 4,
+          "home": "WAS",
+          "away": "IND",
+          "kickoff": "2026-10-04T13:30:00.000Z"
+        },
+        {
+          "id": "2026_04_JAX_CIN",
+          "round": 4,
+          "home": "CIN",
+          "away": "JAX",
+          "kickoff": "2026-10-04T17:00:00.000Z"
+        },
+        {
+          "id": "2026_04_KC_LV",
+          "round": 4,
+          "home": "LV",
+          "away": "KC",
+          "kickoff": "2026-10-04T20:25:00.000Z"
+        },
+        {
+          "id": "2026_04_LA_PHI",
+          "round": 4,
+          "home": "PHI",
+          "away": "LA",
+          "kickoff": "2026-10-04T17:00:00.000Z"
+        },
+        {
+          "id": "2026_04_LAC_SEA",
+          "round": 4,
+          "home": "SEA",
+          "away": "LAC",
+          "kickoff": "2026-10-04T20:25:00.000Z"
+        },
+        {
+          "id": "2026_04_MIA_MIN",
+          "round": 4,
+          "home": "MIN",
+          "away": "MIA",
+          "kickoff": "2026-10-04T20:05:00.000Z"
+        },
+        {
+          "id": "2026_04_NE_BUF",
+          "round": 4,
+          "home": "BUF",
+          "away": "NE",
+          "kickoff": "2026-10-04T17:00:00.000Z"
+        },
+        {
+          "id": "2026_04_NYJ_CHI",
+          "round": 4,
+          "home": "CHI",
+          "away": "NYJ",
+          "kickoff": "2026-10-04T17:00:00.000Z"
+        },
+        {
+          "id": "2026_04_PIT_CLE",
+          "round": 4,
+          "home": "CLE",
+          "away": "PIT",
+          "kickoff": "2026-10-02T00:15:00.000Z"
+        },
+        {
+          "id": "2026_04_TEN_BAL",
+          "round": 4,
+          "home": "BAL",
+          "away": "TEN",
+          "kickoff": "2026-10-04T17:00:00.000Z"
+        }
+      ],
+      "locksAt": "2026-10-02T00:15:00.000Z",
+      "lastKickoffAt": "2026-10-06T00:15:00.000Z"
+    },
+    {
+      "round": 5,
+      "status": "past-deadline",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_05_BAL_ATL",
+          "round": 5,
+          "home": "ATL",
+          "away": "BAL",
+          "kickoff": "2026-10-12T00:20:00.000Z"
+        },
+        {
+          "id": "2026_05_BUF_LA",
+          "round": 5,
+          "home": "LA",
+          "away": "BUF",
+          "kickoff": "2026-10-13T00:15:00.000Z"
+        },
+        {
+          "id": "2026_05_CHI_GB",
+          "round": 5,
+          "home": "GB",
+          "away": "CHI",
+          "kickoff": "2026-10-11T17:00:00.000Z"
+        },
+        {
+          "id": "2026_05_CIN_MIA",
+          "round": 5,
+          "home": "MIA",
+          "away": "CIN",
+          "kickoff": "2026-10-11T17:00:00.000Z"
+        },
+        {
+          "id": "2026_05_CLE_NYJ",
+          "round": 5,
+          "home": "NYJ",
+          "away": "CLE",
+          "kickoff": "2026-10-11T17:00:00.000Z"
+        },
+        {
+          "id": "2026_05_DEN_LAC",
+          "round": 5,
+          "home": "LAC",
+          "away": "DEN",
+          "kickoff": "2026-10-11T20:05:00.000Z"
+        },
+        {
+          "id": "2026_05_DET_ARI",
+          "round": 5,
+          "home": "ARI",
+          "away": "DET",
+          "kickoff": "2026-10-11T20:25:00.000Z"
+        },
+        {
+          "id": "2026_05_HOU_TEN",
+          "round": 5,
+          "home": "TEN",
+          "away": "HOU",
+          "kickoff": "2026-10-11T17:00:00.000Z"
+        },
+        {
+          "id": "2026_05_IND_PIT",
+          "round": 5,
+          "home": "PIT",
+          "away": "IND",
+          "kickoff": "2026-10-11T17:00:00.000Z"
+        },
+        {
+          "id": "2026_05_LV_NE",
+          "round": 5,
+          "home": "NE",
+          "away": "LV",
+          "kickoff": "2026-10-11T17:00:00.000Z"
+        },
+        {
+          "id": "2026_05_MIN_NO",
+          "round": 5,
+          "home": "NO",
+          "away": "MIN",
+          "kickoff": "2026-10-11T17:00:00.000Z"
+        },
+        {
+          "id": "2026_05_NYG_WAS",
+          "round": 5,
+          "home": "WAS",
+          "away": "NYG",
+          "kickoff": "2026-10-11T17:00:00.000Z"
+        },
+        {
+          "id": "2026_05_PHI_JAX",
+          "round": 5,
+          "home": "JAX",
+          "away": "PHI",
+          "kickoff": "2026-10-11T13:30:00.000Z"
+        },
+        {
+          "id": "2026_05_SF_SEA",
+          "round": 5,
+          "home": "SEA",
+          "away": "SF",
+          "kickoff": "2026-10-11T20:25:00.000Z"
+        },
+        {
+          "id": "2026_05_TB_DAL",
+          "round": 5,
+          "home": "DAL",
+          "away": "TB",
+          "kickoff": "2026-10-09T00:15:00.000Z"
+        }
+      ],
+      "locksAt": "2026-10-09T00:15:00.000Z",
+      "lastKickoffAt": "2026-10-13T00:15:00.000Z"
+    },
+    {
+      "round": 6,
+      "status": "existing",
+      "missingModes": [],
+      "games": [
+        {
+          "id": "2026_06_ARI_LA",
+          "round": 6,
+          "home": "LA",
+          "away": "ARI",
+          "kickoff": "2026-10-18T20:05:00.000Z"
+        },
+        {
+          "id": "2026_06_BAL_CLE",
+          "round": 6,
+          "home": "CLE",
+          "away": "BAL",
+          "kickoff": "2026-10-18T17:00:00.000Z"
+        },
+        {
+          "id": "2026_06_BUF_LV",
+          "round": 6,
+          "home": "LV",
+          "away": "BUF",
+          "kickoff": "2026-10-18T20:25:00.000Z"
+        },
+        {
+          "id": "2026_06_CAR_PHI",
+          "round": 6,
+          "home": "PHI",
+          "away": "CAR",
+          "kickoff": "2026-10-18T17:00:00.000Z"
+        },
+        {
+          "id": "2026_06_CHI_ATL",
+          "round": 6,
+          "home": "ATL",
+          "away": "CHI",
+          "kickoff": "2026-10-18T17:00:00.000Z"
+        },
+        {
+          "id": "2026_06_DAL_GB",
+          "round": 6,
+          "home": "GB",
+          "away": "DAL",
+          "kickoff": "2026-10-19T00:20:00.000Z"
+        },
+        {
+          "id": "2026_06_HOU_JAX",
+          "round": 6,
+          "home": "JAX",
+          "away": "HOU",
+          "kickoff": "2026-10-18T13:30:00.000Z"
+        },
+        {
+          "id": "2026_06_LAC_KC",
+          "round": 6,
+          "home": "KC",
+          "away": "LAC",
+          "kickoff": "2026-10-18T20:25:00.000Z"
+        },
+        {
+          "id": "2026_06_NO_NYG",
+          "round": 6,
+          "home": "NYG",
+          "away": "NO",
+          "kickoff": "2026-10-18T17:00:00.000Z"
+        },
+        {
+          "id": "2026_06_NYJ_NE",
+          "round": 6,
+          "home": "NE",
+          "away": "NYJ",
+          "kickoff": "2026-10-18T17:00:00.000Z"
+        },
+        {
+          "id": "2026_06_PIT_TB",
+          "round": 6,
+          "home": "TB",
+          "away": "PIT",
+          "kickoff": "2026-10-18T17:00:00.000Z"
+        },
+        {
+          "id": "2026_06_SEA_DEN",
+          "round": 6,
+          "home": "DEN",
+          "away": "SEA",
+          "kickoff": "2026-10-16T00:15:00.000Z"
+        },
+        {
+          "id": "2026_06_TEN_IND",
+          "round": 6,
+          "home": "IND",
+          "away": "TEN",
+          "kickoff": "2026-10-18T17:00:00.000Z"
+        },
+        {
+          "id": "2026_06_WAS_SF",
+          "round": 6,
+          "home": "SF",
+          "away": "WAS",
+          "kickoff": "2026-10-20T00:15:00.000Z"
+        }
+      ],
+      "locksAt": "2026-10-16T00:15:00.000Z",
+      "lastKickoffAt": "2026-10-20T00:15:00.000Z"
+    },
+    {
+      "round": 7,
+      "status": "existing",
+      "missingModes": [],
+      "games": [
+        {
+          "id": "2026_07_CIN_BAL",
+          "round": 7,
+          "home": "BAL",
+          "away": "CIN",
+          "kickoff": "2026-10-25T17:00:00.000Z"
+        },
+        {
+          "id": "2026_07_CLE_TEN",
+          "round": 7,
+          "home": "TEN",
+          "away": "CLE",
+          "kickoff": "2026-10-25T17:00:00.000Z"
+        },
+        {
+          "id": "2026_07_DAL_PHI",
+          "round": 7,
+          "home": "PHI",
+          "away": "DAL",
+          "kickoff": "2026-10-27T00:15:00.000Z"
+        },
+        {
+          "id": "2026_07_DEN_ARI",
+          "round": 7,
+          "home": "ARI",
+          "away": "DEN",
+          "kickoff": "2026-10-25T20:05:00.000Z"
+        },
+        {
+          "id": "2026_07_GB_DET",
+          "round": 7,
+          "home": "DET",
+          "away": "GB",
+          "kickoff": "2026-10-25T20:25:00.000Z"
+        },
+        {
+          "id": "2026_07_IND_MIN",
+          "round": 7,
+          "home": "MIN",
+          "away": "IND",
+          "kickoff": "2026-10-25T17:00:00.000Z"
+        },
+        {
+          "id": "2026_07_KC_SEA",
+          "round": 7,
+          "home": "SEA",
+          "away": "KC",
+          "kickoff": "2026-10-26T00:20:00.000Z"
+        },
+        {
+          "id": "2026_07_LA_LV",
+          "round": 7,
+          "home": "LV",
+          "away": "LA",
+          "kickoff": "2026-10-25T20:25:00.000Z"
+        },
+        {
+          "id": "2026_07_MIA_NYJ",
+          "round": 7,
+          "home": "NYJ",
+          "away": "MIA",
+          "kickoff": "2026-10-25T17:00:00.000Z"
+        },
+        {
+          "id": "2026_07_NE_CHI",
+          "round": 7,
+          "home": "CHI",
+          "away": "NE",
+          "kickoff": "2026-10-23T00:15:00.000Z"
+        },
+        {
+          "id": "2026_07_NYG_HOU",
+          "round": 7,
+          "home": "HOU",
+          "away": "NYG",
+          "kickoff": "2026-10-25T17:00:00.000Z"
+        },
+        {
+          "id": "2026_07_PIT_NO",
+          "round": 7,
+          "home": "NO",
+          "away": "PIT",
+          "kickoff": "2026-10-25T13:30:00.000Z"
+        },
+        {
+          "id": "2026_07_SF_ATL",
+          "round": 7,
+          "home": "ATL",
+          "away": "SF",
+          "kickoff": "2026-10-25T17:00:00.000Z"
+        },
+        {
+          "id": "2026_07_TB_CAR",
+          "round": 7,
+          "home": "CAR",
+          "away": "TB",
+          "kickoff": "2026-10-25T17:00:00.000Z"
+        }
+      ],
+      "locksAt": "2026-10-23T00:15:00.000Z",
+      "lastKickoffAt": "2026-10-27T00:15:00.000Z"
+    },
+    {
+      "round": 8,
+      "status": "past-deadline",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_08_ARI_DAL",
+          "round": 8,
+          "home": "DAL",
+          "away": "ARI",
+          "kickoff": "2026-11-01T18:00:00.000Z"
+        },
+        {
+          "id": "2026_08_ATL_TB",
+          "round": 8,
+          "home": "TB",
+          "away": "ATL",
+          "kickoff": "2026-11-01T18:00:00.000Z"
+        },
+        {
+          "id": "2026_08_BAL_BUF",
+          "round": 8,
+          "home": "BUF",
+          "away": "BAL",
+          "kickoff": "2026-11-01T18:00:00.000Z"
+        },
+        {
+          "id": "2026_08_CAR_GB",
+          "round": 8,
+          "home": "GB",
+          "away": "CAR",
+          "kickoff": "2026-10-30T00:15:00.000Z"
+        },
+        {
+          "id": "2026_08_CHI_SEA",
+          "round": 8,
+          "home": "SEA",
+          "away": "CHI",
+          "kickoff": "2026-11-03T01:15:00.000Z"
+        },
+        {
+          "id": "2026_08_CLE_PIT",
+          "round": 8,
+          "home": "PIT",
+          "away": "CLE",
+          "kickoff": "2026-11-01T18:00:00.000Z"
+        },
+        {
+          "id": "2026_08_IND_JAX",
+          "round": 8,
+          "home": "JAX",
+          "away": "IND",
+          "kickoff": "2026-11-01T18:00:00.000Z"
+        },
+        {
+          "id": "2026_08_KC_DEN",
+          "round": 8,
+          "home": "DEN",
+          "away": "KC",
+          "kickoff": "2026-11-01T21:25:00.000Z"
+        },
+        {
+          "id": "2026_08_LAC_LA",
+          "round": 8,
+          "home": "LA",
+          "away": "LAC",
+          "kickoff": "2026-11-01T21:05:00.000Z"
+        },
+        {
+          "id": "2026_08_LV_NYJ",
+          "round": 8,
+          "home": "NYJ",
+          "away": "LV",
+          "kickoff": "2026-11-01T18:00:00.000Z"
+        },
+        {
+          "id": "2026_08_MIN_DET",
+          "round": 8,
+          "home": "DET",
+          "away": "MIN",
+          "kickoff": "2026-11-01T18:00:00.000Z"
+        },
+        {
+          "id": "2026_08_NE_MIA",
+          "round": 8,
+          "home": "MIA",
+          "away": "NE",
+          "kickoff": "2026-11-01T21:25:00.000Z"
+        },
+        {
+          "id": "2026_08_PHI_WAS",
+          "round": 8,
+          "home": "WAS",
+          "away": "PHI",
+          "kickoff": "2026-11-02T01:20:00.000Z"
+        },
+        {
+          "id": "2026_08_TEN_CIN",
+          "round": 8,
+          "home": "CIN",
+          "away": "TEN",
+          "kickoff": "2026-11-01T18:00:00.000Z"
+        }
+      ],
+      "locksAt": "2026-10-30T00:15:00.000Z",
+      "lastKickoffAt": "2026-11-03T01:15:00.000Z"
+    },
+    {
+      "round": 9,
+      "status": "past-deadline",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_09_ARI_SEA",
+          "round": 9,
+          "home": "SEA",
+          "away": "ARI",
+          "kickoff": "2026-11-08T21:25:00.000Z"
+        },
+        {
+          "id": "2026_09_BUF_MIN",
+          "round": 9,
+          "home": "MIN",
+          "away": "BUF",
+          "kickoff": "2026-11-10T01:15:00.000Z"
+        },
+        {
+          "id": "2026_09_CIN_ATL",
+          "round": 9,
+          "home": "ATL",
+          "away": "CIN",
+          "kickoff": "2026-11-08T14:30:00.000Z"
+        },
+        {
+          "id": "2026_09_CLE_NO",
+          "round": 9,
+          "home": "NO",
+          "away": "CLE",
+          "kickoff": "2026-11-08T18:00:00.000Z"
+        },
+        {
+          "id": "2026_09_DAL_IND",
+          "round": 9,
+          "home": "IND",
+          "away": "DAL",
+          "kickoff": "2026-11-08T18:00:00.000Z"
+        },
+        {
+          "id": "2026_09_DEN_CAR",
+          "round": 9,
+          "home": "CAR",
+          "away": "DEN",
+          "kickoff": "2026-11-08T18:00:00.000Z"
+        },
+        {
+          "id": "2026_09_DET_MIA",
+          "round": 9,
+          "home": "MIA",
+          "away": "DET",
+          "kickoff": "2026-11-08T18:00:00.000Z"
+        },
+        {
+          "id": "2026_09_GB_NE",
+          "round": 9,
+          "home": "NE",
+          "away": "GB",
+          "kickoff": "2026-11-08T21:25:00.000Z"
+        },
+        {
+          "id": "2026_09_HOU_LAC",
+          "round": 9,
+          "home": "LAC",
+          "away": "HOU",
+          "kickoff": "2026-11-08T21:05:00.000Z"
+        },
+        {
+          "id": "2026_09_JAX_BAL",
+          "round": 9,
+          "home": "BAL",
+          "away": "JAX",
+          "kickoff": "2026-11-06T01:15:00.000Z"
+        },
+        {
+          "id": "2026_09_LA_WAS",
+          "round": 9,
+          "home": "WAS",
+          "away": "LA",
+          "kickoff": "2026-11-08T18:00:00.000Z"
+        },
+        {
+          "id": "2026_09_LV_SF",
+          "round": 9,
+          "home": "SF",
+          "away": "LV",
+          "kickoff": "2026-11-08T21:05:00.000Z"
+        },
+        {
+          "id": "2026_09_NYG_PHI",
+          "round": 9,
+          "home": "PHI",
+          "away": "NYG",
+          "kickoff": "2026-11-08T18:00:00.000Z"
+        },
+        {
+          "id": "2026_09_NYJ_KC",
+          "round": 9,
+          "home": "KC",
+          "away": "NYJ",
+          "kickoff": "2026-11-08T18:00:00.000Z"
+        },
+        {
+          "id": "2026_09_TB_CHI",
+          "round": 9,
+          "home": "CHI",
+          "away": "TB",
+          "kickoff": "2026-11-09T01:20:00.000Z"
+        }
+      ],
+      "locksAt": "2026-11-06T01:15:00.000Z",
+      "lastKickoffAt": "2026-11-10T01:15:00.000Z"
+    },
+    {
+      "round": 10,
+      "status": "provider-renewal-required",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_10_BUF_NYJ",
+          "round": 10,
+          "home": "NYJ",
+          "away": "BUF",
+          "kickoff": "2026-11-15T18:00:00.000Z"
+        },
+        {
+          "id": "2026_10_CAR_NO",
+          "round": 10,
+          "home": "NO",
+          "away": "CAR",
+          "kickoff": "2026-11-15T18:00:00.000Z"
+        },
+        {
+          "id": "2026_10_HOU_CLE",
+          "round": 10,
+          "home": "CLE",
+          "away": "HOU",
+          "kickoff": "2026-11-15T18:00:00.000Z"
+        },
+        {
+          "id": "2026_10_JAX_TEN",
+          "round": 10,
+          "home": "TEN",
+          "away": "JAX",
+          "kickoff": "2026-11-15T18:00:00.000Z"
+        },
+        {
+          "id": "2026_10_KC_ATL",
+          "round": 10,
+          "home": "ATL",
+          "away": "KC",
+          "kickoff": "2026-11-15T18:00:00.000Z"
+        },
+        {
+          "id": "2026_10_LA_ARI",
+          "round": 10,
+          "home": "ARI",
+          "away": "LA",
+          "kickoff": "2026-11-15T21:05:00.000Z"
+        },
+        {
+          "id": "2026_10_LAC_BAL",
+          "round": 10,
+          "home": "BAL",
+          "away": "LAC",
+          "kickoff": "2026-11-17T01:15:00.000Z"
+        },
+        {
+          "id": "2026_10_MIA_IND",
+          "round": 10,
+          "home": "IND",
+          "away": "MIA",
+          "kickoff": "2026-11-15T18:00:00.000Z"
+        },
+        {
+          "id": "2026_10_MIN_GB",
+          "round": 10,
+          "home": "GB",
+          "away": "MIN",
+          "kickoff": "2026-11-15T18:00:00.000Z"
+        },
+        {
+          "id": "2026_10_NE_DET",
+          "round": 10,
+          "home": "DET",
+          "away": "NE",
+          "kickoff": "2026-11-15T14:30:00.000Z"
+        },
+        {
+          "id": "2026_10_PIT_CIN",
+          "round": 10,
+          "home": "CIN",
+          "away": "PIT",
+          "kickoff": "2026-11-16T01:20:00.000Z"
+        },
+        {
+          "id": "2026_10_SEA_LV",
+          "round": 10,
+          "home": "LV",
+          "away": "SEA",
+          "kickoff": "2026-11-15T21:05:00.000Z"
+        },
+        {
+          "id": "2026_10_SF_DAL",
+          "round": 10,
+          "home": "DAL",
+          "away": "SF",
+          "kickoff": "2026-11-15T21:25:00.000Z"
+        },
+        {
+          "id": "2026_10_WAS_NYG",
+          "round": 10,
+          "home": "NYG",
+          "away": "WAS",
+          "kickoff": "2026-11-13T01:15:00.000Z"
+        }
+      ],
+      "locksAt": "2026-11-13T01:15:00.000Z",
+      "lastKickoffAt": "2026-11-17T01:15:00.000Z"
+    },
+    {
+      "round": 11,
+      "status": "provider-renewal-required",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_11_ARI_KC",
+          "round": 11,
+          "home": "KC",
+          "away": "ARI",
+          "kickoff": "2026-11-22T18:00:00.000Z"
+        },
+        {
+          "id": "2026_11_BAL_CAR",
+          "round": 11,
+          "home": "CAR",
+          "away": "BAL",
+          "kickoff": "2026-11-22T18:00:00.000Z"
+        },
+        {
+          "id": "2026_11_CIN_WAS",
+          "round": 11,
+          "home": "WAS",
+          "away": "CIN",
+          "kickoff": "2026-11-24T01:15:00.000Z"
+        },
+        {
+          "id": "2026_11_IND_HOU",
+          "round": 11,
+          "home": "HOU",
+          "away": "IND",
+          "kickoff": "2026-11-20T01:15:00.000Z"
+        },
+        {
+          "id": "2026_11_JAX_NYG",
+          "round": 11,
+          "home": "NYG",
+          "away": "JAX",
+          "kickoff": "2026-11-22T18:00:00.000Z"
+        },
+        {
+          "id": "2026_11_LV_DEN",
+          "round": 11,
+          "home": "DEN",
+          "away": "LV",
+          "kickoff": "2026-11-22T21:25:00.000Z"
+        },
+        {
+          "id": "2026_11_MIA_BUF",
+          "round": 11,
+          "home": "BUF",
+          "away": "MIA",
+          "kickoff": "2026-11-22T18:00:00.000Z"
+        },
+        {
+          "id": "2026_11_MIN_SF",
+          "round": 11,
+          "home": "SF",
+          "away": "MIN",
+          "kickoff": "2026-11-23T01:20:00.000Z"
+        },
+        {
+          "id": "2026_11_NO_CHI",
+          "round": 11,
+          "home": "CHI",
+          "away": "NO",
+          "kickoff": "2026-11-22T18:00:00.000Z"
+        },
+        {
+          "id": "2026_11_NYJ_LAC",
+          "round": 11,
+          "home": "LAC",
+          "away": "NYJ",
+          "kickoff": "2026-11-22T21:05:00.000Z"
+        },
+        {
+          "id": "2026_11_PIT_PHI",
+          "round": 11,
+          "home": "PHI",
+          "away": "PIT",
+          "kickoff": "2026-11-22T21:25:00.000Z"
+        },
+        {
+          "id": "2026_11_TB_DET",
+          "round": 11,
+          "home": "DET",
+          "away": "TB",
+          "kickoff": "2026-11-22T18:00:00.000Z"
+        },
+        {
+          "id": "2026_11_TEN_DAL",
+          "round": 11,
+          "home": "DAL",
+          "away": "TEN",
+          "kickoff": "2026-11-22T18:00:00.000Z"
+        }
+      ],
+      "locksAt": "2026-11-20T01:15:00.000Z",
+      "lastKickoffAt": "2026-11-24T01:15:00.000Z"
+    },
+    {
+      "round": 12,
+      "status": "provider-renewal-required",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_12_ATL_MIN",
+          "round": 12,
+          "home": "MIN",
+          "away": "ATL",
+          "kickoff": "2026-11-29T18:00:00.000Z"
+        },
+        {
+          "id": "2026_12_BAL_HOU",
+          "round": 12,
+          "home": "HOU",
+          "away": "BAL",
+          "kickoff": "2026-11-29T18:00:00.000Z"
+        },
+        {
+          "id": "2026_12_CAR_TB",
+          "round": 12,
+          "home": "TB",
+          "away": "CAR",
+          "kickoff": "2026-12-01T01:15:00.000Z"
+        },
+        {
+          "id": "2026_12_CHI_DET",
+          "round": 12,
+          "home": "DET",
+          "away": "CHI",
+          "kickoff": "2026-11-26T18:00:00.000Z"
+        },
+        {
+          "id": "2026_12_DEN_PIT",
+          "round": 12,
+          "home": "PIT",
+          "away": "DEN",
+          "kickoff": "2026-11-27T20:00:00.000Z"
+        },
+        {
+          "id": "2026_12_GB_LA",
+          "round": 12,
+          "home": "LA",
+          "away": "GB",
+          "kickoff": "2026-11-26T01:00:00.000Z"
+        },
+        {
+          "id": "2026_12_KC_BUF",
+          "round": 12,
+          "home": "BUF",
+          "away": "KC",
+          "kickoff": "2026-11-27T01:20:00.000Z"
+        },
+        {
+          "id": "2026_12_LV_CLE",
+          "round": 12,
+          "home": "CLE",
+          "away": "LV",
+          "kickoff": "2026-11-29T18:00:00.000Z"
+        },
+        {
+          "id": "2026_12_NE_LAC",
+          "round": 12,
+          "home": "LAC",
+          "away": "NE",
+          "kickoff": "2026-11-30T01:20:00.000Z"
+        },
+        {
+          "id": "2026_12_NO_CIN",
+          "round": 12,
+          "home": "CIN",
+          "away": "NO",
+          "kickoff": "2026-11-29T18:00:00.000Z"
+        },
+        {
+          "id": "2026_12_NYG_IND",
+          "round": 12,
+          "home": "IND",
+          "away": "NYG",
+          "kickoff": "2026-11-29T18:00:00.000Z"
+        },
+        {
+          "id": "2026_12_NYJ_MIA",
+          "round": 12,
+          "home": "MIA",
+          "away": "NYJ",
+          "kickoff": "2026-11-29T18:00:00.000Z"
+        },
+        {
+          "id": "2026_12_PHI_DAL",
+          "round": 12,
+          "home": "DAL",
+          "away": "PHI",
+          "kickoff": "2026-11-26T21:30:00.000Z"
+        },
+        {
+          "id": "2026_12_SEA_SF",
+          "round": 12,
+          "home": "SF",
+          "away": "SEA",
+          "kickoff": "2026-11-29T21:25:00.000Z"
+        },
+        {
+          "id": "2026_12_TEN_JAX",
+          "round": 12,
+          "home": "JAX",
+          "away": "TEN",
+          "kickoff": "2026-11-29T21:05:00.000Z"
+        },
+        {
+          "id": "2026_12_WAS_ARI",
+          "round": 12,
+          "home": "ARI",
+          "away": "WAS",
+          "kickoff": "2026-11-29T21:25:00.000Z"
+        }
+      ],
+      "locksAt": "2026-11-26T01:00:00.000Z",
+      "lastKickoffAt": "2026-12-01T01:15:00.000Z"
+    },
+    {
+      "round": 13,
+      "status": "provider-renewal-required",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_13_BUF_NE",
+          "round": 13,
+          "home": "NE",
+          "away": "BUF",
+          "kickoff": "2026-12-06T21:25:00.000Z"
+        },
+        {
+          "id": "2026_13_CAR_MIN",
+          "round": 13,
+          "home": "MIN",
+          "away": "CAR",
+          "kickoff": "2026-12-06T21:25:00.000Z"
+        },
+        {
+          "id": "2026_13_CIN_CLE",
+          "round": 13,
+          "home": "CLE",
+          "away": "CIN",
+          "kickoff": "2026-12-06T18:00:00.000Z"
+        },
+        {
+          "id": "2026_13_DAL_SEA",
+          "round": 13,
+          "home": "SEA",
+          "away": "DAL",
+          "kickoff": "2026-12-08T01:15:00.000Z"
+        },
+        {
+          "id": "2026_13_DET_ATL",
+          "round": 13,
+          "home": "ATL",
+          "away": "DET",
+          "kickoff": "2026-12-06T18:00:00.000Z"
+        },
+        {
+          "id": "2026_13_GB_NO",
+          "round": 13,
+          "home": "NO",
+          "away": "GB",
+          "kickoff": "2026-12-06T18:00:00.000Z"
+        },
+        {
+          "id": "2026_13_HOU_PIT",
+          "round": 13,
+          "home": "PIT",
+          "away": "HOU",
+          "kickoff": "2026-12-07T01:20:00.000Z"
+        },
+        {
+          "id": "2026_13_JAX_CHI",
+          "round": 13,
+          "home": "CHI",
+          "away": "JAX",
+          "kickoff": "2026-12-06T18:00:00.000Z"
+        },
+        {
+          "id": "2026_13_KC_LA",
+          "round": 13,
+          "home": "LA",
+          "away": "KC",
+          "kickoff": "2026-12-04T01:15:00.000Z"
+        },
+        {
+          "id": "2026_13_LAC_TB",
+          "round": 13,
+          "home": "TB",
+          "away": "LAC",
+          "kickoff": "2026-12-06T18:00:00.000Z"
+        },
+        {
+          "id": "2026_13_MIA_DEN",
+          "round": 13,
+          "home": "DEN",
+          "away": "MIA",
+          "kickoff": "2026-12-06T21:05:00.000Z"
+        },
+        {
+          "id": "2026_13_PHI_ARI",
+          "round": 13,
+          "home": "ARI",
+          "away": "PHI",
+          "kickoff": "2026-12-06T21:05:00.000Z"
+        },
+        {
+          "id": "2026_13_SF_NYG",
+          "round": 13,
+          "home": "NYG",
+          "away": "SF",
+          "kickoff": "2026-12-06T18:00:00.000Z"
+        },
+        {
+          "id": "2026_13_WAS_TEN",
+          "round": 13,
+          "home": "TEN",
+          "away": "WAS",
+          "kickoff": "2026-12-06T18:00:00.000Z"
+        }
+      ],
+      "locksAt": "2026-12-04T01:15:00.000Z",
+      "lastKickoffAt": "2026-12-08T01:15:00.000Z"
+    },
+    {
+      "round": 14,
+      "status": "provider-renewal-required",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_14_ATL_CLE",
+          "round": 14,
+          "home": "CLE",
+          "away": "ATL",
+          "kickoff": "2026-12-13T18:00:00.000Z"
+        },
+        {
+          "id": "2026_14_BUF_GB",
+          "round": 14,
+          "home": "GB",
+          "away": "BUF",
+          "kickoff": "2026-12-14T01:20:00.000Z"
+        },
+        {
+          "id": "2026_14_CHI_MIA",
+          "round": 14,
+          "home": "MIA",
+          "away": "CHI",
+          "kickoff": "2026-12-13T18:00:00.000Z"
+        },
+        {
+          "id": "2026_14_DEN_NYJ",
+          "round": 14,
+          "home": "NYJ",
+          "away": "DEN",
+          "kickoff": "2026-12-13T18:00:00.000Z"
+        },
+        {
+          "id": "2026_14_HOU_WAS",
+          "round": 14,
+          "home": "WAS",
+          "away": "HOU",
+          "kickoff": "2026-12-13T18:00:00.000Z"
+        },
+        {
+          "id": "2026_14_IND_PHI",
+          "round": 14,
+          "home": "PHI",
+          "away": "IND",
+          "kickoff": "2026-12-13T18:00:00.000Z"
+        },
+        {
+          "id": "2026_14_KC_CIN",
+          "round": 14,
+          "home": "CIN",
+          "away": "KC",
+          "kickoff": "2026-12-13T21:25:00.000Z"
+        },
+        {
+          "id": "2026_14_LA_SF",
+          "round": 14,
+          "home": "SF",
+          "away": "LA",
+          "kickoff": "2026-12-13T21:25:00.000Z"
+        },
+        {
+          "id": "2026_14_LAC_LV",
+          "round": 14,
+          "home": "LV",
+          "away": "LAC",
+          "kickoff": "2026-12-13T21:05:00.000Z"
+        },
+        {
+          "id": "2026_14_MIN_NE",
+          "round": 14,
+          "home": "NE",
+          "away": "MIN",
+          "kickoff": "2026-12-11T01:15:00.000Z"
+        },
+        {
+          "id": "2026_14_NO_CAR",
+          "round": 14,
+          "home": "CAR",
+          "away": "NO",
+          "kickoff": "2026-12-13T18:00:00.000Z"
+        },
+        {
+          "id": "2026_14_NYG_SEA",
+          "round": 14,
+          "home": "SEA",
+          "away": "NYG",
+          "kickoff": "2026-12-13T21:25:00.000Z"
+        },
+        {
+          "id": "2026_14_PIT_JAX",
+          "round": 14,
+          "home": "JAX",
+          "away": "PIT",
+          "kickoff": "2026-12-15T01:15:00.000Z"
+        },
+        {
+          "id": "2026_14_TB_BAL",
+          "round": 14,
+          "home": "BAL",
+          "away": "TB",
+          "kickoff": "2026-12-13T18:00:00.000Z"
+        },
+        {
+          "id": "2026_14_TEN_DET",
+          "round": 14,
+          "home": "DET",
+          "away": "TEN",
+          "kickoff": "2026-12-13T18:00:00.000Z"
+        }
+      ],
+      "locksAt": "2026-12-11T01:15:00.000Z",
+      "lastKickoffAt": "2026-12-15T01:15:00.000Z"
+    },
+    {
+      "round": 15,
+      "status": "provider-renewal-required",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_15_ATL_WAS",
+          "round": 15,
+          "home": "WAS",
+          "away": "ATL",
+          "kickoff": "2026-12-20T18:00:00.000Z"
+        },
+        {
+          "id": "2026_15_BAL_PIT",
+          "round": 15,
+          "home": "PIT",
+          "away": "BAL",
+          "kickoff": "2026-12-20T18:00:00.000Z"
+        },
+        {
+          "id": "2026_15_CHI_BUF",
+          "round": 15,
+          "home": "BUF",
+          "away": "CHI",
+          "kickoff": "2026-12-20T01:20:00.000Z"
+        },
+        {
+          "id": "2026_15_CIN_CAR",
+          "round": 15,
+          "home": "CAR",
+          "away": "CIN",
+          "kickoff": "2026-12-20T18:00:00.000Z"
+        },
+        {
+          "id": "2026_15_CLE_NYG",
+          "round": 15,
+          "home": "NYG",
+          "away": "CLE",
+          "kickoff": "2026-12-20T18:00:00.000Z"
+        },
+        {
+          "id": "2026_15_DAL_LA",
+          "round": 15,
+          "home": "LA",
+          "away": "DAL",
+          "kickoff": "2026-12-20T21:25:00.000Z"
+        },
+        {
+          "id": "2026_15_DEN_LV",
+          "round": 15,
+          "home": "LV",
+          "away": "DEN",
+          "kickoff": "2026-12-20T21:25:00.000Z"
+        },
+        {
+          "id": "2026_15_DET_MIN",
+          "round": 15,
+          "home": "MIN",
+          "away": "DET",
+          "kickoff": "2026-12-21T01:20:00.000Z"
+        },
+        {
+          "id": "2026_15_IND_TEN",
+          "round": 15,
+          "home": "TEN",
+          "away": "IND",
+          "kickoff": "2026-12-20T18:00:00.000Z"
+        },
+        {
+          "id": "2026_15_JAX_HOU",
+          "round": 15,
+          "home": "HOU",
+          "away": "JAX",
+          "kickoff": "2026-12-20T18:00:00.000Z"
+        },
+        {
+          "id": "2026_15_MIA_GB",
+          "round": 15,
+          "home": "GB",
+          "away": "MIA",
+          "kickoff": "2026-12-20T18:00:00.000Z"
+        },
+        {
+          "id": "2026_15_NE_KC",
+          "round": 15,
+          "home": "KC",
+          "away": "NE",
+          "kickoff": "2026-12-22T01:15:00.000Z"
+        },
+        {
+          "id": "2026_15_NO_TB",
+          "round": 15,
+          "home": "TB",
+          "away": "NO",
+          "kickoff": "2026-12-20T18:00:00.000Z"
+        },
+        {
+          "id": "2026_15_NYJ_ARI",
+          "round": 15,
+          "home": "ARI",
+          "away": "NYJ",
+          "kickoff": "2026-12-20T21:05:00.000Z"
+        },
+        {
+          "id": "2026_15_SEA_PHI",
+          "round": 15,
+          "home": "PHI",
+          "away": "SEA",
+          "kickoff": "2026-12-19T22:00:00.000Z"
+        },
+        {
+          "id": "2026_15_SF_LAC",
+          "round": 15,
+          "home": "LAC",
+          "away": "SF",
+          "kickoff": "2026-12-18T01:15:00.000Z"
+        }
+      ],
+      "locksAt": "2026-12-18T01:15:00.000Z",
+      "lastKickoffAt": "2026-12-22T01:15:00.000Z"
+    },
+    {
+      "round": 16,
+      "status": "provider-renewal-required",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_16_ARI_NO",
+          "round": 16,
+          "home": "NO",
+          "away": "ARI",
+          "kickoff": "2026-12-27T18:00:00.000Z"
+        },
+        {
+          "id": "2026_16_BUF_DEN",
+          "round": 16,
+          "home": "DEN",
+          "away": "BUF",
+          "kickoff": "2026-12-25T21:30:00.000Z"
+        },
+        {
+          "id": "2026_16_CAR_PIT",
+          "round": 16,
+          "home": "PIT",
+          "away": "CAR",
+          "kickoff": "2026-12-27T18:00:00.000Z"
+        },
+        {
+          "id": "2026_16_CIN_IND",
+          "round": 16,
+          "home": "IND",
+          "away": "CIN",
+          "kickoff": "2026-12-27T18:00:00.000Z"
+        },
+        {
+          "id": "2026_16_CLE_BAL",
+          "round": 16,
+          "home": "BAL",
+          "away": "CLE",
+          "kickoff": "2026-12-27T18:00:00.000Z"
+        },
+        {
+          "id": "2026_16_GB_CHI",
+          "round": 16,
+          "home": "CHI",
+          "away": "GB",
+          "kickoff": "2026-12-25T18:00:00.000Z"
+        },
+        {
+          "id": "2026_16_HOU_PHI",
+          "round": 16,
+          "home": "PHI",
+          "away": "HOU",
+          "kickoff": "2026-12-25T01:15:00.000Z"
+        },
+        {
+          "id": "2026_16_JAX_DAL",
+          "round": 16,
+          "home": "DAL",
+          "away": "JAX",
+          "kickoff": "2026-12-28T01:20:00.000Z"
+        },
+        {
+          "id": "2026_16_LA_SEA",
+          "round": 16,
+          "home": "SEA",
+          "away": "LA",
+          "kickoff": "2026-12-26T01:15:00.000Z"
+        },
+        {
+          "id": "2026_16_LAC_MIA",
+          "round": 16,
+          "home": "MIA",
+          "away": "LAC",
+          "kickoff": "2026-12-27T18:00:00.000Z"
+        },
+        {
+          "id": "2026_16_NE_NYJ",
+          "round": 16,
+          "home": "NYJ",
+          "away": "NE",
+          "kickoff": "2026-12-27T18:00:00.000Z"
+        },
+        {
+          "id": "2026_16_NYG_DET",
+          "round": 16,
+          "home": "DET",
+          "away": "NYG",
+          "kickoff": "2026-12-29T01:15:00.000Z"
+        },
+        {
+          "id": "2026_16_SF_KC",
+          "round": 16,
+          "home": "KC",
+          "away": "SF",
+          "kickoff": "2026-12-27T21:25:00.000Z"
+        },
+        {
+          "id": "2026_16_TB_ATL",
+          "round": 16,
+          "home": "ATL",
+          "away": "TB",
+          "kickoff": "2026-12-27T18:00:00.000Z"
+        },
+        {
+          "id": "2026_16_TEN_LV",
+          "round": 16,
+          "home": "LV",
+          "away": "TEN",
+          "kickoff": "2026-12-27T21:05:00.000Z"
+        },
+        {
+          "id": "2026_16_WAS_MIN",
+          "round": 16,
+          "home": "MIN",
+          "away": "WAS",
+          "kickoff": "2026-12-27T18:00:00.000Z"
+        }
+      ],
+      "locksAt": "2026-12-25T01:15:00.000Z",
+      "lastKickoffAt": "2026-12-29T01:15:00.000Z"
+    },
+    {
+      "round": 17,
+      "status": "provider-renewal-required",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_17_BAL_CIN",
+          "round": 17,
+          "home": "CIN",
+          "away": "BAL",
+          "kickoff": "2027-01-01T01:15:00.000Z"
+        },
+        {
+          "id": "2026_17_BUF_MIA",
+          "round": 17,
+          "home": "MIA",
+          "away": "BUF",
+          "kickoff": "2027-01-03T18:00:00.000Z"
+        },
+        {
+          "id": "2026_17_DEN_NE",
+          "round": 17,
+          "home": "NE",
+          "away": "DEN",
+          "kickoff": "2027-01-03T18:00:00.000Z"
+        },
+        {
+          "id": "2026_17_DET_CHI",
+          "round": 17,
+          "home": "CHI",
+          "away": "DET",
+          "kickoff": "2027-01-03T21:25:00.000Z"
+        },
+        {
+          "id": "2026_17_HOU_GB",
+          "round": 17,
+          "home": "GB",
+          "away": "HOU",
+          "kickoff": "2027-01-05T01:15:00.000Z"
+        },
+        {
+          "id": "2026_17_IND_CLE",
+          "round": 17,
+          "home": "CLE",
+          "away": "IND",
+          "kickoff": "2027-01-03T18:00:00.000Z"
+        },
+        {
+          "id": "2026_17_KC_LAC",
+          "round": 17,
+          "home": "LAC",
+          "away": "KC",
+          "kickoff": "2027-01-03T18:00:00.000Z"
+        },
+        {
+          "id": "2026_17_LA_TB",
+          "round": 17,
+          "home": "TB",
+          "away": "LA",
+          "kickoff": "2027-01-03T18:00:00.000Z"
+        },
+        {
+          "id": "2026_17_LV_ARI",
+          "round": 17,
+          "home": "ARI",
+          "away": "LV",
+          "kickoff": "2027-01-03T21:05:00.000Z"
+        },
+        {
+          "id": "2026_17_MIN_NYJ",
+          "round": 17,
+          "home": "NYJ",
+          "away": "MIN",
+          "kickoff": "2027-01-03T18:00:00.000Z"
+        },
+        {
+          "id": "2026_17_NO_ATL",
+          "round": 17,
+          "home": "ATL",
+          "away": "NO",
+          "kickoff": "2027-01-03T18:00:00.000Z"
+        },
+        {
+          "id": "2026_17_NYG_DAL",
+          "round": 17,
+          "home": "DAL",
+          "away": "NYG",
+          "kickoff": "2027-01-03T18:00:00.000Z"
+        },
+        {
+          "id": "2026_17_PHI_SF",
+          "round": 17,
+          "home": "SF",
+          "away": "PHI",
+          "kickoff": "2027-01-04T01:20:00.000Z"
+        },
+        {
+          "id": "2026_17_PIT_TEN",
+          "round": 17,
+          "home": "TEN",
+          "away": "PIT",
+          "kickoff": "2027-01-03T18:00:00.000Z"
+        },
+        {
+          "id": "2026_17_SEA_CAR",
+          "round": 17,
+          "home": "CAR",
+          "away": "SEA",
+          "kickoff": "2027-01-03T18:00:00.000Z"
+        },
+        {
+          "id": "2026_17_WAS_JAX",
+          "round": 17,
+          "home": "JAX",
+          "away": "WAS",
+          "kickoff": "2027-01-03T18:00:00.000Z"
+        }
+      ],
+      "locksAt": "2027-01-01T01:15:00.000Z",
+      "lastKickoffAt": "2027-01-05T01:15:00.000Z"
+    },
+    {
+      "round": 18,
+      "status": "provider-renewal-required",
+      "missingModes": [
+        "SALARY_CAP",
+        "OPEN"
+      ],
+      "games": [
+        {
+          "id": "2026_18_ATL_CAR",
+          "round": 18,
+          "home": "CAR",
+          "away": "ATL",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_CHI_MIN",
+          "round": 18,
+          "home": "MIN",
+          "away": "CHI",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_CLE_CIN",
+          "round": 18,
+          "home": "CIN",
+          "away": "CLE",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_DAL_WAS",
+          "round": 18,
+          "home": "WAS",
+          "away": "DAL",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_DET_GB",
+          "round": 18,
+          "home": "GB",
+          "away": "DET",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_JAX_IND",
+          "round": 18,
+          "home": "IND",
+          "away": "JAX",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_LAC_DEN",
+          "round": 18,
+          "home": "DEN",
+          "away": "LAC",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_LV_KC",
+          "round": 18,
+          "home": "KC",
+          "away": "LV",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_MIA_NE",
+          "round": 18,
+          "home": "NE",
+          "away": "MIA",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_NYJ_BUF",
+          "round": 18,
+          "home": "BUF",
+          "away": "NYJ",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_PHI_NYG",
+          "round": 18,
+          "home": "NYG",
+          "away": "PHI",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_PIT_BAL",
+          "round": 18,
+          "home": "BAL",
+          "away": "PIT",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_SEA_LA",
+          "round": 18,
+          "home": "LA",
+          "away": "SEA",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_SF_ARI",
+          "round": 18,
+          "home": "ARI",
+          "away": "SF",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_TB_NO",
+          "round": 18,
+          "home": "NO",
+          "away": "TB",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        },
+        {
+          "id": "2026_18_TEN_HOU",
+          "round": 18,
+          "home": "HOU",
+          "away": "TEN",
+          "kickoff": "2027-01-10T18:00:00.000Z"
+        }
+      ],
+      "locksAt": "2027-01-10T18:00:00.000Z",
+      "lastKickoffAt": "2027-01-10T18:00:00.000Z"
+    }
+  ],
+  "publication": "separate-owner-review-required"
+}

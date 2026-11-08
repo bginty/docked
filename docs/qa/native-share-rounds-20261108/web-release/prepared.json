@@ -1,0 +1,46 @@
+{
+  "commit": "aef423eb043b208dbaeadd21b3caa2806cebe936",
+  "branch": "codex/scoring-pack-refinement",
+  "baseline": "477adbdd25fbaa7da1bf2b5ce01ab67efe1349e1",
+  "baselineId": "dpl_6R3u15HzAWESyyuSpVrDMfFavsbK",
+  "rollbackUrl": "https://docked-production-iosvywbqc-briant-s-projects.vercel.app",
+  "project": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "team": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "files": 961,
+  "changedFiles": [
+    "docs/qa/scoring-pack-refinement-20261108/DELIVERY.txt",
+    "docs/qa/scoring-pack-refinement-20261108/release-final/build.json",
+    "docs/qa/scoring-pack-refinement-20261108/release-final/candidate-verified.json",
+    "docs/qa/scoring-pack-refinement-20261108/release-final/live-verified.json",
+    "docs/qa/scoring-pack-refinement-20261108/release-final/prepared.json",
+    "docs/qa/scoring-pack-refinement-20261108/release-final/runtime-scan.json",
+    "docs/qa/scoring-pack-refinement-20261108/release-final/staged.json",
+    "docs/qa/scoring-pack-refinement-20261108/release/signed-in-scoring.json",
+    "playwright.native-share.config.ts",
+    "scripts/scoring-pack-refinement-release.mjs",
+    "scripts/scoring-pack-refinement-verify-release.mjs",
+    "src/components/nfl-seven-play.tsx",
+    "src/components/pack-pull-preview.tsx",
+    "src/core/competition-display.ts",
+    "tests/browser/pack-review-sharing.test.ts",
+    "tests/platform/competition-display.test.ts"
+  ],
+  "runtimeChangedKeys": [
+    "VERCEL_GIT_COMMIT_SHA"
+  ],
+  "sourceInventoryDigest": "5f4c528f13c1ea05f959cb6127791486b1abf67d997f44c8a491a0ae6fac5ad3",
+  "closedFlags": [
+    "REGISTRATION_ENABLED",
+    "COMPETITIONS_ENABLED",
+    "PRIZES_ENABLED",
+    "DOCKED_MULTI_SPORT_SANDBOX",
+    "DOCKED_MEMBER_GOOGLE_TEST",
+    "DOCKED_COMMERCIAL_SERVICE",
+    "DOCKED_COMMERCIAL_SURFACES",
+    "DOCKED_COMMERCIAL_CHECKOUT",
+    "DOCKED_PUBLIC_CUSTOMERS"
+  ],
+  "customerMutations": 0,
+  "migrations": [],
+  "runtimeDigest": "4d67b30e2d3d9d6add06d341cb61d4abb2ee32cb9cc27b12eb06b9bca0a108a5"
+}

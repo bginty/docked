@@ -1,0 +1,27 @@
+{
+  "versionCode": 31,
+  "versionName": "1.30",
+  "package": "docked.fantasy",
+  "artifacts": {
+    "artifacts/android/Docked-v31-1.30.apk": {
+      "sha256": "bb6173b1dd2e2b7111aa27ea9ccf7bad3ca8f00a387a4dd3b563e88b87d4f35e",
+      "bytes": 10151990,
+      "containsImageBridge": true,
+      "containsSharePlugin": true,
+      "origin": "https://docked.com.au/app",
+      "debugging": false,
+      "mixedContent": false
+    },
+    "artifacts/android/Docked-v31-1.30.aab": {
+      "sha256": "8becb6d044efc93baed6649f11ff100cc562bb09d200d45ec1a6742cf36e83b0",
+      "bytes": 9215017,
+      "containsImageBridge": true,
+      "containsSharePlugin": true,
+      "origin": "https://docked.com.au/app",
+      "debugging": false,
+      "mixedContent": false
+    }
+  },
+  "physicalAcceptance": false,
+  "paymentsActivated": false
+}

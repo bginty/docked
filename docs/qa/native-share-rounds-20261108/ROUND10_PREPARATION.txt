@@ -1,0 +1,58 @@
+NFL round publication — concrete remaining action (8 November 2026)
+
+Production diagnosis
+The NFL competition and ingestion-round registries contain genuine rounds 6 and 7,
+plus separately labelled practice rounds. There are no genuine round 8, 9 or 10
+competition records to show. Historical player-stat imports are independent of
+competition creation. Relabelling a practice round would misrepresent its rules.
+The earlier scoring-history fix therefore did not change the Play selector.
+
+Fresh calendar evidence
+Source: https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv
+Fetched: 2026-11-08T04:42:39.435Z
+Calendar SHA-256: 1c365338d4d30284d7493bf6c058ba7822c0a17a1fc2f5055c55fc26374ec326
+Full 272-game/32-team/17-games-per-team calendar passed structural validation.
+Round 8 first kickoff: 2026-10-30T00:15:00Z; deadline already passed.
+Round 9 first kickoff: 2026-11-06T01:15:00Z; deadline already passed.
+Round 10: 14 games. First kickoff / proposed whole-round lock:
+2026-11-13T01:15:00Z (13 November, 12:15 pm AEDT).
+Last scheduled kickoff: 2026-11-17T01:15:00Z.
+Refresh calendar and roster evidence again before any write.
+
+Prepared scope, not yet applied
+Two free invited-beta competitions, Traditional and All-Star, for genuine Round 10.
+Streams:
+beta-real:nfl:seven:salary_cap:2026:10
+beta-real:nfl:seven:open:2026:10
+Existing NFL seven-player formation, $4.4m Traditional cap, uncapped All-Star,
+existing full-PPR and rarity-multiplier rules. No entry fee or prizes.
+Use existing registerNflRound and exact reviewed calendar hash; stream identity
+and advisory locking prevent duplicate creation. Prepare disabled drafts first.
+Publication is a separate reviewed action. No historical round or entry rewrite.
+
+Blocking configuration
+config/nfl-postgame-permit.json is enabled only for isolated-free-beta and ends
+2026-11-10T00:00:00Z. This precedes Round 10. The preparation guard deliberately
+rejects that round. This is a configured authorisation boundary, not a finding
+that an external licence has expired. No authorisation extension was invented.
+Owner must confirm the existing test-data permission continues through this
+round and give the approved new expiry. Any extension must also allow postgame
+ingestion/reconciliation after the last game, not merely its kickoff.
+Owner confirmation should cover publishing these two free no-prize beta rounds;
+it must not be interpreted as public registration or commercial activation.
+
+After confirmation
+1. Record the bounded data-use approval, source and expiry; keep beta-only scope.
+2. Refresh and review calendar + current player/fixture identities. Stop if changed.
+3. Rehearse creation and retry in isolated PostgreSQL with existing rules.
+4. Snapshot counts and affected configuration; prepare the two disabled drafts.
+5. Verify fixture mapping, eligibility, scoring versions and deadline; publish only
+   these two beta rounds through the existing controls and invalidate their cache.
+6. Verify actual Play selector and server entry validation using isolated fixtures.
+7. Leave rounds 6/7, practice, public-disabled competitions, wallets, cards,
+   payments, prizes and NBA visibility untouched. Retire a mistaken empty draft
+   by disabling it, not deleting customer records or reopening locked rounds.
+
+No database writes, authorisation renewal or publication was performed in this
+investigation. The deployed notice explains the unavailable upcoming round and
+links to sport-based scoring history; it does not claim this blocker is resolved.
