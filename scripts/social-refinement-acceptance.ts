@@ -194,6 +194,20 @@ async function main() {
           page.locator(".social-attachment-grid .fantasy-card"),
         ).toHaveCount(24);
         await page.getByRole("button", { name: "Next cards" }).click();
+        if (width === 412) {
+          const aflCard = page.getByRole("checkbox", {
+            name: "Attach Fixture Player 025",
+          });
+          await aflCard.check();
+          await expect(aflCard).toBeChecked();
+          await expect(aflCard).toBeFocused();
+          await aflCard.uncheck();
+          await expect(aflCard).not.toBeChecked();
+          await expect(aflCard).toBeFocused();
+          await expect(
+            page.getByRole("navigation", { name: "Owned card pages" }),
+          ).toContainText("25–48 of 180");
+        }
         await page
           .getByRole("checkbox", { name: "Attach Fixture Player 024" })
           .check();

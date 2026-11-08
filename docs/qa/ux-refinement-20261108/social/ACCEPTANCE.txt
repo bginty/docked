@@ -19,6 +19,8 @@ Implemented
 - The attachment picker mounts at most 24 cards, with accessible page controls.
   Search, same-sport attachment restrictions and the four-card limit remain.
   The first selection keeps its card on the visible page after sport filtering.
+  Deselecting the last card restores its global page and keyboard focus as the
+  list expands back to all sports (covered by the global-index-25 AFL case).
   Page changes reset the card-grid scroll position; draft selections survive.
 - Selected-card and search filtering are memoized independently of body typing.
 
@@ -40,7 +42,7 @@ The timings are single-run local browser fixture observations under shared-host
 load. The desktop timing regressed in that run. They are not a claimed uniform
 speedup, production latency result or physical-device benchmark. The deterministic
 improvement is bounded rendering and substantially less initial composer space.
-The additional focused 412 px run measured 809 ms, demonstrating the timing noise.
+Additional focused-run timings are retained separately in their raw result file.
 
 Acceptance executed
 PASS: scripts/social-refinement-acceptance.ts --baseline (320/360/412/1366).
@@ -50,7 +52,8 @@ The candidate checked compact expansion, paging, attaching a later-page card,
 draft preservation across minimise/reopen, rejected POST recovery, Add image,
 125% root text size, visible Announcements and no horizontal overflow at each
 width, with no browser page errors. The focused run additionally checked the
-four-card limit, cross-sport restriction, search preserving selected cards and
+four-card limit, cross-sport restriction, focus across first-selection and final
+deselection on a later-page AFL card, search preserving selected cards and
 #social-compose expanding/focusing the composer. All API calls were intercepted;
 the only POST was deliberately rejected by an isolated fixture. No real posts,
 member records, wallets, ownership or permissions were changed.

@@ -379,6 +379,16 @@ export function SocialComposer({
                             .filter((owned) => owned.card.sport === card.sport)
                             .findIndex((owned) => owned.card.id === card.id);
                           setCardPage(Math.floor(index / 24));
+                        } else if (!e.target.checked && cardIds.length === 1) {
+                          // Removing the last card expands the list across sports.
+                          // Keep this checkbox mounted at its original global page.
+                          const term = search.trim().toLowerCase();
+                          const index = (hub?.cards ?? [])
+                            .filter((owned) =>
+                              owned.card.name.toLowerCase().includes(term),
+                            )
+                            .findIndex((owned) => owned.card.id === card.id);
+                          setCardPage(Math.max(0, Math.floor(index / 24)));
                         }
                         setCards(
                           e.target.checked
