@@ -1,0 +1,18 @@
+{
+  "device": "Samsung Galaxy S24 (SM-S921B)",
+  "installedDocked": "v30 / 1.29",
+  "testedSurface": "Chrome on physical Android; isolated local preview over USB",
+  "synthetic": true,
+  "tests": {
+    "ultraRareSummaryNativeShare": true,
+    "legendarySummaryNativeShare": true,
+    "legendaryDetailNativeShare": true,
+    "shareCancellation": true,
+    "androidBackFromDetailReturnsToSameSummary": true,
+    "nineCardsAccessible": true
+  },
+  "sentToApps": false,
+  "purchases": 0,
+  "customerMutations": 0,
+  "limitation": "Installed Docked WebView not tested this pass; no genuine Google checkout run."
+}

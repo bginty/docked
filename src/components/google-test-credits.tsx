@@ -1,4 +1,5 @@
 "use client";
+import { purchaseTiming } from "@/core/purchase-performance";
 import {
   Capacitor,
   registerPlugin,
@@ -74,6 +75,7 @@ function GoogleCredits({
     running = useRef(false),
     queue = useRef(Promise.resolve()),
     settled = useRef(onSettled);
+  const checkoutTiming = useRef<ReturnType<typeof purchaseTiming> | null>(null);
   useEffect(() => {
     settled.current = onSettled;
   }, [onSettled]);
@@ -109,28 +111,45 @@ function GoogleCredits({
         .then(async () => {
           if (stopped) return;
           for (const p of purchases.slice(0, 16)) {
-            const r = await boundedFetch(endpoint, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ token: p.token }),
-            });
-            if (!r.ok)
-              throw Error(
-                "Purchase verification is pending. Use Check purchases to retry.",
+            const timing = purchaseTiming(
+              mode === "test" ? "google-test" : "google-commercial",
+              "verification",
+            );
+            try {
+              const r = await boundedFetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ token: p.token }),
+              });
+              if (!r.ok)
+                throw Error(
+                  "Purchase verification is pending. Use Check purchases to retry.",
+                );
+              const result = await r.json();
+              timing(
+                result.state === "PURCHASED"
+                  ? "confirmed"
+                  : result.state === "CANCELLED" || result.state === "REVOKED"
+                    ? "failed"
+                    : "pending",
+                r,
               );
-            const result = await r.json();
-            if (!stopped)
-              setMessage(
-                result.state === "PENDING"
-                  ? "Payment is pending; no credits added."
-                  : result.state === "PURCHASED"
-                    ? mode === "test"
-                      ? "Test purchase verified."
-                      : "Purchase verified. Docked Credits added."
-                    : result.state === "REVIEW"
-                      ? "Purchase requires review. Contact support; no additional purchase is needed."
-                      : "Purchase cancelled or refunded.",
-              );
+              if (!stopped)
+                setMessage(
+                  result.state === "PENDING"
+                    ? "Payment is pending; no credits added."
+                    : result.state === "PURCHASED"
+                      ? mode === "test"
+                        ? "Test purchase verified."
+                        : "Purchase verified. Docked Credits added."
+                      : result.state === "REVIEW"
+                        ? "Purchase requires review. Contact support; no additional purchase is needed."
+                        : "Purchase cancelled or refunded.",
+                );
+            } catch (error) {
+              timing("pending");
+              throw error;
+            }
           }
           if (!stopped) {
             await settled.current();
@@ -184,6 +203,9 @@ function GoogleCredits({
       );
       listener = await billing.addListener("purchasesUpdated", (e) => {
         if (stopped) return;
+        // Includes time spent in Google's UI; not a server-only latency metric.
+        checkoutTiming.current?.(e.responseCode === 0 ? "pending" : "failed");
+        checkoutTiming.current = null;
         if (e.responseCode === 0) receive(e.purchases);
         else {
           running.current = false;
@@ -218,6 +240,10 @@ function GoogleCredits({
     running.current = true;
     setBusy(true);
     setMessage("");
+    checkoutTiming.current = purchaseTiming(
+      mode === "test" ? "google-test" : "google-commercial",
+      "checkout",
+    );
     try {
       const s = await readSession();
       if (
@@ -238,6 +264,8 @@ function GoogleCredits({
         offerToken: offer.token,
       });
     } catch (e) {
+      checkoutTiming.current?.("failed");
+      checkoutTiming.current = null;
       if (active.current) {
         running.current = false;
         setBusy(false);

@@ -4,6 +4,7 @@ import type { CommercialSport } from "@/core/commercial-billing";
 import type { PackShopState } from "@/core/pack-shop-state";
 import type { AwardedCard, PackReceipt } from "@/core/pack-opening";
 import { boundedFetch } from "@/core/bounded-request";
+import { purchaseTiming } from "@/core/purchase-performance";
 import { PackShop } from "./pack-shop";
 import PackOpening from "./pack-opening-lazy";
 import { CollectibleViewer } from "./collectible-viewer";
@@ -44,7 +45,12 @@ export function CommercialMember({
   } | null>(null);
   const [recovery, setRecovery] = useState(false),
     [completionError, setCompletionError] = useState("");
-  const pending = useRef<{ request: string; command: unknown } | null>(null),
+  const pending = useRef<{
+      request: string;
+      command: unknown;
+      /** Presentation only; the server revalidates this request on every retry. */
+      confirmed?: true;
+    } | null>(null),
     flight = useRef(false),
     alive = useRef(true),
     generation = useRef(0),
@@ -121,13 +127,18 @@ export function CommercialMember({
       JSON.stringify(pending.current.command) !== JSON.stringify(command)
     )
       throw Error("Resolve the pending purchase first.");
-    const p = pending.current ?? { request: crypto.randomUUID(), command };
+    const p: NonNullable<typeof pending.current> = pending.current ?? {
+      request: crypto.randomUUID(),
+      command,
+    };
     localStorage.setItem(key, JSON.stringify(p));
     pending.current = p;
     setRecovery(true);
     flight.current = true;
     setBusy(true);
     setError("");
+    const timing = purchaseTiming("commercial-credit", "purchase");
+    let response: Response | undefined;
     try {
       const r = await boundedFetch(endpoint + "?action=pack", {
         method: "POST",
@@ -139,12 +150,13 @@ export function CommercialMember({
         }),
       });
       const result = await r.json();
+      response = r;
       if (!alive.current || current !== generation.current)
         throw Error(
           "Account view changed. Check this purchase from the original account.",
         );
       if (!r.ok) {
-        if (result.outcome === "rejected") {
+        if (result.outcome === "rejected" && !p.confirmed) {
           localStorage.removeItem(key);
           pending.current = null;
           setRecovery(false);
@@ -154,14 +166,39 @@ export function CommercialMember({
             "Purchase status unavailable. Retry the same request.",
         );
       }
+      timing("confirmed", response);
+      // A successful debit/issuance is not undone by a failed history GET.
+      // Retain this exact request until its committed pack can be displayed.
+      pending.current = { ...p, confirmed: true };
+      try {
+        localStorage.setItem(key, JSON.stringify(pending.current));
+      } catch {
+        // The original envelope was persisted before POST. Keep it for recovery
+        // even if storing the optional presentation marker is unavailable.
+      }
+      try {
+        await refresh();
+      } catch {
+        if (alive.current && current === generation.current)
+          setError(
+            "Purchase confirmed. Your pack is saved, but pack history could not load. Check the saved purchase to retrieve it; do not purchase again.",
+          );
+        // Close the confirmation sheet as a successful purchase. The separate
+        // saved-pack recovery remains visible and retains the original UUID.
+        return result;
+      }
+      if (!alive.current || current !== generation.current)
+        throw Error(
+          "Account view changed. Retrieve this pack from the original account.",
+        );
       localStorage.removeItem(key);
       pending.current = null;
       setRecovery(false);
-      await refresh();
-      if (alive.current && current === generation.current) setPack(result.id);
+      setPack(result.id);
       window.dispatchEvent(new Event("docked-app-resume"));
       return result;
     } catch (e) {
+      timing(pending.current ? "pending" : "failed", response);
       if (alive.current && current === generation.current)
         setError(e instanceof Error ? e.message : "Please retry.");
       throw e;
@@ -195,7 +232,9 @@ export function CommercialMember({
       )}
       {recovery && (
         <p role="status">
-          A purchase is awaiting confirmation.{" "}
+          {pending.current?.confirmed
+            ? "Your purchase is confirmed. Retrieve the saved pack to continue."
+            : "A purchase is awaiting confirmation."}{" "}
           <button
             disabled={busy}
             onClick={() => {
@@ -203,7 +242,9 @@ export function CommercialMember({
                 void purchase(pending.current.command).catch(() => {});
             }}
           >
-            Check pending purchase
+            {pending.current?.confirmed
+              ? "Retrieve purchased pack"
+              : "Check pending purchase"}
           </button>
         </p>
       )}
@@ -273,6 +314,11 @@ export function CommercialMember({
           sport={sport}
           busy={busy}
           recovery={recovery}
+          recover={async () => {
+            if (!pending.current)
+              throw Error("No saved purchase. Refresh your packs.");
+            return purchase(pending.current.command);
+          }}
           refresh={refresh}
           purchase={(p) =>
             purchase({
@@ -351,16 +397,38 @@ export function CommercialMember({
           ownedIds={[]}
           teamHref={null}
           openPack={async () => {
-            const r = await boundedFetch(endpoint + "?action=open", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ id: selected.id, expectedMember: member }),
-            });
-            if (!r.ok) throw Error("Pack could not be opened. Please retry.");
-            const receipt = (await r.json()) as PackReceipt;
-            await refresh();
-            window.dispatchEvent(new Event("docked-app-resume"));
-            return receipt;
+            const current = generation.current;
+            const timing = purchaseTiming("commercial-credit", "open");
+            try {
+              const r = await boundedFetch(endpoint + "?action=open", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  id: selected.id,
+                  expectedMember: member,
+                }),
+              });
+              if (!r.ok) throw Error("Pack could not be opened. Please retry.");
+              const receipt = (await r.json()) as PackReceipt;
+              if (!alive.current || current !== generation.current)
+                throw Error(
+                  "Account changed. Retrieve this pack from the original account.",
+                );
+              // The receipt is already committed. Wallet/history reload must not
+              // delay it or turn a successful opening into a misleading failure.
+              void refresh().catch(() => {
+                if (alive.current && current === generation.current)
+                  setCompletionError(
+                    "Cards are confirmed. Pack history could not refresh; retry it when your connection returns.",
+                  );
+              });
+              window.dispatchEvent(new Event("docked-app-resume"));
+              timing("confirmed", r);
+              return receipt;
+            } catch (error) {
+              timing("pending");
+              throw error;
+            }
           }}
           onClose={() => setPack(null)}
           onViewCard={(c) => setCard(c)}
