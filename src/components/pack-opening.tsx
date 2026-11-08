@@ -21,9 +21,11 @@ import {
 import { FantasySheet } from "./fantasy-player-sheet";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { PackArtwork } from "./pack-artwork";
+import { PurchaseTransition } from "./purchase-transition";
+import { purchaseTiming } from "@/core/purchase-performance";
 import { AppIcon } from "./app-icon";
 import { packSound } from "./pack-feedback";
-import { AcquisitionShare } from "./acquisition-share";
+import { PackReviewCard } from "./pack-review-card";
 import { IconCelebration } from "./icon-celebration";
 import { rarities, rarityRule } from "@/core/card-rarity";
 import { NavigationShortcut } from "./navigation-shortcut";
@@ -364,6 +366,13 @@ export default function PackOpening(props: PackOpeningProps) {
       setIndex(0);
       save(result, 0);
       setStage(firstCardStage(result.cards[0], motionOff));
+      const rendered = purchaseTiming(
+        props.commercial ? "commercial-credit" : "test-credit",
+        "reveal",
+      );
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => rendered("confirmed")),
+      );
     } catch {
       if (alive.current) {
         setError(
@@ -604,71 +613,77 @@ export default function PackOpening(props: PackOpeningProps) {
           )}
           {(stage === "sealed" || stage === "waiting") && (
             <>
-              <h3 ref={title} tabIndex={-1}>
-                Your next team starts here.
-              </h3>
-              <div className="pack-stage">
-                <div
-                  className="pack-tunnel pack-tunnel-idle"
-                  aria-hidden="true"
-                >
-                  {[0, 1, 2, 3, 4].map((n) => (
-                    <i key={n} style={{ "--ring": n } as CSSProperties} />
-                  ))}
+              {stage === "waiting" && <PurchaseTransition state="securing" />}
+              <div hidden={stage === "waiting"}>
+                <h3 ref={title} tabIndex={-1}>
+                  Your next team starts here.
+                </h3>
+                <div className="pack-stage">
+                  <div
+                    className="pack-tunnel pack-tunnel-idle"
+                    aria-hidden="true"
+                  >
+                    {[0, 1, 2, 3, 4].map((n) => (
+                      <i key={n} style={{ "--ring": n } as CSSProperties} />
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    className="branded-seal"
+                    disabled={stage === "waiting"}
+                    aria-label="Open pack seal"
+                    onClick={() => void open()}
+                    onPointerDown={(e) => {
+                      swipe.current = { x: e.clientX, y: e.clientY };
+                    }}
+                    onPointerUp={(e) => {
+                      const p = swipe.current;
+                      swipe.current = null;
+                      if (
+                        p &&
+                        Math.hypot(e.clientX - p.x, e.clientY - p.y) > 45
+                      )
+                        void open();
+                    }}
+                    onPointerCancel={() => {
+                      swipe.current = null;
+                    }}
+                  >
+                    <PackArtwork
+                      core={props.packType === "WEEKLY_CORE"}
+                      premium={props.packType === "PREMIUM"}
+                      name={props.name}
+                      sport={
+                        props.sport ??
+                        new URLSearchParams(
+                          props.collectionHref?.split("?")[1],
+                        ).get("sport") ??
+                        undefined
+                      }
+                      count={props.cardCount ?? receipt?.cards.length}
+                    />
+                  </button>
                 </div>
                 <button
                   type="button"
-                  className="branded-seal"
+                  className="pack-open-button pack-control pack-primary"
                   disabled={stage === "waiting"}
-                  aria-label="Open pack seal"
                   onClick={() => void open()}
-                  onPointerDown={(e) => {
-                    swipe.current = { x: e.clientX, y: e.clientY };
-                  }}
-                  onPointerUp={(e) => {
-                    const p = swipe.current;
-                    swipe.current = null;
-                    if (p && Math.hypot(e.clientX - p.x, e.clientY - p.y) > 45)
-                      void open();
-                  }}
-                  onPointerCancel={() => {
-                    swipe.current = null;
-                  }}
                 >
-                  <PackArtwork
-                    core={props.packType === "WEEKLY_CORE"}
-                    premium={props.packType === "PREMIUM"}
-                    name={props.name}
-                    sport={
-                      props.sport ??
-                      new URLSearchParams(
-                        props.collectionHref?.split("?")[1],
-                      ).get("sport") ??
-                      undefined
-                    }
-                    count={props.cardCount ?? receipt?.cards.length}
-                  />
+                  Open pack
                 </button>
-              </div>
-              <button
-                type="button"
-                className="pack-open-button pack-control pack-primary"
-                disabled={stage === "waiting"}
-                onClick={() => void open()}
-              >
-                Open pack
-              </button>
-              <p role="status">
-                {stage === "waiting"
-                  ? "Confirming your cards…"
-                  : "Tap the pack or swipe across its top seal."}
-              </p>
-              {stage === "waiting" && (
-                <p>
-                  You can close this panel safely. Your result can be retrieved
-                  from Cards.
+                <p role="status">
+                  {stage === "waiting"
+                    ? "Confirming your cards…"
+                    : "Tap the pack or swipe across its top seal."}
                 </p>
-              )}
+                {stage === "waiting" && (
+                  <p>
+                    You can close this panel safely. Your result can be
+                    retrieved from Cards.
+                  </p>
+                )}
+              </div>
               {error && (
                 <p className="pack-error" role="alert">
                   {error}
@@ -1010,14 +1025,14 @@ export default function PackOpening(props: PackOpeningProps) {
               <h3 ref={title} tabIndex={-1}>
                 {props.replay || replaying
                   ? "Your original pack result"
-                  : props.commercial
-                    ? "Your collection"
-                    : props.teamHref === null
-                      ? "Your test collection"
-                      : "Ready to build your team"}
+                  : "Pack opened"}
               </h3>
               <p>
-                {receipt.cards.length} confirmed cards ·{" "}
+                {receipt.cards.length}{" "}
+                {props.replay || replaying
+                  ? "confirmed cards"
+                  : "cards added to your collection"}{" "}
+                ·{" "}
                 {props.commercial
                   ? "No cash redemption."
                   : "Test cards, no cash value."}
@@ -1030,65 +1045,18 @@ export default function PackOpening(props: PackOpeningProps) {
                 }
               >
                 {receipt.cards.map((c) => (
-                  <li
+                  <PackReviewCard
                     key={c.id}
-                    className={
-                      cinematicSummary
-                        ? c.tier === bestTier && c.tier !== "CORE"
-                          ? "pack-best-pull"
-                          : headlinePull(c)
-                            ? "pack-premium-pull"
-                            : undefined
-                        : undefined
-                    }
-                    style={
+                    card={c}
+                    bestPull={
                       cinematicSummary &&
-                      (c.tier === bestTier || headlinePull(c))
-                        ? rarityStyle(c.tier)
-                        : undefined
+                      c.tier === bestTier &&
+                      c.tier !== "CORE"
                     }
-                  >
-                    <span
-                      className={`pack-position tier-${c.tier.toLowerCase()}`}
-                      style={rarityStyle(c.tier)}
-                    >
-                      {c.position}
-                    </span>
-                    <span>
-                      <strong>{c.name}</strong>
-                      {cinematicSummary &&
-                        c.tier === bestTier &&
-                        c.tier !== "CORE" && (
-                          <span className="pack-best-label">Best pull</span>
-                        )}
-                      <small>
-                        {c.team} · {rarityRule(c.tier).label} ·{" "}
-                        {c.tier === "CORE" ? "Unlimited Core" : `#${c.serial}`}
-                      </small>
-                    </span>
-                    <div className="pack-summary-card-actions">
-                      <PackPullShare card={c} />
-                      <button
-                        type="button"
-                        className="pack-control secondary"
-                        aria-label={`View ${c.name}`}
-                        onClick={() => inspectCard(c)}
-                      >
-                        View
-                      </button>
-                    </div>
-                  </li>
+                    onView={inspectCard}
+                  />
                 ))}
               </ul>
-              {!props.preview && !props.replay && !replaying && (
-                <AcquisitionShare
-                  member={props.userId}
-                  reference={receipt.id}
-                  cards={receipt.cards.filter((c) =>
-                    props.ownedIds.includes(c.id),
-                  )}
-                />
-              )}
               <div className="pack-actions pack-completion-actions">
                 {props.onBuyAnother ? (
                   <button

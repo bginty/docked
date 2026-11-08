@@ -1,7 +1,7 @@
 "use client";
 
 import { Capacitor, registerPlugin } from "@capacitor/core";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { AwardedCard } from "@/core/pack-opening";
 import { CollectibleFrame } from "./collectible-frame";
 import { FantasySheet } from "./fantasy-sheet";
@@ -39,9 +39,11 @@ function canShareFile(file: File) {
 
 export default function PullImagePreview({
   card,
+  autoShare = false,
   onClose,
 }: {
   card: AwardedCard;
+  autoShare?: boolean;
   onClose: () => void;
 }) {
   const [details] = useState(() => pullImageDetails(card));
@@ -53,6 +55,7 @@ export default function PullImagePreview({
   const [failed, setFailed] = useState(false);
   const [busy, setBusy] = useState(false);
   const operation = useRef(false);
+  const autoShareAttempted = useRef(false);
   const native =
     Capacitor.isNativePlatform() &&
     Capacitor.isPluginAvailable("DockedPullImage");
@@ -83,61 +86,86 @@ export default function PullImagePreview({
     };
   }, [details]);
 
-  function download(source: string) {
-    const link = document.createElement("a");
-    link.href = source;
-    link.download = details.filename;
-    document.body.append(link);
-    link.click();
-    link.remove();
-    setMessage("Your download has started.");
-  }
+  const download = useCallback(
+    (source: string) => {
+      const link = document.createElement("a");
+      link.href = source;
+      link.download = details.filename;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setMessage("Your download has started.");
+    },
+    [details.filename],
+  );
 
-  async function exportImage(action: "share" | "save") {
-    if (!image || operation.current) return;
-    operation.current = true;
-    setBusy(true);
-    setMessage("");
-    try {
-      if (native) {
-        const payload = {
-          data: image.source.slice("data:image/png;base64,".length),
-          filename: image.file.name,
-        };
-        if (action === "save") {
-          const result = await NativePullImage.save(payload);
-          setMessage(result.saved ? "Image saved." : "Save cancelled.");
+  const exportImage = useCallback(
+    async (action: "share" | "save") => {
+      if (!image || operation.current) return;
+      operation.current = true;
+      setBusy(true);
+      setMessage("");
+      try {
+        if (native) {
+          const payload = {
+            data: image.source.slice("data:image/png;base64,".length),
+            filename: image.file.name,
+          };
+          if (action === "save") {
+            const result = await NativePullImage.save(payload);
+            setMessage(result.saved ? "Image saved." : "Save cancelled.");
+          } else {
+            const { Share } = await import("@capacitor/share");
+            const { uri } = await NativePullImage.prepareShare(payload);
+            await Share.share({
+              files: [uri],
+              dialogTitle: "Share your Docked pull",
+            });
+            setMessage("Share sheet closed. Nothing is posted automatically.");
+          }
+        } else if (action === "share" && canShareFile(image.file)) {
+          await navigator.share({ files: [image.file] });
+          setMessage("Share sheet closed. Nothing is posted automatically.");
         } else {
-          const { Share } = await import("@capacitor/share");
-          const { uri } = await NativePullImage.prepareShare(payload);
-          await Share.share({
-            files: [uri],
-            dialogTitle: "Share your Docked pull",
-          });
+          download(image.source);
         }
-      } else if (action === "share" && canShareFile(image.file)) {
-        await navigator.share({ files: [image.file] });
-      } else {
-        download(image.source);
+      } catch (error) {
+        if (
+          error instanceof Error &&
+          (error.name === "AbortError" ||
+            /(?:share.*cancel|cancel.*share)/i.test(error.message))
+        ) {
+          setMessage("Share cancelled.");
+        } else {
+          setMessage(
+            action === "share"
+              ? "Sharing is unavailable here. Try Save Image."
+              : "The image could not be saved. Please try again.",
+          );
+        }
+      } finally {
+        operation.current = false;
+        setBusy(false);
       }
-    } catch (error) {
-      if (
-        error instanceof Error &&
-        (error.name === "AbortError" || /share cancel/i.test(error.message))
-      ) {
-        setMessage("Share cancelled.");
-      } else {
-        setMessage(
-          action === "share"
-            ? "Sharing is unavailable here. Try Save Image."
-            : "The image could not be saved. Please try again.",
-        );
-      }
-    } finally {
-      operation.current = false;
-      setBusy(false);
+    },
+    [image, native, download],
+  );
+
+  useEffect(() => {
+    if (!autoShare || !image || autoShareAttempted.current) return;
+    autoShareAttempted.current = true;
+    // The selected card is fixed before generation. Native Capacitor sharing can
+    // await the file; Web Share additionally requires the original tap's active
+    // gesture. Slow devices fall back to this exact-card preview and a fresh tap.
+    if (
+      native ||
+      (canShareFile(image.file) && navigator.userActivation?.isActive !== false)
+    ) {
+      void exportImage("share");
+    } else if (canShareFile(image.file)) {
+      setMessage("Your image is ready. Tap Share Image to choose an app.");
     }
-  }
+  }, [autoShare, image, native, exportImage]);
 
   return (
     <FantasySheet
