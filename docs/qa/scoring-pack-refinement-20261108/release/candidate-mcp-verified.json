@@ -1,0 +1,158 @@
+{
+  "commit": "8b73ef728156b9139ee48605d57d068b5c19efa6",
+  "deployment": "dpl_wGaDeimzDBobhc7KfWBs3UGxmNrF",
+  "transport": "authenticated Vercel MCP; local CLI timeout",
+  "routeChecks": [
+    {
+      "route": "/app/login",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "cache": "private, no-cache, no-store, max-age=0, must-revalidate"
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403,
+      "expected": 403,
+      "passed": true,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403,
+      "expected": 403,
+      "passed": true,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403,
+      "expected": 403,
+      "passed": true,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "status": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403,
+      "expected": 403,
+      "passed": true,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/profile/qa_billing",
+      "status": 503,
+      "expected": 503,
+      "passed": true,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/preview/pack-opening",
+      "status": 404,
+      "expected": 404,
+      "passed": true,
+      "cache": "private, no-cache, no-store, max-age=0, must-revalidate"
+    },
+    {
+      "route": "/account-deletion",
+      "status": 200,
+      "expected": 200,
+      "passed": true,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=nfl",
+      "status": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=afl",
+      "status": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=nrl",
+      "status": 401,
+      "expected": 401,
+      "passed": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=nba",
+      "status": 400,
+      "expected": 400,
+      "passed": true,
+      "cache": "private, no-store"
+    }
+  ],
+  "styles": [
+    {
+      "marker": "CORE",
+      "passed": true
+    },
+    {
+      "marker": "RARE",
+      "passed": true
+    },
+    {
+      "marker": "ELITE",
+      "passed": true
+    },
+    {
+      "marker": "ULTRA_RARE",
+      "passed": true
+    },
+    {
+      "marker": "LEGENDARY",
+      "passed": true
+    },
+    {
+      "marker": "ICON",
+      "passed": true
+    },
+    {
+      "marker": "cinema-v2",
+      "passed": true
+    },
+    {
+      "marker": "pack-back-to-pack",
+      "passed": true
+    },
+    {
+      "marker": "pack-resume-notice",
+      "passed": true
+    },
+    {
+      "marker": "sport-scoring-reference",
+      "passed": true
+    },
+    {
+      "marker": "purchase-transition",
+      "passed": true
+    },
+    {
+      "marker": "pack-review-card",
+      "passed": true
+    },
+    {
+      "marker": "foil-pack-art",
+      "passed": true
+    }
+  ],
+  "cssCount": 5,
+  "applicationAuthBypassed": false,
+  "customerMutations": 0
+}

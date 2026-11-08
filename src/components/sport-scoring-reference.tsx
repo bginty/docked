@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSport } from "./sport-context";
-import { SportNavigation } from "./sport-navigation";
 import { boundedFetch } from "@/core/bounded-request";
 import { isCustomerSport, type CustomerSport } from "@/core/customer-sports";
 import { scoringRows } from "@/core/scoring-release";
@@ -19,7 +18,6 @@ export function SportScoringReference() {
   const selected = isCustomerSport(sport) ? sport : "nfl";
   return (
     <section className="sport-scoring-reference">
-      <SportNavigation />
       {ready ? (
         <SportScoringHistory key={selected} sport={selected} />
       ) : (

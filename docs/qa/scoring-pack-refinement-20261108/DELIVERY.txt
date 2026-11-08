@@ -1,0 +1,117 @@
+DOCKED SCORING, PACK REVIEW, SHARING AND PURCHASE PERFORMANCE
+Prepared 2026-11-08. Application candidate: 8b73ef728156b9139ee48605d57d068b5c19efa6.
+Production deployment and hosted acceptance are pending; the release lead will
+append the confirmed deployment result. No claim of deployment is made here.
+Evidence paths below are relative to this directory unless prefixed repo:.
+
+SCORING HISTORY
+The general rules page incorrectly used published fantasy competitions as its
+history source. That yielded Round 6, Round 7 and a practice round even though the
+independent NFL historical publication already contained real rounds 1–9.
+Production was inspected read-only: Round 8 contains 980 player-game records
+across 14 games, with 272 reviewed offensive-player mappings; Round 9 has 71
+records across one game, 21 mapped. These are not claims of round finality.
+
+The general screen now uses sport navigation, sport rules and a restricted,
+authenticated, no-store history API with pagination/search. NFL history uses
+reviewed identities and latest corrected revisions, excludes synthetic/tombstoned
+records and distinguishes missing scores from zero. Base points apply the shown
+Full-PPR reference version; rarity multipliers are explained separately. Saved
+competition rules/results and explicit competition/version routes are preserved.
+AFL/NRL archives currently contain match results, not player-game statistics;
+their screens disclose this instead of inventing scores. No round was opened.
+Evidence: scoring/README.txt, scoring/production-readonly.json,
+scoring/before-320.png, scoring/nfl-after-320.png, scoring/afl-after-320.png,
+scoring/nrl-after-320.png (also 412px and desktop variants).
+
+PACK REVIEW AND SHARING
+All pulls use one aligned review-row component, including the gold Best Pull
+variant. Names, positions, teams, rarity, serials and equal Share/View buttons
+have stable placement. All nine cards remain accessible; 200% text gets a wider
+action row. The duplicate sharing dropdown/prompt is removed from pack summaries.
+Replay still says original result and never claims a new award.
+
+Share freezes the exact selected card, lazily prepares its existing artwork and
+opens supported native/file sharing without another card-selection step. Downloads
+are 1080 x 1920 PNGs; no account, wallet, transaction or private card IDs are
+exported. Cancelling preserves the pack. Slow browsers whose activation expires
+offer Share Image for a fresh gesture; unsupported browsers offer Save Image.
+Optional code preloading does not rasterise nine images. Loading keeps button
+dimensions stable; module-load errors are recoverable without exiting the pack.
+Evidence: pack-review-sharing/before-390.png, after-390.png, after-bottom-390.png,
+after-320-text-200.png, share-legendary.png, share-ultra_rare.png and the two
+docked-afl-*-pull.png downloads in that directory.
+
+PURCHASE PERFORMANCE AND RECOVERY
+The recorded hosted baseline has one buy/open pair: 8,406 ms + 9,481 ms network,
+17,887 ms total. It is one observation, not p50/p95. Read-only database counters
+identify the guarded beta aggregate UPDATE as the largest observed cost (83
+calls, mean 8,400.4 ms). No financial guard, lock or verification was bypassed.
+
+This release attributes authentication, provider verification, transaction/lock,
+issuance, persistence, view and acknowledgement through private Server-Timing
+headers and client journey timings. Nested spans must not be added together.
+Reveal modules/assets preload while existing operations run. Non-essential
+history refresh no longer delays or invalidates an already committed purchase;
+confirmed receipts and pending request identities support safe recovery/reload.
+The animated transition starts immediately, uses real processing/securing/ready
+states, adds no artificial delay and respects reduced motion. Ready requires the
+authoritative committed receipt. No card is presented as owned before commit.
+
+Native PostgreSQL 17.10 isolated benchmarks ran 20 samples per operation, including
+actual ledger/issuance/replay constraints. Google provider HTTP was mocked. They
+do not include hosted Auth, provider latency, production guard volume or native
+checkout. Candidate tails/open median were sometimes higher: NO BACKEND SPEEDUP
+HAS BEEN ESTABLISHED. Further hosted percentiles require enough authorised samples.
+See PURCHASE_PERFORMANCE.txt and purchase-timing-postgres.json for stage p50/p95/
+maximum, fixture limitations and exact accounting assertions.
+Transition images: repo:docs/qa/scoring-pack-20261108/purchase-processing-success.png
+and repo:docs/qa/scoring-pack-20261108/purchase-processing-rejected.png.
+
+EXECUTED ACCEPTANCE
+- 49 targeted purchase platform tests passed: timing isolation/privacy, admission,
+  verification, pending/failure, all 18 paid pack variants, refunds and replay.
+- Native PostgreSQL benchmark preserved nine-card counts, journals, concurrent
+  duplicate buy/open/receipt protection, cross-account denial and recovery holds.
+- Scoring: 4 platform tests, 1 restricted-reader PGlite integration test and
+  3 browser tests passed. Wallet reads/history writes denied; sentinel preserved.
+- Pack review/share: 8 browser tests passed, plus 4 final viewport/bottom captures
+  and 3 NFL/AFL/NRL nine-card navigation regression cases. Scoped ESLint passed.
+- Purchase transition/recovery: root's final 5/5 browser checks passed.
+- Commercial recovery: 1/1 browser check passed against the actual migrated
+  commercial repository in isolated embedded PostgreSQL (PGlite). Auth/HTTP and
+  starting Google receipt were synthetic. Failed history/reload reused the same
+  committed request instead of charging or issuing again.
+- Combined TypeScript check passed. Local Turbopack production build failed on the
+  external node_modules junction; Webpack/cloud build verification is pending,
+  not reported as passed. See final release-lead addendum for later results.
+
+PHYSICAL ANDROID SCOPE
+Samsung Galaxy S24 (SM-S921B), Chrome, isolated preview over USB: actual Ultra Rare
+and Legendary native image share sheets opened; cancellation, Legendary detail
+sharing, Back to Pack, Android Back and all nine cards were verified. No image was
+sent to an app and no purchase/customer mutation occurred. Installed Docked is
+v30 / 1.29, but its WebView was NOT tested in this pass. No genuine Google checkout
+or new refund notification was exercised; products stayed inactive. The statement
+in PURCHASE_PERFORMANCE.txt about no attached Android pertains to its backend
+benchmark, not this separately recorded physical sharing acceptance.
+Evidence: android/acceptance.json and android/*.png.
+
+RELEASE SAFETY AND REMAINING CHECKS
+No database migration or Android binary rebuild is required. Prices, odds, supply,
+ownership, credits, commissions, historical scores and transaction/refund guards
+remain unchanged. NBA remains hidden; registration, payments, commercial trading,
+prizes and other restricted features retain their existing release controls.
+No Google configuration was changed. Public payment acceptance is not claimed.
+The local 4192 sharing preview was stopped after acceptance; USB forwarding was
+removed by the release lead.
+
+Commits: fc0e8077 (purchase evidence), fced9b77 (review/sharing), 6da8f4d1 (scoring),
+839c078f (release scripts), 3c3dafd8 (purchase transitions), 8b73ef72 (recovery and
+Android evidence). Release preparation: release/prepared.json, including the
+previous production rollback URL and unchanged closed flags.
+
+Remaining before claiming Production completion: successful production build,
+candidate/hosted route checks, promotion, deployed commit verification and scoped
+live acceptance. The existing authorisation permits deployment after these pass;
+none of these pending checks may be represented as completed in this document.

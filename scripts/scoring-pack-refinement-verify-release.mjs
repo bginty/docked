@@ -4,7 +4,7 @@ import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { createHash } from "node:crypto";
-const evidence = "docs/qa/scoring-pack-refinement-20261108/release";
+const evidence = "docs/qa/scoring-pack-refinement-20261108/release-final";
 const staged = JSON.parse(await fs.readFile(evidence + "/staged.json", "utf8"));
 const prepared = JSON.parse(
   await fs.readFile(evidence + "/prepared.json", "utf8"),

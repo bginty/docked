@@ -26,6 +26,8 @@ test("committed commercial purchase survives failed history and page reload usin
     member = "10000000-0000-4000-8000-000000000001";
   // The standard test adapter accepts a callback only. Preserve the production
   // member-view isolation option rather than replacing its SQL projection.
+  // This transport-only bridge implements the two exercised begin overloads;
+  // PGlite's Sql facade does not model postgres.js generic transaction returns.
   const begin = sql.begin.bind(sql);
   sql.begin = ((
     option: string | ((tx: Sql) => Promise<unknown>),
@@ -39,7 +41,7 @@ test("committed commercial purchase survives failed history and page reload usin
       );
       return callback!(tx as unknown as Sql);
     });
-  }) as typeof sql.begin;
+  }) as unknown as typeof sql.begin;
   const ledger = new CommercialLedger(sql, "acceptance", {
       active: "local",
       values: { local: randomBytes(32) },

@@ -114,6 +114,8 @@ It also passed eight concurrent commercial receipt retries, cross-account replay
 denial and duplicate refunds after opening, preserving nine issued cards while
 placing precisely the spent pack price on a recovery hold with zero spendable.
 
-No Android was attached for this task. No new genuine Google checkout occurred;
+No Android checkout was run for this backend benchmark. The separate physical
+Samsung sharing checks are documented in android/acceptance.json. No new genuine
+Google checkout occurred;
 Google products remained inactive. Genuine device/provider timing and hosted
 post-release p50/p95 require an authorised test window and enough samples.

@@ -1,0 +1,32 @@
+{
+  "deployment": "dpl_wGaDeimzDBobhc7KfWBs3UGxmNrF",
+  "commit": "8b73ef728156b9139ee48605d57d068b5c19efa6",
+  "status": "READY",
+  "buildDurationSeconds": 89.8,
+  "checks": [
+    {
+      "type": "stderr",
+      "text": "Warning: Due to \"engines\": { \"node\": \">=22\" } in your `package.json` file, the Node.js Version defined in your Project Settings (\"24.x\") will not apply, Node.js Version \"26.x\" will be used instead. Learn More: https://vercel.link/node-version"
+    },
+    {
+      "type": "stderr",
+      "text": "Warning: Detected \"engines\": { \"node\": \">=22\" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version"
+    },
+    {
+      "type": "stdout",
+      "text": "✓ Compiled successfully in 6.2s"
+    },
+    {
+      "type": "stdout",
+      "text": "  Running TypeScript ..."
+    },
+    {
+      "type": "stdout",
+      "text": "  Finished TypeScript in 19.4s ..."
+    },
+    {
+      "type": "stderr",
+      "text": "Build Completed in /vercel/output [1m]"
+    }
+  ]
+}
