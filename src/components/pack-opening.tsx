@@ -368,7 +368,7 @@ export default function PackOpening(props: PackOpeningProps) {
       setStage(firstCardStage(result.cards[0], motionOff));
       const rendered = purchaseTiming(
         props.commercial ? "commercial-credit" : "test-credit",
-        "reveal",
+        "receipt-render",
       );
       requestAnimationFrame(() =>
         requestAnimationFrame(() => rendered("confirmed")),

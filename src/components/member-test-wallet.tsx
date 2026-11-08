@@ -1,6 +1,7 @@
 "use client";
 import { CollectibleViewer } from "./collectible-viewer";
 import { AcquisitionShare } from "./acquisition-share";
+import { purchaseTiming } from "@/core/purchase-performance";
 import { boundedFetch } from "@/core/bounded-request";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -75,12 +76,18 @@ export function MemberTestWallet({
     inFlight.current = true;
     setBusy(true);
     setError("");
+    const timing = purchaseTiming(
+      "test-credit",
+      command.kind === "open-pack" ? "open" : "purchase",
+    );
+    let response: Response | undefined;
     try {
       const r = await boundedFetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ request, command }),
       });
+      response = r;
       const data = await r.json();
       if (!r.ok) {
         if (data.outcome === "rejected") {
@@ -119,8 +126,10 @@ export function MemberTestWallet({
       pending.current = null;
       localStorage.removeItem(storageKey);
       setRecovery(false);
+      timing("confirmed", response);
       return data.result;
     } catch (e) {
+      timing(pending.current ? "pending" : "failed", response);
       setError(
         e instanceof Error
           ? e.message

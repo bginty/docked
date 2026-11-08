@@ -16,6 +16,9 @@ import { PackArtwork } from "./pack-artwork";
 import { WeeklyCorePanel } from "./weekly-core-panel";
 import { StarterPackHistory } from "./starter-pack-history";
 import { PackResumeNotice } from "./pack-resume-notice";
+import { PurchaseTransition } from "./purchase-transition";
+import { preloadPackOpening } from "./pack-opening-lazy";
+import { purchaseTiming } from "@/core/purchase-performance";
 import { boundedFetch } from "@/core/bounded-request";
 import type { CouponQuote } from "@/core/pack-coupons";
 import type { memberCoupon } from "@/server/pack-coupons";
@@ -131,6 +134,17 @@ export function PackShop({
   const repeatSeen = useRef(0);
   const refreshRef = useRef(refresh);
   const statusRef = useRef(repeatStatus);
+  useEffect(() => {
+    if (!review) return;
+    const timing = purchaseTiming(
+      commercial ? "commercial-credit" : "test-credit",
+      "assets",
+    );
+    void preloadPackOpening().then(
+      () => timing("confirmed"),
+      () => timing("failed"),
+    );
+  }, [review, commercial]);
   refreshRef.current = refresh;
   statusRef.current = repeatStatus;
   useEffect(() => {
@@ -608,59 +622,69 @@ export function PackShop({
         <FantasySheet
           title="Confirm purchase"
           className="pack-purchase-sheet"
+          dismissOnBackdrop={!submitting && !recovery}
           onClose={() => setReview(null)}
         >
           <div className="pack-purchase-review">
-            <PackArtwork
-              sport={sport}
-              count={review.cards}
-              name={title(review)}
-              premium={review.tier === "PREMIUM"}
-            />
-            <h3>{title(review)}</h3>
-            <p>{review.odds?.headline ?? `${review.cards} cards`}</p>
-            <dl>
-              <div>
-                <dt>Pack price</dt>
-                <dd>
-                  {credits(review.price)} {creditLabel}
-                </dd>
-              </div>
-              {reviewCoupon && (
-                <div>
-                  <dt>{reviewCoupon.code} saving</dt>
-                  <dd>−{credits(reviewCoupon.saving)} credits</dd>
-                </div>
-              )}
-              <div>
-                <dt>You pay</dt>
-                <dd>
-                  {credits(reviewCoupon?.charge ?? review.price)} {creditLabel}
-                </dd>
-              </div>
-              <div>
-                <dt>Available</dt>
-                <dd>
-                  {credits(s.wallet.spendable)} {creditLabel}
-                </dd>
-              </div>
-              <div>
-                <dt>After purchase</dt>
-                <dd>
-                  {credits(
-                    packBalance(
-                      s.wallet.spendable,
-                      reviewCoupon?.charge ?? review.price,
-                    ),
-                  )}{" "}
-                  {creditLabel}
-                </dd>
-              </div>
-            </dl>
-            {review.odds?.guarantee && (
-              <p className="small-note">{review.odds.guarantee}</p>
+            {submitting ? (
+              <PurchaseTransition state="processing" />
+            ) : recovery ? (
+              <PurchaseTransition state="pending" />
+            ) : (
+              <>
+                <PackArtwork
+                  sport={sport}
+                  count={review.cards}
+                  name={title(review)}
+                  premium={review.tier === "PREMIUM"}
+                />
+                <h3>{title(review)}</h3>
+                <p>{review.odds?.headline ?? `${review.cards} cards`}</p>
+                <dl>
+                  <div>
+                    <dt>Pack price</dt>
+                    <dd>
+                      {credits(review.price)} {creditLabel}
+                    </dd>
+                  </div>
+                  {reviewCoupon && (
+                    <div>
+                      <dt>{reviewCoupon.code} saving</dt>
+                      <dd>−{credits(reviewCoupon.saving)} credits</dd>
+                    </div>
+                  )}
+                  <div>
+                    <dt>You pay</dt>
+                    <dd>
+                      {credits(reviewCoupon?.charge ?? review.price)}{" "}
+                      {creditLabel}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Available</dt>
+                    <dd>
+                      {credits(s.wallet.spendable)} {creditLabel}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>After purchase</dt>
+                    <dd>
+                      {credits(
+                        packBalance(
+                          s.wallet.spendable,
+                          reviewCoupon?.charge ?? review.price,
+                        ),
+                      )}{" "}
+                      {creditLabel}
+                    </dd>
+                  </div>
+                </dl>
+                {review.odds?.guarantee && (
+                  <p className="small-note">{review.odds.guarantee}</p>
+                )}
+                <FamilyDisclosures p={review} expanded />
+              </>
             )}
-            <FamilyDisclosures p={review} expanded />
             {error && <p role="alert">{error}</p>}
             {recovery && !submitting && (
               <div role="status">

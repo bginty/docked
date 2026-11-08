@@ -7,6 +7,7 @@ export function FantasySheet({
   children,
   className = "",
   historyEntry = false,
+  dismissOnBackdrop = true,
 }: {
   title: string;
   /** Return false to retain this sheet when browser Back requests dismissal. */
@@ -14,6 +15,7 @@ export function FantasySheet({
   children: ReactNode;
   className?: string;
   historyEntry?: boolean;
+  dismissOnBackdrop?: boolean;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const close = useRef(onClose);
@@ -82,7 +84,7 @@ export function FantasySheet({
         onClose();
       }}
       onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
+        if (dismissOnBackdrop && e.target === e.currentTarget) onClose();
       }}
     >
       <div className="sheet-inner">
