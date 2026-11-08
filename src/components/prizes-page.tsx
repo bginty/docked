@@ -3,7 +3,11 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSport } from "./sport-context";
 import { CompetitionSwitch } from "./competition-switch";
-import { competitionName, seasonLabel } from "@/core/competition-display";
+import {
+  competitionName,
+  seasonLabel,
+  competitionRoundWord,
+} from "@/core/competition-display";
 import { NavigationShortcut } from "./navigation-shortcut";
 import { approvedAustralianPrizes } from "@/core/approved-australian-rules";
 import { paidPackOffers } from "@/core/paid-pack-catalogue";
@@ -44,7 +48,7 @@ export function PrizesPage({
   showUpcoming?: boolean;
 }) {
   const { sport } = useSport();
-  const roundWord = sport === "afl" || sport === "nrl" ? "Round" : "Week";
+  const roundWord = competitionRoundWord(sport);
   const params = useSearchParams();
   const [query, setQuery] = useState<Record<string, string>>(() =>
     Object.fromEntries(params.entries()),

@@ -1,0 +1,41 @@
+Play / round presentation refinement — 2026-11-08
+
+Scope and outcome
+The existing navy/blue styling, lineup cards, scoring, salaries, mutations and lock rules are preserved. NFL/AFL/NRL competition navigation now consistently says Round; basketball retains Week. Private season IDs remain persisted unchanged. Ordinary selectors use a short round label, with Practice/Test as secondary context and season only where needed to distinguish duplicate options.
+
+The oversized NFL week modal has been replaced with a compact device-native selector. The same selector is used by the existing sport sandbox Play surface. Previous/next remain 44px targets. A wrapping visible label avoids native select text truncation at enlarged text sizes while the native select retains keyboard/screen-reader/device picker behaviour. Draft-change confirmation, URL navigation and the caller's selected competition remain owned by the existing components.
+
+Statuses use supplied competition timestamps: explicit scored_at = Final; a past lock without finality = Entries closed; future opens_at = Upcoming; otherwise valid opening time = Entries open. Missing opening time is conservatively Open for planning. Statistics availability alone does not open a round or label it final. Actual Production NFL6/7 are not marked Final from their past deadlines. No Round8 record was invented or created.
+
+Rankings and Prizes are paired compact links on NFL Play, including when no entry exists. The NFL Game Day/Rankings/Prizes wording is Round. Historical results, query parameter names and scoring structures are unchanged. At320px the existing prize thumbnail squeezed Standard into broken word fragments: reward text now wraps beneath the unchanged thumbnail when needed.
+
+Executed checks
+node node_modules/tsx/dist/cli.mjs --test tests/platform/competition-display.test.ts tests/platform/play-standings.test.ts
+Result: 9 passed,0 failed (fresh run after wording changes).
+- round labels preserve basketball weekly terminology and saved identifiers
+- deadline/finality boundaries do not infer completion from statistics or past rounds
+- practice/test context remains visible
+- picker slot filtering and pagination
+- canonical team aliases and unknown metadata
+- season totals isolate mode/season/series
+- tied ranking gaps and pending scores
+- stable mode and historical labels
+- fixture/player deduplication
+
+Scoped ESLint executed successfully for all changed TS/TSX source, helper tests, selector fixture and browser acceptance script. git diff --check passed.
+
+Rendered acceptance
+node node_modules/tsx/dist/cli.mjs scripts/ux-play-browser.ts
+All widths passed:320,360,412,1366. Tested actual isolated NFL Play component; round selector options, Practice badge, previous/next and boundary disabling; 150% root text;44px controls; horizontal overflow. Actual Rankings and Prizes components rendered for NFL/AFL/NRL at every width.
+node node_modules/tsx/dist/cli.mjs scripts/ux-play-browser.ts --prizes-only
+All four widths passed again after the narrow reward-wrap repair. Final prize screenshots replaced the initial captures.
+
+Evidence
+before-play-*.png and before-selector-*.png were captured before implementation.
+after-play-*.png show compact paired navigation and selector.
+after-selector-*.png and after-text-scale-*.png show final truthful Entries open wording and native picker wrapper.
+after-{nfl,afl,nrl}-{rankings,prizes}-*.png show shared header/controls across sports.
+before-checks.json,after-checks.json,prizes-checks.json record successful width checks.
+
+Limitations
+These are isolated synthetic browser fixtures using the real React components and current application CSS. External requests were blocked; no customer login, purchase, lineup, wallet or ownership was changed. The member surfaces deliberately show an isolated fixture score-fetch error, proving the error layout rather than hosted statistics acceptance. Actual AFL/NRL full Play page acceptance and physical Samsung native picker/back/keyboard acceptance are not claimed here; the shared selector is covered. No Android binary change, migration or Production deployment is part of this refinement. No animation, artwork or audio changes. Full suite/typecheck/build and hosted read-only checks are coordinated in the parent release report.

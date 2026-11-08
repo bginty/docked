@@ -10,7 +10,11 @@ import { CompetitionSwitch } from "./competition-switch";
 import { competitionHref } from "@/core/prize-schedules";
 import type { ReviewRound } from "@/core/competition-review";
 import type { NflStanding, PostgameView } from "@/server/postgame-results";
-import { competitionName, seasonLabel } from "@/core/competition-display";
+import {
+  competitionName,
+  seasonLabel,
+  competitionRoundWord,
+} from "@/core/competition-display";
 import {
   formatPoints,
   myTeamPage,
@@ -64,7 +68,7 @@ export function CompetitionResults({
         ? "/api/fantasy/standings"
         : `/api/sports-beta?view=standings&sport=${sport}`),
   );
-  const roundWord = sport === "afl" || sport === "nrl" ? "Round" : "Week";
+  const roundWord = competitionRoundWord(sport);
   const weekly = live.rounds;
   const [ready, setReady] = useState(false);
   const [query, setQuery] = useState<Selection>({
@@ -299,11 +303,11 @@ export function CompetitionResults({
           ) : (
             <>
               {summary.latestWeek === null
-                ? "No weeks have finalised"
-                : `Through Week ${summary.latestWeek}`}{" "}
-              · Finalised weeks only
+                ? `No ${roundWord.toLowerCase()}s have finalised`
+                : `Through ${roundWord} ${summary.latestWeek}`}{" "}
+              · Finalised {roundWord.toLowerCase()}s only
               {summary.excluded > 0 &&
-                ` · ${summary.excluded} pending or under-review weeks excluded`}
+                ` · ${summary.excluded} pending or under-review ${roundWord.toLowerCase()}s excluded`}
             </>
           )}
         </p>
@@ -606,7 +610,9 @@ export function CompetitionResults({
             .sort((a, b) => b.round.week - a.round.week)
             .map(({ round: r, entry }) => (
               <div className="standings-week" key={r.competitionId}>
-                <strong>Week {r.week}</strong>
+                <strong>
+                  {roundWord} {r.week}
+                </strong>
                 <span>
                   {r.finalised && r.visible
                     ? formatPoints(entry.centipoints)

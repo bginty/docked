@@ -1,15 +1,89 @@
 .competition-weeks {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) 48px;
-  gap: 8px;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  gap: 6px;
   align-items: center;
-  margin-block: 16px;
+  margin-block: 10px;
 }
 .competition-weeks .play-support {
   min-width: 0;
   width: 100%;
-  min-height: 48px;
-  padding: 10px;
+  min-height: 44px;
+  padding: 8px;
+}
+.competition-round-label {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  margin: 0;
+}
+.competition-round-value {
+  display: grid;
+  gap: 2px;
+  min-height: 44px;
+  align-content: center;
+  padding: 8px 22px 8px 10px;
+  border: 1px solid #34516d;
+  border-radius: 12px;
+  color: #f0f7ff;
+  background: #0d1c30;
+  overflow-wrap: anywhere;
+}
+.competition-round-value small {
+  color: #b8cada;
+  font-size: 0.8em;
+}
+.competition-round-label::after {
+  content: "⌄";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.competition-weeks .competition-round-label select {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  opacity: 0;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 8px;
+  border: 1px solid #34516d;
+  border-radius: 12px;
+  color: #f0f7ff;
+  background-color: #0d1c30;
+  font: inherit;
+}
+.competition-round-label:focus-within {
+  outline: 3px solid #57d5ff;
+  outline-offset: 2px;
+  border-radius: 12px;
+}
+.competition-weeks :focus-visible {
+  outline: 3px solid #57d5ff;
+  outline-offset: 2px;
+}
+.seven-play .play-round-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block: 8px;
+}
+.seven-play .play-round-links .navigation-shortcut {
+  flex: 1 1 120px;
+  min-width: 0;
+}
+.seven-play .round-timing {
+  margin-block: 8px;
+}
+.prizes-page .prize-reward-item {
+  flex-wrap: wrap;
+}
+.prizes-page .prize-reward-item strong {
+  flex: 1 1 110px;
 }
 .competition-week-options {
   display: grid;

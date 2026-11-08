@@ -569,10 +569,12 @@ export function NflSevenPlay({
         rounds={rounds}
         selected={comp.id}
         onSelect={selectWeek}
+        now={now}
+        disabled={busy}
       />
       {closed && !entry && (
         <p role="status">
-          Entry is closed for this week. No submitted lineup is recorded. A
+          Entry is closed for this round. No submitted lineup is recorded. A
           saved draft is not a historical entry.
         </p>
       )}
@@ -599,38 +601,40 @@ export function NflSevenPlay({
               </button>
             </p>
           )}
-          <NavigationShortcut
-            compact
-            icon="edge"
-            href={competitionHref("/fantasy/results", {
-              ...Object.fromEntries(navigationQuery.entries()),
-              sport: "nfl",
-              mode,
-              competition: comp.id,
-              period: "weekly",
-              season: comp.season,
-              week: String(comp.round),
-            })}
-          >
-            View Rankings
-          </NavigationShortcut>
         </div>
       )}
 
-      <NavigationShortcut
-        compact
-        icon="trophy"
-        href={competitionHref("/fantasy/prizes", {
-          ...Object.fromEntries(navigationQuery.entries()),
-          sport: "nfl",
-          mode,
-          competition: comp.id,
-          season: comp.season,
-          week: String(comp.round),
-        })}
-      >
-        Prizes
-      </NavigationShortcut>
+      <nav className="play-round-links" aria-label="Competition links">
+        <NavigationShortcut
+          compact
+          icon="edge"
+          href={competitionHref("/fantasy/results", {
+            ...Object.fromEntries(navigationQuery.entries()),
+            sport: "nfl",
+            mode,
+            competition: comp.id,
+            period: "weekly",
+            season: comp.season,
+            week: String(comp.round),
+          })}
+        >
+          Rankings
+        </NavigationShortcut>
+        <NavigationShortcut
+          compact
+          icon="trophy"
+          href={competitionHref("/fantasy/prizes", {
+            ...Object.fromEntries(navigationQuery.entries()),
+            sport: "nfl",
+            mode,
+            competition: comp.id,
+            season: comp.season,
+            week: String(comp.round),
+          })}
+        >
+          Prizes
+        </NavigationShortcut>
+      </nav>
       <details className="round-timing">
         <summary>Entry & lock times</summary>
         {entryOpensLater && (
@@ -662,12 +666,12 @@ export function NflSevenPlay({
             Your team was carried forward from{" "}
             {data.competitions.find(
               (c) => c.id === rollover.source_competition_id,
-            )?.name ?? "the previous week"}{" "}
+            )?.name ?? "the previous round"}{" "}
             {entry
               ? draft?.dirty
                 ? "and entered. Your latest edits are unsaved; the confirmed entry remains in place."
-                : "and entered for this week."
-              : "as a draft. Review and enter this week separately."}
+                : "and entered for this round."
+              : "as a draft. Review and enter this round separately."}
           </p>
           {!!rollover.omitted.length && (
             <details>
@@ -1119,7 +1123,7 @@ export function NflSevenPlay({
           historyEntry
         >
           <p>
-            Based on up to five verified final appearances before this week,
+            Based on up to five verified final appearances before this round,
             using Full-PPR game-log performance and the card multiplier. This is
             a historical ranking, not a forecast or a change to this round’s
             scoring.
@@ -1188,7 +1192,7 @@ export function NflSevenPlay({
               update({ ...draft, picks: safe, dirty: true });
               setRecommendation(null);
               setNotice(
-                "Auto Select applied to this week’s draft. Review and save when ready.",
+                "Auto Select applied to this round’s draft. Review and save when ready.",
               );
             }}
           >

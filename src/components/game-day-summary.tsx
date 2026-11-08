@@ -6,6 +6,7 @@ import {
   gameDayStatus,
   gameDayFreshness,
 } from "@/core/game-day";
+import { competitionRoundWord } from "@/core/competition-display";
 import { LocalDateTime } from "./local-date-time";
 import { competitionScoringLabel } from "@/core/scoring-context";
 
@@ -23,7 +24,7 @@ export function GameDaySummary({
       <div className="game-day-title">
         <h2>
           {title ??
-            `${round.sport === "afl" || round.sport === "nrl" ? "Round" : "Week"} ${round.week} — Game Day`}
+            `${competitionRoundWord(round.sport)} ${round.week} — Game Day`}
         </h2>
         <span>{gameDayStatus(round)}</span>
       </div>

@@ -21,10 +21,14 @@ import { boundedFetch } from "@/core/bounded-request";
 import type { autoSelect } from "@/core/lineup-auto-select";
 import { useSportDraftGuard } from "./sport-context";
 import { CompetitionSwitch } from "./competition-switch";
-import { competitionName, seasonLabel } from "@/core/competition-display";
+import {
+  competitionName,
+  competitionRoundWord,
+} from "@/core/competition-display";
 import { usesApprovedAustralianSalary } from "@/core/approved-australian-rules";
 import { competitionHref } from "@/core/prize-schedules";
 import { rarityRule, rarities } from "@/core/card-rarity";
+import { CompetitionWeekSelector } from "./competition-week-selector";
 import { TeamNameSetup } from "./team-name-setup";
 
 export function SportSandbox({
@@ -131,9 +135,7 @@ export function SportSandbox({
           .sort((a, b) => Date.parse(a.locks_at) - Date.parse(b.locks_at))
           .find((c) => Date.parse(c.locks_at) > serverNow) ?? rounds.at(-1))
       : rounds[0]);
-  const roundWord = ["nfl", "basketball"].includes(state.sport)
-    ? "Week"
-    : "Round";
+  const roundWord = competitionRoundWord(state.sport);
   const context = {
     sport: state.sport,
     mode,
@@ -142,7 +144,6 @@ export function SportSandbox({
     week: comp ? String(comp.round) : undefined,
   };
   const contextHref = (path: string) => competitionHref(path, context);
-  const roundIndex = rounds.findIndex((c) => c.id === comp?.id);
   function navigateRound(value: string, nextMode = mode) {
     if (busy || (dirty && !window.confirm("Discard unsaved lineup changes?")))
       return;
@@ -612,41 +613,14 @@ export function SportSandbox({
         </span>
       </div>
       {locked && <p className="small-note">Entry is closed for this round.</p>}
-      <div className="sport-round-controls">
-        <button
-          aria-label={"Previous " + roundWord.toLowerCase()}
-          disabled={busy || roundIndex <= 0}
-          onClick={() => navigateRound(rounds[roundIndex - 1].id)}
-        >
-          ‹
-        </button>
-        <label>
-          <span className="sr-only">Season and {roundWord.toLowerCase()}</span>
-          <select
-            aria-label="Round"
-            value={comp?.id ?? ""}
-            disabled={busy || !rounds.length}
-            onChange={(e) => navigateRound(e.target.value)}
-          >
-            {rounds.length ? (
-              rounds.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {seasonLabel(c.season)} · {roundWord} {c.round}
-                </option>
-              ))
-            ) : (
-              <option value="">No configured rounds</option>
-            )}
-          </select>
-        </label>
-        <button
-          aria-label={"Next " + roundWord.toLowerCase()}
-          disabled={busy || roundIndex < 0 || roundIndex >= rounds.length - 1}
-          onClick={() => navigateRound(rounds[roundIndex + 1].id)}
-        >
-          ›
-        </button>
-      </div>
+      <CompetitionWeekSelector
+        rounds={rounds}
+        selected={comp?.id ?? ""}
+        onSelect={navigateRound}
+        sport={state.sport}
+        now={serverNow}
+        disabled={busy}
+      />
       <div className="fantasy-actions">
         <NavigationShortcut
           compact
