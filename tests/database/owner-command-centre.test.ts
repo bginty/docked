@@ -87,7 +87,7 @@ test("owner reporting: actual pack sources, date boundaries, private aggregates 
     const competitionId = randomUUID();
     await q(
       `insert into beta_fantasy.competitions(id,name,sport,season,round,opens_at,locks_at,rules,scoring_id,prize)
-       select $1,'Salary Cap saved label',sport,'2026',987,'2026-10-01T14:00:00Z','2026-10-02T14:00:00Z',
+       select $1,'Salary Cap saved label','nfl','2026',987,'2026-10-01T14:00:00Z','2026-10-02T14:00:00Z',
        '{"mode":"SALARY_CAP","lineup_version":"isolated-display-fixture"}',scoring_id,prize
        from beta_fantasy.competitions limit 1`,
       [competitionId],
@@ -96,8 +96,11 @@ test("owner reporting: actual pack sources, date boundaries, private aggregates 
       (c: any) => c.id === competitionId,
     );
     assert.equal(
-      contextualCompetitionName(competition.name, competition.display),
-      "Traditional · 2026 · Week 987",
+      contextualCompetitionName(competition.name, {
+        ...competition.display,
+        sport: competition.sport,
+      }),
+      "Traditional · Round 987",
     );
     assert.equal(
       (
@@ -107,6 +110,29 @@ test("owner reporting: actual pack sources, date boundaries, private aggregates 
       )[0].name,
       "Salary Cap saved label",
       "report projection never renames historical records",
+    );
+    const nbaCompetitionId = randomUUID();
+    await q(
+      `insert into beta_fantasy.competitions(id,name,sport,season,round,opens_at,locks_at,rules,scoring_id,prize)
+       select $1,'Saved NBA Week 988','basketball','2026',988,'2026-10-01T14:00:00Z','2026-10-02T14:00:00Z',
+       '{"mode":"SALARY_CAP","lineup_version":"isolated-nba-display-fixture"}',scoring_id,prize
+       from beta_fantasy.competitions limit 1`,
+      [nbaCompetitionId],
+    );
+    const nbaCompetition = (await report()).competitions.find(
+      (c: any) => c.id === nbaCompetitionId,
+    );
+    assert.equal(
+      nbaCompetition.display.sport,
+      undefined,
+      "Existing database display packets omit sport",
+    );
+    assert.equal(
+      contextualCompetitionName(nbaCompetition.name, {
+        ...nbaCompetition.display,
+        sport: nbaCompetition.sport,
+      }),
+      "Traditional · Week 988",
     );
     // Insert a sealed reward using actual immutable schema; reporting must not enrol or open it.
     await q(

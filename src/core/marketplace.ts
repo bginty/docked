@@ -105,12 +105,30 @@ export function marketplaceView(
     ...context,
     rounds: context.rounds.map((r) => ({
       ...r,
-      name: contextualCompetitionName(r.name, r.display),
+      name: contextualCompetitionName(
+        r.name,
+        r.display
+          ? { ...r.display, sport: r.display.sport ?? r.configuration?.sport }
+          : undefined,
+      ),
     })),
-    ownerReservations: context.ownerReservations?.map((r) => ({
-      ...r,
-      name: contextualCompetitionName(r.name, r.display),
-    })),
+    ownerReservations: context.ownerReservations?.map((r) => {
+      // Older database display packets omit sport. Resolve it from the saved
+      // round configuration or the actual reserved card, never the browse tab.
+      const instance = s.economy?.instances[r.card];
+      const sport =
+        r.display?.sport ??
+        context.rounds.find((round) => round.id === r.competition)
+          ?.configuration?.sport ??
+        (instance ? s.economy?.players[instance.playerId]?.sport : undefined);
+      return {
+        ...r,
+        name: contextualCompetitionName(
+          r.name,
+          r.display ? { ...r.display, sport } : undefined,
+        ),
+      };
+    }),
   };
 
   const activeSwap = (id: string) =>

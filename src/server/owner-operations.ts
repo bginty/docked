@@ -29,7 +29,9 @@ export async function ownerOperations(
           ...competition,
           name: contextualCompetitionName(
             competition.name,
-            competition.display,
+            competition.display
+              ? { ...competition.display, sport: competition.sport }
+              : undefined,
           ),
         }),
       ),
