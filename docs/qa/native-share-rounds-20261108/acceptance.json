@@ -35,6 +35,17 @@
     "playNativeMocks": "passed; not physical-device proof",
     "newDatabaseTests": "not required: no SQL/schema changes"
   },
+  "signedInBrowserReadOnly": {
+    "performed": true,
+    "playNoticeRendered": true,
+    "historyUrl": "https://docked.com.au/fantasy/scoring/how-it-works?sport=nfl",
+    "historyRoundOptions": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "round8RenderedPlayerResults": 272,
+    "round9RenderedPlayerResults": 21,
+    "round7RenderedPlayerResults": 278,
+    "mutations": 0,
+    "physicalAndroidSharing": false
+  },
   "limits": [
     "Round 10 publication and beta data-use extension require confirmation; no new rounds written",
     "Google production review was not modified",
