@@ -891,6 +891,7 @@
   justify-content: space-between;
   gap: 1rem;
   margin-bottom: 1rem;
+  flex-wrap: wrap;
 }
 .compact-social .social-page-heading h1 {
   margin: 0;
@@ -900,15 +901,73 @@
   margin: 0.25rem 0;
   color: var(--muted);
 }
+.compact-social .social-page-heading .actions {
+  margin: 0;
+  gap: 6px;
+}
 .compact-social .community-tabs {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin: 1rem 0;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 0.9fr) minmax(0, 1.5fr);
+  gap: 4px;
+  margin: 0.65rem 0;
 }
 .compact-social .community-tabs a {
   min-width: 0;
   text-align: center;
   padding: 0.7rem 0.3rem;
+  min-height: 44px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.3;
+}
+
+/* A compact entry point; minimising keeps the draft mounted in memory. */
+.community-shell .compact-social .inline-composer form[hidden] {
+  display: none;
+}
+.compact-social .composer-launcher {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+.compact-social .inline-composer .composer-prompt {
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  color: #cbd7e7;
+  background: #0a1423;
+  border: 1px solid #35516f;
+  border-radius: 12px;
+  font-size: 1rem;
+}
+.compact-social .composer-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.compact-social .composer-quick-actions button {
+  flex: 1;
+  min-width: 0;
+  white-space: normal;
+}
+.compact-social .inline-composer .composer-minimise {
+  grid-column: 1 / -1;
+  order: 6;
+  justify-self: end;
+  color: #acbdd2;
+  background: transparent;
+  border-color: transparent;
+}
+.composer-card-pages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block: 12px;
+}
+.composer-card-pages button {
+  min-height: 44px;
 }
 .compact-social .social-home-grid {
   align-items: start;
@@ -981,7 +1040,12 @@
   gap: 6px;
   flex-wrap: wrap;
 }
-.community-shell .premium-social.compact-social .inline-composer form:first-of-type { grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto; }
+.community-shell
+  .premium-social.compact-social
+  .inline-composer
+  form:first-of-type {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+}
 .compact-social .inline-composer .composer-preview-button {
   display: none;
 }

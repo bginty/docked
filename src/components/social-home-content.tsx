@@ -36,7 +36,7 @@ export function SocialHomeContent({
       <header className="social-page-heading">
         <div>
           <h1>Community</h1>
-          <p>Talk cards. Build your squad.</p>
+          <p>Cards, match days and your community.</p>
         </div>
         <div className="actions">
           <Link className="pack-control secondary" href={href("communities")}>
@@ -113,6 +113,7 @@ export function SocialHomeContent({
               <div id="social-compose" tabIndex={-1}>
                 <SocialComposer
                   inline
+                  compact
                   memberName={feed.viewer?.displayName}
                   memberProfile={feed.viewer}
                   communityId={communityId}

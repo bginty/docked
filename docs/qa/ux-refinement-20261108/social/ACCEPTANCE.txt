@@ -1,0 +1,79 @@
+Docked Social refinement — 8 November 2026
+
+Scope and findings
+The existing Social feed remains cross-sport. Its permission, privacy, moderation,
+post-submission and inventory-fetch contracts are unchanged. The feed composer
+occupied 241–259 px before typing. At 320 px, the Announcements tab clipped.
+Opening Attach cards mounted every owned card: 180 cards and 19,448 descendant
+DOM nodes in the isolated collection fixture. Inventory already loaded lazily;
+there was no redundant initial ownership request to remove.
+
+Implemented
+- Social Home has a compact What's happening? prompt and directly accessible
+  Attach cards / Add image actions. Opening it exposes the existing post form.
+- Minimise returns keyboard focus to Continue your draft and keeps the current
+  text, attachments and options in component memory. A failed post preserves them.
+- The compact mode is opt-in on Social Home only. Share My Pull and the separate
+  compose screen retain their existing expanded behaviour.
+- Header actions wrap, and Latest / Following / Announcements fit narrow screens.
+- The attachment picker mounts at most 24 cards, with accessible page controls.
+  Search, same-sport attachment restrictions and the four-card limit remain.
+  The first selection keeps its card on the visible page after sport filtering.
+  Page changes reset the card-grid scroll position; draft selections survive.
+- Selected-card and search filtering are memoized independently of body typing.
+
+Measured before / after
+The baseline uses committed Social source and styles from 1cabfc48, rendered in
+the real AppShell with the same isolated data as the candidate. A preliminary
+fixture with an invalid desktop shell wrapper was replaced; these final files
+are the corrected baseline and candidate runs.
+
+Width    Composer height before/after    Picker-ready elapsed before/after
+320      258.97 / 124 px                 1430 / 812 ms
+360      258.97 / 124 px                 1421 / 813 ms
+412      241.47 / 124 px                 1323 / 1303 ms
+1366     241.47 / 124 px                 1553 / 2177 ms
+
+All widths: 180 -> 24 mounted cards; 19,448 -> 2,604 picker DOM nodes (-86.6%).
+All widths: 0 initial inventory requests, 1 after first Attach cards, unchanged.
+The timings are single-run local browser fixture observations under shared-host
+load. The desktop timing regressed in that run. They are not a claimed uniform
+speedup, production latency result or physical-device benchmark. The deterministic
+improvement is bounded rendering and substantially less initial composer space.
+The additional focused 412 px run measured 809 ms, demonstrating the timing noise.
+
+Acceptance executed
+PASS: scripts/social-refinement-acceptance.ts --baseline (320/360/412/1366).
+PASS: scripts/social-refinement-acceptance.ts (320/360/412/1366).
+PASS: scripts/social-refinement-acceptance.ts --focused (412).
+The candidate checked compact expansion, paging, attaching a later-page card,
+draft preservation across minimise/reopen, rejected POST recovery, Add image,
+125% root text size, visible Announcements and no horizontal overflow at each
+width, with no browser page errors. The focused run additionally checked the
+four-card limit, cross-sport restriction, search preserving selected cards and
+#social-compose expanding/focusing the composer. All API calls were intercepted;
+the only POST was deliberately rejected by an isolated fixture. No real posts,
+member records, wallets, ownership or permissions were changed.
+
+PASS: scoped ESLint for both changed components and the browser fixture/script.
+Platform run: community-social.test.ts + community-image.test.ts: 9 pass, 1 fails
+because the existing early-auth test's child exceeds its unchanged 20-second
+process timeout. Serial and single-test retries have the same result. Running its exact four
+anonymous JSON/multipart body-not-read assertions separately succeeds in 36.6s
+with a diagnostic 120-second process ceiling. No security guard or test timeout
+was weakened. This is reported as a harness failure, not a clean suite pass.
+The root release verification owns full typecheck/build/regression results.
+
+Evidence
+before-{320,360,412,1366}.png: original Social.
+after-{320,360,412,1366}.png: candidate Social.
+after-text125-{320,360,412,1366}.png: retained draft/error at increased text size.
+before-measurements.json and after-measurements.json: raw measured values.
+after-focused-measurements.json: additional attachment/accessibility run.
+
+Limits and release safety
+These are real rendered components with synthetic browser fixtures, not hosted
+signed-in or physical Samsung acceptance. No Production deployment was made.
+No migration, Android binary, new package or backend permission change is needed.
+No artwork, pack reveal, scoring, price, payment, visibility or activation flag
+was altered by this Social change.

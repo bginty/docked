@@ -1,0 +1,48 @@
+{
+  "phase": "after",
+  "isolated": true,
+  "fixtureCards": 180,
+  "caveat": "Single-run local fixture timings are directional, not hosted or physical-device performance claims",
+  "measurements": [
+    {
+      "width": 320,
+      "initialComposerHeight": 124,
+      "initialHubRequests": 0,
+      "hubRequests": 1,
+      "renderedCards": 24,
+      "pickerDomNodes": 2604,
+      "pickerReadyMs": 812,
+      "postAttempts": 1
+    },
+    {
+      "width": 360,
+      "initialComposerHeight": 124,
+      "initialHubRequests": 0,
+      "hubRequests": 1,
+      "renderedCards": 24,
+      "pickerDomNodes": 2604,
+      "pickerReadyMs": 813,
+      "postAttempts": 1
+    },
+    {
+      "width": 412,
+      "initialComposerHeight": 124,
+      "initialHubRequests": 0,
+      "hubRequests": 1,
+      "renderedCards": 24,
+      "pickerDomNodes": 2604,
+      "pickerReadyMs": 1303,
+      "postAttempts": 1
+    },
+    {
+      "width": 1366,
+      "initialComposerHeight": 124,
+      "initialHubRequests": 0,
+      "hubRequests": 1,
+      "renderedCards": 24,
+      "pickerDomNodes": 2604,
+      "pickerReadyMs": 2177,
+      "postAttempts": 1
+    }
+  ]
+}

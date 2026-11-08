@@ -1,7 +1,14 @@
 "use client";
 import type { SocialProfile } from "@/core/community-social";
 import { MemberAvatar } from "./member-avatar";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import {
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+  type FormEvent,
+} from "react";
 import { useRouter } from "next/navigation";
 import { communityAction } from "./social-interactions";
 import { NativeImagePicker } from "./native-image-picker";
@@ -14,6 +21,7 @@ import { useSport, useSportDraftGuard } from "./sport-context";
 export function SocialComposer({
   initialSport,
   inline = false,
+  compact = false,
   initialBody = "",
   memberName = "You",
   memberProfile,
@@ -26,6 +34,7 @@ export function SocialComposer({
   previewFixtures?: boolean;
   initialSport?: string;
   inline?: boolean;
+  compact?: boolean;
   initialBody?: string;
   memberName?: string;
   memberProfile?: SocialProfile | null;
@@ -39,6 +48,11 @@ export function SocialComposer({
     initialCardIds.slice(0, 4),
   );
   const [picker, setPicker] = useState(false);
+  const [expanded, setExpanded] = useState(
+    !compact || !!initialBody || initialCardIds.length > 0,
+  );
+  const [cardPage, setCardPage] = useState(0);
+  const formId = useId();
   const {
     data: hub,
     error: hubError,
@@ -48,6 +62,8 @@ export function SocialComposer({
   const [imageUpload, setImageUpload] = useState(false);
   const [preview, setPreview] = useState(false);
   const postForm = useRef<HTMLFormElement>(null);
+  const prompt = useRef<HTMLButtonElement>(null);
+  const cardGrid = useRef<HTMLDivElement>(null);
   const [body, setBody] = useState(initialBody),
     [mediaIds, setMedia] = useState<string[]>([]),
     [busy, setBusy] = useState(false),
@@ -60,20 +76,50 @@ export function SocialComposer({
   useSportDraftGuard(
     busy || !!body.trim() || cardIds.length > 0 || mediaIds.length > 0,
   );
+  const selectedCards = useMemo(
+    () => hub?.cards.filter(({ card }) => cardIds.includes(card.id)) ?? [],
+    [hub, cardIds],
+  );
   const attachmentSports = [
-    ...new Set(
-      hub?.cards
-        .filter(({ card }) => cardIds.includes(card.id))
-        .map(({ card }) => card.sport) ?? [],
-    ),
+    ...new Set(selectedCards.map(({ card }) => card.sport)),
   ];
   const attachmentSport =
     attachmentSports.length === 1 ? attachmentSports[0] : undefined;
   const destination = attachmentSport ?? initialSport ?? workspaceSport;
+  const matchingCards = useMemo(() => {
+    const term = search.trim().toLowerCase();
+    return (
+      hub?.cards.filter(
+        ({ card }) =>
+          (!attachmentSport || card.sport === attachmentSport) &&
+          card.name.toLowerCase().includes(term),
+      ) ?? []
+    );
+  }, [hub, search, attachmentSport]);
+  const lastCardPage = Math.max(0, Math.ceil(matchingCards.length / 24) - 1);
+  const currentCardPage = Math.min(cardPage, lastCardPage);
+  const shownCards = matchingCards.slice(
+    currentCardPage * 24,
+    (currentCardPage + 1) * 24,
+  );
+  function changeCardPage(page: number) {
+    setCardPage(page);
+    cardGrid.current?.scrollTo({ top: 0 });
+  }
+  function beginEditing() {
+    setExpanded(true);
+    requestAnimationFrame(() =>
+      postForm.current?.querySelector("textarea")?.focus(),
+    );
+  }
   useEffect(() => {
     const focus = () => {
-      if (ready && inline && location.hash === "#social-compose")
-        postForm.current?.querySelector("textarea")?.focus();
+      if (ready && inline && location.hash === "#social-compose") {
+        setExpanded(true);
+        requestAnimationFrame(() =>
+          postForm.current?.querySelector("textarea")?.focus(),
+        );
+      }
     };
     focus();
     window.addEventListener("hashchange", focus);
@@ -139,6 +185,7 @@ export function SocialComposer({
       setMessage("Social post published.");
       setPreview(false);
       setPicker(false);
+      if (compact) setExpanded(false);
       onPublished?.();
       if (inline)
         router.push(
@@ -174,7 +221,50 @@ export function SocialComposer({
         ) : (
           <h2>Create post</h2>
         )}
-        <form ref={postForm} className="app-form" method="post" onSubmit={post}>
+        {compact && !expanded && (
+          <div className="composer-launcher">
+            <button
+              type="button"
+              className="composer-prompt"
+              ref={prompt}
+              aria-expanded={false}
+              aria-controls={formId}
+              onClick={beginEditing}
+            >
+              {body || cardIds.length || mediaIds.length
+                ? "Continue your draft"
+                : "What’s happening?"}
+            </button>
+            <div className="composer-quick-actions">
+              <button
+                type="button"
+                onClick={() => {
+                  setExpanded(true);
+                  setPicker(true);
+                }}
+              >
+                Attach cards
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setExpanded(true);
+                  setImageUpload(true);
+                }}
+              >
+                Add image
+              </button>
+            </div>
+          </div>
+        )}
+        <form
+          id={formId}
+          hidden={compact && !expanded}
+          ref={postForm}
+          className="app-form"
+          method="post"
+          onSubmit={post}
+        >
           <label>
             Post to Docked
             <textarea
@@ -186,6 +276,20 @@ export function SocialComposer({
               rows={2}
             />
           </label>
+          {compact && (
+            <button
+              type="button"
+              className="composer-minimise"
+              aria-expanded={true}
+              aria-controls={formId}
+              onClick={() => {
+                setExpanded(false);
+                requestAnimationFrame(() => prompt.current?.focus());
+              }}
+            >
+              Minimise composer
+            </button>
+          )}
           <details className="composer-options">
             <summary>Post options</summary>{" "}
             <div className="form-split">
@@ -225,11 +329,9 @@ export function SocialComposer({
               className="social-attachment-preview"
               aria-label="Selected cards"
             >
-              {hub?.cards
-                .filter(({ card }) => cardIds.includes(card.id))
-                .map(({ card }) => (
-                  <FantasyCardArtwork key={card.id} card={card} faceOnly />
-                ))}
+              {selectedCards.map(({ card }) => (
+                <FantasyCardArtwork key={card.id} card={card} faceOnly />
+              ))}
             </div>
           )}
           {picker && (
@@ -243,7 +345,10 @@ export function SocialComposer({
                 <input
                   type="search"
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setCardPage(0);
+                  }}
                 />
               </label>
               {hubError && (
@@ -256,35 +361,67 @@ export function SocialComposer({
               )}
               {!hub && !hubError && <p>Loading your opened cards…</p>}
               {hub && !hub.cards.length && <p>No owned cards available.</p>}
-              <div className="social-attachment-grid">
-                {hub?.cards
-                  .filter(
-                    ({ card }) =>
-                      (!attachmentSport || card.sport === attachmentSport) &&
-                      card.name
-                        .toLowerCase()
-                        .includes(search.trim().toLowerCase()),
-                  )
-                  .map(({ card }) => (
-                    <label key={card.id}>
-                      <input
-                        type="checkbox"
-                        checked={cardIds.includes(card.id)}
-                        disabled={
-                          !cardIds.includes(card.id) && cardIds.length >= 4
+              <div className="social-attachment-grid" ref={cardGrid}>
+                {shownCards.map(({ card }) => (
+                  <label key={card.id}>
+                    <input
+                      type="checkbox"
+                      aria-label={`Attach ${card.name}`}
+                      checked={cardIds.includes(card.id)}
+                      disabled={
+                        !cardIds.includes(card.id) && cardIds.length >= 4
+                      }
+                      onChange={(e) => {
+                        if (!attachmentSport && e.target.checked) {
+                          // Keep the focused card mounted when the first selection
+                          // narrows the existing attachment policy to one sport.
+                          const index = matchingCards
+                            .filter((owned) => owned.card.sport === card.sport)
+                            .findIndex((owned) => owned.card.id === card.id);
+                          setCardPage(Math.floor(index / 24));
                         }
-                        onChange={(e) =>
-                          setCards(
-                            e.target.checked
-                              ? [...cardIds, card.id]
-                              : cardIds.filter((id) => id !== card.id),
-                          )
-                        }
-                      />
-                      <FantasyCardArtwork card={card} faceOnly />
-                    </label>
-                  ))}
+                        setCards(
+                          e.target.checked
+                            ? [...cardIds, card.id]
+                            : cardIds.filter((id) => id !== card.id),
+                        );
+                      }}
+                    />
+                    <FantasyCardArtwork card={card} faceOnly />
+                  </label>
+                ))}
               </div>
+              {hub && matchingCards.length === 0 && search && (
+                <p>No owned players match this search.</p>
+              )}
+              {matchingCards.length > 24 && (
+                <nav
+                  className="composer-card-pages"
+                  aria-label="Owned card pages"
+                >
+                  <button
+                    type="button"
+                    aria-label="Previous cards"
+                    disabled={currentCardPage === 0}
+                    onClick={() => changeCardPage(currentCardPage - 1)}
+                  >
+                    Previous
+                  </button>
+                  <span role="status">
+                    {currentCardPage * 24 + 1}–
+                    {Math.min((currentCardPage + 1) * 24, matchingCards.length)}{" "}
+                    of {matchingCards.length}
+                  </span>
+                  <button
+                    type="button"
+                    aria-label="Next cards"
+                    disabled={currentCardPage >= lastCardPage}
+                    onClick={() => changeCardPage(currentCardPage + 1)}
+                  >
+                    Next
+                  </button>
+                </nav>
+              )}
               <button
                 type="button"
                 className="button"
@@ -326,6 +463,7 @@ export function SocialComposer({
                   setMessage("Draft cleared.");
                   setPicker(false);
                   setPreview(false);
+                  if (compact) setExpanded(false);
                   onCancel?.();
                 }}
               >
@@ -376,11 +514,9 @@ export function SocialComposer({
         >
           <p className="social-body">{body}</p>
           <div className="social-attachment-preview">
-            {hub?.cards
-              .filter(({ card }) => cardIds.includes(card.id))
-              .map(({ card }) => (
-                <FantasyCardArtwork key={card.id} card={card} faceOnly />
-              ))}
+            {selectedCards.map(({ card }) => (
+              <FantasyCardArtwork key={card.id} card={card} faceOnly />
+            ))}
           </div>
           {!!mediaIds.length && (
             <p>{mediaIds.length} image(s) awaiting moderation.</p>
