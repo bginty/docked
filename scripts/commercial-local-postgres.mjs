@@ -21,7 +21,9 @@ await new Promise((r) => socket.listen(0, "127.0.0.1", r));
 const port = socket.address().port;
 await new Promise((r) => socket.close(r));
 const password = randomBytes(32).toString("hex"),
-  directory = resolve(`tmp/commercial-acceptance-${Date.now()}`);
+  directory = resolve(
+    `tmp/commercial-acceptance-${Date.now()}-${randomBytes(6).toString("hex")}`,
+  );
 const pg = new EmbeddedPostgres({
   databaseDir: directory,
   user: "postgres",

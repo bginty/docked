@@ -46,7 +46,8 @@ const privateDir = path.join(
     sha,
   ),
   source = path.join(privateDir, "source");
-const evidence = "docs/qa/v31-public-readiness-20261110/backend-candidate";
+const evidence =
+  "docs/qa/v31-public-readiness-20261110/backend-candidate/" + sha;
 await fs.mkdir(privateDir, { recursive: true });
 await fs.mkdir(evidence, { recursive: true });
 async function run(args, env = {}) {
@@ -165,10 +166,32 @@ if (mode === "prepare") {
   );
   const changed = git("diff", "--name-only", baseline, sha).split("\n");
   git("merge-base", "--is-ancestor", baseline, sha);
-  assert.equal(
-    git("diff", "--name-only", baseline, sha, "--", "src"),
-    "src/server/commercial-ledger.ts",
-    "Only the reviewed financial-report snapshot change may be staged",
+  assert.deepEqual(
+    git("diff", "--name-only", baseline, sha, "--", "src").split("\n").sort(),
+    [
+      "src/core/commercial-pack-supply.ts",
+      "src/core/commercial-pool-plan.ts",
+      "src/server/billing-ops-alerts.mjs",
+      "src/server/billing-ops-monitor.ts",
+      "src/server/billing-ops-queue.mjs",
+      "src/server/commercial-ledger.ts",
+      "src/server/commercial-member-view.ts",
+      "src/server/commercial-reconciliation.ts",
+      "src/server/member-commercial.ts",
+      "src/server/outbox-lease.ts",
+    ].sort(),
+    "Only the reviewed dormant billing safeguards may be staged",
+  );
+  assert.deepEqual(
+    git("diff", "--name-only", baseline, sha, "--", "config")
+      .split("\n")
+      .sort(),
+    [
+      "config/operations/billing-ops-outbox-v2.prepared.sql",
+      "config/operations/billing-ops-outbox.prepared.sql",
+      "config/operations/billing-ops-outbox.stop.prepared.sql",
+    ].sort(),
+    "Prepared SQL only; no catalogue, policy or feature configuration change",
   );
   assert.equal(
     git(
@@ -196,7 +219,6 @@ if (mode === "prepare") {
       sha,
       "--",
       "public",
-      "config",
       "ios",
       "supabase",
       "package.json",
@@ -210,7 +232,14 @@ if (mode === "prepare") {
   // Android v31 was released independently after the web baseline. Native files
   // are not in the web export; require them to match that exact reviewed build.
   assert.equal(
-    git("diff", "--name-only", "3c1d73eacdf6426f263ace1c6eb2c54d2cfe94dc", sha, "--", "android"),
+    git(
+      "diff",
+      "--name-only",
+      "3c1d73eacdf6426f263ace1c6eb2c54d2cfe94dc",
+      sha,
+      "--",
+      "android",
+    ),
     "",
     "Android differs from the released v31 build",
   );
@@ -309,6 +338,8 @@ if (mode === "prepare") {
     "Baseline runtime file changed",
   );
   for (const key of closed) assert.equal(env[key], "false", key);
+  for (const key of ["DOCKED_BILLING_OPS_SIGNALS", "DOCKED_BILLING_OPS_ALERTS"])
+    assert.notEqual(env[key], "true", "Alert activation is not authorised");
   assert(!Object.keys(env).some((k) => k.startsWith("DOCKED_V30_TRANSPORT")));
   assert.equal(
     live.env.filter(

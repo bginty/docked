@@ -4,7 +4,11 @@ import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { createHash } from "node:crypto";
-const evidence = "docs/qa/native-share-rounds-20261108/login-recovery-release";
+const commitArg = process.argv.indexOf("--commit");
+const candidateCommit = process.argv[commitArg + 1];
+assert(commitArg >= 2 && /^[a-f0-9]{40}$/.test(candidateCommit ?? ""));
+const evidence =
+  "docs/qa/v31-public-readiness-20261110/backend-candidate/" + candidateCommit;
 const staged = JSON.parse(await fs.readFile(evidence + "/staged.json", "utf8"));
 const prepared = JSON.parse(
   await fs.readFile(evidence + "/prepared.json", "utf8"),
@@ -12,10 +16,11 @@ const prepared = JSON.parse(
 const live = process.argv.includes("--live");
 assert(/^[a-f0-9]{40}$/.test(staged.commit), "Invalid staged commit");
 assert.equal(prepared.commit, staged.commit, "Prepared/staged commit mismatch");
+assert.equal(staged.commit, candidateCommit, "Explicit candidate required");
 assert.equal(prepared.project, "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST");
 assert.equal(prepared.team, "team_tf6xweKKyVCj9bTppUKttJ4l");
-assert.equal(prepared.baseline, "aef423eb043b208dbaeadd21b3caa2806cebe936");
-assert.equal(prepared.baselineId, "dpl_BjhdVwfK43tLc4s52KEXnkvf1qt9");
+assert.equal(prepared.baseline, "f31c886b827711510ce82939488ed13b741f9dab");
+assert.equal(prepared.baselineId, "dpl_HEZqxHVW8Y8qECNduznbwNZkL6Wj");
 const target = live ? "https://docked.com.au" : staged.url;
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";
@@ -48,6 +53,8 @@ const runtime = JSON.parse(
   await fs.readFile(privateDir + "/runtime.private.json", "utf8"),
 );
 for (const flag of prepared.closedFlags) assert.equal(runtime[flag], "false");
+for (const flag of ["DOCKED_BILLING_OPS_SIGNALS", "DOCKED_BILLING_OPS_ALERTS"])
+  assert.notEqual(runtime[flag], "true", "Operations remain dormant");
 assert.equal(runtime.VERCEL_GIT_COMMIT_SHA, staged.commit);
 assert.equal(
   createHash("sha256").update(JSON.stringify(runtime)).digest("hex"),
