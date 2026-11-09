@@ -1,0 +1,210 @@
+{
+  "at": "2026-11-09T21:33:15.505904+00:00",
+  "flags": [
+    {
+      "key": "ads",
+      "enabled": false
+    },
+    {
+      "key": "affiliates",
+      "enabled": false
+    },
+    {
+      "key": "auto_publish_docked_edges",
+      "enabled": false
+    },
+    {
+      "key": "community_edges",
+      "enabled": false
+    },
+    {
+      "key": "edge_scanner",
+      "enabled": false
+    },
+    {
+      "key": "forward_paper",
+      "enabled": false
+    },
+    {
+      "key": "paid_plans",
+      "enabled": false
+    },
+    {
+      "key": "publication",
+      "enabled": false
+    },
+    {
+      "key": "registration",
+      "enabled": false
+    },
+    {
+      "key": "research_engine",
+      "enabled": false
+    },
+    {
+      "key": "sending",
+      "enabled": false
+    }
+  ],
+  "products": [
+    {
+      "id": "docked_credits_4900_v1",
+      "credits": 4900,
+      "version": "owner-credit-packages-2026-10-31-v1",
+      "approved": false,
+      "audCents": 4900
+    },
+    {
+      "id": "docked_credits_9900_v1",
+      "credits": 9900,
+      "version": "owner-credit-packages-2026-10-31-v1",
+      "approved": false,
+      "audCents": 9900
+    }
+  ],
+  "publicPolicy": {
+    "terms": "2026-11-02-release-preparation-v2",
+    "enabled": false,
+    "privacy": "2026-11-06-privacy-sdk-v3",
+    "version": "au-adult-free-play-v1",
+    "validUntil": "2027-02-03T13:03:30.607+00:00"
+  },
+  "publicRounds": [
+    {
+      "kind": "practice",
+      "sport": "afl",
+      "enabled": false,
+      "fixtures": [
+        {
+          "label": "Practice selection deadline. Recorded roster snapshot; no official match or results.",
+          "fixtureId": "public-roster-practice-20261105-v1:afl:OPEN",
+          "synthetic": true,
+          "status": "scheduled",
+          "scheduledAt": "2026-11-15T12:00:00.000Z",
+          "playerCount": 545
+        }
+      ],
+      "rulesHash": "f32c60abc6426ab08575f358b6c0b2c3",
+      "competition": "0073858d-b14b-49ce-8cda-56c2357490c5"
+    },
+    {
+      "kind": "practice",
+      "sport": "afl",
+      "enabled": false,
+      "fixtures": [
+        {
+          "label": "Practice selection deadline. Recorded roster snapshot; no official match or results.",
+          "fixtureId": "public-roster-practice-20261105-v1:afl:SALARY_CAP",
+          "synthetic": true,
+          "status": "scheduled",
+          "scheduledAt": "2026-11-15T12:00:00.000Z",
+          "playerCount": 545
+        }
+      ],
+      "rulesHash": "7288dfc551f7b47812cdb04f66f75307",
+      "competition": "38f8e2da-a8cd-41ec-b34b-008084be7722"
+    },
+    {
+      "kind": "practice",
+      "sport": "nfl",
+      "enabled": false,
+      "fixtures": [
+        {
+          "label": "Practice selection deadline. Recorded roster snapshot; no official match or results.",
+          "fixtureId": "public-roster-practice-20261105-v1:nfl:SALARY_CAP",
+          "synthetic": true,
+          "status": "scheduled",
+          "scheduledAt": "2026-11-15T12:00:00.000Z",
+          "playerCount": 386
+        }
+      ],
+      "rulesHash": "1d1d05338b598b62a1b1c63af6e13b59",
+      "competition": "11edf5ac-262b-41ad-a6d9-06a53053a051"
+    },
+    {
+      "kind": "practice",
+      "sport": "nfl",
+      "enabled": false,
+      "fixtures": [
+        {
+          "label": "Practice selection deadline. Recorded roster snapshot; no official match or results.",
+          "fixtureId": "public-roster-practice-20261105-v1:nfl:OPEN",
+          "synthetic": true,
+          "status": "scheduled",
+          "scheduledAt": "2026-11-15T12:00:00.000Z",
+          "playerCount": 386
+        }
+      ],
+      "rulesHash": "f60a3663271f6cd072b1d84a38904ec5",
+      "competition": "fa53ab81-b8fd-4d4e-bf5e-214c5209b09f"
+    },
+    {
+      "kind": "practice",
+      "sport": "nrl",
+      "enabled": false,
+      "fixtures": [
+        {
+          "label": "Practice selection deadline. Recorded roster snapshot; no official match or results.",
+          "fixtureId": "public-roster-practice-20261105-v1:nrl:OPEN",
+          "synthetic": true,
+          "status": "scheduled",
+          "scheduledAt": "2026-11-15T12:00:00.000Z",
+          "playerCount": 337
+        }
+      ],
+      "rulesHash": "0195f7581d5ac42be07c539edc07935e",
+      "competition": "3e19ab97-7cff-490c-aa9c-aeba3a8e6207"
+    },
+    {
+      "kind": "practice",
+      "sport": "nrl",
+      "enabled": false,
+      "fixtures": [
+        {
+          "label": "Practice selection deadline. Recorded roster snapshot; no official match or results.",
+          "fixtureId": "public-roster-practice-20261105-v1:nrl:SALARY_CAP",
+          "synthetic": true,
+          "status": "scheduled",
+          "scheduledAt": "2026-11-15T12:00:00.000Z",
+          "playerCount": 337
+        }
+      ],
+      "rulesHash": "aef1a1a1a0643316db1c736d86bfa8d7",
+      "competition": "c49a6684-8d34-4411-92f5-50393d55386e"
+    }
+  ],
+  "publicSports": [
+    {
+      "play": false,
+      "sport": "afl",
+      "visible": false
+    },
+    {
+      "play": false,
+      "sport": "nfl",
+      "visible": false
+    },
+    {
+      "play": false,
+      "sport": "nrl",
+      "visible": false
+    }
+  ],
+  "commercialJobs": null,
+  "commercialCounts": {
+    "cards": 0,
+    "receipts": 0,
+    "recoveries": 0,
+    "definitions": 0,
+    "remainingCredits": 0,
+    "approvedDefinitions": 0
+  },
+  "commercialControl": {
+    "sales": false,
+    "gameplay": false,
+    "issuance": false,
+    "transfers": false,
+    "environment": "commercial",
+    "policyVersion": "commercial-launch-awaiting-approval-v1"
+  }
+}

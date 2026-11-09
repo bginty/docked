@@ -1,0 +1,41 @@
+{
+  "commit": "ae25896841ad5dfac8ae82066d88b92e3745bf4a",
+  "branch": "codex/v31-public-readiness-20261110",
+  "baseline": "f31c886b827711510ce82939488ed13b741f9dab",
+  "baselineId": "dpl_HEZqxHVW8Y8qECNduznbwNZkL6Wj",
+  "rollbackUrl": "https://docked-production-kothsqrm3-briant-s-projects.vercel.app",
+  "project": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "team": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "files": 961,
+  "changedFiles": [
+    "docs/qa/native-share-rounds-20261108/acceptance.json",
+    "docs/qa/native-share-rounds-20261108/android-artifacts.json",
+    "docs/qa/native-share-rounds-20261108/login-recovery-release/device-acceptance.json",
+    "docs/qa/native-share-rounds-20261108/login-recovery-release/live-verified.json",
+    "docs/qa/native-share-rounds-20261108/login-recovery-release/prepared.json",
+    "docs/qa/native-share-rounds-20261108/login-recovery-release/staged-checks.json",
+    "docs/qa/native-share-rounds-20261108/login-recovery-release/staged.json",
+    "docs/qa/native-share-rounds-20261108/physical-native-share.json",
+    "scripts/commercial-local-postgres.mjs",
+    "scripts/commercial-report-snapshot.ts",
+    "src/server/commercial-ledger.ts"
+  ],
+  "runtimeChangedKeys": [
+    "VERCEL_GIT_COMMIT_SHA"
+  ],
+  "sourceInventoryDigest": "cdca04a7fa8061430ab6c11e868911d59519e1464c65d9d37f73e41d876e1393",
+  "closedFlags": [
+    "REGISTRATION_ENABLED",
+    "COMPETITIONS_ENABLED",
+    "PRIZES_ENABLED",
+    "DOCKED_MULTI_SPORT_SANDBOX",
+    "DOCKED_MEMBER_GOOGLE_TEST",
+    "DOCKED_COMMERCIAL_SERVICE",
+    "DOCKED_COMMERCIAL_SURFACES",
+    "DOCKED_COMMERCIAL_CHECKOUT",
+    "DOCKED_PUBLIC_CUSTOMERS"
+  ],
+  "customerMutations": 0,
+  "migrations": [],
+  "runtimeDigest": "eada174d6b80305e7302d89adc251d869bbdac464d3b8a8d0862425f14ed73cc"
+}

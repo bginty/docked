@@ -1,4 +1,4 @@
-// Approved scoring / pack refinement; exact committed candidate and unchanged closed runtime.
+// v31 public-readiness backend candidate; unchanged closed runtime, no domain promotion.
 // Usage: node scripts/scoring-pack-refinement-release.mjs prepare|stage|inspect --commit <40-character-reviewed-SHA>
 // Preparation/staging never promote the domain. Source exports are immutable;
 // rerunning prepare for the same candidate requires inspecting the existing export.
@@ -11,11 +11,11 @@ import { createHash } from "node:crypto";
 import { assertHostedBeta } from "../src/core/hosted-beta.mjs";
 const project = "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
   team = "team_tf6xweKKyVCj9bTppUKttJ4l";
-const baseline = "aef423eb043b208dbaeadd21b3caa2806cebe936",
-  baselineId = "dpl_BjhdVwfK43tLc4s52KEXnkvf1qt9";
+const baseline = "f31c886b827711510ce82939488ed13b741f9dab",
+  baselineId = "dpl_HEZqxHVW8Y8qECNduznbwNZkL6Wj";
 const main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
 const approved =
-  "C:/Users/61412/.codex/worktrees/scoring-pack-refinement/Docked.com.au/private-data/scoring-pack-refinement-release/aef423eb043b208dbaeadd21b3caa2806cebe936";
+  "C:/Users/61412/.codex/worktrees/scoring-pack-refinement/Docked.com.au/private-data/scoring-pack-refinement-release/f31c886b827711510ce82939488ed13b741f9dab";
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";
 const git = (...args) =>
@@ -46,7 +46,7 @@ const privateDir = path.join(
     sha,
   ),
   source = path.join(privateDir, "source");
-const evidence = "docs/qa/native-share-rounds-20261108/login-recovery-release";
+const evidence = "docs/qa/v31-public-readiness-20261110/backend-candidate";
 await fs.mkdir(privateDir, { recursive: true });
 await fs.mkdir(evidence, { recursive: true });
 async function run(args, env = {}) {
@@ -131,7 +131,7 @@ assert.equal(live.meta.githubCommitSha, baseline);
 if (mode === "prepare") {
   assert.equal(
     git("branch", "--show-current"),
-    "codex/scoring-pack-refinement",
+    "codex/v31-public-readiness-20261110",
   );
   assert.equal(
     git(
@@ -165,6 +165,11 @@ if (mode === "prepare") {
   );
   const changed = git("diff", "--name-only", baseline, sha).split("\n");
   git("merge-base", "--is-ancestor", baseline, sha);
+  assert.equal(
+    git("diff", "--name-only", baseline, sha, "--", "src"),
+    "src/server/commercial-ledger.ts",
+    "Only the reviewed financial-report snapshot change may be staged",
+  );
   assert.equal(
     git(
       "diff",
@@ -293,7 +298,7 @@ if (mode === "prepare") {
   );
   const previous = JSON.parse(
     await fs.readFile(
-      "docs/qa/native-share-rounds-20261108/web-release/prepared.json",
+      "docs/qa/native-share-rounds-20261108/login-recovery-release/prepared.json",
       "utf8",
     ),
   );
@@ -427,7 +432,7 @@ if (mode === "prepare") {
     "--meta",
     "githubCommitRef=codex/vercel-beta-review",
     "--meta",
-    "dockedSourceBranch=codex/scoring-pack-refinement",
+    "dockedSourceBranch=codex/v31-public-readiness-20261110",
   ];
   for (const key of Object.keys(env))
     args.push("--env", key, "--build-env", key);

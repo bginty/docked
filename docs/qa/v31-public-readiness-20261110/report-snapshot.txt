@@ -1,0 +1,32 @@
+PASS concurrent purchase cannot mix receipt totals with newer wallet totals
+PASS concurrent refund appears together in the next financial snapshot
+PASS concurrent provider review cannot add a newer recovery case to older totals
+PASS report is read-only and reports its snapshot time without claiming provider settlement
+{
+  "at": "2026-11-09T21:40:22.292Z",
+  "scope": "Disposable PostgreSQL only; no network provider/customer mutation",
+  "checks": [
+    "concurrent purchase cannot mix receipt totals with newer wallet totals",
+    "concurrent refund appears together in the next financial snapshot",
+    "concurrent provider review cannot add a newer recovery case to older totals",
+    "report is read-only and reports its snapshot time without claiming provider settlement"
+  ],
+  "modes": [
+    {
+      "isolation": "repeatable read",
+      "readOnly": "on"
+    },
+    {
+      "isolation": "repeatable read",
+      "readOnly": "on"
+    },
+    {
+      "isolation": "repeatable read",
+      "readOnly": "on"
+    }
+  ],
+  "permanentInventoryIssued": 0,
+  "providerCalls": 0,
+  "hostedWrites": 0,
+  "snapshotReportingOnly": true
+}

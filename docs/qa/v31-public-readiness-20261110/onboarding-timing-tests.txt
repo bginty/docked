@@ -1,0 +1,55 @@
+TAP version 13
+# Subtest: closed Google test window preserves isolated ledger reads without admitting checkout
+ok 1 - closed Google test window preserves isolated ledger reads without admitting checkout
+  ---
+  duration_ms: 8.3437
+  ...
+# Subtest: Google TEST admission cannot select Production, a different account, live checkout or an expired window
+ok 2 - Google TEST admission cannot select Production, a different account, live checkout or an expired window
+  ---
+  duration_ms: 12.3644
+  ...
+# Subtest: external Preview email uses exact expiring admission without granting transactions or invitations
+ok 3 - external Preview email uses exact expiring admission without granting transactions or invitations
+  ---
+  duration_ms: 9.8435
+  ...
+# Subtest: public acceptance is bound to existing protected Preview, with ordinary-customer mode and narrow Auth projections
+ok 4 - public acceptance is bound to existing protected Preview, with ordinary-customer mode and narrow Auth projections
+  ---
+  duration_ms: 3.2859
+  ...
+# Subtest: public acceptance rejects Production, cross-project credentials, privileged runtime and checkout
+ok 5 - public acceptance rejects Production, cross-project credentials, privileged runtime and checkout
+  ---
+  duration_ms: 2.3489
+  ...
+# Subtest: existing-member setup is independently opt-in and cannot inherit beta consent IDs
+ok 6 - existing-member setup is independently opt-in and cannot inherit beta consent IDs
+  ---
+  duration_ms: 9.683
+  ...
+# Subtest: timing is request-local across concurrent requests and preserves response/privacy
+ok 7 - timing is request-local across concurrent requests and preserves response/privacy
+  ---
+  duration_ms: 43.8109
+  ...
+# Subtest: timing preserves errors, records failed stages, and is inert outside a request
+ok 8 - timing preserves errors, records failed stages, and is inert outside a request
+  ---
+  duration_ms: 1.6702
+  ...
+# Subtest: receipt timings retain both admission checks and never report pending as fulfilled
+ok 9 - receipt timings retain both admission checks and never report pending as fulfilled
+  ---
+  duration_ms: 6.2391
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7471.7282
