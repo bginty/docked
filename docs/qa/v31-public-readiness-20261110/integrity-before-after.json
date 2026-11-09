@@ -1,0 +1,42 @@
+{
+  "before": {
+    "at": "2026-11-09T22:03:46.942965+00:00",
+    "cronHash": "f97ab2f047357ce4a942eba3d613eba2",
+    "flagsHash": "7d9abc5fcec4fc89663e182aee892bee",
+    "testState": {
+      "revision": 319,
+      "documentHash": "90f016059caf7b2bf306e0016f043689"
+    },
+    "commercial": {
+      "cards": 0,
+      "packs": 0,
+      "accounts": 0,
+      "journals": 0,
+      "receipts": 0,
+      "definitions": 0,
+      "spendableCredits": 0
+    },
+    "commercialControlHash": "0f7f964cb927731a669e40bf9e5e6c30"
+  },
+  "after": {
+    "at": "2026-11-09T22:05:14.960724+00:00",
+    "cronHash": "f97ab2f047357ce4a942eba3d613eba2",
+    "flagsHash": "7d9abc5fcec4fc89663e182aee892bee",
+    "testState": {
+      "revision": 319,
+      "documentHash": "90f016059caf7b2bf306e0016f043689"
+    },
+    "commercial": {
+      "cards": 0,
+      "packs": 0,
+      "accounts": 0,
+      "journals": 0,
+      "receipts": 0,
+      "definitions": 0,
+      "spendableCredits": 0
+    },
+    "commercialControlHash": "0f7f964cb927731a669e40bf9e5e6c30"
+  },
+  "allComparedValuesUnchanged": true,
+  "scope": "Read-only aggregate/hash comparison; no database migration or data mutation performed."
+}

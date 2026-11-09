@@ -1,0 +1,122 @@
+Docked v31 Australian release readiness — 10 November 2026
+
+Outcome
+
+Android v31 / 1.30 was submitted to Google Play for review using the existing signed bundle. The Console explicitly showed “Changes in review”. Managed publishing remains ON. This is not public publication or Google approval of v31. The previous v30 release and ten previously approved changes remain in “ready to publish”; do not publish that older group as a substitute for the v31 review.
+
+The independently safe backend safeguards are deployed to https://docked.com.au:
+commit f1b50b6f51d7429a36df9a8d5db99aed8886bd44
+deployment dpl_9bwmvDvt5AEszaBtR311MjHLpHg7
+previous deployment / rollback dpl_HEZqxHVW8Y8qECNduznbwNZkL6Wj
+branch codex/v31-public-readiness-20261110
+
+This release does not activate purchases, public registration, public competitions, permanent issuance, marketplace transfers, withdrawals or prizes. NBA remains hidden. No Production migration, inventory import, customer mutation or provider purchase was performed. Production database inspection was read-only.
+
+1. Google Play and Android
+
+Release: “31 (1.30) - AU launch - native sharing”.
+Australia-only distribution, Australian M classification and 18+ audience are retained. Existing reviewer access and listing declarations were preserved. No new terms or owner attestations were accepted.
+
+The existing AAB was selected from Google's library, not rebuilt:
+artifacts/android/Docked-v31-1.30.aab
+SHA-256 8becb6d044efc93baed6649f11ff100cc562bb09d200d45ec1a6742cf36e83b0
+
+Google validation had no errors. Its two nonblocking warnings concern a missing deobfuscation file and native debug symbols. Device compatibility was unchanged. The Console estimated 7.83 MB download / 664 KB update.
+
+Both Google buy-au purchase options were inspected and remain INACTIVE:
+docked_credits_4900_v1 — A$49.00 for 4,900 credits
+docked_credits_9900_v1 — A$99.00 for 9,900 credits
+These are credit products. The customer subsequently buys the existing Standard or Premium pack using credits; pack prices and odds were not changed.
+
+2. Backend changes actually delivered
+
+- Financial reporting now reads receipts, wallet lots and recovery cases in one READ ONLY, REPEATABLE READ snapshot and reports its as-of time. Concurrent updates cannot produce a report combining different accounting moments.
+- Pack purchase now enforces the same all-rarity supply availability used by the shop, under definition row locks and before debit. Direct requests cannot bypass the “unavailable” gate or silently substitute odds.
+- Prepared financial signals and the restricted outbox adapter were integrated, with both runtime flags OFF. Ordinary outbox workers exclude the reserved monitoring records. No missing SQL function is called while monitoring is disabled.
+- Existing purchase timing, receipt verification, durable acknowledgement/reconciliation, account binding and historical inventory protections are preserved.
+
+Production verification passed 19 HTTP/asset checks. The staged and live builds serve the expected commit and existing reveal/navigation assets. The hidden NBA history request is rejected; public gameplay, checkout and workspace-wallet access remain closed. Policies and account deletion remain public. Vercel cron configuration is unchanged.
+
+Before/after read-only integrity: test-wallet document hash and revision 319 unchanged; commercial accounts/cards/packs/receipts/journals/definitions/spendable credits all remain zero; commercial control, feature-flag and database-schedule hashes unchanged. The first post-promotion scan had no errors. At the next scheduled tick, the worker logged the same seven legacy TEST attention/overdue records present on the baseline deployment; no new commercial fault was observed. These records were preserved, not cleared. This short observation window is not a claim of long-term monitoring coverage.
+
+3. Onboarding and reviewer acceptance
+
+Fresh PostgreSQL integration passed independently for NFL, AFL and NRL: ordinary public identities without beta allowlisting, policy admission, free Core gameplay and isolated public competitions.
+
+Prior actual external-email acceptance remains valid evidence, not a new test performed today:
+2 November — protected hosted registration, automatic external confirmation, login, external password recovery/reset, both competition modes for all three sports, saved entry/rankings and account deletion.
+Evidence explicitly records operatorRelay:false. The scoped deletion worker removed the fixture's Auth/profile/sessions, rejected subsequent login and preserved historical entries and unrelated financial records. No actual customer was deleted.
+
+This turn's hosted checks are unauthenticated, read-only release checks. No new signed-in hosted onboarding or external-email delivery is claimed.
+
+The six prepared public competitions remain disabled. They are explicitly PRACTICE, use recorded rosters and have no official fixtures/results. Their current deadline is Sunday 15 November at 11:00 pm AEDT (2026-11-15T12:00Z), so it must be revalidated if activation is delayed. Each sport has Traditional and All-Star; saved rules retain NFL $4.4m, AFL $13.8m and NRL $8.2m caps, with All-Star uncapped. They do not expose old private-beta rounds.
+
+The confirmed reviewer remains admitted as a non-admin with NFL/AFL/NRL access through 31 January 2027. Available reviewer TEST credits are 29,900, pending/reserved 0, non-redeemable, with no recovery case. The previously approved 30,000 grant was not repeated or topped up. No reviewer password was read or stored. A fresh reviewer login was not performed today.
+
+4. Payment evidence and its limits
+
+Prior genuine Google TEST acceptance, 5 November, on Play-installed v30/1.29:
+- Both A$49 and A$99 test products succeeded with the displayed no-charge test card.
+- Standard 9 and Premium 9 produced 18 isolated AFL cards.
+- A$49 refund before spending reconciled to zero.
+- A$99 refund after 5,700 credits spent removed 4,200 unspent credits, retained 18 cards and recorded a 5,700 recovery hold without a negative spendable balance.
+- After the acknowledgement fix, a fresh A$49 TEST purchase was automatically consumed in 2,411 ms. Genuine authenticated refund notification reconciliation completed in 1,615 ms with no manual worker invocation.
+- Duplicate notification/reverification did not duplicate fulfilment or debit.
+
+v31 retains that native BillingPlugin; its native change adds image sharing. Actual physical Samsung acceptance on 8 November confirmed a single tap on an existing Ultra Rare AFL card opens the Android share sheet. No new phone or genuine Google purchase test was repeated this turn. No real-money settlement, bank payout reconciliation or third-party share delivery is claimed.
+
+Fresh tests executed:
+- Integrated billing/monitor/pool platform suite: 69/69.
+- Additional onboarding/purchase-timing tests: 9/9.
+- Earlier targeted suite: 61/61; overlaps the integrated suite and is not added as unique coverage.
+- Public NFL/AFL/NRL real PostgreSQL suites: 3/3.
+- Financial snapshot concurrency:4 scenario groups.
+- Supply/atomicity/concurrency: 7 scenario groups, including all 18 products and 20 buyers racing for the final serial.
+- Alert permissions, RLS, dispatch fencing and recovery:18 scenario groups. Email transport mocked; no email sent.
+- Commercial accounting/refunds/outages/replay:15 scenario groups.
+- Exact 6,465-definition dated pool rehearsal: 9 checks; 54 fixture cards only.
+- Typecheck, scoped lint and production Vercel build:passed.
+- Local default Turbopack build encountered the Windows node_modules junction restriction; the earlier local webpack build passed and the final integrated cloud Turbopack build reached READY.
+- Client-boundary marker scan passed 235 existing local browser assets; this is not a fresh full canary build of the final candidate.
+- No blanket rerun or claim of the entire 700+ test suite.
+
+5. Exact remaining paid-launch gates
+
+A. Permanent-card pool
+Production has zero commercial definitions and zero permanent commercial cards. The dated local candidate f436a9883a1ddda433fe81248533ad1d68d1aa02de8ca69d0863c465d8de60fc rehearsed successfully: 1,293 players / 6,465 definitions, covering 32 NFL, 18 AFL and 17 NRL teams; no Core or NBA definitions. Every row is dormant/unapproved. Existing 447 TEST-only NFL allocations are excluded from commercial supply without altering them.
+
+This is a 5 November source snapshot, not current import approval. The dated source preparation requires observations under 72 hours old. Refresh and revalidate immediately before preparing the immutable Production import; do not relabel old observations as new. Owner approval must cover the exact refreshed identity/supply snapshot and dormant import, followed by a fresh recoverable backup/drift check. No production import command has been run. Facts, source attribution and owner-confirmed name use do not establish proprietary statistics or likeness rights.
+
+B. Scoped monitoring permissions and actual support delivery
+Approve only the prepared v2 package; do not apply v1 as well:
+config/operations/billing-ops-outbox-v2.prepared.sql
+canonical LF SHA-256 b3e7ff04182b33f351c4c897550959ba3885c5f9960b1733a1a255ff5526e121
+current Windows bytes SHA-256 59dffc74f3f9a354366bedc994136264fb1922201a6c33f40864777b2546cf09
+
+Stop file:
+config/operations/billing-ops-outbox.stop.prepared.sql
+canonical LF SHA-256 aa5c6d107a06c5542e43f4055efdfd4858ad2fae1d04fe2dbad1774a66e337fa
+Only checkout newline conversion explains these byte differences.
+
+The package grants signal/enqueue EXECUTE to docked_commercial_app and queue EXECUTE to service_role, not broad outbox table access. It remains unapplied; RPCs are absent and the ledger flag is false. Required next steps are the scoped grant approval, fresh backup/drift review, named primary/backup operators, finite recipient/window approval and one real non-financial support delivery drill. No Graph 202 or fixture result is treated as inbox delivery. Existing seven TEST attention records remain untouched.
+
+C. Operations and real statistics
+Name primary/backup custodians for refund support, reconciliation, incident response and encryption/backup recovery. Retention cleanup stays OFF until the schedule and key custody are approved.
+
+The configured beta NFL data-use window ends 10 November and is not permission for public commercial statistics. No extension was inferred. This concerns the saved authorization configuration; it does not assert that an external licence expired. Any public real scored-round launch needs its documented statistics permission and eligible calendar configuration. The prepared six practice rounds must stay labelled Practice. Player-name approval is already recorded and is not being requested again.
+
+D. Google review and final activation
+Wait for Google approval of v31. Managed publishing prevents automatic publication. Do not enable inactive products or registration merely to get a review approved.
+
+6. Exact activation order
+
+1. Resolve the refreshed permanent-pool import and scoped monitoring approvals, run fresh backup/drift checks, import dormant rows and verify preservation. No wallets/cards are issued by that import.
+2. Establish named operations/key/backup custodians and prove the approved alert delivery/recovery path. Retention deletion remains independently gated.
+3. Revalidate policy consent, reviewer access, public practice deadlines and allowed statistics scope. Preserve hidden NBA and disabled transfers/withdrawals/paid entry/prizes.
+4. Confirm Google approved v31 and the exact live runtime/product/supply gates are coherent. Reuse prior TEST evidence where the path is unchanged; if the final approved configuration materially changes that path, run only the affected isolated Google TEST journey.
+5. Obtain final activation authority for public registration, the six eligible free competitions and real product/pack settlement. Enable in a controlled window and verify server admission and recovery before exposing checkout.
+6. Publish the approved v31 changes through managed publishing. Observe onboarding, fulfilment, reconciliations and error rates; pause checkout on integrity failures. Never roll back financial history.
+
+No-Go for public PAID activation today. Go for Google REVIEW preparation/submission: completed. The final remaining decisions are specific supply/operational permissions and activation; the commercial model, existing prices, player-name position and published policies do not need repeat approval.
+
+Evidence: play-v31-review-confirmed.jpg; play-products-inactive.jpg; backend-candidate/f1b50b6f51d7429a36df9a8d5db99aed8886bd44/live-verified.json; integrity-before-after.json; reviewer-wallet-readonly.json; ops-boundary-readonly.json; the named test output files in this directory.

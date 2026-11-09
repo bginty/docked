@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-09T21:52:51.111Z",
+  "engine": "PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit",
+  "definitions": 6465,
+  "checks": [
+    "real-player candidate imports only dormant definitions",
+    "exact retry preserves identifiers and snapshots",
+    "immutable cap/snapshot conflict rejected",
+    "approval cannot be smuggled through importer",
+    "active economy rejects dormant import",
+    "no cards, wallets, receipts, packs, journals or approved products created",
+    "runtime role cannot provision or approve pool definitions",
+    "exact source snapshot supports six Standard/Premium nine-card commercial-like fixture purchases and refunded inventory preservation",
+    "a dormant retry cannot reset already issued lifetime counters or rewrite preserved cards"
+  ],
+  "passed": true,
+  "productionWrites": 0,
+  "productionInventoryIssued": 0,
+  "providerCalls": 0,
+  "realPayments": 0,
+  "fixtureCards": 54,
+  "dormantImportIntegrity": {
+    "invalid": 0,
+    "accounts": 0,
+    "receipts": 0,
+    "cards": 0,
+    "packs": 0,
+    "journals": 0,
+    "approved_products": 0
+  },
+  "candidateSha256": "f436a9883a1ddda433fe81248533ad1d68d1aa02de8ca69d0863c465d8de60fc"
+}

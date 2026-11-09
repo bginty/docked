@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-09T22:12:04.527Z",
+  "candidate": "dpl_9bwmvDvt5AEszaBtR311MjHLpHg7",
+  "candidateTick": "2026-11-09T22:10:11.467Z",
+  "baseline": "dpl_HEZqxHVW8Y8qECNduznbwNZkL6Wj",
+  "baselineTick": "2026-11-09T22:05:09.712Z",
+  "route": "/api/store/google/scheduled",
+  "event": "google-test-reconciliation",
+  "level": "error",
+  "both": {
+    "scheduled": 0,
+    "completed": 0,
+    "pending": 0,
+    "working": 0,
+    "attention": 7,
+    "overdue": 7,
+    "attentionRequired": true,
+    "services": [
+      "legacy"
+    ]
+  },
+  "existingTestAttentionPreserved": true,
+  "newCommercialFaultObserved": false,
+  "claims": "This is a short scoped runtime-log observation, not an assertion of zero errors or active commercial financial monitoring."
+}

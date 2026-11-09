@@ -1,0 +1,113 @@
+{
+  "at": "2026-11-09T22:00:36.463Z",
+  "target": "https://docked-production-5i01httr5-briant-s-projects.vercel.app",
+  "deployment": "dpl_9bwmvDvt5AEszaBtR311MjHLpHg7",
+  "commit": "f1b50b6f51d7429a36df9a8d5db99aed8886bd44",
+  "passed": true,
+  "checks": [
+    {
+      "route": "/account-deletion",
+      "status": 200
+    },
+    {
+      "route": "/api/beta-release",
+      "status": 200
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=afl",
+      "status": 401
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=basketball",
+      "status": 400
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=nfl",
+      "status": 401
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=nrl",
+      "status": 401
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "status": 401
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403
+    },
+    {
+      "route": "/app/invitation-setup",
+      "status": 200
+    },
+    {
+      "route": "/app/login",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-1-240.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-1-480.webp",
+      "status": 200
+    },
+    {
+      "route": "/brand/docked/packs/foil-v2/premium-afl-1-800.webp",
+      "status": 200
+    },
+    {
+      "route": "/preview/pack-opening",
+      "status": 404
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/profile/qa_billing",
+      "status": 503
+    }
+  ],
+  "sixRarityStylesServed": true,
+  "approvedFoilStylesAndAssetsServed": true,
+  "packNavigationStylesServed": true,
+  "uxRefinementStylesServed": true,
+  "scoringPackRefinementStylesServed": true,
+  "scoringHistoryUnauthenticatedDenied": true,
+  "hiddenNbaHistoryRejected": true,
+  "exitConfirmationHidesRevealControls": true,
+  "assetsRequested": 3,
+  "foilVariants": 21,
+  "foilFiles": 63,
+  "sampleAssetHashesVerified": false,
+  "closedFlags": [
+    "REGISTRATION_ENABLED",
+    "COMPETITIONS_ENABLED",
+    "PRIZES_ENABLED",
+    "DOCKED_MULTI_SPORT_SANDBOX",
+    "DOCKED_MEMBER_GOOGLE_TEST",
+    "DOCKED_COMMERCIAL_SERVICE",
+    "DOCKED_COMMERCIAL_SURFACES",
+    "DOCKED_COMMERCIAL_CHECKOUT",
+    "DOCKED_PUBLIC_CUSTOMERS"
+  ],
+  "cronConfigurationUnchanged": true,
+  "migrations": [],
+  "customerMutations": 0,
+  "authenticatedCustomerAcceptance": false,
+  "packOpened": false
+}

@@ -1,0 +1,54 @@
+{
+  "observedAt": "2026-11-09T22:05:16.624Z",
+  "android": {
+    "package": "docked.fantasy",
+    "versionCode": 31,
+    "versionName": "1.30",
+    "submittedForReview": true,
+    "published": false,
+    "managedPublishing": true,
+    "distribution": [
+      "AU"
+    ],
+    "classification": "M",
+    "nativeRebuilt": false
+  },
+  "backend": {
+    "commit": "f1b50b6f51d7429a36df9a8d5db99aed8886bd44",
+    "deployment": "dpl_9bwmvDvt5AEszaBtR311MjHLpHg7",
+    "liveUrl": "https://docked.com.au",
+    "status": "READY",
+    "promoted": true,
+    "rollback": "dpl_HEZqxHVW8Y8qECNduznbwNZkL6Wj",
+    "productionSqlApplied": false,
+    "customerMutations": 0,
+    "immediateErrorFatalLogGroups": 0,
+    "nextScheduledTick": "2026-11-09T22:10:11.467Z",
+    "nextScheduledTickExistingLegacyTestAttention": 7,
+    "scheduledHealthMatchesBaseline": true
+  },
+  "gates": {
+    "nbaHidden": true,
+    "liveGoogleOptionsInactive": true,
+    "commercialCheckout": false,
+    "publicRegistration": false,
+    "publicCompetitions": false,
+    "commercialTrading": false,
+    "withdrawals": false,
+    "prizes": false,
+    "monitoringPermissionsApplied": false,
+    "destructiveRetention": false
+  },
+  "acceptance": {
+    "newGenuineGoogleOrders": 0,
+    "previousGenuineGoogle": "2026-11-05 v30/1.29",
+    "newPhysicalDeviceTests": 0,
+    "previousNativeShare": "2026-11-08 v31/1.30",
+    "newAuthenticatedHostedOnboarding": false,
+    "previousExternalOnboarding": "2026-11-02 protected public mode",
+    "integratedTestsPassed": 69,
+    "publicPostgresSportSuitesPassed": 3,
+    "productionHttpAssetChecksPassed": 19
+  },
+  "readyForPaidActivation": false
+}
