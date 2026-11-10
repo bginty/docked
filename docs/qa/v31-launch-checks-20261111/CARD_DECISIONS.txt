@@ -1,0 +1,97 @@
+DOCKED V31 - exact founder card decisions
+11 November 2026; source evidence captured 10 November 2026.
+
+No import or new issuance is approved. Preserve all existing copies and serials.
+Founder decisions concern source identity/eligibility; engineering assigns internal
+IDs after approval. The founder does not need to invent UUIDs or write SQL.
+
+A. Missing catalogue identities: 23 players / 26 existing copies
+Confirm the exact retained source identity, or supply an authoritative correction.
+A separately reviewed stable identity registration is then needed before the full
+import digest can be frozen. No guessed aliases, UUIDs or partial import.
+
+Zach Ertz | nfl | nflverse:00-0030061 | ELITE #1 | https://www.philadelphiaeagles.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_NOT_ACTIVE
+Wil Lutz | nfl | nflverse:00-0032569 | RARE #1 | https://www.denverbroncos.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE, KEEP_PRIOR_APPROVED_RETIREMENT
+Ka'imi Fairbairn | nfl | nflverse:00-0032726 | ULTRA_RARE #1 | https://www.houstontexans.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE, KEEP_PRIOR_APPROVED_RETIREMENT
+Tim Patrick | nfl | nflverse:00-0033375 | RARE #2, RARE #1 | https://www.newyorkjets.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED
+Eddy Pineiro | nfl | nflverse:00-0034173 | ELITE #1 | https://www.49ers.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE, KEEP_PRIOR_APPROVED_RETIREMENT
+Christian Kirk | nfl | nflverse:00-0034775 | ULTRA_RARE #2, ULTRA_RARE #1 | https://www.49ers.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_NOT_ACTIVE
+Baker Mayfield | nfl | nflverse:00-0034855 | ELITE #1 | https://www.buccaneers.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED
+Chase McLaughlin | nfl | nflverse:00-0035358 | RARE #1, ELITE #1 | https://www.buccaneers.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE, KEEP_PRIOR_APPROVED_RETIREMENT
+Van Jefferson | nfl | nflverse:00-0036415 | LEGENDARY #1 | https://www.commanders.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED
+Deven Thompkins | nfl | nflverse:00-0037487 | RARE #1 | https://www.raiders.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_NOT_ACTIVE
+Zavier Scott | nfl | nflverse:00-0038440 | ELITE #1 | https://www.chicagobears.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_NOT_ACTIVE
+Scott Matlock | nfl | nflverse:00-0038614 | ULTRA_RARE #1 | https://www.chargers.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED
+Jake Bates | nfl | nflverse:00-0039172 | ELITE #1 | https://www.detroitlions.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE, KEEP_PRIOR_APPROVED_RETIREMENT
+Ja'Tavion Sanders | nfl | nflverse:00-0039356 | ULTRA_RARE #1 | https://www.panthers.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Audric Estimé | nfl | nflverse:00-0039373 | ULTRA_RARE #1 | https://www.clevelandbrowns.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Jalen Coker | nfl | nflverse:00-0039491 | ULTRA_RARE #1 | https://www.panthers.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED
+Harrison Mevis | nfl | nflverse:00-0039498 | RARE #1 | https://www.therams.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE, KEEP_PRIOR_APPROVED_RETIREMENT
+Jeshaun Jones | nfl | nflverse:00-0039710 | LEGENDARY #1 | https://www.vikings.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED, CURRENT_ROSTER_NOT_ACTIVE
+Theo Wease Jr. | nfl | nflverse:00-0040311 | ELITE #1 | https://www.chargers.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED
+Ben Yurosek | nfl | nflverse:00-0040509 | RARE #1 | https://www.vikings.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED
+Jack Bech | nfl | nflverse:00-0040729 | ULTRA_RARE #1 | https://www.raiders.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED
+Garrett Nussmeier | nfl | nflverse:00-0040906 | RARE #1 | https://www.chiefs.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED
+Omar Cooper Jr. | nfl | nflverse:00-0041511 | ULTRA_RARE #1 | https://www.newyorkjets.com/team/players-roster/ | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, APPROVED_CATALOGUE_UUID_REQUIRED
+
+B. Existing exact catalogue mappings needing source-status acceptance
+48 players / 72 existing copies. Recommended decision: accept proven historical
+baselines only; retain new issuance disabled wherever eligibility is not current.
+This does not approve commercial display/source rights or make inactive players
+eligible for new stock. Exact IDs, source hashes, card IDs and serials remain in
+../v31-operational-acceptance-20261110/card-founder-decisions.json.
+
+Jamarra Ugle-Hagan | afl | wikimedia:afl:Q107491321 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, ARCHIVED_IDENTITY_ONLY_REFRESH_ELIGIBILITY
+Jack Carroll | afl | wikimedia:afl:Q111831570 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, ARCHIVED_IDENTITY_ONLY_REFRESH_ELIGIBILITY
+Dane Rampe | afl | wikimedia:afl:Q16233497 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, ARCHIVED_IDENTITY_ONLY_REFRESH_ELIGIBILITY
+Dougal Howard | afl | wikimedia:afl:Q18580425 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, ARCHIVED_IDENTITY_ONLY_REFRESH_ELIGIBILITY
+Ryan Byrnes | afl | wikimedia:afl:Q98690875 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, ARCHIVED_IDENTITY_ONLY_REFRESH_ELIGIBILITY
+Aaron Jones | nfl | nflverse:00-0033293 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Kendrick Bourne | nfl | nflverse:00-0033307 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE
+Patrick Mahomes | nfl | nflverse:00-0033873 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Tanner Hudson | nfl | nflverse:00-0034613 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Lamar Jackson | nfl | nflverse:00-0034796 | 1 copies | CURRENT_ROSTER_NOT_ACTIVE
+Alec Ingold | nfl | nflverse:00-0035125 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Alex Bachman | nfl | nflverse:00-0035602 | 1 copies | CURRENT_ROSTER_NOT_ACTIVE
+Terry McLaurin | nfl | nflverse:00-0035659 | 3 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Tyler Huntley | nfl | nflverse:00-0035993 | 1 copies | CURRENT_ROSTER_NOT_ACTIVE
+Jalen Hurts | nfl | nflverse:00-0036389 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Dyami Brown | nfl | nflverse:00-0036626 | 2 copies | CURRENT_ROSTER_NOT_ACTIVE
+Najee Harris | nfl | nflverse:00-0036893 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Kyle Pitts | nfl | nflverse:00-0036970 | 2 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Josh Palmer | nfl | nflverse:00-0036988 | 2 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+James Cook | nfl | nflverse:00-0037248 | 2 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Dameon Pierce | nfl | nflverse:00-0037258 | 3 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Brian Robinson | nfl | nflverse:00-0037746 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Romeo Doubs | nfl | nflverse:00-0037816 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Skyy Moore | nfl | nflverse:00-0038090 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Pierre Strong | nfl | nflverse:00-0038098 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+E.J. Jenkins | nfl | nflverse:00-0038498 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Kendre Miller | nfl | nflverse:00-0038551 | 1 copies | CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Aidan O'Connell | nfl | nflverse:00-0038579 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Ryan Miller | nfl | nflverse:00-0038824 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE, KEEP_PRIOR_APPROVED_RETIREMENT
+Mitchell Tinsley | nfl | nflverse:00-0038839 | 2 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Jake Haener | nfl | nflverse:00-0038998 | 3 copies | CURRENT_ROSTER_NOT_ACTIVE
+Anthony Richardson | nfl | nflverse:00-0039164 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Carson Steele | nfl | nflverse:00-0039325 | 2 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Will Shipley | nfl | nflverse:00-0039746 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Erick All | nfl | nflverse:00-0039814 | 2 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Brashard Smith | nfl | nflverse:00-0040078 | 2 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Jaylin Noel | nfl | nflverse:00-0040138 | 2 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Oronde Gadsden II | nfl | nflverse:00-0040189 | 2 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Jacory Croskey-Merritt | nfl | nflverse:00-0040242 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Montorie Foster Jr | nfl | nflverse:00-0040621 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Tre Harris | nfl | nflverse:00-0040727 | 3 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+RJ Harvey | nfl | nflverse:00-0040730 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Elijah Arroyo | nfl | nflverse:00-0040739 | 3 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_NOT_ACTIVE
+Matthew Hibner | nfl | nflverse:00-0040879 | 3 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Nicholas Singleton | nfl | nflverse:00-0040886 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+Carsen Ryan | nfl | nflverse:00-0041131 | 3 copies | CURRENT_ROSTER_NOT_ACTIVE
+Robert Henry Jr. | nfl | nflverse:00-0041178 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+KC Concepcion | nfl | nflverse:00-0041547 | 1 copies | ABSENT_FROM_PINNED_COMMERCIAL_SOURCE, CURRENT_ROSTER_IDENTITY_NOT_VERIFIED, CURRENT_ROSTER_NOT_ACTIVE
+
+Totals: 879 historical copies; 853 currently mapped; 26 unresolved.
+Fully specified portion: 6,516 dormant definitions. Conditional full proposal:
+6,540 definitions, 879 consumed copies, zero new minted/available/reserved copies.
+Do not import the 6,516-row partial proposal. Final import approval comes after
+all records are resolved, a fresh recount and an exact complete manifest digest.

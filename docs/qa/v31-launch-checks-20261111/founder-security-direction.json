@@ -1,0 +1,15 @@
+{
+  "recordedDateLocal": "2026-11-11",
+  "twilioAccountAvailable": false,
+  "initialAlternative": "Email codes or authenticator app; then explicit permission to defer phone verification",
+  "supersedingInstruction": "I am trying to get this published asap so if more work to remove keep it",
+  "assessment": "Removing the existing cross-layer phone requirement needs application/SQL changes and renewed tests. Retain the existing requirement under the latest instruction.",
+  "effectiveDirection": "KEEP_EXISTING_PHONE_GUARDS",
+  "applicationCodeChanged": false,
+  "migrationFilesChanged": false,
+  "sixthMigrationCreated": false,
+  "publicPhoneVerificationDeferred": false,
+  "authenticatorMfaExisting": true,
+  "emailVerificationIsNotPhoneVerification": true,
+  "soleFounderRecipientUnchanged": true
+}

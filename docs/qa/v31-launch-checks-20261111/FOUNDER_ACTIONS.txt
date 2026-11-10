@@ -1,0 +1,189 @@
+DOCKED V31 — final launch checks and founder actions
+11 November 2026 (Australia/Sydney) | PUBLIC LAUNCH NO-GO
+
+Google v31 / 1.30 is READY TO PUBLISH. Managed publishing remains ON.
+Submission 2 includes the v31 Australian rollout and 10 approved changes.
+Approval time shown by Play: 10 November, 6:16 PM (display timezone unverified).
+The Google review wait is cleared. No publication, rollout or settings change.
+
+This addendum supersedes the Google-review and next-action statements in
+../v31-operational-acceptance-20261110/FINAL_READINESS.txt. The underlying
+technical evidence and exact five-migration matrix remain applicable.
+Reviewed application commit: 669f3261af3cb0858f9851d8f60dbe37d514c605.
+Production independently remains f1b50b6f51d7429a36df9a8d5db99aed8886bd44.
+This follow-up changes readiness reporting only, not application code or SQL.
+
+1. P1–P4 result
+P1: 879/879 issued limited copies accounted for; 853 mapped to existing catalogue
+identities. 26 copies across 23 NFL players need approved identity registration
+or authoritative corrections. Source-status decisions cover 71 players/98 copies
+in total, including 48 players/72 copies whose catalogue IDs are already known.
+Commercial inventory remains empty; full import remains blocked.
+P2: Founder inbox receipt accepted; isolated alert/incident/retention evidence
+retained. Hosted owner acknowledgement/resolution, independent message trace,
+and actual managed-vault recovery acceptance remain outstanding.
+P3: Six synthetic, free, no-prize Practice rounds remain disabled. Their guard
+migration is unchanged. Real scoring, prizes and NBA are outside activation.
+P4: Registration closed in Production and Preview. Authenticator enrolment and
+verification are enabled; founder email is confirmed and one verified TOTP
+factor exists. Phone Auth is disabled; SMS account, credentials and sender absent.
+
+2. Effective authentication direction
+The founder initially accepted deferring phone verification, then instructed:
+"I am trying to get this published asap so if more work to remove keep it".
+Removing it affects onboarding, API authorisation, commercial eligibility and
+the prepared database guards, requiring a revised migration package and tests.
+Accordingly the current phone requirement is RETAINED. No replacement policy,
+extra migration or application change was introduced. Do not treat the earlier
+intermediate answer as current permission to bypass phone verification.
+Authenticator MFA already exists and remains mandatory for privileged actions.
+It is not currently mandatory for every ordinary member. Email verification and
+authenticator codes do not establish phone ownership or one account per person.
+There is no need for the founder to re-enrol an already verified authenticator.
+
+3. Precise founder actions, in priority order
+
+A. SMS account and physical test
+Create/choose a founder-controlled Twilio Programmable Messaging account, enable
+account MFA, and approve the actual funding quote. No Twilio account currently
+exists according to the founder. Set up a Messaging Service and an approved AU
+sender. The proposed branded sender is DOCKED; Twilio currently quotes five
+business days for alphanumeric provisioning. This is an external calendar risk,
+not an engineering estimate. Do not buy a number or accept additional spend
+without its exact quote being approved.
+Proposed initial ceiling: A$20 total new charges, including funding/FX/tax/sender
+charges; no automatic recharge; at most 20 single-segment test sends and A$5
+usage within that ceiling. If required initial funding exceeds A$20, obtain the
+actual quote before paying. Current base AU price: US$0.0515/segment (20 =
+US$1.03), excluding applicable extras. The A$20 proposal is not already approved.
+Enter Account SID, Auth Token and Messaging Service SID only in the isolated
+Preview Supabase Auth provider settings/approved secure store, never in chat.
+Engineer then applies the existing private test plan: two existing ordinary
+email-verified test accounts, expiry <=6 hours, signup closed, provider 6 SMS/hour,
+resend >=60 seconds, OTP expiry 300 seconds, fixed OTP/autoconfirm off, destination
+and abuse controls. Test account bindings/window are not yet provisioned.
+Founder personally receives/verifies a message on an Australian physical phone.
+Engineer checks wrong/expired/reused code, resend limits, duplicate phone/races,
+failure handling and recovery without creating duplicate identities or balances.
+No actual SMS delivery is claimed; no SMS sent by this review.
+
+B. Phone notice and current Play Data Safety
+Read-only live Play form inspection confirms Email address and User IDs checked,
+Phone number UNCHECKED; username/password and additional authentication checked;
+Purchase history checked, User payment info unchecked. No form changes saved.
+Approve the phone notice/recovery text in the existing PHONE_AND_GOOGLE_V31.txt,
+after confirming actual provider retention, overseas processing and deletion
+terms. Approve adding the accurate phone collection/purpose/retention disclosures
+to Play before activation. That declaration change may need another Google
+review; it does not by itself establish a reason for a new Android binary.
+The 90-day incident policy does not govern Supabase Auth or SMS provider logs.
+
+C. Card identities and import scope
+Review CARD_DECISIONS.txt: exact 23 missing source identities and 48 known-ID
+source-status records are listed in plain text. Confirm the retained historical
+identity or supply an authoritative correction for disputed records. You do not
+need to supply UUIDs or write SQL. After acceptance, engineering prepares exact
+stable registrations, alias/conflict checks and a complete frozen manifest.
+Recommended known-ID decision: preserve proven historical baselines while
+keeping new issuance disabled for unverified/inactive/archival-only eligibility.
+This is not approval of future stock, source rights or new issuance.
+Fully specified portion: 6,516 definitions / 853 consumed copies. Conditional
+complete proposal: 6,540 definitions / 879 consumed copies; not yet executable.
+New minted, reminted, deleted, owner changes, available stock and reserved stock:
+all zero. Never import the partial 6,516-row proposal. All existing copies,
+including eight retired, consume lifetime supply permanently. Caps unchanged:
+Core unlimited; Rare 5,000; Elite 2,500; Ultra Rare 400; Legendary 50; Icon 1.
+The full commercial import requires a subsequent separate exact-digest approval.
+
+D. Controlled migration/backend window
+Approve the five exact SQL files and separate outbox-v2 permission package linked
+below, plus an explicit closed-gate backend deployment of the reviewed code.
+This approval is currently WITHHELD under the founder's execution boundaries.
+Engineering must first produce a fresh consistent backup and drift preflight;
+abort on differences or lock timeout, then validate roles/RLS, protected data,
+closed launch controls and the actual installed v31 app. No public activation
+is included in this approval. No blanket migration push or partial import.
+
+E. Founder-controlled recovery custody and hosted operational acceptance
+Use existing Google project docked-play-verification. Sign in with the existing
+founder account and complete effective IAM, MFA/recovery-method and billing/log
+inspection. Browser requests timed out during this review, so none is marked
+accepted. Approve the scoped synthetic canary setup described in
+../v31-operational-acceptance-20261110/OPERATIONS_AND_VAULT.txt:
+individual-secret founder access; no runtime readers; temporary import access;
+Data Access/Admin Activity logs; 30-day version-destruction delay; no auto-rotation.
+After canary access/denial/log/recovery tests pass, separately approve transfer
+of existing recovery keys without rotation and one isolated archive restore.
+Existing recovery custody remains until the replacement passes. No live keys
+read, transferred or rotated in this review. Potential free-tier use is not a
+verified billing allowance; no new paid service is authorised.
+Following the approved backend rollout, personally use the existing authenticator
+to acknowledge and resolve the test incident. No repeat inbox attestation needed.
+For independent historical correlation, use existing M365 Exchange admin Message
+trace for DOCKED-OPS-20261110-01, 10 November 01:00–01:10 UTC; retain trace ID,
+InternetMessageID/status/events only. Existing Graph send access cannot read the
+trace (previous 403); do not expand mail permissions merely to re-check receipt.
+
+F. Final publication approval, last
+After all required acceptance passes, review the dated final release decision
+and explicitly authorise publishing the approved v31 release and the precise
+server-side activation scope. Production/app/backend approval, commercial import
+approval and Play publication approval are separate decisions. Publishing now
+would still leave registration closed and the operational/commercial gates unmet.
+Trading, prizes, withdrawals, real scored competitions and NBA remain off/hidden.
+Operational deletion scheduling remains disabled; it is not needed to publish.
+
+4. Migration approval matrix (unchanged)
+A1 20261109231834_commercial_lifetime_supply_guards.sql — lifetime/parallel-mint guards.
+A2 20261109232000_public_practice_phone_guards.sql — phone and safe Practice checks.
+A3 20261109232124_operational_incident_review.sql — founder MFA and immutable audit.
+A4 20261110005726_operational_incident_retention.sql — disabled 90-day retention.
+A5 20261110010050_australian_verified_phone_uniqueness.sql — canonical AU uniqueness.
+Full SHA-256 values: migration-checks.json. Affected objects, dependency order,
+RLS/permissions, data/lock risks, pre/postflight and recovery remain in
+../v31-operational-acceptance-20261110/MIGRATION_APPROVAL_MATRIX.txt.
+All five match the prior double-apply rehearsal; 550 protected tables unchanged
+in that prior rehearsal. No new full rehearsal was necessary for this report.
+A = schema/security plus separately scoped outbox permissions; B = provider,
+privacy, vault and hosted acceptance; C = exact complete inventory import;
+D = final public activation/publication. Approval of one does not approve others.
+
+5. Compatibility and timing
+v31 is approved and its native/config/dependency code remains unchanged at the
+reviewed application commit. No identified need for v32. Server-side admission
+can be enabled later after app/Auth/privacy approval and device acceptance.
+Existing Google Play Billing contract and dormant commercial functionality are
+unchanged. Approval does not prove pending backend or phone tests passed.
+Allow approximately 16–28 focused engineering hours (2–4 working days) AFTER
+source decisions, usable SMS sender/account, required approvals and founder
+participation are available. Sender provisioning and any declaration re-review
+add calendar time. No credible same-day public launch commitment with current
+unresolved source, provider and recovery prerequisites.
+
+6. Evidence and completed checks
+- Fetched origin; reviewed branch/application at 669f3261. Main workspace untouched.
+- Authenticated Play UI: exact v31 ready, managed publishing on, saved declarations.
+- Authenticated Vercel lookup: unchanged Production f1b50b6f, deployment READY.
+- Read-only Supabase: commercial definitions/cards/packs/receipts zero, all four
+  commercial switches false, six disabled Practice rounds, five migrations absent,
+  no operations schema/retention worker; confirmed founder email and verified TOTP.
+- Auth config GET-only on both projects: signup closed, TOTP enabled, phone disabled,
+  SMS configuration absent. Updated read-only reporter emits no secret/phone/code.
+- Four GET gates: publicRegistration=false; commercial403; Practice403; NBA400.
+- Five exact migration hashes rechecked; historical card decision counts/digests
+  verified. No new source mapping or false approval inferred from this recount.
+- Prior code/build/typecheck/lint/concurrency/retention evidence retained because
+  application/SQL/dependencies are unchanged; no unnecessary broad test rerun.
+
+Email acceptance remains: founder inbox receipt CONFIRMED on 10 November 2026,
+evidence type founder attestation, provider acceptance previously reported,
+automated inbox verification NO. Sole operational recipient remains the approved
+founder support address. No email resend, phone message, Production mutation,
+inventory import, rollout, key rotation or deletion schedule was performed.
+
+Primary sources rechecked 11 November 2026:
+https://supabase.com/docs/guides/auth/auth-mfa
+https://supabase.com/docs/guides/auth/auth-mfa/totp
+https://supabase.com/docs/guides/auth/phone-login
+https://www.twilio.com/en-us/sms/pricing/au
+https://www.twilio.com/en-us/guidelines/au/sms

@@ -1,0 +1,37 @@
+11 November 2026 — launch follow-up validation
+
+Changes: reporting/documentation only. No src/, android/, package dependency,
+SQL migration or application configuration change. The read-only PowerShell
+reporter adds optional output location and whitelisted MFA/email booleans.
+
+Executed:
+1. git fetch origin; commercial branch/application baseline remains 669f3261.
+2. Authenticated browser read-only: submission 2 / v31 ready, publishing ON,
+   10 ready changes; current Data Safety values. No save/publish action.
+3. Vercel get_deployment: docked.com.au READY at f1b50b6f.
+4. Supabase BEGIN READ ONLY / ROLLBACK: closed commercial/public controls,
+   empty commercial inventory/receipts, migrations absent, founder TOTP count.
+5. powershell -NoProfile -File scripts/hosted-phone-readiness.ps1
+   -ReportPath docs/qa/v31-launch-checks-20261111/auth-readiness.json
+   PASS, both exact projects healthy; no private values emitted or settings set.
+6. Four anonymous HTTPS GET checks: registration false; commerce403; Practice403;
+   basketball400. These checks do not prove authenticated customer acceptance.
+7. SHA-256 recomputation of all five SQL files plus outbox-v2 exact raw bytes
+   matches prior approval manifest. No modified dependency justifies another
+   full 550-table rehearsal during this documentation follow-up.
+8. Existing exact card-decision JSON recounted: 71 players/98 copies, of which
+   23 players/26 copies lack catalogue IDs, 48 players/72 copies have known IDs.
+   Four source artifact hashes recorded; no new catalogue/source approval.
+9. All nine new evidence JSON files parse; report/production/gate/hash assertions
+   passed. git diff --check passed. Staged diff is checked before commit.
+
+Reused evidence remains dated 10 November; no new build/browser MFA/SMS/receipt/
+full migration rehearsal is claimed. Actual hosted OTP, incident actions,
+provider trace, vault recovery and final installed-v31 acceptance still pending.
+Google Secret Manager browser inspection failed to load twice; no change made,
+IAM/MFA/billing/logging remain unverified. Existing founder app TOTP is not proof
+of Google Cloud account MFA. No sensitive codes, secrets or phone numbers saved.
+
+The intervening phone-deferral choice was superseded by the founder's latest
+instruction to retain it if removal adds work. No auth rewrite was made; the
+five-file approval package and tested phone safeguards remain intact.

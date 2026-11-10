@@ -1,5 +1,6 @@
 # Read-only OTP readiness for the two existing Docked projects. Never sends SMS,
 # changes Auth configuration, enumerates credentials, or prints private values.
+param([string]$ReportPath = 'docs/qa/v31-operational-acceptance-20261110/auth-provider-readiness.json')
 $ErrorActionPreference = 'Stop'
 $ProgressPreference = 'SilentlyContinue'
 $otpRoot = Split-Path -Parent $PSScriptRoot
@@ -42,6 +43,10 @@ try {
       leakedPasswordProtection = $otpConfig.password_hibp_enabled
       phoneMfaEnrollEnabled = $otpConfig.mfa_phone_enroll_enabled
       phoneMfaVerifyEnabled = $otpConfig.mfa_phone_verify_enabled
+      authenticatorEnrollEnabled = $otpConfig.mfa_totp_enroll_enabled
+      authenticatorVerifyEnabled = $otpConfig.mfa_totp_verify_enabled
+      emailAuthEnabled = $otpConfig.external_email_enabled
+      emailAutoConfirm = $otpConfig.mailer_autoconfirm
       passwordReauthenticationRequired = $otpConfig.security_update_password_require_reauthentication
       authenticatedReadOnlyInspection = $true
     }
@@ -51,7 +56,7 @@ try {
     productionWrites = 0; previewWrites = 0; smsAttempts = 0
     credentialsEmitted = $false; projects = $otpResults
   }
-  $otpDestination = Join-Path $otpRoot 'docs/qa/v31-operational-acceptance-20261110/auth-provider-readiness.json'
+  $otpDestination = Join-Path $otpRoot $ReportPath
   $null = New-Item -ItemType Directory -Force -Path (Split-Path -Parent $otpDestination)
   $otpReport | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath $otpDestination
   $otpReport | ConvertTo-Json -Depth 5

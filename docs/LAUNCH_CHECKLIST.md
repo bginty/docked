@@ -2,7 +2,20 @@
 
 # Release gates
 
-## Current v31 operational acceptance — 10 November 2026
+## Current v31 launch checks — 11 November 2026
+
+The latest [founder action report](qa/v31-launch-checks-20261111/FOUNDER_ACTIONS.txt) and [plain-text card decisions](qa/v31-launch-checks-20261111/CARD_DECISIONS.txt) supersede overlapping status and next-action statements below. Live Play Console inspection confirms **v31 / 1.30 Ready to publish**, with managed publishing **ON**. The approved release has not been published. Production remains `f1b50b6f`; public launch remains **NO-GO**.
+
+- [x] Google v31 review completed; current Data Safety selections inspected read-only.
+- [x] Founder verified email and one existing verified authenticator factor confirmed independently; no re-enrolment needed.
+- [x] Five migration files still match their rehearsed SHA-256 values; application and SQL unchanged.
+- [ ] Complete SMS setup and genuine device acceptance. The founder's latest instruction retains existing phone guards to avoid a replacement implementation. No Twilio account is available yet.
+- [ ] Approve accurate phone privacy/recovery disclosure and Play Data Safety update: Phone number is currently unchecked. This may require declaration re-review.
+- [ ] Resolve exact card source decisions; approve the complete import only after final mappings and digest are frozen.
+- [ ] Approve exact dormant migrations/outbox permissions and closed-gate backend rollout, then complete hosted incident/vault/device acceptance.
+- [ ] Obtain final explicit Play publication and precise activation authority after the remaining gates pass.
+
+## Prior v31 operational acceptance — 10 November 2026
 
 The current review is [V31 final operational acceptance](qa/v31-operational-acceptance-20261110/FINAL_READINESS.txt), with the [exact migration approval matrix](qa/v31-operational-acceptance-20261110/MIGRATION_APPROVAL_MATRIX.txt). It supersedes overlapping historical readiness claims below. Public launch remains **NO-GO**; Production stays at the separately verified `f1b50b6f`.
 
@@ -13,7 +26,7 @@ The current review is [V31 final operational acceptance](qa/v31-operational-acce
 - [ ] Complete hosted founder AAL2 incident acknowledgement/resolution and end-to-end operational audit acceptance.
 - [ ] Configure approved SMS credentials/sender and capped test budget in the isolated existing-account test; approve prospective phone privacy/recovery wording and verify genuine physical-device delivery.
 - [ ] Accept founder-only managed-vault effective IAM/MFA/logs and synthetic recovery; separately approve any live-key custody transfer and archive restore.
-- [ ] Verify v31 phone flow and disclosures, record Google approval, then obtain final explicit launch authority. Managed publishing stays ON; no v32 is required by the currently identified backend changes.
+- [ ] Verify v31 phone flow and corrected disclosures, then obtain final explicit launch authority. Google approval is now recorded in the 11 November addendum. Managed publishing stays ON; no v32 is required by the currently identified backend changes.
 - [x] Production registration, sales, issuance, transfers and public Practice rounds remain closed; NBA hidden. Operational deletion scheduling remains disabled and requires separate approval.
 
 Already approved founder-only custody, email-only alert delivery, 90-day routine retention and the permanent rarity caps do not require repeated business-rule approval.
