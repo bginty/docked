@@ -1,0 +1,65 @@
+RECOVERY CUSTODY — proposal, not provisioned or a claim of access acceptance
+10 November 2026
+
+Founder is the sole approved initial custodian. No key was read into a report,
+rotated, replaced, uploaded, or provisioned by this task. Existing encrypted
+backup recovery continues to use the separate local operator-held key.
+
+Existing infrastructure assessment
+- Supabase Vault encrypts secrets at rest but exposes a decrypting SQL view.
+  Production metadata inspection found service_role can SELECT that view;
+  anon/authenticated/docked_app/docked_beta_app/docked_commercial_app cannot.
+  Putting the sole database recovery key there would couple recovery to the
+  failed database and would not establish founder-only access. No privilege was
+  changed and no secret value was queried.
+- Vercel runtime encrypted/Sensitive env vars are not an independently tested
+  recovery vault. The connector hides Production env data; its empty filtered
+  result is NOT evidence that no keys exist. No runtime secret was retrieved.
+- Reuse the existing docked-play-verification Google project for independent
+  Secret Manager custody, subject to the exact access/cost checks below. Browser
+  control was stopped by URL-verification security, so actual project IAM,
+  billing/free-tier remaining usage and founder 2-step verification are unverified.
+
+Exact proposed setup: config/operations/recovery-vault.proposed.json.
+No new service account key. No runtime, billing-verifier or RTDN identity access.
+Founder only receives secret-level Accessor + Version Manager; existing project
+administrators/inherited memberships must be reviewed because they can grant
+themselves access. Enable DATA_READ/DATA_WRITE/ADMIN_READ audit logging for
+Secret Manager and test a synthetic secret's access and denial before importing
+an existing recovery key. Audit logs contain resource/version and principal,
+never secret payload. Enforce/verify strong founder MFA and keep recovery codes
+outside this same account's sole dependency. Do not promise break-glass recovery
+if the founder loses the only account; use Google's verified account recovery.
+
+Cost checked against primary Google pricing 10 November:
+6 active (enabled OR disabled) versions + 10,000 reads/month free per BILLING
+ACCOUNT, shared across projects. Proposed two current versions plus two previous
+versions expect US$0/month only if free allowance remains. Beyond it: US$0.06 per
+active version/location/month and US$0.03 per 10,000 reads; automatic replication
+bills as one location. Logging/storage usage and taxes can add charges. No
+recurring service or billing was activated. Budget alerts do not create a hard cap.
+
+Provision/recovery procedure (founder approval and IAM check pending)
+1. Confirm project/billing identity, free-tier headroom, founder MFA and full
+   effective IAM. Enable only Secret Manager and its access audit logging if
+   not already enabled. Founder approves scoped grants, not broad service access.
+2. Create the named recovery secrets with no runtime grants. Load existing keys
+   through a local process that streams memory to the API, never argv/stdout,
+   browser forms, Git or screenshots. Do not rotate as part of custody transfer.
+3. Record only resource/version IDs and encrypted-archive hashes in manifests.
+4. Test retrieval by founder and denial to runtime identities using a synthetic
+   secret first. Restore a network-isolated copy, verify archive authentication
+   and protected fingerprints, stop it, record audit event reference.
+5. For later rotation: explicit approval, new version, test new backups, retain
+   every old version needed by still-retained archives/holds. Never destroy old
+   versions merely because an operational incident reaches 90 days.
+6. Incident: disable compromised runtime admission, revoke scoped reader access,
+   preserve logs and encrypted backups, review exposure, then rotate affected
+   operational secrets with a separate approved migration. Disabling recovery
+   versions requires testing another accessible recovery path first.
+
+Primary sources:
+https://supabase.com/docs/guides/database/vault
+https://cloud.google.com/secret-manager/pricing
+https://docs.cloud.google.com/secret-manager/docs/audit-logging
+https://cloud.google.com/secret-manager/docs/access-control

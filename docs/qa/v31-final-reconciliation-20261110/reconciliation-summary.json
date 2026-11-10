@@ -1,0 +1,30 @@
+{
+  "capturedAt": "2026-11-10T00:55:31.098Z",
+  "productionWrites": 0,
+  "totalIssued": 879,
+  "originalProposalAccounted": 793,
+  "exceptions": 86,
+  "accountedFor": 879,
+  "originalReceiptsMatched": 879,
+  "duplicateImmutableIds": 0,
+  "duplicateLimitedSerials": 0,
+  "overCapGroups": 0,
+  "activePreserved": 871,
+  "retiredPreserved": 8,
+  "byCause": {
+    "PRIOR_APPROVED_TEST_RETIREMENT": 8,
+    "CURRENT_ROSTER_NOT_ACTIVE": 27,
+    "CURRENT_IDENTITY_UNVERIFIED": 34,
+    "LEGACY_ID_WITHOUT_CATALOGUE_UUID": 11,
+    "FRESH_ROSTER_CANDIDATE_OMISSION": 5,
+    "ACTIVE_IDENTITY_ABSENT_FROM_OLD_SNAPSHOT": 1
+  },
+  "exceptionTransfers": 1,
+  "hiddenNBAUnchanged": 18,
+  "importReady": false,
+  "sourceApproval": false,
+  "commercialDefinitions": 0,
+  "commercialCards": 0,
+  "distinction": "All 879 issued allocations accounted for. This is not current roster eligibility, source/import approval, restoration of retired ownership, or authority to mint. TEST and refunded allocations never replenish lifetime capacity.",
+  "proposalDigest": "c9c07b5b20abc7ee874d90cdb17f2e47645a4340f972209abd82668c9ff53ad3"
+}

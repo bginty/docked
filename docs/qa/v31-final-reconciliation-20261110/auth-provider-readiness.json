@@ -1,0 +1,20 @@
+{
+    "at":  "2026-11-10T01:01:55.8254496Z",
+    "productionWrites":  0,
+    "disableSignup":  true,
+    "emailAutoConfirm":  false,
+    "phoneAuthEnabled":  false,
+    "phoneAutoConfirm":  false,
+    "smsProvider":  "twilio",
+    "smsRateLimit":  30,
+    "smsOtpExpiry":  60,
+    "smsMaxFrequency":  5,
+    "smsOtpLength":  6,
+    "twilioAccountConfigured":  false,
+    "twilioCredentialConfigured":  false,
+    "twilioSenderConfigured":  false,
+    "passwordReauthenticationRequired":  false,
+    "testOtpConfigured":  false,
+    "captchaEnabled":  false,
+    "leakedPasswordProtection":  false
+}

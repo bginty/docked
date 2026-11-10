@@ -1,0 +1,25 @@
+{
+  "status": "PROPOSED_NOT_APPLIED",
+  "provider": "Google Cloud Secret Manager",
+  "existingProject": "docked-play-verification",
+  "founderPrincipal": "user:briantg_21@hotmail.com",
+  "secrets": ["docked-recovery-backup", "docked-recovery-archive"],
+  "runtimeReaders": [],
+  "founderSecretRoles": [
+    "roles/secretmanager.secretAccessor",
+    "roles/secretmanager.secretVersionManager"
+  ],
+  "scope": "individual secrets only; no project-wide accessor grant",
+  "dataAccessAuditLogsRequired": true,
+  "founderMfaVerifiedRequired": true,
+  "broadInheritedReadersMustBeReviewed": true,
+  "automaticRotation": false,
+  "automaticDestruction": false,
+  "minimumSupportedBackupVersions": "all versions referenced by retained encrypted backups or legal holds",
+  "newPaidServicesAuthorised": false,
+  "expectedMonthlyUsdWithinRemainingFreeTier": 0,
+  "freeTierVersionsPerBillingAccount": 6,
+  "freeTierMonthlyReadsPerBillingAccount": 10000,
+  "overagePerVersionPerMonthUsd": 0.06,
+  "overagePer10000ReadsUsd": 0.03
+}

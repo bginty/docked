@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-10T01:27:05.628Z",
+  "checks": [
+    "90-day age; unexpired records/legal holds/investigations/required audit/unknown/security/financial categories excluded",
+    "dormant by default; no app/worker activation privilege; exact deletion once; minimal immutable receipt retained",
+    "recurring incident retained; founder preservation action audited and stale decisions denied",
+    "two independent PostgreSQL connections race canonical +61/61: one verified number succeeds, one rejected",
+    "AU mobile gate; canonical verified number unique; concurrent resend cooldown admits one; no phone copied to audit"
+  ],
+  "passed": true,
+  "engine": "PostgreSQL 17",
+  "realSMS": false,
+  "productionWrites": 0
+}

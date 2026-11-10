@@ -1,0 +1,82 @@
+PHONE OTP — implementation prepared; genuine hosted/SMS acceptance BLOCKED
+10 November 2026
+
+Production management API was inspected read-only. Twilio provider selected;
+account SID, credential and sender/Messaging Service absent. Phone auth OFF,
+SMS autoconfirm OFF, public signup OFF. Six-digit OTP; configured expiry 60s;
+provider resend interval 5s; SMS rate 30/hour. CAPTCHA and leaked-password
+protection are off. No configuration changed and no SMS was attempted.
+
+Implemented changes, NOT deployed
+- Accept Australian 04 mobile format, +614 and canonical 614; reject malformed,
+  landline and other-country values. Number does not establish AU residency;
+  existing country/state/adult policy is independently required.
+- One-minute server-side resend admission, 3 sends/account/hour and 30 globally;
+  6 verify attempts/account/hour. Quotas are committed independently of provider
+  failure, preventing retries from resetting them. No raw number in rate keys.
+- Normal Supabase user-session phone_change OTP; re-fetch Auth user and verify
+  same member, exact number and confirmation timestamp before accepting. Raw
+  provider diagnostics are replaced with recoverable, non-identifying errors.
+- Additional unique index on the canonical VERIFIED Auth phone protects +prefix
+  aliases and simultaneous verification. Existing Auth unique phone remains.
+  Stop on pre-existing conflicts, never select an owner or merge accounts.
+- Phone resides only in Auth; no OTP/hash copy to profiles, localStorage,
+  analytics or audit. Successful audit stores actor and provider, not number.
+
+Executed tests
+Real disposable PostgreSQL: canonical uniqueness including competing independent
+connections; one succeeds and one is rejected. Application normalization,
+same-member confirmation, wrong-number/cross-account response, provider rejection
+and transport errors tested with stubs. These are not genuine SMS delivery,
+provider OTP generation/expiry, CAPTCHA or physical-device acceptance.
+
+Hosted prerequisites and exact safe procedure
+1. Founder supplies an existing approved Twilio account/Messaging Service via
+   provider console or managed secret entry, never chat/Git. Confirm Australian
+   sender registration, AU destination permissions, account funding and per-day
+   spend guard; obtain a maximum TEST SMS budget before making chargeable sends.
+2. Configure the protected isolated Supabase project first, not Production.
+   Proposed OTP expiry 300s, resend interval at least60s, six digits, SMS hourly
+   cap30, auto-confirm false. Enable provider CAPTCHA/rate limits for directly
+   reachable Auth endpoints; application-only limits are insufficient. No fixed
+   TEST OTP map may be carried into Production.
+3. Use two synthetic ordinary accounts and a founder-controlled test mobile,
+   entered directly into the protected form. Never change the founder's genuine
+   customer account. Test received code, expiry, wrong code, reuse, resend,
+   simultaneous second-account verification and provider outage. Record result,
+   times and opaque case references only, not phone/OTP or screenshots containing it.
+4. Verify email/password recovery with normal MFA where required; deletion and
+   account controls remain accessible before phone verification. Public gameplay
+   and commercial receipt fulfilment re-check authoritative confirmed phone.
+5. Existing beta accounts retain beta access. No account auto-migration, invented
+   confirmation or overwrite. Public access requires verification when activated.
+6. Confirmed-number changes currently route to support. Do not use an admin
+   auto-confirm to repair them. A support-assisted normal Auth re-verification
+   and recovery policy (lost/recycled numbers, identity evidence, session
+   revocation, pending purchases) needs acceptance before enabling self-service
+   changes. Direct Auth number changes must be included in the hosted abuse test.
+7. Reconcile test claims and stop the isolated test window. Leave Production
+   signup, payments and SMS activation disabled until separate launch approval.
+
+Cost / privacy
+Twilio Australia public SMS price observed: US$0.0515 per outbound segment;
+1000 one-segment sends = US$51.50 before carrier fees, taxes and FX. Retries are
+additional segments. Supabase Auth + Twilio Programmable Messaging is the current
+provider choice; do not add the separate Twilio Verify fee unless that service is
+chosen. An alphanumeric sender is listed free; rented AU mobile US$8.25/month.
+Sender registration/eligibility must be confirmed. No new account/subscription
+or paid SMS service has been created. Existing Supabase plan charges are unchanged.
+Actual hosted per-verification cost cannot be claimed before provider acceptance.
+
+Prospective privacy wording must disclose phone collection for account uniqueness,
+verification/abuse prevention, Supabase and Twilio processing, relevant overseas
+processing, retention while needed for account/security, and deletion exceptions.
+Published privacy v3 has NOT been changed. Approve the exact prospective wording
+with the final chosen provider; update Data Safety as required. Financial seven-
+year retention does not justify keeping phone numbers or OTP codes for seven years.
+
+Primary sources checked:
+https://supabase.com/docs/guides/auth/phone-login
+https://supabase.com/docs/guides/auth/rate-limits
+https://www.twilio.com/en-us/sms/pricing/au
+https://www.twilio.com/en-us/guidelines/au/sms

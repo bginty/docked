@@ -1,0 +1,2168 @@
+{
+  "at": "2026-11-10T01:24:55.339Z",
+  "readOnly": true,
+  "sourceRevision": "319",
+  "productionWrites": 0,
+  "records": [
+    {
+      "immutableCardId": "01227a90-2deb-41d7-959d-856b2dbf2ad2",
+      "originalPackSha256": "9d7bac6e420edc1881bcbd03ad46192d819941a1fc28fc724d643d78e244b378",
+      "journalSha256": "c129691bb0913786cdd0086132f3776c137b02dc1c753a61bfce9d56d5b23dec",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "01e1b2bb-cd24-4b3b-9ab5-b8394b940b79",
+      "originalPackSha256": "9d911ffbbed71bb92d920e4f23f90fb0fb8cd5323aeb91f7b6705bb2224c3b19",
+      "journalSha256": "43d878bd7a2efadda4230284613aad91b49316cbb1a52062a6d29b3e71bca076",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "02ada864-39a5-4935-b271-3a09359579bf",
+      "originalPackSha256": "d2474ddfb75844b9f3fa933228db6c3347cc91af91c416a395f247b5bf92ea9c",
+      "journalSha256": "5003995b3a6bdcbd1b274e07a15e88886d9218c9ed342a6e62b5e0f1bfef8823",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "053bc6ce-3f41-414f-97a7-1c3b9f7941d5",
+      "originalPackSha256": "fe11d44abcc0ffe6988002222c9fff8f8bbaa1618ee4521bb5d35e6d6878c4e3",
+      "journalSha256": "46cf0e8f9f4ed9febb90b25361b0b9d192f3bbd460331173b16ef99512b11882",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "0556e1c0-ec5e-4f07-a8ab-ddffb3033ac0",
+      "originalPackSha256": "c0aea179290d5a7d020e3a2d638245c02a32d65e7e4cce2b9744c1fc52f3dba9",
+      "journalSha256": "64999d7b5e04b0e4a348b51ddb80457911e094d0dcf52e3716b2e1ee7cb31a7d",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "05be9192-6910-45fb-bb24-604cf9c5cd0a",
+      "originalPackSha256": "232de9e6f611178deb739a267db3fc20c2abf43cbae12c91a1d11bc38ed0cbca",
+      "journalSha256": "b5d3cea63ed017c276f8f5554b6177663ae940d23dcaa259926740a224f98629",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "07ca5580-d362-4b2f-bf10-0cc7bc87260b",
+      "originalPackSha256": "b2eadd26b1071aff62a13841e1d8000ece85ea025c2ecf20038860e63644951e",
+      "journalSha256": "bd6ed0027060c5173a8936a1f0a011151687f7c22b4a09ac240b5eb84abfa0e7",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "09abe249-d4cf-46df-a5e2-7cb4d77952d3",
+      "originalPackSha256": "c0aea179290d5a7d020e3a2d638245c02a32d65e7e4cce2b9744c1fc52f3dba9",
+      "journalSha256": "64999d7b5e04b0e4a348b51ddb80457911e094d0dcf52e3716b2e1ee7cb31a7d",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "09c96aef-7b45-46ae-acad-f298ca390970",
+      "originalPackSha256": "b2eadd26b1071aff62a13841e1d8000ece85ea025c2ecf20038860e63644951e",
+      "journalSha256": "bd6ed0027060c5173a8936a1f0a011151687f7c22b4a09ac240b5eb84abfa0e7",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "0cf7cb1f-c294-4c19-b1b9-51071d53dfef",
+      "originalPackSha256": "37c8eba0efa50cd26492c26d9bfd5a8443146c24a3adf286f771bd22e101faae",
+      "journalSha256": "deeedb1db794ffc4890e72cf11ef61ac9d7d850a3c36edb998fbba0da244fa81",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "SEALED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "0f77c1b1-ba56-493f-886c-f6c9037d2bee",
+      "originalPackSha256": "a9192778b3279fa046ff8c174c612d39dd14fab3116e57f0016955b1d2c47ae0",
+      "journalSha256": "f21e28ff6b0b25acf2149da03247de5522dd9509dc31a3bfe97f43d6c7afe163",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "0fa99e81-1d19-4fa7-a6b7-bf6cb0438a44",
+      "originalPackSha256": "c0d153624b159008405b08c842e852940909d9360a44616396d10c751196fecf",
+      "journalSha256": "7075be416641f51aa90af3a42e56164bf8952446a707b9a772524c44d55f1d7c",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "10507ac3-5e3a-4184-83ba-e6fffe14fb55",
+      "originalPackSha256": "e5bb6cd30786efd9a6b86e97a4bf6c95ce6bbafb52a352699e3ad2e8821cd7ca",
+      "journalSha256": "ad43ad8af0eb1cf5c41c6d5edabdb419cca9161a833f1b93e4033ba59e7ee1d8",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "1826846d-76ba-4e84-a7f1-78fef26d669e",
+      "originalPackSha256": "f52051b9f57a74640da2fd318e5acc07f4125a5f023b527e588e740703d67293",
+      "journalSha256": "b02f26c6d9b8aae09fd225776044f54ba4906dce2f903b2f5d09c4e04995e7d2",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "098f5c37c21c82ce9da3210ea94a7583ab27eedd67b9f950302224c04e4cd875",
+          "provenanceSha256": "4bf550b330b5500fe28f8edf70a0209374031599eb7941b5fd503b93cf53a6a8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "187699de-39bf-4b81-bb95-833819e65720",
+      "originalPackSha256": "8da4b07ad026e71ae3e6b1e97fafe1aeec1907e486ab6f4ea6fc4f6b655e56eb",
+      "journalSha256": "55e3922a3ab473b2984a47b7e15966160ff3efc12815fcd71046e2d1af8fa1d3",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "18b0902a-b1dd-487e-b572-8c9eed9552e0",
+      "originalPackSha256": "b758fd6d5f710ad02a1dd9a12512b796928b204d7aa6fe03d3e6b97940788fcc",
+      "journalSha256": "7e9a823b36bd86158f3f6c0ce92c7bdcaa9db1e813dedc179d8605f10912ad11",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "1a9a1fe1-fa79-4727-ad1a-abdc3d526376",
+      "originalPackSha256": "bd8f027c8d5f23ae2e937ec022c77f07891d3d7457a301a4145d8ec8d07d0f40",
+      "journalSha256": "776132edf424fd4a3434286032871b8d8668bfafe5247172c1396466bf728c67",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "29caf766-a637-44bd-8902-7f300daa630b",
+      "originalPackSha256": "9d7bac6e420edc1881bcbd03ad46192d819941a1fc28fc724d643d78e244b378",
+      "journalSha256": "c129691bb0913786cdd0086132f3776c137b02dc1c753a61bfce9d56d5b23dec",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "2c5c5ac0-e75d-4deb-9959-b0bcfc16be2f",
+      "originalPackSha256": "19e7a43e620470e5b955465570ac6af0849c328b56c0efd71e36dd36b07d7134",
+      "journalSha256": "c9d3dd31de9b0e435b714f2870cf224d9a9bbc4d0796f4c9439734ff8178e1b0",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "3212f34a-540b-4d39-a9d6-0c38f8084cdd",
+      "originalPackSha256": "ee3529410b9512ffe3b20911a7bfe8367870e1b2d02840e5a225385f454233a2",
+      "journalSha256": "027406be8b7c70a48320e15b8af2a06e3e5ea54de11569e79c2904d0e0cee82f",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "35d1852a-322e-4a7e-a0b2-a018b2eb488f",
+      "originalPackSha256": "9d911ffbbed71bb92d920e4f23f90fb0fb8cd5323aeb91f7b6705bb2224c3b19",
+      "journalSha256": "43d878bd7a2efadda4230284613aad91b49316cbb1a52062a6d29b3e71bca076",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "386c1e46-5825-403e-be52-1026b2a9cab5",
+      "originalPackSha256": "9d7bac6e420edc1881bcbd03ad46192d819941a1fc28fc724d643d78e244b378",
+      "journalSha256": "c129691bb0913786cdd0086132f3776c137b02dc1c753a61bfce9d56d5b23dec",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "3ca479fd-cc7f-445b-932a-7c897c1e391b",
+      "originalPackSha256": "08382d48d2f55e8b6a6b49d3258a254c2e84d6fe3498b5f3b775f12aae9cecdc",
+      "journalSha256": "df34d6a3c9bc24b7d2e2c05a263ea5a269ef7453a18e7b1a1dcbb38ee7751a74",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "7f25a2138363c5ce1aa67b31ef43257c3db2d92ee9bacbe9c9b9a3ad24b9a2a1",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 2,
+          "inheritedFromTransfer": true,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        },
+        {
+          "category": "promotional",
+          "fundingLotSha256": "57db5da29069dc5a3643f4b00dc6df8e45b928c41859833b993578857daad4a1",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 2,
+          "inheritedFromTransfer": true,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "3d628b77-ae0f-4929-a314-4780a22557e7",
+      "originalPackSha256": "8da4b07ad026e71ae3e6b1e97fafe1aeec1907e486ab6f4ea6fc4f6b655e56eb",
+      "journalSha256": "55e3922a3ab473b2984a47b7e15966160ff3efc12815fcd71046e2d1af8fa1d3",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "3df008c7-d7f7-45fc-b919-6e1ab5226ee0",
+      "originalPackSha256": "d7cca247e43621bbacaf30b3b2b75528e9f28ca2dfb00024ce951144450a2688",
+      "journalSha256": "72d13ed0edbcc96acf97c975152b383fbb124f5d3e723a0455028e129692472a",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "315037bbf02055683609a2387f68030ca41268ad9deba203a470e65e7d400404",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 2,
+          "inheritedFromTransfer": true,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "40a77ffd-3537-4a80-ab78-25f09ece552c",
+      "originalPackSha256": "563b82a4531061f6b0566f6c5a57d769deed830dda52de166ef35b2d4ef94e63",
+      "journalSha256": "18afefb92e5979151471a254b968c1aa7fa7d4dfc7f0667bd109747c856da38c",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "45bce277-dd24-4d42-ad3f-db43fd2f40c6",
+      "originalPackSha256": "e522c9a3c1c1de693ddfe412e171351ccbd9df5595db860f7b2fd249b5f22793",
+      "journalSha256": "04c3c1f7aa664e11e3610192b4e6c75a79559248b2c84070dfb4d3a4c594ed50",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "464792a8-a539-466f-8d54-c0917f2bb901",
+      "originalPackSha256": "8da4b07ad026e71ae3e6b1e97fafe1aeec1907e486ab6f4ea6fc4f6b655e56eb",
+      "journalSha256": "55e3922a3ab473b2984a47b7e15966160ff3efc12815fcd71046e2d1af8fa1d3",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "49af3e03-4b1b-419a-b928-fdbe1b167ad2",
+      "originalPackSha256": "418680d1b4dd956e7ff6d1efe3922da8af733a9715b76cab4a85923eec5556cf",
+      "journalSha256": "2a6c59a8a20c9f44fe262ccd6dd4ae9dac4a3a376ec26d65e882a77db2c2121a",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "49cf6e30-c41f-41aa-8402-1086c83be4f0",
+      "originalPackSha256": "17dab947a46364288df1c90cdf6a97b2d618489d690c4b5539196393b3801db3",
+      "journalSha256": "c9a92fbd9e62e651538fe3711aea26e115938aa59ed3aaed846253bbae0f446e",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "4a43ca14-b1c6-4ee8-8df6-bca3ea15e350",
+      "originalPackSha256": "1e0c3ca4518b1df9d1f9de396600a4fc4cd162909a4368722861f91c9bdc92a9",
+      "journalSha256": "045c3b9643c1ea6567e02d72dd0920fb711697031cb273751d006df66f2f647f",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "4c6bfa29-ef97-4960-8145-c5baae721094",
+      "originalPackSha256": "16e3a3ef58572cddfeaabbe95542353393b7210dba9b0a4f6f950d6e25515c2d",
+      "journalSha256": "186ed572525475af716a910067b2bb30b38a55b8c2fdcbee3f48eb1149824c0e",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "4e9c092d-43f7-4b97-b225-6c95dc588fa3",
+      "originalPackSha256": "f5a87de47bd824617d1f83a29edb62b200233a119cc83130c363ba430431706b",
+      "journalSha256": "4e0931412c419b8395ddc264641fce946ed76c9ea59b0901d56e9cc378184da7",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "4eac229f-9be2-40d8-986d-33243f65e975",
+      "originalPackSha256": "b2eadd26b1071aff62a13841e1d8000ece85ea025c2ecf20038860e63644951e",
+      "journalSha256": "bd6ed0027060c5173a8936a1f0a011151687f7c22b4a09ac240b5eb84abfa0e7",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "4ebc2bf4-26c7-4091-9f5e-0ec7a1572a33",
+      "originalPackSha256": "b758fd6d5f710ad02a1dd9a12512b796928b204d7aa6fe03d3e6b97940788fcc",
+      "journalSha256": "7e9a823b36bd86158f3f6c0ce92c7bdcaa9db1e813dedc179d8605f10912ad11",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "4ee3848d-7df9-4f01-8999-35678d057bb9",
+      "originalPackSha256": "c0aea179290d5a7d020e3a2d638245c02a32d65e7e4cce2b9744c1fc52f3dba9",
+      "journalSha256": "64999d7b5e04b0e4a348b51ddb80457911e094d0dcf52e3716b2e1ee7cb31a7d",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "5036d062-c409-4910-8ded-7539fd195cae",
+      "originalPackSha256": "13dc4ac20307b8553e1b328ffe12404997980f29649b579569d7f44e5f742d95",
+      "journalSha256": "fb253996cfc715df426c958c6e58fb80112b4cec53e54f5a3da2bb9e7543710e",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "5dda8c37-8044-4d14-8489-92db33e94b52",
+      "originalPackSha256": "b5de8592a98368c85cb3d54eeaf658f6bf54a5255b36e48b1306d2ada3d8e2f0",
+      "journalSha256": "57b4ab049e1ffaf5816459211ebd0bd91b02ba1952075c73584b5d1bb6067485",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "5fdf6268-8607-45eb-81c9-9f03934ef2c1",
+      "originalPackSha256": "8da4b07ad026e71ae3e6b1e97fafe1aeec1907e486ab6f4ea6fc4f6b655e56eb",
+      "journalSha256": "55e3922a3ab473b2984a47b7e15966160ff3efc12815fcd71046e2d1af8fa1d3",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "64e2e95f-4b85-4576-8a3e-6fe62422e42e",
+      "originalPackSha256": "d7cca247e43621bbacaf30b3b2b75528e9f28ca2dfb00024ce951144450a2688",
+      "journalSha256": "72d13ed0edbcc96acf97c975152b383fbb124f5d3e723a0455028e129692472a",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "315037bbf02055683609a2387f68030ca41268ad9deba203a470e65e7d400404",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 2,
+          "inheritedFromTransfer": true,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "6adfb683-728c-4fb0-842a-20de80d808c2",
+      "originalPackSha256": "d2474ddfb75844b9f3fa933228db6c3347cc91af91c416a395f247b5bf92ea9c",
+      "journalSha256": "5003995b3a6bdcbd1b274e07a15e88886d9218c9ed342a6e62b5e0f1bfef8823",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "6ae453db-ab35-4ac1-8c6d-d189b01a28d4",
+      "originalPackSha256": "e5bb6cd30786efd9a6b86e97a4bf6c95ce6bbafb52a352699e3ad2e8821cd7ca",
+      "journalSha256": "ad43ad8af0eb1cf5c41c6d5edabdb419cca9161a833f1b93e4033ba59e7ee1d8",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "6e860923-4c09-4386-b98b-9788215914ba",
+      "originalPackSha256": "b758fd6d5f710ad02a1dd9a12512b796928b204d7aa6fe03d3e6b97940788fcc",
+      "journalSha256": "7e9a823b36bd86158f3f6c0ce92c7bdcaa9db1e813dedc179d8605f10912ad11",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "7531bac8-3d68-4575-a373-2b72057de80b",
+      "originalPackSha256": "4d45f2c76a9924085bdf6a79a2aea9c504d951ad660a82b8bc4dfc0aa36c2e6b",
+      "journalSha256": "48df2de5d04bd27f3ca1188086c475204c28d70d109a453404f41572522da79a",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "7ad5a876-2b14-4235-8c19-84c86e2ac8b0",
+      "originalPackSha256": "43b6b08ca89e9e0cd9fead18a466cb1954dc5e0ee9ab85043dc51177aea55e64",
+      "journalSha256": "a53342317ef6bfc3842e26d3aa0aec403f7120e25326407d545c37ce88309231",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "7c92289b-72a5-4d31-a28f-cbf9e8b40be7",
+      "originalPackSha256": "8da4b07ad026e71ae3e6b1e97fafe1aeec1907e486ab6f4ea6fc4f6b655e56eb",
+      "journalSha256": "55e3922a3ab473b2984a47b7e15966160ff3efc12815fcd71046e2d1af8fa1d3",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "7f211a11-cd85-4327-be39-f1fc4cce8802",
+      "originalPackSha256": "8590a36346d68ca1bdf3b91902f6c4e92654ed96fcd22e1bb65969eaad3d7cc4",
+      "journalSha256": "4c4cf37612aceb43609fff8036f7495787874d9d6cf0acaa29bd0d3215b62afc",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "82981e5a-4848-4612-b939-6e4726cdb090",
+      "originalPackSha256": "d2474ddfb75844b9f3fa933228db6c3347cc91af91c416a395f247b5bf92ea9c",
+      "journalSha256": "5003995b3a6bdcbd1b274e07a15e88886d9218c9ed342a6e62b5e0f1bfef8823",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "83879939-6385-4ca6-8e8d-7c6cbadd5f0a",
+      "originalPackSha256": "13dc4ac20307b8553e1b328ffe12404997980f29649b579569d7f44e5f742d95",
+      "journalSha256": "fb253996cfc715df426c958c6e58fb80112b4cec53e54f5a3da2bb9e7543710e",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "84897c41-1741-4b54-aa91-c0150799ede3",
+      "originalPackSha256": "a94b7c5276c308afc989d0e4eb15e3fadcba63d47ed37e275ce91fcfe059101e",
+      "journalSha256": "6aad53488dccdb8c7d8d6650bdc9444c3f6f337da4341f85807e5fc77b79a7df",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        },
+        {
+          "category": "promotional",
+          "fundingLotSha256": "6382ed5d70e2d0bc3664f4efb4b2c0eac14cce52dcdce00b88d6b25c53d697c7",
+          "provenanceSha256": "dee5f5430ef040987a22d3040d940f49b15206d2da2fd982ae5162b10457fd29",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "848ff696-21fb-4b39-8148-b40c9826988a",
+      "originalPackSha256": "cf8a6ff0e48a86584a540901ceb47d95db6244729f122f27a7905bb2670f3981",
+      "journalSha256": "4d96e4777594647993bada40c14a672c107ba2522ae1763497dc33b1dc9215cd",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "85b694c6-aa6f-495a-9c7e-96658737cb3e",
+      "originalPackSha256": "84f691b5ae0b70405db448edb7f72463074f994de160eca6870715eb4ab2f48a",
+      "journalSha256": "590ea96b5164e6d481b9b27f7c5d9e41f82f8bf029044d0ab77947713640d6fb",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "8713362a-7f3b-4e79-a2ff-807ce68e9007",
+      "originalPackSha256": "b5fad0288ce01ca75e78d0719a33107766d812104682db37e768fa23985314ad",
+      "journalSha256": "c64a079d032c7b783e5bb877d3b44c73e82c70a8871afca54dfb4566b9a7b4bd",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "882597cb-d1eb-4a9a-bdc0-69fb2e2ac40a",
+      "originalPackSha256": "e522c9a3c1c1de693ddfe412e171351ccbd9df5595db860f7b2fd249b5f22793",
+      "journalSha256": "04c3c1f7aa664e11e3610192b4e6c75a79559248b2c84070dfb4d3a4c594ed50",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "8d180d36-f6b0-4329-a360-5725c7635667",
+      "originalPackSha256": "7b332f1e7742c1736344343c495f144cddbda107583497a251301735c125321d",
+      "journalSha256": "776efaa7a07a3b3dc35e620d621c23dbd7fc9e5848e675d79a5959ee0fa82dda",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "098f5c37c21c82ce9da3210ea94a7583ab27eedd67b9f950302224c04e4cd875",
+          "provenanceSha256": "4bf550b330b5500fe28f8edf70a0209374031599eb7941b5fd503b93cf53a6a8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "90459fa6-35b7-4ddf-9cb4-5eb20151fe35",
+      "originalPackSha256": "bd8f027c8d5f23ae2e937ec022c77f07891d3d7457a301a4145d8ec8d07d0f40",
+      "journalSha256": "776132edf424fd4a3434286032871b8d8668bfafe5247172c1396466bf728c67",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "9240ed6e-8bd8-4394-a3eb-ef692df25b97",
+      "originalPackSha256": "8590a36346d68ca1bdf3b91902f6c4e92654ed96fcd22e1bb65969eaad3d7cc4",
+      "journalSha256": "4c4cf37612aceb43609fff8036f7495787874d9d6cf0acaa29bd0d3215b62afc",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "93d2684d-93b5-4c18-b13c-e964adc1dc3b",
+      "originalPackSha256": "0c570cb9dff664c77322b47591287f89fb82714b1626724da4a3ae5c48b3ad77",
+      "journalSha256": "3a0f3e9ce8c05f5c698bb89f51b4b9a72bb30eb5eda5d07c6db8cf6ff03762af",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "d701972cba2c47f7ee7a8c8bcf12ad293cea17a16dd23f56ea18d46407f08a7e",
+          "provenanceSha256": "3a6507a6aff88e97bd52612a4c626ad1c10dd5aa2adaf62accdfadad43e4be00",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "9c681dce-b004-461a-bdb2-13bfe638890e",
+      "originalPackSha256": "17dab947a46364288df1c90cdf6a97b2d618489d690c4b5539196393b3801db3",
+      "journalSha256": "c9a92fbd9e62e651538fe3711aea26e115938aa59ed3aaed846253bbae0f446e",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "a38a40bb-1cd2-4b57-ab42-04743f8f857d",
+      "originalPackSha256": "1500f6f10aff99fd6cc0abc51a80256f51abd6e43a38279536dcf227ce28d4f0",
+      "journalSha256": "b8685ef07e29983eadce222f9098e641b2d6ad901f3213b952c4fac52bbf6e0b",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "6c21e71abc2dc640ae4cd6bbc117645f6c8cea3d7770281b316a0abd8269153c",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 2,
+          "inheritedFromTransfer": true,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        },
+        {
+          "category": "promotional",
+          "fundingLotSha256": "d80e98b6ec26e78e3e5e047e37d4d2f9c96f33a745644c5020f327cc767783c6",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 2,
+          "inheritedFromTransfer": true,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        },
+        {
+          "category": "promotional",
+          "fundingLotSha256": "3ac289ce9bd276a71ded5bc51a2c1e345e5c9df8d83ea1233e0724ad645fe5c0",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 2,
+          "inheritedFromTransfer": true,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        },
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c76deede3a19a6d009316589091998996faaba23621b760a254c7437d8f0f310",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 2,
+          "inheritedFromTransfer": true,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        },
+        {
+          "category": "promotional",
+          "fundingLotSha256": "315037bbf02055683609a2387f68030ca41268ad9deba203a470e65e7d400404",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 2,
+          "inheritedFromTransfer": true,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "a4d5fdac-a3b4-448e-9b1e-e8e32b01e772",
+      "originalPackSha256": "7dfe37bf92f02245d830ebbb0f505350dbd64cbb7342154ffd5b50d1b28f0c63",
+      "journalSha256": "e6f04027278f0775c5affd9dc5a5c4cb500c58440385ea04cbc60fb5fc8305a4",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "a6be0ad7-f818-4ecf-8421-309b6c8564bd",
+      "originalPackSha256": "e818d91de7d2c575a22f201db34213d3698a8a45dcb08e3af240808b55109dda",
+      "journalSha256": "f449d1609df00d31a705edfaffca8c93945893cdcf2cb9401583474dcf46e75c",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "098f5c37c21c82ce9da3210ea94a7583ab27eedd67b9f950302224c04e4cd875",
+          "provenanceSha256": "4bf550b330b5500fe28f8edf70a0209374031599eb7941b5fd503b93cf53a6a8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "afa63b4e-1478-4e7d-b213-ecdd173baf32",
+      "originalPackSha256": "8590a36346d68ca1bdf3b91902f6c4e92654ed96fcd22e1bb65969eaad3d7cc4",
+      "journalSha256": "4c4cf37612aceb43609fff8036f7495787874d9d6cf0acaa29bd0d3215b62afc",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "b8af349f-c79f-4fe0-8707-713a3ad0577f",
+      "originalPackSha256": "c0aea179290d5a7d020e3a2d638245c02a32d65e7e4cce2b9744c1fc52f3dba9",
+      "journalSha256": "64999d7b5e04b0e4a348b51ddb80457911e094d0dcf52e3716b2e1ee7cb31a7d",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "bb5967bc-b072-41b6-9c42-8ee78cbe9601",
+      "originalPackSha256": "9f461cf53ff46093ba25ec79dbfb380a65e2b4a0a37e1c138dfc6a65e869640d",
+      "journalSha256": "d540a4b8451d6d0756d0041d028e6400a7b04344141ca0ba1bddf8bf013ae2ca",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "9ae0d22fa28a77bf499bcc644571495e85b47e3a117f2a0c02e1f90ff159d395",
+          "provenanceSha256": "5aeecb6a65b6cf92f33a71ddf920b5f735e5ffedd9eca9c2b8ae581172863592",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "c0d91d03-a81b-491f-83b5-74cb555bc323",
+      "originalPackSha256": "e5bb6cd30786efd9a6b86e97a4bf6c95ce6bbafb52a352699e3ad2e8821cd7ca",
+      "journalSha256": "ad43ad8af0eb1cf5c41c6d5edabdb419cca9161a833f1b93e4033ba59e7ee1d8",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "c379ca1c-428a-499d-ab19-060258ad0d84",
+      "originalPackSha256": "03ca2aaaba73c9a25187c7cbabcbd9e91120f928b07ac506730b32dd0f6e91b3",
+      "journalSha256": "14e24204c1db80928ab6bb722232dba52280ee975f37959cca9a4de184548e5b",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "c475191c-67e5-47ba-9fc4-9b804c22332d",
+      "originalPackSha256": "ed651a3f0710359c5729efe66471801d12c327799bc3392cd2e8f22ae8655c2e",
+      "journalSha256": "62cffde83001039edccd88eac571fdd44a8a8e9ede95c9af528464c931426596",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "d48ac7fc-bc84-4d63-8e3f-483495785625",
+      "originalPackSha256": "8da4b07ad026e71ae3e6b1e97fafe1aeec1907e486ab6f4ea6fc4f6b655e56eb",
+      "journalSha256": "55e3922a3ab473b2984a47b7e15966160ff3efc12815fcd71046e2d1af8fa1d3",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "d62d5838-8c76-4b36-a849-e841fcd892ce",
+      "originalPackSha256": "13dc4ac20307b8553e1b328ffe12404997980f29649b579569d7f44e5f742d95",
+      "journalSha256": "fb253996cfc715df426c958c6e58fb80112b4cec53e54f5a3da2bb9e7543710e",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "d712ec3f-58ae-4a90-b097-baffafa730de",
+      "originalPackSha256": "9e7df20c49d47c856d3c01134bf84e798eb3de0f0cb80e1355ab95ca362ec9db",
+      "journalSha256": "2a894dc850376f2c47551759a79856c98ba1cff6ee9fa21d931f01babd3e0578",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "6fdf8cd7161be5a906471e537f7650c50f01820a6f87ed00ab05fd497d973378",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 2,
+          "inheritedFromTransfer": true,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        },
+        {
+          "category": "promotional",
+          "fundingLotSha256": "9ae0d22fa28a77bf499bcc644571495e85b47e3a117f2a0c02e1f90ff159d395",
+          "provenanceSha256": "5aeecb6a65b6cf92f33a71ddf920b5f735e5ffedd9eca9c2b8ae581172863592",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "d9635a1c-1c31-4ae6-baef-f81976ca8065",
+      "originalPackSha256": "16e3a3ef58572cddfeaabbe95542353393b7210dba9b0a4f6f950d6e25515c2d",
+      "journalSha256": "186ed572525475af716a910067b2bb30b38a55b8c2fdcbee3f48eb1149824c0e",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "da921602-ae40-4acf-b552-df3c06bc0924",
+      "originalPackSha256": "e522c9a3c1c1de693ddfe412e171351ccbd9df5595db860f7b2fd249b5f22793",
+      "journalSha256": "04c3c1f7aa664e11e3610192b4e6c75a79559248b2c84070dfb4d3a4c594ed50",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "dea83257-2efe-43b5-afd4-5ac0366d6b1d",
+      "originalPackSha256": "b2eadd26b1071aff62a13841e1d8000ece85ea025c2ecf20038860e63644951e",
+      "journalSha256": "bd6ed0027060c5173a8936a1f0a011151687f7c22b4a09ac240b5eb84abfa0e7",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "e0dcfbb2-4f27-4da5-9e8c-d22845a20325",
+      "originalPackSha256": "ee3529410b9512ffe3b20911a7bfe8367870e1b2d02840e5a225385f454233a2",
+      "journalSha256": "027406be8b7c70a48320e15b8af2a06e3e5ea54de11569e79c2904d0e0cee82f",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "e8596138-f4f0-4b79-be9a-cf62ab59c8f9",
+      "originalPackSha256": "cb982650eddcfa753d7de35058e7e301b02adb795c8d3372535a18f1e3fa35b7",
+      "journalSha256": "1519c1ea9f02558c0f6a7cc7cf0ee9631f224e5a4143c9980dc528b14f6e8bdd",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "ea246c42-2359-49ae-add1-53f44345fec1",
+      "originalPackSha256": "a94b7c5276c308afc989d0e4eb15e3fadcba63d47ed37e275ce91fcfe059101e",
+      "journalSha256": "6aad53488dccdb8c7d8d6650bdc9444c3f6f337da4341f85807e5fc77b79a7df",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        },
+        {
+          "category": "promotional",
+          "fundingLotSha256": "6382ed5d70e2d0bc3664f4efb4b2c0eac14cce52dcdce00b88d6b25c53d697c7",
+          "provenanceSha256": "dee5f5430ef040987a22d3040d940f49b15206d2da2fd982ae5162b10457fd29",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "ebb91459-60e9-4c4e-8f75-5f80ffd47375",
+      "originalPackSha256": "37c8eba0efa50cd26492c26d9bfd5a8443146c24a3adf286f771bd22e101faae",
+      "journalSha256": "deeedb1db794ffc4890e72cf11ef61ac9d7d850a3c36edb998fbba0da244fa81",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "SEALED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "ed90ac1e-7f7c-4aa1-9366-50ec0c14e08f",
+      "originalPackSha256": "8b18fd8674b832e3301b6778e7d05739573dab151cc64121bf4f0a8f16574558",
+      "journalSha256": "1f7df88464355f561c98e1f0ec648ac2b3decfde14436519b4306db6924d0411",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "fbee527738d1556f5cfdf7b6abb3b3b42dc3dae412e8156c2ebcd87df75aacea",
+          "provenanceSha256": "12821a60a3dfda3c808d70e20c6a19b23d2988dbbf5663a9082ca89a5297f414",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "eed32d5a-3ac5-49bb-8b79-8d2f7a5df765",
+      "originalPackSha256": "9d911ffbbed71bb92d920e4f23f90fb0fb8cd5323aeb91f7b6705bb2224c3b19",
+      "journalSha256": "43d878bd7a2efadda4230284613aad91b49316cbb1a52062a6d29b3e71bca076",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "f1577764-b6e7-4dd0-b058-388530fb83af",
+      "originalPackSha256": "13dc4ac20307b8553e1b328ffe12404997980f29649b579569d7f44e5f742d95",
+      "journalSha256": "fb253996cfc715df426c958c6e58fb80112b4cec53e54f5a3da2bb9e7543710e",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "f2ad3c65-f074-4e61-a70a-a5893f3f5adf",
+      "originalPackSha256": "4d45f2c76a9924085bdf6a79a2aea9c504d951ad660a82b8bc4dfc0aa36c2e6b",
+      "journalSha256": "48df2de5d04bd27f3ca1188086c475204c28d70d109a453404f41572522da79a",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "8c5e7319dfad216da46e8402474a5d6da0dc2c9529f0d7d7c53144c117faee78",
+          "provenanceSha256": "2c6ce39fa3e92dc549961270125be832487443e29358bc1f1d33880876fbc4d1",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "f450624e-7bdd-431a-a5f6-fd1e4d18559d",
+      "originalPackSha256": "37c8eba0efa50cd26492c26d9bfd5a8443146c24a3adf286f771bd22e101faae",
+      "journalSha256": "deeedb1db794ffc4890e72cf11ef61ac9d7d850a3c36edb998fbba0da244fa81",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "SEALED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "c881dfe5758db247d72a94078cb94095db67fcb2c7e3744321b40ac675e3109a",
+          "provenanceSha256": "5beaac9b8714ee464ec800ab9cac992c2140b42fbd5d792e2c8ed5418b2199d8",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "f84b12bf-8e12-4e78-a945-1adf70b624d6",
+      "originalPackSha256": "38e1a015dd0202f9b0712ff62b6b0b2a902e728ef418b79f8d965b6fdc916d91",
+      "journalSha256": "4229e29d2105a32bcfaca521688afefc498b9c1212bc1304d4290d4e122be5f0",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "f8ffa935-fa37-44c6-a51e-9f11f6a33eed",
+      "originalPackSha256": "8bb1d5ce5061c6dbeb9c7b959d25110c5768137156812458e58afb92f34d585f",
+      "journalSha256": "46196522fb0a79608767b0d907b3b0f819770a554a58594cdfd08758305ec96a",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    },
+    {
+      "immutableCardId": "fafb8cfb-b801-4851-922f-2106bdc4f502",
+      "originalPackSha256": "ed651a3f0710359c5729efe66471801d12c327799bc3392cd2e8f22ae8655c2e",
+      "journalSha256": "62cffde83001039edccd88eac571fdd44a8a8e9ede95c9af528464c931426596",
+      "originalReceiptMatched": true,
+      "balancedPackJournal": true,
+      "entitlementStatus": "OPENED",
+      "couponApplied": false,
+      "funding": [
+        {
+          "category": "promotional",
+          "fundingLotSha256": "875b0662ff4c99787c342dcbd2ae2bac815eadf404c823b6bdca20dda7d12577",
+          "provenanceSha256": "0b8e84286e47a901cd407ec2f47622b9a256b11516136cebb8a8de21d5d75e79",
+          "ancestryDepth": 1,
+          "inheritedFromTransfer": false,
+          "depositRecords": 0,
+          "googleTest": false,
+          "refundedFunding": false,
+          "recoveryCases": 0,
+          "openRecoveryCases": 0
+        }
+      ],
+      "supplyDisposition": "Issued serial remains consumed regardless of refund, credit grant, transfer or retirement"
+    }
+  ]
+}

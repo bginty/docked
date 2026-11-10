@@ -10,3 +10,7 @@ docs/policies/** text eol=lf
 supabase/migrations/20261109231834_commercial_lifetime_supply_guards.sql text eol=lf
 supabase/migrations/20261109232000_public_practice_phone_guards.sql text eol=lf
 supabase/migrations/20261109232124_operational_incident_review.sql text eol=lf
+supabase/migrations/20261110005726_operational_incident_retention.sql text eol=lf
+supabase/migrations/20261110010050_australian_verified_phone_uniqueness.sql text eol=lf
+docs/qa/v31-final-reconciliation-20261110/*.json text eol=lf
+docs/qa/v31-final-reconciliation-20261110/restore/*.json text eol=lf

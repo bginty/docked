@@ -11,6 +11,7 @@ import {
 import { billingOpsQueueRpc } from "../src/server/billing-ops-queue.mjs";
 import { leaseOutboxRecord } from "../src/server/outbox-lease";
 import { BillingOpsMonitor } from "../src/server/billing-ops-monitor";
+import { founderAlertDeliveryDrill } from "./founder-alert-delivery-drill.mjs";
 import { CommercialReconciliation } from "../src/server/commercial-reconciliation";
 import { CommercialLedger } from "../src/server/commercial-ledger";
 import {
@@ -952,6 +953,28 @@ async function main() {
         assert.equal(monitoringWarnings, 0);
       },
     );
+    let realDelivery: unknown = null;
+    if (process.argv.includes("--founder-email-drill")) {
+      await clean();
+      assert(await enqueue(), "Durable isolated alert required");
+      realDelivery = await founderAlertDeliveryDrill(queue(), env);
+      const audit =
+        await sql`select action,created_at,details from private.audit_events where action like 'billing_ops%' order by created_at`;
+      writeFileSync(
+        "docs/qa/v31-final-reconciliation-20261110/email-queue-audit.json",
+        JSON.stringify(
+          {
+            isolated: true,
+            audit,
+            outbox:
+              await sql`select state,attempts,payload->>'phase' phase,payload->>'outcome' outcome from private.outbox where payload->>'purpose'='billing_ops_health_v1'`,
+          },
+          null,
+          2,
+        ),
+      );
+      await sql`update private.feature_flags set enabled=false where key='billing_ops_alerts'`;
+    }
     const report = {
       at: new Date().toISOString(),
       engine: (await sql`select version() v`)[0].v,
@@ -959,8 +982,8 @@ async function main() {
       checks,
       passed: true,
       productionWrites: 0,
-      providerCalls: 0,
-      emailsSent: 0,
+      realDelivery,
+      realEmailAttempted: process.argv.includes("--founder-email-drill"),
       permanentInventoryIssued: 0,
       preExistingQueueScenarioRecordsPreserved: true,
       isolatedSyntheticFinancialFaultsSeeded: true,
@@ -970,7 +993,9 @@ async function main() {
       recursive: true,
     });
     writeFileSync(
-      "docs/ops-launch-20261105/alerts-preparation/postgres-v2.json",
+      process.argv.includes("--founder-email-drill")
+        ? "docs/qa/v31-final-reconciliation-20261110/alerts-postgres.json"
+        : "docs/ops-launch-20261105/alerts-preparation/postgres-v2.json",
       JSON.stringify(report, null, 2) + "\n",
     );
   } finally {

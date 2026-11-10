@@ -41,12 +41,12 @@ test("public phone form preserves number on failure, requests no real SMS and fi
   });
   await page.goto("http://127.0.0.1:4197/phone");
   await page
-    .getByLabel("Phone number, including country code")
+    .getByLabel("Australian mobile number (04 or +614)")
     .fill("+61400000000");
   await page.getByRole("button", { name: "Send code", exact: true }).click();
   await expect(page.getByRole("alert")).toContainText("Unable to send");
   await expect(
-    page.getByLabel("Phone number, including country code"),
+    page.getByLabel("Australian mobile number (04 or +614)"),
   ).toHaveValue("+61400000000");
   await page.getByRole("button", { name: "Send code", exact: true }).click();
   await expect(page.getByLabel("Verification code")).toBeVisible();
@@ -65,7 +65,7 @@ test("public phone form preserves number on failure, requests no real SMS and fi
       ),
     ).toBe(true);
     await page.screenshot({
-      path: `docs/qa/v31-p1-p4-20261110/phone-${width}.png`,
+      path: `docs/qa/v31-final-reconciliation-20261110/phone-${width}.png`,
       fullPage: true,
     });
   }
@@ -116,7 +116,7 @@ test("owner incidents distinguish a recorded drill from actual email delivery", 
       ),
     ).toBe(true);
     await page.screenshot({
-      path: `docs/qa/v31-p1-p4-20261110/incidents-${width}.png`,
+      path: `docs/qa/v31-final-reconciliation-20261110/incidents-${width}.png`,
       fullPage: true,
     });
   }

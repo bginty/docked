@@ -46,7 +46,7 @@ export function PublicPhoneVerification() {
         private and is not displayed on your profile.
       </p>
       <label className="app-auth-field">
-        Phone number, including country code
+        Australian mobile number (04 or +614)
         <input
           type="tel"
           autoComplete="tel"

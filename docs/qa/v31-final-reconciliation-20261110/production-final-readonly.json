@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-10T01:27:00.19335+00:00",
+  "readOnly": true,
+  "publicRounds": [
+    {
+      "fee": "0",
+      "kind": "practice",
+      "name": "AFL Roster Practice · All-Star",
+      "sport": "afl",
+      "awards": [],
+      "enabled": false,
+      "rewards": "false",
+      "synthetic": "true"
+    },
+    {
+      "fee": "0",
+      "kind": "practice",
+      "name": "AFL Roster Practice · Traditional",
+      "sport": "afl",
+      "awards": [],
+      "enabled": false,
+      "rewards": "false",
+      "synthetic": "true"
+    },
+    {
+      "fee": "0",
+      "kind": "practice",
+      "name": "NFL Roster Practice · All-Star",
+      "sport": "nfl",
+      "awards": [],
+      "enabled": false,
+      "rewards": "false",
+      "synthetic": "true"
+    },
+    {
+      "fee": "0",
+      "kind": "practice",
+      "name": "NFL Roster Practice · Traditional",
+      "sport": "nfl",
+      "awards": [],
+      "enabled": false,
+      "rewards": "false",
+      "synthetic": "true"
+    },
+    {
+      "fee": "0",
+      "kind": "practice",
+      "name": "NRL Roster Practice · All-Star",
+      "sport": "nrl",
+      "awards": [],
+      "enabled": false,
+      "rewards": "false",
+      "synthetic": "true"
+    },
+    {
+      "fee": "0",
+      "kind": "practice",
+      "name": "NRL Roster Practice · Traditional",
+      "sport": "nrl",
+      "awards": [],
+      "enabled": false,
+      "rewards": "false",
+      "synthetic": "true"
+    }
+  ],
+  "scheduledJobs": 9,
+  "commercialCards": 0,
+  "productionWrites": 0,
+  "commercialControl": {
+    "id": true,
+    "updated_at": "2026-11-01T23:14:45.99055+00:00",
+    "environment": "commercial",
+    "sales_enabled": false,
+    "policy_version": "commercial-launch-awaiting-approval-v1",
+    "gameplay_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false
+  },
+  "commercialReceipts": 0,
+  "vaultServiceCanRead": true,
+  "commercialDefinitions": 0,
+  "phoneConfirmedAccounts": 0,
+  "incidentSchemaInstalled": false,
+  "phoneCanonicalConflicts": 0,
+  "pendingMigrationsApplied": 0
+}

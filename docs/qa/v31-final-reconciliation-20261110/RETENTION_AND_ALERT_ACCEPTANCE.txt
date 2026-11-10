@@ -1,0 +1,80 @@
+Operational acceptance — 10 November 2026
+
+Founder-only, email-only and routine90-day decisions are already approved.
+No business-rule reapproval requested. Production deployment/grants/cleanup
+remain separate and were not performed.
+
+Email drill: DOCKED-OPS-20261110-01
+One real email dispatched from the existing Microsoft365 Graph mailbox to
+support@docked.com.au at2026-11-10T01:03:59.720Z. Graph returned202 with request
+4d058b69-0973-4a47-b96e-4e03632e1270. Isolated PostgreSQL outbox was fenced,
+settled to accepted and audited. Messages label all seeded fault counts TEST.
+No genuine incident, financial change or Production DB/grant was created.
+No auto-resend: one-time local intent plus durable dispatch fence protects the
+ambiguous-send boundary. Production email automation stays off.
+
+Actual inbox receipt and founder acknowledgement: PENDING.
+User requested computer inspection. Outlook connector search did not find the
+reference; it did not establish access to this support inbox. Chrome connection
+timed out; subsequent Windows computer control was stopped because it could not
+verify the browser URL sufficiently to enforce policy. No bypass attempted.
+Graph202 is provider acceptance, not delivery/read evidence. No delivery-status
+webhook or message trace has been observed. Exact remaining check: open support
+Inbox/Junk and confirm the subject above; later acknowledge through normal owner
+AAL2 incident UI after deployment approval. Do not provide mail credentials.
+
+Access/incident lifecycle
+Existing 2c50d454 owner_actor checks active authenticated owner, confirmed support
+mailbox, valid session, AAL2 and non-disabled profile on every action. General
+support/browser/service roles cannot review tables. Stale revisions rejected;
+immutable events retain observations, acknowledgements, resolutions and
+recurrence. Audit text must not contain tokens, phone numbers or customer data.
+Same protections apply to new preservation/dry-run action. Browser fixture and
+real isolated PostgreSQL tests verify denial, audit and rendered controls; no
+signed-in hosted acceptance of the undeployed new dashboard is claimed.
+
+18 real PostgreSQL scenario groups passed in alerts-postgres.json:
+reserved RLS keys, legitimate generic outbox behaviour, closed policy window,
+24 concurrent producers/claims, fencing, retry before dispatch, no repeat after
+uncertain dispatch, settlement outage, enum-only hooks, replay vs informational
+duplicate, wallet/supply/refund/recovery/overdue failure derivation.20 duplicate
+receipt submissions credit once. These are isolated synthetic ledger operations.
+No new genuine Google order or real customer refund occurred.
+
+Severity and delivery
+Critical: wallet/supply/pack invariants, reported security/database outage.
+High: receipt/fulfilment/refund/ack/reconciliation failure and stale delivery.
+Warning: recovery holds, exhausted supply, pre-existing TEST attention.
+Info: safe duplicate retry and controlled drill. Informational retries alone do
+not send email. Aggregates deduplicate; unknown outcomes are held for review.
+Provider retry after a fenced uncertain send is NOT blind resend. A database
+outage cannot write its own queue: founder must use independent existing hosting/
+database dashboards/alerts and recovery runbook. No new paid uptime service added.
+Seven existing Google TEST reconciliation alerts remain unchanged/unresolved.
+
+90-day configuration and dry-run
+New migration20261110005726 prepares disabled policy, no LOGIN/membership/cron.
+Only resolved support_delivery_drill/auth_mail_configuration_missing/
+auth_mail_failure details older than90 days since latest observation/event
+qualify. Financial/payment/security/integrity/unknown incidents are excluded,
+as are legal holds, active investigations and required-audit flags. Source
+financial journals, receipts, ownership, notification outbox, security/audit
+records and backups are not touched. Their separate retention applies.
+Minimal code/revision/count/hash/policy/time tombstone remains immutable; this
+does not promise indefinite storage of full routine notes. No automatic tombstone
+deletion was introduced. Broader routine categories need explicit classification.
+
+Dry-run results on restored Production: zero operational incidents eligible
+because the new schema is empty and not yet deployed. Synthetic PostgreSQL
+fixture: one91-day routine resolved record eligible;89-day, financial, security,
+unknown, held, investigation and required-audit records excluded. Disabled worker
+cannot prune; enabled isolated worker removes exactly one once, keeps tombstone;
+repeat zero, recurrence retained. Worker cannot activate its policy. Founder
+hold change uses same incident row lock; stale decision rejected.
+
+Before any Production cleanup: approve deployment and a disabled dry run first,
+confirm managed backup key custody/recovery and applicable audit retention,
+review exact candidate counts, create bounded scheduler/worker admission under
+separate approval, monitor receipt counts/failures, test emergency disable.
+Deletion is irreversible from live tables. Never describe a tombstone hash as a
+recoverable backup, or restore a whole old wallet snapshot over new transactions.

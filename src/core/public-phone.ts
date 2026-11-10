@@ -1,9 +1,11 @@
 /** Phone control is independent of launch switches and never replaces staff MFA. */
 export const verifiedPhoneRequired = "Verified phone required";
 export function normalizedPhone(value: string) {
-  const phone = value.trim().replace(/[ ()-]/g, "");
-  if (!/^\+[1-9][0-9]{7,14}$/.test(phone))
-    throw Error("Enter a phone number with its country code, for example +61.");
+  let phone = value.trim().replace(/[ ()-]/g, "");
+  if (/^04[0-9]{8}$/.test(phone)) phone = "+61" + phone.slice(1);
+  if (/^614[0-9]{8}$/.test(phone)) phone = "+" + phone;
+  if (!/^\+614[0-9]{8}$/.test(phone))
+    throw Error("Enter an Australian mobile number, starting with 04 or +614.");
   return phone;
 }
 export function verifiedPhone(
@@ -12,7 +14,7 @@ export function verifiedPhone(
 ) {
   const timestamp = Date.parse(user.phone_confirmed_at ?? "");
   return (
-    /^\+?[1-9][0-9]{7,14}$/.test(user.phone ?? "") &&
+    /^\+?614[0-9]{8}$/.test(user.phone ?? "") &&
     Number.isFinite(timestamp) &&
     timestamp <= now
   );

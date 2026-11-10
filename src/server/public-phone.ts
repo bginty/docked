@@ -9,6 +9,7 @@ import {
   verifiedPhone,
 } from "../core/public-phone";
 import { publicCustomersEnabled } from "../core/public-customer";
+import { executePhoneChallenge } from "../core/phone-challenge";
 
 const request = z.discriminatedUnion("action", [
   z.object({ action: z.literal("send"), phone: z.string().max(40) }).strict(),
@@ -32,6 +33,11 @@ export async function publicPhoneCommand(input: unknown) {
       "Your phone is already verified. Contact support to change it.",
     );
   if (
+    value.action === "send" &&
+    !(await rateLimit(`phone:cooldown:${who.user.id}`, 1, 60))
+  )
+    throw Error("Please wait one minute before requesting another code.");
+  if (
     !(await rateLimit(
       `phone:${value.action}:${who.user.id}`,
       value.action === "send" ? 3 : 6,
@@ -47,30 +53,13 @@ export async function publicPhoneCommand(input: unknown) {
     throw Error("Phone verification is busy. Please try again later.");
   const client = await authClient();
   if (!client) throw Error("Phone verification is unavailable.");
-  const result =
-    value.action === "send"
-      ? await client.auth.updateUser({ phone })
-      : await client.auth.verifyOtp({
-          phone,
-          token: value.token,
-          type: "phone_change",
-        });
-  if (result.error)
-    throw Error(
-      value.action === "send"
-        ? "Unable to send a code. Check your number or contact support."
-        : "The code could not be verified. Check it or request a new code.",
-    );
+  const result = await executePhoneChallenge(
+    { ...value, phone },
+    who.user.id,
+    client.auth,
+  );
   if (value.action === "verify") {
-    const { data, error } = await client.auth.getUser();
-    if (
-      error ||
-      data.user?.id !== who.user.id ||
-      !verifiedPhone(data.user) ||
-      data.user.phone?.replace(/^\+/, "") !== phone.slice(1)
-    )
-      throw Error("Phone verification did not complete for this account.");
     await db()`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},'public_phone_verified',${who.user.id},'{"provider":"supabase-auth","phoneStoredHere":false}'::jsonb)`;
   }
-  return { ok: true, verified: value.action === "verify" };
+  return result;
 }

@@ -1,0 +1,145 @@
+TAP version 13
+# Subtest: account erasure retains record keys and requires confirmed provider erasure
+ok 1 - account erasure retains record keys and requires confirmed provider erasure
+  ---
+  duration_ms: 14.3498
+  ...
+# Subtest: missing identity is retry-safe; outages and unconfirmed erasure do not complete
+ok 2 - missing identity is retry-safe; outages and unconfirmed erasure do not complete
+  ---
+  duration_ms: 4.0549
+  ...
+# Subtest: staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+ok 3 - staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+  ---
+  duration_ms: 10.1464
+  ...
+# Subtest: verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+ok 4 - verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+  ---
+  duration_ms: 8.0054
+  ...
+# Subtest: dormant real roster definitions retain identity, eligibility and source without approval
+ok 5 - dormant real roster definitions retain identity, eligibility and source without approval
+  ---
+  duration_ms: 28.7211
+  ...
+# Subtest: dormant import validation rejects bad immutable rows before SQL
+ok 6 - dormant import validation rejects bad immutable rows before SQL
+  ---
+  duration_ms: 84.9442
+  ...
+# Subtest: duplicate aliases, synthetic identities, NBA and silent eligibility changes fail closed
+ok 7 - duplicate aliases, synthetic identities, NBA and silent eligibility changes fail closed
+  ---
+  duration_ms: 2.9475
+  ...
+# Subtest: saved TEST_ONLY allocations cannot authorize a zero lifetime baseline
+ok 8 - saved TEST_ONLY allocations cannot authorize a zero lifetime baseline
+  ---
+  duration_ms: 0.9479
+  ...
+# Subtest: issued manifest counts lifetime allocations once regardless of refund/retirement or transfer; replay is deterministic
+ok 9 - issued manifest counts lifetime allocations once regardless of refund/retirement or transfer; replay is deterministic
+  ---
+  duration_ms: 60.3077
+  ...
+# Subtest: issued manifest rejects duplicate IDs, aliased serials, missing identities and gaps without guessing
+ok 10 - issued manifest rejects duplicate IDs, aliased serials, missing identities and gaps without guessing
+  ---
+  duration_ms: 1.5401
+  ...
+# Subtest: all five approved lifetime boundaries are preserved and exhausted without replacement
+ok 11 - all five approved lifetime boundaries are preserved and exhausted without replacement
+  ---
+  duration_ms: 166.9276
+  ...
+# Subtest: all lifetime copies count even with an old alias; Icon cannot replenish
+ok 12 - all lifetime copies count even with an old alias; Icon cannot replenish
+  ---
+  duration_ms: 81.7506
+  ...
+# Subtest: live reconciliation preserves all supported issued copies, including retired records
+ok 13 - live reconciliation preserves all supported issued copies, including retired records
+  ---
+  duration_ms: 5.8325
+  ...
+# Subtest: challenge uses user-session phone_change and fresh same-member provider confirmation
+ok 14 - challenge uses user-session phone_change and fresh same-member provider confirmation
+  ---
+  duration_ms: 5.747
+  ...
+# Subtest: provider rejection, outage and expired/wrong code never expose raw provider data
+ok 15 - provider rejection, outage and expired/wrong code never expose raw provider data
+  ---
+  duration_ms: 2.8702
+  ...
+# Subtest: successful OTP response alone cannot prove identity, number or confirmed timestamp
+ok 16 - successful OTP response alone cannot prove identity, number or confirmed timestamp
+  ---
+  duration_ms: 1.767
+  ...
+# Subtest: live beta denies public signup even when ordinary registration flags are enabled
+ok 17 - live beta denies public signup even when ordinary registration flags are enabled
+  ---
+  duration_ms: 6.6722
+  ...
+# Subtest: production Auth mail is off by default and independent of optional delivery
+ok 18 - production Auth mail is off by default and independent of optional delivery
+  ---
+  duration_ms: 0.9783
+  ...
+# Subtest: a Preview invitation cannot bypass production mail or registration gates
+ok 19 - a Preview invitation cannot bypass production mail or registration gates
+  ---
+  duration_ms: 1.127
+  ...
+# Subtest: all signup paths require explicit age, Terms and separate Privacy acceptance
+ok 20 - all signup paths require explicit age, Terms and separate Privacy acceptance
+  ---
+  duration_ms: 1.5694
+  ...
+# Subtest: production policy versions never default to draft and require operator readiness
+ok 21 - production policy versions never default to draft and require operator readiness
+  ---
+  duration_ms: 8.7352
+  ...
+# Subtest: safe UI registration projection includes database authority and cannot expose credentials
+ok 22 - safe UI registration projection includes database authority and cannot expose credentials
+  ---
+  duration_ms: 0.7979
+  ...
+# Subtest: changed production legal versions require fresh explicit acceptance
+ok 23 - changed production legal versions require fresh explicit acceptance
+  ---
+  duration_ms: 1.0225
+  ...
+# Subtest: only genuine username collisions are recoverable during signup provisioning
+ok 24 - only genuine username collisions are recoverable during signup provisioning
+  ---
+  duration_ms: 0.9122
+  ...
+# Subtest: phone evidence must come from confirmed Auth fields, never a typed number
+ok 25 - phone evidence must come from confirmed Auth fields, never a typed number
+  ---
+  duration_ms: 6.5269
+  ...
+# Subtest: SMS cannot send before public/OTP/policy configuration; beta unchanged
+ok 26 - SMS cannot send before public/OTP/policy configuration; beta unchanged
+  ---
+  duration_ms: 3.4666
+  ...
+# Subtest: vault proposal remains founder-scoped, unprovisioned and non-destructive
+ok 27 - vault proposal remains founder-scoped, unprovisioned and non-destructive
+  ---
+  duration_ms: 10
+  ...
+1..27
+# tests 27
+# suites 0
+# pass 27
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11221.3078

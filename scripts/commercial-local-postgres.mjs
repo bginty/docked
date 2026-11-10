@@ -57,7 +57,9 @@ try {
   connection.password = password;
   const publicGameplay = process.argv.includes("--public-gameplay");
   const social = process.argv.includes("--social");
-  const incidents = process.argv.includes("--incidents");
+  const incidents =
+    process.argv.includes("--incidents") ||
+    process.argv.includes("--final-controls");
   const gameplay =
     process.argv.includes("--gameplay") ||
     publicGameplay ||
@@ -76,7 +78,9 @@ try {
             "--test",
             `--test-name-pattern=${incidents ? "Operational incidents" : social ? "Commercial social" : publicGameplay ? `${process.argv.includes("--nfl") ? "NFL" : process.argv.includes("--nrl") ? "NRL" : "AFL"} public member` : process.argv.includes("--nrl") ? "NRL" : "AFL"}`,
             incidents
-              ? "tests/database/operational-incidents.test.ts"
+              ? process.argv.includes("--final-controls")
+                ? "tests/database/operational-final.test.ts"
+                : "tests/database/operational-incidents.test.ts"
               : social
                 ? "tests/database/commercial-social.test.ts"
                 : publicGameplay
@@ -99,6 +103,9 @@ try {
                         : "scripts/commercial-billing-postgres.ts",
           ]),
       ...(process.argv.includes("--browser") ? ["--browser"] : []),
+      ...(process.argv.includes("--founder-email-drill")
+        ? ["--founder-email-drill"]
+        : []),
       ...(process.argv.includes("--reproduce-old") ? ["--reproduce-old"] : []),
       ...["--candidate", "--evidence"].flatMap((flag) => {
         const at = process.argv.indexOf(flag);

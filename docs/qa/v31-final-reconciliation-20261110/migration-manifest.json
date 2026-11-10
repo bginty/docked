@@ -1,0 +1,36 @@
+{
+  "status": "PREPARED_NOT_PRODUCTION_APPLIED",
+  "migrations": [
+    {
+      "file": "20261109231834_commercial_lifetime_supply_guards.sql",
+      "sha256": "ec1154357168027f106c9d5e0f03cc98fd9820a58f4196cb7f30103b98ff53bb"
+    },
+    {
+      "file": "20261109232000_public_practice_phone_guards.sql",
+      "sha256": "8179828fdd88bea9c95f4ac961905737f51d1aae78e25455748e7191a6d4fee0"
+    },
+    {
+      "file": "20261109232124_operational_incident_review.sql",
+      "sha256": "9ff6eae192460f1369e3db11ba387ab9418fcb2908a017a653f2c15e870a62bd"
+    },
+    {
+      "file": "20261110005726_operational_incident_retention.sql",
+      "sha256": "1248d78d8c3a17d54d9d3732444e2e058cfe43e6af0aa857f5acfc17262de5bd"
+    },
+    {
+      "file": "20261110010050_australian_verified_phone_uniqueness.sql",
+      "sha256": "bc5c61ede682a41ff24500b89fda4db6cef71760f30d52c2c8fb652ac79c4e11"
+    }
+  ],
+  "protectedTables": 550,
+  "freshRestoreAt": "2026-11-10T01:37:41.964Z",
+  "applications": 2,
+  "unchanged": true,
+  "additionalPermissionPackage": {
+    "path": "config/operations/billing-ops-outbox-v2.prepared.sql",
+    "rawSha256": "59dffc74f3f9a354366bedc994136264fb1922201a6c33f40864777b2546cf09",
+    "lfSha256": "b3e7ff04182b33f351c4c897550959ba3885c5f9960b1733a1a255ff5526e121",
+    "approval": "separate required"
+  },
+  "preflightAndPostflightRehearsed": true
+}

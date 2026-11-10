@@ -25,7 +25,23 @@ test("phone evidence must come from confirmed Auth fields, never a typed number"
     false,
   );
   assert.equal(normalizedPhone("+61 (400) 000-001"), "+61400000001");
-  assert.throws(() => normalizedPhone("0400000001"));
+  assert.equal(normalizedPhone("0400 000 001"), "+61400000001");
+  assert.equal(normalizedPhone("61400000001"), "+61400000001");
+  for (const invalid of [
+    "+61 0400 000 001",
+    "+61290000000",
+    "+14155550123",
+    "04abc00001",
+    "040000000",
+    "+614000000001",
+    "tel:+61400000001",
+  ]) {
+    assert.throws(() => normalizedPhone(invalid));
+    assert.equal(
+      verifiedPhone({ phone: invalid, phone_confirmed_at: "2026-01-01" }),
+      false,
+    );
+  }
 });
 test("SMS cannot send before public/OTP/policy configuration; beta unchanged", () => {
   const env = {

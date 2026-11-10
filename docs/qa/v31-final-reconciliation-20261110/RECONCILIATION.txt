@@ -1,0 +1,62 @@
+879 issued limited allocations =879 preserved and accounted for
+
+Read-only Production census2026-11-10T00:55:31Z. SHA in proposal. All879 immutable
+IDs and player/rarity serials unique, mirrors consistent, original receipt present,
+no cap excess or serial gaps.871 current owned copies +8 previously retired TEST
+allocations. The18 hidden NBA allocations were excluded and untouched.
+
+Original source proposal793 accounted +86 omitted:
+8 prior approved TEST retirements (Oct17 roster cleanup; immutable serial retained)
+27 current roster not active
+34 current identity not verified
+11 legacy identifier without current catalogue UUID
+5 AFL historical Wikidata identities omitted from fresh candidate
+1 active identity absent from older source snapshot
+
+Per-card file: per-card-exceptions.json (86 records, no customer identifiers).
+It records immutable ID, player/provider/sport, rarity/serial, source timestamp,
+current custody classification, evidence, exclusion reason and remediation.
+Full owner/receipt/custody history is retained ONLY in ignored private-data/
+v31-final-reconciliation-20261110/per-card-exceptions.private.json.
+One exception has an ownership transfer; current owner agrees with last event.
+Retirement does not revoke the immutable allocation or free serial capacity.
+Prior cleanup authority is preserved; this task restores/removes no ownership.
+
+Funding audit: exception-funding-trace.json individually joins every exception
+to its original entitlement and balanced pack ledger, then exact funding lot
+ancestry, deposit and refund references.86/86 were funded by promotional TEST
+credits, none linked to Google TEST deposit or refunded funding. This is scoped
+funding evidence, not an assertion that unrelated account transactions never
+had refunds. All original products are TEST_ONLY. Issued serials remain consumed
+regardless of present owner, locking/listing, funding source, refund or retirement.
+
+Current totals (Rare / Elite / UltraRare / Legendary / Icon):
+NFL:96 /39 /319 /43 /2 =499
+AFL:16 /2 /249 /32 /0 =299
+NRL:0 /0 /72 /9 /0 =81
+Total879, in730 player/rarity groups. The two NFL Icon allocations consume their
+players' complete lifetime Icon capacity. Core is unlimited; free virtual Core
+eligibility is not invented permanent-card inventory.
+
+Corrected deterministic proposal: inventory-source-proposal.json.
+All730 issued groups/879 immutable serials are carried, including all86 omissions.
+Supply report: supply-summary.json; rows include remaining lifetime capacity,
+commercial available0 and unissued reservation0. Capacity is not stock for sale.
+The old candidate contains6465 limited definitions across1293 real-player records,
+but75 player/rarity groups require source mapping review. Do not invent catalogue
+UUIDs, merge by name or reset historical counters. The34 unverified-identity copies
+are accounted allocations, not cleared identities for future minting.
+
+The source proposal is an ACCOUNTING/IMPORT REVIEW input, not executable authority.
+Repeat generation gives the same manifest digest; altered ID/serial, duplicate
+provider alias, gap or cap violation rejects. Existing acceptance importer is
+blocked for Production and remains so. Production definitions/cards/receipts0.
+Historical eligible ownership can remain visible even when a current roster entry
+is not eligible for new issuance. No need to erase historical retired allocations
+or to mint replacements to reconcile the879.
+
+Import readiness: NO-GO. Resolve explicit source mappings, refresh/approve source
+and eligibility, review complete baseline/candidate counts and digest, plan the
+handover that stops parallel legacy limited minting, then obtain exact founder
+import approval. All statutory/statistics restrictions remain separate. No source,
+commercial import, lifetime reset or permanent customer-card mint executed.

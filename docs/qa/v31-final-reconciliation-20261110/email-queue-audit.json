@@ -1,0 +1,471 @@
+{
+  "isolated": true,
+  "audit": [
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:57.416Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:ed4fa117c2c6414ee78ae570ad6bc9c453092bf6a2102f40be042e02549f07d1",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_claimed",
+      "created_at": "2026-11-10T01:03:58.353Z",
+      "details": {
+        "attempt": 1
+      }
+    },
+    {
+      "action": "billing_ops_dispatch_fenced",
+      "created_at": "2026-11-10T01:03:58.411Z",
+      "details": {}
+    },
+    {
+      "action": "billing_ops_settled",
+      "created_at": "2026-11-10T01:03:58.457Z",
+      "details": {
+        "outcome": "accepted",
+        "deliveryVerified": false
+      }
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:58.484Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:ed4fa117c2c6414ee78ae570ad6bc9c453092bf6a2102f40be042e02549f07d1",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_claimed",
+      "created_at": "2026-11-10T01:03:58.489Z",
+      "details": {
+        "attempt": 1
+      }
+    },
+    {
+      "action": "billing_ops_claimed",
+      "created_at": "2026-11-10T01:03:58.498Z",
+      "details": {
+        "attempt": 2
+      }
+    },
+    {
+      "action": "billing_ops_dispatch_fenced",
+      "created_at": "2026-11-10T01:03:58.510Z",
+      "details": {}
+    },
+    {
+      "action": "billing_ops_held_unknown",
+      "created_at": "2026-11-10T01:03:58.520Z",
+      "details": {}
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:58.557Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:ed4fa117c2c6414ee78ae570ad6bc9c453092bf6a2102f40be042e02549f07d1",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_claimed",
+      "created_at": "2026-11-10T01:03:58.604Z",
+      "details": {
+        "attempt": 1
+      }
+    },
+    {
+      "action": "billing_ops_dispatch_fenced",
+      "created_at": "2026-11-10T01:03:58.617Z",
+      "details": {}
+    },
+    {
+      "action": "billing_ops_settled",
+      "created_at": "2026-11-10T01:03:58.622Z",
+      "details": {
+        "outcome": "accepted",
+        "deliveryVerified": false
+      }
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:58.636Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:ed4fa117c2c6414ee78ae570ad6bc9c453092bf6a2102f40be042e02549f07d1",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_claimed",
+      "created_at": "2026-11-10T01:03:58.641Z",
+      "details": {
+        "attempt": 1
+      }
+    },
+    {
+      "action": "billing_ops_dispatch_fenced",
+      "created_at": "2026-11-10T01:03:58.646Z",
+      "details": {}
+    },
+    {
+      "action": "billing_ops_settled",
+      "created_at": "2026-11-10T01:03:58.651Z",
+      "details": {
+        "outcome": "unknown",
+        "deliveryVerified": false
+      }
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:58.668Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:ed4fa117c2c6414ee78ae570ad6bc9c453092bf6a2102f40be042e02549f07d1",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_claimed",
+      "created_at": "2026-11-10T01:03:58.694Z",
+      "details": {
+        "attempt": 1
+      }
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:58.726Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:ed4fa117c2c6414ee78ae570ad6bc9c453092bf6a2102f40be042e02549f07d1",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_claimed",
+      "created_at": "2026-11-10T01:03:58.732Z",
+      "details": {
+        "attempt": 1
+      }
+    },
+    {
+      "action": "billing_ops_dispatch_fenced",
+      "created_at": "2026-11-10T01:03:58.739Z",
+      "details": {}
+    },
+    {
+      "action": "billing_ops_held_unknown",
+      "created_at": "2026-11-10T01:03:58.757Z",
+      "details": {}
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:58.778Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:ed4fa117c2c6414ee78ae570ad6bc9c453092bf6a2102f40be042e02549f07d1",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_claimed",
+      "created_at": "2026-11-10T01:03:58.783Z",
+      "details": {
+        "attempt": 1
+      }
+    },
+    {
+      "action": "billing_ops_dispatch_fenced",
+      "created_at": "2026-11-10T01:03:58.792Z",
+      "details": {}
+    },
+    {
+      "action": "billing_ops_admission_stopped",
+      "created_at": "2026-11-10T01:03:58.798Z",
+      "details": {
+        "newClaims": false,
+        "recordsDeleted": false,
+        "inFlightSettlementPreserved": true
+      }
+    },
+    {
+      "action": "billing_ops_settled",
+      "created_at": "2026-11-10T01:03:58.808Z",
+      "details": {
+        "outcome": "accepted",
+        "deliveryVerified": false
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:58.910Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:58.933Z",
+      "details": {
+        "code": "purchase_fulfilment_failed"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:58.948Z",
+      "details": {
+        "code": "pack_issuance_failed"
+      }
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:58.970Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:1c97acc05e480653aec5f4a24d72532e8c49d73b67b1d91a60b6b0994a9399b8",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.001Z",
+      "details": {
+        "code": "receipt_replay_rejected"
+      }
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:59.016Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:f4948387e8d3d332611b1b19445c23aa1d64fc07bb0105850195797591582dcf",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.053Z",
+      "details": {
+        "code": "refund_reconciliation_failed"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.073Z",
+      "details": {
+        "code": "acknowledgement_failed"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.096Z",
+      "details": {
+        "code": "reconciliation_failed"
+      }
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:59.115Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:b40e805445b26f786ec9431f8537104409eaf947bfa79fc2c1d7f2d8c0608e40",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.484Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.485Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.485Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.485Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.485Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.486Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.489Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.489Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.490Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.490Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.491Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.491Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.492Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.492Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.493Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.493Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.496Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.497Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.497Z",
+      "details": {
+        "code": "receipt_duplicate_retry"
+      }
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:59.523Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:4effd93bf793a62829f282c6b576835ac1f6fdcb4321adc0af8f9cc49fc0e0e0",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_signal",
+      "created_at": "2026-11-10T01:03:59.554Z",
+      "details": {
+        "code": "receipt_replay_rejected"
+      }
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:59.599Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:6080430a1f6038f6e2f6a5535a67c3375b6dd92a95d905c0fa1fd848df2665d0",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:59.673Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:7dfc6aa46244da422d7f40e14bdf03d6c2b6c2cb6fef42f24d5a644b4d2a6c86",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_enqueued",
+      "created_at": "2026-11-10T01:03:59.706Z",
+      "details": {
+        "key": "billing-ops-v2:2026-11-10T01:00:00.000Z:7dfc6aa46244da422d7f40e14bdf03d6c2b6c2cb6fef42f24d5a644b4d2a6c86",
+        "purpose": "billing_ops_health_v1"
+      }
+    },
+    {
+      "action": "billing_ops_claimed",
+      "created_at": "2026-11-10T01:03:59.728Z",
+      "details": {
+        "attempt": 1
+      }
+    },
+    {
+      "action": "billing_ops_dispatch_fenced",
+      "created_at": "2026-11-10T01:03:59.738Z",
+      "details": {}
+    },
+    {
+      "action": "billing_ops_settled",
+      "created_at": "2026-11-10T01:04:02.310Z",
+      "details": {
+        "outcome": "accepted",
+        "deliveryVerified": false
+      }
+    }
+  ],
+  "outbox": [
+    {
+      "state": "sent",
+      "attempts": 1,
+      "phase": "complete",
+      "outcome": "accepted"
+    }
+  ]
+}

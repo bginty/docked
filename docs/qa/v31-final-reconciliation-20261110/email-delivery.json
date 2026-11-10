@@ -1,0 +1,19 @@
+{
+  "reference": "DOCKED-OPS-20261110-01",
+  "subject": "Docked TEST incident drill — DOCKED-OPS-20261110-01",
+  "recipient": "support@docked.com.au",
+  "custodian": "Founder",
+  "environment": "Isolated loopback PostgreSQL; existing Microsoft Graph mailbox",
+  "at": "2026-11-10T01:03:59.720Z",
+  "providerAccepted": true,
+  "inboxVerified": false,
+  "acknowledged": false,
+  "productionDatabaseWrites": 0,
+  "productionPermissionChanges": 0,
+  "attempts": 1,
+  "providerRequestId": "4d058b69-0973-4a47-b96e-4e03632e1270",
+  "dispatch": {
+    "status": "accepted",
+    "deliveryVerified": false
+  }
+}

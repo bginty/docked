@@ -1,0 +1,58 @@
+Final reconciliation verification, 10 November2026
+
+node --import tsx --test tests/platform/issued-inventory-manifest.test.ts tests/platform/phone-challenge.test.ts tests/platform/public-phone.test.ts tests/platform/recovery-vault-proposal.test.ts tests/platform/lifetime-reconciliation.test.ts tests/platform/commercial-pool-plan.test.ts tests/platform/production-auth-readiness.test.ts tests/platform/auth-erasure.test.ts tests/platform/auth-policy.test.ts
+27 passed, platform-tests.txt. Proposed vault test checks static policy only.
+
+node scripts/commercial-local-postgres.mjs --final-controls
+PostgreSQL17, one integrated scenario /5 substantive groups passed. Two real
+independent connections race verified phone confirmation. Rerun after extending
+required-audit/unexpired retention cases passed; operational-run.txt/report.json.
+
+node scripts/commercial-local-postgres.mjs --ops-alerts --founder-email-drill
+18 PostgreSQL scenarios passed plus ONE real authorised Graph dispatch. Do not
+repeat this command: immutable local send-intent refuses a duplicate attempt.
+Provider202 observed, actual inbox unverified. alerts-run.txt/alerts-postgres.json.
+
+node --import tsx scripts/final-reconciliation-capture.ts --production-read-only
+Private read-only census; no full state/customer balances in output. Immutable
+capture file refuses overwrite. No Production mutation. Raw IDs/owners ignored.
+node --import tsx scripts/final-reconciliation-report.ts
+879 preserved;86 exceptions reported; exact regeneration checked byte-identical.
+node --import tsx scripts/final-reconciliation-funding.ts --production-read-only
+86 receipt/pack-journal/funding ancestry/refund traces passed. Safe hashes/status
+only, no account balances/tokens. Refuses evidence overwrite.
+
+node --import tsx scripts/commercial-production-restore-drill.ts --final-reconciliation
+Fresh encrypted Production read-only snapshot -> network-isolated PostgreSQL17.11;
+all5 files applied twice;550 protected durable tables unchanged. First completed
+01:25UTC. All customer/migration/schedule fingerprints retained.
+node --import tsx scripts/commercial-production-restore-drill.ts --final-reconciliation --restore-existing --attempt=2
+Same encrypted snapshot, no second Production dump. Added exact preflight.sql and
+postflight.sql rehearsal; again all5 twice/550 unchanged. Final01:37UTC. Outputs
+restore/preflight.txt,postflight.txt,restore-drill.json. Container stopped, tmpfs
+data discarded. A manual stopped-container read attempt initially failed because
+its isolated data/socket were ephemeral; corrected by restoring the encrypted
+snapshot, not weakening isolation. No unresolved final migration/test failure.
+
+$env:EXTERNAL_PREVIEW='1'; node node_modules/@playwright/test/cli.js test tests/browser/launch-controls.spec.ts
+2 passed, browser.txt. Fixture URLs intercepted; no real SMS. Phone320/390/1280,
+owner390/1280 screenshots inspected. Screenshots copied from runner's original
+evidence location; future runner writes this directory. Old evidence restored.
+
+node node_modules/typescript/bin/tsc --noEmit
+npm run lint
+node node_modules/next/dist/bin/next build --webpack
+node --import tsx scripts/check-client-boundary.ts
+All passed.239 client assets inspected; no injected build-secret canary, so this
+is only the static boundary scan. No dependency changes/new vulnerability claim.
+Prior dependency audit and105 targeted/supply/refund/three-sport tests retained
+where unchanged; not rerun or counted as new acceptance.
+
+Read-only hosted: whitelisted Auth Management config, canonical conflict count,
+commercial controls/supply, six Practice rounds, pending migrations, cron count,
+Supabase Vault privilege metadata. Fresh3 HTTP gate checks passed. Existing
+v31 binary unchanged. No new genuine Google purchase/SMS/physical-device test,
+hosted signed-in new-controls acceptance or actual inbox-delivery claim.
+
+Production changes: ZERO database/migrations/config/flags/deployments. One authorised
+TEST email through existing Microsoft transport is the only external send.

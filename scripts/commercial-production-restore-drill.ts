@@ -17,7 +17,8 @@ import { ownerDatabase } from "./owner-gameplay-db.mjs";
 import postgres from "postgres";
 import { readdirSync, readFileSync } from "node:fs";
 const previewRestore = process.argv.includes("--existing-free-preview");
-const p1p4 = process.argv.includes("--p1-p4");
+const finalReconciliation = process.argv.includes("--final-reconciliation");
+const p1p4 = process.argv.includes("--p1-p4") || finalReconciliation;
 const remainingAdditions = process.argv.includes("--remaining-additions");
 const finalApproval = process.argv.includes("--final-approval");
 assert(!finalApproval || remainingAdditions);
@@ -56,8 +57,14 @@ const root = process.cwd(),
   main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
 const runId =
   process.env.DOCKED_RESTORE_RUN ??
-  (p1p4 ? "20261110" : previewRestore ? "20261102p" : "20261102");
-assert.match(runId, /^(20261102[a-z]?|20261110)$/);
+  (finalReconciliation
+    ? "20261110r"
+    : p1p4
+      ? "20261110"
+      : previewRestore
+        ? "20261102p"
+        : "20261102");
+assert.match(runId, /^(20261102[a-z]?|20261110[a-z]?)$/);
 const dir =
   root +
   (previewRestore
@@ -66,17 +73,19 @@ const dir =
   runId;
 const evidence =
   root +
-  (p1p4
-    ? "/docs/qa/v31-p1-p4-20261110/restore"
-    : finalApproval
-      ? "/docs/qa/final-australia-20261102/restore"
-      : remainingAdditions
-        ? "/docs/qa/launch-convergence-20261102/restore"
-        : previewRestore
-          ? "/docs/qa/launch-resolution-20261102/restore"
-          : runId === "20261102"
-            ? "/docs/qa/public-activation-20261102"
-            : "/docs/qa/approved-production-20261102/restore");
+  (finalReconciliation
+    ? "/docs/qa/v31-final-reconciliation-20261110/restore"
+    : p1p4
+      ? "/docs/qa/v31-p1-p4-20261110/restore"
+      : finalApproval
+        ? "/docs/qa/final-australia-20261102/restore"
+        : remainingAdditions
+          ? "/docs/qa/launch-convergence-20261102/restore"
+          : previewRestore
+            ? "/docs/qa/launch-resolution-20261102/restore"
+            : runId === "20261102"
+              ? "/docs/qa/public-activation-20261102"
+              : "/docs/qa/approved-production-20261102/restore");
 const attempt = process.argv.find((a) => a.startsWith("--attempt="))?.slice(10);
 assert.ok(attempt === undefined || /^[2-9]$/.test(attempt));
 const client = "supabase_db_deletion-auth-local",
@@ -106,6 +115,11 @@ if (p1p4)
     "20261109232000_public_practice_phone_guards.sql",
     "20261109232124_operational_incident_review.sql",
   ];
+if (finalReconciliation)
+  files.push(
+    "20261110005726_operational_incident_retention.sql",
+    "20261110010050_australian_verified_phone_uniqueness.sql",
+  );
 const tables = [
   "auth.users",
   "private.profiles",
@@ -637,6 +651,16 @@ async function mainRun() {
       "Approved dependencies must already be present",
     );
   }
+  if (finalReconciliation)
+    await writeFile(
+      evidence + "/preflight.txt",
+      await local(
+        await readFile(
+          root + "/docs/qa/v31-final-reconciliation-20261110/preflight.sql",
+          "utf8",
+        ),
+      ),
+    );
   for (const file of files) {
     const source = await readFile(
       root + "/supabase/migrations/" + file,
@@ -769,6 +793,16 @@ async function mainRun() {
       "f",
     );
   }
+  if (finalReconciliation)
+    await writeFile(
+      evidence + "/postflight.txt",
+      await local(
+        await readFile(
+          root + "/docs/qa/v31-final-reconciliation-20261110/postflight.sql",
+          "utf8",
+        ),
+      ),
+    );
   const report = {
     at: new Date().toISOString(),
     sourceProject: manifest.project,
