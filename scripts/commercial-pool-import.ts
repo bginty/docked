@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import type { Sql } from "postgres";
 import {
+  reconcileLifetimePool,
+  type IssuedSupply,
+} from "../src/core/lifetime-reconciliation";
+import {
   validateDormantCommercialPool,
   type DormantPoolDefinition,
 } from "../src/core/commercial-pool-plan";
@@ -10,12 +14,28 @@ import {
 export async function importDormantCommercialPool(
   sql: Sql,
   rows: DormantPoolDefinition[],
+  priorIssuance?: IssuedSupply[],
 ) {
   validateDormantCommercialPool(rows);
+  if (priorIssuance) {
+    const reconciliation = reconcileLifetimePool(rows, priorIssuance);
+    assert(
+      reconciliation.importReady,
+      "Unmatched historical players require source review",
+    );
+    rows = reconciliation.rows;
+  }
   return sql.begin(async (tx) => {
     await tx`set local lock_timeout='5s'`;
     const [control] =
       await tx`select * from commercial_billing.control where id for update`;
+    // The old approved-zero-baseline plan is superseded. An acceptance database
+    // may rehearse it; Production needs the new exact source + lifetime plan.
+    // No production command in this module can erase or bypass legacy issuance.
+    assert(
+      control?.environment === "acceptance",
+      "Production import blocked: exact source and all-issued lifetime reconciliation require founder approval",
+    );
     assert(
       control &&
         !control.sales_enabled &&
@@ -42,7 +62,11 @@ export async function importDormantCommercialPool(
       inserted: inserted.length,
       unchanged: rows.length - inserted.length,
       approved: 0,
-      issued: 0,
+      issued: 0, // This operation creates definitions, never cards.
+      preservedLifetimeIssuance: rows.reduce(
+        (n, row) => n + row.legacy_issued,
+        0,
+      ),
       activation: false,
     };
   });

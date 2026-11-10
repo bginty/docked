@@ -29,7 +29,8 @@ export function resolveTotpFactor(factors: TotpFactor[]) {
 export function mfaDestination(value?: string) {
   return value === "/app/reset-password" ||
     value === "/app/onboarding" ||
-    value === "/app/onboarding/public"
+    value === "/app/onboarding/public" ||
+    value === "/app/verify-phone"
     ? value
     : (memberReturnPath(value) ?? "/app");
 }

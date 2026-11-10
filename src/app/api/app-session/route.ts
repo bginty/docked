@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { appViewer } from "@/server/app-view";
 import { appOnboardingState } from "@/server/app-onboarding";
+import { publicCustomersEnabled } from "@/core/public-customer";
+import { verifiedPhone } from "@/core/public-phone";
 const headers = { "Cache-Control": "private, no-store" };
 export async function GET() {
   try {
@@ -15,7 +17,10 @@ export async function GET() {
     return NextResponse.json(
       {
         authenticated: true,
-        onboardingRequired: !state.completed || state.legalRequired,
+        onboardingRequired:
+          !state.completed ||
+          state.legalRequired ||
+          (publicCustomersEnabled() && !verifiedPhone(who.user)),
       },
       { headers },
     );

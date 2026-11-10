@@ -1,0 +1,50 @@
+TAP version 13
+# Subtest: dormant real roster definitions retain identity, eligibility and source without approval
+ok 1 - dormant real roster definitions retain identity, eligibility and source without approval
+  ---
+  duration_ms: 84.1245
+  ...
+# Subtest: dormant import validation rejects bad immutable rows before SQL
+ok 2 - dormant import validation rejects bad immutable rows before SQL
+  ---
+  duration_ms: 116.8779
+  ...
+# Subtest: duplicate aliases, synthetic identities, NBA and silent eligibility changes fail closed
+ok 3 - duplicate aliases, synthetic identities, NBA and silent eligibility changes fail closed
+  ---
+  duration_ms: 10.9822
+  ...
+# Subtest: saved TEST_ONLY allocations cannot authorize a zero lifetime baseline
+ok 4 - saved TEST_ONLY allocations cannot authorize a zero lifetime baseline
+  ---
+  duration_ms: 4.6869
+  ...
+# Subtest: all lifetime copies count even with an old alias; Icon cannot replenish
+ok 5 - all lifetime copies count even with an old alias; Icon cannot replenish
+  ---
+  duration_ms: 83.0876
+  ...
+# Subtest: live reconciliation preserves all supported issued copies, including retired records
+ok 6 - live reconciliation preserves all supported issued copies, including retired records
+  ---
+  duration_ms: 5.9919
+  ...
+# Subtest: phone evidence must come from confirmed Auth fields, never a typed number
+ok 7 - phone evidence must come from confirmed Auth fields, never a typed number
+  ---
+  duration_ms: 15.4737
+  ...
+# Subtest: SMS cannot send before public/OTP/policy configuration; beta unchanged
+ok 8 - SMS cannot send before public/OTP/policy configuration; beta unchanged
+  ---
+  duration_ms: 3.252
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7788.4225

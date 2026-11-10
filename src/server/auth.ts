@@ -1,5 +1,6 @@
 import { authSessionsRelation } from "@/core/auth-relations";
 import { publicCustomersEnabled } from "@/core/public-customer";
+import { verifiedPhone, verifiedPhoneRequired } from "@/core/public-phone";
 import { cache } from "react";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
@@ -97,15 +98,24 @@ export const identity = cache(async function identity() {
     authenticatedAt: claims.authenticatedAt,
   };
 });
-export async function requireIdentity() {
+// Account export and erasure remain available even when onboarding is incomplete.
+export async function requireAccountIdentity() {
   const who = await identity();
   if (!who) throw new Error("Authentication required");
   if (who.mfaRequired && who.aal !== "aal2")
     throw new Error("Privileged MFA required");
   return who;
 }
+export async function requireIdentity() {
+  const who = await requireAccountIdentity();
+  if (publicCustomersEnabled() && !verifiedPhone(who.user))
+    throw new Error(verifiedPhoneRequired);
+  return who;
+}
 export async function requireRole(roles: string[]) {
-  const who = await requireIdentity();
+  // Staff emergency controls retain their existing strong MFA/role requirement;
+  // customer phone onboarding must not lock the founder out of incident response.
+  const who = await requireAccountIdentity();
   if (who.aal !== "aal2") throw new Error("Privileged MFA required");
   const sql = db();
   const rows =

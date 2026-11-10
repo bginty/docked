@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { requireIdentity, sameOrigin, authClient } from "@/server/auth";
+import {
+  requireIdentity,
+  requireAccountIdentity,
+  sameOrigin,
+  authClient,
+} from "@/server/auth";
 import { db, rateLimit } from "@/server/db";
 import { processAccountDeletion } from "@/server/account-deletion";
 import { currentConsentVersions } from "@/core/auth-readiness";
@@ -11,7 +16,7 @@ import { boundedCommunityBody } from "@/core/community-social";
 import { exportPreviewFixtureData } from "@/server/preview-export";
 export async function GET() {
   try {
-    const who = await requireIdentity(),
+    const who = await requireAccountIdentity(),
       sql = db();
     const [
       preferences,
@@ -74,7 +79,9 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Rate limit" }, { status: 429 });
       return NextResponse.json(await saveAppOnboarding(body));
     }
-    const who = await requireIdentity(),
+    const who = await (body.action === "delete"
+        ? requireAccountIdentity()
+        : requireIdentity()),
       sql = db();
     if (!(await rateLimit(`member:${who.user.id}`, 30)))
       return NextResponse.json({ error: "Rate limit" }, { status: 429 });

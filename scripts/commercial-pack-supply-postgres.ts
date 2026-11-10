@@ -139,6 +139,12 @@ async function main() {
         "utf8",
       ),
     );
+    await sql.unsafe(
+      readFileSync(
+        "supabase/migrations/20261109231834_commercial_lifetime_supply_guards.sql",
+        "utf8",
+      ),
+    );
     const approvals = Object.fromEntries(
       [
         "owner",
@@ -426,7 +432,7 @@ async function main() {
           );
         await assert.rejects(
           sql`insert into commercial_billing.cards(definition,serial,owner_id,pack,slot) values(${opened.cards[0].definition},${Number(opened.cards[0].serial) + 1},${buyers[winner].member},${outcome.value.id},1)`,
-          /Supply exhausted/,
+          /Supply exhausted|current purchased pack/,
         );
         assert.equal(
           (

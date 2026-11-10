@@ -6,3 +6,7 @@ src/brand/README_FOR_CODEX.md -text
 src/app/icon.svg -text
 public/icons/docked.svg -text
 docs/policies/** text eol=lf
+# Preserve reviewed migration checksums across Windows checkouts.
+supabase/migrations/20261109231834_commercial_lifetime_supply_guards.sql text eol=lf
+supabase/migrations/20261109232000_public_practice_phone_guards.sql text eol=lf
+supabase/migrations/20261109232124_operational_incident_review.sql text eol=lf

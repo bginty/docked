@@ -1,0 +1,302 @@
+DOCKED — V31 COMMERCIAL LAUNCH READINESS P1–P4
+10 November 2026, Australia/Sydney
+
+A. Executive result
+
+NO-GO for public commercial activation. The verified gaps now have a tested
+code/migration candidate, but source reconciliation, Production permission and
+deployment approvals, real email/phone delivery acceptance and Google v31
+approval remain open. No Production migration, inventory import, customer
+mutation, email/SMS, product change, release submission or activation occurred.
+
+Current Production remains f1b50b6f51d7429a36df9a8d5db99aed8886bd44 at
+https://docked.com.au (Vercel READY). Google Console was inspected through the
+authorised signed-in browser: v31 / 1.30 is IN REVIEW, managed publishing ON.
+The older ten ready-to-publish changes do not establish v31 approval. No Console
+control was changed. The Australian release and hidden NBA status are preserved.
+
+The approved caps already existed in shared application logic. This change
+strengthens database enforcement and blocks the old zero-baseline source import;
+it does not change caps, odds, prices, scoring, pack art or customer ownership.
+
+B. Priority and launch-gate status
+
+P1 — INCOMPLETE / SOURCE APPROVAL BLOCKED
+Existing application atomic purchase/supply controls verified. New exact SQL
+cap, lifetime identity, full-pack commit, no-reset and parallel-mint safeguards
+implemented and tested, NOT deployed. Production has zero commercial definitions,
+cards and reservations. The old candidate omits 86 issued copies; exact source
+review/reconciliation and founder import approval are mandatory.
+
+P2 — INCOMPLETE / PERMISSIONS AND DELIVERY DRILL BLOCKED
+Founder support@docked.com.au is confirmed and has the active owner role.
+Email-only/founder-only decision implemented; no request to choose a custodian
+again. Existing durable queue/lease/retry package passes isolated fault tests.
+New founder-AAL2 incident dashboard and immutable review history pass database
+and browser tests. Both new migration and the separate v2 email SQL permissions
+await approval. No real inbox drill or independent DB-outage email monitor has
+been demonstrated. Seven existing TEST reconciliation exceptions are unchanged.
+
+P3 — VERIFIED CURRENT PRACTICE RESTRICTIONS / NEW GUARD PREPARED
+All six public bindings are disabled Practice, synthetic, free, with no awards
+or active rewards. New SQL guards prevent real-fixture/no-Practice/prize edits
+through normal public/admin application paths. Three-sport free Core entry tests
+pass. Existing historical/private rounds and scoring are untouched. Real player
+statistics permissions are not inferred from roster-name approval.
+
+P4 — BLOCKED / PREPARED, NOT ACTIVATED
+AU18+ eligibility, public policy/consent checks, free Core and existing purchase/
+refund architecture remain. Missing phone verification is implemented with
+normal Supabase Auth OTP, uniqueness and server/SQL gates. Hosted provider and
+privacy decisions are unresolved; there is no real OTP acceptance yet. All
+activation controls remain closed; final explicit founder approval still needed.
+
+P4 mandatory gate register
+1. Google approves v31: BLOCKED, still in review.
+2. Managed publication: VERIFIED ON, no publish action; final selection pending.
+3. Approved/imported/reconciled permanent pool: BLOCKED, zero stock; see C.
+4. Lifetime scarcity concurrency: VERIFIED LOCAL + RESTORED DB, deployment pending.
+5. Payment/refund/replay/recovery: VERIFIED scoped local and earlier genuine TEST
+   evidence; exact new phone/public configuration acceptance remains incomplete.
+   No real-money settlement, payout-fee or live dispute outcome is claimed.
+6. Alerts: INCOMPLETE, permissions + real inbox/uptime drill outstanding.
+7. Data rights: Practice scope preserves restrictions; real scoring BLOCKED.
+8. AU adult eligibility: VERIFIED existing policy checks and local regression;
+   native app cannot bypass server country/state/age/consent checks.
+9. Public signup/anti-abuse: INCOMPLETE, OTP/provider/disclosure and provider-level
+   limits still require protected hosted acceptance; signup remains closed.
+10. Policies/declarations: existing published v3 and approved model preserved;
+    prospective phone disclosure/Data Safety and final supply source need review.
+11. Account deletion/support: earlier genuine isolated Auth/customer evidence
+    remains; current account-management route is exempt from new phone gate.
+    Repeat the changed public/phone/deletion path in protected acceptance.
+12. Android/web compatibility: build/native routing tests pass; v31 artifact
+    unchanged. No fresh physical OTP/purchase test in this task.
+13. Rollback: exact migrations restore/reapply without data changes; emergency
+    disable runbook prepared. No live emergency switch was exercised on users.
+
+C. Supply reconciliation
+
+Approved per-player lifetime caps, all seasons and statuses:
+Core unlimited; Rare 5,000; Elite 2,500; Ultra Rare 400; Legendary 50; Icon 1.
+Rookies receive the same limits. Listed, locked, transferred, refunded and
+retired-player copies are not subtracted. Ownership transfer does not mint.
+
+Current limited issued census (canonical union, persistent IDs de-duplicated):
+                Rare   Elite   Ultra Rare   Legendary   Icon   Total
+NFL               96      39          319          43      2     499
+AFL               16       2          249          32      0     299
+NRL                0       0           72           9      0      81
+Supported total  112      41          640          84      2     879
+
+The two NFL Icons belong to different players. No over-cap player/rarity group
+or duplicate canonical serial group was found. Eight retired NFL copies remain
+in the lifetime count. Eighteen hidden NBA limited records were observed and
+left alone; they are not included in this launch source or the 879 total.
+
+Commercial definitions/cards/receipts/funds: zero. Commercial AVAILABLE=0 and
+RESERVED=0 in every reported sport/rarity/player group. This is an unapproved
+source/import state, not a queued purchase or invisible stock. Theoretical
+remaining lifetime capacity must not be advertised as available inventory.
+
+Full per-player report: inventory-plan.json (6,465 candidate definition rows
+plus 75 unmatched player/rarity groups); issued-reconciliation.json provides
+the de-duplicated underlying census. Core is unlimited free gameplay eligibility,
+not scarce commercial stock or a finite remaining-cap figure.
+
+Candidate f436a9883a1ddda433fe81248533ad1d68d1aa02de8ca69d0863c465d8de60fc:
+NFL 426 players, AFL 537, NRL 330 = 1,293 players / 6,465 definitions. All
+unapproved; none imported. It matches 793 historical copies. Missing from that
+candidate: 81 NFL copies across 59 players, five AFL copies across five players.
+The 75 unmatched rarity groups are NOT deleted or accepted as a zero baseline.
+
+Follow-up source evidence (unmatched-nfl-source.json): all 59 NFL provider IDs
+have current evidence rows, but only 31 are identity-verified. Status includes
+active, reserve, practice-squad, released and unknown; some have no corresponding
+current catalogue mapping. The five AFL names exist in the retained factual
+roster dataset but are absent from this candidate. Do not automatically make
+inactive/unverified records eligible for new packs. Preserve their historical
+lifetime counters separately in the reviewed import plan and refresh eligibility.
+
+Other projections are not extra commercial stock. sports_feed sandbox inventory
+contains free Core/virtual and synthetic fixtures alongside mirrors of issued
+cards: AFL 2,655 rows, NRL 1,533; these totals must not be added to the canonical
+limited census. Synthetic IDs do not create new approved real-player supply.
+Their history was not converted, reset or deleted. Beta NFL Core allocations
+also remain unchanged. A separately approved future data transition must handle
+these identities explicitly rather than infer issuance from UI row counts.
+
+Controls added: exact SQL cap constraint; canonical provider lifetime unique
+key; pack/owner/slot/draw/current-transaction validation; sequential serial under
+row locks; deferred full-pack and counter balance; no delete/truncate/replenish;
+no alias/season reset; after pool handover, old parallel limited TEST mint routes
+are blocked. Existing owned mirrors/transfers remain valid. The current importer
+refuses Production until the exact new source/reconciliation plan is approved.
+
+Existing pack rules are preserved: sold-out players are excluded within the
+awarded rarity, never replaced by another rarity or reweighted. If the original
+pack rules cannot be fulfilled, the whole transaction fails without debit.
+All 18 paid sport/tier/quantity variants retained the same price and slot odds.
+
+D. Production safety and current data
+
+No Production writes in this task. No source import, new commercial card, wallet
+credit/debit, purchase, refund, permission grant, OTP or support email. The nine
+existing scheduled jobs remain. All six public competitions remain disabled:
+NFL Traditional 11edf5ac-262b-41ad-a6d9-06a53053a051
+NFL All-Star    fa53ab81-b8fd-4d4e-bf5e-214c5209b09f
+AFL Traditional 38f8e2da-a8cd-41ec-b34b-008084be7722
+AFL All-Star    0073858d-b14b-49ce-8cda-56c2357490c5
+NRL Traditional c49a6684-8d34-4411-92f5-50393d55386e
+NRL All-Star    3e19ab97-7cff-490c-aa9c-aeba3a8e6207
+They lock 15 November 2026 at 12:00 UTC. Recheck future suitability before
+activation; do not reopen locked dates or expose historic private competitions.
+
+Commercial sales/issuance/transfers/gameplay control flags are false. Public
+programme and registration closed. Live Google products inactive, withdrawals,
+paid entry and prizes disabled, NBA hidden. Retention cleanup remains disabled
+with zero archives. The scoped alert signal/queue RPCs are not installed and
+billing_ops_alerts is false. Founder identity/email verified; inbox drill pending.
+
+Fresh live HTTP readback: 17 routes; published policy URLs 200, registration-
+closed release evidence, commercial checkout/wallet/public gameplay 403,
+basketball scoring 400, QA billing page 503. These are unauthenticated safety
+checks, not a claim of a new signed-in customer or physical-device acceptance.
+
+E. Executed verification and evidence
+
+All final checks below passed. Earlier fixture defects were repaired before
+the recorded passes; no failing final application check is being concealed.
+
+- 105 relevant platform tests in one run: auth/onboarding/public access, Google
+  billing/runtime controls, pool rules, lifetime reconciliation and native
+  navigation. platform-tests.txt. Eight changed-area tests rerun after final
+  formatting; these overlap the 105 and are not 113 distinct tests.
+- Twelve auth policy/registration/erasure regression tests also passed in the
+  final run; auth-regression.txt. These are simulated-provider checks, not SMS.
+- Disposable real PostgreSQL: lifetime guards nine scenarios, including 16
+  concurrent Icon contenders, every terminal rarity serial, prohibited resets,
+  alias/new-season protection, full-pack rollback and parallel mint denial.
+- Pack supply seven scenario groups: all 18 products, every 10,000-slot ticket
+  outcome, exact counts/prices/sports, seventh-card fault rollback, twenty buyers
+  contending for the final serial, balanced journals and no negative spendable.
+- Commercial billing 15 scenario groups: pending/cancelled/delayed, 20 concurrent
+  receipt retries, two products, partial/opened/transferred refunds, stale and
+  out-of-order events, outages/restart, revoked-account recovery and role denial.
+- Existing alert v2 package 18 groups: actual SQL roles/RLS, 24 concurrent
+  producers/consumers, failed delivery/fences/retries, enum-only redacted signals,
+  20 duplicate receipts credited once and seeded financial invariant faults.
+  Graph/provider was mocked; zero emails sent and no inbox delivery claim.
+- Dormant pool rehearsal nine groups: exact 6,465-row source, idempotent retry,
+  immutable conflict rejection and no implicit activation, six Standard/Premium
+  nine-card purchases across all three sports (54 local fixture cards), refunds
+  preserve cards/counters. This old zero-baseline rehearsal proves adapter
+  behaviour, not approval or completeness of the new all-issued Production plan.
+- Public gameplay real PostgreSQL test passed separately for NFL, AFL and NRL:
+  ordinary isolated accounts, free Core, entry/save/access, phone confirmation,
+  duplicate-number denial and refusal of real fixture/prize/renaming attempts.
+- Founder incident PostgreSQL scenario: normal member/AAL1 denied, founder AAL2
+  accepted, browser/service/commercial roles denied, dedupe, stale decision,
+  recurrence, immutable events, unchanged financial state. No email.
+- Two browser scenarios: phone errors/resend/verification request/no localStorage
+  and owner review/delivery distinction; responsive 320/390/1280 widths with no
+  overflow. Synthetic APIs, no actual SMS. Screenshots phone-*.png/incidents-*.png.
+- Fresh Production encrypted backup restored to network-isolated PostgreSQL
+  17.11. Exact three final migration hashes applied twice. All 550 existing
+  durable table counts and row hashes unchanged. Final report restore/restore-
+  drill.json supersedes the first pass made during the incident-query correction.
+- Final TypeScript check, changed-source ESLint, production webpack build and
+  client/server boundary scan passed. Production dependency audit reports zero
+  vulnerabilities. The client scan notes no injected build canary was configured;
+  do not represent that as an injected-secret canary test.
+
+Earlier acceptance retained (not repeated or re-labelled): genuine Nov5 Google
+TEST A$49/A$99 on v30, ordinary isolated member wallet, Standard/Premium9 and
+refund/recovery/RTDN; post-fix consume 2,411ms and refund notification 1,615ms in
+the recorded run. Nov2 protected external-provider email registration/recovery/
+free Core/deletion; Nov8 v31 Android native share sheet. None proves a genuine
+commercial settlement or the newly added phone journey. No Samsung purchase or
+SMS test occurred in this task. No claim of a new Android binary acceptance.
+
+F. Rights, disclosure and remaining founder decisions
+
+The commercial model and player-name advice/approval remain accepted owner
+decisions; no request to approve them again. They are not a new executed licence.
+Original jerseys/brand preserved; no photos, club/sponsor marks or likeness added.
+
+NFL: nflverse-data has a documented CC BY 4.0 licence for its covered data;
+retain release provenance and attribution. It is not authority for every upstream
+provider or private-beta feed. The configured beta-only data permission ending
+10 November 00:00 UTC has no documented extension. No real competition is opened.
+AFL/NRL: retained Wikimedia roster revisions carry CC BY-SA conditions; Wikidata
+identifiers are CC0. Source provenance/attribution remain necessary. These do not
+grant proprietary player-game statistics rights. No executed permission for the
+unverified proprietary feeds was located. Synthetic Practice avoids pretending
+those missing statistics are licensed real results.
+Reference: COMMERCIAL_RIGHTS_MATRIX_20261102.md and
+FINAL_MARKETPLACE_COMMERCIAL_ASSESSMENT_20261105.txt, read with later owner
+name approval and first-release commercial-trading-off instruction. Current
+nflverse licence rechecked: https://github.com/nflverse/nflverse-data/blob/main/LICENSE.md
+
+Public marketplace remains off. Existing beta credit-only sales/fees are
+preserved; no cash redemption, person-to-person credit transfer, external card
+ownership export, paid entry or real-world reward is enabled. A share image
+does not transfer ownership. Paid-pack approval does not authorise a new cash-
+convertible market. Future commercial trading needs its own integrated customer
+acceptance and scoped value/payment assessment, not a repeated model approval.
+
+Material founder/operational decisions only:
+1. Review the three new migration effects/hashes and approve their Production
+   deployment; approve the separate existing v2 alert SQL, not a broader grant.
+2. Review the refreshed exact permanent-source proposal and all-issued baseline
+   AFTER the 86 missing copies are reconciled; approve the mint-source handover.
+   The present incomplete candidate should not be approved for import.
+3. Confirm authorised SMS account/provider/budget and approve the narrow phone
+   privacy/retention/Data Safety update. Complete genuine hosted OTP acceptance.
+4. Under the scoped alert window, verify the founder's actual inbox receipt and
+   on-call monitoring. No need to rename the founder or repeat email selection.
+5. Record backup/receipt-key recovery custody and provider retention settings.
+   The existing operational 90+30-day archive proposal, token/tombstone retirement
+   and irreversible cleanup remain separately unapproved. Company financial
+   records have a seven-year minimum where applicable; this is not a blanket
+   period for phone data or every technical token. ASIC source rechecked:
+   https://www.asic.gov.au/for-business-and-companies/companies/company-building-blocks/company-record-keeping
+6. Wait for genuine Google v31 approval. After every gate passes, provide final
+   dated public registration/payment/publication approval. No activation now.
+
+Published policy URLs stayed accessible and unchanged:
+https://docked.com.au/privacy (2026-11-06-privacy-sdk-v3)
+https://docked.com.au/refund-policy
+https://docked.com.au/commercial-policy
+https://docked.com.au/retention
+https://docked.com.au/account-deletion
+PHONE_PRIVACY_PROPOSAL.txt is a narrow draft only, not a published policy.
+
+G. Activation checklist
+
+ACTIVATION_RUNBOOK.txt gives the exact ordered gate/deployment/source import/
+monitoring/OTP/Practice/publication sequence and emergency disable procedure.
+Close new sales/issuance/registration immediately on a serious incident while
+preserving refund/reconciliation/support, legitimate ownership and audit history.
+Never restore old wallet or lifetime-counter snapshots over completed activity.
+
+H. Deployment and release implications
+
+Candidate branch: codex/v31-commercial-p1-p4, based on b338f6071338f938a81bea993f01d21c67612318.
+Candidate commit is recorded in the delivery message/Git history. Changes are
+committed/pushed for review only; no merge or Production deployment authorised.
+Three prepared migration IDs/effects/checksums/rollback: MIGRATION_APPROVAL.txt.
+No hosted environment variable, role, Auth setting, schedule or policy changed.
+
+Current Production f1b50b6f51d7429a36df9a8d5db99aed8886bd44,
+deployment dpl_9bwmvDvt5AEszaBtR311MjHLpHg7. Its recorded prior fallback is
+f31c886b827711510ce82939488ed13b741f9dab / dpl_HEZqxHVW8Y8qECNduznbwNZkL6Wj;
+revalidate compatibility before any alias rollback. Do not roll back financial
+tables or remove the new guards after an approved import.
+
+Android docked.fantasy v31 / 1.30, existing AAB 9,215,017 bytes,
+SHA-256 8becb6d044efc93baed6649f11ff100cc562bb09d200d45ec1a6742cf36e83b0.
+No native dependency or artifact change, so no rebuild/new submission is required
+for this candidate. New hosted phone behaviour still needs acceptance on v31.
+Google's submitted release was not modified. APPROVED: not yet. PUBLISHED: no.
+LIVE PAYMENTS: off. PUBLIC REGISTRATION: off. NBA: hidden.

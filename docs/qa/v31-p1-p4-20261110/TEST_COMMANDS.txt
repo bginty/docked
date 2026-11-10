@@ -1,0 +1,51 @@
+Executed verification commands / scope — 10 November 2026
+
+Platform: relevant selected suites, 105 passed, platform-tests.txt.
+Final changed-area rerun (8 passed; overlaps the selected run):
+node --import tsx --test tests/platform/public-phone.test.ts tests/platform/lifetime-reconciliation.test.ts tests/platform/commercial-pool-plan.test.ts
+Auth/erasure regression (12 passed):
+node --import tsx --test tests/platform/production-auth-readiness.test.ts tests/platform/auth-erasure.test.ts tests/platform/auth-policy.test.ts
+
+Real disposable PostgreSQL (loopback only, synthetic financial operations):
+node scripts/commercial-local-postgres.mjs --lifetime-guards
+node scripts/commercial-local-postgres.mjs --pack-supply
+node scripts/commercial-local-postgres.mjs
+node scripts/commercial-local-postgres.mjs --ops-alerts
+node scripts/commercial-local-postgres.mjs --pool-preparation --candidate private-data/commercial-pool-20261106-v2/candidate.private.json --evidence docs/qa/v31-p1-p4-20261110/pool
+node scripts/commercial-local-postgres.mjs --public-gameplay --nfl
+node scripts/commercial-local-postgres.mjs --public-gameplay
+node scripts/commercial-local-postgres.mjs --public-gameplay --nrl
+node scripts/commercial-local-postgres.mjs --incidents
+
+All above passed. PostgreSQL report JSON files describe actual scenario groups,
+not external settlement. Pool fixtures are unapproved/isolated, never Production.
+
+Fresh read-only encrypted Production capture and isolated restore:
+node --import tsx scripts/commercial-production-restore-drill.ts --p1-p4
+After the incident query was hardened, final exact-file rehearsal:
+node --import tsx scripts/commercial-production-restore-drill.ts --p1-p4 --restore-existing --attempt=2
+Final hashes match migrations.json. Both applications preserved 550 durable
+tables. The second run additionally refuses a file change during the rehearsal
+and batches the same per-table checksums to reduce Docker process overhead.
+
+Browser (EXTERNAL_PREVIEW=1; fixture routes intercepted, no server SMS):
+node node_modules/@playwright/test/cli.js test tests/browser/launch-controls.spec.ts
+Two passed. Phone 320/390/1280 and incidents 390/1280 screenshots inspected.
+
+node node_modules/next/dist/bin/next build --webpack
+node node_modules/typescript/bin/tsc --noEmit
+node node_modules/eslint/bin/eslint.js [all changed .ts/.tsx/.mjs source paths] --max-warnings=0
+node --import tsx scripts/check-client-boundary.ts
+npm audit --omit=dev --json
+All final checks passed; dependency vulnerability count zero. Client-boundary
+scan ran on final build, without an injected build-secret canary.
+
+Independent read-only hosted evidence:
+- Signed-in Play publishing overview screenshot/DOM: v31 in review, managed ON.
+- Production SQL aggregate supply/permissions/rounds/roles/security checks.
+- Auth Management API whitelisted configuration fields only, no credential log.
+- Seventeen live HTTP status/config/policy checks, no signed-in customer claim.
+
+Not performed: Production migration/import, real SMS, real support email,
+new genuine Google purchase, physical Android acceptance, commercial charge,
+public signup, real competition activation, retention cleanup or publication.

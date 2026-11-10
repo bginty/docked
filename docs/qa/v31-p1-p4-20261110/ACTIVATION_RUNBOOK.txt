@@ -1,0 +1,144 @@
+Docked Australia v31 — controlled activation procedure, NOT executed
+10 November 2026
+
+Approved scope: free download, Australian adults, NFL/AFL/NRL, free Core,
+free Practice participation, optional approved Standard/Premium packs through
+Google Play. Founder-only email operations. NBA, commercial trading,
+withdrawals, paid entry, rewards and real-data scored competitions remain off.
+Final explicit founder approval is required after every gate below passes.
+
+Preparation and promotion order
+
+1. Freeze a reviewed application commit and verify the three exact migration
+   hashes in MIGRATION_APPROVAL.txt. Verify the v31 AAB checksum; do not rebuild
+   or resubmit it merely because the hosted backend changes. Record Google
+   v31 approval, Australia-only availability and managed publishing still ON.
+   The v30 ready-to-publish group is not approval of the v31 review item.
+
+2. Obtain approval for the three new migrations and the existing separate v2
+   alert-permission SQL. Capture a fresh encrypted Production backup; rehearse
+   and compare current schema, counts, ledger fingerprints and schedules.
+   Apply only the named reviewed files, with launch gates closed; inspect RLS,
+   function grants, exact caps and preserved data immediately afterwards.
+
+3. Promote the reviewed web candidate with current commercial/public gates
+   disabled. Verify owner AAL2 access, existing beta members/cards, closed
+   commercial routes, NBA denial and health reporting. Record the deployed SHA
+   and retain f1b50b6f as the known current Production fallback (refresh this
+   reference if an independently approved release intervenes).
+
+4. Finish the source plan BEFORE any commercial definition import. Reconcile
+   all 879 supported issued limited copies plus any intervening issuance,
+   including the 86 currently absent from the candidate. Preserve retired and
+   unmapped players' lifetime counts; do not label them zero or erase them.
+   Verify provider identity, attribution, roster status/position, all five caps
+   and source digest. Approval must specify exact counts and acknowledge that
+   importing definitions stops the parallel limited TEST mint routes.
+   During the approved handover, quiesce all legacy mint endpoints/workers,
+   lock their authoritative stores and commercial control in a reviewed order,
+   re-read the census, and abort on drift. Import dormant definitions, never
+   pre-minted replacement cards. Compare every row/counter after import.
+   Existing issued cards keep their IDs, serials and ownership. Enable only
+   eligible approved definitions after final reconciliation. No silent alias,
+   seasonal or recovery issuance route is allowed.
+
+5. Configure the approved SMS provider, sender, spend limit and provider-level
+   anti-abuse controls. Approve the narrow privacy/retention/Data Safety change,
+   prospective consent version, and lost/recycled-number support process.
+   Keep public signup closed. Run the genuine OTP and duplicate-number journey
+   against protected public mode, including v31 WebView, deletion and recovery.
+   Confirm direct Auth API limits and leaked-password protection. Do not use
+   admin confirmation, fake verified numbers or a beta-allowlist bypass.
+
+6. Deploy the least-privilege alert producer/dispatcher under the separately
+   approved founder email/window. Keep financial controls untouched. In a
+   short approved drill, enqueue a synthetic operational incident, observe the
+   actual email in support@docked.com.au, record delivery/acknowledgement and
+   exercise retry/uncertain delivery without duplicate mail. Graph acceptance
+   is not inbox proof. Verify the existing monitoring service reaches the
+   producer/consumer, and independent email uptime alerts cover a total DB or
+   scheduler outage. Seven historical TEST reconciliation exceptions remain
+   separate; resolving the dashboard item must not mutate their records.
+
+7. Record founder operational custody: on-call support, financial report review,
+   receipt-reference encryption keys and recoverable backup/key access. Verify
+   protected recovery copies and rotation, not merely a local key's existence.
+   Do not activate retention deletion; its schedule, archive key and recovery
+   controls require their own approval. Resolve holds with documented evidence,
+   never by confiscating an unrelated buyer's card or charging a bank account.
+
+8. Confirm all six public bindings remain synthetic, clearly named Practice,
+   zero-fee and no-reward. Their current lock is 15 November 2026 12:00 UTC
+   (23:00 AEDT); if launch occurs later, prepare suitable future Practice
+   instances through the existing controlled process. Do not reopen a locked
+   round or turn a private-beta historical competition into a public round.
+   Verify Traditional $4.4m NFL / $13.8m AFL / $8.2m NRL and uncapped All-Star,
+   unchanged formations and free Core selection. No statistics permission is
+   implied by making these Practice instances available.
+
+9. Perform exact protected-configuration acceptance: ordinary AU18+ confirmed
+   email + phone, no private-beta allowlist, three-sport free Core entry/save/
+   rankings, account deletion and support recovery. Use genuine Google TEST
+   receipts only in the separately bound acceptance ledger. Reuse documented
+   A$49/A$99 purchase/refund evidence where unaffected; target new phone/ledger
+   guard interactions. Verify real RTDN/reconciliation readiness, expiry and
+   service credentials without accepting a TEST receipt into commercial mode.
+   Mocked fault tests and provider payout reports are not commercial settlement.
+
+10. Review published policies and exact enabled Console disclosures together:
+    v3 Billing SDK privacy, new prospective phone notice after approval, paid
+    random-pack odds near purchase, no cash redemption, commercial trading off,
+    Practice-only scoring and Australian M classification. Preserve reviewer
+    credentials/MFA and approved reviewer TEST access. Do not add unsupported
+    live scoring, cash-out or licensing claims to screenshots or listing.
+
+11. Present the final recorded gate results to the founder. Obtain one explicit
+    dated activation/publication approval identifying the code/AAB/source/
+    policy versions and approved features. No routine reapproval of the business
+    model or player-name position is needed. A failed mandatory gate is NO-GO.
+
+12. In the approved window, sequence the existing controls deliberately:
+    a. Verify monitoring/reconciliation/refund services healthy and emergency
+       disable access usable with founder AAL2.
+    b. Set the current AU region/consent/public-gameplay policy and six approved
+       Practice bindings active; retain all no-prize and sport restrictions.
+    c. Bind the approved commercial product/definition/control references and
+       validity window. Do not invent approval reference strings.
+    d. Enable server sales/issuance and customer checkout only after the gate
+       record permits live settlement, with Google products still closed until
+       the runtime is confirmed ready. Products: docked_credits_4900_v1/buy-au
+       A$49=4,900; docked_credits_9900_v1/buy-au A$99=9,900; no bonus/multi-quantity.
+    e. Activate those exact AU purchase options, confirm native eligibility and
+       prices. Keep commercial transfers/game-prize/withdrawal paths disabled.
+    f. Open authorised Australian registration through both server public-mode
+       and Auth signup controls, with phone/age/region/consent checks working.
+    g. Only after backend checks succeed, publish the approved v31 group through
+       managed publishing under that explicit approval. Do not accidentally
+       publish an older ready group. Verify the actual AU store release/status.
+    h. Observe real service metrics and reconcile every new receipt/pack/serial;
+       no real charge is authorised merely for this task's testing.
+
+Emergency disable / rollback
+
+- Stop new checkout with DOCKED_COMMERCIAL_CHECKOUT=false and atomically close
+  commercial_billing.control sales_enabled/issuance_enabled/transfers_enabled.
+  Deactivate the two Google options as soon as safe. Leave refund/notification/
+  reconciliation reads and worker paths available; do not simply disable the
+  entire commercial service when outstanding receipts exist.
+- Close new signup at the Auth and application registration controls. Do not
+  revoke legitimate existing sessions or erase profiles as a rollback shortcut.
+- Disable public programme/bindings if needed; do not delete or rewrite entries.
+- Retain Practice-only database guards and NBA hiding. Never enable prizes,
+  cash redemption or paid entry to work around a failure.
+- Route the web alias to the last compatible verified application only after
+  reviewing database compatibility. First suspend new mutations. Do not restore
+  old wallet/card tables over newer legitimate transactions.
+- Alert founder, record incident/case/version/time, preserve Google receipts,
+  notification retry state, financial journals and ownership audit. Recover
+  forward idempotently. Permanent issuance is never silently rolled back.
+- If the alert channel itself is uncertain, hold/review fenced deliveries and
+  use the existing independent provider/uptime email escalation; do not create
+  a recursive alert storm or introduce SMS without approval.
+
+Readiness today: NO-GO. This procedure is prepared, not run. No launch flag,
+Google product, competition, registration setting or submitted release changed.

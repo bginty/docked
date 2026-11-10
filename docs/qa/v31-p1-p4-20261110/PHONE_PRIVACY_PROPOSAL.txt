@@ -1,0 +1,81 @@
+Public phone verification — narrow proposal, not published or activated
+10 November 2026
+
+Approved business requirement: one account per verified phone. No further
+approval of that requirement is requested. The following implementation and
+disclosure facts still require operational confirmation.
+
+Proposed customer notice (add only after provider/retention review):
+
+"We verify your phone number to help prevent duplicate accounts and abuse.
+One verified phone number can be linked to one Docked account. We use our
+authentication provider and its configured SMS delivery provider to send a
+verification code. Your number is not displayed on your public profile and is
+not used for marketing through this verification step. If you lose access to
+your number, contact support@docked.com.au. You can still request account
+deletion through your authenticated account controls. We keep necessary
+account-security records only for the purposes and periods explained in our
+retention policy."
+
+This wording deliberately does not promise a deletion period that has not been
+verified across Auth, the SMS provider and backups. The final policy must name
+the actual provider/data flow where appropriate and state the approved period.
+Do not alter existing consents retroactively. Publish a new prospective privacy
+version and update Google Data Safety's phone-number collection declaration
+before activating collection. No policy or Console change occurred here.
+
+Actual preparation
+
+- Supabase user-session updateUser(phone) and verifyOtp(phone_change), followed
+  by a fresh authenticated user read; no admin confirmation or auth bypass.
+- Confirmed Auth phone must be E.164 and unique. Existing database index reused.
+- Public gameplay, onboarding and purchase access require this evidence.
+- One number does not prove one human; purchased/recycled numbers remain an
+  abuse/support risk. Do not advertise perfect identity verification or KYC.
+- Numbers/codes are not written to localStorage, analytics or app audit logs.
+  The audit stores account ID and a verification event only. Auth and the
+  chosen SMS provider necessarily process the number; SMS is not anonymous.
+- Same-origin bounded endpoint, 3 sends/account/hour, 6 verification attempts/
+  account/hour, global 30 sends/hour. Public signup also has source/global
+  quotas. Provider-side limits are independently necessary because the Auth
+  publishable key exposes normal Auth endpoints; application quotas alone do
+  not constrain direct Auth API use.
+- Changes to an already verified number require support review. No automated
+  duplicate-account merge, number reassignment or permanent denylist was added.
+- Beta access and owner/admin MFA unchanged. Account export/delete remain
+  available without completing this phone step for profile-backed accounts.
+
+Observed hosted configuration
+
+disableSignup=true; email autoconfirm=false; phone auth=false; phone
+autoconfirm=false; configured provider identifier=twilio; OTP expiry=60s;
+provider SMS rate limit=30/hour; CAPTCHA=false; leaked-password checking=false.
+The provider identifier does not prove credentials, balance, country routing,
+sender registration or external delivery. Zero phone-confirmed accounts.
+
+Exact outstanding work before activation
+
+1. Confirm the authorised SMS provider account, Australian sender/delivery
+   capability, unit pricing, spend ceiling and operational owner. No paid SMS
+   service or recurring contract was created. Founder email-only alerts remain
+   email-only; customer OTPs are a separate account-verification function.
+2. Approve the narrow prospective privacy/Data Safety changes and phone/provider
+   retention schedule. Decide support handling for lost/recycled numbers and
+   lawful deletion/re-registration without a covert permanent phone blacklist.
+3. Configure and test provider-level rate limits/abuse protection, secret custody
+   and leaked-password checks; introduce CAPTCHA only with the corresponding
+   client/provider integration and acceptance. No security setting was weakened.
+4. In protected public mode, run a genuine SMS delivery/confirmation, wrong and
+   expired code, resend, second-account same-number denial, login/recovery,
+   account deletion and phone-change support test. Confirm v31 WebView return
+   to onboarding. Local simulated tests do not prove SMS delivery.
+5. Then set DOCKED_PUBLIC_PHONE_OTP and a reviewed policy-reference secret only
+   in the approved environment. These flags do not independently open signup.
+
+Primary implementation references checked 10 November 2026:
+https://supabase.com/docs/reference/javascript/auth-updateuser
+https://supabase.com/docs/reference/javascript/auth-verifyotp
+https://supabase.com/docs/guides/auth/phone-login
+
+Published policy URLs remain unchanged: https://docked.com.au/privacy,
+/retention, /refund-policy, /commercial-policy and /account-deletion.

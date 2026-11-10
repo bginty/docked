@@ -21,11 +21,17 @@ for (const sport of ["nfl", "afl", "nrl"])
         "utf8",
       );
       await d.pg.exec(migration); // Idempotent reapplication, not a second wrapper.
+      await d.pg.exec(
+        await readFile(
+          "supabase/migrations/20261109232000_public_practice_phone_guards.sql",
+          "utf8",
+        ),
+      );
       const u = randomUUID(),
         sid = randomUUID(),
         cid = randomUUID();
       await d.q(
-        "insert into auth.users(id,email_confirmed_at)values($1,now());",
+        "insert into auth.users(id,email_confirmed_at,phone,phone_confirmed_at)values($1,now(),'61400000001',now());",
         [u],
       );
       await d.q("insert into auth.sessions(id,user_id)values($1,$2)", [sid, u]);
@@ -62,7 +68,7 @@ for (const sport of ["nfl", "afl", "nrl"])
         version = config.version;
       }
       await d.q(
-        "insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,prize,awards) select $1,'Public practice',sport,season,4,locks_at,rules||jsonb_build_object('public_access_policy','au-adult-free-play-v1','entry_fee_credits',0,'lineup_version',$3::text),scoring_id,'No cash prize','[]' from beta_fantasy.competitions where id=$2",
+        "insert into beta_fantasy.competitions(id,name,sport,season,round,locks_at,rules,scoring_id,prize,awards) select $1,'Public practice',sport,season,4,locks_at,rules||jsonb_build_object('synthetic',true,'public_access_policy','au-adult-free-play-v1','entry_fee_credits',0,'lineup_version',$3::text),scoring_id,'No cash prize','[]' from beta_fantasy.competitions where id=$2",
         [cid, d.rounds.SALARY_CAP1, version],
       );
       const fixtures = [
@@ -70,6 +76,7 @@ for (const sport of ["nfl", "afl", "nrl"])
           fixtureId: `sim:${sport}:public`,
           scheduledAt: "2099-02-02T00:00:00Z",
           status: "scheduled",
+          synthetic: true,
           playerIds: d.inventories[d.user].map((c: any) => c.player_id),
         },
       ];
@@ -104,6 +111,48 @@ for (const sport of ["nfl", "afl", "nrl"])
         (await d.q("select public_gameplay.read_state($1) state", [sport]))[0]
           .state;
       const state = await read();
+      await d.q("update auth.users set phone_confirmed_at=null where id=$1", [
+        u,
+      ]);
+      await assert.rejects(read(), /Verified phone required/);
+      await d.q(
+        "update auth.users set phone_confirmed_at=clock_timestamp() where id=$1",
+        [u],
+      );
+      await assert.rejects(
+        d.q(
+          "insert into auth.users(id,phone,phone_confirmed_at)values($1,'61400000001',now())",
+          [randomUUID()],
+        ),
+        /unique|duplicate/,
+      );
+      await assert.rejects(
+        d.q(
+          "update public_gameplay.rounds set fixture_kind='verified' where competition_id=$1",
+          [cid],
+        ),
+      );
+      await assert.rejects(
+        d.q(
+          "update beta_fantasy.competitions set name='Scored live round' where id=$1",
+          [cid],
+        ),
+        /Practice|immutable/,
+      );
+      await assert.rejects(
+        d.q(
+          "update beta_fantasy.competitions set awards='[{\"credits\":100}]' where id=$1",
+          [cid],
+        ),
+        /Practice|immutable/,
+      );
+      await assert.rejects(
+        d.q(
+          "update beta_fantasy.competitions set rules=jsonb_set(rules,'{synthetic}','false') where id=$1",
+          [cid],
+        ),
+        /Practice|immutable/,
+      );
       assert.equal(state.competitions.length, 1);
       assert.equal(
         state.cards.length,

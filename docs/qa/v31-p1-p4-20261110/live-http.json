@@ -1,0 +1,99 @@
+{
+  "at": "2026-11-09T23:58:12.783Z",
+  "origin": "https://docked.com.au",
+  "checks": [
+    {
+      "route": "/app/login",
+      "status": 200,
+      "cache": "private, no-cache, no-store, max-age=0, must-revalidate"
+    },
+    {
+      "route": "/app/signup",
+      "status": 200,
+      "cache": "private, no-cache, no-store, max-age=0, must-revalidate"
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "cache": "private, no-store",
+      "privacyVersion": "2026-11-06-privacy-sdk-v3"
+    },
+    {
+      "route": "/refund-policy",
+      "status": 200,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/commercial-policy",
+      "status": 200,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/retention",
+      "status": 200,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/account-deletion",
+      "status": 200,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/beta-release",
+      "status": 200,
+      "cache": "private, no-store",
+      "registrationClosed": true
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "status": 401,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/public-gameplay?sport=afl",
+      "status": 403,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/public-gameplay?sport=nrl",
+      "status": 403,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=basketball",
+      "status": 400,
+      "cache": "private, no-store"
+    },
+    {
+      "route": "/profile/qa_billing",
+      "status": 503,
+      "cache": "private, no-store"
+    }
+  ],
+  "passed": true,
+  "authenticatedAcceptance": false,
+  "customerMutations": 0,
+  "purchases": 0,
+  "publicRegistrationEnabled": false,
+  "livePaymentsEnabled": false
+}

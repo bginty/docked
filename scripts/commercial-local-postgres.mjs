@@ -57,8 +57,12 @@ try {
   connection.password = password;
   const publicGameplay = process.argv.includes("--public-gameplay");
   const social = process.argv.includes("--social");
+  const incidents = process.argv.includes("--incidents");
   const gameplay =
-    process.argv.includes("--gameplay") || publicGameplay || social;
+    process.argv.includes("--gameplay") ||
+    publicGameplay ||
+    social ||
+    incidents;
   const gameConnection = new URL(connection);
   gameConnection.pathname = `/docked_free_play_test_${Date.now()}`;
   if (gameplay) await pg.createDatabase(gameConnection.pathname.slice(1));
@@ -70,25 +74,29 @@ try {
       ...(gameplay
         ? [
             "--test",
-            `--test-name-pattern=${social ? "Commercial social" : publicGameplay ? `${process.argv.includes("--nfl") ? "NFL" : process.argv.includes("--nrl") ? "NRL" : "AFL"} public member` : process.argv.includes("--nrl") ? "NRL" : "AFL"}`,
-            social
-              ? "tests/database/commercial-social.test.ts"
-              : publicGameplay
-                ? "tests/database/public-customer.test.ts"
-                : "tests/database/commercial-lineup.test.ts",
+            `--test-name-pattern=${incidents ? "Operational incidents" : social ? "Commercial social" : publicGameplay ? `${process.argv.includes("--nfl") ? "NFL" : process.argv.includes("--nrl") ? "NRL" : "AFL"} public member` : process.argv.includes("--nrl") ? "NRL" : "AFL"}`,
+            incidents
+              ? "tests/database/operational-incidents.test.ts"
+              : social
+                ? "tests/database/commercial-social.test.ts"
+                : publicGameplay
+                  ? "tests/database/public-customer.test.ts"
+                  : "tests/database/commercial-lineup.test.ts",
           ]
         : [
-            process.argv.includes("--pack-supply")
-              ? "scripts/commercial-pack-supply-postgres.ts"
-              : process.argv.includes("--ops-alerts")
-                ? "scripts/billing-ops-alerts-postgres.ts"
-                : process.argv.includes("--pool-preparation")
-                  ? "scripts/commercial-pool-rehearsal.ts"
-                  : process.argv.includes("--report-snapshot")
-                    ? "scripts/commercial-report-snapshot.ts"
-                    : process.argv.includes("--retention")
-                      ? "scripts/commercial-retention-postgres.ts"
-                      : "scripts/commercial-billing-postgres.ts",
+            process.argv.includes("--lifetime-guards")
+              ? "scripts/lifetime-guards-postgres.ts"
+              : process.argv.includes("--pack-supply")
+                ? "scripts/commercial-pack-supply-postgres.ts"
+                : process.argv.includes("--ops-alerts")
+                  ? "scripts/billing-ops-alerts-postgres.ts"
+                  : process.argv.includes("--pool-preparation")
+                    ? "scripts/commercial-pool-rehearsal.ts"
+                    : process.argv.includes("--report-snapshot")
+                      ? "scripts/commercial-report-snapshot.ts"
+                      : process.argv.includes("--retention")
+                        ? "scripts/commercial-retention-postgres.ts"
+                        : "scripts/commercial-billing-postgres.ts",
           ]),
       ...(process.argv.includes("--browser") ? ["--browser"] : []),
       ...(process.argv.includes("--reproduce-old") ? ["--reproduce-old"] : []),

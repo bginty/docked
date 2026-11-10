@@ -1,0 +1,48 @@
+P1-P4 audit before implementation — 10 November 2026 AEDT
+
+Live release f1b50b6f, independently checked through Vercel. Google Console
+shows v31/1.30 in review, managed publishing on. No release changes made.
+
+VERIFIED COMPLETE
+- Shared limited rarity caps are exactly 5000/2500/400/50/1; Core is unlimited.
+- Commercial issuance uses locked lifetime counters, persistent card IDs,
+  unique definition/serial and pack/slot, atomic wallet debit, preserved draws.
+- Whole-pack supply preflight rejects an unfulfillable catalogue without debit.
+- Existing refund, replay, accounting and v30 TEST purchase evidence remains
+  valid; v31 native change is sharing, not Billing. No new device purchase run.
+- Six public rounds remain disabled Practice; free entry, no prizes; NBA hidden.
+- Owner support@docked.com.au is active and email-confirmed in beta owner roles.
+- Auth already has a unique index on users.phone. No phone-confirmed users.
+
+INCOMPLETE / IMPLEMENTATION TARGETS
+- SQL validates positive caps, not the exact approved rarity mapping. No
+  deletion/truncation protection on lifetime definitions/cards. Direct runtime
+  card inserts lack the full control/pack/slot/draw binding enforced in app code.
+- Old dormant import assumes zero legacy issuance. New founder instruction
+  requires all issued copies accounted for. Block that unsafe path and require
+  a fresh per-player reconciliation before source/import approval.
+- Public round binding accepts verified fixtures without a separate rights gate.
+  Add fail-closed Practice-only constraints; do not change historical scoring.
+- No mandatory public verified-phone step. Reuse Supabase Auth phone change OTP
+  and unique phone index, add server/SQL access checks, preserve beta/MFA.
+- Aggregate alert outbox and safe lease/retry implementation exist, dormant.
+  Missing durable incident acknowledgement/resolution UI and recipient drill.
+
+BLOCKED / APPROVAL GATES
+- Commercial definitions/cards/receipts are all empty by design: no approved
+  source import, not a stuck fulfilment. Do not import or activate.
+- Prior 447 NFL TEST-card report is stale. Fresh canonical union: 499 NFL,
+  299 AFL, 81 NRL limited issued records; 18 hidden NBA records remain untouched.
+  No duplicate player/rarity serials or over-cap groups in that union. Legacy
+  synthetic gameplay cards are separate fixtures, not silently converted.
+- Google approval pending. Existing ten ready changes do not approve v31.
+- Scoped alert SQL package unapproved/unapplied. Real inbox receipt/drill pending.
+- SMS provider, costs, anti-abuse settings and phone privacy/retention decision
+  unverified; no SMS sending or authentication configuration activated.
+- Statistics permissions remain unverified. Practice only; no real scored rounds.
+- Supabase security advisor: leaked-password protection disabled. Existing
+  RLS-without-policy notices describe private deny-by-default tables, not a
+  reason to grant clients access.
+
+All Production inspection is read-only. No wallet, ownership, cap, registration,
+payment, competition, permission, migration or email change has been made.

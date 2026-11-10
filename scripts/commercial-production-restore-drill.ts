@@ -17,9 +17,11 @@ import { ownerDatabase } from "./owner-gameplay-db.mjs";
 import postgres from "postgres";
 import { readdirSync, readFileSync } from "node:fs";
 const previewRestore = process.argv.includes("--existing-free-preview");
+const p1p4 = process.argv.includes("--p1-p4");
 const remainingAdditions = process.argv.includes("--remaining-additions");
 const finalApproval = process.argv.includes("--final-approval");
 assert(!finalApproval || remainingAdditions);
+assert(!p1p4 || (!previewRestore && !remainingAdditions && !finalApproval));
 assert.ok(
   !(previewRestore && remainingAdditions),
   "Choose one rehearsal source",
@@ -53,8 +55,9 @@ function sourceDatabase() {
 const root = process.cwd(),
   main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
 const runId =
-  process.env.DOCKED_RESTORE_RUN ?? (previewRestore ? "20261102p" : "20261102");
-assert.match(runId, /^20261102[a-z]?$/);
+  process.env.DOCKED_RESTORE_RUN ??
+  (p1p4 ? "20261110" : previewRestore ? "20261102p" : "20261102");
+assert.match(runId, /^(20261102[a-z]?|20261110)$/);
 const dir =
   root +
   (previewRestore
@@ -63,15 +66,17 @@ const dir =
   runId;
 const evidence =
   root +
-  (finalApproval
-    ? "/docs/qa/final-australia-20261102/restore"
-    : remainingAdditions
-      ? "/docs/qa/launch-convergence-20261102/restore"
-      : previewRestore
-        ? "/docs/qa/launch-resolution-20261102/restore"
-        : runId === "20261102"
-          ? "/docs/qa/public-activation-20261102"
-          : "/docs/qa/approved-production-20261102/restore");
+  (p1p4
+    ? "/docs/qa/v31-p1-p4-20261110/restore"
+    : finalApproval
+      ? "/docs/qa/final-australia-20261102/restore"
+      : remainingAdditions
+        ? "/docs/qa/launch-convergence-20261102/restore"
+        : previewRestore
+          ? "/docs/qa/launch-resolution-20261102/restore"
+          : runId === "20261102"
+            ? "/docs/qa/public-activation-20261102"
+            : "/docs/qa/approved-production-20261102/restore");
 const attempt = process.argv.find((a) => a.startsWith("--attempt="))?.slice(10);
 assert.ok(attempt === undefined || /^[2-9]$/.test(attempt));
 const client = "supabase_db_deletion-auth-local",
@@ -95,6 +100,12 @@ const remainingHashes: Record<string, string> = {
     "2a019dce3789f34ce050b5ea70eb0cca5090fdbf69191f0e286c42875437d3a0",
 };
 if (remainingAdditions) files = Object.keys(remainingHashes);
+if (p1p4)
+  files = [
+    "20261109231834_commercial_lifetime_supply_guards.sql",
+    "20261109232000_public_practice_phone_guards.sql",
+    "20261109232124_operational_incident_review.sql",
+  ];
 const tables = [
   "auth.users",
   "private.profiles",
@@ -181,6 +192,24 @@ const local = (sql: string) =>
   );
 const checksumQuery = (table: string) =>
   `select jsonb_build_object('count',count(*),'hash',md5(coalesce(string_agg(h,'' order by h),''))) value from(select md5(to_jsonb(t)::text) h from ${table} t)q`;
+// Keep the same per-table hashes while avoiding thousands of Docker startups.
+async function localChecksums(names: string[]) {
+  const sums: Record<string, Checksum> = {};
+  for (let offset = 0; offset < names.length; offset += 25) {
+    const queries = names
+      .slice(offset, offset + 25)
+      .map(
+        (name) =>
+          `select jsonb_build_object('table','${name.replaceAll("'", "''")}','value',q.value) from (${checksumQuery(name)})q;`,
+      );
+    const lines = (await local(queries.join("\n"))).trim().split("\n");
+    for (const line of lines) {
+      const row = JSON.parse(line);
+      sums[row.table] = row.value;
+    }
+  }
+  return sums;
+}
 const encrypt = async (bytes: Buffer, key: Buffer, path: string) => {
   const iv = randomBytes(12),
     c = createCipheriv("aes-256-gcm", key, iv),
@@ -306,7 +335,7 @@ async function mainRun() {
           const members =
             await tx`select r.rolname role,m.rolname member from pg_auth_members a join pg_roles r on r.oid=a.roleid join pg_roles m on m.oid=a.member where r.rolname !~ '^pg_'`;
           const sums: Record<string, Checksum> = {};
-          if (remainingAdditions) {
+          if (remainingAdditions || p1p4) {
             const capturedTables =
               await tx`select schemaname,tablename from pg_tables where schemaname not in ('pg_catalog','information_schema') and schemaname !~ '^pg_' order by schemaname,tablename`;
             tables.splice(
@@ -540,7 +569,6 @@ async function mainRun() {
   // A successful database process alone cannot excuse failed GCM authentication.
   if (streamError)
     throw Error("Encrypted archive authentication/stream verification failed");
-  const before: Record<string, Checksum> = {};
   // pg_net extension transport caches/queues are unlogged and excluded from
   // pg_dump. Never replay their outbound requests in a restored environment.
   // These are not durable application notification/outbox or financial tables.
@@ -548,13 +576,16 @@ async function mainRun() {
     '"net"."_http_response"',
     '"net"."http_request_queue"',
   ];
-  for (const [table, expected] of Object.entries(manifest.sums)) {
-    if (remainingAdditions && excludedTransportTables.includes(table)) continue;
-    before[table] = JSON.parse(
-      (await local(checksumQuery(table) + ";")).trim(),
-    );
-    assert.deepEqual(before[table], expected, table);
-  }
+  const protectedNames = Object.keys(manifest.sums).filter(
+    (table) =>
+      !(
+        (remainingAdditions || p1p4) &&
+        excludedTransportTables.includes(table)
+      ),
+  );
+  const before = await localChecksums(protectedNames);
+  for (const table of protectedNames)
+    assert.deepEqual(before[table], manifest.sums[table], table);
   assert.equal(
     (await local("select current_setting('cron.launch_active_jobs');")).trim(),
     "off",
@@ -585,6 +616,7 @@ async function mainRun() {
     version: string;
   }[] = [];
   const migrations = [];
+  const migrationSources = new Map<string, string>();
   if (remainingAdditions) {
     assert.equal(
       (
@@ -610,6 +642,7 @@ async function mainRun() {
       root + "/supabase/migrations/" + file,
       "utf8",
     );
+    migrationSources.set(file, source);
     if (remainingAdditions)
       assert.equal(
         createHash("sha256").update(source).digest("hex"),
@@ -675,24 +708,26 @@ async function mainRun() {
       (await local(checksumQuery("beta_fantasy.competitions") + ";")).trim(),
     );
   }
-  const after: Record<string, Checksum> = {};
+  const after = await localChecksums(Object.keys(before));
   for (const table of Object.keys(before)) {
-    after[table] = JSON.parse((await local(checksumQuery(table) + ";")).trim());
     assert.deepEqual(after[table], before[table], table);
   }
   for (const file of previewRestore
     ? files.filter((f) => f.startsWith("20261102"))
     : files)
-    await local(
-      "begin;\n" +
-        (await readFile(root + "/supabase/migrations/" + file, "utf8")) +
-        "\ncommit;",
-    );
+    await local("begin;\n" + migrationSources.get(file) + "\ncommit;");
+  const reapplied = await localChecksums(Object.keys(before));
   for (const table of Object.keys(before))
     assert.deepEqual(
-      JSON.parse((await local(checksumQuery(table) + ";")).trim()),
+      reapplied[table],
       before[table],
       table + " after second application",
+    );
+  for (const [file, source] of migrationSources)
+    assert.equal(
+      await readFile(root + "/supabase/migrations/" + file, "utf8"),
+      source,
+      "Migration changed during rehearsal: " + file,
     );
   if (remainingAdditions) {
     assert.equal(
@@ -755,7 +790,8 @@ async function mainRun() {
     protectedTables: Object.keys(before),
     protectedRecordsUnchanged: true,
     remainingAdditionsVerified: remainingAdditions,
-    excludedTransportTables: remainingAdditions ? excludedTransportTables : [],
+    excludedTransportTables:
+      remainingAdditions || p1p4 ? excludedTransportTables : [],
     approvedRoundChanges,
     productionWrites: 0,
     storageObjectBodiesIncluded: false,

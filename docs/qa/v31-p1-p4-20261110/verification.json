@@ -1,0 +1,55 @@
+{
+  "at": "2026-11-10T00:28:27.545Z",
+  "platform": {
+    "passed": 105,
+    "evidence": "platform-tests.txt"
+  },
+  "finalTargeted": {
+    "passed": 8,
+    "overlap": true,
+    "evidence": "final-targeted-tests.txt"
+  },
+  "authRegression": {
+    "passed": 12,
+    "evidence": "auth-regression.txt"
+  },
+  "browser": {
+    "passed": 2,
+    "synthetic": true,
+    "evidence": "browser-tests.txt"
+  },
+  "postgres": {
+    "lifetimeGroups": 9,
+    "packSupplyGroups": 7,
+    "billingGroups": 15,
+    "alertGroups": 18,
+    "poolGroups": 9,
+    "publicSports": [
+      "nfl",
+      "afl",
+      "nrl"
+    ],
+    "incidents": true,
+    "allPassed": true,
+    "isolated": true
+  },
+  "restoredProduction": {
+    "tables": 550,
+    "unchanged": true,
+    "exactHashes": true,
+    "appliedTwice": true,
+    "productionWrites": 0
+  },
+  "build": {
+    "webpack": true,
+    "typecheck": true,
+    "scopedLint": true,
+    "clientBoundary": true,
+    "injectedCanary": false
+  },
+  "productionDependencyVulnerabilities": 0,
+  "newPhysicalDeviceTests": false,
+  "newGoogleTransactions": false,
+  "realEmails": 0,
+  "realSms": 0
+}

@@ -52,6 +52,17 @@ async function main() {
         "utf8",
       ),
     );
+    await assert.rejects(
+      importDormantCommercialPool(sql, rows),
+      /Production import blocked/,
+    );
+    await sql.unsafe(
+      readFileSync(
+        "supabase/migrations/20261109231834_commercial_lifetime_supply_guards.sql",
+        "utf8",
+      ),
+    );
+    await sql`update commercial_billing.control set environment='acceptance'`;
     const first = await importDormantCommercialPool(sql, rows);
     assert.equal(first.inserted, rows.length);
     checks.push("real-player candidate imports only dormant definitions");
@@ -115,7 +126,7 @@ async function main() {
     await sql`update commercial_billing.control set sales_enabled=true,issuance_enabled=true,policy_version=${commercialPolicyVersion},approvals=${sql.json(approvals)} where id`;
     await sql`update commercial_billing.products set approved=true`;
     await sql`update commercial_billing.definitions set approved=true`;
-    const ledger = new CommercialLedger(sql, "commercial", {
+    const ledger = new CommercialLedger(sql, "acceptance", {
       active: "isolated",
       values: { isolated: randomBytes(32) },
     });
@@ -131,7 +142,7 @@ async function main() {
             .update("docked.fantasy\0" + token)
             .digest("hex"),
           account: "f".repeat(64),
-          environment: "commercial",
+          environment: "acceptance",
           product,
           state: "PURCHASED",
           consumed: false,

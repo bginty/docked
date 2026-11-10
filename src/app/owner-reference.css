@@ -1519,7 +1519,39 @@
   border-left: 3px solid #dba54f;
   padding: 1rem;
 }
-.ingestion-operations dl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .6rem 1rem; }
-.ingestion-operations dd { margin: 0; overflow-wrap: anywhere; }
-.ingestion-operations dt { color: #a8bdd0; }
-.ingestion-operations textarea { display: block; width: 100%; min-height: 5rem; }
+.ingestion-operations dl {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.6rem 1rem;
+}
+.ingestion-operations dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.ingestion-operations dt {
+  color: #a8bdd0;
+}
+.ingestion-operations textarea {
+  display: block;
+  width: 100%;
+  min-height: 5rem;
+}
+.operational-incidents label:has(textarea) {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.operational-incidents textarea {
+  width: 100%;
+  min-height: 6rem;
+  padding: 12px;
+  color: #edf5ff;
+  background: #172a4d;
+  border: 1px solid #718aad;
+  border-radius: 9px;
+  font: inherit;
+}
+.operational-incidents .admin-control {
+  min-height: 44px;
+  white-space: normal;
+}

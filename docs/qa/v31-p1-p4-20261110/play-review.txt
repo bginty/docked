@@ -1,0 +1,110 @@
+- progressbar
+- generic: Loading Google Play Console
+- banner:
+  - link "Google Play Console logo":
+    - /url: /console/u/0/developers/6139268121863991375/home
+    - button "Google Play Console logo"
+  - button "Unread notifications Open notification center":
+    - img: notifications_unread
+    - generic: Unread notifications
+  - button "Switch developer accounts":
+    - img: more_vert
+  - 'button "Google Account: briant ginty (briantg_21@hotmail.com), Google membership"':
+- navigation:
+  - list:
+    - listitem "Home":
+      - button "Home":
+        - img: home
+    - listitem "Manage account":
+      - button "Manage account":
+        - img: badge
+    - listitem "Docked":
+      - button "Docked":
+        - img: play_prism
+    - listitem "Dashboard":
+      - button "Dashboard":
+        - img: dashboard
+    - listitem "Statistics":
+      - button "Statistics":
+        - img: bar_chart
+    - listitem "Publishing overview":
+      - button "Publishing overview":
+        - img: overview
+    - listitem "Protected with Play":
+      - button "Protected with Play":
+        - img: shield
+    - listitem "Test and release":
+      - button "Test and release":
+        - img: rocket_launch
+    - listitem "Monitor and improve":
+      - button "Monitor and improve":
+        - img: vital_signs
+    - listitem "Grow users":
+      - button "Grow users":
+        - img: finance_mode
+    - listitem "Monetize with Play":
+      - button "Monetize with Play":
+        - img: sell
+- heading "Publishing overview" [level=1]
+- text: See an overview of the changes made to your app, and control when changes are sent for review or published.
+- button "Show more details about Publishing overview": Show more
+- button "Managed publishing on":
+  - img: sync
+  - generic: Managed publishing on
+  - img: arrow_drop_down
+- link "Submission activity":
+  - /url: /console/u/0/developers/6139268121863991375/app/4973145400906008303/publishing/submission-activity
+  - generic: Submission activity
+  - img: arrow_right_alt
+- heading "Changes ready to publish" [level=2]
+- button "More information about \"Changes ready to publish\"":
+  - img: help
+- button "Remove changes": Remove changes
+- button "Publish 10 changes":
+  - generic: Publish 10 changes
+- 'button "Show content: Changes ready to publish" [active]':
+  - generic: Show
+  - img: expand_more
+- heading "Changes in review" [level=2]
+- button "More information about \"Changes in review\"":
+  - img: help
+- button "Remove changes": Remove changes
+- 'button "Hide content: Changes in review" [expanded]':
+  - generic: Hide
+  - img: expand_less
+- img: inventory
+- generic: Your changes are now in review. We may find additional issues when reviewing your app.
+- link "Go to the Help center to learn more about the automated checks we run to detect issues before you send your changes for review":
+  - /url: https://support.google.com/googleplay/android-developer/answer/14807773
+  - generic: Learn more
+- grid "Changes":
+  - row "Item changed Description":
+    - columnheader "Item changed"
+    - columnheader "Description"
+    - cell
+  - row "Production":
+    - img: rocket_launch
+    - gridcell "Production"
+  - row "31 (1.30) - AU launch - native sharing Start full rollout":
+    - gridcell "31 (1.30) - AU launch - native sharing":
+      - generic: 31 (1.30) - AU launch - native sharing
+    - gridcell "Start full rollout":
+      - generic: Start full rollout
+    - gridcell:
+      - listbox "More actions":
+        - button "More actions":
+          - img: more_vert
+- link "Product updates":
+  - /url: https://play.google.com/console/about/whats-new/
+- link "Status dashboard":
+  - /url: https://status.play.google.com/
+- link "Help":
+  - /url: /console/u/0/developers/6139268121863991375/help-and-support?app=4973145400906008303
+- generic: © 2026 Google
+- link "Privacy":
+  - /url: https://www.google.com/policies/privacy/
+- link "Developer Distribution Agreement":
+  - /url: https://play.google.com/about/developer-distribution-agreement.html
+- link "Terms of Service":
+  - /url: https://play.google.com/about/console/terms-of-service/
+- status

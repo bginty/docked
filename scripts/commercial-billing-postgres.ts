@@ -71,6 +71,12 @@ async function main() {
   );
   await sql.unsafe(migration);
   await sql.unsafe(migration);
+  await sql.unsafe(
+    readFileSync(
+      "supabase/migrations/20261109231834_commercial_lifetime_supply_guards.sql",
+      "utf8",
+    ),
+  );
   await check(
     "migration reapplication leaves gates closed and creates no accounts",
     async () => {

@@ -108,12 +108,12 @@ test("duplicate aliases, synthetic identities, NBA and silent eligibility change
     /eligibility/,
   );
 });
-test("saved TEST_ONLY allocation exclusion cannot silently discard unknown issuance", () => {
+test("saved TEST_ONLY allocations cannot authorize a zero lifetime baseline", () => {
   assert.equal(
     reconcileExcludedTestSupply([
       { sport: "nfl", rarity: "ICON", instances: 2, matchedTestReceipts: 2 },
     ]).commercialBaseline,
-    0,
+    null,
   );
   assert.throws(
     () =>

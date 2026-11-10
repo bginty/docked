@@ -1,0 +1,538 @@
+TAP version 13
+# Subtest: account erasure retains record keys and requires confirmed provider erasure
+ok 1 - account erasure retains record keys and requires confirmed provider erasure
+  ---
+  duration_ms: 8.5454
+  ...
+# Subtest: missing identity is retry-safe; outages and unconfirmed erasure do not complete
+ok 2 - missing identity is retry-safe; outages and unconfirmed erasure do not complete
+  ---
+  duration_ms: 3.3093
+  ...
+# Subtest: production recipient policy defaults closed, support tests cannot email friends, beta requires exact list
+ok 3 - production recipient policy defaults closed, support tests cannot email friends, beta requires exact list
+  ---
+  duration_ms: 7.2323
+  ...
+# Subtest: invitation GET and mail scanner requests cannot consume a token
+ok 4 - invitation GET and mail scanner requests cannot consume a token
+  ---
+  duration_ms: 136.9508
+  ...
+# Subtest: confirmation rejects forged origins, malformed/duplicate fields and oversize bodies before Auth
+ok 5 - confirmation rejects forged origins, malformed/duplicate fields and oversize bodies before Auth
+  ---
+  duration_ms: 75.7571
+  ...
+# Subtest: only confirmed invite gets fixed password destination; invalid and uncertain outcomes stay distinct
+ok 6 - only confirmed invite gets fixed password destination; invalid and uncertain outcomes stay distinct
+  ---
+  duration_ms: 31.9201
+  ...
+# Subtest: invites require exact production identity and both new and existing activation gates
+ok 7 - invites require exact production identity and both new and existing activation gates
+  ---
+  duration_ms: 2.2583
+  ...
+# Subtest: invite messages use gated browser confirmation and encrypted stable queue identities
+ok 8 - invite messages use gated browser confirmation and encrypted stable queue identities
+  ---
+  duration_ms: 104.29
+  ...
+# Subtest: alternate invitation host is rejected before rendering or verifying
+ok 9 - alternate invitation host is rejected before rendering or verifying
+  ---
+  duration_ms: 8.9856
+  ...
+# Subtest: ordinary customer mail requires explicit unexpired public activation; beta stays scoped
+ok 10 - ordinary customer mail requires explicit unexpired public activation; beta stays scoped
+  ---
+  duration_ms: 8201.9064
+  ...
+# Subtest: production dispatch rejects previously queued unapproved recipients before certificate or Graph requests
+ok 11 - production dispatch rejects previously queued unapproved recipients before certificate or Graph requests
+  ---
+  duration_ms: 135.7273
+  ...
+# Subtest: ciphertext is randomized, identities stable, tampering fails before Graph
+ok 12 - ciphertext is randomized, identities stable, tampering fails before Graph
+  ---
+  duration_ms: 58.5852
+  ...
+# Subtest: two concurrent workers make one Graph submission; accepted retry is idle
+ok 13 - two concurrent workers make one Graph submission; accepted retry is idle
+  ---
+  duration_ms: 132.0375
+  ...
+# Subtest: bounded worker clears 32 healthy queued jobs in eight ticks and admission rejects overflow
+ok 14 - bounded worker clears 32 healthy queued jobs in eight ticks and admission rejects overflow
+  ---
+  duration_ms: 1301.1465
+  ...
+# Subtest: Graph response lost after acceptance is held unknown and never resubmitted
+ok 15 - Graph response lost after acceptance is held unknown and never resubmitted
+  ---
+  duration_ms: 41.0177
+  ...
+# Subtest: authorization failure is retriable but dispatch-fence failure never sends
+ok 16 - authorization failure is retriable but dispatch-fence failure never sends
+  ---
+  duration_ms: 106.1644
+  ...
+# Subtest: confirmed Graph 429 and 5xx are held; invalid transition cannot retry dispatch
+ok 17 - confirmed Graph 429 and 5xx are held; invalid transition cannot retry dispatch
+  ---
+  duration_ms: 107.0051
+  ...
+# docked_auth_email_prepare_rejected:validation
+# docked_auth_email_prepare_rejected:validation
+# docked_auth_email_prepare_rejected:validation
+# Subtest: signed controlled queue is support-only and production path stays disabled
+ok 18 - signed controlled queue is support-only and production path stays disabled
+  ---
+  duration_ms: 147.9862
+  ...
+# Subtest: production enqueue and worker require both activation gates
+ok 19 - production enqueue and worker require both activation gates
+  ---
+  duration_ms: 8.0735
+  ...
+# Subtest: controlled diagnostic fixes recipient and content and deduplicates
+ok 20 - controlled diagnostic fixes recipient and content and deduplicates
+  ---
+  duration_ms: 55.9393
+  ...
+# Subtest: accepted Graph send with failed receipt write never sends again
+ok 21 - accepted Graph send with failed receipt write never sends again
+  ---
+  duration_ms: 55.7387
+  ...
+# Subtest: staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+ok 22 - staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+  ---
+  duration_ms: 16.5004
+  ...
+# Subtest: verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+ok 23 - verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+  ---
+  duration_ms: 7.9541
+  ...
+# Subtest: isolated recovery keeps its own provider, CSP and verifier cookie without changing Production
+ok 24 - isolated recovery keeps its own provider, CSP and verifier cookie without changing Production
+  ---
+  duration_ms: 136.6124
+  ...
+# Subtest: recovery link scanners cannot consume tokens; only explicit POST reaches provider
+ok 25 - recovery link scanners cannot consume tokens; only explicit POST reaches provider
+  ---
+  duration_ms: 19.4321
+  ...
+# Subtest: recovery rejects cross-origin, duplicated, wrong-action and oversized requests before continuation
+ok 26 - recovery rejects cross-origin, duplicated, wrong-action and oversized requests before continuation
+  ---
+  duration_ms: 23.0916
+  ...
+# Subtest: missing PKCE cookie, unavailable service and closed gate never consume token or claim expiry
+ok 27 - missing PKCE cookie, unavailable service and closed gate never consume token or claim expiry
+  ---
+  duration_ms: 8.5832
+  ...
+# Subtest: recovery verifier presence is bound to the dedicated project and supports SSR chunks
+ok 28 - recovery verifier presence is bound to the dedicated project and supports SSR chunks
+  ---
+  duration_ms: 1.0185
+  ...
+# Subtest: member observer is default-off and has no mail credentials or database side effect
+ok 29 - member observer is default-off and has no mail credentials or database side effect
+  ---
+  duration_ms: 8.0028
+  ...
+# Subtest: classification distinguishes replay, expected rejection, supply failure and unknown stages
+ok 30 - classification distinguishes replay, expected rejection, supply failure and unknown stages
+  ---
+  duration_ms: 1.1751
+  ...
+# Subtest: monitoring and logger outages cannot change original success/error identity
+ok 31 - monitoring and logger outages cannot change original success/error identity
+  ---
+  duration_ms: 5.1986
+  ...
+# Subtest: incident writes contain only approved enum and random attempt UUID, never raw identity/error
+ok 32 - incident writes contain only approved enum and random attempt UUID, never raw identity/error
+  ---
+  duration_ms: 2.1091
+  ...
+# Subtest: v2 observations expose explicit category counts; successful retries alone are informational
+ok 33 - v2 observations expose explicit category counts; successful retries alone are informational
+  ---
+  duration_ms: 8.0729
+  ...
+# Subtest: known replay probe uses a hash and boolean only, never persists a raw token
+ok 34 - known replay probe uses a hash and boolean only, never persists a raw token
+  ---
+  duration_ms: 4.5824
+  ...
+# Subtest: verified commercial receipt uses provider identity, exact AUD charge and account
+ok 35 - verified commercial receipt uses provider identity, exact AUD charge and account
+  ---
+  duration_ms: 123.5576
+  ...
+# Subtest: TEST receipts cannot cross commercial boundary in either direction
+ok 36 - TEST receipts cannot cross commercial boundary in either direction
+  ---
+  duration_ms: 14.1611
+  ...
+# Subtest: reject manipulated account
+ok 37 - reject manipulated account
+  ---
+  duration_ms: 2.8311
+  ...
+# Subtest: reject manipulated product
+ok 38 - reject manipulated product
+  ---
+  duration_ms: 3.139
+  ...
+# Subtest: reject manipulated region
+ok 39 - reject manipulated region
+  ---
+  duration_ms: 7.0902
+  ...
+# Subtest: reject manipulated quantity
+ok 40 - reject manipulated quantity
+  ---
+  duration_ms: 5.4411
+  ...
+# Subtest: reject manipulated option
+ok 41 - reject manipulated option
+  ---
+  duration_ms: 6.4576
+  ...
+# Subtest: reject manipulated orderToken
+ok 42 - reject manipulated orderToken
+  ---
+  duration_ms: 6.9117
+  ...
+# Subtest: reject manipulated orderProduct
+ok 43 - reject manipulated orderProduct
+  ---
+  duration_ms: 5.9366
+  ...
+# Subtest: reject manipulated currency
+ok 44 - reject manipulated currency
+  ---
+  duration_ms: 4.9369
+  ...
+# Subtest: pending without order remains pending and is not a verified charge
+ok 45 - pending without order remains pending and is not a verified charge
+  ---
+  duration_ms: 1.7314
+  ...
+# Subtest: partial refunds are held, full refund is cumulative without double counting
+ok 46 - partial refunds are held, full refund is cumulative without double counting
+  ---
+  duration_ms: 7.8257
+  ...
+# Subtest: amount drift records a charge needing review, never silently changes credit allocation
+ok 47 - amount drift records a charge needing review, never silently changes credit allocation
+  ---
+  duration_ms: 2.4095
+  ...
+# Subtest: provider outages do not leak tokens or invent successful purchases
+ok 48 - provider outages do not leak tokens or invent successful purchases
+  ---
+  duration_ms: 1.6226
+  ...
+# Subtest: integer money and unchanged sport-specific pack configuration
+ok 49 - integer money and unchanged sport-specific pack configuration
+  ---
+  duration_ms: 42.8901
+  ...
+# Subtest: all sport/size variants require distinct supply for every positive-weight rarity
+ok 50 - all sport/size variants require distinct supply for every positive-weight rarity
+  ---
+  duration_ms: 55.1041
+  ...
+# Subtest: missing, fractional or invalid supply cannot satisfy a required rarity
+ok 51 - missing, fractional or invalid supply cannot satisfy a required rarity
+  ---
+  duration_ms: 1.1171
+  ...
+# Subtest: dormant real roster definitions retain identity, eligibility and source without approval
+ok 52 - dormant real roster definitions retain identity, eligibility and source without approval
+  ---
+  duration_ms: 42.4351
+  ...
+# Subtest: dormant import validation rejects bad immutable rows before SQL
+ok 53 - dormant import validation rejects bad immutable rows before SQL
+  ---
+  duration_ms: 100.0014
+  ...
+# Subtest: duplicate aliases, synthetic identities, NBA and silent eligibility changes fail closed
+ok 54 - duplicate aliases, synthetic identities, NBA and silent eligibility changes fail closed
+  ---
+  duration_ms: 2.8862
+  ...
+# Subtest: saved TEST_ONLY allocations cannot authorize a zero lifetime baseline
+ok 55 - saved TEST_ONLY allocations cannot authorize a zero lifetime baseline
+  ---
+  duration_ms: 1.0355
+  ...
+# Subtest: expired lab pairing cannot read data or invoke provider operations
+ok 56 - expired lab pairing cannot read data or invoke provider operations
+  ---
+  duration_ms: 10.99
+  ...
+# Subtest: native lab rejects web, missing/expired pairing, hostile fields and nonlocal host before settlement
+ok 57 - native lab rejects web, missing/expired pairing, hostile fields and nonlocal host before settlement
+  ---
+  duration_ms: 418.2804
+  ...
+# Subtest: test refund derives order only from freshly verified Google test receipt
+ok 58 - test refund derives order only from freshly verified Google test receipt
+  ---
+  duration_ms: 143.6193
+  ...
+# Subtest: test refund lost response reconciles reversal and duplicate retry does not refund twice
+ok 59 - test refund lost response reconciles reversal and duplicate retry does not refund twice
+  ---
+  duration_ms: 11.938
+  ...
+# Subtest: push acknowledges only durable persistence; duplicate is still successful
+ok 60 - push acknowledges only durable persistence; duplicate is still successful
+  ---
+  duration_ms: 36.9343
+  ...
+# Subtest: host scheduler accepts only its secret and cannot use browser credentials
+ok 61 - host scheduler accepts only its secret and cannot use browser credentials
+  ---
+  duration_ms: 60.0538
+  ...
+# Subtest: invalid Google identity or alternate callback never reaches persistence
+ok 62 - invalid Google identity or alternate callback never reaches persistence
+  ---
+  duration_ms: 2.2567
+  ...
+# Subtest: scheduled worker requires independent server credential, never a member session
+ok 63 - scheduled worker requires independent server credential, never a member session
+  ---
+  duration_ms: 3.5992
+  ...
+# Subtest: closed billing services do not connect or run jobs
+ok 64 - closed billing services do not connect or run jobs
+  ---
+  duration_ms: 6.9102
+  ...
+# Subtest: existing legacy scheduler keeps dormant commercial jobs closed
+ok 65 - existing legacy scheduler keeps dormant commercial jobs closed
+  ---
+  duration_ms: 1.8893
+  ...
+# Subtest: commercial refund recovery continues with checkout disabled
+ok 66 - commercial refund recovery continues with checkout disabled
+  ---
+  duration_ms: 1.2194
+  ...
+# Subtest: one queue outage does not prevent the other queue from recovering
+ok 67 - one queue outage does not prevent the other queue from recovering
+  ---
+  duration_ms: 1.0294
+  ...
+# Subtest: signed Google push produces only a stable refresh hint, no client credit or member
+ok 68 - signed Google push produces only a stable refresh hint, no client credit or member
+  ---
+  duration_ms: 706.212
+  ...
+# Subtest: wrong push account, unverified email, browser origin and cookies denied
+ok 69 - wrong push account, unverified email, browser origin and cookies denied
+  ---
+  duration_ms: 34.9683
+  ...
+# Subtest: wrong issuer/audience/signature and expired tokens rejected by cryptographic verifier
+ok 70 - wrong issuer/audience/signature and expired tokens rejected by cryptographic verifier
+  ---
+  duration_ms: 911.9133
+  ...
+# Subtest: wrong subscription/package, malformed/oversized body and ambiguous notifications rejected
+ok 71 - wrong subscription/package, malformed/oversized body and ambiguous notifications rejected
+  ---
+  duration_ms: 47.3185
+  ...
+# Subtest: voided purchase and test notifications do not carry executable refund amounts
+ok 72 - voided purchase and test notifications do not carry executable refund amounts
+  ---
+  duration_ms: 20.6996
+  ...
+# Subtest: hosted boundary rejects unauthorised, browser and invalid-method requests before database/provider access
+ok 73 - hosted boundary rejects unauthorised, browser and invalid-method requests before database/provider access
+  ---
+  duration_ms: 19.4702
+  ...
+# Subtest: hosted configuration rejects customer roles, alternate hosts, members and invalid expiry
+ok 74 - hosted configuration rejects customer roles, alternate hosts, members and invalid expiry
+  ---
+  duration_ms: 4.6277
+  ...
+# Subtest: expired hosted session rejects even the correct credential
+ok 75 - expired hosted session rejects even the correct credential
+  ---
+  duration_ms: 2.2889
+  ...
+# Subtest: isolated member configuration requires the fixed synthetic subject and server HMAC binding
+ok 76 - isolated member configuration requires the fixed synthetic subject and server HMAC binding
+  ---
+  duration_ms: 7.8733
+  ...
+# Subtest: closed Google test window preserves isolated ledger reads without admitting checkout
+ok 77 - closed Google test window preserves isolated ledger reads without admitting checkout
+  ---
+  duration_ms: 12.4977
+  ...
+# Subtest: Google TEST admission cannot select Production, a different account, live checkout or an expired window
+ok 78 - Google TEST admission cannot select Production, a different account, live checkout or an expired window
+  ---
+  duration_ms: 5.4914
+  ...
+# Subtest: external Preview email uses exact expiring admission without granting transactions or invitations
+ok 79 - external Preview email uses exact expiring admission without granting transactions or invitations
+  ---
+  duration_ms: 2.3356
+  ...
+# Subtest: public acceptance is bound to existing protected Preview, with ordinary-customer mode and narrow Auth projections
+ok 80 - public acceptance is bound to existing protected Preview, with ordinary-customer mode and narrow Auth projections
+  ---
+  duration_ms: 3.3744
+  ...
+# Subtest: public acceptance rejects Production, cross-project credentials, privileged runtime and checkout
+ok 81 - public acceptance rejects Production, cross-project credentials, privileged runtime and checkout
+  ---
+  duration_ms: 3.627
+  ...
+# Subtest: all lifetime copies count even with an old alias; Icon cannot replenish
+ok 82 - all lifetime copies count even with an old alias; Icon cannot replenish
+  ---
+  duration_ms: 94.4924
+  ...
+# Subtest: live reconciliation preserves all supported issued copies, including retired records
+ok 83 - live reconciliation preserves all supported issued copies, including retired records
+  ---
+  duration_ms: 12.2471
+  ...
+# Subtest: pending consent does not interrupt owner MFA on native navigation or resume
+ok 84 - pending consent does not interrupt owner MFA on native navigation or resume
+  ---
+  duration_ms: 4.6911
+  ...
+# Subtest: native app entry, recovery and expired-session transitions retain UI context without new authority
+ok 85 - native app entry, recovery and expired-session transitions retain UI context without new authority
+  ---
+  duration_ms: 6.0949
+  ...
+# Subtest: mobile app tabs are exact deep links without expanding push or auth authority
+ok 86 - mobile app tabs are exact deep links without expanding push or auth authority
+  ---
+  duration_ms: 2.9662
+  ...
+# Subtest: native links canonicalize official results and community records without importing session tokens
+ok 87 - native links canonicalize official results and community records without importing session tokens
+  ---
+  duration_ms: 1.0707
+  ...
+# Subtest: native auth callbacks accept only a code for the original same-origin PKCE exchange
+ok 88 - native auth callbacks accept only a code for the original same-origin PKCE exchange
+  ---
+  duration_ms: 1.4739
+  ...
+# Subtest: push route groundwork rejects arbitrary payloads and share links discard no hidden sensitive data
+ok 89 - push route groundwork rejects arbitrary payloads and share links discard no hidden sensitive data
+  ---
+  duration_ms: 0.8011
+  ...
+# Subtest: Android foundation blocks release, backup and arbitrary cleartext, with no Firebase activation
+ok 90 - Android foundation blocks release, backup and arbitrary cleartext, with no Firebase activation
+  ---
+  duration_ms: 18.3702
+  ...
+# Subtest: live beta denies public signup even when ordinary registration flags are enabled
+ok 91 - live beta denies public signup even when ordinary registration flags are enabled
+  ---
+  duration_ms: 7.4815
+  ...
+# Subtest: production Auth mail is off by default and independent of optional delivery
+ok 92 - production Auth mail is off by default and independent of optional delivery
+  ---
+  duration_ms: 1.0461
+  ...
+# Subtest: a Preview invitation cannot bypass production mail or registration gates
+ok 93 - a Preview invitation cannot bypass production mail or registration gates
+  ---
+  duration_ms: 0.575
+  ...
+# Subtest: all signup paths require explicit age, Terms and separate Privacy acceptance
+ok 94 - all signup paths require explicit age, Terms and separate Privacy acceptance
+  ---
+  duration_ms: 1.0498
+  ...
+# Subtest: production policy versions never default to draft and require operator readiness
+ok 95 - production policy versions never default to draft and require operator readiness
+  ---
+  duration_ms: 4.6309
+  ...
+# Subtest: safe UI registration projection includes database authority and cannot expose credentials
+ok 96 - safe UI registration projection includes database authority and cannot expose credentials
+  ---
+  duration_ms: 0.5294
+  ...
+# Subtest: changed production legal versions require fresh explicit acceptance
+ok 97 - changed production legal versions require fresh explicit acceptance
+  ---
+  duration_ms: 1.0448
+  ...
+# Subtest: only genuine username collisions are recoverable during signup provisioning
+ok 98 - only genuine username collisions are recoverable during signup provisioning
+  ---
+  duration_ms: 0.9227
+  ...
+# Subtest: existing-member setup is independently opt-in and cannot inherit beta consent IDs
+ok 99 - existing-member setup is independently opt-in and cannot inherit beta consent IDs
+  ---
+  duration_ms: 5.6356
+  ...
+# Subtest: phone evidence must come from confirmed Auth fields, never a typed number
+ok 100 - phone evidence must come from confirmed Auth fields, never a typed number
+  ---
+  duration_ms: 7.1019
+  ...
+# Subtest: SMS cannot send before public/OTP/policy configuration; beta unchanged
+ok 101 - SMS cannot send before public/OTP/policy configuration; beta unchanged
+  ---
+  duration_ms: 1.5774
+  ...
+# Subtest: local beta uses admitted Auth projections without granting direct access to Auth tables
+ok 102 - local beta uses admitted Auth projections without granting direct access to Auth tables
+  ---
+  duration_ms: 2.6331
+  ...
+# Subtest: redemption integration profile remains explicitly loopback and nondeployable
+ok 103 - redemption integration profile remains explicitly loopback and nondeployable
+  ---
+  duration_ms: 4.3139
+  ...
+# Subtest: native links preserve visible sport and reject hidden/ambiguous/malicious context
+ok 104 - native links preserve visible sport and reject hidden/ambiguous/malicious context
+  ---
+  duration_ms: 12.3178
+  ...
+# Subtest: internal native build is HTTPS-only and does not weaken old release targets
+ok 105 - internal native build is HTTPS-only and does not weaken old release targets
+  ---
+  duration_ms: 2.8951
+  ...
+1..105
+# tests 105
+# suites 0
+# pass 105
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 45575.2276

@@ -19,6 +19,7 @@ const staticPaths = new Set([
   "/app/forgot-password",
   "/app/reset-password",
   "/app/onboarding",
+  "/app/verify-phone",
   "/app/check-email",
   "/app/verified",
   "/app/password-updated",

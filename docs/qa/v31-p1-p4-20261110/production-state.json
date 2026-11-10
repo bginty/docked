@@ -1,0 +1,95 @@
+{
+  "at": "2026-11-09T23:58:34.987446+00:00",
+  "publicRounds": [
+    {
+      "id": "0073858d-b14b-49ce-8cda-56c2357490c5",
+      "fee": 0,
+      "kind": "practice",
+      "lock": "2026-11-15T12:00:00+00:00",
+      "name": "AFL Roster Practice · All-Star",
+      "sport": "afl",
+      "awards": [],
+      "enabled": false,
+      "rewards": false,
+      "synthetic": true
+    },
+    {
+      "id": "38f8e2da-a8cd-41ec-b34b-008084be7722",
+      "fee": 0,
+      "kind": "practice",
+      "lock": "2026-11-15T12:00:00+00:00",
+      "name": "AFL Roster Practice · Traditional",
+      "sport": "afl",
+      "awards": [],
+      "enabled": false,
+      "rewards": false,
+      "synthetic": true
+    },
+    {
+      "id": "fa53ab81-b8fd-4d4e-bf5e-214c5209b09f",
+      "fee": 0,
+      "kind": "practice",
+      "lock": "2026-11-15T12:00:00+00:00",
+      "name": "NFL Roster Practice · All-Star",
+      "sport": "nfl",
+      "awards": [],
+      "enabled": false,
+      "rewards": false,
+      "synthetic": true
+    },
+    {
+      "id": "11edf5ac-262b-41ad-a6d9-06a53053a051",
+      "fee": 0,
+      "kind": "practice",
+      "lock": "2026-11-15T12:00:00+00:00",
+      "name": "NFL Roster Practice · Traditional",
+      "sport": "nfl",
+      "awards": [],
+      "enabled": false,
+      "rewards": false,
+      "synthetic": true
+    },
+    {
+      "id": "3e19ab97-7cff-490c-aa9c-aeba3a8e6207",
+      "fee": 0,
+      "kind": "practice",
+      "lock": "2026-11-15T12:00:00+00:00",
+      "name": "NRL Roster Practice · All-Star",
+      "sport": "nrl",
+      "awards": [],
+      "enabled": false,
+      "rewards": false,
+      "synthetic": true
+    },
+    {
+      "id": "c49a6684-8d34-4411-92f5-50393d55386e",
+      "fee": 0,
+      "kind": "practice",
+      "lock": "2026-11-15T12:00:00+00:00",
+      "name": "NRL Roster Practice · Traditional",
+      "sport": "nrl",
+      "awards": [],
+      "enabled": false,
+      "rewards": false,
+      "synthetic": true
+    }
+  ],
+  "publicEnabled": false,
+  "scheduledJobs": 9,
+  "commercialCards": 0,
+  "commercialFunds": 0,
+  "commercialControl": {
+    "id": true,
+    "updated_at": "2026-11-01T23:14:45.99055+00:00",
+    "environment": "commercial",
+    "sales_enabled": false,
+    "policy_version": "commercial-launch-awaiting-approval-v1",
+    "gameplay_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false
+  },
+  "commercialReceipts": 0,
+  "commercialDefinitions": 0,
+  "phoneConfirmedAccounts": 0,
+  "pendingMigrationsApplied": 0
+}

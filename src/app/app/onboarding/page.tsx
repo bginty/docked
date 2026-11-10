@@ -3,12 +3,16 @@ import { onboardingIdentity } from "@/server/onboarding-identity";
 import { appOnboardingState } from "@/server/app-onboarding";
 import { AppOnboardingForm } from "@/components/app-auth-forms";
 import { betaOwnerAuthenticationOnly } from "@/core/hosted-beta.mjs";
+import { publicCustomersEnabled } from "@/core/public-customer";
+import { verifiedPhone } from "@/core/public-phone";
 export default async function AppOnboarding() {
   const who = await onboardingIdentity();
   if (!who) redirect("/app/login");
   if (who.mfaRequired && who.aal !== "aal2")
     redirect("/mfa?next=/app/onboarding");
   if (betaOwnerAuthenticationOnly(process.env)) redirect("/app/owner-setup");
+  if (publicCustomersEnabled() && !verifiedPhone(who.user))
+    redirect("/app/verify-phone");
   const state = await appOnboardingState(who.user.id);
   if (state.configurationPending)
     return (

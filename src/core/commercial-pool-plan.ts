@@ -28,8 +28,8 @@ export type DormantPoolDefinition = {
   sport: PoolRosterCandidate["sport"];
   rarity: string;
   lifetime_cap: number;
-  issued: 0;
-  legacy_issued: 0;
+  issued: number;
+  legacy_issued: number;
   approved: false;
   rights_reference: string;
   snapshot: PoolRosterCandidate["snapshot"] & {
@@ -125,9 +125,8 @@ export function validateDormantCommercialPool(rows: DormantPoolDefinition[]) {
   }
 }
 
-/** Evidence check only: immutable invited TEST allocations are excluded from the
- * commercial baseline by the existing economy specification, never erased or
- * silently converted. Unknown/non-TEST issuance must block automatic preparation. */
+/** Historical classification only. The November 10 lifetime decision supersedes
+ * the former zero-baseline exclusion. TEST_ONLY does not authorize replenishment. */
 export function reconcileExcludedTestSupply(
   rows: {
     sport: string;
@@ -147,11 +146,12 @@ export function reconcileExcludedTestSupply(
       );
   }
   return {
-    version: "existing-test-allocation-exclusion-v1",
-    commercialBaseline: 0,
-    excludedInstances: rows.reduce((n, r) => n + r.instances, 0),
+    version: "all-issued-lifetime-reconciliation-required-v2",
+    commercialBaseline: null,
+    excludedInstances: 0,
+    issuedRequiringReconciliation: rows.reduce((n, r) => n + r.instances, 0),
     authority:
-      "docs/NFL_CARD_ECONOMY_DELIVERY.md; docs/NFL_CARD_ECONOMY_V2.md; TEST_ONLY saved pack receipts",
+      "Founder P1 lifetime-cap instruction, 10 November 2026; per-player reconciliation required",
     recordsPreserved: true,
     rows,
   };

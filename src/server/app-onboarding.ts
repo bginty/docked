@@ -6,6 +6,7 @@ import { persistExistingMemberProfile } from "./existing-member-onboarding";
 import type { SignupTransaction } from "./signup-profile";
 import type { TransactionSql } from "postgres";
 import { publicCustomersEnabled, isPublicSport } from "../core/public-customer";
+import { verifiedPhone, verifiedPhoneRequired } from "../core/public-phone";
 import { setCommunityClaims } from "./community-social";
 import { previewCommunityContext } from "@/core/preview-community";
 import { appOnboardingSchema } from "@/core/preview-testers";
@@ -107,6 +108,8 @@ export async function appOnboardingState(
 export async function saveAppOnboarding(input: unknown) {
   const v = appOnboardingSchema.parse(input),
     who = await requireOnboardingIdentity();
+  if (publicCustomersEnabled() && !verifiedPhone(who.user))
+    throw Error(verifiedPhoneRequired);
   // Existing in-flight forms must also avoid the closed community gate. No
   // preference, consent or completion record is written by this redirect.
   if (betaOwnerAuthenticationOnly(process.env))

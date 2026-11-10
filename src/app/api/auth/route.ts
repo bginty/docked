@@ -110,6 +110,22 @@ export async function POST(request: Request) {
       { status: 400 },
     );
   const v = parsed.data;
+  // Public signup cannot evade all limits simply by rotating email addresses.
+  // Global quota also bounds requests when an upstream IP header is unavailable.
+  if (publicCustomersEnabled() && v.action === "signup") {
+    const source =
+      request.headers.get("x-vercel-forwarded-for") ??
+      request.headers.get("x-forwarded-for") ??
+      "unknown";
+    if (
+      !(await rateLimit(`public-signup-source:${hash(source)}`, 20, 3600)) ||
+      !(await rateLimit("public-signup:global", 100, 3600))
+    )
+      return NextResponse.json(
+        { error: "Registration is busy. Please try again later." },
+        { status: 429, headers: { "Cache-Control": "no-store" } },
+      );
+  }
   if (ownerSetup) {
     if (
       !(await rateLimit(

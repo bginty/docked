@@ -22,7 +22,13 @@ export default async function OperationsPage({
     who = await requireRole(["owner"]);
   } catch (error) {
     const kind = memberAccessFailure(error);
-    return <FantasyLoadError authRequired={kind === "authentication"} mfaRequired={kind === "mfa"} permissionDenied={kind === "permission"} />;
+    return (
+      <FantasyLoadError
+        authRequired={kind === "authentication"}
+        mfaRequired={kind === "mfa"}
+        permissionDenied={kind === "permission"}
+      />
+    );
   }
   const [displayName, unreadCount] = await Promise.all([
     adminDisplayName(who),
@@ -65,7 +71,12 @@ export default async function OperationsPage({
         <a className="admin-control" href="/admin/marketplace">
           Marketplace controls
         </a>
-        <a className="admin-control" href="/admin/coupons">Pack coupons</a>
+        <a className="admin-control" href="/admin/coupons">
+          Pack coupons
+        </a>
+        <a className="admin-control" href="/admin/incidents">
+          Operational incidents
+        </a>
         <details className="owner-reference-detail">
           <summary>Advanced reporting filters & export</summary>
           <a className="button secondary" href="/admin/nfl-testing">

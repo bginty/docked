@@ -58,6 +58,9 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
    and exists(select 1 from private.consent_events c where c.user_id=p.id and c.purpose='privacy' and c.granted and c.version=${versions.privacy} and c.id=(select id from private.consent_events where user_id=p.id and purpose='privacy' order by created_at desc,id desc limit 1))
    and exists(select 1 from lateral (select * from private.region_policies r where r.country=p.country and r.state=p.state and r.effective_from<=clock_timestamp() and r.effective_to>clock_timestamp() order by r.effective_from desc,r.id desc limit 1) r where not r.preview_community_only and r.approved and r.minimum_age=18 and r.review_at>clock_timestamp())
    and exists(select 1 from ${sql.unsafe(authSessionsRelation())} s where s.id=${who.sessionId} and s.user_id=p.id and (s.not_after is null or s.not_after>clock_timestamp()))`;
+    const [phone] =
+      await sql`select private.public_phone_verified(${who.user.id}::uuid) verified`;
+    if (phone?.verified !== true) throw Error("Verified phone required");
     if (!p)
       throw Error("Current customer eligibility and policy consent required");
   };
