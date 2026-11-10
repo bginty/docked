@@ -4,10 +4,16 @@ import {
   assertIsolatedPublicPreview,
   isolatedPreviewReadOnlyIdentity,
   isolatedExternalEmailRecipient,
+  isolatedPhoneTestIdentity,
 } from "../../src/core/isolated-public-preview.mjs";
 import { customerEmailEnabled } from "../../src/core/customer-email-readiness";
 import { assertDeploymentEnvironment } from "../../src/core/deployment-environment";
-import { authUiReadiness } from "../../src/core/auth-readiness";
+import {
+  authUiReadiness,
+  productionAuthRequestDenial,
+} from "../../src/core/auth-readiness";
+import { customerOnboardingEnabled } from "../../src/core/customer-onboarding.mjs";
+import { phoneDeliveryReady } from "../../src/core/public-phone";
 import {
   commercialLedgerEnvironment,
   isolatedBillingConfiguration,
@@ -52,6 +58,57 @@ const env: Record<string, string> = {
     ].map((k) => [k, "false"]),
   ),
 };
+test("private phone acceptance admits only two existing accounts and keeps registration closed", () => {
+  const memberA = "00000000-0000-4000-8000-000000000001";
+  const memberB = "00000000-0000-4000-8000-000000000002";
+  const phoneEnv = {
+    ...env,
+    NODE_ENV: "test" as const,
+    REGISTRATION_ENABLED: "false",
+    DOCKED_ISOLATED_PHONE_TEST: "true",
+    DOCKED_ISOLATED_PHONE_MEMBERS: `${memberA},${memberB}`,
+    DOCKED_ISOLATED_PHONE_UNTIL: new Date(Date.now() + 3600000).toISOString(),
+    DOCKED_PUBLIC_PHONE_OTP: "true",
+    DOCKED_PUBLIC_PHONE_POLICY_REFERENCE:
+      "Founder-approved isolated OTP acceptance",
+    DOCKED_ISOLATED_GOOGLE_TEST: "false",
+  };
+  assert.doesNotThrow(() => assertDeploymentEnvironment(phoneEnv));
+  assert.equal(authUsersRelation(phoneEnv), "private.runtime_auth_users");
+  assert.equal(authUiReadiness(phoneEnv, true).registrationAvailable, false);
+  assert.equal(customerOnboardingEnabled(phoneEnv), false);
+  assert(productionAuthRequestDenial("signup", undefined, phoneEnv));
+  assert(
+    productionAuthRequestDenial("signup", "old-preview-invitation", phoneEnv),
+  );
+  assert.equal(productionAuthRequestDenial("login", undefined, phoneEnv), null);
+  assert.equal(phoneDeliveryReady(phoneEnv), true);
+  assert.equal(isolatedPhoneTestIdentity(phoneEnv, memberA), true);
+  assert.equal(isolatedPhoneTestIdentity(phoneEnv, memberB), true);
+  assert.equal(
+    isolatedPhoneTestIdentity(phoneEnv, "00000000-0000-4000-8000-000000000003"),
+    false,
+  );
+  assert.equal(isolatedPhoneTestIdentity(env, memberA), false);
+  for (const patch of [
+    { REGISTRATION_ENABLED: "true" },
+    { DOCKED_ISOLATED_PHONE_MEMBERS: `${memberA},${memberA}` },
+    { DOCKED_ISOLATED_PHONE_MEMBERS: "*" },
+    { DOCKED_ISOLATED_PHONE_UNTIL: "2000-01-01" },
+    {
+      DOCKED_ISOLATED_PHONE_UNTIL: new Date(
+        Date.now() + 7 * 3600000,
+      ).toISOString(),
+    },
+    { DOCKED_PUBLIC_PHONE_POLICY_REFERENCE: "" },
+    { DOCKED_PUBLIC_PHONE_OTP: "false" },
+    { DOCKED_ISOLATED_GOOGLE_TEST: "true" },
+    { VERCEL_ENV: "production" },
+    { NEXT_PUBLIC_SUPABASE_URL: "https://pojoymtniryarxxunyvz.supabase.co" },
+    { DOCKED_COMMERCIAL_CHECKOUT: "true" },
+  ])
+    assert.throws(() => assertDeploymentEnvironment({ ...phoneEnv, ...patch }));
+});
 test("closed Google test window preserves isolated ledger reads without admitting checkout", () => {
   const e = {
     ...env,

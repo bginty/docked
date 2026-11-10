@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-10T03:18:39.540971+00:00",
+  "readOnly": true,
+  "publicRounds": 6,
+  "scheduledJobs": 9,
+  "commercialCards": 0,
+  "commercialPacks": 0,
+  "databaseVersion": "PostgreSQL 17.11 on x86_64-pc-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+  "phoneUniqueIndex": 1,
+  "productionWrites": 0,
+  "commercialControl": {
+    "id": true,
+    "updated_at": "2026-11-01T23:14:45.99055+00:00",
+    "environment": "commercial",
+    "sales_enabled": false,
+    "policy_version": "commercial-launch-awaiting-approval-v1",
+    "gameplay_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false
+  },
+  "commercialReceipts": 0,
+  "identityDependency": true,
+  "unsafePublicRounds": 0,
+  "enabledPublicRounds": 0,
+  "scheduleFingerprint": "98ef2f5767702a4e092da7384a5e8693",
+  "commercialDependency": true,
+  "commercialDefinitions": 0,
+  "retentionWorkerExists": false,
+  "phoneConfirmedAccounts": 0,
+  "incidentSchemaInstalled": false,
+  "phoneCanonicalConflicts": 0,
+  "pendingMigrationsApplied": 0
+}

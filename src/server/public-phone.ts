@@ -10,6 +10,7 @@ import {
 } from "../core/public-phone";
 import { publicCustomersEnabled } from "../core/public-customer";
 import { executePhoneChallenge } from "../core/phone-challenge";
+import { isolatedPhoneTestIdentity } from "../core/isolated-public-preview.mjs";
 
 const request = z.discriminatedUnion("action", [
   z.object({ action: z.literal("send"), phone: z.string().max(40) }).strict(),
@@ -26,6 +27,11 @@ export async function publicPhoneCommand(input: unknown) {
   if (!publicCustomersEnabled() || !phoneDeliveryReady())
     throw Error("Phone verification is not available yet.");
   const who = await requireOnboardingIdentity();
+  if (
+    process.env.DOCKED_ISOLATED_PUBLIC === "true" &&
+    !isolatedPhoneTestIdentity(process.env, who.user.id)
+  )
+    throw Error("Phone verification is not available for this account.");
   const value = request.parse(input);
   const phone = normalizedPhone(value.phone);
   if (verifiedPhone(who.user))

@@ -75,3 +75,24 @@ test("live reconciliation preserves all supported issued copies, including retir
     879,
   );
 });
+
+test("same UUID cannot conceal contradictory or missing provider identity", () => {
+  const rows = dormantCommercialPool([player]);
+  const old = {
+    sport: "afl",
+    player_id: player.id,
+    provider: "isolated",
+    provider_id: "different-person",
+    rarity: "RARE",
+    issued: 1,
+    max_serial: 1,
+  };
+  assert.throws(() => reconcileLifetimePool(rows, [old]), /contradicts/);
+  assert.throws(
+    () =>
+      reconcileLifetimePool(rows, [
+        { ...old, provider: null, provider_id: null },
+      ]),
+    /contradicts/,
+  );
+});

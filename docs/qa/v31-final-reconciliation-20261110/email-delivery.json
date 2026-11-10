@@ -15,5 +15,16 @@
   "dispatch": {
     "status": "accepted",
     "deliveryVerified": false
+  },
+  "subsequentAcceptance": {
+    "founderInboxReceipt": "CONFIRMED",
+    "evidenceType": "founder attestation",
+    "receivedDate": "2026-11-10",
+    "source": "Explicit founder instruction in the V31 Final Operational Acceptance and Migration Readiness task",
+    "automatedInboxVerification": false,
+    "providerAcceptance": "previously reported",
+    "incidentAcknowledgement": "not recorded in hosted incident system",
+    "testResent": false,
+    "acceptanceRecord": "../v31-operational-acceptance-20261110/founder-email-attestation.json"
   }
 }

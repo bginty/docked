@@ -17,4 +17,15 @@ test("vault proposal remains founder-scoped, unprovisioned and non-destructive",
   );
   assert(!JSON.stringify(policy).includes("allUsers"));
   assert(!policy.founderSecretRoles.includes("roles/owner"));
+  assert.deepEqual(policy.founderSecretRoles, [
+    "roles/secretmanager.secretAccessor",
+  ]);
+  assert.equal(policy.standingVersionDestructionPermission, false);
+  assert.equal(policy.liveKeyImportRequiresSeparateApproval, true);
+  assert.equal(
+    policy.temporaryApprovedImportRole,
+    "roles/secretmanager.secretVersionAdder",
+  );
+  assert.equal(policy.proposedVersionDestroyDelaySeconds, 30 * 24 * 60 * 60);
+  assert.equal(policy.secretExpiry, null);
 });

@@ -13,6 +13,22 @@ const one: IssuedAllocation = {
   rarity: "ICON",
   serial: 1,
 };
+
+test("manifest digest binds each immutable ID to its original serial", () => {
+  const first = { ...one, rarity: "RARE" as const };
+  const second = { ...first, id: "second-existing-card", serial: 2 };
+  const original = issuedInventoryManifest([first, second]);
+  const swapped = issuedInventoryManifest([
+    { ...first, serial: 2 },
+    { ...second, serial: 1 },
+  ]);
+  assert.notEqual(original.digest, swapped.digest);
+  assert.deepEqual(original, issuedInventoryManifest([second, first]));
+  assert.deepEqual(original.rows[0].allocations, [
+    { id: first.id, serial: 1 },
+    { id: second.id, serial: 2 },
+  ]);
+});
 test("issued manifest counts lifetime allocations once regardless of refund/retirement or transfer; replay is deterministic", () => {
   const two = {
     ...one,

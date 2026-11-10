@@ -1,5 +1,11 @@
 // Existing free Preview only. This does not authorise public Production signup.
 const ref = "bckkllmndoxzpzdqrevb";
+/** Existing-account SMS acceptance only; never a signup or production bypass. */
+export function isolatedPhoneTestIdentity(env, userId, now = Date.now()) {
+  if (env.DOCKED_ISOLATED_PHONE_TEST !== "true") return false;
+  if (!assertIsolatedPublicPreview(env, now)) return false;
+  return env.DOCKED_ISOLATED_PHONE_MEMBERS.split(",").includes(userId);
+}
 /** Exact, expiring operator-authorised external recipient; never public signup. */
 export function isolatedExternalEmailRecipient(env, email, now = Date.now()) {
   if (!assertIsolatedPublicPreview(env) || env.AUTH_EMAIL_ENABLED !== "true")
@@ -34,12 +40,39 @@ export function isolatedPreviewReadOnlyIdentity(env, email) {
   );
 }
 /** @param {Record<string,string|undefined>} env */
-export function assertIsolatedPublicPreview(env) {
+export function assertIsolatedPublicPreview(env, now = Date.now()) {
   if (!env.DOCKED_ISOLATED_PUBLIC || env.DOCKED_ISOLATED_PUBLIC === "false")
     return false;
   const fail = () => {
     throw Error("Isolated public acceptance target mismatch");
   };
+  const phoneTest = env.DOCKED_ISOLATED_PHONE_TEST === "true";
+  if (
+    env.DOCKED_ISOLATED_PHONE_TEST &&
+    !["true", "false"].includes(env.DOCKED_ISOLATED_PHONE_TEST)
+  )
+    fail();
+  if (phoneTest) {
+    const until = Date.parse(env.DOCKED_ISOLATED_PHONE_UNTIL ?? "");
+    const members = (env.DOCKED_ISOLATED_PHONE_MEMBERS ?? "").split(",");
+    if (
+      !Number.isFinite(until) ||
+      until <= now ||
+      until > now + 6 * 3600000 ||
+      members.length !== 2 ||
+      new Set(members).size !== 2 ||
+      members.some(
+        (id) =>
+          !/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(
+            id,
+          ),
+      ) ||
+      env.DOCKED_PUBLIC_PHONE_OTP !== "true" ||
+      (env.DOCKED_PUBLIC_PHONE_POLICY_REFERENCE?.trim().length ?? 0) < 16 ||
+      env.DOCKED_ISOLATED_GOOGLE_TEST !== "false"
+    )
+      fail();
+  }
   if (
     env.DOCKED_ISOLATED_PUBLIC !== "true" ||
     env.VERCEL !== "1" ||
@@ -50,7 +83,7 @@ export function assertIsolatedPublicPreview(env) {
     env.APP_ENV !== "preview" ||
     env.SUPABASE_ENV !== "preview" ||
     env.DOCKED_PUBLIC_CUSTOMERS !== "true" ||
-    env.REGISTRATION_ENABLED !== "true" ||
+    env.REGISTRATION_ENABLED !== (phoneTest ? "false" : "true") ||
     env.NEXT_PUBLIC_SUPABASE_URL !== `https://${ref}.supabase.co` ||
     !env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY?.startsWith("sb_publishable_")
   )

@@ -16,6 +16,18 @@ export function reconcileLifetimePool(
 ) {
   const used = new Set<number>();
   const reconciled = rows.map((row) => {
+    if (
+      issued.some(
+        (old) =>
+          old.sport === row.sport &&
+          old.player_id === row.player_id &&
+          (old.provider !== row.snapshot.provider ||
+            old.provider_id !== row.snapshot.providerId),
+      )
+    )
+      throw Error(
+        "Historical player ID contradicts canonical provider identity",
+      );
     const matching = issued.flatMap((old, index) =>
       old.sport === row.sport &&
       old.rarity === row.rarity &&

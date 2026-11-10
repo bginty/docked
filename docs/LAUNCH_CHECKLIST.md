@@ -2,6 +2,22 @@
 
 # Release gates
 
+## Current v31 operational acceptance — 10 November 2026
+
+The current review is [V31 final operational acceptance](qa/v31-operational-acceptance-20261110/FINAL_READINESS.txt), with the [exact migration approval matrix](qa/v31-operational-acceptance-20261110/MIGRATION_APPROVAL_MATRIX.txt). It supersedes overlapping historical readiness claims below. Public launch remains **NO-GO**; Production stays at the separately verified `f1b50b6f`.
+
+- [x] Founder inbox receipt of `DOCKED-OPS-20261110-01` confirmed by founder attestation on 10 November; provider acceptance previously reported. No automated inbox verification and no resend.
+- [x] All 879 existing limited issued copies accounted for and permanently consume lifetime supply, including eight prior retirements.
+- [ ] Approve the exact remaining source identities/eligibility and complete immutable inventory proposal; no partial commercial import.
+- [ ] Approve the five exact dormant migrations and separate scoped outbox-v2 permissions, followed by a separately authorised closed-gate backend deployment.
+- [ ] Complete hosted founder AAL2 incident acknowledgement/resolution and end-to-end operational audit acceptance.
+- [ ] Configure approved SMS credentials/sender and capped test budget in the isolated existing-account test; approve prospective phone privacy/recovery wording and verify genuine physical-device delivery.
+- [ ] Accept founder-only managed-vault effective IAM/MFA/logs and synthetic recovery; separately approve any live-key custody transfer and archive restore.
+- [ ] Verify v31 phone flow and disclosures, record Google approval, then obtain final explicit launch authority. Managed publishing stays ON; no v32 is required by the currently identified backend changes.
+- [x] Production registration, sales, issuance, transfers and public Practice rounds remain closed; NBA hidden. Operational deletion scheduling remains disabled and requires separate approval.
+
+Already approved founder-only custody, email-only alert delivery, 90-day routine retention and the permanent rarity caps do not require repeated business-rule approval.
+
 ## Phase 5D research checkpoint (supersedes overlapping earlier unchecked research items)
 
 - [x] Two exact pinned CC0 resources accepted for narrow retained statistical research; no broadened source scope.

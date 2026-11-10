@@ -1,0 +1,255 @@
+DOCKED V31 — hosted phone acceptance and Android compatibility
+10 November 2026. Prepared, not deployed. Public launch NO-GO.
+
+Decision
+Keep v31 / 1.30 under its existing review. No specific native blocker or reason
+to submit v32 was found. Phone activation is blocked by missing provider setup,
+the genuine device test, and prospective privacy/Data Safety updates. No SMS,
+account creation, provider payment, Play change or Production write occurred.
+
+Fresh hosted inspection
+scripts/hosted-phone-readiness.ps1 ran authenticated GETs against the exact
+existing Production and isolated Preview projects at 03:19:42 UTC. It emitted
+only allowlisted configuration booleans/numbers; credentials were not printed.
+Both projects are healthy, signup disabled, phone Auth disabled, SMS autoconfirm
+false, Twilio selected but Account SID/Auth Token/Messaging Service all absent.
+Both have six-digit OTPs, expiry 60 seconds, resend interval 5 seconds, SMS cap
+30/hour, no fixed test OTP, no CAPTCHA and no leaked-password protection. Phone
+MFA is disabled; this does not remove existing authenticator MFA. Password
+reauthentication is enabled in Preview but disabled in Production.
+Evidence: auth-provider-readiness.json. These are fresh management observations,
+not a Twilio account/balance/sender inspection or proof of message delivery.
+
+Provider recommendation and exact founder setup
+Use Supabase Auth with Twilio Programmable Messaging, matching the selected
+provider and existing phone_change flow. Supabase also supports MessageBird,
+Vonage and community-supported TextLocal. A different supplier would require
+its own account and acceptance; a custom SMS hook adds code and secret handling.
+Supabase generates/checks OTPs here; do not add Twilio Verify pricing or substitute
+a standalone Verify-console test for acceptance of this integration. [1][2]
+
+1. Sign into an existing founder-controlled Twilio account, if available; enable
+   strong account MFA. If none exists, the founder must register/verify the account
+   and review the funding quote/payment method directly in Twilio. Do not put
+   credentials or the test mobile number in chat, Git or these reports.
+2. Use a dedicated nonproduction subaccount/Messaging Service for this test if the
+   account permits it. Choose an OTP/verification use case, SMS only. Authorise
+   Australia destinations only; check fraud controls and disable automatic recharge.
+3. Prefer the registered alphanumeric sender DOCKED, subject to evidence of brand
+   entitlement and approval. Submit the sender through Twilio's Australian sender
+   registration process; complete the ACMA/ABR confirmation requested of the founder.
+   A Twilio-only historical registration is not proof of current ACMA status.
+   Since July 2026 unregistered branded senders appear as Unverified. Twilio lists
+   five business days for provisioning; actual review may take longer. [3][4]
+4. Add the approved sender to the Messaging Service sender pool. Supply its
+   Messaging Service SID (MG...), the matching Account SID (AC...), and that
+   account/subaccount Auth Token directly to the isolated Supabase Phone provider
+   settings. Store recovery copies only through the approved managed vault.
+   These are server/provider credentials, never NEXT_PUBLIC variables or app code.
+5. Operator validates the existing isolated project's identity and private hosting
+   protection before configuration. Keep Auth Allow new users to sign up OFF and
+   SMS auto-confirm OFF; leave the fixed-test-phone map empty. Proposed acceptance
+   values: phone provider ON only in Preview, OTP six digits/300 seconds, resend
+   interval at least 60 seconds, project SMS cap 6/hour. Restore phone OFF at close.
+   Do not apply these changes to Production in this task.
+6. Founder authorises the finite test plan/budget below and enters the mobile
+   directly into the protected test form. Operator supplies two isolated, existing,
+   email-verified ordinary test accounts with no genuine balances or staff roles.
+   Verify their prior provisioning; do not use an admin phone-confirm operation.
+7. Review the prospective phone disclosure/recovery terms below. Confirm actual
+   provider data handling/retention before any public collection, then arrange the
+   policy/Data Safety update and its review independently of the Android binary.
+
+Expected Australian SMS cost and A$20 boundary
+Public Twilio rate checked 10 November: US$0.0515/outbound segment; 20 single-
+segment sends = US$1.03. Using a planning FX assumption of A$1.60/US$ (not a live
+exchange-rate quote), this is A$1.65 before taxes/carrier fees. Reserve A$5 for
+message usage within a total A$20 acceptance ceiling. Alphanumeric sender rental
+is listed free; an AU mobile rental is US$8.25/month and is not proposed. [5]
+
+Stop at 20 actual SMS segments or A$5 message usage, whichever occurs first;
+never incur more than A$20 total new charge without further authority. Check
+the invoice currency, GST, carrier fees, account funding and sender fees first.
+An initial cash deposit is different from SMS consumption: a new account may
+require a larger deposit (older official Twilio guidance quotes US$20 minimum).
+Obtain the current Console quote; if it exceeds A$20, stop for that exact amount's
+approval or use an existing funded account. No new payment has been authorised.
+Twilio's current trial restricts custom SMS content, so its free units are not
+assumed usable for Supabase-generated OTP bodies. Test credentials do not prove
+real SMS delivery. A delayed usage-trigger webhook is an alert, not a hard cap.
+Use a supervised short window, provider limits and stop controls. [6][7][8]
+
+Hosted test preparation now completed
+New optional DOCKED_ISOLATED_PHONE_TEST mode is bound to the existing protected
+Preview project, Preview Auth and least-privilege database credentials. It
+requires REGISTRATION_ENABLED=false, exactly two existing account UUIDs, a
+maximum six-hour expiry, phone/policy flags and Google TEST checkout=false.
+All inherited commerce/prize/retention/Production gates remain closed. Both
+ordinary and invitation signup are denied by the shared auth admission check;
+the customer-invitation route remains disabled outside beta. The phone command
+admits only those two authenticated accounts. Ordinary public Preview mode no
+longer sends OTPs without the explicit private phone test mode.
+
+Prepare these server-only values in the protected Preview deployment only:
+DOCKED_ISOLATED_PUBLIC=true
+DOCKED_ISOLATED_PHONE_TEST=true
+DOCKED_ISOLATED_PHONE_MEMBERS=<two existing fixture UUIDs, comma separated>
+DOCKED_ISOLATED_PHONE_UNTIL=<UTC test end, no more than six hours ahead>
+DOCKED_PUBLIC_CUSTOMERS=true
+DOCKED_PUBLIC_PHONE_OTP=true
+DOCKED_PUBLIC_PHONE_POLICY_REFERENCE=<approved private test notice reference>
+REGISTRATION_ENABLED=false
+DOCKED_ISOLATED_GOOGLE_TEST=false
+Keep the established isolated project/origin/database allowlists, all commercial
+switches false, and Supabase disable_signup=true. No values were set or deployed.
+The name PUBLIC_CUSTOMERS selects the ordinary-member code path; it is not a
+registration authorisation. Both Auth and application registration stay closed.
+The account allowlist is an application control; provider Auth endpoints remain
+directly reachable, so the provider cap/destination restrictions are mandatory.
+
+Acceptance sequence (phone-test-plan.json is an unexecuted checklist)
+A. Read back project/origin, closed signup and provider settings; establish baseline
+   fixture account counts. Anonymous and third-account requests must be denied;
+   signup with/without an old invitation must fail and create no account.
+B. Founder enters their AU mobile privately on the physical device. Trigger one
+   code; record opaque attempt ID, send/receive/verification times and delivery
+   status only. Founder reads the actual SMS and enters the received code.
+   Require authoritative Auth same-user/same-number/confirmation-time evidence;
+   an HTTP success, Twilio queued/accepted result or fixed OTP is insufficient.
+C. Test wrong code, expiry beyond 300 seconds, replay after success, resend before
+   60 seconds, three sends/account/hour and six verifications/account/hour.
+   Respect the provider cap: do not weaken limits to speed tests. Use the two
+   fixture accounts across planned windows, with at most 20 total segments.
+D. Attempt duplicate verification on the second account and simultaneous confirm;
+   at most one account may bind that canonical number. Check no profile, wallet,
+   cards or original ownership was duplicated or replaced. Reuse the already
+   passed isolated PostgreSQL race proof; this adds actual hosted Auth behaviour.
+E. Exercise direct Auth requests, not only the app, for cap enforcement, phone
+   changes and duplicate binding. Observe normal failure when the test provider
+   is disabled; never revoke a live Production token. Recheck login, account
+   controls and deletion access while unverified. Keep actual deletion limited
+   to disposable Preview fixtures under the existing erasure procedure.
+F. Record final provider usage and fixture state; close phone admission/window,
+   disable Preview phone provider, and retain redacted evidence. No SMS/OTP/phone
+   screenshots, message bodies or raw request logs belong in the evidence pack.
+
+Privacy and recovery changes still required
+The latest detailed saved Data Safety evidence (5 November console-audit.json)
+lists names/email/user IDs and other categories but not phone number. The
+10 November handover says existing declarations were preserved. No fresh Console
+inspection is claimed. Reconcile the actual saved form before publishing changes.
+Google explicitly includes controlled WebView collection, so phone collection
+must be declared even though no SMS-reading permission/native SDK is added. [9]
+
+Proposed prospective notice (not published):
+"We use your Australian mobile number to verify control of the number and help
+prevent duplicate accounts and abuse. One verified number can be linked to one
+Docked account. Supabase Auth stores the number and Twilio processes it to send
+verification texts; overseas service processing may occur. We do not display
+your number publicly or use this verification step for marketing. We retain the
+current number while needed for your account and handle security records,
+provider logs and backups under the published retention policy. If you lose
+access to your number, contact support@docked.com.au. Account-deletion controls
+remain available without completing phone verification."
+
+Before approval, add the chosen provider, actual processing locations/contracts,
+required collection/purposes (account management, functionality, fraud prevention),
+service-provider sharing assessment, deletion and backup periods to the policy
+and Data Safety form. The 90-day operational-incident policy does not govern Auth
+phone records or SMS logs. Proposed provider-record access period: seven days,
+disable indefinite archive retention where available; verify the provider's
+actual deletion/backup terms. Twilio's default customer-facing records can persist
+400 days and older archives are not deleted by default. Optional immediate
+redaction can require paid Editions, and redaction is not full erasure. Do not
+promise immediate deletion or purchase an add-on under the A$20 test budget. [10][11]
+
+Existing beta users keep beta access; no accounts are auto-migrated or confirmed.
+After eventual public activation, existing users must complete verification for
+public gameplay/commerce. One phone is not proof of one human or AU residency.
+Keep verified email/password recovery and staff AAL2 independently available.
+For a lost/recycled number, require established account authentication/evidence,
+fresh verification of the replacement and review of any conflicting account.
+Do not infer ownership from possession of a recycled number, auto-merge accounts,
+move cards/balances, or set phone_confirm=true administratively. Revoke old
+sessions after a verified security recovery. A direct Auth number change may
+bypass the UI's support-only change message, so acceptance must establish this
+behaviour before advertising support approval as an enforced provider control.
+Maintain the one-current-verified-number constraint without a hidden permanent
+phone blacklist; deletion/re-registration handling needs the precise published
+recovery/retention policy. Genuine hosted recovery and OTP remain unaccepted.
+
+v31 compatibility assessment
+Static archive inspection confirms the AAB SHA-256 exactly matches the submitted
+artifact: 8becb6d044efc93baed6649f11ff100cc562bb09d200d45ec1a6742cf36e83b0.
+Both AAB/APK pin https://docked.com.au/app, package docked.fantasy, HTTPS only,
+logging/debug inspection disabled. No android/, Capacitor configuration or
+package/lockfile change exists between Production f1b50b6f and 8acae031.
+Evidence: android-compatibility.json. The new changes are web/server/SQL only;
+manual OTP entry needs no SMS permission or native bridge change. Existing
+BillingPlugin/image-sharing behaviour and the two credit product IDs are intact.
+
+Therefore the same v31 binary can consume the approved backend after a later
+deployment. Registration is controlled by application environment, database
+registration authority and Supabase signup settings; it does not need a new
+Android release. These independent controls must be approved and aligned;
+setting DOCKED_PUBLIC_PHONE_OTP alone does not open registration.
+
+The submitted binary cannot point at isolated Preview. A physical phone browser
+test against Preview is useful but is not installed-v31 WebView acceptance.
+The exact installed-v31 OTP/navigation smoke test follows the separately approved
+dormant web deployment/closed hosted acceptance configuration. No certificate,
+hosts-file or origin substitution should be used to manufacture that evidence.
+
+Supabase's 10 November CBC TLS deprecation affects old HTTP API clients, not
+Postgres/poolers/Management API. No custom CBC-only TLS configuration was found
+in the Android source; minSDK 24 and normal WebView/HTTPS are used. There is no
+established native blocker, but the planned current-device HTTPS/Auth test remains
+the practical compatibility check; today's management GETs do not prove it. [12]
+
+Commercial/payment compatibility remains conditional on the existing launch
+gates: Google Play Billing for credit purchases, unchanged A$49/4,900 and
+A$99/9,900 products, and displayed fixed pack odds before purchase. Backend
+lifetime guards change enforcement, not advertised odds or native payment
+contracts. Google requires Play billing for covered digital goods and nearby
+odds disclosure for purchased random items. Do not replace this with external
+payment links. Existing TEST evidence does not establish live settlement. [13]
+The saved listing advertises paid credits/packs: publishing a billing-disabled
+public product without reviewing listing accuracy is not accepted. Trading,
+prizes, withdrawals, real scored competitions and NBA remain out of scope/off.
+
+No Google status was refreshed or changed; v31 review/managed publishing ON are
+the supplied state plus existing evidence, not newly independently observed.
+Privacy/Data Safety changes may themselves require review. No binary bump is
+needed solely for those forms, and no guarantee of Google's review timing is made.
+
+Validation and next actions
+16 focused tests passed (private Preview boundary/phone/auth readiness), scoped
+ESLint passed; prior phone normalization/concurrency proof is reused unchanged.
+No provider message, hosted signed-in test or native build ran. Operator effort
+after account/sender/secret/budget prerequisites: estimate 3–5 hours for protected
+setup and acceptance, plus the later installed-v31 smoke test. Sender/account/
+Google review waiting time is external; allow at least the stated five-business-
+day sender provisioning estimate if starting a new registration.
+
+Precise founder actions: provide/access the Twilio account securely; complete
+sender registration and the actual funding quote; approve the <=A$20 isolated
+test ceiling (or a separately quoted larger deposit); enter/verify the physical
+test phone privately; approve prospective phone/privacy/provider retention and
+recovery wording. The one-number business requirement is already approved.
+
+Primary references checked 10 November 2026
+[1] https://supabase.com/docs/guides/auth/phone-login
+[2] https://supabase.com/docs/guides/self-hosting/self-hosted-phone-mfa
+    Used for underlying Twilio field names/OTP semantics; hosted setup is Dashboard.
+[3] https://www.twilio.com/en-us/guidelines/au/sms
+[4] https://www.acma.gov.au/sms-sender-id-register
+[5] https://www.twilio.com/en-us/sms/pricing/au
+[6] https://www.twilio.com/docs/usage/trials
+[7] https://www.twilio.com/en-us/blog/getting-the-most-out-of-your-voice-project
+    Older minimum-funding example only; obtain a current account-specific quote.
+[8] https://www.twilio.com/docs/usage/api/usage-trigger
+[9] https://support.google.com/googleplay/android-developer/answer/10787469?hl=en
+[10] https://help.twilio.com/articles/223181008-Twilio-SMS-message-and-traffic-storage
+[11] https://www.twilio.com/docs/messaging/guides/privacy-message-redaction
+[12] https://supabase.com/changelog/cbc-tls-ciphers-deprecated
+[13] https://support.google.com/googleplay/android-developer/answer/9858738?hl=en

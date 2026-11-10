@@ -1,0 +1,60 @@
+{
+  "at": "2026-11-10T03:20:44.360661+00:00",
+  "type": "static-read-only-artifact-review",
+  "aabSha256": "8becb6d044efc93baed6649f11ff100cc562bb09d200d45ec1a6742cf36e83b0",
+  "apkSha256": "bb6173b1dd2e2b7111aa27ea9ccf7bad3ca8f00a387a4dd3b563e88b87d4f35e",
+  "aab": {
+    "appId": "docked.fantasy",
+    "server": {
+      "androidScheme": "https",
+      "errorPath": "offline.html",
+      "url": "https://docked.com.au/app",
+      "cleartext": false
+    },
+    "loggingBehavior": "none",
+    "android": {
+      "path": "android",
+      "allowMixedContent": false,
+      "useLegacyBridge": false,
+      "webContentsDebuggingEnabled": false
+    },
+    "plugins": [
+      "com.capacitorjs.plugins.app.AppPlugin",
+      "com.capacitorjs.plugins.browser.BrowserPlugin",
+      "com.capacitorjs.plugins.camera.CameraPlugin",
+      "com.capacitorjs.plugins.haptics.HapticsPlugin",
+      "com.capacitorjs.plugins.network.NetworkPlugin",
+      "com.capacitorjs.plugins.share.SharePlugin",
+      "com.capacitorjs.plugins.splashscreen.SplashScreenPlugin"
+    ]
+  },
+  "apk": {
+    "appId": "docked.fantasy",
+    "server": {
+      "androidScheme": "https",
+      "errorPath": "offline.html",
+      "url": "https://docked.com.au/app",
+      "cleartext": false
+    },
+    "loggingBehavior": "none",
+    "android": {
+      "path": "android",
+      "allowMixedContent": false,
+      "useLegacyBridge": false,
+      "webContentsDebuggingEnabled": false
+    },
+    "plugins": [
+      "com.capacitorjs.plugins.app.AppPlugin",
+      "com.capacitorjs.plugins.browser.BrowserPlugin",
+      "com.capacitorjs.plugins.camera.CameraPlugin",
+      "com.capacitorjs.plugins.haptics.HapticsPlugin",
+      "com.capacitorjs.plugins.network.NetworkPlugin",
+      "com.capacitorjs.plugins.share.SharePlugin",
+      "com.capacitorjs.plugins.splashscreen.SplashScreenPlugin"
+    ]
+  },
+  "nativeChangedSinceLastProduction": [],
+  "newNativeBuild": false,
+  "freshPhysicalDeviceOtpTest": false,
+  "freshPlayConsoleInspection": false
+}

@@ -1,0 +1,80 @@
+{
+  "sourceCapturedAt": "2026-11-10T00:55:31.098Z",
+  "productionWrites": 0,
+  "productionImport": false,
+  "existingIssuedCopies": 879,
+  "preservedOwned": 871,
+  "preservedRetired": 8,
+  "issuedGroups": 730,
+  "exactCatalogueMappedCopies": 853,
+  "newlyResolvedCopies": 60,
+  "unresolvedCatalogueCopies": 26,
+  "unresolvedCataloguePlayers": 23,
+  "unresolvedCatalogueGroups": 24,
+  "founderSourceReviewPlayers": 71,
+  "founderSourceReviewCopies": 98,
+  "candidateDefinitions": 6465,
+  "candidatePlayers": 1293,
+  "matchedBaselineCopies": 793,
+  "additionalHistoricalGroups": 75,
+  "additionalMappedHistoricalGroups": 51,
+  "conditionalDefinitionTotal": 6540,
+  "fullySpecifiedDormantDefinitions": 6516,
+  "fullySpecifiedLifetimeBaselineCopies": 853,
+  "unresolvedDefinitionRows": 24,
+  "resolvedProposalDigest": "26b3a80b0aa8882cb07edba54ae77467dc7c555901ba154ba6b6140457512afc",
+  "exactExecutableImportAvailable": false,
+  "sourceEligibilityApproved": false,
+  "proposedMintedCards": 0,
+  "proposedOwnerChanges": 0,
+  "proposedDeletedCards": 0,
+  "proposedRemintedCards": 0,
+  "approvedCommercialAvailable": 0,
+  "unissuedReserved": 0,
+  "hiddenNBAExcludedCopies": 18,
+  "manifestVersion": "id-serial-bound-lifetime-manifest-v2",
+  "manifestDigest": "75884d6b28e1333ed231b506b574e0ddb6966a128adbe5d9df4052744a8961ad",
+  "allCardMappingDigest": "bb572f7f7edf28cf9ef5cbf364716f23bec30a216ad64fabdec5792dba910ed5",
+  "permanentCaps": {
+    "CORE": "unlimited",
+    "RARE": 5000,
+    "ELITE": 2500,
+    "ULTRA_RARE": 400,
+    "LEGENDARY": 50,
+    "ICON": 1
+  },
+  "sources": {
+    "census": {
+      "file": "private-data/v31-final-reconciliation-20261110/census.private.json",
+      "sha256": "caeea149888fdd11c81230354019705e89fac73a1c27d69d0233a95e0d4ae293"
+    },
+    "allIssued": {
+      "file": "private-data/v31-final-reconciliation-20261110/all-issued.private.json",
+      "sha256": "fd1511df9c8945e9a7af50ea872d9ef3f499921deeb29fe8fd69fad488e19974"
+    },
+    "candidate": {
+      "file": "private-data/commercial-pool-20261106-v2/candidate.private.json",
+      "sha256": "f436a9883a1ddda433fe81248533ad1d68d1aa02de8ca69d0863c465d8de60fc"
+    },
+    "archive": {
+      "file": "public/data/rosters/wikimedia-roster-beta-2026-10-23-v1.json",
+      "sha256": "6d668ba8658b843077120cc1c31d7f92ce5e60d10f76accc56c6db638b75f6f7"
+    },
+    "previousProposal": {
+      "file": "docs/qa/v31-final-reconciliation-20261110/inventory-source-proposal.json",
+      "sha256": "145383349ad3013c66e2acb245914010b86121df21072019b4b8f2cf485e5f78"
+    },
+    "paletteRules": {
+      "file": "src/core/card-presentation.ts",
+      "sha256": "7e3589505856e9b539f7416a3ea1578e28aa5e6cadcde8512f64faa35cab9e97"
+    },
+    "australianPaletteRules": {
+      "file": "src/core/sport-team-colours.ts",
+      "sha256": "7e4efd86887bb949b4b13184ea11a26772554610ff9270727d71e19e1a9d7773"
+    },
+    "independentCatalogueLookup": {
+      "file": "docs/qa/v31-operational-acceptance-20261110/card-catalogue-lookup.json",
+      "sha256": "69dc6cf76c396f4c959349c34a9447aa93c45780a275f57681c61047cba98a23"
+    }
+  }
+}

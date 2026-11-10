@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-10T03:26:40.384Z",
+  "reference": "DOCKED-OPS-20261110-01",
+  "method": "Existing certificate client_credentials; exact-subject/time-window GET to approved founder Sent Items; selected metadata only",
+  "tokenIssued": true,
+  "tokenRoles": [],
+  "tokenRolesLimitation": "Token roles do not enumerate Exchange application RBAC",
+  "sentItemsStatus": 403,
+  "errorCode": "ErrorAccessDenied",
+  "exactMatches": [],
+  "providerRequestId": "9d2e6589-2090-4d4b-ab54-0ffde17c08b8",
+  "inboxRead": false,
+  "providerDeliveryTraceInspected": false,
+  "permissionsChanged": false,
+  "emailsSent": 0,
+  "credentialsUsedInMemory": "Existing Graph certificate; no credential output or storage",
+  "result": "Existing application cannot read Sent Items; do not expand its send-only permissions for this audit"
+}

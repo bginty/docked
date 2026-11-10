@@ -22,7 +22,11 @@ Existing infrastructure assessment
 
 Exact proposed setup: config/operations/recovery-vault.proposed.json.
 No new service account key. No runtime, billing-verifier or RTDN identity access.
-Founder only receives secret-level Accessor + Version Manager; existing project
+Updated least-privilege proposal: founder standing secret-level Accessor only;
+Version Adder is temporary for separately approved imports. No standing Version
+Manager/destruction permission; proposal includes 30-day delayed version
+destruction and no secret expiry. See ../v31-operational-acceptance-20261110/
+OPERATIONS_AND_VAULT.txt for exact setup and acceptance. Existing project
 administrators/inherited memberships must be reviewed because they can grant
 themselves access. Enable DATA_READ/DATA_WRITE/ADMIN_READ audit logging for
 Secret Manager and test a synthetic secret's access and denial before importing

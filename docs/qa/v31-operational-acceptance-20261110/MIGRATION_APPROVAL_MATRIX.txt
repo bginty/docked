@@ -1,0 +1,160 @@
+DOCKED V31 — migration approval matrix, 10 November 2026
+PREPARED ONLY. NO PRODUCTION APPLY. PUBLIC LAUNCH NO-GO.
+
+The reviewed baseline is 8acae031, following 2c50d454. All five raw SQL hashes
+match the exact bytes rehearsed against the 01:18:41Z encrypted Production
+capture. The final rehearsal completed 01:37:41Z: all five applied twice with
+550 protected durable tables unchanged. This is existing evidence, not a new
+rehearsal. Current read-only migration history, database roles/memberships and
+all nine cron definitions match that capture. Repository migration/dependency
+files are unchanged. migration-verification.json records the comparison.
+
+No repeat full restore is technically required for this review. This review
+does not prove that every live object definition has remained unchanged; fresh
+schema/role/data drift checks and backup/restore are mandatory at the later
+approved application window. Stop on drift rather than repairing inline.
+
+A — DORMANT SCHEMA / SECURITY PACKAGE: review-ready for specific approval
+These five changes are safe to propose with the stated preconditions. None is
+authorised for execution by this report. Apply individually in the order below,
+with transaction rollback on error, lock_timeout 3s, statement_timeout 60s.
+Do not run blanket migration push. Existing historical migrations are not part
+of this approval. File paths below are relative to supabase/migrations/.
+
+1. 20261109231834_commercial_lifetime_supply_guards.sql
+   SHA-256 ec1154357168027f106c9d5e0f03cc98fd9820a58f4196cb7f30103b98ff53bb
+   Depends on existing commercial ledger/inventory and legacy inventory schemas.
+   Tables: commercial_billing.definitions/cards/packs; adds packs.issuance_txid.
+   Triggers on credits_sandbox.state/card_instances/nba_fixture_instances and
+   sports_feed.sport_sandbox_inventory prevent parallel supported-sport minting
+   once permanent definitions exist. NBA exclusion does not enable NBA.
+   Functions: card_guard, supply_balanced, pack_complete, prevent_parallel_mint,
+   prevent_parallel_inventory; existing immutable/lock_control dependencies.
+   RLS unchanged; no new financial/table grants; helper EXECUTE revoked from
+   public/browser/service and relevant commercial runtime roles. Deferred
+   balance/pack checks, unique provider+sport+rarity identity and row locks guard
+   concurrent issuance. Existing card identity/serials and lifetime counters
+   cannot be deleted/reset; ownership-only changes preserve identities.
+   Data: zero existing rows changed at current empty commercial baseline. Abort
+   if packs/definitions/cards unexpectedly exist; no automatic baseline repair.
+   Locks: ALTER TABLE and trigger DDL take table locks, unique index scans
+   definitions; bounded quiet window. Future import stops legacy limited minting
+   and therefore requires its separate explicit handover approval.
+   Preflight: empty commercial tables; exact caps/counters; no duplicate provider
+   identity; closed control; legacy schema present. Postflight: constraints,
+   index, triggers and restricted function privileges; closed gates and unchanged
+   ownership/wallet fingerprints; isolated supply/pack concurrency evidence.
+   Recovery: rollback uncommitted DDL; after commit retain dormant guards/close
+   issuance and forward-fix. Never reset lifetime counters, remove historical
+   copies or overwrite later legitimate ownership/transactions from a backup.
+
+2. 20261109232000_public_practice_phone_guards.sql
+   SHA-256 8179828fdd88bea9c95f4ac961905737f51d1aae78e25455748e7191a6d4fee0
+   Depends on public_gameplay.identity/rounds, beta_fantasy.competitions and
+   Auth's existing unique phone index. Functions: private.public_phone_verified,
+   public_gameplay.identity and practice_guard. Round/competition triggers.
+   RLS unchanged; boolean helper EXECUTE only docked_app; no Auth/phone read or
+   write grant and no phone copied. Active confirmed email+phone required for
+   public gameplay; existing invited beta behaviour remains separate.
+   Data: zero row edits. Six bindings remain disabled, synthetic, free, no prize.
+   Locks: round ALTER/TRIGGER and competition trigger locks; no customer rewrite.
+   Preflight: exact identity definition/replacement anchor, phone unique index,
+   no non-Practice bindings. Postflight: Practice constraint/trigger, helper grant,
+   closed public rounds, no-fee/no-reward attributes and protected fingerprints.
+   Recovery: close public admission/bindings, retain identity/Practice guards;
+   rollback uncommitted DDL. Any later function reversal needs reviewed current
+   state; never bypass phone verification as an availability workaround.
+
+3. 20261109232124_operational_incident_review.sql
+   SHA-256 9ff6eae192460f1369e3db11ba387ab9418fcb2908a017a653f2c15e870a62bd
+   Depends on existing Auth/users/sessions, owner roles/profiles, outbox and
+   commercial/legacy/sports operational sources. Creates operations.incidents
+   and events, owner_actor/observe/review/immutable and immutable audit triggers.
+   RLS on both tables; no direct browser/service/app table access. Only docked_app
+   and docked_beta_app may execute review. Each call checks approved founder
+   mailbox, confirmed active user, valid session, owner role and MFA AAL2.
+   Data: no customer writes; no incidents/events created by migration itself.
+   Locks: new objects/trigger locks only. No customer-table rewrite.
+   Preflight: required sources/functions/roles exist and founder access metadata
+   meets the intended policy (actual hosted acceptance remains required).
+   Postflight: deny anon/general support/AAL1, permit actual founder AAL2; audit
+   revision/immutability, recurrence, stale decisions and delivery provenance.
+   Hosted lifecycle acceptance follows approved deployment, not this migration.
+   Recovery: revoke app review EXECUTE/hide route while retaining audit. No
+   dropping incidents/events or silently resolving real TEST reconciliation cases.
+
+4. 20261110005726_operational_incident_retention.sql
+   SHA-256 1248d78d8c3a17d54d9d3732444e2e058cfe43e6af0aa857f5acfc17262de5bd
+   Depends on migration 3. Adds operations.retention_policy/preservation/
+   retention_receipts; routine_expired/retention_review/audit_guard/prune_routine.
+   Replaces event delete guard with narrowly controlled retention exception.
+   All tables RLS-enabled. Unassigned NOLOGIN/non-superuser/non-bypass worker
+   has constrained SELECT/DELETE/receipt INSERT and row-lock UPDATE(code) only;
+   WITH CHECK(false) rejects actual updates. Apps may review, never prune/enable.
+   Data: one DISABLED 90-day policy row; zero preserved/deleted incident or
+   customer rows. No scheduler or runtime membership. Conservative routine
+   allowlist excludes financial/security/unknown/held/required-audit records.
+   Statutory source records, journals, outbox, customer data and backups are not
+   deleted. A routine note with statutory preservation needs must be marked
+   required_audit/legal_hold; no automatic legal-classification engine is claimed.
+   Locks: new objects plus operational trigger locks. Later authorised batches
+   use SKIP LOCKED and same incident lock as founder preservation decisions.
+   Preflight: migration 3; worker absent or exactly unassigned/unprivileged.
+   Postflight: policy false/90, zero eligible restored rows, expected RLS/grants,
+   no memberships/cron, deny worker while disabled, immutable minimal receipts.
+   Recovery: keep disabled; future emergency disable/revoke worker/schedule
+   under approved procedure. After a later authorised deletion, a hash receipt
+   cannot restore details; selective protected-backup recovery only. Do not
+   represent the five-file approval as permission for any deletion schedule.
+
+5. 20261110010050_australian_verified_phone_uniqueness.sql
+   SHA-256 bc5c61ede682a41ff24500b89fda4db6cef71760f30d52c2c8fb652ac79c4e11
+   Depends on migration 2; migration 4 does not supply an Auth dependency.
+   Adds auth.users partial unique expression index docked_verified_phone_canonical;
+   replaces private.public_phone_verified with Australian mobile +614/614 check.
+   RLS/Auth grants unchanged; docked_app retains boolean-only helper EXECUTE.
+   Data: zero account/phone/confirmation edits; no new accounts or SMS dispatch.
+   Locks: CREATE UNIQUE INDEX is NOT CONCURRENTLY; blocks Auth writes during
+   build. Quiet window and 3s lock/60s statement timeouts; abort on contention.
+   Preflight: canonical duplicates zero, Auth unique index present, helper from
+   migration 2. Current confirmed phone count zero; no automatic merge allowed.
+   Postflight: index valid/unique, canonical duplicate denial, AU helper intact,
+   unchanged Auth rows/grants. Prior isolated two-connection race remains valid.
+   Recovery: keep signup closed; rollback uncommitted index/function DDL. Any
+   post-commit reversal must account for newly confirmed phones; no auto-confirm
+   or ownership transfer on a recycled/lost number.
+
+Shared exact pre/post SQL and detailed original recovery evidence:
+../v31-final-reconciliation-20261110/{preflight.sql,postflight.sql,MIGRATION_APPROVAL.txt}
+Full application checklist also requires fresh consistent protected-table/role/
+schedule fingerprints. Read-only counts alone do not establish zero data drift.
+
+Separate A permission decision — billing operations outbox v2
+config/operations/billing-ops-outbox-v2.prepared.sql
+raw SHA-256 59dffc74f3f9a354366bedc994136264fb1922201a6c33f40864777b2546cf09
+LF SHA-256  b3e7ff04182b33f351c4c897550959ba3885c5f9960b1733a1a255ff5526e121
+Approve exact v2 scope separately: reserved purpose, founder-only recipient,
+fenced dispatcher EXECUTE for service_role, producer access only commercial
+runtime, immutable outbox audit; no balances/cards privileges. Never apply v1
+then v2. Permission approval is separate from dispatcher admission/deployment.
+
+B — OPERATIONAL CONFIGURATION / FOUNDER ACTION
+SMS account/sender/credentials and budget; protected existing-account testing;
+prospective phone privacy/Data Safety and recovery approval; founder MFA hosted
+incident acknowledge/resolve; managed Google vault IAM/logging/recovery acceptance.
+No repeat approval requested for founder-only custody, email-only alerts or
+90-day routine retention. Exact rollout and costs remain separate. Cleanup OFF.
+
+C — COMMERCIAL INVENTORY / SEPARATE APPROVAL
+Resolve CARD_MAPPING.txt exact outstanding records; approve final source and
+baseline digest, permanent lifetime consumption, fresh recount and legacy mint
+handover. No inventory SQL/import is included in A. Import remains blocked.
+
+D — PUBLIC LAUNCH / FINAL EXPLICIT AUTHORISATION
+Approve exact reviewed backend commit/deployment separately, then all hosted
+acceptance. Confirm Google v31 approval/disclosures and obtain dated final
+activation authority for AU registration/Practice and separately approved
+commerce. Managed publishing stays ON; no v32 identified as necessary.
+Trading/withdrawals/prizes/real-scored competitions/NBA remain disabled/hidden.
+
+Neither A, B nor C implicitly authorises D. No production actions performed.

@@ -1,0 +1,3489 @@
+{
+  "approved": false,
+  "executableAsPartialImport": false,
+  "sourceApproval": false,
+  "explanation": "Exact 51 additional source rows and their nonzero lifetime baseline results. UUIDs and metadata come only from existing pinned records; definition IDs use the existing deterministic namespace. Snapshot season 2026 is a presentation label, never a new lifetime pool. Historical snapshot status is not refreshed roster eligibility. Null jersey number makes no factual number claim. Do not import this incomplete proposal.",
+  "sourceRows": [
+    {
+      "id": "10968e8b-1e0c-5604-a857-8328db679e7f",
+      "player_id": "f8b2d720-8afb-444b-a05a-631839c0b6ef",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Dameon Pierce",
+        "team": "PHI",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 39,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037258",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "21b02eb8-913b-51c1-afec-63e3a5cb253c",
+      "player_id": "aafc03d1-ca93-4606-a7b7-71397b1a8fc3",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Josh Palmer",
+        "team": "BUF",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 5,
+        "colour": "#00338d",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0036988",
+        "source": {
+          "url": "https://www.buffalobills.com/team/players-roster/",
+          "hash": "08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202",
+          "checkedAt": "2026-11-08T12:15:08.291Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "2857bfe8-cbe5-58a5-a07b-e26e508bc08f",
+      "player_id": "29198ba7-f68e-4776-89d2-dbb526e1f5d0",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:429dd0a418c7f1d7539126eb149e9a26dbc08926bd71ed172335b6a95275344e; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Kyle Pitts",
+        "team": "ATL",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 8,
+        "colour": "#a71930",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0036970",
+        "source": {
+          "url": "https://www.atlantafalcons.com/team/players-roster/",
+          "hash": "429dd0a418c7f1d7539126eb149e9a26dbc08926bd71ed172335b6a95275344e",
+          "checkedAt": "2026-11-08T12:15:11.656Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "2aed2766-4a3d-55fc-af6c-1b92ecad65e5",
+      "player_id": "d157d740-de6d-46f7-b8d5-26a1303c5356",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202; permanent-issuance-pending",
+      "snapshot": {
+        "name": "James Cook",
+        "team": "BUF",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 4,
+        "colour": "#00338d",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037248",
+        "source": {
+          "url": "https://www.buffalobills.com/team/players-roster/",
+          "hash": "08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202",
+          "checkedAt": "2026-11-08T12:15:08.291Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "2e632aa3-c717-54f0-aed1-3f30bcc7c8e2",
+      "player_id": "f8b2d720-8afb-444b-a05a-631839c0b6ef",
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "lifetime_cap": 2500,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Dameon Pierce",
+        "team": "PHI",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 39,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037258",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "3c5ab53e-9f6e-5a36-aa3e-3728ab485068",
+      "player_id": "e3ba9b42-4087-4f4a-aaa9-2c05d8934573",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Tre Harris",
+        "team": "LAC",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 9,
+        "colour": "#0080c6",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040727",
+        "source": {
+          "url": "https://www.chargers.com/team/players-roster/",
+          "hash": "4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85",
+          "checkedAt": "2026-11-08T12:15:12.004Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "4479301f-60b0-555b-a118-c2a8a28511ff",
+      "player_id": "18fcb6ae-8062-47b1-899e-f4556c27bd89",
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "lifetime_cap": 2500,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:2f89f33dae00e023ca4dd61abd63198cb11e86cd5f99d2138bdb894a5a4131ae; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Matthew Hibner",
+        "team": "BAL",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 88,
+        "colour": "#241773",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040879",
+        "source": {
+          "url": "https://www.baltimoreravens.com/team/players-roster/",
+          "hash": "2f89f33dae00e023ca4dd61abd63198cb11e86cd5f99d2138bdb894a5a4131ae",
+          "checkedAt": "2026-11-08T12:15:10.195Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "45ad6aed-4707-5c1f-a2d0-8c05236eaa04",
+      "player_id": "b6956ed4-3873-4793-b75f-0ad287c29a75",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:7c239e4f72e4fe7fb10a7b39f0c941b55cee31e0c3faaf221a280af02e6ee507; permanent-issuance-pending",
+      "snapshot": {
+        "name": "KC Concepcion",
+        "team": "CLE",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 1,
+        "colour": "#311d00",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0041547",
+        "source": {
+          "url": "https://www.clevelandbrowns.com/team/players-roster/",
+          "hash": "7c239e4f72e4fe7fb10a7b39f0c941b55cee31e0c3faaf221a280af02e6ee507",
+          "checkedAt": "2026-11-08T12:15:09.267Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "512fb67e-91ef-5f80-a9ea-c25d51e7b4cf",
+      "player_id": "cd93fdb9-f963-413f-b88a-25f8e62e7025",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:ca675653233e14d84e0350edc3dc7b58c19310ba728735d6e6749b9b2b217e00; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jaylin Noel",
+        "team": "HOU",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 13,
+        "colour": "#03202f",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040138",
+        "source": {
+          "url": "https://www.houstontexans.com/team/players-roster/",
+          "hash": "ca675653233e14d84e0350edc3dc7b58c19310ba728735d6e6749b9b2b217e00",
+          "checkedAt": "2026-11-08T12:15:09.193Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "54aa9d52-5b97-5a02-a9c1-42077a517baa",
+      "player_id": "76ca6d11-064e-4715-a17b-1c6149d737d3",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Elijah Arroyo",
+        "team": "SEA",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 18,
+        "colour": "#002244",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040739",
+        "source": {
+          "url": "https://www.seahawks.com/team/players-roster/",
+          "hash": "d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90",
+          "checkedAt": "2026-11-08T12:15:12.096Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "59e931e1-ee99-50b4-a5b9-267bdc993a1a",
+      "player_id": "3a49febb-3656-44ee-a118-e211b67e4f1b",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Patrick Mahomes",
+        "team": "KC",
+        "position": "QB",
+        "season": "2026",
+        "verifiedJerseyNumber": 15,
+        "colour": "#e31837",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "QB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0033873",
+        "source": {
+          "url": "https://www.chiefs.com/team/players-roster/",
+          "hash": "9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c",
+          "checkedAt": "2026-11-08T12:15:06.207Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "5a9bc5cb-9998-5f96-abd0-4ad28ec7d635",
+      "player_id": "9ebaed25-3b61-4ea2-a4d2-03324992a50f",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:64610cb5a9440531f6ec013ae3960b86184c97c4661eb9c1d531ce4aa5300f4e; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Najee Harris",
+        "team": "NYG",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 23,
+        "colour": "#0b2265",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0036893",
+        "source": {
+          "url": "https://www.giants.com/team/players-roster/",
+          "hash": "64610cb5a9440531f6ec013ae3960b86184c97c4661eb9c1d531ce4aa5300f4e",
+          "checkedAt": "2026-11-08T12:15:10.901Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "5f83c49a-72c8-51f5-a851-5068d1c024ed",
+      "player_id": "acf083da-b23d-4cc2-bdcd-05ccd00dc1da",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:0bdb785121e81c98617a1ee749008603a1c13f81356b075e0b602d91a03a5f80; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Skyy Moore",
+        "team": "GB",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 23,
+        "colour": "#203731",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038090",
+        "source": {
+          "url": "https://www.packers.com/team/players-roster/",
+          "hash": "0bdb785121e81c98617a1ee749008603a1c13f81356b075e0b602d91a03a5f80",
+          "checkedAt": "2026-11-08T12:15:11.339Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "688452ba-e55e-56ba-a0b8-c27c3fc81b15",
+      "player_id": "fd9f7331-4bb1-4183-95a6-58127bdd3b15",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Erick All",
+        "team": "CIN",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 83,
+        "colour": "#fb4f14",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039814",
+        "source": {
+          "url": "https://www.bengals.com/team/players-roster/",
+          "hash": "3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326",
+          "checkedAt": "2026-11-08T12:15:09.395Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "70b4cc9c-cf76-5b84-a358-056242476905",
+      "player_id": "fd9f7331-4bb1-4183-95a6-58127bdd3b15",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Erick All",
+        "team": "CIN",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 83,
+        "colour": "#fb4f14",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039814",
+        "source": {
+          "url": "https://www.bengals.com/team/players-roster/",
+          "hash": "3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326",
+          "checkedAt": "2026-11-08T12:15:09.395Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "7551f2a4-b885-5f95-a1a7-328c0db94938",
+      "player_id": "0b755edc-89b4-4965-8c7d-3c77d6f6ed7b",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:d41b43507603a8a14fb780c7177acd616c075d28c4c2ae56f1bc90e3e7419171; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Anthony Richardson",
+        "team": "IND",
+        "position": "QB",
+        "season": "2026",
+        "verifiedJerseyNumber": 5,
+        "colour": "#002c5f",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "QB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039164",
+        "source": {
+          "url": "https://www.colts.com/team/players-roster/",
+          "hash": "d41b43507603a8a14fb780c7177acd616c075d28c4c2ae56f1bc90e3e7419171",
+          "checkedAt": "2026-11-08T12:15:07.377Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "7923e869-13b0-554b-a5ae-b4f1b2c0c044",
+      "player_id": "a0689c8c-5820-45d6-ab83-477dea216ffd",
+      "sport": "nfl",
+      "rarity": "LEGENDARY",
+      "lifetime_cap": 50,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:0c75b5b30e4838ec38eed240af326da561ebc69493a3509128850f94b6941849; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jacory Croskey-Merritt",
+        "team": "WAS",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 22,
+        "colour": "#5a1414",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040242",
+        "source": {
+          "url": "https://www.commanders.com/team/players-roster/",
+          "hash": "0c75b5b30e4838ec38eed240af326da561ebc69493a3509128850f94b6941849",
+          "checkedAt": "2026-11-08T12:15:10.335Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "82882b8d-b47c-532d-af1b-88fe12de32fb",
+      "player_id": "1ebb4aae-2279-44a7-a4a0-2bc8800044bc",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:0bdb785121e81c98617a1ee749008603a1c13f81356b075e0b602d91a03a5f80; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Pierre Strong",
+        "team": "GB",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 22,
+        "colour": "#203731",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038098",
+        "source": {
+          "url": "https://www.packers.com/team/players-roster/",
+          "hash": "0bdb785121e81c98617a1ee749008603a1c13f81356b075e0b602d91a03a5f80",
+          "checkedAt": "2026-11-08T12:15:11.339Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "83429052-44e6-55f6-abc1-ae6c16e16375",
+      "player_id": "08a15626-79e7-4fbb-bb4a-e9c010a6fd33",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:a60179c39d591f862c3ea4d4fe954edd74ff9b7ff172e350da110c0e85db2cea; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Ryan Miller",
+        "team": "MIA",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 11,
+        "colour": "#008e97",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038824",
+        "source": {
+          "url": "https://www.miamidolphins.com/team/transactions/",
+          "hash": "a60179c39d591f862c3ea4d4fe954edd74ff9b7ff172e350da110c0e85db2cea",
+          "checkedAt": "2026-10-17T05:24:42.850Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "85ecef27-9af5-5e3d-a1b3-8893bd6211ba",
+      "player_id": "c9a83c56-8111-478a-8702-49d39bf26b38",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Carson Steele",
+        "team": "PHI",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 34,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039325",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "88a99ca4-bce3-590d-afb6-8456a5b838ad",
+      "player_id": "296a07d2-daba-4901-a983-ec0099a2b63b",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:CC-BY-SA-4.0:b1b14ce7e452b2f98f5bab4aee78d74b310925d44a289efb70561a0b4042246e; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jack Carroll",
+        "team": "St Kilda",
+        "position": "DEF",
+        "season": "2026",
+        "verifiedJerseyNumber": null,
+        "colour": "#ed1b2f",
+        "accentColour": "#171717",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "DEF"
+        ],
+        "provider": "wikimedia",
+        "providerId": "afl:Q111831570",
+        "source": {
+          "url": "https://en.wikipedia.org/w/index.php?title=Jack_Carroll_%28footballer%2C_born_2002%29&oldid=1369118667",
+          "hash": "b1b14ce7e452b2f98f5bab4aee78d74b310925d44a289efb70561a0b4042246e",
+          "checkedAt": "2026-10-22T22:17:32.949Z",
+          "license": "CC-BY-SA-4.0",
+          "verification": "preserved-historical-baseline-only; archived-exact-Wikidata-UUID; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "8cbfb530-2968-5d6d-a52f-939916cea35c",
+      "player_id": "922f06b5-3f43-4237-bdab-b8d10d8ce6be",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:429dd0a418c7f1d7539126eb149e9a26dbc08926bd71ed172335b6a95275344e; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Brian Robinson",
+        "team": "ATL",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 15,
+        "colour": "#a71930",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037746",
+        "source": {
+          "url": "https://www.atlantafalcons.com/team/players-roster/",
+          "hash": "429dd0a418c7f1d7539126eb149e9a26dbc08926bd71ed172335b6a95275344e",
+          "checkedAt": "2026-11-08T12:15:11.656Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "94ccd70a-2458-5f6c-a97b-05650ee70a26",
+      "player_id": "6ff46722-cbfc-4c73-abf1-6fb585c3d121",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Robert Henry Jr.",
+        "team": "SEA",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 34,
+        "colour": "#002244",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0041178",
+        "source": {
+          "url": "https://www.seahawks.com/team/players-roster/",
+          "hash": "d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90",
+          "checkedAt": "2026-11-08T12:15:12.096Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "9847404a-01c1-5611-acb0-88b2d8846832",
+      "player_id": "18fcb6ae-8062-47b1-899e-f4556c27bd89",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:2f89f33dae00e023ca4dd61abd63198cb11e86cd5f99d2138bdb894a5a4131ae; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Matthew Hibner",
+        "team": "BAL",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 88,
+        "colour": "#241773",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040879",
+        "source": {
+          "url": "https://www.baltimoreravens.com/team/players-roster/",
+          "hash": "2f89f33dae00e023ca4dd61abd63198cb11e86cd5f99d2138bdb894a5a4131ae",
+          "checkedAt": "2026-11-08T12:15:10.195Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "98877d70-5244-5767-a12d-a72e92779e9f",
+      "player_id": "d157d740-de6d-46f7-b8d5-26a1303c5356",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202; permanent-issuance-pending",
+      "snapshot": {
+        "name": "James Cook",
+        "team": "BUF",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 4,
+        "colour": "#00338d",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037248",
+        "source": {
+          "url": "https://www.buffalobills.com/team/players-roster/",
+          "hash": "08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202",
+          "checkedAt": "2026-11-08T12:15:08.291Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "a1be4e9f-3abf-56cc-aa3c-451797859f76",
+      "player_id": "c88b2776-18b4-47d0-a5ee-e4312e5bb60e",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Montorie Foster Jr",
+        "team": "SEA",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 87,
+        "colour": "#002244",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040621",
+        "source": {
+          "url": "https://www.seahawks.com/team/players-roster/",
+          "hash": "d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90",
+          "checkedAt": "2026-11-08T12:15:12.096Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "a833082d-685c-5d6b-a390-8ba7a1bdf6d2",
+      "player_id": "e3ba9b42-4087-4f4a-aaa9-2c05d8934573",
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "lifetime_cap": 2500,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Tre Harris",
+        "team": "LAC",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 9,
+        "colour": "#0080c6",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040727",
+        "source": {
+          "url": "https://www.chargers.com/team/players-roster/",
+          "hash": "4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85",
+          "checkedAt": "2026-11-08T12:15:12.004Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "a8e9ec32-577b-5fb4-a683-9f118be9cdfe",
+      "player_id": "d214e349-cde9-4b5f-9870-8cb9428b4b16",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:38b32565bd9e7aad8eccd7513aec2013a0925964d8b47cf1da257cbbc38c3da8; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Aaron Jones",
+        "team": "MIN",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 33,
+        "colour": "#4f2683",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0033293",
+        "source": {
+          "url": "https://www.vikings.com/team/players-roster/",
+          "hash": "38b32565bd9e7aad8eccd7513aec2013a0925964d8b47cf1da257cbbc38c3da8",
+          "checkedAt": "2026-11-08T12:15:06.761Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "b4cdcf57-8597-563e-a5a7-0f7e27e2a28c",
+      "player_id": "f2487e79-6dee-4aa6-9b11-a2390dde2a3f",
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "lifetime_cap": 2500,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "E.J. Jenkins",
+        "team": "PHI",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 84,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038498",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "b75aeb8d-e5db-5948-aab6-7533c2267a29",
+      "player_id": "b21fd276-f50e-4d3d-a386-d5de38945dfb",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:CC-BY-SA-4.0:c436ed06bbef7100cd1fa11788ba7053904a01c87a2e830b3eab602439beb84c; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Ryan Byrnes",
+        "team": "St Kilda",
+        "position": "MID",
+        "season": "2026",
+        "verifiedJerseyNumber": null,
+        "colour": "#ed1b2f",
+        "accentColour": "#171717",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "MID"
+        ],
+        "provider": "wikimedia",
+        "providerId": "afl:Q98690875",
+        "source": {
+          "url": "https://en.wikipedia.org/w/index.php?title=Ryan_Byrnes&oldid=1369118285",
+          "hash": "c436ed06bbef7100cd1fa11788ba7053904a01c87a2e830b3eab602439beb84c",
+          "checkedAt": "2026-10-22T22:17:32.949Z",
+          "license": "CC-BY-SA-4.0",
+          "verification": "preserved-historical-baseline-only; archived-exact-Wikidata-UUID; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "bbc47338-8a75-54e5-a8e5-bc5fdcc90d02",
+      "player_id": "bb3adeb3-fb93-40bf-838f-87af58487bd0",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Oronde Gadsden II",
+        "team": "LAC",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 86,
+        "colour": "#0080c6",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040189",
+        "source": {
+          "url": "https://www.chargers.com/team/players-roster/",
+          "hash": "4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85",
+          "checkedAt": "2026-11-08T12:15:12.004Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "bd906c4a-0bfd-526d-a37a-91c3e50142e6",
+      "player_id": "f748f787-3a46-408f-a562-d86f76eda8bc",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:8822bff4e1ba1bd917f52d4937bd607ab1f99c6784384d0692b187eeeb45e764; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Aidan O'Connell",
+        "team": "LV",
+        "position": "QB",
+        "season": "2026",
+        "verifiedJerseyNumber": 12,
+        "colour": "#161616",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "QB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038579",
+        "source": {
+          "url": "https://www.raiders.com/team/players-roster/",
+          "hash": "8822bff4e1ba1bd917f52d4937bd607ab1f99c6784384d0692b187eeeb45e764",
+          "checkedAt": "2026-11-08T12:15:10.081Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "c06ed292-ff05-58dd-a56a-81af8cddacb9",
+      "player_id": "c9281ac8-c8d4-4b23-b94a-3a6109b6be2e",
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "lifetime_cap": 2500,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:0ca2872619d800ba7b14d2410fdd21a0e1be53d38552288a2bf048a7eb09e839; permanent-issuance-pending",
+      "snapshot": {
+        "name": "RJ Harvey",
+        "team": "DEN",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 12,
+        "colour": "#fb4f14",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040730",
+        "source": {
+          "url": "https://www.denverbroncos.com/team/players-roster/",
+          "hash": "0ca2872619d800ba7b14d2410fdd21a0e1be53d38552288a2bf048a7eb09e839",
+          "checkedAt": "2026-11-08T12:15:05.629Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "c78b77ae-061e-5c1f-af17-ea9a9c001067",
+      "player_id": "7a701467-2982-44e8-9e6c-02a617487d29",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Tanner Hudson",
+        "team": "CIN",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 87,
+        "colour": "#fb4f14",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0034613",
+        "source": {
+          "url": "https://www.bengals.com/team/players-roster/",
+          "hash": "3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326",
+          "checkedAt": "2026-11-08T12:15:09.395Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "c9fc5655-b439-5f88-ae18-6a82c97a5bfe",
+      "player_id": "d7b84ee6-559c-4c1c-b840-b0167f0a94e1",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:e8d61bb7a69acbc9e8d7aec2ddeda6e305234aff2652cd66e3f87e3d6fc746aa; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Nicholas Singleton",
+        "team": "TEN",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 32,
+        "colour": "#0c2340",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040886",
+        "source": {
+          "url": "https://www.tennesseetitans.com/team/players-roster/",
+          "hash": "e8d61bb7a69acbc9e8d7aec2ddeda6e305234aff2652cd66e3f87e3d6fc746aa",
+          "checkedAt": "2026-10-29T12:15:04.816Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "cf0e4a31-e9de-5c78-a08c-da2d302d8307",
+      "player_id": "8f030ee2-afb5-484a-94e1-6e9ba3523605",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Brashard Smith",
+        "team": "KC",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 24,
+        "colour": "#e31837",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040078",
+        "source": {
+          "url": "https://www.chiefs.com/team/players-roster/",
+          "hash": "9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c",
+          "checkedAt": "2026-11-08T12:15:06.207Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d01aee5e-70ec-5c08-a822-b080242d2401",
+      "player_id": "8f030ee2-afb5-484a-94e1-6e9ba3523605",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Brashard Smith",
+        "team": "KC",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 24,
+        "colour": "#e31837",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040078",
+        "source": {
+          "url": "https://www.chiefs.com/team/players-roster/",
+          "hash": "9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c",
+          "checkedAt": "2026-11-08T12:15:06.207Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d039d54c-e405-53e6-a1cf-d8b799ac503d",
+      "player_id": "c9a83c56-8111-478a-8702-49d39bf26b38",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Carson Steele",
+        "team": "PHI",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 34,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039325",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d23e225c-d73d-58c6-a23a-13e1b6eec00f",
+      "player_id": "bb3adeb3-fb93-40bf-838f-87af58487bd0",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Oronde Gadsden II",
+        "team": "LAC",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 86,
+        "colour": "#0080c6",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040189",
+        "source": {
+          "url": "https://www.chargers.com/team/players-roster/",
+          "hash": "4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85",
+          "checkedAt": "2026-11-08T12:15:12.004Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d32a024c-b41c-5c04-aa25-01012deaa364",
+      "player_id": "bd3abd2f-3cd7-4ca9-8e4d-31e4b317a632",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Will Shipley",
+        "team": "PHI",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 28,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039746",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d5764d65-7db5-551c-a3b5-02cba75012a5",
+      "player_id": "dc394a06-c87e-45c4-a9ba-4825d98850ae",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:7a7be836b5b704cffc999341c48683cdb869cc02234a692bc1f6c08e71883c71; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Romeo Doubs",
+        "team": "NE",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 87,
+        "colour": "#002244",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037816",
+        "source": {
+          "url": "https://www.patriots.com/team/players-roster/",
+          "hash": "7a7be836b5b704cffc999341c48683cdb869cc02234a692bc1f6c08e71883c71",
+          "checkedAt": "2026-11-08T12:15:06.379Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d68d8168-53bb-5830-ab78-f7eab26931f7",
+      "player_id": "11692219-f907-42d1-9ce3-e16338470c55",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jalen Hurts",
+        "team": "PHI",
+        "position": "QB",
+        "season": "2026",
+        "verifiedJerseyNumber": 1,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "QB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0036389",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "e12fc19c-1a53-598b-a4cf-9c02f2a5926f",
+      "player_id": "194a80da-593b-4fbd-a2c9-bf89fa86cb46",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:0c75b5b30e4838ec38eed240af326da561ebc69493a3509128850f94b6941849; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Terry McLaurin",
+        "team": "WAS",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 17,
+        "colour": "#5a1414",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0035659",
+        "source": {
+          "url": "https://www.commanders.com/team/players-roster/",
+          "hash": "0c75b5b30e4838ec38eed240af326da561ebc69493a3509128850f94b6941849",
+          "checkedAt": "2026-11-08T12:15:10.335Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "e27b0327-d52d-5aef-aee6-ec642a6726ab",
+      "player_id": "3ca2379e-f51b-4cc4-a2e9-7c0280caedeb",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:CC-BY-SA-4.0:1608cf998e864a4ba9d2e8ab4d1a5241d62f272fc28d3212d39632c23c29a1b7; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Dane Rampe",
+        "team": "Sydney",
+        "position": "DEF",
+        "season": "2026",
+        "verifiedJerseyNumber": null,
+        "colour": "#ed1b2f",
+        "accentColour": "#ffffff",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "DEF"
+        ],
+        "provider": "wikimedia",
+        "providerId": "afl:Q16233497",
+        "source": {
+          "url": "https://en.wikipedia.org/w/index.php?title=Dane_Rampe&oldid=1380049257",
+          "hash": "1608cf998e864a4ba9d2e8ab4d1a5241d62f272fc28d3212d39632c23c29a1b7",
+          "checkedAt": "2026-10-22T22:17:34.321Z",
+          "license": "CC-BY-SA-4.0",
+          "verification": "preserved-historical-baseline-only; archived-exact-Wikidata-UUID; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "e2e6d568-f023-5294-a34a-60c391df0611",
+      "player_id": "cd93fdb9-f963-413f-b88a-25f8e62e7025",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:ca675653233e14d84e0350edc3dc7b58c19310ba728735d6e6749b9b2b217e00; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jaylin Noel",
+        "team": "HOU",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 13,
+        "colour": "#03202f",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040138",
+        "source": {
+          "url": "https://www.houstontexans.com/team/players-roster/",
+          "hash": "ca675653233e14d84e0350edc3dc7b58c19310ba728735d6e6749b9b2b217e00",
+          "checkedAt": "2026-11-08T12:15:09.193Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "e402c48b-0c35-562c-a535-5ffcf15ddb0c",
+      "player_id": "5f7b2f82-b24f-45d9-a137-c698ba977e42",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:CC-BY-SA-4.0:bc1a827665e645c0eec1c74a29714d7127de8b41304258397ffd31278b6b6c2c; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jamarra Ugle-Hagan",
+        "team": "Gold Coast",
+        "position": "FWD",
+        "season": "2026",
+        "verifiedJerseyNumber": null,
+        "colour": "#e21b2b",
+        "accentColour": "#ffd200",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "FWD"
+        ],
+        "provider": "wikimedia",
+        "providerId": "afl:Q107491321",
+        "source": {
+          "url": "https://en.wikipedia.org/w/index.php?title=Jamarra_Ugle-Hagan&oldid=1377762856",
+          "hash": "bc1a827665e645c0eec1c74a29714d7127de8b41304258397ffd31278b6b6c2c",
+          "checkedAt": "2026-10-22T22:17:22.295Z",
+          "license": "CC-BY-SA-4.0",
+          "verification": "preserved-historical-baseline-only; archived-exact-Wikidata-UUID; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "f7505343-9d45-5b58-a63a-85811c7d5c93",
+      "player_id": "b7dc2d51-895e-4c5f-b36b-f376a0778956",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Mitchell Tinsley",
+        "team": "CIN",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 82,
+        "colour": "#fb4f14",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038839",
+        "source": {
+          "url": "https://www.bengals.com/team/players-roster/",
+          "hash": "3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326",
+          "checkedAt": "2026-11-08T12:15:09.395Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "f7a8fa72-ae7f-5b93-a5c9-0e201e33c0f2",
+      "player_id": "76ca6d11-064e-4715-a17b-1c6149d737d3",
+      "sport": "nfl",
+      "rarity": "LEGENDARY",
+      "lifetime_cap": 50,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Elijah Arroyo",
+        "team": "SEA",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 18,
+        "colour": "#002244",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040739",
+        "source": {
+          "url": "https://www.seahawks.com/team/players-roster/",
+          "hash": "d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90",
+          "checkedAt": "2026-11-08T12:15:12.096Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "fc844373-799b-5cb2-a33e-21a8db26f834",
+      "player_id": "557516f6-961d-4bc3-a82e-ddde8c510ad8",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:6878306992f722cb5f9c2827c3ec1d1cc436afaddcadfec068285b6e6bb3c2ba; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Kendrick Bourne",
+        "team": "ARI",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 17,
+        "colour": "#97233f",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0033307",
+        "source": {
+          "url": "https://www.azcardinals.com/team/players-roster/",
+          "hash": "6878306992f722cb5f9c2827c3ec1d1cc436afaddcadfec068285b6e6bb3c2ba",
+          "checkedAt": "2026-10-17T05:22:05.204Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "fc893469-f90f-57aa-a74b-39c5565fd291",
+      "player_id": "ac148c3c-0d29-4831-b0c1-3241b3a202d6",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Alec Ingold",
+        "team": "LAC",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 30,
+        "colour": "#0080c6",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0035125",
+        "source": {
+          "url": "https://www.chargers.com/team/players-roster/",
+          "hash": "4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85",
+          "checkedAt": "2026-11-08T12:15:12.004Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "fdac8079-ad80-5a28-a1c0-5a2df3e2110a",
+      "player_id": "038da416-5f9c-4015-a428-014dcc40da2f",
+      "sport": "afl",
+      "rarity": "LEGENDARY",
+      "lifetime_cap": 50,
+      "issued": 0,
+      "legacy_issued": 0,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:CC-BY-SA-4.0:7551fe2fc26b4197768af7be4b620a4be41fc6ccb9642b4e4f3fa3db2eb2d824; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Dougal Howard",
+        "team": "St Kilda",
+        "position": "DEF",
+        "season": "2026",
+        "verifiedJerseyNumber": null,
+        "colour": "#ed1b2f",
+        "accentColour": "#171717",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "DEF"
+        ],
+        "provider": "wikimedia",
+        "providerId": "afl:Q18580425",
+        "source": {
+          "url": "https://en.wikipedia.org/w/index.php?title=Dougal_Howard&oldid=1377097530",
+          "hash": "7551fe2fc26b4197768af7be4b620a4be41fc6ccb9642b4e4f3fa3db2eb2d824",
+          "checkedAt": "2026-10-22T22:17:32.949Z",
+          "license": "CC-BY-SA-4.0",
+          "verification": "preserved-historical-baseline-only; archived-exact-Wikidata-UUID; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    }
+  ],
+  "proposedRows": [
+    {
+      "id": "10968e8b-1e0c-5604-a857-8328db679e7f",
+      "player_id": "f8b2d720-8afb-444b-a05a-631839c0b6ef",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Dameon Pierce",
+        "team": "PHI",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 39,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037258",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "21b02eb8-913b-51c1-afec-63e3a5cb253c",
+      "player_id": "aafc03d1-ca93-4606-a7b7-71397b1a8fc3",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 2,
+      "legacy_issued": 2,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Josh Palmer",
+        "team": "BUF",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 5,
+        "colour": "#00338d",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0036988",
+        "source": {
+          "url": "https://www.buffalobills.com/team/players-roster/",
+          "hash": "08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202",
+          "checkedAt": "2026-11-08T12:15:08.291Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "2857bfe8-cbe5-58a5-a07b-e26e508bc08f",
+      "player_id": "29198ba7-f68e-4776-89d2-dbb526e1f5d0",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 2,
+      "legacy_issued": 2,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:429dd0a418c7f1d7539126eb149e9a26dbc08926bd71ed172335b6a95275344e; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Kyle Pitts",
+        "team": "ATL",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 8,
+        "colour": "#a71930",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0036970",
+        "source": {
+          "url": "https://www.atlantafalcons.com/team/players-roster/",
+          "hash": "429dd0a418c7f1d7539126eb149e9a26dbc08926bd71ed172335b6a95275344e",
+          "checkedAt": "2026-11-08T12:15:11.656Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "2aed2766-4a3d-55fc-af6c-1b92ecad65e5",
+      "player_id": "d157d740-de6d-46f7-b8d5-26a1303c5356",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202; permanent-issuance-pending",
+      "snapshot": {
+        "name": "James Cook",
+        "team": "BUF",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 4,
+        "colour": "#00338d",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037248",
+        "source": {
+          "url": "https://www.buffalobills.com/team/players-roster/",
+          "hash": "08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202",
+          "checkedAt": "2026-11-08T12:15:08.291Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "2e632aa3-c717-54f0-aed1-3f30bcc7c8e2",
+      "player_id": "f8b2d720-8afb-444b-a05a-631839c0b6ef",
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "lifetime_cap": 2500,
+      "issued": 2,
+      "legacy_issued": 2,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Dameon Pierce",
+        "team": "PHI",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 39,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037258",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "3c5ab53e-9f6e-5a36-aa3e-3728ab485068",
+      "player_id": "e3ba9b42-4087-4f4a-aaa9-2c05d8934573",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 2,
+      "legacy_issued": 2,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Tre Harris",
+        "team": "LAC",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 9,
+        "colour": "#0080c6",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040727",
+        "source": {
+          "url": "https://www.chargers.com/team/players-roster/",
+          "hash": "4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85",
+          "checkedAt": "2026-11-08T12:15:12.004Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "4479301f-60b0-555b-a118-c2a8a28511ff",
+      "player_id": "18fcb6ae-8062-47b1-899e-f4556c27bd89",
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "lifetime_cap": 2500,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:2f89f33dae00e023ca4dd61abd63198cb11e86cd5f99d2138bdb894a5a4131ae; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Matthew Hibner",
+        "team": "BAL",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 88,
+        "colour": "#241773",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040879",
+        "source": {
+          "url": "https://www.baltimoreravens.com/team/players-roster/",
+          "hash": "2f89f33dae00e023ca4dd61abd63198cb11e86cd5f99d2138bdb894a5a4131ae",
+          "checkedAt": "2026-11-08T12:15:10.195Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "45ad6aed-4707-5c1f-a2d0-8c05236eaa04",
+      "player_id": "b6956ed4-3873-4793-b75f-0ad287c29a75",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:7c239e4f72e4fe7fb10a7b39f0c941b55cee31e0c3faaf221a280af02e6ee507; permanent-issuance-pending",
+      "snapshot": {
+        "name": "KC Concepcion",
+        "team": "CLE",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 1,
+        "colour": "#311d00",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0041547",
+        "source": {
+          "url": "https://www.clevelandbrowns.com/team/players-roster/",
+          "hash": "7c239e4f72e4fe7fb10a7b39f0c941b55cee31e0c3faaf221a280af02e6ee507",
+          "checkedAt": "2026-11-08T12:15:09.267Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "512fb67e-91ef-5f80-a9ea-c25d51e7b4cf",
+      "player_id": "cd93fdb9-f963-413f-b88a-25f8e62e7025",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:ca675653233e14d84e0350edc3dc7b58c19310ba728735d6e6749b9b2b217e00; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jaylin Noel",
+        "team": "HOU",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 13,
+        "colour": "#03202f",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040138",
+        "source": {
+          "url": "https://www.houstontexans.com/team/players-roster/",
+          "hash": "ca675653233e14d84e0350edc3dc7b58c19310ba728735d6e6749b9b2b217e00",
+          "checkedAt": "2026-11-08T12:15:09.193Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "54aa9d52-5b97-5a02-a9c1-42077a517baa",
+      "player_id": "76ca6d11-064e-4715-a17b-1c6149d737d3",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 2,
+      "legacy_issued": 2,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Elijah Arroyo",
+        "team": "SEA",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 18,
+        "colour": "#002244",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040739",
+        "source": {
+          "url": "https://www.seahawks.com/team/players-roster/",
+          "hash": "d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90",
+          "checkedAt": "2026-11-08T12:15:12.096Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "59e931e1-ee99-50b4-a5b9-267bdc993a1a",
+      "player_id": "3a49febb-3656-44ee-a118-e211b67e4f1b",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Patrick Mahomes",
+        "team": "KC",
+        "position": "QB",
+        "season": "2026",
+        "verifiedJerseyNumber": 15,
+        "colour": "#e31837",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "QB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0033873",
+        "source": {
+          "url": "https://www.chiefs.com/team/players-roster/",
+          "hash": "9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c",
+          "checkedAt": "2026-11-08T12:15:06.207Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "5a9bc5cb-9998-5f96-abd0-4ad28ec7d635",
+      "player_id": "9ebaed25-3b61-4ea2-a4d2-03324992a50f",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:64610cb5a9440531f6ec013ae3960b86184c97c4661eb9c1d531ce4aa5300f4e; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Najee Harris",
+        "team": "NYG",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 23,
+        "colour": "#0b2265",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0036893",
+        "source": {
+          "url": "https://www.giants.com/team/players-roster/",
+          "hash": "64610cb5a9440531f6ec013ae3960b86184c97c4661eb9c1d531ce4aa5300f4e",
+          "checkedAt": "2026-11-08T12:15:10.901Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "5f83c49a-72c8-51f5-a851-5068d1c024ed",
+      "player_id": "acf083da-b23d-4cc2-bdcd-05ccd00dc1da",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:0bdb785121e81c98617a1ee749008603a1c13f81356b075e0b602d91a03a5f80; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Skyy Moore",
+        "team": "GB",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 23,
+        "colour": "#203731",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038090",
+        "source": {
+          "url": "https://www.packers.com/team/players-roster/",
+          "hash": "0bdb785121e81c98617a1ee749008603a1c13f81356b075e0b602d91a03a5f80",
+          "checkedAt": "2026-11-08T12:15:11.339Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "688452ba-e55e-56ba-a0b8-c27c3fc81b15",
+      "player_id": "fd9f7331-4bb1-4183-95a6-58127bdd3b15",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Erick All",
+        "team": "CIN",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 83,
+        "colour": "#fb4f14",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039814",
+        "source": {
+          "url": "https://www.bengals.com/team/players-roster/",
+          "hash": "3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326",
+          "checkedAt": "2026-11-08T12:15:09.395Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "70b4cc9c-cf76-5b84-a358-056242476905",
+      "player_id": "fd9f7331-4bb1-4183-95a6-58127bdd3b15",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Erick All",
+        "team": "CIN",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 83,
+        "colour": "#fb4f14",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039814",
+        "source": {
+          "url": "https://www.bengals.com/team/players-roster/",
+          "hash": "3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326",
+          "checkedAt": "2026-11-08T12:15:09.395Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "7551f2a4-b885-5f95-a1a7-328c0db94938",
+      "player_id": "0b755edc-89b4-4965-8c7d-3c77d6f6ed7b",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:d41b43507603a8a14fb780c7177acd616c075d28c4c2ae56f1bc90e3e7419171; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Anthony Richardson",
+        "team": "IND",
+        "position": "QB",
+        "season": "2026",
+        "verifiedJerseyNumber": 5,
+        "colour": "#002c5f",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "QB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039164",
+        "source": {
+          "url": "https://www.colts.com/team/players-roster/",
+          "hash": "d41b43507603a8a14fb780c7177acd616c075d28c4c2ae56f1bc90e3e7419171",
+          "checkedAt": "2026-11-08T12:15:07.377Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "7923e869-13b0-554b-a5ae-b4f1b2c0c044",
+      "player_id": "a0689c8c-5820-45d6-ab83-477dea216ffd",
+      "sport": "nfl",
+      "rarity": "LEGENDARY",
+      "lifetime_cap": 50,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:0c75b5b30e4838ec38eed240af326da561ebc69493a3509128850f94b6941849; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jacory Croskey-Merritt",
+        "team": "WAS",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 22,
+        "colour": "#5a1414",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040242",
+        "source": {
+          "url": "https://www.commanders.com/team/players-roster/",
+          "hash": "0c75b5b30e4838ec38eed240af326da561ebc69493a3509128850f94b6941849",
+          "checkedAt": "2026-11-08T12:15:10.335Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "82882b8d-b47c-532d-af1b-88fe12de32fb",
+      "player_id": "1ebb4aae-2279-44a7-a4a0-2bc8800044bc",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:0bdb785121e81c98617a1ee749008603a1c13f81356b075e0b602d91a03a5f80; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Pierre Strong",
+        "team": "GB",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 22,
+        "colour": "#203731",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038098",
+        "source": {
+          "url": "https://www.packers.com/team/players-roster/",
+          "hash": "0bdb785121e81c98617a1ee749008603a1c13f81356b075e0b602d91a03a5f80",
+          "checkedAt": "2026-11-08T12:15:11.339Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "83429052-44e6-55f6-abc1-ae6c16e16375",
+      "player_id": "08a15626-79e7-4fbb-bb4a-e9c010a6fd33",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:a60179c39d591f862c3ea4d4fe954edd74ff9b7ff172e350da110c0e85db2cea; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Ryan Miller",
+        "team": "MIA",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 11,
+        "colour": "#008e97",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038824",
+        "source": {
+          "url": "https://www.miamidolphins.com/team/transactions/",
+          "hash": "a60179c39d591f862c3ea4d4fe954edd74ff9b7ff172e350da110c0e85db2cea",
+          "checkedAt": "2026-10-17T05:24:42.850Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "85ecef27-9af5-5e3d-a1b3-8893bd6211ba",
+      "player_id": "c9a83c56-8111-478a-8702-49d39bf26b38",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Carson Steele",
+        "team": "PHI",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 34,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039325",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "88a99ca4-bce3-590d-afb6-8456a5b838ad",
+      "player_id": "296a07d2-daba-4901-a983-ec0099a2b63b",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:CC-BY-SA-4.0:b1b14ce7e452b2f98f5bab4aee78d74b310925d44a289efb70561a0b4042246e; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jack Carroll",
+        "team": "St Kilda",
+        "position": "DEF",
+        "season": "2026",
+        "verifiedJerseyNumber": null,
+        "colour": "#ed1b2f",
+        "accentColour": "#171717",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "DEF"
+        ],
+        "provider": "wikimedia",
+        "providerId": "afl:Q111831570",
+        "source": {
+          "url": "https://en.wikipedia.org/w/index.php?title=Jack_Carroll_%28footballer%2C_born_2002%29&oldid=1369118667",
+          "hash": "b1b14ce7e452b2f98f5bab4aee78d74b310925d44a289efb70561a0b4042246e",
+          "checkedAt": "2026-10-22T22:17:32.949Z",
+          "license": "CC-BY-SA-4.0",
+          "verification": "preserved-historical-baseline-only; archived-exact-Wikidata-UUID; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "8cbfb530-2968-5d6d-a52f-939916cea35c",
+      "player_id": "922f06b5-3f43-4237-bdab-b8d10d8ce6be",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:429dd0a418c7f1d7539126eb149e9a26dbc08926bd71ed172335b6a95275344e; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Brian Robinson",
+        "team": "ATL",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 15,
+        "colour": "#a71930",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037746",
+        "source": {
+          "url": "https://www.atlantafalcons.com/team/players-roster/",
+          "hash": "429dd0a418c7f1d7539126eb149e9a26dbc08926bd71ed172335b6a95275344e",
+          "checkedAt": "2026-11-08T12:15:11.656Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "94ccd70a-2458-5f6c-a97b-05650ee70a26",
+      "player_id": "6ff46722-cbfc-4c73-abf1-6fb585c3d121",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Robert Henry Jr.",
+        "team": "SEA",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 34,
+        "colour": "#002244",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0041178",
+        "source": {
+          "url": "https://www.seahawks.com/team/players-roster/",
+          "hash": "d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90",
+          "checkedAt": "2026-11-08T12:15:12.096Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "9847404a-01c1-5611-acb0-88b2d8846832",
+      "player_id": "18fcb6ae-8062-47b1-899e-f4556c27bd89",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 2,
+      "legacy_issued": 2,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:2f89f33dae00e023ca4dd61abd63198cb11e86cd5f99d2138bdb894a5a4131ae; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Matthew Hibner",
+        "team": "BAL",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 88,
+        "colour": "#241773",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040879",
+        "source": {
+          "url": "https://www.baltimoreravens.com/team/players-roster/",
+          "hash": "2f89f33dae00e023ca4dd61abd63198cb11e86cd5f99d2138bdb894a5a4131ae",
+          "checkedAt": "2026-11-08T12:15:10.195Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "98877d70-5244-5767-a12d-a72e92779e9f",
+      "player_id": "d157d740-de6d-46f7-b8d5-26a1303c5356",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202; permanent-issuance-pending",
+      "snapshot": {
+        "name": "James Cook",
+        "team": "BUF",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 4,
+        "colour": "#00338d",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037248",
+        "source": {
+          "url": "https://www.buffalobills.com/team/players-roster/",
+          "hash": "08ec6a2e9bbc5897b583769dc1c2c99cc92b616d40d475619377ee4ce4e73202",
+          "checkedAt": "2026-11-08T12:15:08.291Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "a1be4e9f-3abf-56cc-aa3c-451797859f76",
+      "player_id": "c88b2776-18b4-47d0-a5ee-e4312e5bb60e",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Montorie Foster Jr",
+        "team": "SEA",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 87,
+        "colour": "#002244",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040621",
+        "source": {
+          "url": "https://www.seahawks.com/team/players-roster/",
+          "hash": "d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90",
+          "checkedAt": "2026-11-08T12:15:12.096Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "a833082d-685c-5d6b-a390-8ba7a1bdf6d2",
+      "player_id": "e3ba9b42-4087-4f4a-aaa9-2c05d8934573",
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "lifetime_cap": 2500,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Tre Harris",
+        "team": "LAC",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 9,
+        "colour": "#0080c6",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040727",
+        "source": {
+          "url": "https://www.chargers.com/team/players-roster/",
+          "hash": "4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85",
+          "checkedAt": "2026-11-08T12:15:12.004Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "a8e9ec32-577b-5fb4-a683-9f118be9cdfe",
+      "player_id": "d214e349-cde9-4b5f-9870-8cb9428b4b16",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:38b32565bd9e7aad8eccd7513aec2013a0925964d8b47cf1da257cbbc38c3da8; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Aaron Jones",
+        "team": "MIN",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 33,
+        "colour": "#4f2683",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0033293",
+        "source": {
+          "url": "https://www.vikings.com/team/players-roster/",
+          "hash": "38b32565bd9e7aad8eccd7513aec2013a0925964d8b47cf1da257cbbc38c3da8",
+          "checkedAt": "2026-11-08T12:15:06.761Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "b4cdcf57-8597-563e-a5a7-0f7e27e2a28c",
+      "player_id": "f2487e79-6dee-4aa6-9b11-a2390dde2a3f",
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "lifetime_cap": 2500,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "E.J. Jenkins",
+        "team": "PHI",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 84,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038498",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "b75aeb8d-e5db-5948-aab6-7533c2267a29",
+      "player_id": "b21fd276-f50e-4d3d-a386-d5de38945dfb",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:CC-BY-SA-4.0:c436ed06bbef7100cd1fa11788ba7053904a01c87a2e830b3eab602439beb84c; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Ryan Byrnes",
+        "team": "St Kilda",
+        "position": "MID",
+        "season": "2026",
+        "verifiedJerseyNumber": null,
+        "colour": "#ed1b2f",
+        "accentColour": "#171717",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "MID"
+        ],
+        "provider": "wikimedia",
+        "providerId": "afl:Q98690875",
+        "source": {
+          "url": "https://en.wikipedia.org/w/index.php?title=Ryan_Byrnes&oldid=1369118285",
+          "hash": "c436ed06bbef7100cd1fa11788ba7053904a01c87a2e830b3eab602439beb84c",
+          "checkedAt": "2026-10-22T22:17:32.949Z",
+          "license": "CC-BY-SA-4.0",
+          "verification": "preserved-historical-baseline-only; archived-exact-Wikidata-UUID; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "bbc47338-8a75-54e5-a8e5-bc5fdcc90d02",
+      "player_id": "bb3adeb3-fb93-40bf-838f-87af58487bd0",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Oronde Gadsden II",
+        "team": "LAC",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 86,
+        "colour": "#0080c6",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040189",
+        "source": {
+          "url": "https://www.chargers.com/team/players-roster/",
+          "hash": "4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85",
+          "checkedAt": "2026-11-08T12:15:12.004Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "bd906c4a-0bfd-526d-a37a-91c3e50142e6",
+      "player_id": "f748f787-3a46-408f-a562-d86f76eda8bc",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:8822bff4e1ba1bd917f52d4937bd607ab1f99c6784384d0692b187eeeb45e764; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Aidan O'Connell",
+        "team": "LV",
+        "position": "QB",
+        "season": "2026",
+        "verifiedJerseyNumber": 12,
+        "colour": "#161616",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "QB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038579",
+        "source": {
+          "url": "https://www.raiders.com/team/players-roster/",
+          "hash": "8822bff4e1ba1bd917f52d4937bd607ab1f99c6784384d0692b187eeeb45e764",
+          "checkedAt": "2026-11-08T12:15:10.081Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "c06ed292-ff05-58dd-a56a-81af8cddacb9",
+      "player_id": "c9281ac8-c8d4-4b23-b94a-3a6109b6be2e",
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "lifetime_cap": 2500,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:0ca2872619d800ba7b14d2410fdd21a0e1be53d38552288a2bf048a7eb09e839; permanent-issuance-pending",
+      "snapshot": {
+        "name": "RJ Harvey",
+        "team": "DEN",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 12,
+        "colour": "#fb4f14",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040730",
+        "source": {
+          "url": "https://www.denverbroncos.com/team/players-roster/",
+          "hash": "0ca2872619d800ba7b14d2410fdd21a0e1be53d38552288a2bf048a7eb09e839",
+          "checkedAt": "2026-11-08T12:15:05.629Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "c78b77ae-061e-5c1f-af17-ea9a9c001067",
+      "player_id": "7a701467-2982-44e8-9e6c-02a617487d29",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Tanner Hudson",
+        "team": "CIN",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 87,
+        "colour": "#fb4f14",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0034613",
+        "source": {
+          "url": "https://www.bengals.com/team/players-roster/",
+          "hash": "3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326",
+          "checkedAt": "2026-11-08T12:15:09.395Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "c9fc5655-b439-5f88-ae18-6a82c97a5bfe",
+      "player_id": "d7b84ee6-559c-4c1c-b840-b0167f0a94e1",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:e8d61bb7a69acbc9e8d7aec2ddeda6e305234aff2652cd66e3f87e3d6fc746aa; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Nicholas Singleton",
+        "team": "TEN",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 32,
+        "colour": "#0c2340",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040886",
+        "source": {
+          "url": "https://www.tennesseetitans.com/team/players-roster/",
+          "hash": "e8d61bb7a69acbc9e8d7aec2ddeda6e305234aff2652cd66e3f87e3d6fc746aa",
+          "checkedAt": "2026-10-29T12:15:04.816Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "cf0e4a31-e9de-5c78-a08c-da2d302d8307",
+      "player_id": "8f030ee2-afb5-484a-94e1-6e9ba3523605",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Brashard Smith",
+        "team": "KC",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 24,
+        "colour": "#e31837",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040078",
+        "source": {
+          "url": "https://www.chiefs.com/team/players-roster/",
+          "hash": "9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c",
+          "checkedAt": "2026-11-08T12:15:06.207Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d01aee5e-70ec-5c08-a822-b080242d2401",
+      "player_id": "8f030ee2-afb5-484a-94e1-6e9ba3523605",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Brashard Smith",
+        "team": "KC",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 24,
+        "colour": "#e31837",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040078",
+        "source": {
+          "url": "https://www.chiefs.com/team/players-roster/",
+          "hash": "9c8bce3580c53ba2b301b43f296e1a535c28f82d9ffa32d7b86de74148e8587c",
+          "checkedAt": "2026-11-08T12:15:06.207Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d039d54c-e405-53e6-a1cf-d8b799ac503d",
+      "player_id": "c9a83c56-8111-478a-8702-49d39bf26b38",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Carson Steele",
+        "team": "PHI",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 34,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039325",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d23e225c-d73d-58c6-a23a-13e1b6eec00f",
+      "player_id": "bb3adeb3-fb93-40bf-838f-87af58487bd0",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Oronde Gadsden II",
+        "team": "LAC",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 86,
+        "colour": "#0080c6",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040189",
+        "source": {
+          "url": "https://www.chargers.com/team/players-roster/",
+          "hash": "4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85",
+          "checkedAt": "2026-11-08T12:15:12.004Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d32a024c-b41c-5c04-aa25-01012deaa364",
+      "player_id": "bd3abd2f-3cd7-4ca9-8e4d-31e4b317a632",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Will Shipley",
+        "team": "PHI",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 28,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0039746",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d5764d65-7db5-551c-a3b5-02cba75012a5",
+      "player_id": "dc394a06-c87e-45c4-a9ba-4825d98850ae",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:7a7be836b5b704cffc999341c48683cdb869cc02234a692bc1f6c08e71883c71; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Romeo Doubs",
+        "team": "NE",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 87,
+        "colour": "#002244",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0037816",
+        "source": {
+          "url": "https://www.patriots.com/team/players-roster/",
+          "hash": "7a7be836b5b704cffc999341c48683cdb869cc02234a692bc1f6c08e71883c71",
+          "checkedAt": "2026-11-08T12:15:06.379Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "d68d8168-53bb-5830-ab78-f7eab26931f7",
+      "player_id": "11692219-f907-42d1-9ce3-e16338470c55",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jalen Hurts",
+        "team": "PHI",
+        "position": "QB",
+        "season": "2026",
+        "verifiedJerseyNumber": 1,
+        "colour": "#004c54",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "QB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0036389",
+        "source": {
+          "url": "https://www.philadelphiaeagles.com/team/players-roster/",
+          "hash": "09e3b34d80d09386135aab491aa080af5ff9acaa93b846d07ec2e40f6f89f977",
+          "checkedAt": "2026-11-08T12:15:05.487Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "e12fc19c-1a53-598b-a4cf-9c02f2a5926f",
+      "player_id": "194a80da-593b-4fbd-a2c9-bf89fa86cb46",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 3,
+      "legacy_issued": 3,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:0c75b5b30e4838ec38eed240af326da561ebc69493a3509128850f94b6941849; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Terry McLaurin",
+        "team": "WAS",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 17,
+        "colour": "#5a1414",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0035659",
+        "source": {
+          "url": "https://www.commanders.com/team/players-roster/",
+          "hash": "0c75b5b30e4838ec38eed240af326da561ebc69493a3509128850f94b6941849",
+          "checkedAt": "2026-11-08T12:15:10.335Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "e27b0327-d52d-5aef-aee6-ec642a6726ab",
+      "player_id": "3ca2379e-f51b-4cc4-a2e9-7c0280caedeb",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:CC-BY-SA-4.0:1608cf998e864a4ba9d2e8ab4d1a5241d62f272fc28d3212d39632c23c29a1b7; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Dane Rampe",
+        "team": "Sydney",
+        "position": "DEF",
+        "season": "2026",
+        "verifiedJerseyNumber": null,
+        "colour": "#ed1b2f",
+        "accentColour": "#ffffff",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "DEF"
+        ],
+        "provider": "wikimedia",
+        "providerId": "afl:Q16233497",
+        "source": {
+          "url": "https://en.wikipedia.org/w/index.php?title=Dane_Rampe&oldid=1380049257",
+          "hash": "1608cf998e864a4ba9d2e8ab4d1a5241d62f272fc28d3212d39632c23c29a1b7",
+          "checkedAt": "2026-10-22T22:17:34.321Z",
+          "license": "CC-BY-SA-4.0",
+          "verification": "preserved-historical-baseline-only; archived-exact-Wikidata-UUID; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "e2e6d568-f023-5294-a34a-60c391df0611",
+      "player_id": "cd93fdb9-f963-413f-b88a-25f8e62e7025",
+      "sport": "nfl",
+      "rarity": "RARE",
+      "lifetime_cap": 5000,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:ca675653233e14d84e0350edc3dc7b58c19310ba728735d6e6749b9b2b217e00; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jaylin Noel",
+        "team": "HOU",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 13,
+        "colour": "#03202f",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040138",
+        "source": {
+          "url": "https://www.houstontexans.com/team/players-roster/",
+          "hash": "ca675653233e14d84e0350edc3dc7b58c19310ba728735d6e6749b9b2b217e00",
+          "checkedAt": "2026-11-08T12:15:09.193Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "e402c48b-0c35-562c-a535-5ffcf15ddb0c",
+      "player_id": "5f7b2f82-b24f-45d9-a137-c698ba977e42",
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:CC-BY-SA-4.0:bc1a827665e645c0eec1c74a29714d7127de8b41304258397ffd31278b6b6c2c; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Jamarra Ugle-Hagan",
+        "team": "Gold Coast",
+        "position": "FWD",
+        "season": "2026",
+        "verifiedJerseyNumber": null,
+        "colour": "#e21b2b",
+        "accentColour": "#ffd200",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "FWD"
+        ],
+        "provider": "wikimedia",
+        "providerId": "afl:Q107491321",
+        "source": {
+          "url": "https://en.wikipedia.org/w/index.php?title=Jamarra_Ugle-Hagan&oldid=1377762856",
+          "hash": "bc1a827665e645c0eec1c74a29714d7127de8b41304258397ffd31278b6b6c2c",
+          "checkedAt": "2026-10-22T22:17:22.295Z",
+          "license": "CC-BY-SA-4.0",
+          "verification": "preserved-historical-baseline-only; archived-exact-Wikidata-UUID; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "f7505343-9d45-5b58-a63a-85811c7d5c93",
+      "player_id": "b7dc2d51-895e-4c5f-b36b-f376a0778956",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 2,
+      "legacy_issued": 2,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Mitchell Tinsley",
+        "team": "CIN",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 82,
+        "colour": "#fb4f14",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0038839",
+        "source": {
+          "url": "https://www.bengals.com/team/players-roster/",
+          "hash": "3d32a07733d361e93736fbec1bd515285ad253f3f4c570c9392ea7a4ae113326",
+          "checkedAt": "2026-11-08T12:15:09.395Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "f7a8fa72-ae7f-5b93-a5c9-0e201e33c0f2",
+      "player_id": "76ca6d11-064e-4715-a17b-1c6149d737d3",
+      "sport": "nfl",
+      "rarity": "LEGENDARY",
+      "lifetime_cap": 50,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Elijah Arroyo",
+        "team": "SEA",
+        "position": "TE",
+        "season": "2026",
+        "verifiedJerseyNumber": 18,
+        "colour": "#002244",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "TE"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0040739",
+        "source": {
+          "url": "https://www.seahawks.com/team/players-roster/",
+          "hash": "d04f612d5df6b993510899dc8e46fd2b7a8965976e08e1cde3ebb7389802fd90",
+          "checkedAt": "2026-11-08T12:15:12.096Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "fc844373-799b-5cb2-a33e-21a8db26f834",
+      "player_id": "557516f6-961d-4bc3-a82e-ddde8c510ad8",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:6878306992f722cb5f9c2827c3ec1d1cc436afaddcadfec068285b6e6bb3c2ba; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Kendrick Bourne",
+        "team": "ARI",
+        "position": "WR",
+        "season": "2026",
+        "verifiedJerseyNumber": 17,
+        "colour": "#97233f",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "WR"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0033307",
+        "source": {
+          "url": "https://www.azcardinals.com/team/players-roster/",
+          "hash": "6878306992f722cb5f9c2827c3ec1d1cc436afaddcadfec068285b6e6bb3c2ba",
+          "checkedAt": "2026-10-17T05:22:05.204Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "fc893469-f90f-57aa-a74b-39c5565fd291",
+      "player_id": "ac148c3c-0d29-4831-b0c1-3241b3a202d6",
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "lifetime_cap": 400,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:factual-roster-observation; owner-confirmed-name-use:4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Alec Ingold",
+        "team": "LAC",
+        "position": "RB",
+        "season": "2026",
+        "verifiedJerseyNumber": 30,
+        "colour": "#0080c6",
+        "status": "inactive",
+        "synthetic": false,
+        "eligiblePositions": [
+          "RB"
+        ],
+        "provider": "nflverse",
+        "providerId": "00-0035125",
+        "source": {
+          "url": "https://www.chargers.com/team/players-roster/",
+          "hash": "4591a48a9851c6f35023479403c874715be3f218d1ead0a28b2143bbd5dc2c85",
+          "checkedAt": "2026-11-08T12:15:12.004Z",
+          "license": "factual-roster-observation; owner-confirmed-name-use",
+          "verification": "preserved-historical-baseline-only; existing-UUID-provider-witness; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    },
+    {
+      "id": "fdac8079-ad80-5a28-a1c0-5a2df3e2110a",
+      "player_id": "038da416-5f9c-4015-a428-014dcc40da2f",
+      "sport": "afl",
+      "rarity": "LEGENDARY",
+      "lifetime_cap": 50,
+      "issued": 1,
+      "legacy_issued": 1,
+      "approved": false,
+      "rights_reference": "owner-confirmed-player-names-20261102; factual-source:CC-BY-SA-4.0:7551fe2fc26b4197768af7be4b620a4be41fc6ccb9642b4e4f3fa3db2eb2d824; permanent-issuance-pending",
+      "snapshot": {
+        "name": "Dougal Howard",
+        "team": "St Kilda",
+        "position": "DEF",
+        "season": "2026",
+        "verifiedJerseyNumber": null,
+        "colour": "#ed1b2f",
+        "accentColour": "#171717",
+        "status": "active",
+        "synthetic": false,
+        "eligiblePositions": [
+          "DEF"
+        ],
+        "provider": "wikimedia",
+        "providerId": "afl:Q18580425",
+        "source": {
+          "url": "https://en.wikipedia.org/w/index.php?title=Dougal_Howard&oldid=1377097530",
+          "hash": "7551fe2fc26b4197768af7be4b620a4be41fc6ccb9642b4e4f3fa3db2eb2d824",
+          "checkedAt": "2026-10-22T22:17:32.949Z",
+          "license": "CC-BY-SA-4.0",
+          "verification": "preserved-historical-baseline-only; archived-exact-Wikidata-UUID; no-current-eligibility-approval",
+          "permanentIssuanceEligible": false
+        }
+      }
+    }
+  ],
+  "proposedRowsDigest": "6fde78905fb7bb720f9162673409d821d988cbc974faab1b9f94fc127370e632"
+}

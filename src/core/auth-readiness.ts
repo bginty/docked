@@ -42,6 +42,8 @@ export function productionAuthRequestDenial(
   invitationCode: string | undefined,
   env: Environment = process.env,
 ) {
+  if (env.DOCKED_ISOLATED_PHONE_TEST === "true" && action === "signup")
+    return "Registration is closed during private phone acceptance. Use the existing test accounts.";
   if (env.APP_ENV !== "production") return null;
   if (env.DOCKED_RELEASE_CHANNEL === "beta" && action === "signup")
     return "Docked Beta is invitation-only. Open your invitation email to create your account.";

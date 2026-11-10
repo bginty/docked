@@ -1,0 +1,221 @@
+DOCKED — V31 final operational acceptance and migration readiness
+10 November 2026 | PUBLIC LAUNCH NO-GO | Production unchanged
+
+This report follows fetched branch codex/v31-commercial-p1-p4 at 8acae031,
+previous implementation 2c50d454. Current authenticated deployment readback
+still identifies Production f1b50b6f51d7429a36df9a8d5db99aed8886bd44.
+The reviewed work is committed for later approval; its exact delivery commit
+is in Git and the founder-facing reply. No Production deployment/migration,
+inventory import, signup/payment/trading/prize/withdrawal activation, real-scored
+competition, Google publication, live-key transfer/rotation or cleanup schedule.
+NBA remains hidden. Managed publishing is preserved, not newly toggled.
+
+1. P1–P4 status
+P1 — 879/879 historical issued copies accounted; 853 copies mapped to exact
+     existing catalogue identities. 26 copies/23 NFL identities/24 rarity groups
+     need the exact decisions in CARD_MAPPING.txt and card-founder-decisions.json.
+     Broader source-status review queue: 71 players / 98 copies, including 12
+     flagged copies already in the original candidate; none silently pre-approved.
+     Commercial import blocked. Existing copies, including eight retirements,
+     permanently consume lifetime supply; no deletion/duplication/remint proposed.
+P2 — Founder email receipt CONFIRMED by attestation. Incident creation, delivery
+     fencing, acknowledge/resolve, immutable audit, access and retention have
+     isolated evidence. Full hosted founder MFA/lifecycle acceptance pending
+     approval/deployment; managed recovery custody not yet accepted.
+P3 — Six synthetic, free, no-prize Practice bindings remain disabled and safe in
+     current read-only checks. Real-scored/data-rights activation remains outside
+     this release. New Practice/identity database guards await approval.
+P4 — Production and isolated-preview signup closed. Phone Auth disabled; provider
+     credentials/sender missing. Private existing-account phone test safeguards
+     prepared, not deployed. Genuine Australian physical-device OTP pending.
+
+2. Card source mapping and exact proposed totals
+Original candidate: 6,465 definitions / 1,293 players, covering 793 prior copies.
+Exact evidence resolves 60 additional copies into 51 historical definition rows.
+commercial-additional-definitions.json contains those proposed rows and baselines.
+Together the fully specified portion is 6,516 dormant definitions / 853 consumed
+copies. A further 24 definitions / 26 copies have no approved catalogue UUID.
+Conditional complete definition total: 6,540, subject to all identity/source/
+eligibility decisions and fresh recount. This is not an executable full import.
+The source-review queue also captures known UUIDs with unverified/inactive or
+archival-only evidence. Those are eligibility decisions, not additional missing
+identities. Technical mapping alone does not approve future issuance.
+The full 879-copy baseline and exact IDs/serials are in commercial-import-review.json.
+Never import only the mapped portion. New commercial cards minted: 0; changes to
+ownership: 0; deletes: 0; remints: 0; approved available stock/reserved stock: 0/0.
+Remaining lifetime capacity is not available inventory.
+
+Permanent caps per approved player identity: Core unlimited; Rare 5,000; Elite
+2,500; Ultra Rare 400; Legendary 50; Icon 1. No season/reset/refund/retirement
+releases consumed supply. The report includes all 871 owned and eight previously
+retired copies. NBA records remain excluded from commercial proposal and hidden.
+
+Two noncommercial safeguards now reject swapped card-ID/serial digest bindings
+and conflicting provider identities. Isolated PostgreSQL verifies concurrent
+nonzero-baseline imports, exact replay and changed-baseline rejection. Existing
+issuance row locks, exact caps, deferred pack/balance guards and parallel-mint
+controls retain prior isolated evidence; the five SQL files are unchanged.
+The importer still rejects Production. After source approval it needs an exact,
+separately reviewed Production admission/handover package, not removal of its
+guard as an ad-hoc step.
+
+3. Operational email and retention acceptance
+DOCKED-OPS-20261110-01 was received in the founder's inbox on 10 November 2026.
+Evidence: explicit founder attestation. Provider acceptance: previously reported
+Graph HTTP 202. Automated inbox verification: NO. Resends this task: ZERO.
+Recipient remains the single founder-approved support@docked.com.au address.
+No repeat inbox confirmation is required.
+
+Independent audit rechecks the retained send intent, one outbox attempt,
+claim/fence/accepted settlement and unchanged dispatch/security sources. The
+stored drill-start time is not mislabelled as exact provider acceptance time.
+A bounded current Graph Sent Items metadata request was denied (403) by existing
+send-scoped access; permissions were not expanded. Exported historical audit
+omits a per-incident provider-message binding. Therefore full independent provider
+trace and hosted founder AAL2 acknowledge/resolve remain pending, not passed.
+OPERATIONS_AND_VAULT.txt gives exact existing M365 admin trace and hosted steps.
+Receipt may be recorded in a later real incident audit without resending email.
+
+Routine incident retention is prepared at 90 days, DISABLED with no assigned
+worker or schedule. Financial/security/statutory sources and held/required-audit
+records are excluded. Applicable routine notes must be marked for preservation;
+no automatic statutory classification is claimed. Prior restored dry-run: zero
+eligible; synthetic 91-day eligibility/exclusions/receipt tests passed. No
+Production data deleted. Cleanup activation is separate and not needed now.
+
+4. Phone OTP recommendation and founder setup
+Use Supabase Auth with Twilio Programmable Messaging, already selected in both
+project configs. Fresh read-only checks show no Account SID, Auth Token or
+Messaging Service SID; phone enabled=false, signup disabled=true, no fixed OTP.
+
+Founder actions, in order (credentials/phone only in secure provider UI):
+1. Use/create a founder-controlled Twilio account with MFA. Verify funding quote
+   before paying; an existing funded account is preferable for a small test.
+2. Approve the AU sender and register the branded Sender ID through Twilio/ACMA;
+   use a Messaging Service with that approved sender. Allow at least the quoted
+   five business days; processing can take longer. Do not buy an unapproved number.
+3. Approve an initial A$20 maximum incremental test spend including applicable
+   taxes/FX/sender costs, with at most 20 one-segment attempts and no automatic
+   top-up. Base SMS: US$0.0515/segment; 20 = US$1.03 (about A$1.65 at the explicit
+   planning assumption US$1=A$1.60, not a live FX quote). New-account funding may
+   exceed A$20; pause for the exact quote instead of promising a free trial.
+4. Put Account SID, Auth Token and Messaging Service SID into isolated Preview
+   Supabase Auth phone provider settings using the approved provider/test budget.
+   Keep Auth and application signup disabled, autoconfirm/fixed OTP off. Harden
+   direct-Auth resend/rate/anti-abuse controls; app throttles alone do not protect
+   direct endpoints. Current provider resend interval is only 5 seconds.
+5. Approve proposed phone notice/consent/Data Safety and lost/recycled-number
+   recovery wording, then deploy the prepared protected existing-account test
+   once those prerequisites are ready. Use only founder-controlled physical
+   number and test accounts; never place numbers, codes or credentials in reports.
+6. Receive/verify a genuine OTP and test expiry/replay/duplicates/races/resend,
+   provider failure, recovery/deletion and sensitive phone changes. Preserve
+   existing user IDs, cards and balances; no silent merge or auto-confirmation.
+
+PHONE_AND_GOOGLE_V31.txt contains exact console settings, guarded environment
+requirements and physical-device checklist. A protected browser test does not
+prove the installed v31 app: its unchanged binary points to docked.com.au, so
+its actual phone acceptance follows an approved closed-gate backend deployment.
+No SMS was sent and no successful SMS receipt is claimed.
+
+5. Managed-vault setup and acceptance
+Use Google Cloud Secret Manager in existing docked-play-verification project.
+The proposal uses founder Secret Accessor at individual secrets, temporary
+Version Adder only for approved transfer, no runtime readers, no standing version
+destruction, 30-day delayed version destruction, no expiry/automatic rotation.
+Review inherited project/folder/org/group/impersonation access; account MFA,
+second factor/offline recovery, Data Access and Admin Activity logs must pass.
+
+Approve synthetic canary setup after effective IAM/billing review. Prove founder
+access, real runtime denial, logging and recovery first. Then separately approve
+transfer of existing live keys without rotating, map archive hashes to exact
+versions and prove one isolated archive restore. Keep all versions needed by
+retained backups/holds and the old recovery path until acceptance. Database
+logical backups omit Storage object bodies, external settings and role passwords.
+Existing local backup key was used in memory for metadata comparison only; no
+vault payload access, key upload/transfer/rotation or secret output occurred.
+
+Cost: potentially US$0 within remaining shared six active versions/10,000 monthly
+reads; otherwise US$0.06/version/location-month and US$0.03/10,000 reads plus logs/
+tax. IAM/MFA/billing headroom/custody remain unverified. Budget alerts are not a
+hard cap. Exact steps and acceptance tests: OPERATIONS_AND_VAULT.txt.
+
+6. Approval matrix
+A — Five dormant schema/security migrations, in exact dependency order:
+    20261109231834 lifetime supply; 20261109232000 Practice/phone;
+    20261109232124 incident review; 20261110005726 disabled retention;
+    20261110010050 canonical AU verified-phone uniqueness.
+    Exact filenames/SHA-256, affected objects, RLS/grants, expected rows, locks,
+    pre/postflight and per-change recovery: MIGRATION_APPROVAL_MATRIX.txt.
+    Outbox-v2 permissions require a separate exact approval. No application now.
+B — SMS/sender/test budget/privacy/recovery; hosted owner MFA lifecycle; managed
+    vault setup and later key-custody acceptance. Do not repeat approved policy.
+C — Exact complete commercial source/baseline digest, source eligibility and
+    legacy-mint handover; separate import approval after all mappings resolved.
+D — Final dated public launch/commerce/Google managed-publication authority after
+    all acceptance and Google approval. None inferred from A, B or C.
+
+Exact SQL hashes and repository dependencies match prior 550-table double-apply
+rehearsal. Current migration history/roles/memberships/nine schedule definitions
+match the encrypted baseline. No unnecessary full migration rerun. Fresh complete
+schema/role/data drift review and backup/restore still required at actual apply.
+
+7. Google v31 compatibility
+The exact v31/1.30 AAB hash remains
+8becb6d044efc93baed6649f11ff100cc562bb09d200d45ec1a6742cf36e83b0.
+No native code, permissions or native dependency changed. No specific reason
+for v32 found; v31 can remain under review unchanged. This is a compatibility
+assessment, not new Google approval or physical-device acceptance.
+Existing server-side controls can later admit AU accounts without a native
+update, but Auth + app admission, phone privacy/Data Safety, provider abuse
+protection and genuine v31 device acceptance must all pass first. Existing
+Google Billing contract/prices/closed-loop limits remain unchanged and dormant.
+The latest saved detailed Data Safety record omits phone numbers. Reconcile the
+current submitted form and update it before phone collection activation; no
+claim that an unread current Play form already covers it. No
+publication or managed-publishing change, and no v32 submission performed.
+
+8. Remaining blockers ranked by launch impact
+1. Complete approved card identities/source eligibility and full baseline/import
+   package. Precise unresolved records supplied; no guessed or partial import.
+2. Working SMS provider/sender, capped genuine device acceptance and phone
+   privacy/Data Safety/recovery decisions; direct Auth abuse controls.
+3. Specific migration/outbox/closed-gate backend approval, fresh application
+   preflight and hosted founder AAL2 incident/lifecycle audit acceptance.
+4. Founder effective vault IAM/MFA/logging and accepted live-key recovery custody.
+5. Google v31 approval/disclosure verification and final dated launch authority.
+Operational deletion activation is not a launch prerequisite; keep it disabled.
+
+9. Exact next founder decisions (already approved policies not reopened)
+- Decide the exact pending identities/source eligibility in CARD_MAPPING.txt;
+  approve the final full digest only after the remaining records are resolved.
+- Approve A's five exact hashes and outbox-v2 scope for a later controlled apply;
+  separately authorise the reviewed closed-gate backend deployment.
+- Securely set up Twilio account/sender/credentials, approve the exact capped
+  test cost and proposed phone privacy/recovery wording; receive the test OTP.
+- Complete Google project effective-access/MFA/billing review and approve the
+  scoped synthetic vault setup; approve actual key transfer only after it passes.
+- Complete real hosted founder MFA incident actions and obtain the existing
+  M365 admin trace if needed for independent historical message correlation.
+- Verify Google approval and actual declarations; final launch authority comes
+  last. No repeat email receipt, custody, channel, 90-day or rarity-cap approval.
+
+10. Technical estimate after prerequisites are available
+Engineering estimate: 16–28 focused hours (about 2–4 working days), assuming
+identity decisions are exact, SMS account/sender is usable, required credentials
+and founder MFA participation are available, and Google approval is already in
+place. Includes fresh migration/restore checks, guarded backend rollout, full
+source/import acceptance, OTP/recovery/vault/incident device tests, final v31
+and payment regression, and monitored launch checks. Not a guaranteed schedule.
+External sender registration, account funding/verification, source evidence,
+legal/disclosure decisions and Google review add calendar time independently.
+Any new native/store blocking finding or unresolved identity extends the estimate.
+
+Evidence and validation
+See TEST_COMMANDS.txt for checks actually run this turn versus retained evidence.
+Current read-only production-deployment.json, production-readonly.json and
+live-gates.json confirm closed controls and unchanged Production commit. Source
+snapshots have capture dates; none substitutes for a fresh recount at import.
+No broader 700-test rerun, new purchase, SMS delivery, hosted lifecycle, live vault
+acceptance or Google approval is claimed. This is a review/implementation package,
+not permission to execute any withheld Production or commercial action.

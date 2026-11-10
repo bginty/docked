@@ -13,15 +13,21 @@ No genuine incident, financial change or Production DB/grant was created.
 No auto-resend: one-time local intent plus durable dispatch fence protects the
 ambiguous-send boundary. Production email automation stays off.
 
-Actual inbox receipt and founder acknowledgement: PENDING.
-User requested computer inspection. Outlook connector search did not find the
-reference; it did not establish access to this support inbox. Chrome connection
-timed out; subsequent Windows computer control was stopped because it could not
-verify the browser URL sufficiently to enforce policy. No bypass attempted.
-Graph202 is provider acceptance, not delivery/read evidence. No delivery-status
-webhook or message trace has been observed. Exact remaining check: open support
-Inbox/Junk and confirm the subject above; later acknowledge through normal owner
-AAL2 incident UI after deployment approval. Do not provide mail credentials.
+Founder inbox receipt: CONFIRMED on 10 November 2026.
+Evidence type: founder attestation, explicitly supplied in the V31 Final
+Operational Acceptance and Migration Readiness instruction. Provider acceptance
+was previously reported. No automated inbox verification is claimed; the prior
+browser URL-verification stop does not invalidate the founder's attestation.
+Original inboxVerified/deliveryVerified=false fields describe the automated
+drill's original observation, preserved in email-delivery.json. A separate
+subsequentAcceptance object and ../v31-operational-acceptance-20261110/
+founder-email-attestation.json record the new evidence. No resend is required.
+Incident acknowledgement/resolution through the hosted owner AAL2 UI remain
+unperformed because these controls are not deployed. This attestation is receipt
+acceptance, not a fabricated hosted incident action. Independent source/audit
+review and remaining lifecycle limits are in that directory's
+OPERATIONS_AND_VAULT.txt and alert-evidence-review.json. No provider delivery
+webhook/message trace or automated inbox inspection is newly claimed.
 
 Access/incident lifecycle
 Existing 2c50d454 owner_actor checks active authenticated owner, confirmed support

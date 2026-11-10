@@ -5,10 +5,12 @@
   "founderPrincipal": "user:briantg_21@hotmail.com",
   "secrets": ["docked-recovery-backup", "docked-recovery-archive"],
   "runtimeReaders": [],
-  "founderSecretRoles": [
-    "roles/secretmanager.secretAccessor",
-    "roles/secretmanager.secretVersionManager"
-  ],
+  "founderSecretRoles": ["roles/secretmanager.secretAccessor"],
+  "temporaryApprovedImportRole": "roles/secretmanager.secretVersionAdder",
+  "standingVersionDestructionPermission": false,
+  "liveKeyImportRequiresSeparateApproval": true,
+  "proposedVersionDestroyDelaySeconds": 2592000,
+  "secretExpiry": null,
   "scope": "individual secrets only; no project-wide accessor grant",
   "dataAccessAuditLogsRequired": true,
   "founderMfaVerifiedRequired": true,

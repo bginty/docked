@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-10T03:24:01.292Z",
+  "database": "isolated loopback PostgreSQL 17",
+  "passed": true,
+  "productionWrites": 0,
+  "providerCalls": 0,
+  "checks": [
+    "Production-labelled database rejects importer before any definitions",
+    "12 concurrent exact imports create five definitions once and preserve three legacy allocations",
+    "reordered exact retry is a no-op with nonzero lifetime baselines",
+    "changed or omitted historical counts cannot reset immutable baselines",
+    "contradictory provider identities and unmatched historical sources fail closed",
+    "no cards, owners, wallets, receipts, journals or approval created"
+  ],
+  "state": {
+    "definitions": 5,
+    "consumed": 3,
+    "legacy": 3,
+    "approved": 0,
+    "cards": 0,
+    "accounts": 0,
+    "receipts": 0,
+    "journals": 0
+  },
+  "gates": {
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false
+  }
+}

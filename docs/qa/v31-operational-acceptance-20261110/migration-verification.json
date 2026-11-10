@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-11-10T03:33:25.587Z",
+  "baselineCommit": "8acae031002a45b0bee0c85550c808b5e8864e7d",
+  "migrations": [
+    {
+      "file": "20261109231834_commercial_lifetime_supply_guards.sql",
+      "sha256": "ec1154357168027f106c9d5e0f03cc98fd9820a58f4196cb7f30103b98ff53bb",
+      "matchesRehearsal": true,
+      "matchesCommittedBaseline": true
+    },
+    {
+      "file": "20261109232000_public_practice_phone_guards.sql",
+      "sha256": "8179828fdd88bea9c95f4ac961905737f51d1aae78e25455748e7191a6d4fee0",
+      "matchesRehearsal": true,
+      "matchesCommittedBaseline": true
+    },
+    {
+      "file": "20261109232124_operational_incident_review.sql",
+      "sha256": "9ff6eae192460f1369e3db11ba387ab9418fcb2908a017a653f2c15e870a62bd",
+      "matchesRehearsal": true,
+      "matchesCommittedBaseline": true
+    },
+    {
+      "file": "20261110005726_operational_incident_retention.sql",
+      "sha256": "1248d78d8c3a17d54d9d3732444e2e058cfe43e6af0aa857f5acfc17262de5bd",
+      "matchesRehearsal": true,
+      "matchesCommittedBaseline": true
+    },
+    {
+      "file": "20261110010050_australian_verified_phone_uniqueness.sql",
+      "sha256": "bc5c61ede682a41ff24500b89fda4db6cef71760f30d52c2c8fb652ac79c4e11",
+      "matchesRehearsal": true,
+      "matchesCommittedBaseline": true
+    }
+  ],
+  "permissionPackage": {
+    "path": "config/operations/billing-ops-outbox-v2.prepared.sql",
+    "rawSha256": "59dffc74f3f9a354366bedc994136264fb1922201a6c33f40864777b2546cf09",
+    "lfSha256": "b3e7ff04182b33f351c4c897550959ba3885c5f9960b1733a1a255ff5526e121",
+    "approval": "separate required"
+  },
+  "priorRehearsal": {
+    "completedAt": "2026-11-10T01:37:41.964Z",
+    "backupAt": "2026-11-10T01:18:41.912Z",
+    "postgres": "17.11",
+    "applications": 2,
+    "protectedTables": 550,
+    "unchanged": true
+  },
+  "liveReadOnly": {
+    "at": "2026-11-10T03:20:46.372882+00:00",
+    "migrationHistoryUnchanged": true,
+    "cronDefinitionsUnchanged": true,
+    "scheduledJobs": 9,
+    "databaseRolesUnchanged": true,
+    "roleMembershipsUnchanged": true
+  },
+  "migrationDependencyFilesUnchanged": true,
+  "newMigrationApplications": 0,
+  "rehearsalReused": true,
+  "reason": "Exact five SQL files, permission package and repository dependency files unchanged; live migration history, role metadata and schedules match encrypted rehearsal manifest.",
+  "limitation": "This does not compare every live object definition or repeat all 550 table fingerprints. A fresh consistent backup, complete schema/role/data drift review and isolated restore remain mandatory immediately before a separately approved Production application.",
+  "productionWrites": 0,
+  "passed": true
+}

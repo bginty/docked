@@ -24,6 +24,7 @@ export function issuedInventoryManifest(records: IssuedAllocation[]) {
       cap: number;
       ids: string[];
       serials: number[];
+      allocations: { id: string; serial: number }[];
     }
   >();
   for (const r of records) {
@@ -57,17 +58,22 @@ export function issuedInventoryManifest(records: IssuedAllocation[]) {
       cap,
       ids: [],
       serials: [],
+      allocations: [],
     };
     if (g.playerId !== r.playerId)
       throw Error("Provider identity alias needs explicit mapping review");
     g.ids.push(r.id);
     g.serials.push(r.serial);
+    g.allocations.push({ id: r.id, serial: r.serial });
     groups.set(key, g);
   }
   const rows = [...groups.values()]
     .map((g) => {
       g.ids.sort();
       g.serials.sort((a, b) => a - b);
+      // Keep the immutable ID-to-serial binding in the digest. Independent sorted
+      // ID/serial sets alone cannot detect two cards exchanging serial numbers.
+      g.allocations.sort((a, b) => a.serial - b.serial);
       if (g.serials.some((s, i) => s !== i + 1))
         throw Error("Lifetime serial gap requires reconciliation");
       return {

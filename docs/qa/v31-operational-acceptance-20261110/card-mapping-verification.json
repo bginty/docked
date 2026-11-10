@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-10T03:36:06.011071+00:00",
+  "productionWrites": 0,
+  "deterministicRegeneration": true,
+  "files": [
+    {
+      "file": "card-source-mapping.json",
+      "sha256": "0489f7ebaaa4b8792431e5c8b67b8ad1ab865f9163df071eafa4c6514e867e00"
+    },
+    {
+      "file": "card-founder-decisions.json",
+      "sha256": "e89d9e51770b0bca09e2c8dc68dc4630bfd0cd6e9d738733eb53375898f62717"
+    },
+    {
+      "file": "card-mapping-summary.json",
+      "sha256": "81136cf49531691c01ed78d34aa6137aa9d1cf5ac231cccbd31d988a2a030e3e"
+    },
+    {
+      "file": "commercial-import-review.json",
+      "sha256": "72d461e9e01282be445fcf68d9054442bf15e83af4019dc8f62d6ffeddd0915a"
+    },
+    {
+      "file": "commercial-additional-definitions.json",
+      "sha256": "d2d8bdb5af4ec09c61f1ef6bfe8820b865b3d1df64acec9fe73b672e70d0a98e"
+    }
+  ],
+  "targetedTests": {
+    "command": "node --import tsx --test tests/platform/issued-inventory-manifest.test.ts tests/platform/lifetime-reconciliation.test.ts tests/platform/commercial-pool-plan.test.ts",
+    "passed": 11,
+    "failed": 0
+  },
+  "isolatedNonzeroBaselineImport": "lifetime-import-postgres.json",
+  "unchangedMigrationIssuanceEvidence": "../v31-p1-p4-20261110/lifetime-postgres.json",
+  "partialImportAllowed": false,
+  "provenanceGuardVerification": {
+    "at": "2026-11-10T03:36:06.011071+00:00",
+    "fullWitnessDigestMembershipInPinnedCensus": true,
+    "allFiveReportsByteUnchanged": true,
+    "databaseTestsRepeated": false
+  },
+  "sourceDecisionCoverage": {
+    "players": 71,
+    "copies": 98,
+    "allKnownIssuesRepresented": true,
+    "issueUnionPreservedPerIdentity": true
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "reference": "DOCKED-OPS-20261110-01",
+  "founderInboxReceipt": "CONFIRMED",
+  "evidenceType": "founder attestation",
+  "receivedDate": "2026-11-10",
+  "receivedTime": null,
+  "recipientRestriction": "founder approved operational address only",
+  "approvedRecipient": "support@docked.com.au",
+  "source": "Explicit founder instruction in the V31 Final Operational Acceptance and Migration Readiness task",
+  "statement": "The email was successfully received in the founder's inbox on 10 November 2026.",
+  "providerAcceptance": "previously reported",
+  "providerEvidence": "../v31-final-reconciliation-20261110/alerts-postgres.json",
+  "automatedInboxVerification": false,
+  "independentProviderMessageTrace": false,
+  "hostedIncidentAcknowledgement": "pending approved deployment and owner AAL2 action",
+  "hostedIncidentResolution": "pending approved deployment and owner AAL2 action",
+  "testResent": false,
+  "productionWrites": 0,
+  "publicLaunch": "NO-GO"
+}

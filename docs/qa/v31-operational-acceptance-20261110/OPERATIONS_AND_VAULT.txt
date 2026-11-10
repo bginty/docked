@@ -1,0 +1,249 @@
+DOCKED V31 operational acceptance and managed recovery custody
+10 November 2026 — Production unchanged; public launch NO-GO
+
+Founder inbox receipt is CONFIRMED for DOCKED-OPS-20261110-01. Evidence is the
+founder's explicit attestation of receipt on 10 November, not automated inbox
+verification. Provider acceptance was previously reported. No email was resent.
+Founder-only custody, the approved support address, email-only alerts, 90-day
+routine incident retention and a founder-controlled managed vault are accepted
+decisions; none needs business-rule reapproval.
+
+Operational lifecycle review
+
+Stage                       Evidence and remaining acceptance
+Incident creation           Isolated PostgreSQL test creates/deduplicates a drill
+                            and observations; recurrence reopens the incident.
+Email dispatch              Recorded real isolated drill: one attempt; durable
+                            claim -> dispatch fence -> accepted settlement.
+Provider acceptance         Previously recorded Graph HTTP 202 and request ID in
+                            email-delivery.json. Independently re-read, not a new
+                            send or successful external message-trace check.
+Inbox receipt               CONFIRMED by founder attestation; no automated access.
+Acknowledgement             ACKNOWLEDGED state and revisioned event verified in
+                            isolated database. No hosted founder action claimed.
+Resolution                  RESOLVED and recurrence tested in isolated database;
+                            hosted founder acceptance still pending deployment.
+Immutable history           Normal UPDATE/DELETE/TRUNCATE denied. Retention has
+                            a narrowly scoped, disabled-by-default exception and
+                            atomically preserves an immutable minimal receipt.
+Delivery failure            Pre-fence retry allowed; ambiguous/post-fence outcomes
+                            held for review, never blindly resent. Settlement
+                            outage keeps fence. Delivery failures cannot trigger
+                            a recursive email storm about that failing channel.
+Access and MFA              Owner mailbox + verified email + active owner role/
+                            profile + valid session + AAL2 checked on each call.
+                            General support, members, browser and service roles
+                            have no direct incident/event access. Runtime roles
+                            only execute narrowly scoped review functions.
+
+Independent review performed by scripts/review-operational-acceptance.mjs:
+- Original real-delivery fields exactly match the unchanged historical
+  alerts-postgres.json; only a subsequentAcceptance object was appended.
+- Last isolated outbox snapshot is one sent/complete/accepted row, attempts=1.
+  Final audit order: enqueued 01:03:59.706Z, claimed 01:03:59.728Z, fenced
+  01:03:59.738Z, settled accepted 01:04:02.310Z. The report's 01:03:59.720Z is
+  drill start, not a separately captured provider-acceptance timestamp.
+- The local send-intent reference and founder recipient match, when that private
+  intent file is present. Only its hash/check result is exported.
+- The 18 prior PostgreSQL alert groups and incident/retention tests are retained
+  evidence. Reviewed SQL, dispatcher and test sources match 8acae031 (canonical
+  LF comparison); artifact SHA-256 hashes are in alert-evidence-review.json.
+- Recipient is hard-coded to support@docked.com.au in the message builder; both
+  runtime policy and scoped SQL admission reject any different recipient. The
+  real drill also asserted that exact recipient before sending. No new recipient
+  or general distribution group was introduced.
+
+Limit: this is an independent review of stored evidence and code, not a fresh
+provider trace. The exported audit omits outbox subject IDs, so the drill sequence
+is correlated by run order/timestamps; it does not prove a per-incident message
+ID binding. Email is an aggregate notification, while incidents are reviewed by
+code/revision. Full hosted end-to-end acceptance is therefore still pending.
+The confirmed inbox receipt is final and should not be requested again.
+
+Independent Microsoft access check (graph-trace-readonly.json)
+The existing certificate authenticated successfully. A single READ-ONLY Graph
+GET for the exact test subject, approved founder Sent Items, 01:00-01:10 UTC on
+10 November and selected metadata only returned HTTP 403 ErrorAccessDenied.
+No inbox content, message body, token, credential or unrelated message was read
+or exported. There was no send, consent, privilege change or retry. This denial
+does not mean the test message is absent; it means this application cannot read
+Sent Items. Its original administrator-supplied audit records only Exchange
+Application Mail.Send scoped to the support mailbox. Current token roles are
+empty (Exchange application RBAC is not enumerated by that token), and no active
+Exchange administrator connection exists in this process. Fresh full effective
+RBAC enumeration was therefore unavailable. Do not broaden the runtime mail
+app to Mail.Read merely to finish the operational audit.
+
+Exact remaining provider-trace action, using the founder's EXISTING M365 admin
+access: open https://admin.exchange.microsoft.com/#/messagetrace; choose Mail
+flow > Message trace > Start a trace. Set both sender and recipient to the
+approved support mailbox; Custom time zone UTC, 10 November 2026 01:00-01:10
+(Sydney AEDT 12:00-12:10); subject contains DOCKED-OPS-20261110-01; status All.
+Select only that exact test. Record trace ID, Internet Message-ID, event times
+and final delivery status, excluding unrelated rows/content. Delivered transport
+status complements the already accepted founder inbox attestation; it does not
+prove the undeployed incident UI lifecycle. If the existing administrator lacks
+trace access, retain the blocker with that permission result; no extra runtime
+permissions, paid eDiscovery plan, wrong-account Outlook search or resend is
+needed. Source: Microsoft's Message trace documentation linked below.
+
+After separately approved deployment/permissions, acceptance must use the
+founder's normal AAL2 session: create/read the harmless controlled drill, record
+the existing reference and attestation in the audit reason, acknowledge its
+current revision, resolve/confirm receipt using the next revision, reload and
+verify immutable events and recipient. Do not send a second email merely to
+record these UI actions. Record actual hosted event/queue references and approved
+provider trace if available; never fabricate a historical incident that did not
+exist. New messages are necessary only if changed transport/admission requires
+a distinct end-to-end send test; obtain the scoped send approval at that point.
+Independent hosting/database dashboards remain necessary during database or
+mail-channel outages; no new paid monitoring service was provisioned.
+
+90-day retention verification
+
+The prepared policy is disabled, fixed at 90 days, with no scheduler, login or
+worker-role membership. Only resolved support_delivery_drill,
+auth_mail_configuration_missing and auth_mail_failure details qualify after
+90 days since the latest observation/event. Financial, payment, security,
+integrity, unknown, legal-hold, active investigation and required-audit cases
+fail closed. Statutory/financial journals, ownership, outbox and security audit
+source records are not deletion targets. Backups have separate retention.
+
+Prior isolated results: one resolved 91-day routine fixture eligible; 89-day,
+held, investigation, required-audit and excluded categories ineligible; disabled
+worker refused; isolated enabled worker deleted one once with immutable receipt;
+repeat deleted zero. Restored Production dry-run: zero eligible incidents and
+90|false policy; all protected table fingerprints unchanged. No Production
+data was deleted. These unchanged migrations/tests were not rerun unnecessarily.
+
+Before any future cleanup activation, review a disabled hosted dry-run, exact
+candidate counts, holds and recovery readiness; approve a bounded scheduler and
+membership separately. Hash receipts cannot reconstruct deleted notes. The
+approved 90-day policy itself is not permission to start deletion.
+
+Managed vault result and exact setup
+
+Recommendation remains Google Cloud Secret Manager in existing project
+docked-play-verification. Existing Supabase Vault read metadata showed
+service_role can read its decrypting view; the database's sole recovery key must
+not depend on that same database. Vercel env storage is not an independently
+accepted recovery mechanism. This vault review did not access vault payloads,
+upload, migrate or rotate keys. The separate migration review used the existing
+local backup key in memory solely to decrypt existing manifest metadata for
+roles/cron/migration-history comparison; no key output/rekey or full archive/
+customer-data decryption was performed by that metadata check.
+
+Actual Google IAM inheritance, MFA, enabled APIs, billing headroom, log routing,
+founder access and restore acceptance are UNVERIFIED. No authenticated gcloud
+CLI is available on PATH in this review. This is a prepared setup, not provisioned
+custody. Existing local recovery custody remains until approved transfer passes.
+
+1. Founder signs in to the existing Google project using the approved principal
+   already named in config/operations/recovery-vault.proposed.json. Verify the
+   project ID and billing account. Inspect effective secret/project/folder/org
+   IAM, group membership and service-account impersonation. Owner grants can
+   access payloads; project IAM administrators can grant access. Resolve any
+   nonfounder effective access before calling the result founder-only.
+2. In Google Account > Security & sign-in > 2-Step Verification, verify strong
+   MFA; prefer a passkey/security key and a separate recovery method controlled
+   by the same founder. Test a fresh sign-in. Store backup codes offline and
+   separately from the sole Google account/device. Do not copy codes into chat.
+3. Inspect billing/free allowance and enable Secret Manager API only after the
+   scoped setup is approved. In IAM & Admin > Audit Logs, select Secret Manager
+   API and enable Admin Read, Data Read and Data Write with no founder/runtime
+   exemption. Retain Admin Activity. Grant founder log-read access if needed
+   (Private Logs Viewer), review existing log retention/sinks/exclusions, and
+   keep security logs outside the routine-incident 90-day cleanup policy.
+4. First create only docked-recovery-acceptance with a random disposable canary.
+   Use automatic replication, Google-managed encryption, no expiration, no
+   automatic rotation, and 30-day delayed version destruction. Restrict standing
+   secret access to founder Secret Accessor at this secret only. Use temporary
+   Secret Version Adder for authorised import, then remove it. Version Manager
+   includes destruction and is removed from the standing proposal. Do not grant
+   payload access to runtime, verifier, RTDN, service_role or allUsers identities.
+   Secret creation/IAM setup uses existing authorised administration; it must
+   not create broad permanent owner/admin grants for this task.
+5. Run the synthetic acceptance below. Only after success and explicit live-key
+   migration approval create docked-recovery-backup and docked-recovery-archive
+   with the same settings and scoped access. Transfer existing key bytes through
+   a local authenticated API process in memory or protected stdin; never shell
+   arguments, stdout, logs, screenshots, Git, chat or browser secret fields.
+   Record resource/version IDs and archive SHA-256 values only. Do not rotate
+   keys while moving their custody; retain the existing recovery path until
+   founder retrieval and isolated restore both pass.
+6. Build the backup manifest linking each retained encrypted archive to its
+   exact vault version. Verify archive authentication and the restored protected
+   fingerprints in a network-isolated, nonscheduled database. Database logical
+   backups do not cover Storage object bodies, external/provider settings,
+   custom role passwords or signing keys; inventory and test those separately.
+7. Emergency access stays founder-only: use the founder's second MFA method and
+   offline recovery codes, then Google's verified account recovery if needed.
+   No second custodian or recovery account is silently authorised. A sole
+   founder/account remains a recovery dependency; account recovery is not a
+   guaranteed recovery-time commitment. If that risk is unacceptable, founder
+   approval for a separate emergency custodian is a future decision.
+8. Future rotation requires explicit approval: add a version, test new backups,
+   update the manifest, and preserve all old versions referenced by retained
+   archives/holds. During compromise revoke scoped access and preserve logs;
+   rotate affected secrets only under the approved incident procedure. Delayed
+   destruction protects version destruction, not deletion/expiry of the whole
+   secret; no expiry and no standing destructive role are deliberate safeguards.
+
+Acceptance tests (prepared; none claims live-vault success)
+- Fresh founder sign-in uses MFA; account recovery method available without the
+  primary device. Record pass/fail/date, never recovery material.
+- Founder can access the canary through an authenticated local process; report
+  only a digest comparison, never payload. Each actual runtime/verifier/RTDN
+  principal is denied. IAM simulation alone is insufficient where a real
+  synthetic access test can safely be executed.
+- Current effective IAM has no inherited unexpected reader, group, owner or
+  impersonation path. Founder can inspect Data Access and Admin Activity logs.
+- Logs Explorer query protoPayload.serviceName="secretmanager.googleapis.com"
+  returns the canary access/administration records with principal, resource,
+  version and time. Payload is absent. Denial evidence is recorded separately
+  even if a particular denied request is not emitted as a Data Access log.
+- Canary disable/re-enable/recovery is tested only through a temporary scoped
+  administration grant, never a live key. Confirm no secret expiry, no automatic
+  rotation and 30-day version destroy delay; remove temporary import/admin access.
+- Following separate live-key import approval: retrieve the exact version and
+  restore one existing encrypted archive with the network isolated; verify the
+  protected fingerprints, stop the isolated database and record the audit-log
+  reference. A synthetic canary test alone does not prove backup recovery.
+
+Costs verified from primary Google documentation on 10 November 2026
+Six active enabled OR disabled versions and 10,000 access operations per month
+are free per billing account, shared across projects. Two current plus two old
+versions can cost US$0/month if allowance remains; overage is US$0.06 per active
+version/location/month and US$0.03 per 10,000 accesses. Automatic replication
+counts as one location. Data-access logging/retention, taxes and other services
+can add cost; no new billing or paid plan was enabled. Budget alerts are not a
+hard spending cap. Temporary canary versions count while enabled or disabled.
+
+Next precise founder actions
+- Approve the reviewed schema/outbox/web deployment package separately, then
+  perform real hosted owner AAL2 acknowledge/resolve acceptance; email receipt
+  needs no repeat confirmation and this approval does not enable sales.
+- Complete authenticated project/IAM/MFA/billing inspection and approve the
+  proposed scoped synthetic vault setup. After that acceptance passes, separately
+  approve transfer of existing recovery keys and an isolated archive restore.
+- Keep operational deletion disabled; no cleanup activation approval is needed
+  now to continue readiness work.
+
+Validation this turn: independent retained-artifact/source review passed; one
+updated vault-proposal policy test passed. Prior 18 alert groups and actual
+PostgreSQL incident/retention checks reused only where sources are unchanged.
+No Production mutations, email sends, vault payload access/upload/migration/
+rotation or provider changes. The separate metadata-review key use is described
+above; the operational evidence-review script itself reads no credentials.
+The separate read-only Microsoft check used the existing Graph certificate in
+memory for authentication, with no key/token output or storage.
+
+Primary references (accessed 10 November 2026)
+https://cloud.google.com/secret-manager/pricing
+https://docs.cloud.google.com/secret-manager/docs/access-control
+https://docs.cloud.google.com/secret-manager/docs/audit-logging
+https://docs.cloud.google.com/logging/docs/audit/configure-data-access
+https://docs.cloud.google.com/secret-manager/docs/delay-destruction-of-secret-versions
+https://support.google.com/accounts/answer/185839
+https://learn.microsoft.com/en-us/graph/api/user-list-messages?view=graph-rest-1.0
+https://learn.microsoft.com/en-us/exchange/monitoring/trace-an-email-message/message-trace-modern-eac

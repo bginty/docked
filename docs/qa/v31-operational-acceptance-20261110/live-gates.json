@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-10T03:21:45.177Z",
+  "checks": [
+    {
+      "route": "/api/beta-release",
+      "status": 200,
+      "publicRegistration": false
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=basketball",
+      "status": 400
+    }
+  ],
+  "passed": true,
+  "productionWrites": 0,
+  "authenticatedAcceptance": false
+}
