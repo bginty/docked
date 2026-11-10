@@ -1,0 +1,83 @@
+DOCKED V31 — Twilio private-test setup
+11 November 2026 (Australia/Sydney)
+Status: PARTIALLY CONFIGURED — NOT READY TO SEND
+
+Founder has created and funded the Twilio account and requested browser setup.
+This supersedes earlier statements that no Twilio account exists. Live Console
+shows an active pay-as-you-go account with US$20.00 available, not A$20. The
+founder funded it; this session made no payment or additional funding purchase.
+
+Completed through browser control
+- Disabled automatic recharge. Final Billing state: Auto-recharge not set up.
+  No recurring number rental or new paid add-on was purchased.
+- Created Messaging Service: Docked private phone verification, use case Verify
+  users, region US1. This is Programmable Messaging, not a Twilio Verify service.
+- Added alphanumeric sender DOCKED with Australia selected as destination.
+  The sender-pool entry DOES NOT establish Australian registration approval.
+- Inspected all geographic permissions: only Australia/Cocos/Christmas Island
+  (+61) was enabled. Other country permissions were off; no change necessary.
+- Saved isolated Docked Preview OTP expiry 300 seconds and six-digit template:
+  Your Docked verification code is {{ .Code }}. It expires in 5 minutes. Do not share this code.
+  Phone Auth remains OFF, confirmations ON, fixed testing OTPs absent, signup
+  disabled. No Twilio credential was revealed, copied or saved by this session.
+
+Independent readback
+auth-readback-before-founder.json uses the existing GET-only inspection of the
+two exact Supabase projects. Its previewWrites=0 describes that inspection,
+not the earlier browser change. Preview now has 300-second OTP expiry; Production
+retains its original 60 seconds. Both remain signup-disabled and Phone Auth OFF.
+At readback, all three Twilio provider fields were absent in both projects.
+No production configuration, database, deployment or Google Play changes.
+
+Founder handoff prepared
+1. Twilio Trust Hub > Primary compliance profile > Business: open at Get started.
+   No primary profile exists yet. Twilio requests exact legal name, registration
+   ID/type, business address, authorised representative contact/title, website
+   and notification email. Supply actual legal identity, not an invented entity.
+   Complete its accuracy/identity-verification declaration directly. Then complete
+   the Australia DOCKED sender registration and wait for accepted status.
+2. Supabase > Docked Preview > Authentication > Sign In / Providers > Phone:
+   enter matching Account SID, Auth Token and this service's Messaging Service
+   SID directly, then Save with Enable Phone provider OFF. Do not enter these
+   in chat/Git. This connection entrusts Supabase with Twilio account access;
+   credentials must belong to the intended dedicated Docked account/subaccount.
+   No token rotation or production credential change is requested.
+3. Confirm Twilio account MFA. This session has not independently verified it.
+
+Why a handoff is necessary
+The browser-control policy requires action-time confirmation for legally binding
+attestations and new security-sensitive grants, and direct user entry/submission
+for new authentication credentials. The open forms are prepared; no attestation
+or credential transmission has been performed by the agent.
+
+Before any SMS test
+- Independently verify sender approval and the matching saved provider settings.
+- Apply six SMS/hour and >=60-second resend limits before any sending. Current
+  readback is still 30/hour and 5 seconds. The Console rate field is disabled
+  while Phone Auth is off; do not claim the tighter settings are applied.
+- Select the two existing ordinary email-verified Preview fixtures and bounded
+  <=6-hour window in the existing private test plan. Direct Auth routes need
+  provider controls as well as the application's member allowlist.
+- Use only the founder-controlled Australian physical phone entered privately;
+  cap the test at 20 segments and A$5 usage within existing funded credit, stop
+  earlier if the relevant limit is reached. No further funding or automatic
+  recharge; additional purchase needs an exact approved quote.
+- Verify physical receipt and authoritative same-account verification, failure,
+  expiry/replay, throttling, duplicate number/concurrency and recovery cases.
+  Close Phone Auth/test window afterwards and reconcile provider usage.
+
+SMS attempts by agent: 0. Genuine physical delivery: NOT TESTED.
+Public registration remains closed. Public launch remains NO-GO.
+Phone privacy/Play Data Safety, dormant rollout and final publication approvals
+remain separate launch gates in ../v31-launch-checks-20261111/FOUNDER_ACTIONS.txt.
+
+Evidence screenshots (no phone, OTP or Auth Token)
+- auto-recharge-off.jpg
+- sender-added.jpg (configuration only; not registration approval)
+- australia-only.jpg (filtered view; complete AX inventory was inspected)
+- business-verification-required.jpg
+
+Provider references reviewed 11 November 2026
+https://supabase.com/docs/guides/auth/phone-login?showSmsProvider=Twilio
+https://www.twilio.com/docs/messaging/services
+https://www.twilio.com/en-us/guidelines/au/sms

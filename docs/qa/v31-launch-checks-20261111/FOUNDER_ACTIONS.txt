@@ -1,6 +1,12 @@
 DOCKED V31 — final launch checks and founder actions
 11 November 2026 (Australia/Sydney) | PUBLIC LAUNCH NO-GO
 
+SMS setup update: founder funded Twilio; browser setup is partially complete.
+See ../v31-twilio-setup-20261111/SETUP_STATUS.txt for the latest exact state.
+US$20 available, auto-recharge disabled, dedicated Messaging Service and DOCKED
+sender entry created; +61 destinations only. Business/sender verification,
+credential handoff, rate-limit tightening and physical-device test remain open.
+
 Google v31 / 1.30 is READY TO PUBLISH. Managed publishing remains ON.
 Submission 2 includes the v31 Australian rollout and 10 approved changes.
 Approval time shown by Play: 10 November, 6:16 PM (display timezone unverified).
@@ -26,7 +32,8 @@ P3: Six synthetic, free, no-prize Practice rounds remain disabled. Their guard
 migration is unchanged. Real scoring, prizes and NBA are outside activation.
 P4: Registration closed in Production and Preview. Authenticator enrolment and
 verification are enabled; founder email is confirmed and one verified TOTP
-factor exists. Phone Auth is disabled; SMS account, credentials and sender absent.
+factor exists. Phone Auth is disabled. Twilio is now funded with a service and
+sender entry prepared; credential connection and sender approval are pending.
 
 2. Effective authentication direction
 The founder initially accepted deferring phone verification, then instructed:
@@ -44,18 +51,20 @@ There is no need for the founder to re-enrol an already verified authenticator.
 3. Precise founder actions, in priority order
 
 A. SMS account and physical test
-Create/choose a founder-controlled Twilio Programmable Messaging account, enable
-account MFA, and approve the actual funding quote. No Twilio account currently
-exists according to the founder. Set up a Messaging Service and an approved AU
-sender. The proposed branded sender is DOCKED; Twilio currently quotes five
+Founder has created/funded Twilio; do not ask them to repeat account creation.
+Browser setup created the dedicated Messaging Service and DOCKED sender entry,
+disabled auto-recharge and verified +61-only destination permissions. Finish
+business/sender verification, confirm account MFA and enter credentials using
+the prepared handoff. The branded sender is DOCKED; Twilio currently quotes five
 business days for alphanumeric provisioning. This is an external calendar risk,
 not an engineering estimate. Do not buy a number or accept additional spend
 without its exact quote being approved.
-Proposed initial ceiling: A$20 total new charges, including funding/FX/tax/sender
-charges; no automatic recharge; at most 20 single-segment test sends and A$5
-usage within that ceiling. If required initial funding exceeds A$20, obtain the
-actual quote before paying. Current base AU price: US$0.0515/segment (20 =
-US$1.03), excluding applicable extras. The A$20 proposal is not already approved.
+Actual founder-funded credit is US$20.00, superseding the earlier unaccepted
+A$20 funding proposal. No additional funding was charged by the agent. Keep
+auto-recharge off and cap private testing at 20 single-segment sends and A$5
+usage within existing credit, stopping earlier at either limit. Additional
+funding/rentals need an exact approved quote. Current base AU price:
+US$0.0515/segment (20 = US$1.03), excluding applicable extras.
 Enter Account SID, Auth Token and Messaging Service SID only in the isolated
 Preview Supabase Auth provider settings/approved secure store, never in chat.
 Engineer then applies the existing private test plan: two existing ordinary

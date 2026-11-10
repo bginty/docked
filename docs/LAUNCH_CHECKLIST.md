@@ -9,7 +9,7 @@ The latest [founder action report](qa/v31-launch-checks-20261111/FOUNDER_ACTIONS
 - [x] Google v31 review completed; current Data Safety selections inspected read-only.
 - [x] Founder verified email and one existing verified authenticator factor confirmed independently; no re-enrolment needed.
 - [x] Five migration files still match their rehearsed SHA-256 values; application and SQL unchanged.
-- [ ] Complete SMS setup and genuine device acceptance. The founder's latest instruction retains existing phone guards to avoid a replacement implementation. No Twilio account is available yet.
+- [ ] Complete SMS setup and genuine device acceptance. The founder's latest instruction retains existing phone guards to avoid a replacement implementation. [Twilio setup status](qa/v31-twilio-setup-20261111/SETUP_STATUS.txt): funded US$20, auto-recharge off, dedicated service and sender entry prepared; business/sender approval, credentials and physical acceptance remain pending.
 - [ ] Approve accurate phone privacy/recovery disclosure and Play Data Safety update: Phone number is currently unchecked. This may require declaration re-review.
 - [ ] Resolve exact card source decisions; approve the complete import only after final mappings and digest are frozen.
 - [ ] Approve exact dormant migrations/outbox permissions and closed-gate backend rollout, then complete hosted incident/vault/device acceptance.
