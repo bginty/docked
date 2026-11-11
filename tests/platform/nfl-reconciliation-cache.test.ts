@@ -7,7 +7,13 @@ import { prepareNflBundleReconciliation } from "../../src/server/nfl-postgame-re
 import type { PostgameMapping } from "../../src/core/postgame-nflverse";
 import permit from "../../config/nfl-postgame-permit.json";
 
-test("one reconciliation run verifies each season source once; games without completion cannot write scores", async () => {
+test("one reconciliation run verifies each season source once; games without completion cannot write scores", async (t) => {
+  // This cache test exercises a previously reviewed permit without extending
+  // the real source approval when wall-clock time advances.
+  t.mock.timers.enable({
+    apis: ["Date"],
+    now: Date.parse(permit.expiresAt) - 3600_000,
+  });
   const sources = ["weekly", "pbp"].map((dataset, i) => {
     const body = {
       dataset,

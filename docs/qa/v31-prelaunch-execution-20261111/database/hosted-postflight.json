@@ -1,0 +1,117 @@
+{
+  "independentConnection": true,
+  "source": "Supabase read-only SQL connector",
+  "at": "2026-11-11T13:02:17.727088+00:00",
+  "rounds": {
+    "total": 6,
+    "enabled": 0
+  },
+  "inventory": {
+    "cards": 0,
+    "packs": 0,
+    "receipts": 0,
+    "definitions": 0
+  },
+  "migrations": [
+    {
+      "name": "commercial_lifetime_supply_guards",
+      "version": "20261109231834",
+      "statements": 1
+    },
+    {
+      "name": "public_practice_phone_guards",
+      "version": "20261109232000",
+      "statements": 1
+    },
+    {
+      "name": "operational_incident_review",
+      "version": "20261109232124",
+      "statements": 1
+    },
+    {
+      "name": "operational_incident_retention",
+      "version": "20261110005726",
+      "statements": 1
+    },
+    {
+      "name": "australian_verified_phone_uniqueness",
+      "version": "20261110010050",
+      "statements": 1
+    }
+  ],
+  "operations": {
+    "events": 0,
+    "incidents": 0,
+    "operationalOutbox": 0
+  },
+  "phoneClaims": 0,
+  "retentionSet": false,
+  "alertsEnabled": false,
+  "runtimeGrants": [
+    {
+      "role": "anon",
+      "prune": false,
+      "queue": false,
+      "review": false,
+      "enqueue": false,
+      "phoneDirect": false
+    },
+    {
+      "role": "authenticated",
+      "prune": false,
+      "queue": false,
+      "review": false,
+      "enqueue": false,
+      "phoneDirect": false
+    },
+    {
+      "role": "service_role",
+      "prune": false,
+      "queue": true,
+      "review": false,
+      "enqueue": false,
+      "phoneDirect": false
+    },
+    {
+      "role": "docked_app",
+      "prune": false,
+      "queue": false,
+      "review": true,
+      "enqueue": false,
+      "phoneDirect": false
+    },
+    {
+      "role": "docked_beta_app",
+      "prune": false,
+      "queue": false,
+      "review": true,
+      "enqueue": false,
+      "phoneDirect": false
+    },
+    {
+      "role": "docked_commercial_app",
+      "prune": false,
+      "queue": false,
+      "review": false,
+      "enqueue": true,
+      "phoneDirect": false
+    }
+  ],
+  "alertWindowOpen": false,
+  "phoneIndexValid": true,
+  "phoneRegistryRls": true,
+  "retentionEnabled": false,
+  "retentionInherit": false,
+  "commercialControl": {
+    "id": true,
+    "approvals": {},
+    "environment": "commercial",
+    "sales_enabled": false,
+    "policy_version": "commercial-launch-awaiting-approval-v1",
+    "gameplay_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false
+  },
+  "immutableTriggers": 2,
+  "phoneTriggerEnabled": true
+}

@@ -1,4 +1,13 @@
-DOCKED V31 — founder session result, 11 November 2026
+CURRENT UPDATE — 12 November 2026 AEDT
+The founder approved fd4c0952 and its five migrations/restricted outbox COMMITTED
+at 00:01 AEDT. Production app remains f1b50b6f: staging stopped before creation
+because five existing runtime settings were absent from the reconstruction.
+A tested application-only correction is prepared, NOT deployed or approved.
+Use ../v31-overnight-20261112/MORNING_HANDOVER.txt and its exact continuation
+approval/runbook. Do not repeat migrations or the already completed founder
+credentials/MFA/vault/card decisions. The text below is the prior historical result.
+
+DOCKED V31 — founder session result, 11 November 2026 (historical)
 Public launch: NO-GO
 
 Production is still f1b50b6f51d7429a36df9a8d5db99aed8886bd44, deployment

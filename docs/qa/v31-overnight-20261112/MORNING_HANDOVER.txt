@@ -1,0 +1,125 @@
+DOCKED V31 — morning handover, 12 November 2026 AEDT
+Public launch remains NO-GO. Detailed actions are in FOUNDER_SESSIONS.txt;
+the current execution order is LAUNCH_RUNBOOK.txt, not the earlier SQL sequence.
+
+A. Actual Production
+Application: f1b50b6f51d7429a36df9a8d5db99aed8886bd44, deployment
+dpl_9bwmvDvt5AEszaBtR311MjHLpHg7, independently resolved from docked.com.au.
+Database: all FIVE migrations and restricted outbox committed at 00:01 AEDT
+under the founder-approved fd4c0952 package. All stored migration hashes match.
+The atomic before/after check preserved 550 protected table counts/hashes.
+Independent readback confirms RLS/permissions, unchanged financial/custody state,
+888 limited copies and 906 custody records, zero commercial inventory, six disabled
+Practice rounds and closed registration/commerce/SMS/retention. NBA stays hidden.
+The app stage stopped before creating a deployment because its old runtime recipe
+omitted five existing settings. No application promotion occurred. SQL succeeded;
+this is not a claim that the whole backend deployment completed.
+
+B. Executed overnight
+- Fixed the release helper to preserve the complete hash-bound runtime, existing
+  member-setup connection and published consent versions. Added fresh applied-schema,
+  permissions/custody/gate checks before stage/promote; SQL apply is excluded from
+  the new package. Verified read-only runtime preparation and approval refusals.
+- Captured an encrypted fresh post-migration Production backup, restored it with
+  original ownership/effective memberships in network isolation, and replayed all
+  five migrations twice. All 556 durable tables matched. Isolated target stopped.
+- Imported the exact frozen 6540-definition plan locally: 888 lifetime-consumed,
+  zero approved, zero minted. Idempotent/concurrent retries passed and preserved
+  all other 555 durable tables and every custody record. Plan digest unchanged.
+- Checked 813 platform cases; corrected one stale time-dependent test fixture and
+  reran it successfully. Added two passing runtime-preservation/refusal tests.
+  Final database regression 36/36 and additional social/security permission
+  regressions 35/35 passed; three previously passing public-sport
+  cases and owned-collection/trading cases remain valid. Marketplace passed after
+  correcting its historical migration-order fixture. Native PostgreSQL billing
+  15/15 and outbox 18/18 scenarios passed, including real concurrent transactions,
+  partial-spend refunds, ownership transfer, failure/retry and immutable accounting.
+  Provider acceptance in these tests is mocked; no real purchase or message sent.
+- Corrected stale Auth/pack/runtime test fixtures without weakening application
+  safeguards. Typecheck and focused lint passed. Customer/native/SQL source is
+  unchanged from the approved candidate; no new Android binary was made.
+- Verified 17 live read-only HTTP gates. Preserved founder email attestation and
+  completed vault evidence. Updated stale runbooks to prevent repeated SQL or
+  repeated credential/MFA/card approval requests. Committed/pushed source and proof
+  are identified in the final delivery message and candidate-verification receipt.
+
+C. Exact founder decisions/participation, prioritised
+1. Approve the APPLICATION-ONLY package in BACKEND_CONTINUATION_APPROVAL.txt at
+   the exact final source commit. Its SHA-256 is
+   a3b61f2c9a17d17bc4db3a2c96038d91a123062b1fd0504b9c0a4da915eef1e9.
+   This changed helper needs new authority; the five SQL migrations need no repeat.
+2. After rollout, sign into /admin/incidents with existing MFA, record the no-email
+   drill, acknowledge/resolve and reload history. Confirm no new email delivery.
+3. Review the complete phone privacy/Play delta once; authorise its policy
+   publication and declaration submission separately from publishing v31.
+4. After usable Twilio sender approval, approve a bounded SMS test and privately
+   receive/enter the code. Preview credentials are already saved. Production
+   credentials/stricter limits and installed-v31 testing need their own controlled
+   window with signup closed. No credentials or numbers in chat.
+5. Separately approve actual backup-key custody if completing the approved managed
+   vault design: same-key secure transfer and isolated restore, not rotation.
+6. Approve the exact dormant inventory import and bounded hosted payment/refund
+   acceptance when ready. Evidence of source/player rights and merchant/payout/tax
+   readiness is still required for sales. Final Play, registration and commercial
+   activation decisions remain separate. Business-rule approvals are preserved.
+
+D. Twilio
+Preview fields independently present, provider OFF, signup OFF; six/hour, 60s
+resend, 300s six-digit OTP, no fixed OTP. Production provider OFF/credentials absent;
+its looser defaults must be aligned for the separately approved device test.
+Last authenticated sender state: In review. Overnight Console was logged out, so
+approval is unverified, not assumed. No SMS sent/spend incurred. A$20 ceiling;
+prepared test stops at 20 segments or A$5, whichever comes first.
+
+E. Commercial readiness
+Frozen inventory plan SHA-256
+4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4.
+888 legitimate copies preserved; supported 23 registrations; proposed 6065 eligible
+and 475 excluded. No new identity ambiguity or plan change. Isolated supply,
+purchase, refund and marketplace checks pass. Production saleable inventory is
+still zero. Actual merchant/hosted payment-refund acceptance and import/activation
+are outstanding. Seven legacy TEST notifications from 5 Nov remain in attention;
+read-only correlation found no bound receipt/reference/ack rows. They caused the
+observed scheduled warnings, predate this SQL change, and were neither retried nor
+dismissed. Provider/operator correlation is still required before commerce.
+
+F. Google Play / privacy
+Authenticated Publishing overview checked overnight: v31/1.30 Changes ready to
+publish, ten pending changes, Australia, managed publishing ON. No publication,
+form edit or declaration submission. Existing complete phone policy/notice patch
+and exact Data Safety delta are prepared. Google review of that later declaration
+is a separate dependency. WebView collection is included; no SMS-reading SDK or
+native change is required by the current diff. Installed-device OTP/loading
+acceptance remains outstanding; no v32 blocking reason has been found.
+
+G. Remaining blockers and limits
+Technical: corrected application must be approved/deployed; hosted and physical
+acceptance remains. Existing leaked-password-protection warning is unchanged and
+recorded for the Auth configuration review; no new settings were silently enabled.
+Operational: founder incident/MFA, independent provider trace correlation, actual
+backup-key custody and payment/refund evidence. Prior Graph trace access was 403;
+do not broaden send-only permissions to claim audit completion. Email receipt
+DOCKED-OPS-20261110-01 remains CONFIRMED by founder attestation, not inbox automation.
+Legal/business: phone privacy/Play review, commercial source/player rights and
+merchant/tax acceptance. Source observations need refresh before sales if >72h.
+External: Twilio sender decision and Google declaration review after submission.
+The old isolated NFL postgame permit expired 10 Nov. It was not extended or
+repurposed; the test clock correction only tests its original valid interval.
+Real scored competitions remain excluded, so no live-scoring readiness is claimed.
+Synthetic vault recovery passed, but broad founder Owner and unlocked audit-bucket
+retention were not misrepresented as secret-only IAM/immutable log acceptance.
+
+H. Time remaining
+About 4–7 focused engineering hours after approvals/access for application rollout,
+phone/device, incident, policy, inventory and payment acceptance. App continuation
+alone approximately 20–40 minutes plus founder incident session. External Twilio/
+Google review, founder availability and rights/merchant decisions are excluded.
+Fresh source drift or a genuine hosted defect can change this estimate.
+
+I. Separate gates
+Database: deployed/verified, closed. Backend application: prepared, NO-GO pending
+new exact approval and hosted verification. Australian public registration: NO-GO.
+Commercial operations: NO-GO. Google binary: approved/ready; publication: NO-GO
+pending applicable disclosures/acceptance and explicit publication authority.
+No public/commercial activation, SMS, inventory import, live-key transfer, deletion
+schedule, policy publication or Google publication occurred overnight.

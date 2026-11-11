@@ -1,0 +1,116 @@
+{
+  "at": "2026-11-11T13:13:10.640Z",
+  "origin": "https://docked.com.au",
+  "checks": [
+    {
+      "route": "/app/login",
+      "status": 200,
+      "cache": "private, no-cache, no-store, max-age=0, must-revalidate",
+      "elapsedMs": 2339
+    },
+    {
+      "route": "/app/signup",
+      "status": 200,
+      "cache": "private, no-cache, no-store, max-age=0, must-revalidate",
+      "elapsedMs": 2038
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "cache": "private, no-store",
+      "elapsedMs": 1122,
+      "privacyVersion": "2026-11-06-privacy-sdk-v3"
+    },
+    {
+      "route": "/refund-policy",
+      "status": 200,
+      "cache": "private, no-store",
+      "elapsedMs": 104
+    },
+    {
+      "route": "/commercial-policy",
+      "status": 200,
+      "cache": "private, no-store",
+      "elapsedMs": 99
+    },
+    {
+      "route": "/retention",
+      "status": 200,
+      "cache": "private, no-store",
+      "elapsedMs": 101
+    },
+    {
+      "route": "/account-deletion",
+      "status": 200,
+      "cache": "private, no-store",
+      "elapsedMs": 68
+    },
+    {
+      "route": "/api/beta-release",
+      "status": 200,
+      "cache": "private, no-store",
+      "elapsedMs": 898,
+      "registrationClosed": true
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403,
+      "cache": "private, no-store",
+      "elapsedMs": 1088
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403,
+      "cache": "private, no-store",
+      "elapsedMs": 290
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "status": 401,
+      "cache": "private, no-store",
+      "elapsedMs": 208
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403,
+      "cache": "private, no-store",
+      "elapsedMs": 181
+    },
+    {
+      "route": "/api/public-gameplay?sport=afl",
+      "status": 403,
+      "cache": "private, no-store",
+      "elapsedMs": 551
+    },
+    {
+      "route": "/api/public-gameplay?sport=nrl",
+      "status": 403,
+      "cache": "private, no-store",
+      "elapsedMs": 98
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403,
+      "cache": "private, no-store",
+      "elapsedMs": 73
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=basketball",
+      "status": 400,
+      "cache": "private, no-store",
+      "elapsedMs": 137
+    },
+    {
+      "route": "/profile/qa_billing",
+      "status": 503,
+      "cache": "private, no-store",
+      "elapsedMs": 90
+    }
+  ],
+  "passed": true,
+  "authenticatedAcceptance": false,
+  "customerMutations": 0,
+  "purchases": 0,
+  "publicRegistrationEnabled": false,
+  "livePaymentsEnabled": false
+}

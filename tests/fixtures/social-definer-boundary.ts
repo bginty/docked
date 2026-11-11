@@ -28,6 +28,16 @@ export async function assertSocialDefinerBoundary(pg: PGlite) {
         browser: schema === "private",
         runtime: true,
       },
+      ...(schema === "private"
+        ? [
+            {
+              name: "public_phone_verified",
+              fixed_path: true,
+              browser: false,
+              runtime: true,
+            },
+          ]
+        : []),
       {
         name: "social_collection_cards",
         fixed_path: true,
@@ -64,6 +74,16 @@ export async function assertSocialDefinerBoundary(pg: PGlite) {
         browser: false,
         runtime: true,
       },
+      ...(schema === "private"
+        ? [
+            {
+              name: "sync_verified_phone_claim",
+              fixed_path: true,
+              browser: false,
+              runtime: false,
+            },
+          ]
+        : []),
     ]);
   }
 }

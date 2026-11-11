@@ -26,7 +26,7 @@ let postId: string;
 before(async () => {
   pg = new PGlite();
   await pg.exec(`create role anon;create role authenticated;create role service_role;create role supabase_auth_admin;create schema auth;
-  create table auth.users(id uuid primary key,email text,email_confirmed_at timestamptz,is_anonymous boolean default false,raw_app_meta_data jsonb default '{}',banned_until timestamptz,encrypted_password text);
+  create table auth.users(id uuid primary key,email text,email_confirmed_at timestamptz,phone text unique,phone_confirmed_at timestamptz,is_anonymous boolean default false,raw_app_meta_data jsonb default '{}',banned_until timestamptz,encrypted_password text);
   create table auth.sessions(id uuid primary key,user_id uuid references auth.users(id),not_after timestamptz,refresh_secret text);
   create table auth.refresh_tokens(token text);
   alter table auth.users enable row level security;alter table auth.sessions enable row level security;
@@ -74,8 +74,14 @@ before(async () => {
   await pg.exec("rollback;set role migration_operator");
   await pg.exec(runtimeMigration);
   for (const file of migrations.filter((f) => f > runtimeFile)) {
+    // V31's separately reviewed maintenance package explicitly requires the
+    // postgres operator; the earlier runtime-role migration remains exercised
+    // through migration_operator with managed Auth ownership above.
+    if (file === "20261109231834_commercial_lifetime_supply_guards.sql")
+      await pg.exec("set role postgres");
     await pg.exec(await readFile(`supabase/migrations/${file}`, "utf8"));
   }
+  await pg.exec("set role migration_operator");
   await pg.exec(
     "insert into private.region_policies(country,state,version,effective_from,effective_to,review_at,approved,minimum_age,features,evidence) values('XX','ROLE_TEST','isolated-test',now()-interval '1 day',now()+interval '1 day',now()+interval '1 day',true,18,array['community_social','public_profiles'],'Isolated PostgreSQL regression only; not a legal approval')",
   );

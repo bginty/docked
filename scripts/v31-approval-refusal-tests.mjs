@@ -34,7 +34,7 @@ for (const [script, args] of [
   assert.notEqual(r.status, 0);
   assert.match(
     r.stderr,
-    /Exact founder approval file required|false !== true|AssertionError/,
+    /Exact founder approval file required|false !== true|AssertionError|package excludes that execution scope/,
   );
   results.push({
     script,

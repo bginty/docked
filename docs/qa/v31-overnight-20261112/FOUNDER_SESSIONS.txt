@@ -1,0 +1,96 @@
+DOCKED V31 — precise remaining participation, 12 November 2026 AEDT
+Prepared only. Do not repeat accepted card rules, email receipt, Preview credential
+entry, Google MFA enrolment, audit logging or the successful synthetic vault drill.
+
+1. Application continuation
+Review BACKEND_CONTINUATION_APPROVAL.txt and the exact commit/hash in the handover.
+The five migrations/outbox already succeeded. Only the corrected application
+staging/promotion and conditional safe app rollback require the new decision.
+
+2. Founder incident acceptance, after that rollout (about 10–15 minutes)
+Open https://docked.com.au/admin/incidents. Sign in and satisfy existing MFA
+privately. Choose Record delivery drill (no email), acknowledge the resulting
+synthetic incident with a factual reason, resolve it, then reload the history.
+Codex verifies actor/revision/audit evidence without entering MFA or impersonating
+acknowledgement. Do not mark synthetic delivery as actually received.
+DOCKED-OPS-20261110-01 remains CONFIRMED by founder attestation, received 10 Nov;
+provider acceptance previously reported. No resend or automated inbox claim.
+Operational recipient remains solely support@docked.com.au. Alert delivery and
+90-day cleanup remain OFF. The isolated outbox passed actual DB permissions,
+deduplication/fencing/retry and mocked provider tests; that is not hosted delivery
+acceptance. Correlate the previous provider record through existing mail-admin
+trace access if available; request no expanded mail permissions just for a report.
+
+3. Twilio and physical phone session, after sender approval (60–120 minutes)
+Sign back into Twilio privately: overnight Console was logged out for inactivity.
+Open Messaging > Senders > Alphanumeric Sender IDs and confirm the Australian
+DOCKED sender is approved/usable. Last authenticated observation was In review;
+no overnight approval is claimed. Confirm it belongs to the existing Docked
+private phone verification Messaging Service. Do not create another Verify service.
+Preview credentials were saved and independently present; no re-entry needed.
+Approve one bounded Preview test window, the existing two synthetic identities,
+no public signup, at most six hours. Supabase project bckkllmndoxzpzdqrevb >
+Authentication > Sign In / Providers > Phone. Codex prepares the existing isolated
+server allowlist and checks limits; only then enable Phone for the approved test.
+Founder privately enters the physical AU number and real code. Never paste them.
+Preview limits already read back: six SMS/hour, 60s resend, six-digit code/300s,
+fixed OTP absent, signup closed. Test bad/expired/replayed codes, attempts, resend,
+duplicate owner races, existing-user enrolment, number changes/recovery and failure.
+Stay within the earlier of 20 segments or A$5, absolute authorised ceiling A$20;
+check actual price/FX/taxes first. No auto-recharge, rental/add-on or new funding.
+Disable the test provider and reconcile real usage afterwards.
+Production credentials are still absent and provider OFF. Its current defaults
+(30/hour, 5s resend, 60s expiry) are NOT the approved Preview test settings. A
+separate controlled Production-device test needs private credential entry there,
+the reviewed stricter limits and explicit time/account scope, with signup closed.
+Installed v31 points to Production /app, so Preview alone cannot accept v31 OTP.
+Phone collection notice/policy must be approved and present before genuine use.
+
+4. Phone privacy / Google declaration review
+Review the complete existing wording and exact form delta in
+../v31-phone-ops-20261111/PRIVACY_AND_PLAY_APPROVAL.txt and
+../../policies/2026-11-11-phone-review/privacy.md.
+Inactive patch digest:
+1bf4e24b1fb54e9e5025407137117c723faef8ad594e01f0408d4003e5dc9dfe
+Approve exact wording plus policy publication and Data Safety submission when
+ready; publication of v31 is a further separate decision. Phone number: collected
+YES, shared YES, non-ephemeral, required for public AU accounts; exact purposes
+and service-provider/DPA rationale are in that package. It includes WebView data,
+international processing, current Twilio 400-day access/older backups, recovery,
+deletion exceptions and privacy rights. It does not promise 90-day SMS deletion.
+Play Console > app > Policy and programs > App content > Data safety: apply only
+the exact phone delta; preserve the other categories. Google reviews updates;
+await the actual outcome with managed publishing ON. No v32 need identified.
+
+5. Actual backup-key custody (separate live-key transfer decision; 30–60 minutes)
+The existing Google docked-play-verification project and synthetic
+docked-recovery-acceptance/v1 passed founder recovery, wrong/disabled version,
+actual verifier denial, identical restore and access/admin logging. Do not repeat.
+If approving managed custody of the existing launch backup key, specify that exact
+key/archive, destination secret and immutable version mapping; transfer the SAME
+key securely, not a rotation, then decrypt/restore an archive in isolation using
+that exact version. Never expose payloads or remove the local recovery copy before
+acceptance. This action is currently NOT approved or executed.
+Founder privately signs in with existing MFA at Google Cloud > Secret Manager.
+No new project, service account or broad runtime reader is needed. Existing Owner
+is broad administration, not secret-scoped least privilege; preserve access until
+any separately approved IAM redesign is safely reviewed.
+Emergency: use the already confirmed independent recovery method, inspect logs,
+revoke compromised scoped grants under incident authority and reversibly disable
+the affected version. Preserve versions required by backups/holds. Whole-secret
+deletion is not protected by the 30-day version-destruction delay. Logging access
+is verified; locked immutable log-bucket retention has NOT been certified.
+Cost estimate remains conditional on the shared Google free allowance; no paid
+infrastructure or additional live-key access was created overnight.
+
+6. Commerce / final launch decisions
+Preservation-only inventory import uses INVENTORY_APPROVAL.txt. Rights/source
+eligibility and merchant/payout/tax acceptance must be evidenced before sales.
+Approve a bounded Google licence-test payment/refund session when configured;
+real-money purchase authority is not inferred. Seven existing TEST notifications
+from 5 Nov have no bound receipts and need operator/provider correlation before
+commercial acceptance; do not discard them or bind them to a guessed member.
+Only after relevant gates pass: separately authorise Play publication, Australian
+public registration and the exact commercial features. No extended invite-only
+launch is imposed; registration and Play publication can precede commerce if their
+own gates pass. NBA, real scoring, prizes, withdrawals and unapproved trading stay OFF.

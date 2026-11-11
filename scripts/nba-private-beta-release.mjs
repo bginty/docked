@@ -7,6 +7,11 @@ import { promisify } from "node:util";
 import path from "node:path";
 import assert from "node:assert/strict";
 import { assertHostedBeta } from "../src/core/hosted-beta.mjs";
+import {
+  dormantV31Runtime,
+  v31BaselineCommit,
+  v31BaselineRuntimeDigest,
+} from "./lib/v31-dormant-runtime.mjs";
 const root = process.cwd(),
   main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
 const target = JSON.parse(await fs.readFile("config/hosted-beta.json", "utf8"));
@@ -187,7 +192,11 @@ if (process.argv[2] === "prepare") {
     JSON.stringify({ sha, files }),
   );
   console.log(JSON.stringify({ prepared: true, sha, fileCount: files.length }));
-} else if (process.argv[2] === "stage") {
+} else if (["stage", "verify-runtime"].includes(process.argv[2])) {
+  const verifyRuntimeOnly = process.argv[2] === "verify-runtime";
+  assert(
+    !verifyRuntimeOnly || process.env.DOCKED_V31_DORMANT_RELEASE === "true",
+  );
   const fixtureCommerce = process.argv.includes("--fixture-commerce");
   if (fixtureCommerce) {
     const approval = JSON.parse(
@@ -253,7 +262,7 @@ if (process.argv[2] === "prepare") {
     ) + "\nresult=env;",
     context,
   );
-  const env = {
+  let env = {
     ...context.result,
     ...JSON.parse(
       await fs.readFile(
@@ -340,11 +349,14 @@ if (process.argv[2] === "prepare") {
   }
   if (process.env.DOCKED_V31_DORMANT_RELEASE === "true") {
     assert.equal(process.env.DOCKED_RELEASE_COMMERCIAL_DORMANT, "true");
-    Object.assign(env, {
-      REGISTRATION_ENABLED: "false",
-      DOCKED_PUBLIC_PHONE_OTP: "false",
-      DOCKED_ISOLATED_PHONE_TEST: "false",
-    });
+    assert.equal(baselineCommit, v31BaselineCommit);
+    const baselineRuntime = JSON.parse(
+      await fs.readFile(
+        `C:/Users/61412/.codex/worktrees/scoring-pack-refinement/Docked.com.au/private-data/scoring-pack-refinement-release/${v31BaselineCommit}/runtime.private.json`,
+        "utf8",
+      ),
+    );
+    env = dormantV31Runtime(baselineRuntime, base, v31BaselineRuntimeDigest);
   }
   assert.equal(
     base.env.filter(
@@ -369,6 +381,40 @@ if (process.argv[2] === "prepare") {
     true,
   );
   assert.equal(env.REGISTRATION_ENABLED, "false");
+  if (process.env.DOCKED_V31_DORMANT_RELEASE === "true") {
+    await fs.writeFile(
+      path.join(parent, "runtime.private.json"),
+      JSON.stringify({ ...env, ...overrides }),
+      { mode: 0o600 },
+    );
+    const runtimeReport = {
+      at: new Date().toISOString(),
+      commit: sha,
+      baseline: baselineCommit,
+      baselineRuntimeDigest: v31BaselineRuntimeDigest,
+      baselineSettingsPreserved: true,
+      omittedCustomSettings: 0,
+      newDisabledGates: [
+        "DOCKED_PUBLIC_PHONE_OTP",
+        "DOCKED_ISOLATED_PHONE_TEST",
+      ],
+      existingMemberSetupPreserved: true,
+      publishedConsentReferencesPreserved: true,
+      publicRegistration: false,
+      commercialActivation: false,
+      sms: false,
+      preparedOnly: true,
+      deploymentCreated: false,
+    };
+    await fs.writeFile(
+      evidence + "/runtime-preflight.json",
+      JSON.stringify(runtimeReport, null, 2),
+    );
+    if (verifyRuntimeOnly) {
+      console.log(JSON.stringify(runtimeReport));
+      process.exit(0);
+    }
+  }
   const args = [
     "deploy",
     "--cwd",

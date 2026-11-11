@@ -1,0 +1,78 @@
+DOCKED V31 — exact APPLICATION-ONLY continuation, 12 November 2026 AEDT
+PREPARED. NOT APPROVED. Public launch NO-GO.
+
+Decision prepared for the founder
+Approve closed-gate staging, candidate checks and promotion of the exact source
+commit named in the final handover, with package SHA-256:
+a3b61f2c9a17d17bc4db3a2c96038d91a123062b1fd0504b9c0a4da915eef1e9
+Manifest: ../v31-prelaunch-execution-20261111/database/exact-package.json
+Scopes: backend-stage and backend-promote ONLY.
+
+Why a new decision is required
+The founder-approved fd4c0952 package committed all five migrations and restricted
+outbox at 2026-11-11T13:01:45.659Z (12 November 00:01 AEDT). Its application
+stage stopped BEFORE creating a deployment: Preserve all existing custom runtime
+flags (5 !== 0). The historical reconstruction omitted the existing member-setup
+switch, policy approval, database connection and current Terms/Privacy references.
+The correction preserves the full digest-bound f1b50b6f runtime. It introduces
+only disabled phone-test switches. Customer application/native source and SQL
+are unchanged from 02b6cdad. The founder required fresh approval when reviewed
+package bytes change, and overnight instructions exclude additional deployments.
+The fd4 approval has NOT been reused for this correction.
+
+Production now
+App f1b50b6f51d7429a36df9a8d5db99aed8886bd44, deployment
+dpl_9bwmvDvt5AEszaBtR311MjHLpHg7. Five migrations already applied; DO NOT repeat.
+Exact applied SQL hashes are in approved-fd4-package.json and committed-readback.json.
+New package rejects the database-apply scope before opening a hosted client.
+Current catalogue fcc65f63bd06816fb68f141e907fa346 / 10104 objects.
+Membership fingerprint b962295821717c0232abe7f6370c7a36 / 35 memberships.
+Baseline runtime digest:
+893b568f0f3e4b142cd5bff0bdaa5255d237388e7277ff0fabe0b498df5f1501
+
+Effect and checks
+No new tables, permissions, RLS changes or data migration. The already applied
+outbox is limited to service queue leasing and commercial signal enqueue; browser
+and ordinary runtime access are denied. Incident review checks founder MFA;
+retention execution is denied to runtime roles and remains disabled.
+Every stage/promote repeats read-only history, catalogue, memberships, custody,
+financial table and gate checks. A changed baseline or missing runtime setting
+stops execution. The exact private approval must identify the reviewed commit,
+package hash, real founder instruction, scopes and bounded <=24-hour window.
+
+Safe preparation commands (no deployment)
+  node scripts/v31-controlled-backend.mjs prepare
+  node scripts/v31-controlled-backend.mjs verify-runtime
+  node --import tsx scripts/v31-committed-readback.ts
+
+Only after the new exact approval, from that reviewed clean commit
+  node scripts/v31-controlled-backend.mjs stage --approval=private-data/v31-backend-continuation.approved.json
+Wait for READY. Check candidate login, existing account, policy links, gated APIs,
+phone failure, incident page and NBA hidden status. Confirm its exact source/meta,
+closed runtime, baseline and database before promoting. No authority to create
+users, send SMS, retry purchases or open admission is implied by candidate checks.
+  node scripts/v31-controlled-backend.mjs promote --approval=private-data/v31-backend-continuation.approved.json
+Then rerun read-only live HTTP/database checks, inspect actual alias/commit and
+runtime errors; founder subsequently completes the separate incident MFA session.
+
+Backup, recovery and downtime
+Authenticated fresh encrypted backup at 2026-11-11T13:25:05.933Z, 133839746 bytes:
+d068c8f8f6f8a6090c19f87f1e06ca0968580d71d8f2898aa214909d67e181d4
+private-data/commercial-restore-20261112, encrypted with the existing local key.
+It restored with original ownership/effective memberships, no network/ports/cron;
+both SQL replay passes preserved 556 durable tables. Storage object bodies and
+external secrets are not included. Refresh backup/preflight if material state
+changes; do not mistake this dated archive for a just-in-time inventory backup.
+No database lock window is needed for this application-only continuation. Expect
+roughly 20–40 minutes for build, checks and promotion, normally no planned outage.
+If the candidate fails before promotion, leave the live alias unchanged. After
+promotion, use only an explicitly approved, freshly checked app-only rollback to
+dpl_9bwmvDvt5AEszaBtR311MjHLpHg7 if its gates remain closed and additive-schema
+compatibility holds. Keep the committed SQL and all legitimate data. New SQL or
+destructive restore requires separate approval. This proposal includes that
+conditional app-only rollback, not an unrestricted recovery grant.
+
+Excluded: registration, SMS/provider activation, inventory import or issuance,
+payments/trading/prizes/withdrawals/scored competitions, deletion schedules,
+live-key transfer/rotation, policy publication, Play declarations and publication.
+All six competitions stay disabled Practice; NBA stays hidden. No v32 change.

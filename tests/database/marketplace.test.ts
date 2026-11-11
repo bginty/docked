@@ -18,12 +18,15 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
   const pg = new PGlite();
   try {
     await pg.exec(
-      `create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,email_confirmed_at timestamptz,is_anonymous boolean default false,banned_until timestamptz);create table auth.sessions(id uuid primary key,user_id uuid references auth.users,not_after timestamptz);create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;create function auth.jwt() returns jsonb language sql stable as $$select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb$$;grant usage on schema auth to authenticated;`,
+      `create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,email_confirmed_at timestamptz,is_anonymous boolean default false,banned_until timestamptz,phone text unique,phone_confirmed_at timestamptz);create table auth.sessions(id uuid primary key,user_id uuid references auth.users,not_after timestamptz);create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;create function auth.jwt() returns jsonb language sql stable as $$select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb$$;grant usage on schema auth to authenticated;`,
     );
-    for (const f of (await readdir("supabase/migrations"))
+    const migrations = (await readdir("supabase/migrations"))
       .filter((f) => f.endsWith(".sql"))
-      .filter((f) => f !== "20261019020939_fixed_price_marketplace.sql")
-      .sort())
+      .sort();
+    const fixedPriceMigration = "20261019020939_fixed_price_marketplace.sql";
+    // Seed historical listings before this guard exists. Later migrations also
+    // replace that guard, so skipping just the original file no longer works.
+    for (const f of migrations.filter((f) => f < fixedPriceMigration))
       await pg.exec(await readFile("supabase/migrations/" + f, "utf8"));
     const s = marketplaceFixture(),
       own = (i: number) =>
@@ -139,6 +142,8 @@ test("embedded PGlite (serialized, not multi-connection): transaction races, imm
         .rows,
       audit,
     );
+    for (const f of migrations.filter((f) => f > fixedPriceMigration))
+      await pg.exec(await readFile("supabase/migrations/" + f, "utf8"));
     await run(0, { kind: "list", card, price: 1000 }, list);
     // Actual session/admission helpers, with local Auth table fixtures only.
     const versions = {

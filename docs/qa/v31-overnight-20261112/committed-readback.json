@@ -1,0 +1,80 @@
+{
+  "at": "2026-11-11T13:35:18.036Z",
+  "project": "pojoymtniryarxxunyvz",
+  "productionWrites": 0,
+  "migrationHashes": [
+    {
+      "file": "supabase/migrations/20261109231834_commercial_lifetime_supply_guards.sql",
+      "sha256": "ec1154357168027f106c9d5e0f03cc98fd9820a58f4196cb7f30103b98ff53bb"
+    },
+    {
+      "file": "supabase/migrations/20261109232000_public_practice_phone_guards.sql",
+      "sha256": "8179828fdd88bea9c95f4ac961905737f51d1aae78e25455748e7191a6d4fee0"
+    },
+    {
+      "file": "supabase/migrations/20261109232124_operational_incident_review.sql",
+      "sha256": "776c4ccf7795e734547e0db2088028b936ad8c226617b93115281d041eeeb3e7"
+    },
+    {
+      "file": "supabase/migrations/20261110005726_operational_incident_retention.sql",
+      "sha256": "108418ea6c952cf1ed770de0a88d9995dca28aa98c0722fc78be0ad8455f4ebd"
+    },
+    {
+      "file": "supabase/migrations/20261110010050_australian_verified_phone_uniqueness.sql",
+      "sha256": "1c86e313976a1d5b30eecdbba21c8329de3f38a27f44f99c2f53a83b1f34f996"
+    }
+  ],
+  "protectedTablesCompared": 25,
+  "protectedRecordsUnchanged": true,
+  "protectedCustodyDigest": "a1bbdf806cee3f51d870b31f5fcb74d6cae0df93846f34bb4c291ffaae99cb8e",
+  "custodyRecords": 906,
+  "frozenLimitedCopies": 888,
+  "flags": {
+    "registration": false,
+    "alerts": false,
+    "retention": false,
+    "retention_days": 90,
+    "retention_candidates": 0,
+    "deletion_receipts": 0,
+    "practice_rounds": 6,
+    "active_or_scored_rounds": false,
+    "commercial": false,
+    "commercial_definitions": 0,
+    "commercial_cards": 0,
+    "incidents": 0,
+    "incident_events": 0,
+    "operational_emails": 0,
+    "operational_tables_without_rls": 0
+  },
+  "catalogue": {
+    "fingerprint": "fcc65f63bd06816fb68f141e907fa346",
+    "objects": 10104
+  },
+  "membership": {
+    "fingerprint": "b962295821717c0232abe7f6370c7a36",
+    "memberships": 35
+  },
+  "legacyTestNotificationAttention": [
+    {
+      "kind": "purchase",
+      "state": "attention",
+      "count": 4,
+      "first_created": "2026-11-05T11:17:22.053Z",
+      "last_created": "2026-11-05T12:11:12.424Z",
+      "last_completed": null,
+      "max_attempts": 12,
+      "error_category": "private diagnostic withheld"
+    },
+    {
+      "kind": "voided",
+      "state": "attention",
+      "count": 3,
+      "first_created": "2026-11-05T11:19:33.334Z",
+      "last_created": "2026-11-05T12:11:56.990Z",
+      "last_completed": null,
+      "max_attempts": 12,
+      "error_category": "private diagnostic withheld"
+    }
+  ],
+  "founderMfaAcceptance": false
+}

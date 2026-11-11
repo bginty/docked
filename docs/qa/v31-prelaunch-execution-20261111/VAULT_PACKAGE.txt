@@ -1,4 +1,13 @@
-V31 — exact recovery-vault preparation, 11 November 2026
+CURRENT ACCEPTANCE UPDATE — 12 November 2026 AEDT
+The historical access blocker and synthetic setup request below are resolved.
+See vault-hosted/acceptance.json and runtime-denial.json: founder MFA/recovery,
+Secret Manager audit access/admin events, actual verifier denial, wrong/disabled
+version denial and identical synthetic recovery passed. Do not repeat the setup
+commands or add grants. Existing founder Owner remains broad; no IAM was added.
+Only separately approved actual backup-key custody/restore remains, described in
+../v31-overnight-20261112/FOUNDER_SESSIONS.txt. Live keys were not transferred.
+
+V31 — exact recovery-vault preparation, 11 November 2026 (historical)
 PREPARED; no Google resource, IAM, logging or billing change executed.
 
 Approved design: Google Secret Manager, existing docked-play-verification project,

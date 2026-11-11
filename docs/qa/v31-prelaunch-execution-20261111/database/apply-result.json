@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-11T13:01:45.659Z",
+  "mode": "apply",
+  "packageSha256": "fd4c09520ee1ad82bb754abcc15b9af876c3fe8f570d464767f0d1a91a315ef1",
+  "project": "pojoymtniryarxxunyvz",
+  "archiveSha256": "f726c5bdceaf641ff6a7f7ae36a1a017db02900c6f7eb78ae3bc644c30fa6926",
+  "catalogue": {
+    "fingerprint": "ff2b792e3d265385380042ba4548ba08",
+    "objects": 9971
+  },
+  "counts": {
+    "definitions": 0,
+    "cards": 0,
+    "packs": 0,
+    "receipts": 0,
+    "enabled_rounds": 0
+  },
+  "protectedTables": 550,
+  "protectedRowsUnchanged": true,
+  "protectedRowsCheck": "before/after transaction",
+  "migrationCount": 5,
+  "outboxApplied": true,
+  "activation": false,
+  "productionWrites": "five migration-history rows, one disabled alert flag, dormant retention policy and reviewed DDL"
+}

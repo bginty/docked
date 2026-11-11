@@ -73,8 +73,32 @@ for (const sport of [aflConfiguration, nrlConfiguration])
         "insert into commercial_billing.definitions(id,player_id,sport,rarity,lifetime_cap,approved,rights_reference,snapshot) values($1,$2,$3,'RARE',5000,true,'isolated fixture','{}')",
         [definition, old[0].player_id, sport.id],
       );
+      // A purchased pack and its complete card award share one transaction.
+      await d.pg.exec("begin");
+      await d.q("update commercial_billing.control set issuance_enabled=true");
+      await d.q("update commercial_billing.control set approvals=$1::jsonb", [
+        JSON.stringify({
+          validUntil: "2099-03-01T00:00:00Z",
+          ...Object.fromEntries(
+            [
+              "owner",
+              "legal",
+              "googlePlay",
+              "privacy",
+              "retention",
+              "refundRecovery",
+              "playerRights",
+              "supplyReconciliation",
+            ].map((key) => [key, "isolated-test-approval"]),
+          ),
+          withdrawals: false,
+          prizes: false,
+          paidEntry: false,
+          nba: false,
+        }),
+      ]);
       await d.q(
-        "insert into commercial_billing.packs(id,member_id,request,product,price,funding,draw_evidence,policy_version,opened_at) values($1,$2,$3,$4,100,'[]','[]','isolated fixture',clock_timestamp())",
+        'insert into commercial_billing.packs(id,member_id,request,product,price,funding,draw_evidence,policy_version) values($1,$2,$3,$4,100,\'[]\',\'[{"rarity":"RARE","fixture":"isolated lineup"}]\',\'isolated fixture\')',
         [
           pack,
           d.user,
@@ -88,6 +112,12 @@ for (const sport of [aflConfiguration, nrlConfiguration])
         "insert into commercial_billing.cards(id,definition,serial,owner_id,pack,slot) values($1,$2,1,$3,$4,0)",
         [card, definition, d.user, pack],
       );
+      await d.q(
+        "update commercial_billing.packs set opened_at=clock_timestamp() where id=$1",
+        [pack],
+      );
+      await d.pg.exec("commit");
+      await d.q("update commercial_billing.control set issuance_enabled=false");
       const state = await d.state();
       const owned = state.cards.find((c: any) => c.id === card);
       assert.equal(owned.multiplierTenths, 11);

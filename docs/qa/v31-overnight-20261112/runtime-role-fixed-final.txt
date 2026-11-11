@@ -1,0 +1,80 @@
+TAP version 13
+# Subtest: existing-member public bootstrap uses restricted ordinary role and grants no staff access
+ok 1 - existing-member public bootstrap uses restricted ordinary role and grants no staff access
+  ---
+  duration_ms: 23647.3514
+  ...
+# Subtest: invitation setup uses restricted views, denies another session and rolls back expired-session consent
+ok 2 - invitation setup uses restricted views, denies another session and rolls back expired-session consent
+  ---
+  duration_ms: 184.9935
+  ...
+# Subtest: production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+ok 3 - production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+  ---
+  duration_ms: 37.8999
+  ...
+# Subtest: browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+ok 4 - browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+  ---
+  duration_ms: 46.3635
+  ...
+# Subtest: runtime cannot escalate roles or execute privileged helper paths
+ok 5 - runtime cannot escalate roles or execute privileged helper paths
+  ---
+  duration_ms: 66.574
+  ...
+# Subtest: runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+ok 6 - runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+  ---
+  duration_ms: 24.1835
+  ...
+# Subtest: restricted runtime can create account consent/preferences without password visibility
+ok 7 - restricted runtime can create account consent/preferences without password visibility
+  ---
+  duration_ms: 57.8391
+  ...
+# Subtest: real actor/session and policy locks work while expired sessions are denied
+ok 8 - real actor/session and policy locks work while expired sessions are denied
+  ---
+  duration_ms: 101.4208
+  ...
+# Subtest: ordinary social writes fan out durably but cannot impersonate official or ledger posts
+ok 9 - ordinary social writes fan out durably but cannot impersonate official or ledger posts
+  ---
+  duration_ms: 49.0802
+  ...
+# Subtest: ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+ok 10 - ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+  ---
+  duration_ms: 433.1378
+  ...
+# Subtest: runtime queues cannot activate scanner/provider/publication jobs or external delivery
+ok 11 - runtime queues cannot activate scanner/provider/publication jobs or external delivery
+  ---
+  duration_ms: 11.0478
+  ...
+# Subtest: maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+ok 12 - maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+  ---
+  duration_ms: 32.9092
+  ...
+# Subtest: bounded retention works through restricted role without removing current inbox records
+ok 13 - bounded retention works through restricted role without removing current inbox records
+  ---
+  duration_ms: 287.3875
+  ...
+# Subtest: restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+ok 14 - restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+  ---
+  duration_ms: 76.9263
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 30534.1466

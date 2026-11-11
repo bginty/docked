@@ -40,6 +40,11 @@ export function readExactPackage() {
 }
 export function requireV31Approval(scope) {
   const { manifest, digest } = readExactPackage();
+  if (manifest.approvalScopes)
+    assert(
+      manifest.approvalScopes.includes(scope),
+      "This package excludes that execution scope",
+    );
   const path = process.argv.find((v) => v.startsWith("--approval="))?.slice(11);
   assert(
     path,

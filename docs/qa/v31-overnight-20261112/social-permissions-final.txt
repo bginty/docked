@@ -1,0 +1,185 @@
+TAP version 13
+# Subtest: community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+ok 1 - community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+  ---
+  duration_ms: 13645.4356
+  ...
+# Subtest: unknown provider classification, promotions and historical/demo records cannot be promoted
+ok 2 - unknown provider classification, promotions and historical/demo records cannot be promoted
+  ---
+  duration_ms: 93.3073
+  ...
+# Subtest: atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+ok 3 - atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+  ---
+  duration_ms: 70.2953
+  ...
+# Subtest: newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+ok 4 - newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+  ---
+  duration_ms: 42.6963
+  ...
+# Subtest: latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+ok 5 - latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+  ---
+  duration_ms: 30.6122
+  ...
+# Subtest: canonical records survive social tombstone, private identity and blocking
+ok 6 - canonical records survive social tombstone, private identity and blocking
+  ---
+  duration_ms: 36.9416
+  ...
+# Subtest: authorized results only, no silent correction, finite scores, append-only approval revocation
+ok 7 - authorized results only, no silent correction, finite scores, append-only approval revocation
+  ---
+  duration_ms: 58.1263
+  ...
+# Subtest: integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+ok 8 - integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+  ---
+  duration_ms: 55.5186
+  ...
+# Subtest: leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+ok 9 - leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+  ---
+  duration_ms: 30.713
+  ...
+# Subtest: ordered migrations leave all new tables RLS protected and no public private-payload grants
+ok 10 - ordered migrations leave all new tables RLS protected and no public private-payload grants
+  ---
+  duration_ms: 13182.6258
+  ...
+# Subtest: anonymous denied; active members only see own rows and cannot forge another session
+ok 11 - anonymous denied; active members only see own rows and cannot forge another session
+  ---
+  duration_ms: 23.9989
+  ...
+# Subtest: staff metadata does not grant direct SQL mutation or provider payload access to authenticated role
+ok 12 - staff metadata does not grant direct SQL mutation or provider payload access to authenticated role
+  ---
+  duration_ms: 54.5438
+  ...
+# Subtest: disabled profile and revoked or expired session block every member Data API table
+ok 13 - disabled profile and revoked or expired session block every member Data API table
+  ---
+  duration_ms: 31.0991
+  ...
+# Subtest: strategy lifecycle disallows skipped states, unauthorised actors, fixture validation and unreviewed direct updates
+ok 14 - strategy lifecycle disallows skipped states, unauthorised actors, fixture validation and unreviewed direct updates
+  ---
+  duration_ms: 46.1547
+  ...
+# Subtest: paper publication is pre-event immutable and never creates public notification outbox
+ok 15 - paper publication is pre-event immutable and never creates public notification outbox
+  ---
+  duration_ms: 23.8777
+  ...
+# Subtest: mismatched candidate event and malformed EV fail closed
+ok 16 - mismatched candidate event and malformed EV fail closed
+  ---
+  duration_ms: 10.5278
+  ...
+# Subtest: correction cannot link settlements from different publications or rewrite original outcome
+ok 17 - correction cannot link settlements from different publications or rewrite original outcome
+  ---
+  duration_ms: 14.599
+  ...
+# Subtest: account disable atomically revokes access, scrubs mutable personal records and queues idempotent erasure
+ok 18 - account disable atomically revokes access, scrubs mutable personal records and queues idempotent erasure
+  ---
+  duration_ms: 24.9775
+  ...
+# Subtest: candidate and observation evidence cannot be silently rewritten or removed
+ok 19 - candidate and observation evidence cannot be silently rewritten or removed
+  ---
+  duration_ms: 7.3444
+  ...
+# Subtest: Phase 2 backup restores session policies and immutable strategy/paper evidence
+ok 20 - Phase 2 backup restores session policies and immutable strategy/paper evidence
+  ---
+  duration_ms: 7716.1796
+  ...
+# Subtest: quota reservations survive external failure and preserve unknown balances
+ok 21 - quota reservations survive external failure and preserve unknown balances
+  ---
+  duration_ms: 12.537
+  ...
+# Subtest: policy renewal preserves that jurisdiction's historical publications while restrictions still fail closed
+ok 22 - policy renewal preserves that jurisdiction's historical publications while restrictions still fail closed
+  ---
+  duration_ms: 13.4387
+  ...
+# Subtest: as-of reports retain the earlier loss when a later correction was unavailable at report cutoff
+ok 23 - as-of reports retain the earlier loss when a later correction was unavailable at report cutoff
+  ---
+  duration_ms: 6.1188
+  ...
+# Subtest: completion analytics cannot double count repeated or concurrent callbacks
+ok 24 - completion analytics cannot double count repeated or concurrent callbacks
+  ---
+  duration_ms: 8.7287
+  ...
+# Subtest: research sensitivity settings cannot freeze below the release floor or outside the release odds range
+ok 25 - research sensitivity settings cannot freeze below the release floor or outside the release odds range
+  ---
+  duration_ms: 29.6868
+  ...
+# Subtest: repeating signup for an unconfirmed existing profile cannot append or flip initial consent
+ok 26 - repeating signup for an unconfirmed existing profile cannot append or flip initial consent
+  ---
+  duration_ms: 17.8966
+  ...
+# Subtest: preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+ok 27 - preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+  ---
+  duration_ms: 11213.5655
+  ...
+# Subtest: preview grant fails closed without exact trusted hosted context or live same-user session
+ok 28 - preview grant fails closed without exact trusted hosted context or live same-user session
+  ---
+  duration_ms: 31.5415
+  ...
+# Subtest: tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+ok 29 - tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+  ---
+  duration_ms: 44.8334
+  ...
+# Subtest: expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+ok 30 - expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+  ---
+  duration_ms: 48.5527
+  ...
+# Subtest: ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+ok 31 - ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+  ---
+  duration_ms: 9.8041
+  ...
+# Subtest: preview marker and grant constraints prevent scope broadening or mutable enrollment
+ok 32 - preview marker and grant constraints prevent scope broadening or mutable enrollment
+  ---
+  duration_ms: 17.0191
+  ...
+# Subtest: browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+ok 33 - browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+  ---
+  duration_ms: 22.313
+  ...
+# Subtest: hard deletion removes tester identity mapping while retaining minimal grant audit
+ok 34 - hard deletion removes tester identity mapping while retaining minimal grant audit
+  ---
+  duration_ms: 25.4717
+  ...
+# Subtest: session expiry uses wall clock even when transaction start remains before expiry
+ok 35 - session expiry uses wall clock even when transaction start remains before expiry
+  ---
+  duration_ms: 210.3918
+  ...
+1..35
+# tests 35
+# suites 0
+# pass 35
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 30091.3401

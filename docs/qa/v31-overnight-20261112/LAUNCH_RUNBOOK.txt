@@ -1,0 +1,111 @@
+DOCKED V31 — executable continuation, 12 November 2026 AEDT
+CURRENT RUNBOOK. Supersedes the unapplied-migration sequence in older reports.
+This document grants no authority. Source/approval must match the final handover.
+Production pojoymtniryarxxunyvz; isolated Preview bckkllmndoxzpzdqrevb.
+
+0. Preserve the actual baseline
+Live app remains f1b50b6f / dpl_9bwmvDvt5AEszaBtR311MjHLpHg7; five migrations
+and restricted outbox are COMMITTED under fd4c0952. Do not repeat db apply.
+Read current alias, migration history, RLS/memberships, custody, gates and logs.
+  node --import tsx scripts/v31-committed-readback.ts
+  node scripts/v31-readiness-readonly.mjs
+Stop on unexplained drift. Never use blanket db push or change timeout limits to
+force approval through. Current encrypted backup/restore proof is retained; a
+later inventory import requires its own fresh backup and ten-minute preflight.
+
+1. Corrected closed-gate app (20–40 minutes; NEW approval first)
+Use BACKEND_CONTINUATION_APPROVAL.txt exact commit/package. Prepare/verify-runtime
+read-only; stage under private real-founder approval; wait READY; test protected
+candidate; promote only that candidate; repeat live/database closed-gate checks.
+No SQL, account creation, SMS, inventory or commercial activation. Failed stage
+leaves alias unchanged; an approved compatible app rollback retains all SQL/data.
+
+2. Operational acceptance (10–15 minutes, independent of Twilio)
+Founder completes /admin/incidents sign-in/MFA, no-email drill, acknowledgement,
+resolution and immutable-history reload. Preserve accepted 10-Nov email receipt.
+Verify sole approved recipient, current permission denials and delivery visibility.
+No new delivery test, incident-cleanup schedule or retention activation. Live
+recovery-key custody requires the separate same-key transfer/isolated restore in
+FOUNDER_SESSIONS.txt; synthetic recovery alone is not live backup acceptance.
+
+3. Policy and declaration (30–60 minutes plus external Google review)
+Approve exact inactive privacy patch and Data Safety delta. Apply reviewed patch
+using its APPLICATION.txt instructions, test/commit and obtain exact deployment
+authority for that resulting source. Verify live privacy/notice/consent references
+before collecting phone data. Submit only authorised declaration changes and
+wait for actual Google outcome. Managed publishing remains ON throughout.
+Existing v31 approval is not approval of a later phone declaration update.
+
+4. Sender and OTP (60–120 minutes plus external sender waiting)
+Verify Twilio sender approval in the founder session. Authorise bounded isolated
+Preview account/provider window; check credentials, signup closure, six/hour,
+60s resend, 300s expiry and no fixed test OTP. Receive/verify real AU SMS; exercise
+expiry/replay/attempt limits, duplicate-number races, recovery and provider failure.
+Close provider/window, reconcile segments/costs (20 segments/A$5 stop; A$20 max).
+Then separately authorise controlled Production phone configuration/device test
+with signup still closed. Founder privately enters Production provider credentials
+and code; validate installed v31 WebView enrolment/login, account controls, privacy
+links, owned cards, loading/reveal and failure/recovery. Preview is not v31 proof.
+
+5. Inventory (30–60 minutes; separate exact import approval)
+Use INVENTORY_APPROVAL.txt. Offline validate, fresh <=1h encrypted backup and
+<=10m read-only preflight; verify unchanged custody/source and operator digest.
+After exact authority, run the guarded import once. Check 6540 definitions,
+888 consumed, zero approved/new cards, unchanged owners/custody, all gates OFF.
+Observe lock contention; pre-commit errors roll back. Post-commit preserve lifetime
+baseline and use separately reviewed forward repair; never reclaim serials.
+Refresh official source observations before commercial activation if >72 hours;
+do not automatically include 475 excluded definitions or change approved odds.
+
+6. Payments/refunds (45–90 minutes, separately bounded hosted test)
+Confirm current merchant/payout/tax and product state; preserve reviewed price,
+credit and seller-fee rules. Correlate the seven old TEST notifications with no
+bound receipts using authorised provider evidence; no guesses or silent deletion.
+Use approved licence-test accounts/window to verify server token/account binding,
+exactly-once acknowledgement/credit/pack fulfilment, RTDN, refunds and recovery
+holds. Preserve already transferred ownership and buyer balances. Record whether
+any real-money settlement remains untested. Do not charge a real purchase without
+its explicit authority. The isolated 15 billing/18 outbox scenarios already pass.
+
+7. Separate release gates and approvals
+Google: approved applicable binary/declarations/listing; review the entire intended
+Australia-only pending batch, then explicit Publish changes authority. Managed
+publishing need not be disabled. Installed/downloaded binaries cannot be recalled.
+Registration: accepted phone/email/recovery/consent/ordinary-account journey and
+operational response. Prepare exact app/Auth/DB/policy activation snapshot with
+current IDs, not an UPDATE-all. Existing controls require REGISTRATION_ENABLED,
+private registration flag, Supabase signup permission, AU/public policy, approved
+Terms/Privacy and public-customer/phone runtime switches. Activate only after that
+separate decision, then verify an ordinary AU account and existing-account access.
+Commercial: accepted inventory/current-source/rights, policies, merchant/payment/
+refund readiness and monitoring; separate exact approved definitions/products/
+commercial control snapshot. No sales until advertised all-rarity pack capacity
+holds. Public registration and store publication may proceed separately from sales.
+All six Practice rounds currently disabled; enabling exact free Practice rounds
+needs current deadlines/labels and explicit scope. Never activate real scoring,
+NBA, prizes, withdrawals or trading from a general registration/publish decision.
+
+8. Observe and recover
+At each boundary and 5/15/60 minutes inspect actual commit, auth/SMS errors/costs,
+incident/delivery state, receipt/ack/RTDN lag, wallet/refund reconciliation, card
+serial/lifetime totals and inventory exhaustion. Measure installed-device loading;
+synthetic tests and a small HTTP sample are not load or mobile-frame-rate proof.
+For an authorised emergency use config/operations/v31-emergency-close.prepared.sql
+plus the matching app/Auth admission controls; provider OFF stops new SMS.
+For delivery faults use config/operations/billing-ops-outbox.stop.prepared.sql
+only with appropriate authority; preserve valid in-flight outcomes. Never disable
+reconciliation needed for accepted purchases or erase incidents/receipts/audit.
+Rollback app alias only to a checked compatible dormant deployment; retain additive
+schema, ownership and lifetime counts. Restore backups into isolation first; live
+restore needs a separate reconciled recovery approval.
+
+Reversibility and estimates
+Alias/admission/provider-window changes are reversible, subject to authority.
+Committed schema/definition baselines are forward-recoverable, not disposable.
+Messages, accepted purchases, minted serials and public downloads cannot simply
+be undone. No deletion schedule or live-key rotation is included in launch.
+Allow 4–7 focused engineering hours after approvals/access for app/hosted/device,
+policy, inventory and payment acceptance, with some work in parallel. Exclude
+Twilio/Google review, founder availability, rights/merchant decisions and any
+new defects or source drift. Google/store, registration and commerce each remain
+NO-GO until their own required acceptance and explicit activation authority pass.

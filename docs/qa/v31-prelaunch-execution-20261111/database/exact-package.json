@@ -1,14 +1,14 @@
 {
-  "version": "v31-dormant-backend-20261111-v2-hosted-permissions",
+  "version": "v31-20261112-application-only-continuation",
   "project": "pojoymtniryarxxunyvz",
   "productionBaseline": "f1b50b6f51d7429a36df9a8d5db99aed8886bd44",
   "sourceCatalogue": {
-    "fingerprint": "ff2b792e3d265385380042ba4548ba08",
-    "objects": 9971
+    "fingerprint": "fcc65f63bd06816fb68f141e907fa346",
+    "objects": 10104
   },
-  "archiveSha256": "f726c5bdceaf641ff6a7f7ae36a1a017db02900c6f7eb78ae3bc644c30fa6926",
-  "backupDirectory": "private-data/commercial-restore-20261111",
-  "restoreEvidence": "docs/qa/v31-prelaunch-execution-20261111/database/restore-20261111",
+  "archiveSha256": "d068c8f8f6f8a6090c19f87f1e06ca0968580d71d8f2898aa214909d67e181d4",
+  "backupDirectory": "private-data/commercial-restore-20261112",
+  "restoreEvidence": "docs/qa/v31-overnight-20261112/restored-inventory",
   "files": [
     {
       "kind": "migration",
@@ -58,12 +58,12 @@
     {
       "kind": "operator-dependency",
       "path": "scripts/v31-controlled-backend.mjs",
-      "sha256": "94d4025600b8c18ed79b98d8253bdd201c63c5880f977560fe385f94747f8c72"
+      "sha256": "46e51a416ef30fdc62deb4bf837f9fe5158ef9a7ec33ce68ce4b98b38ff284c1"
     },
     {
       "kind": "operator-dependency",
       "path": "scripts/lib/v31-exact-package.mjs",
-      "sha256": "5e9d23098e37c7407ad0749485af9ab7cdc48fb1117c9dce16a41d1100f4871f"
+      "sha256": "dc075cc013f875a64eaf1f20c5137f9c4db6a56a0f558b490f9e314f4ef007a5"
     },
     {
       "kind": "operator-dependency",
@@ -73,7 +73,7 @@
     {
       "kind": "operator-dependency",
       "path": "scripts/nba-private-beta-release.mjs",
-      "sha256": "2e168a34b9f3598f7b384a0c005db91893a7f910acf85612d8b331d0b1b60be4"
+      "sha256": "5929224d85c360aaeaee797f73a06699456def4e2a0d7f92e2ad9a4c39002ac2"
     },
     {
       "kind": "operator-dependency",
@@ -84,15 +84,36 @@
       "kind": "operator-dependency",
       "path": "config/hosted-beta.json",
       "sha256": "8affb69fc8d1b667eb9fd81be89c83630381d6533b260c875947eb6413048d2f"
+    },
+    {
+      "kind": "operator-dependency",
+      "path": "scripts/lib/v31-dormant-runtime.mjs",
+      "sha256": "697591aa42f120d13b2d86dcb021706066581fc6337a08a4d64be2fdd450c53e"
+    },
+    {
+      "kind": "operator-dependency",
+      "path": "scripts/v31-committed-readback.ts",
+      "sha256": "856082f3a96a21c52758f8b12baa1d616d9b32888115c579abe6c4ca5a97e4e0"
     }
   ],
-  "scope": "Five ordered dormant migrations with hosted-permission corrections, restricted outbox permissions and controlled closed-gate backend deployment. No inventory import, public registration, phone sending, commercial activation, Play/policy publication, live-key changes or deletion schedule.",
+  "scope": "Application-only closed-gate staging and promotion with the digest-bound complete f1b50b6f runtime preserved. The five migrations and restricted outbox already committed under fd4c0952; no new or repeated Production SQL. Registration, SMS, inventory, payments/trading/prizes, deletion schedules, live keys and policy/Play publication excluded.",
   "approvalStatus": "NOT_APPROVED",
-  "supersedesPackageSha256": "3aa30b20eddd33835e43ee721e598743897c3663f193d2c041dbe9d62dc9840e",
+  "supersedesPackageSha256": "fd4c09520ee1ad82bb754abcc15b9af876c3fe8f570d464767f0d1a91a315ef1",
   "sourceMemberships": {
-    "fingerprint": "ebd778dd5382b92f253e8ebeec994294",
-    "memberships": 34
+    "fingerprint": "b962295821717c0232abe7f6370c7a36",
+    "memberships": 35
   },
   "atomicEvidence": "docs/qa/v31-prelaunch-execution-20261111/database/retention-role-correction/atomic-rehearsal.json",
-  "outboxEvidence": "docs/qa/v31-prelaunch-execution-20261111/database/retention-role-correction/restored-outbox.json"
+  "outboxEvidence": "docs/qa/v31-prelaunch-execution-20261111/database/retention-role-correction/restored-outbox.json",
+  "databaseStatus": {
+    "applied": true,
+    "at": "2026-11-11T13:01:45.659Z",
+    "packageSha256": "fd4c09520ee1ad82bb754abcc15b9af876c3fe8f570d464767f0d1a91a315ef1",
+    "repeatApplication": false,
+    "readbackBound": true
+  },
+  "approvalScopes": [
+    "backend-stage",
+    "backend-promote"
+  ]
 }

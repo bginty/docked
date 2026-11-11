@@ -20,8 +20,10 @@ const previewRestore = process.argv.includes("--existing-free-preview");
 const prelaunchReadiness = process.argv.includes("--prelaunch-readiness");
 const resumeRestored = process.argv.includes("--resume-restored");
 assert(
-  prelaunchReadiness && process.argv.includes("--restore-existing"),
-  "This correction rehearsal only accepts an existing encrypted Production backup",
+  prelaunchReadiness &&
+    process.argv.includes("--restore-existing") !==
+      process.argv.includes("--capture-fresh"),
+  "Choose existing encrypted backup or a fresh read-only capture",
 );
 const finalReconciliation =
   process.argv.includes("--final-reconciliation") || prelaunchReadiness;
@@ -126,9 +128,13 @@ const _originalEvidence =
               : runId === "20261102"
                 ? "/docs/qa/public-activation-20261102"
                 : "/docs/qa/approved-production-20261102/restore");
-const evidence =
-  "C:/Users/61412/.codex/worktrees/v31-founder-acceptance-20261111/Docked.com.au" +
-  "/docs/qa/v31-prelaunch-execution-20261111/database/retention-role-correction/full-restore";
+const evidenceRelative =
+  process.env.DOCKED_V31_RESTORE_EVIDENCE ??
+  "docs/qa/v31-prelaunch-execution-20261111/database/retention-role-correction/full-restore";
+assert(
+  evidenceRelative.startsWith("docs/qa/") && !evidenceRelative.includes(".."),
+);
+const evidence = root + "/" + evidenceRelative;
 const attempt = process.argv.find((a) => a.startsWith("--attempt="))?.slice(10);
 assert.ok(attempt === undefined || /^[2-9]$/.test(attempt));
 const client = "supabase_db_deletion-auth-local",
@@ -976,8 +982,7 @@ async function mainRun() {
     effectiveMembershipOptionsMatch: true,
     restored: true,
     resumedRetainedRestore: resumeRestored,
-    protectedComparison:
-      "All 550 durable table hashes/counts equal authenticated backup after both migration passes",
+    protectedComparison: `All ${protectedNames.length} durable table hashes/counts equal authenticated backup after both migration passes`,
     migrationsReapplied: true,
     reapplicationScope: previewRestore
       ? "Only 20261102 idempotent additions; older one-shot migrations applied once in snapshot"

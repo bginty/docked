@@ -67,8 +67,9 @@ Phone implementation audit
 Exact private test gate, after specific Preview test authority
 Target only Docked Preview bckkllmndoxzpzdqrevb, protected known Preview origin.
 Keep Production Phone Auth OFF, Supabase disable_signup=true and
-REGISTRATION_ENABLED=false. Saved credentials are still absent as of 05:27 UTC;
-founder must enter them privately in Preview's Phone provider fields (remain OFF).
+REGISTRATION_ENABLED=false. Founder subsequently saved all three Preview fields;
+independent 12-Nov readback confirms their presence with provider OFF. Do not ask
+for Preview credential entry again. Production credentials remain absent.
 Exact action: Supabase > Docked Preview > Authentication > Sign In / Providers
 > Phone > Twilio. Enter the matching Account SID (AC...), Auth Token and Messaging
 Service SID (MG...) for the existing "Docked private phone verification" service.

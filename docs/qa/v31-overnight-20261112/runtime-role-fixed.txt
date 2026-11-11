@@ -1,0 +1,205 @@
+TAP version 13
+# Subtest: existing-member public bootstrap uses restricted ordinary role and grants no staff access
+ok 1 - existing-member public bootstrap uses restricted ordinary role and grants no staff access
+  ---
+  duration_ms: 16537.508
+  ...
+# Subtest: invitation setup uses restricted views, denies another session and rolls back expired-session consent
+ok 2 - invitation setup uses restricted views, denies another session and rolls back expired-session consent
+  ---
+  duration_ms: 96.9774
+  ...
+# Subtest: production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+ok 3 - production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+  ---
+  duration_ms: 39.6381
+  ...
+# Subtest: browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+ok 4 - browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+  ---
+  duration_ms: 52.9581
+  ...
+# Subtest: runtime cannot escalate roles or execute privileged helper paths
+not ok 5 - runtime cannot escalate roles or execute privileged helper paths
+  ---
+  duration_ms: 44.1754
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:9612'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+
+      [
+        {
+          browser: true,
+          fixed_path: true,
+          name: 'active_member_session',
+    ...
+          fixed_path: true,
+    +     name: 'public_phone_verified',
+    +     runtime: true
+    +   },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+          name: 'social_collection_cards',
+          runtime: true
+        },
+        {
+          browser: false,
+    ...
+        },
+    +   {
+    +     browser: false,
+    +     fixed_path: true,
+    +     name: 'sync_verified_phone_claim',
+    +     runtime: false
+    +   }
+      ]
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      name: 'active_member_session'
+      fixed_path: true
+      browser: true
+      runtime: true
+    1:
+      name: 'social_collection_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    2:
+      name: 'social_discussion_reply_notice'
+      fixed_path: true
+      browser: false
+      runtime: false
+    3:
+      name: 'social_legacy_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    4:
+      name: 'social_legacy_cards_before_card_privacy'
+      fixed_path: true
+      browser: false
+      runtime: false
+    5:
+      name: 'social_locked_lineups'
+      fixed_path: true
+      browser: false
+      runtime: true
+    6:
+      name: 'social_player_exists'
+      fixed_path: true
+      browser: false
+      runtime: true
+  actual:
+    0:
+      name: 'active_member_session'
+      fixed_path: true
+      browser: true
+      runtime: true
+    1:
+      name: 'public_phone_verified'
+      fixed_path: true
+      browser: false
+      runtime: true
+    2:
+      name: 'social_collection_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    3:
+      name: 'social_discussion_reply_notice'
+      fixed_path: true
+      browser: false
+      runtime: false
+    4:
+      name: 'social_legacy_cards'
+      fixed_path: true
+      browser: false
+      runtime: true
+    5:
+      name: 'social_legacy_cards_before_card_privacy'
+      fixed_path: true
+      browser: false
+      runtime: false
+    6:
+      name: 'social_locked_lineups'
+      fixed_path: true
+      browser: false
+      runtime: true
+    7:
+      name: 'social_player_exists'
+      fixed_path: true
+      browser: false
+      runtime: true
+    8:
+      name: 'sync_verified_phone_claim'
+      fixed_path: true
+      browser: false
+      runtime: false
+  operator: 'deepStrictEqual'
+  stack: |-
+    assertSocialDefinerBoundary (C:\Users\61412\.codex\worktrees\v31-founder-acceptance-20261111\Docked.com.au\tests\fixtures\social-definer-boundary.ts:24:12)
+    async TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\v31-founder-acceptance-20261111\Docked.com.au\tests\database\production-runtime-role.test.ts:400:3)
+    async Test.run (node:internal/test_runner/test:980:9)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+ok 6 - runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+  ---
+  duration_ms: 29.1971
+  ...
+# Subtest: restricted runtime can create account consent/preferences without password visibility
+ok 7 - restricted runtime can create account consent/preferences without password visibility
+  ---
+  duration_ms: 60.8885
+  ...
+# Subtest: real actor/session and policy locks work while expired sessions are denied
+ok 8 - real actor/session and policy locks work while expired sessions are denied
+  ---
+  duration_ms: 71.4983
+  ...
+# Subtest: ordinary social writes fan out durably but cannot impersonate official or ledger posts
+ok 9 - ordinary social writes fan out durably but cannot impersonate official or ledger posts
+  ---
+  duration_ms: 40.2784
+  ...
+# Subtest: ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+ok 10 - ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+  ---
+  duration_ms: 427.2186
+  ...
+# Subtest: runtime queues cannot activate scanner/provider/publication jobs or external delivery
+ok 11 - runtime queues cannot activate scanner/provider/publication jobs or external delivery
+  ---
+  duration_ms: 9.2843
+  ...
+# Subtest: maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+ok 12 - maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+  ---
+  duration_ms: 29.2077
+  ...
+# Subtest: bounded retention works through restricted role without removing current inbox records
+ok 13 - bounded retention works through restricted role without removing current inbox records
+  ---
+  duration_ms: 253.8581
+  ...
+# Subtest: restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+ok 14 - restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+  ---
+  duration_ms: 82.3887
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 13
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 20713.6402

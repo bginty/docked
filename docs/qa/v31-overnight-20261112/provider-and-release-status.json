@@ -1,0 +1,60 @@
+{
+  "at": "2026-11-11T13:41:23.374Z",
+  "productionApp": {
+    "commit": "f1b50b6f51d7429a36df9a8d5db99aed8886bd44",
+    "deployment": "dpl_9bwmvDvt5AEszaBtR311MjHLpHg7",
+    "state": "READY",
+    "source": "Authenticated Vercel get_deployment for docked.com.au"
+  },
+  "play": {
+    "observedAt": "2026-11-11T13:23:00Z",
+    "timePrecision": "approximately one minute",
+    "method": "authenticated Chrome Publishing overview",
+    "version": "31 (1.30)",
+    "status": "Changes ready to publish",
+    "pendingChanges": 10,
+    "territory": "Australia",
+    "managedPublishing": true,
+    "submittedOrPublishedThisTurn": false
+  },
+  "twilio": {
+    "lastAuthenticatedSenderObservation": "2026-11-11T10:23:00Z",
+    "lastKnownSenderStatus": "In review",
+    "overnightObservation": "Console logged out due to inactivity; current sender decision unverified",
+    "loginOrSmsAttempt": false
+  },
+  "advisors": {
+    "informationalDenyDefaultRls": 224,
+    "preExistingLeakedPasswordProtectionOff": true,
+    "settingsChanged": false
+  },
+  "runtime": {
+    "newApplicationDeployment": false,
+    "legacyTestWarnings": 7,
+    "firstCreated": "2026-11-05",
+    "purchaseNotices": 4,
+    "voidedNotices": 3,
+    "boundPurchaseReceipts": 0,
+    "boundEncryptedReferences": 0,
+    "acknowledgementRows": 0,
+    "classification": "Unbound legacy TEST notifications, visible attention after 12 attempts",
+    "resolution": "Provider/operator correlation required before commercial acceptance; no retry, dismissal or guessed binding performed"
+  },
+  "android": {
+    "nativeDependencyDiffFromProduction": [],
+    "submittedAabSha256": "8becb6d044efc93baed6649f11ff100cc562bb09d200d45ec1a6742cf36e83b0",
+    "artifactRehashedThisTurn": false,
+    "newBuildRequiredIdentified": false,
+    "physicalV31OtpAccepted": false
+  },
+  "scope": {
+    "smsSent": 0,
+    "emailsSent": 0,
+    "newVercelDeployments": 0,
+    "inventoryProductionWrites": 0,
+    "policyOrPlayChanges": 0,
+    "liveKeysTransferred": 0,
+    "cleanupEnabled": false,
+    "approvedDatabaseMigrationApplied": true
+  }
+}

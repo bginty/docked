@@ -1,0 +1,52 @@
+DOCKED V31 — frozen preservation import, 12 November 2026 AEDT
+PREPARED; Production import NOT APPROVED. No repeat business-rule decision needed.
+
+Founder already accepted the 888 legitimate limited copies, supported 23 identity
+registrations, 6065 eligible definitions and exclusion of the other 475, subject
+to final source validation. All 71 formerly flagged human identities have evidence;
+there is no remaining player-name guessing queue. Historical/current eligibility
+and intellectual-property/source rights remain distinct.
+
+Exact unchanged private plan
+private-data/v31-card-research-20261111/complete-proposal.private.json
+SHA-256 4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4
+23-registration digest ba68a833d866105512ed6b7e137c910a74df3a335836cd477d62937460c87114
+Transitive operator digest b5f561e04aede8e36d80649196fee5931e7fa656fccbad22bf515edc744c5d04
+Complete import: 6540 definitions, issued=legacy_issued=888, approved=0.
+No beta catalogue edits, owner/custody changes, minting, deletion or reminting.
+735 consumed identity/rarity groups, including eight retired copies. 18 NBA copies
+preserved and excluded from new issuance. All 906 custody records remain intact.
+Core unlimited; Rare 5000; Elite 2500; Ultra Rare 400; Legendary 50; Icon 1.
+Every existing limited copy permanently consumes lifetime supply.
+
+Fresh proof completed
+Post-migration encrypted Production snapshot restored with faithful role/ownership
+semantics and no network, published ports or cron. The exact import took 7568ms.
+6540 definitions/888 consumed/zero approved/zero new cards. Exact replay inserted
+zero; simultaneous retries produced one success and one bounded lock timeout,
+then a safe successful retry. All 555 other durable tables, schema, custody and
+commercial controls remained identical. See restored-import-rehearsal.json and
+restored-inventory/restore-drill.json. Production writes from rehearsal: zero.
+Historical source comparison from 11 November 05:56 UTC remains within 72 hours
+at this handover; refresh just before activation if older. Do not rewrite dated
+source observations or promote the 475 excluded definitions to satisfy supply.
+
+Next approval, separate from backend and sales
+Approve this exact preservation-only Production import after a fresh encrypted
+backup and read-only preflight. The operator binds the plan, registration and
+transitive code hashes plus current backup/preflight hashes. Backup <=1 hour old,
+preflight <=10 minutes old, authority <=24 hours. These fresh values must be
+captured and attached at the authorised session, not fabricated overnight.
+  node --import tsx scripts/v31-reviewed-inventory-operator.ts
+  node --import tsx scripts/v31-reviewed-inventory-operator.ts --capture-production-preflight --output private-data/v31-card-research-20261111/import-preflight.private.json
+Only with that separate exact instruction:
+  node --import tsx scripts/v31-reviewed-inventory-operator.ts --apply-production --approval private-data/v31-card-research-20261111/founder-approved-import.private.json
+Use ../v31-prelaunch-20261111/cards/inventory-approval.NOT-APPROVED.json as the
+private template; never treat a prepared file as founder authority.
+
+On failure before commit the transaction rolls back; inspect before retrying.
+After commit preserve immutable definitions and consumed supply, with gates closed.
+No destructive undo, serial reclamation or automatic eligibility approval.
+Sales need separate rights/current-source/policy, hosted payment and activation
+acceptance. 6065 definitions are a business-approved proposed subset, not currently
+saleable inventory. The unchanged 18 pack configurations passed capacity checks.

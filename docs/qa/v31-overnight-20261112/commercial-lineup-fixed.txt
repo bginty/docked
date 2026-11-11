@@ -1,0 +1,20 @@
+TAP version 13
+# Subtest: AFL: commercial owned inventory reuses saved lineup validation without changing other rounds
+ok 1 - AFL: commercial owned inventory reuses saved lineup validation without changing other rounds
+  ---
+  duration_ms: 22820.6364
+  ...
+# Subtest: NRL: commercial owned inventory reuses saved lineup validation without changing other rounds
+ok 2 - NRL: commercial owned inventory reuses saved lineup validation without changing other rounds
+  ---
+  duration_ms: 20689.9178
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 47555.2424

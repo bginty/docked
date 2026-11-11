@@ -1,0 +1,74 @@
+TAP version 13
+# Subtest: AFL: commercial owned inventory reuses saved lineup validation without changing other rounds
+not ok 1 - AFL: commercial owned inventory reuses saved lineup validation without changing other rounds
+  ---
+  duration_ms: 25971.4867
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\commercial-lineup.test.ts:2:1442'
+  failureType: 'testCodeFailure'
+  error: 'Permanent issuance disabled'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: NRL: commercial owned inventory reuses saved lineup validation without changing other rounds
+not ok 2 - NRL: commercial owned inventory reuses saved lineup validation without changing other rounds
+  ---
+  duration_ms: 18151.8228
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\commercial-lineup.test.ts:2:1442'
+  failureType: 'testCodeFailure'
+  error: 'Permanent issuance disabled'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: member snapshots support real admission row locks without weakening access
+ok 3 - member snapshots support real admission row locks without weakening access
+  ---
+  duration_ms: 25335.8052
+  ...
+# (node:27340) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: one reconciliation run verifies each season source once; games without completion cannot write scores
+ok 4 - one reconciliation run verifies each season source once; games without completion cannot write scores
+  ---
+  duration_ms: 79.2672
+  ...
+# Subtest: preserves existing-account setup and consent while explicitly closing phone gates
+ok 5 - preserves existing-account setup and consent while explicitly closing phone gates
+  ---
+  duration_ms: 7.829
+  ...
+# Subtest: rejects omitted baseline settings, altered recipe, wrong target and open gates
+ok 6 - rejects omitted baseline settings, altered recipe, wrong target and open gates
+  ---
+  duration_ms: 15.0809
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 4
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 48169.7595

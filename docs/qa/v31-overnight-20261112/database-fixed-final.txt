@@ -1,0 +1,190 @@
+TAP version 13
+# Subtest: mail RPC and encrypted tables are unavailable to public/member/runtime roles
+ok 1 - mail RPC and encrypted tables are unavailable to public/member/runtime roles
+  ---
+  duration_ms: 9313.8419
+  ...
+# Subtest: duplicate enqueues reuse one receipt; conflicting content and partial batches roll back
+ok 2 - duplicate enqueues reuse one receipt; conflicting content and partial batches roll back
+  ---
+  duration_ms: 36.7994
+  ...
+# Subtest: worker fencing prevents a second claim and a stale worker dispatch
+ok 3 - worker fencing prevents a second claim and a stale worker dispatch
+  ---
+  duration_ms: 67.1777
+  ...
+# Subtest: lost dispatch acknowledgement becomes unknown and can never auto retry
+ok 4 - lost dispatch acknowledgement becomes unknown and can never auto retry
+  ---
+  duration_ms: 46.8758
+  ...
+# Subtest: only pre-dispatch failures can retry; attempts are bounded and accepted cannot be downgraded
+ok 5 - only pre-dispatch failures can retry; attempts are bounded and accepted cannot be downgraded
+  ---
+  duration_ms: 77.1447
+  ...
+# Subtest: expired queued links are erased without dispatch and modes cannot cross
+ok 6 - expired queued links are erased without dispatch and modes cannot cross
+  ---
+  duration_ms: 42.6618
+  ...
+# Subtest: live dispatch lease cannot return to pending for any retry reason
+ok 7 - live dispatch lease cannot return to pending for any retry reason
+  ---
+  duration_ms: 30.8514
+  ...
+# Subtest: AFL: commercial owned inventory reuses saved lineup validation without changing other rounds
+ok 8 - AFL: commercial owned inventory reuses saved lineup validation without changing other rounds
+  ---
+  duration_ms: 26140.1318
+  ...
+# Subtest: NRL: commercial owned inventory reuses saved lineup validation without changing other rounds
+ok 9 - NRL: commercial owned inventory reuses saved lineup validation without changing other rounds
+  ---
+  duration_ms: 18273.1516
+  ...
+# Subtest: confirmed existing session creates its own profile only after separate current consents; retry preserves records
+ok 10 - confirmed existing session creates its own profile only after separate current consents; retry preserves records
+  ---
+  duration_ms: 9192.4498
+  ...
+# Subtest: another account's session cannot bootstrap a profile
+ok 11 - another account's session cannot bootstrap a profile
+  ---
+  duration_ms: 29.2754
+  ...
+# Subtest: expired, unconfirmed, anonymous and banned sessions remain denied
+ok 12 - expired, unconfirmed, anonymous and banned sessions remain denied
+  ---
+  duration_ms: 150.2254
+  ...
+# Subtest: staff and previously enrolled authenticators require AAL2 before profile creation
+ok 13 - staff and previously enrolled authenticators require AAL2 before profile creation
+  ---
+  duration_ms: 80.6167
+  ...
+# Subtest: missing, unapproved, expired and superseded regional policy cannot be replaced by beta assumptions
+ok 14 - missing, unapproved, expired and superseded regional policy cannot be replaced by beta assumptions
+  ---
+  duration_ms: 154.8121
+  ...
+# Subtest: each consent must be explicit and region valid; disabled profile cannot be revived
+ok 15 - each consent must be explicit and region valid; disabled profile cannot be revived
+  ---
+  duration_ms: 111.5385
+  ...
+# Subtest: member snapshots support real admission row locks without weakening access
+ok 16 - member snapshots support real admission row locks without weakening access
+  ---
+  duration_ms: 19871.0522
+  ...
+# Subtest: Operational incidents final: retention exclusion, holds, audit and verified-phone races
+ok 17 - Operational incidents final: retention exclusion, holds, audit and verified-phone races
+  ---
+  duration_ms: 25875.6413
+  ...
+# Subtest: Operational incidents: founder MFA, least privilege, deduplication, concurrency and durable audit
+ok 18 - Operational incidents: founder MFA, least privilege, deduplication, concurrency and durable audit
+  ---
+  duration_ms: 25245.7283
+  ...
+# Subtest: NBA Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+ok 19 - NBA Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+  ---
+  duration_ms: 25972.7579
+  ...
+# Subtest: AFL Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+ok 20 - AFL Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+  ---
+  duration_ms: 15926.1041
+  ...
+# Subtest: NRL Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+ok 21 - NRL Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+  ---
+  duration_ms: 12459.0454
+  ...
+# Subtest: existing-member public bootstrap uses restricted ordinary role and grants no staff access
+ok 22 - existing-member public bootstrap uses restricted ordinary role and grants no staff access
+  ---
+  duration_ms: 25829.6418
+  ...
+# Subtest: invitation setup uses restricted views, denies another session and rolls back expired-session consent
+ok 23 - invitation setup uses restricted views, denies another session and rolls back expired-session consent
+  ---
+  duration_ms: 185.2651
+  ...
+# Subtest: production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+ok 24 - production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+  ---
+  duration_ms: 52.7439
+  ...
+# Subtest: browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+ok 25 - browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+  ---
+  duration_ms: 52.0082
+  ...
+# Subtest: runtime cannot escalate roles or execute privileged helper paths
+ok 26 - runtime cannot escalate roles or execute privileged helper paths
+  ---
+  duration_ms: 66.8326
+  ...
+# Subtest: runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+ok 27 - runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+  ---
+  duration_ms: 15.4773
+  ...
+# Subtest: restricted runtime can create account consent/preferences without password visibility
+ok 28 - restricted runtime can create account consent/preferences without password visibility
+  ---
+  duration_ms: 44.0633
+  ...
+# Subtest: real actor/session and policy locks work while expired sessions are denied
+ok 29 - real actor/session and policy locks work while expired sessions are denied
+  ---
+  duration_ms: 68.0163
+  ...
+# Subtest: ordinary social writes fan out durably but cannot impersonate official or ledger posts
+ok 30 - ordinary social writes fan out durably but cannot impersonate official or ledger posts
+  ---
+  duration_ms: 37.7454
+  ...
+# Subtest: ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+ok 31 - ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+  ---
+  duration_ms: 429.9228
+  ...
+# Subtest: runtime queues cannot activate scanner/provider/publication jobs or external delivery
+ok 32 - runtime queues cannot activate scanner/provider/publication jobs or external delivery
+  ---
+  duration_ms: 9.8949
+  ...
+# Subtest: maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+ok 33 - maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+  ---
+  duration_ms: 22.15
+  ...
+# Subtest: bounded retention works through restricted role without removing current inbox records
+ok 34 - bounded retention works through restricted role without removing current inbox records
+  ---
+  duration_ms: 252.2088
+  ...
+# Subtest: restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+ok 35 - restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+  ---
+  duration_ms: 65.3419
+  ...
+# Subtest: published NFL history pages beyond fantasy rounds with restricted reader and no settlement access
+ok 36 - published NFL history pages beyond fantasy rounds with restricted reader and no settlement access
+  ---
+  duration_ms: 7556.4459
+  ...
+1..36
+# tests 36
+# suites 0
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 134826.6339

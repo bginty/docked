@@ -1,0 +1,368 @@
+TAP version 13
+# Subtest: AFL: commercial owned inventory reuses saved lineup validation without changing other rounds
+not ok 1 - AFL: commercial owned inventory reuses saved lineup validation without changing other rounds
+  ---
+  duration_ms: 27740.2846
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\commercial-lineup.test.ts:2:1442'
+  failureType: 'testCodeFailure'
+  error: 'Commercial approvals required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: NRL: commercial owned inventory reuses saved lineup validation without changing other rounds
+not ok 2 - NRL: commercial owned inventory reuses saved lineup validation without changing other rounds
+  ---
+  duration_ms: 24912.9206
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\commercial-lineup.test.ts:2:1442'
+  failureType: 'testCodeFailure'
+  error: 'Commercial approvals required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: member snapshots support real admission row locks without weakening access
+ok 3 - member snapshots support real admission row locks without weakening access
+  ---
+  duration_ms: 26899.9953
+  ...
+# Subtest: existing-member public bootstrap uses restricted ordinary role and grants no staff access
+not ok 4 - existing-member public bootstrap uses restricted ordinary role and grants no staff access
+  ---
+  duration_ms: 25410.5155
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:1712'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: invitation setup uses restricted views, denies another session and rolls back expired-session consent
+not ok 5 - invitation setup uses restricted views, denies another session and rolls back expired-session consent
+  ---
+  duration_ms: 244.6948
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:4074'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+not ok 6 - production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+  ---
+  duration_ms: 0.2783
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:5723'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+not ok 7 - browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+  ---
+  duration_ms: 0.205
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:7515'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: runtime cannot escalate roles or execute privileged helper paths
+not ok 8 - runtime cannot escalate roles or execute privileged helper paths
+  ---
+  duration_ms: 0.2991
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:9467'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+not ok 9 - runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+  ---
+  duration_ms: 0.8491
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:10881'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: restricted runtime can create account consent/preferences without password visibility
+not ok 10 - restricted runtime can create account consent/preferences without password visibility
+  ---
+  duration_ms: 0.1865
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:11495'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: real actor/session and policy locks work while expired sessions are denied
+not ok 11 - real actor/session and policy locks work while expired sessions are denied
+  ---
+  duration_ms: 0.2884
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:12216'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: ordinary social writes fan out durably but cannot impersonate official or ledger posts
+not ok 12 - ordinary social writes fan out durably but cannot impersonate official or ledger posts
+  ---
+  duration_ms: 1.5778
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:13654'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+not ok 13 - ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+  ---
+  duration_ms: 1.1466
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:14471'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: runtime queues cannot activate scanner/provider/publication jobs or external delivery
+not ok 14 - runtime queues cannot activate scanner/provider/publication jobs or external delivery
+  ---
+  duration_ms: 0.1943
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:15472'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+not ok 15 - maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+  ---
+  duration_ms: 0.1652
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:15922'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: bounded retention works through restricted role without removing current inbox records
+not ok 16 - bounded retention works through restricted role without removing current inbox records
+  ---
+  duration_ms: 0.2518
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:17390'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+not ok 17 - restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+  ---
+  duration_ms: 0.0952
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\production-runtime-role.test.ts:18:18400'
+  failureType: 'hookFailed'
+  error: 'Reviewed postgres migration operator required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# (node:4900) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: one reconciliation run verifies each season source once; games without completion cannot write scores
+ok 18 - one reconciliation run verifies each season source once; games without completion cannot write scores
+  ---
+  duration_ms: 92.1708
+  ...
+# Subtest: preserves existing-account setup and consent while explicitly closing phone gates
+ok 19 - preserves existing-account setup and consent while explicitly closing phone gates
+  ---
+  duration_ms: 14.3635
+  ...
+# Subtest: rejects omitted baseline settings, altered recipe, wrong target and open gates
+ok 20 - rejects omitted baseline settings, altered recipe, wrong target and open gates
+  ---
+  duration_ms: 11.2629
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 4
+# fail 16
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 63162.3693
