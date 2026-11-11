@@ -1,0 +1,59 @@
+{
+  "recordedAt": "2026-11-11T06:33:03.522Z",
+  "evidenceType": "explicit-founder-business-direction",
+  "instructionTitle": "DOCKED — V31 Controlled Backend Approval and Final Hosted Acceptance",
+  "sourceCommit": "47754edfd8abfac7a32ce62212c0374636441c41",
+  "businessApprovals": {
+    "existingLimitedBaseline": 888,
+    "preserveCustody": true,
+    "proposedIdentityRegistrations": 23,
+    "eligibleDefinitions": 6065,
+    "heldDefinitions": 475,
+    "practiceOnly": true,
+    "founderOnlyEmailAlerts": true,
+    "ordinaryIncidentRetentionDays": 90,
+    "retentionExclusionsPreserved": true,
+    "managedVaultCustody": true,
+    "oneAccountPerVerifiedPhone": true,
+    "caps": {
+      "CORE": "unlimited",
+      "RARE": 5000,
+      "ELITE": 2500,
+      "ULTRA_RARE": 400,
+      "LEGENDARY": 50,
+      "ICON": 1
+    }
+  },
+  "validation": {
+    "planSha256": "4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4",
+    "sourceComparisonSha256": "f12243eede88b33f68bbb3db6a9e3f33df7cb8fcd4362b7a60f0818164508602",
+    "registrationDigest": "ba68a833d866105512ed6b7e137c910a74df3a335836cd477d62937460c87114",
+    "proposedDefinitionsDigest": "1956d1715dcd2ef494dad469f8b272951853d5d76773fe9ae39f5537996e6830",
+    "heldDefinitionsDigest": "f7a610530d74b03743bfd8e0fc8bc1cbcb332604a196a0bcfbf45424767dbb80",
+    "definitions": 6540,
+    "consumedCopies": 888,
+    "allDefinitionsDormant": true,
+    "matchingPlayers": 1213,
+    "oldestCurrentObservation": "2026-11-11T05:37:11.769Z",
+    "sourceFreshnessLimitHours": 72,
+    "sourceScopeUnchanged": true,
+    "all18PackCapacityChecksPassed": true,
+    "original879Preserved": true,
+    "priorIsolatedImportRehearsalPassed": true
+  },
+  "executionAuthority": {
+    "deployment": false,
+    "inventoryImport": false,
+    "runtimeDefinitionApproval": false,
+    "publicRegistration": false,
+    "phoneProviderActivation": false,
+    "payments": false,
+    "trading": false,
+    "prizes": false,
+    "withdrawals": false,
+    "playPublication": false,
+    "liveKeyTransferOrRotation": false,
+    "operationalDeletion": false
+  },
+  "note": "Supersedes pending-business-decision labels in the earlier frozen proposals. Preserves their exact bytes and digests. No execution authority, expanded data/likeness rights or new-season scope is inferred. Recheck source freshness and live custody immediately before any separately authorised import/activation."
+}

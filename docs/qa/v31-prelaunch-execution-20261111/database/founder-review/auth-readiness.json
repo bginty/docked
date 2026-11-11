@@ -1,0 +1,46 @@
+{
+  "mode": "GET_ONLY",
+  "writes": 0,
+  "smsAttempts": 0,
+  "credentialsEmitted": false,
+  "projects": [
+    {
+      "environment": "Production",
+      "projectRef": "pojoymtniryarxxunyvz",
+      "observedAt": "2026-11-11T06:31:00.1525737Z",
+      "healthy": true,
+      "signupDisabled": true,
+      "phoneEnabled": false,
+      "provider": "twilio",
+      "accountConfigured": false,
+      "credentialConfigured": false,
+      "messagingServiceConfigured": false,
+      "smsPerHour": 30,
+      "resendSeconds": 5,
+      "otpSeconds": 60,
+      "otpDigits": 6,
+      "testOtpConfigured": false,
+      "totpEnrollEnabled": true,
+      "totpVerifyEnabled": true
+    },
+    {
+      "environment": "Preview",
+      "projectRef": "bckkllmndoxzpzdqrevb",
+      "observedAt": "2026-11-11T06:31:00.7643573Z",
+      "healthy": true,
+      "signupDisabled": true,
+      "phoneEnabled": false,
+      "provider": "twilio",
+      "accountConfigured": false,
+      "credentialConfigured": false,
+      "messagingServiceConfigured": false,
+      "smsPerHour": 6,
+      "resendSeconds": 60,
+      "otpSeconds": 300,
+      "otpDigits": 6,
+      "testOtpConfigured": false,
+      "totpEnrollEnabled": true,
+      "totpVerifyEnabled": true
+    }
+  ]
+}

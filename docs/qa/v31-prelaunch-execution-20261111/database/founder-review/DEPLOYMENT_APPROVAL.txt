@@ -1,0 +1,88 @@
+DOCKED V31 — EXACT CLOSED-GATE DEPLOYMENT APPROVAL REQUEST
+11 November 2026 | NOT YET APPROVED | Production unchanged
+
+Requested authority
+Apply only the five migrations below and restricted outbox-v2, then stage,
+verify and promote the dormant backend from this exact commit:
+47754edfd8abfac7a32ce62212c0374636441c41 (47754edf).
+Project: Docked Production / pojoymtniryarxxunyvz.
+Vercel project: prj_l0rpVDPRuIRp9UcBUkudeyUK5yST.
+Package SHA-256:
+3aa30b20eddd33835e43ee721e598743897c3663f193d2c041dbe9d62dc9840e
+Manifest: ../exact-package.json. A moving branch is not the approval target.
+
+Exact ordered SQL files and SHA-256
+1. 20261109231834_commercial_lifetime_supply_guards.sql
+ec1154357168027f106c9d5e0f03cc98fd9820a58f4196cb7f30103b98ff53bb
+2. 20261109232000_public_practice_phone_guards.sql
+8179828fdd88bea9c95f4ac961905737f51d1aae78e25455748e7191a6d4fee0
+3. 20261109232124_operational_incident_review.sql
+9ff6eae192460f1369e3db11ba387ab9418fcb2908a017a653f2c15e870a62bd
+4. 20261110005726_operational_incident_retention.sql
+1248d78d8c3a17d54d9d3732444e2e058cfe43e6af0aa857f5acfc17262de5bd
+5. 20261110010050_australian_verified_phone_uniqueness.sql
+bc5c61ede682a41ff24500b89fda4db6cef71760f30d52c2c8fb652ac79c4e11
+Then config/operations/billing-ops-outbox-v2.prepared.sql
+59dffc74f3f9a354366bedc994136264fb1922201a6c33f40864777b2546cf09
+
+Effects and permissions
+Lifetime constraints/indexes/guards on commercial definitions/cards/packs and
+legacy issuance registries; phone/Practice identity and round guards; empty
+operations incidents/events with founder-only session+MFA wrappers and immutable
+audit; one disabled 90-day policy; canonical unique index on verified Auth phones.
+Outbox: scoped aggregate/enqueue RPC for commercial runtime and fenced dispatch
+RPC for service_role, restricted private.outbox/audit RLS and one disabled flag.
+No broad table access, new public grant, owner change, inventory or phone mutation.
+Routine retention excludes financial/security/statutory/held records; no schedule.
+
+Backup and preflight
+Consistent Production capture: 2026-11-11T05:34:00.942Z, 133,880,651 bytes.
+AES-256-GCM archive SHA-256:
+f726c5bdceaf641ff6a7f7ae36a1a017db02900c6f7eb78ae3bc644c30fa6926
+Restored in isolation; all five applied twice, 550 protected tables unchanged.
+Archive authentication/hash reverified at 06:27 UTC without plaintext on disk.
+This logical backup excludes live provider configuration, external keys, role
+passwords and Storage object bodies; existing external custody is not replaced.
+Latest read-only preflight: 06:26 UTC, schema/roles/memberships/custody matched,
+commercial definitions/cards/packs/receipts and enabled public rounds all zero.
+Re-run immediately before applying; abort drift, a pre-applied subset, open gates,
+unexpected privileges or expired backup. Maximum execution window 24 hours after
+approval, also bounded by the backup's existing 24-hour age limit. Refresh/review
+is required if that limit expires; no unreviewed replacement package is implied.
+
+Deployment and acceptance
+One bounded transaction applies the five SQL files, their history and outbox;
+lock timeout 3 seconds, statement timeout 60 seconds. Compare protected table
+checksums before commit, then verify RLS/grants, unique index and disabled gates.
+Stage the exact source without moving the live domain; check Ready build and
+closed registration, phone delivery, commerce, Practice admission and NBA gates.
+Promote only that verified candidate, then repeat gates, error and data checks.
+Founder MFA incident acknowledgement/resolution follows in a supervised session.
+This approval includes that incident acceptance without sending a new test email.
+Physical OTP/provider activation, vault IAM/live-key changes and policy publication
+are not bundled into this backend deployment authority.
+
+Recovery and downtime
+Failure before SQL commit rolls back the complete transaction. After commit,
+retain dormant additive guards and use reviewed forward recovery; never reset
+lifetime supply or overwrite newer customer data with an older snapshot.
+If live app postflight fails, this request includes app-only rollback to captured
+f1b50b6f / dpl_9bwmvDvt5AEszaBtR311MjHLpHg7, only after rechecking its gates remain
+closed. No destructive database restore or live-key rotation is included.
+This request explicitly includes that conditional app-only rollback; the older
+APPROVAL-PACKAGE.txt left incident rollback authority to a later approval.
+Allocate a 10–15-minute quiet DB window plus 10–20 minutes for backend build/checks.
+No broad outage is planned; the nonconcurrent phone index may briefly block Auth
+writes. Abort lock contention rather than extending timeouts without review.
+
+Explicit exclusions
+Registration, commercial inventory import/approval, payments, trading, prizes,
+withdrawals, real scored competition, public Practice activation, operational
+deletion, phone-provider activation and Google Play publication remain disabled.
+NBA remains hidden. Founder business-rule approvals are recorded separately and
+do not set deployment/import/activation permission.
+
+One explicit response may authorise this package:
+"Approve the exact 47754edf closed-gate backend package 3aa30b20, including the
+five migrations, restricted outbox, verified deployment and stated app rollback."
+No execution permission is inferred until the founder actually gives approval.
