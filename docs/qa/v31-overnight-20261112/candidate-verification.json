@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-11T13:52:55.289Z",
+  "candidateCommit": "60f9e66acecaa9ce6419ad07e2691b777400a3d4",
+  "candidateCheckout": "C:/Users/61412/.codex/worktrees/v31-overnight-candidate-20261112/Docked.com.au/",
+  "packageSha256": "a3b61f2c9a17d17bc4db3a2c96038d91a123062b1fd0504b9c0a4da915eef1e9",
+  "approvedSqlPackageSha256": "fd4c09520ee1ad82bb754abcc15b9af876c3fe8f570d464767f0d1a91a315ef1",
+  "freshCheckoutReviewedFiles": 15,
+  "checkoutCleanBeforeReadOnlyPreparation": true,
+  "sourceExportFiles": 985,
+  "inventoryOperatorPackageDigest": "b5f561e04aede8e36d80649196fee5931e7fa656fccbad22bf515edc744c5d04",
+  "inventoryOfflineValidated": true,
+  "runtime": {
+    "at": "2026-11-11T13:50:10.906Z",
+    "commit": "60f9e66acecaa9ce6419ad07e2691b777400a3d4",
+    "baseline": "f1b50b6f51d7429a36df9a8d5db99aed8886bd44",
+    "baselineRuntimeDigest": "893b568f0f3e4b142cd5bff0bdaa5255d237388e7277ff0fabe0b498df5f1501",
+    "baselineSettingsPreserved": true,
+    "omittedCustomSettings": 0,
+    "newDisabledGates": [
+      "DOCKED_PUBLIC_PHONE_OTP",
+      "DOCKED_ISOLATED_PHONE_TEST"
+    ],
+    "existingMemberSetupPreserved": true,
+    "publishedConsentReferencesPreserved": true,
+    "publicRegistration": false,
+    "commercialActivation": false,
+    "sms": false,
+    "preparedOnly": true,
+    "deploymentCreated": false
+  },
+  "appliedDatabaseReadback": {
+    "at": "2026-11-11T13:51:59.811Z",
+    "catalogue": {
+      "fingerprint": "fcc65f63bd06816fb68f141e907fa346",
+      "objects": 10104
+    },
+    "membership": {
+      "fingerprint": "b962295821717c0232abe7f6370c7a36",
+      "memberships": 35
+    },
+    "protectedRecordsUnchanged": true,
+    "productionWrites": 0
+  },
+  "applicationDeployed": false,
+  "productionAppUnchanged": "f1b50b6f51d7429a36df9a8d5db99aed8886bd44",
+  "freshApprovalRequired": true
+}

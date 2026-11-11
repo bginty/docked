@@ -2,11 +2,14 @@ DOCKED V31 — exact APPLICATION-ONLY continuation, 12 November 2026 AEDT
 PREPARED. NOT APPROVED. Public launch NO-GO.
 
 Decision prepared for the founder
-Approve closed-gate staging, candidate checks and promotion of the exact source
-commit named in the final handover, with package SHA-256:
+Approve closed-gate staging, candidate checks and promotion of source commit
+60f9e66acecaa9ce6419ad07e2691b777400a3d4, with package SHA-256:
 a3b61f2c9a17d17bc4db3a2c96038d91a123062b1fd0504b9c0a4da915eef1e9
 Manifest: ../v31-prelaunch-execution-20261111/database/exact-package.json
 Scopes: backend-stage and backend-promote ONLY.
+Fresh detached checkout and read-only runtime/database verification passed; see
+candidate-verification.json. Later documentation-only commits are not the runtime
+candidate. Use the named checkout/commit for the eventual exact approval.
 
 Why a new decision is required
 The founder-approved fd4c0952 package committed all five migrations and restricted
