@@ -1,0 +1,70 @@
+DOCKED V31 — exact next phone-policy publication approval
+PREPARED, TESTED, COMMITTED AND PUSHED. NOT APPROVED OR DEPLOYED.
+
+Source: 17b38c1290fd37c05487b332e5c0db440da6805b
+Branch: codex/v31-phone-privacy-candidate-20261112
+Package: privacy-publication-package.json
+Package SHA-256 (UTF-8 LF, final newline):
+565589b6f748fccd138bd10018f7eb621adc9efb7677f4082963039d8eb0c33b
+Current Production baseline: 60f9e66acecaa9ce6419ad07e2691b777400a3d4,
+dpl_8QNLMcxa9ZBospuZk4pCnH2zjqkV.
+
+Exact requested decision, valid for 24 hours when explicitly approved
+Approve the existing full phone privacy wording, this source/package, controlled
+application-only staging/promotion of the notice, and submission of its exact
+phone-number Data Safety delta. Promote only after fresh drift/runtime/closed-gate
+checks and protected staging checks pass. Verify the live notice before Google
+submission. Retain managed publishing ON and do not publish the Android release.
+
+Complete wording and answers, not just this summary
+../../policies/2026-11-11-phone-review/privacy.md
+../v31-phone-ops-20261111/PRIVACY_AND_PLAY_APPROVAL.txt
+Both are checksum-bound in the package. Exact prepared patch text is unchanged.
+Phone: collected/shared YES, required for public Australian accounts, not
+ephemeral; functionality, account management and fraud/security; shared provider
+analytics, no advertising. WebView included. Supabase storage, Twilio processing,
+overseas processing, existing-user enrolment, recovery, deletion and actual SMS
+retention are disclosed. All other reviewed Data Safety categories remain intact.
+Google reviews the declaration update; existing v31 binary approval is preserved,
+but its current ready-to-publish batch is not proof the new answers are approved.
+
+Exact change
+Two content files: privacy sections in config/launch-policy-content.json and the
+introductory paragraph in src/components/public-phone-verification.tsx.
+Third file vercel.json disables automatic deployments only for the two current
+preparation branches. No region, cron, build command or Production branch change.
+The current 89-key runtime recipe is retained, except:
+DOCKED_PUBLIC_PRIVACY_VERSION: 2026-11-06-privacy-sdk-v3 -> 2026-11-11-privacy-phone-v4.
+Git source metadata follows the exact candidate. All other member-setup settings,
+database connections, Terms and beta consent configuration remain unchanged.
+This explicit public-member reference corrects a missing current-hosting detail
+in the older generic publication instructions: do not merely add the unrelated
+PRIVACY_POLICY_VERSION while leaving existing-member setup on the old notice.
+No existing consent record is rewritten. Public-registration configuration is
+still a later separate decision. No database mutation is included here.
+
+Validation completed
+The two text postimage hashes match the original frozen patch exactly. Other
+policy documents and top-level metadata are unchanged. ESLint, typecheck, full
+production Webpack build and nine targeted consent/admission tests passed.
+Initial local formatting/build failures were checkout/tooling issues: CRLF
+normalisation preserved exact LF hashes, and invoking Next directly with --webpack
+avoided Turbopack's external node_modules junction restriction. No application
+logic change or weakened build guard was used. No hosted policy test is claimed.
+Candidate push produced no Vercel deployment; its branch is explicitly disabled.
+
+Preflight, promotion and recovery
+Verify current alias/source, all 89 baseline runtime entries and listed override,
+existing migration/schema/role/financial/custody hashes, and all closed gates.
+Stop on drift; never reapply migrations or reuse the old application's approval.
+Stage exact source without changing docked.com.au; verify release identity, notice
+version/content, current consent reference, policy links and all existing route
+denials. Promote only after pass; verify again on Production. No planned downtime.
+Rollback only to the checked baseline app if no phone processing/new v4 consent
+has occurred; otherwise retain history and prepare a reviewed forward correction.
+No SQL rollback, data deletion or secret changes.
+
+Explicit exclusions
+No SMS/provider activation, registration, inventory, payments, trading, prizes,
+withdrawals, real scoring, NBA, deletion schedules, live-key access or Play binary
+publication. These remain NO-GO and require their distinct acceptance/authority.

@@ -1,0 +1,79 @@
+{
+  "version": "v31-phone-privacy-publication-20261112",
+  "status": "PREPARED_NOT_APPROVED_NOT_DEPLOYED",
+  "sourceCommit": "17b38c1290fd37c05487b332e5c0db440da6805b",
+  "sourceBranch": "codex/v31-phone-privacy-candidate-20261112",
+  "baseCommit": "60f9e66acecaa9ce6419ad07e2691b777400a3d4",
+  "baselineDeployment": "dpl_8QNLMcxa9ZBospuZk4pCnH2zjqkV",
+  "projectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "teamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "databaseProject": "pojoymtniryarxxunyvz",
+  "baselineRuntimeRecipeSha256": "8792e0d721ea27854e5f086c96f444dd615a943da4404dac2125d76518a227bb",
+  "baselineRuntimeSettings": 89,
+  "runtimeOverrides": {
+    "DOCKED_PUBLIC_PRIVACY_VERSION": "2026-11-11-privacy-phone-v4"
+  },
+  "gitMetadataOverride": "Exact approved source commit/branch only",
+  "otherRuntimeSettings": "Preserve baseline recipe values; do not add generic PRIVACY_POLICY_VERSION on the current beta-hosting path",
+  "files": {
+    "config/launch-policy-content.json": "cfd82df98740dcaf8bedc9ae2a51c83976930a42bdf3b28ce41846237fc8bfda",
+    "src/components/public-phone-verification.tsx": "81abce3083f72be20acda0a313461d8aeaba41b23de44a22e5e6a41142bf2b06",
+    "vercel.json": "c7e564ac70d756d4bd1cfd94608f2cccf561dfdd916c72a8742f6c1d19e2ef76"
+  },
+  "wordingFiles": {
+    "docs/policies/2026-11-11-phone-review/privacy.md": "828f492130e6c3939c0def94093d18cc4536334e97580af3b31cf848fad995f9",
+    "docs/qa/v31-phone-ops-20261111/PRIVACY_AND_PLAY_APPROVAL.txt": "6127c09635e15bb9f03f96eec373b3fef902387dcfbaec66c1b2475e497dfdf8"
+  },
+  "hashConvention": "SHA-256 of Git blob bytes (UTF-8 LF); manifest approval checksum uses UTF-8 LF JSON file bytes including final newline",
+  "scope": [
+    "Exact application-only stage, protected verification, promotion and postflight",
+    "Publish exact phone privacy notice and introductory verification wording",
+    "Update existing-member public privacy consent reference only",
+    "Submit the exact phone Data Safety delta after live notice verification; retain all other categories and managed publishing ON"
+  ],
+  "exclusions": [
+    "SQL/migrations/outbox changes",
+    "Phone provider or SMS activation",
+    "Public registration",
+    "Inventory imports or issuance",
+    "Payments/trading/prizes/withdrawals",
+    "Real competition scoring or NBA",
+    "Retention schedules",
+    "Live-key access or transfer",
+    "Google Play binary publication"
+  ],
+  "approvalValidityHours": 24,
+  "preflight": [
+    "Fresh live alias equals baseline deployment/source",
+    "All baseline runtime values preserved except listed override and Git metadata",
+    "Migration/schema/role/custody/financial fingerprints unchanged",
+    "All public/commercial/SMS/deletion gates remain closed",
+    "Founder has explicitly approved wording, source, package and external submission scope"
+  ],
+  "stagingChecks": [
+    "Exact source/target identity and full runtime recipe",
+    "Current closed-gate HTTP and incident/phone denials",
+    "Published notice contains v4 and complete provider/retention/SDK disclosures",
+    "Existing-member setup uses v4; Terms and beta policy configuration unchanged",
+    "No Android/native dependency change"
+  ],
+  "recovery": "Conditional app-only rollback to baseline 60f9e66a only after verifying no phone processing/new v4 consent has occurred and all gates remain closed; otherwise preserve version/history and prepare an explicitly approved forward correction. No database rollback.",
+  "expectedDowntime": "No planned outage for immutable stage and alias promotion; verify existing sessions after switch",
+  "verification": {
+    "exactPreparedTextPostimages": true,
+    "otherPoliciesPreserved": true,
+    "eslint": "PASS",
+    "typecheck": "PASS",
+    "productionWebpackBuild": "PASS",
+    "consentTests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "hostedPrivacyAcceptance": false
+  },
+  "automation": {
+    "candidateBranchAutoDeploy": false,
+    "evidenceBranchAutoDeploy": false,
+    "productionBranchUnchanged": true
+  }
+}

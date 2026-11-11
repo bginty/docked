@@ -1,0 +1,92 @@
+DOCKED V31 — remaining distinct decisions, prepared 12 November 2026
+NOT APPROVED by this file. No repeat application, card-rule, email or vault-drill
+approval is requested. Physical actions can wait until the founder returns.
+
+C — phone privacy wording and Google declaration
+Exact source/package and one publication/submission decision are now prepared in
+PHONE_PRIVACY_APPROVAL.txt: source 17b38c1290fd37c05487b332e5c0db440da6805b,
+package 565589b6f748fccd138bd10018f7eb621adc9efb7677f4082963039d8eb0c33b.
+Review the COMPLETE existing notice:
+../../policies/2026-11-11-phone-review/privacy.md
+and exact in-app wording/form delta:
+../v31-phone-ops-20261111/PRIVACY_AND_PLAY_APPROVAL.txt.
+Inactive two-file patch SHA-256:
+1bf4e24b1fb54e9e5025407137117c723faef8ad594e01f0408d4003e5dc9dfe
+Version 2026-11-11-privacy-phone-v4. Source patch preimages remain unchanged.
+Decision requested: approve that exact wording, tested source/package, controlled
+policy publication and Data Safety submission as specified in PHONE_PRIVACY_APPROVAL.
+The completed 60f9e66a approval does NOT cover these source/consent changes.
+Keep managed publishing ON. This decision does not publish v31 or enable phone.
+Phone: collected/shared YES, required, non-ephemeral; functionality, account and
+fraud/security purposes, plus shared provider analytics; no advertising purpose.
+Keep other reviewed categories. Include WebView collection. Retention describes
+actual 400-day Twilio access and older backup storage, not 90-day SMS deletion.
+Current Google guidance confirms controlled WebView data is in scope and submitted
+Data Safety is reviewed. Twilio DPA 3.3–3.4 retains independent-controller uses;
+shared YES remains the conservative documented recommendation, not Google approval.
+Sources rechecked 12 Nov: https://support.google.com/googleplay/android-developer/answer/10787469
+https://www.twilio.com/en-us/legal/data-protection-addendum
+
+I — preservation-only inventory import, separate from sales
+Decision requested: authorise the exact frozen plan below for a 24-hour operator
+window, conditional on a new consistent encrypted backup <=1 hour old, preflight
+<=10 minutes old, unchanged source/custody/operator hashes and gates closed.
+Plan 4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4
+Registrations ba68a833d866105512ed6b7e137c910a74df3a335836cd477d62937460c87114
+Operator b5f561e04aede8e36d80649196fee5931e7fa656fccbad22bf515edc744c5d04
+Project pojoymtniryarxxunyvz. Import 6540 definitions, legacy consumed 888,
+approved=0, new cards=0. Preserve all ownership/custody. The business-eligible
+6065 subset remains dormant and the other 475 excluded. No catalogue rewrites,
+sales, issuance, registration or transfers. Use the guarded commands/template in
+../v31-overnight-20261112/INVENTORY_APPROVAL.txt. Attach actual backup/preflight
+digests at execution; never manufacture them in advance or weaken expiry guards.
+Transaction failure rolls back. After commit retain lifetime records and use
+reviewed forward repair; no serial reclamation. Refresh dated source evidence
+before sales if >72 hours. This import cannot establish commercial source rights.
+
+P — bounded hosted Google TEST acceptance
+Approve only the scope in HOSTED_PAYMENT_ACCEPTANCE.txt, with no real charge,
+public checkout or commercial activation. Exact temporary runtime/account expiry
+and product-state diff must be reviewed before any hosted configuration changes.
+Existing legacy notifications remain read-only unless a later exact repair is
+supported by verified provider/member evidence. No blanket retry/clear authority.
+
+V — actual backup-key custody, separate from synthetic acceptance
+Proposed exact source: the existing launch-migration-backup-key.hex associated
+with the 12-Nov encrypted Production snapshot. Archive SHA-256:
+d068c8f8f6f8a6090c19f87f1e06ca0968580d71d8f2898aa214909d67e181d4.
+Destination: existing Google project docked-play-verification, proposed secret
+docked-recovery-backup, new immutable version recorded against that archive.
+Decision requested: securely transfer the SAME existing key to this destination,
+without rotation; retain its local recovery copy; access the exact returned version
+and decrypt/restore the named backup into isolation; verify fingerprints/counts
+and audit events. Never upload the database archive as the secret payload.
+Preflight secret/IAM/audit state first. If a different existing payload or broader
+reader appears, stop for review. No new project, service account, runtime reader,
+IAM expansion, automatic rotation, deletion or live restore. Verify existing free
+allowance before creating a version; new spend requires separate authority.
+Use founder MFA and the already tested recovery procedure. Do not repeat the
+synthetic drill. Retain every version referenced by a retained backup or hold.
+
+T — phone tests when sender approval is verified
+Existing A$20 budget is retained. Approve a bounded <=6-hour isolated Preview
+window, existing synthetic accounts only, signup closed, six SMS/hour, 60-second
+resend, 300-second six-digit codes; no fixed OTP. Stop at 20 segments or A$5,
+whichever is first, and close provider/window afterwards. No new subscription,
+rental, funding or auto-recharge. Verify current prices/FX before sending.
+Production installed-v31 acceptance needs a separate named-account/time window,
+secure credentials and strict limits, with registration and commerce closed.
+Neither phone window is approved by the application deployment or existing budget.
+
+S — safe Auth hardening recommendation before public admission
+Approve Production password-change reauthentication=true and leaked-password
+protection=true only if available within the existing plan; do not upgrade or
+enable registration. Prepare/inspect an exact Auth configuration diff first and
+verify existing-account recovery and password-change behavior after the change.
+This recommendation is not an executed setting change or a repeated MFA request.
+
+Final explicit release actions (later, after applicable gates pass)
+Google Play publication; Australian public registration; exact commercial
+definition/product activation. These remain separate decisions. Paid features,
+trading, real scored competition, NBA, prizes, withdrawals and deletion schedules
+are not authorised by any of the preparation/test decisions above.

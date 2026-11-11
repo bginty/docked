@@ -1,10 +1,11 @@
 DOCKED V31 — executable continuation, 12 November 2026 AEDT
-CURRENT RUNBOOK. Supersedes the unapplied-migration sequence in older reports.
+UPDATED after the authorised application continuation on 12 Nov, 08:53 AEDT.
+Current evidence and remaining approvals: ../v31-application-continuation-20261112/.
 This document grants no authority. Source/approval must match the final handover.
 Production pojoymtniryarxxunyvz; isolated Preview bckkllmndoxzpzdqrevb.
 
 0. Preserve the actual baseline
-Live app remains f1b50b6f / dpl_9bwmvDvt5AEszaBtR311MjHLpHg7; five migrations
+Live app is 60f9e66a / dpl_8QNLMcxa9ZBospuZk4pCnH2zjqkV; five migrations
 and restricted outbox are COMMITTED under fd4c0952. Do not repeat db apply.
 Read current alias, migration history, RLS/memberships, custody, gates and logs.
   node --import tsx scripts/v31-committed-readback.ts
@@ -13,12 +14,12 @@ Stop on unexplained drift. Never use blanket db push or change timeout limits to
 force approval through. Current encrypted backup/restore proof is retained; a
 later inventory import requires its own fresh backup and ten-minute preflight.
 
-1. Corrected closed-gate app (20–40 minutes; NEW approval first)
-Use BACKEND_CONTINUATION_APPROVAL.txt exact commit/package. Prepare/verify-runtime
-read-only; stage under private real-founder approval; wait READY; test protected
-candidate; promote only that candidate; repeat live/database closed-gate checks.
-No SQL, account creation, SMS, inventory or commercial activation. Failed stage
-leaves alias unchanged; an approved compatible app rollback retains all SQL/data.
+1. Corrected closed-gate app — COMPLETE, do not redeploy or request again
+Exact 60f9e66a/a3b61f2c package was approved, staged and promoted. All 26 protected
+candidate and 26 live HTTP checks passed; fresh database/financial/custody readback
+passed. No SQL was reapplied. Existing runtime recipe and all five member-setup/
+consent settings were preserved. Additional policy/phone/test configurations need
+their distinct authority; this completed application approval does not cover them.
 
 2. Operational acceptance (10–15 minutes, independent of Twilio)
 Founder completes /admin/incidents sign-in/MFA, no-email drill, acknowledgement,
@@ -104,7 +105,7 @@ Alias/admission/provider-window changes are reversible, subject to authority.
 Committed schema/definition baselines are forward-recoverable, not disposable.
 Messages, accepted purchases, minted serials and public downloads cannot simply
 be undone. No deletion schedule or live-key rotation is included in launch.
-Allow 4–7 focused engineering hours after approvals/access for app/hosted/device,
+Allow 3–6 focused engineering hours after approvals/access for hosted/device,
 policy, inventory and payment acceptance, with some work in parallel. Exclude
 Twilio/Google review, founder availability, rights/merchant decisions and any
 new defects or source drift. Google/store, registration and commerce each remain

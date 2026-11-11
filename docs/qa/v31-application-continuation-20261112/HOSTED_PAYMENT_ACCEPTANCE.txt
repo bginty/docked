@@ -1,0 +1,66 @@
+DOCKED V31 — controlled hosted payment/refund acceptance proposal
+PREPARED ONLY. Not a commercial activation or real-money spending instruction.
+
+Already passed, do not mislabel as hosted acceptance
+The faithful isolated PostgreSQL suite passed 15 scenarios: pending/cancelled
+payment refusal, 20 concurrent retries/exactly-once fulfilment, failure rollback,
+partial/full/replayed refunds, pack-open and transfer recovery holds, protected
+buyer balances, immutable accounting and least-privilege access. Outbox passed
+18 provider-mocked/Postgres scenarios. These results do not prove Google settlement.
+
+Exact proposed test scope
+One founder-supervised <=2-hour window on the installed approved v31, package
+docked.fantasy, using an existing authorised Play licence tester and the existing
+isolated synthetic test wallet. No ordinary member impersonation or public signup.
+Products: docked_credits_4900_v1 and docked_credits_9900_v1 (4900/9900 test credits).
+These list at A$49/A$99 but ONLY Google test instruments explicitly showing a test
+purchase are permitted. Real-money spend limit is A$0. Stop before any paid form.
+Use existing test surfaces/schema; never turn commercial_billing controls on.
+No new Android binary. If installed v31 cannot safely reach the approved isolated
+surface, stop and present the exact missing route/configuration before changing it.
+
+Before the window
+Read current Play licence/product state and merchant/tax/payout readiness; record
+only redacted status. Identify exact tester/wallet privately. Capture schema/table
+and 888-card ownership baseline, runtime/protection/gate snapshot and target IDs.
+Bind the exact temporary test-runtime diff, account allowlist, receipt key custody,
+expiry and closure commands to founder approval. No generic source deployment
+authority is implied. Existing products must remain unavailable to non-testers.
+
+Acceptance sequence
+1. Confirm TEST-labelled successful 4900 purchase: account-bound verification,
+   one receipt/credit grant, one acknowledgement; replay produces no second grant.
+2. Confirm TEST-labelled declined or pending result grants nothing. If pending is
+   later approved, verify exactly once. Use at most six test checkouts total.
+3. Exercise 9900 successful TEST purchase and record exact expected test balance.
+4. Use only synthetic test inventory for pack/refund behavior; never remint a
+   legitimate card or import commercial definitions to make this test run.
+5. Refund/revoke the TEST purchases using the permitted test path. Observe RTDN
+   and server re-verification, account binding, refund hold/idempotency, balanced
+   ledger and preserved unrelated ownership. Founder performs any financial UI
+   confirmation; agent records redacted evidence without tokens/order identifiers.
+6. Close the window immediately on failure/expiry. Restore prior product/runtime
+   test settings, verify commercial gates OFF, revoke temporary session access,
+   confirm no new real accounts/cards/receipts and preserve test audit history.
+7. Reconcile 5/15-minute delayed notifications and final balances. Record real
+   provider payout/fee settlement as untested if only licence-test evidence exists.
+
+Three historical groups needing provider correlation
+All times UTC, 5 Nov 2026. See historical-test-notifications.json.
+Case 1: first 11:17:22, last 11:19:33; one purchase plus one voided notice.
+Case 2: first 11:21:26, last 11:26:26; two purchase plus one voided notice.
+Case 3: first 12:11:12, last 12:11:56; one purchase plus one voided notice.
+All seven are attention after 12 attempts; all lack a bound receipt in the three
+available Production test schemas. Generic error is consistent with missing token
+reference. No raw token/order/member identity is included in public QA evidence.
+Read-only provider order history/test logs for those exact times must establish
+the corresponding test purchases, refunds and original account binding. Do not
+infer ownership from timing alone. Existing available local reports did not prove
+the binding. If a securely held original reference can be verified, prepare exact
+repair/replay authority; otherwise preserve attention and document unavailable
+evidence. Never mark reconciled merely because a voided notification exists.
+
+Commercial acceptance remains separate
+Merchant/payout/tax readiness, source rights, permitted current inventory, listing
+accuracy, published policy, payment/refund support and exact activation controls
+must pass before sales. No claim of live fees/payouts/refunds follows from TEST.

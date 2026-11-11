@@ -1,0 +1,55 @@
+TAP version 13
+# Subtest: live beta denies public signup even when ordinary registration flags are enabled
+ok 1 - live beta denies public signup even when ordinary registration flags are enabled
+  ---
+  duration_ms: 2.7303
+  ...
+# Subtest: production Auth mail is off by default and independent of optional delivery
+ok 2 - production Auth mail is off by default and independent of optional delivery
+  ---
+  duration_ms: 0.6394
+  ...
+# Subtest: a Preview invitation cannot bypass production mail or registration gates
+ok 3 - a Preview invitation cannot bypass production mail or registration gates
+  ---
+  duration_ms: 0.4136
+  ...
+# Subtest: all signup paths require explicit age, Terms and separate Privacy acceptance
+ok 4 - all signup paths require explicit age, Terms and separate Privacy acceptance
+  ---
+  duration_ms: 0.4478
+  ...
+# Subtest: production policy versions never default to draft and require operator readiness
+ok 5 - production policy versions never default to draft and require operator readiness
+  ---
+  duration_ms: 2.0216
+  ...
+# Subtest: safe UI registration projection includes database authority and cannot expose credentials
+ok 6 - safe UI registration projection includes database authority and cannot expose credentials
+  ---
+  duration_ms: 0.4671
+  ...
+# Subtest: changed production legal versions require fresh explicit acceptance
+ok 7 - changed production legal versions require fresh explicit acceptance
+  ---
+  duration_ms: 0.5505
+  ...
+# Subtest: only genuine username collisions are recoverable during signup provisioning
+ok 8 - only genuine username collisions are recoverable during signup provisioning
+  ---
+  duration_ms: 0.422
+  ...
+# Subtest: existing-member setup is independently opt-in and cannot inherit beta consent IDs
+ok 9 - existing-member setup is independently opt-in and cannot inherit beta consent IDs
+  ---
+  duration_ms: 2.9498
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1768.2249

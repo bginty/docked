@@ -1,0 +1,27 @@
+{
+  "observedAt": "2026-11-11T22:00:05.747Z",
+  "deploymentId": "dpl_8QNLMcxa9ZBospuZk4pCnH2zjqkV",
+  "window": "15m",
+  "levels": [
+    "error",
+    "fatal",
+    "warning"
+  ],
+  "result": {
+    "route": "/api/store/google/scheduled",
+    "level": "error",
+    "at": "2026-11-11T21:55:11.671Z",
+    "event": "google-test-reconciliation",
+    "attention": 7,
+    "overdue": 7,
+    "scheduled": 0,
+    "completed": 0,
+    "pending": 0,
+    "working": 0,
+    "samePriorDeploymentObservationAt": "2026-11-11T21:50:09.697Z",
+    "baselineAndNewRuntime": "nodejs26.x",
+    "baselineAndNewCronRegion": "iad1",
+    "newApplicationFailureIdentified": false
+  },
+  "limitation": "The known unresolved TEST notification warning remains. No other matching warning/error/fatal records returned in this window; not a future reliability or authenticated journey guarantee."
+}

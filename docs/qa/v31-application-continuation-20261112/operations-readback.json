@@ -1,0 +1,102 @@
+{
+  "triggers": [
+    {
+      "tgname": "operations_audit_immutable",
+      "relname": "events",
+      "tgenabled": "O",
+      "relrowsecurity": true
+    },
+    {
+      "tgname": "operations_audit_truncate",
+      "relname": "events",
+      "tgenabled": "O",
+      "relrowsecurity": true
+    },
+    {
+      "tgname": "incident_retention_guard",
+      "relname": "incidents",
+      "tgenabled": "O",
+      "relrowsecurity": true
+    },
+    {
+      "tgname": "preservation_retention_guard",
+      "relname": "preservation",
+      "tgenabled": "O",
+      "relrowsecurity": true
+    },
+    {
+      "tgname": null,
+      "relname": "retention_policy",
+      "tgenabled": null,
+      "relrowsecurity": true
+    },
+    {
+      "tgname": "retention_receipt_immutable",
+      "relname": "retention_receipts",
+      "tgenabled": "O",
+      "relrowsecurity": true
+    },
+    {
+      "tgname": "retention_receipt_truncate",
+      "relname": "retention_receipts",
+      "tgenabled": "O",
+      "relrowsecurity": true
+    }
+  ],
+  "incidents": 0,
+  "observedAt": "2026-11-11T21:52:40.021197+00:00",
+  "roleGrants": [
+    {
+      "rolname": "anon",
+      "outbox_queue": false,
+      "incident_prune": false,
+      "outbox_enqueue": false,
+      "incident_review": false,
+      "direct_audit_mutation": false
+    },
+    {
+      "rolname": "authenticated",
+      "outbox_queue": false,
+      "incident_prune": false,
+      "outbox_enqueue": false,
+      "incident_review": false,
+      "direct_audit_mutation": false
+    },
+    {
+      "rolname": "docked_app",
+      "outbox_queue": false,
+      "incident_prune": false,
+      "outbox_enqueue": false,
+      "incident_review": true,
+      "direct_audit_mutation": false
+    },
+    {
+      "rolname": "docked_beta_app",
+      "outbox_queue": false,
+      "incident_prune": false,
+      "outbox_enqueue": false,
+      "incident_review": true,
+      "direct_audit_mutation": false
+    },
+    {
+      "rolname": "docked_commercial_app",
+      "outbox_queue": false,
+      "incident_prune": false,
+      "outbox_enqueue": true,
+      "incident_review": false,
+      "direct_audit_mutation": false
+    },
+    {
+      "rolname": "service_role",
+      "outbox_queue": true,
+      "incident_prune": false,
+      "outbox_enqueue": false,
+      "incident_review": false,
+      "direct_audit_mutation": false
+    }
+  ],
+  "auditEvents": 0,
+  "retentionDays": 90,
+  "deletionEnabled": false,
+  "dryRunCandidates": 0
+}

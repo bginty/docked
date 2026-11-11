@@ -1,0 +1,49 @@
+{
+  "cases": [
+    {
+      "notices": 2,
+      "attempts": 12,
+      "last_seen": "2026-11-05T11:19:33.334465+00:00",
+      "first_seen": "2026-11-05T11:17:22.053077+00:00",
+      "case_number": 1,
+      "main_receipt": false,
+      "all_attention": true,
+      "expected_error": true,
+      "voided_notices": 1,
+      "purchase_notices": 1,
+      "member_acceptance_receipt": false,
+      "billing_acceptance_receipt": false
+    },
+    {
+      "notices": 3,
+      "attempts": 12,
+      "last_seen": "2026-11-05T11:26:26.296505+00:00",
+      "first_seen": "2026-11-05T11:21:26.518597+00:00",
+      "case_number": 2,
+      "main_receipt": false,
+      "all_attention": true,
+      "expected_error": true,
+      "voided_notices": 1,
+      "purchase_notices": 2,
+      "member_acceptance_receipt": false,
+      "billing_acceptance_receipt": false
+    },
+    {
+      "notices": 2,
+      "attempts": 12,
+      "last_seen": "2026-11-05T12:11:56.990376+00:00",
+      "first_seen": "2026-11-05T12:11:12.424658+00:00",
+      "case_number": 3,
+      "main_receipt": false,
+      "all_attention": true,
+      "expected_error": true,
+      "voided_notices": 1,
+      "purchase_notices": 1,
+      "member_acceptance_receipt": false,
+      "billing_acceptance_receipt": false
+    }
+  ],
+  "observedAt": "2026-11-11T21:53:59.533965+00:00",
+  "productionWrites": 0,
+  "noRetryOrDismissal": true
+}

@@ -1,0 +1,128 @@
+DOCKED V31 — application deployed, 12 November 2026 AEDT
+This is the current status. Earlier overnight files are historical evidence.
+PUBLIC LAUNCH NO-GO. No additional approval is inferred from this report.
+
+Completed in this continuation
+Production source: 60f9e66acecaa9ce6419ad07e2691b777400a3d4.
+Deployment: dpl_8QNLMcxa9ZBospuZk4pCnH2zjqkV.
+Exact authorised package: a3b61f2c9a17d17bc4db3a2c96038d91a123062b1fd0504b9c0a4da915eef1e9.
+Staged the exact source, waited READY, passed 26 protected staging HTTP checks,
+then promoted. Passed the same 26 live checks and an independent Vercel lookup
+of docked.com.au. Promotion/postflight occurred around 08:53–08:54 AEDT.
+No rollback was needed. Five previously applied migrations/outbox were NOT rerun.
+
+Also prepared and pushed the undeployed privacy candidate 17b38c1290fd37c05487b332e5c0db440da6805b.
+It preserves the existing proposed wording exactly. ESLint, typecheck, production
+Webpack build and nine targeted consent/admission checks pass. Its separate exact
+publication/Google-submission package is in PHONE_PRIVACY_APPROVAL.txt; no policy
+or consent reference was changed live. Preparation-branch auto-deployments were
+explicitly disabled in repository configuration before pushing, preserving manual
+release approval. Vercel reports no deployment for the privacy candidate.
+
+Fresh pre-promotion and post-promotion read-only database verification matched
+all five stored migration hashes, 10104 schema objects and 35 role memberships.
+All 25 protected financial/card/custody/cron tables equal the retained backup;
+906 custody records and 888 limited copies are unchanged. Registration, commerce,
+alerts and retention remain disabled; zero commercial definitions/cards, six
+disabled Practice rounds, zero incident events and zero deletion receipts.
+The retention dry run currently finds zero eligible routine incidents.
+
+Preserved the complete 87-setting baseline recipe, including all five member-
+setup/consent settings. The deployed candidate contains all 89 expected keys,
+including two explicitly false phone gates. Recipe values were checked locally;
+the hosting API exposes key presence, not an independent secret-value readback.
+The exact recipe was supplied to the controlled deployment; crons are unchanged.
+
+Hosted checks cover release identity, existing-account entry points, current
+privacy and deletion pages, disabled commerce/gameplay, hidden basketball history,
+closed QA routes, incident denial, wrong-origin incident/phone requests, and
+non-cacheable denial responses. No member login, founder MFA, SMS, purchase,
+incident acknowledgement or load-test result is inferred from these checks.
+The initial warning/error/fatal query returned no matching groups. At 09:00 AEDT,
+the first scheduled check reported the same seven legacy TEST notices as the
+08:50 check on the prior app. No other matching error/fatal/warning was returned
+in this short observation; this is not a continuing reliability guarantee.
+
+Operations/security
+Independent SQL confirmed RLS and enabled immutable audit/truncate guards.
+Only the application roles can invoke the owner/MFA review function; only the
+existing service role can drain the outbox, and only the commercial role can
+enqueue. No tested runtime role can prune incidents or directly mutate audit rows.
+The function remains restricted to the verified founder address and real AAL2.
+Founder drill/acknowledgement/resolution remains pending; no actor was impersonated.
+DOCKED-OPS-20261110-01 remains CONFIRMED by founder attestation, received 10 Nov.
+Provider acceptance was previously reported; independent mail-trace correlation
+remains incomplete. No resend or automated inbox inspection was performed.
+Operational recipient remains support@docked.com.au only.
+
+Current provider/release state
+Google Console freshly shows v31 (1.30), Australia, 10 Changes ready to publish,
+managed publishing ON. No publication or declaration edit. Native Android files
+and package/lock dependencies are unchanged from f1b50b6f; no v32 reason found.
+Installed-v31 OTP acceptance remains a real-device task, not a browser assertion.
+Twilio Console is logged out. Last authenticated sender result: In review at
+11 Nov 21:23 AEDT. Current approval cannot be confirmed without founder login.
+Fresh Supabase readback: both providers OFF, both signups disabled; all three
+Preview credentials remain configured. Production provider credentials are absent.
+Preview limits: six SMS/hour, 60-second resend, six digits, 300-second expiry.
+Production defaults differ and require a separately approved configuration window.
+
+Security advisor: one pre-existing leaked-password-protection warning and 224
+informational RLS-with-no-policy notices. Deny-by-default tables must not receive
+permissive policies simply to clear that informational notice. Recommended before
+public admission: enable leaked-password checks if included in the existing plan,
+and align Production password-change reauthentication with Preview. These Auth
+configuration changes are not part of the exact application authority and were
+not made. CAPTCHA is also OFF; review measured abuse controls before activation,
+without inventing a new mandatory paid service or assuming it is already enabled.
+https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection
+https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy
+
+Commercial preparation
+Offline frozen-plan validation passed: 6540 definitions = 6065 business-eligible
+plus 475 excluded; 23 supported registrations remain accepted; 888 copies consume
+lifetime supply. No repeated identity decisions are requested. Exact plan and
+operator hashes are in inventory-validation.json and NEXT_APPROVALS.txt.
+Previous faithful Production restore/import/replay/concurrency checks remain valid;
+no dependency changed, so these were not needlessly rerun. Existing native-Postgres
+billing (15 scenarios) and outbox (18 scenarios) passes were retained, not labelled
+as new hosted payment or delivery acceptance. Production inventory remains empty.
+
+Seven historical TEST notices correspond to THREE receipt groups, with 2/3/2
+notices. Each includes a voided notice; one has two purchase notifications.
+All stopped at 12 attempts. No group matches a receipt in credits_sandbox,
+store_billing_acceptance or store_member_acceptance. Source code correctly refuses
+to invent the missing encrypted token/member binding. This is not proof of three
+unrefunded charges: provider orders have not been correlated. No retry, dismissal,
+balance change or guessed binding. See historical-test-notifications.json and
+HOSTED_PAYMENT_ACCEPTANCE.txt for exact remaining evidence and scope.
+
+Founder participation when back at the laptop
+1. Open https://docked.com.au/admin/incidents, sign in with the existing owner
+   account/authenticator, then complete the no-email drill, acknowledge, resolve
+   and reload audit history with Codex observing. About 10–15 minutes. Do not
+   confirm actual email delivery for this no-email drill.
+2. Sign in to Twilio privately so sender status can be read. After sender approval
+   and the separate test window, receive and enter a real code on the AU device.
+   No Preview credential re-entry is needed. Production credential entry is still
+   needed for the separately scoped installed-v31 test; never send secrets in chat.
+3. Complete the approved Google licence-test checkout/refund on the physical
+   device and permit read-only correlation of the three historical order groups.
+4. If actual backup custody is approved, use existing Google MFA to store the
+   SAME backup key and verify isolated recovery. Synthetic vault acceptance,
+   founder recovery readiness and audit configuration are already complete.
+
+Remaining gates / estimate
+Backend deployment is complete. Operational acceptance is incomplete. Public
+registration and commerce are not ready. Play's binary review is complete, but
+the phone declaration/policy change and explicit publishing authority are pending.
+Expected remaining engineering: about 3–6 focused hours after approvals/access,
+excluding Twilio/Google waiting, founder time, rights/merchant decisions and any
+new defects. Historical provider correlation has an uncertain external duration.
+Inventory, policy, controlled phone/payment acceptance and actual backup custody
+each have distinct scope in NEXT_APPROVALS.txt. Do not republish this candidate,
+rerun migrations, resend the accepted email, or repeat synthetic vault recovery.
+Publication, public registration and commercial activation remain separate final
+decisions. A registration-first release also needs an accurate non-commercial
+listing: the last saved listing advertises paid credits/packs. Do not assume that
+listing is suitable for a billing-disabled public launch without reviewing it.

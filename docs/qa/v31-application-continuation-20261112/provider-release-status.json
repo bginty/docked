@@ -1,0 +1,43 @@
+{
+  "dateSydney": "2026-11-12",
+  "productionCommit": "60f9e66acecaa9ce6419ad07e2691b777400a3d4",
+  "deploymentId": "dpl_8QNLMcxa9ZBospuZk4pCnH2zjqkV",
+  "applicationPackage": "a3b61f2c9a17d17bc4db3a2c96038d91a123062b1fd0504b9c0a4da915eef1e9",
+  "play": {
+    "method": "Authenticated read-only Chrome Publishing overview",
+    "version": "31 (1.30)",
+    "status": "Changes ready to publish",
+    "changes": 10,
+    "territory": "Australia",
+    "managedPublishing": true,
+    "published": false
+  },
+  "twilio": {
+    "currentSession": "Logged out due to inactivity",
+    "currentSenderDecisionVerified": false,
+    "lastAuthenticatedObservationUtc": "2026-11-11T10:23:00Z",
+    "lastKnownStatus": "In review",
+    "loginAttempted": false,
+    "smsSent": false
+  },
+  "android": {
+    "nativeAndPackageDiffFromF1b": [],
+    "submittedAabChanged": false,
+    "newBinaryRequiredIdentified": false,
+    "physicalV31OtpAccepted": false
+  },
+  "operationalEmail": {
+    "reference": "DOCKED-OPS-20261110-01",
+    "inboxReceipt": "CONFIRMED",
+    "evidence": "Founder attestation",
+    "receivedDate": "2026-11-10",
+    "providerAcceptance": "Previously reported; independent provider trace remains incomplete",
+    "automatedInboxInspection": false,
+    "resend": false,
+    "approvedRecipient": "support@docked.com.au"
+  },
+  "founderMfaAcceptance": false,
+  "syntheticVaultAcceptancePreserved": true,
+  "liveKeyTransferred": false,
+  "publicLaunch": "NO-GO"
+}

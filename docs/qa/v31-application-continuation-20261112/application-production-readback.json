@@ -1,0 +1,175 @@
+{
+  "at": "2026-11-11T21:53:37.049Z",
+  "source": "60f9e66acecaa9ce6419ad07e2691b777400a3d4",
+  "package": "a3b61f2c9a17d17bc4db3a2c96038d91a123062b1fd0504b9c0a4da915eef1e9",
+  "deploymentId": "dpl_8QNLMcxa9ZBospuZk4pCnH2zjqkV",
+  "target": "https://docked.com.au",
+  "live": true,
+  "ready": true,
+  "baselineRecipeValuesPreserved": true,
+  "runtimeKeysPresent": 89,
+  "hostedSecretValuesReadBack": false,
+  "cronsUnchanged": true,
+  "checks": [
+    {
+      "method": "GET",
+      "route": "/account-deletion",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/admin/incidents",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/admin/incidents",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/admin/incidents",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "method": "POST",
+      "route": "/api/auth/phone",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/beta-release",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/fantasy/scoring-history?sport=afl",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/fantasy/scoring-history?sport=basketball",
+      "status": 400,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/fantasy/scoring-history?sport=nfl",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/fantasy/scoring-history?sport=nrl",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/mobile/capabilities",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/public-gameplay?sport=afl",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/public-gameplay?sport=nrl",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/store/google/commercial",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/api/workspace-wallet",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/app/invitation-setup",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/app/login",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/app/signup",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/commercial-policy",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/preview/pack-opening",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/privacy",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/profile/qa_billing",
+      "status": 503,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/refund-policy",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "method": "GET",
+      "route": "/retention",
+      "status": 200,
+      "pass": true
+    }
+  ],
+  "memberAuthenticationTested": false,
+  "founderAcknowledgementTested": false,
+  "smsSent": false,
+  "businessMutation": false
+}
