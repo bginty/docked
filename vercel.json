@@ -9,7 +9,9 @@
   "installCommand": "npm ci",
   "git": {
     "deploymentEnabled": {
-      "codex/vercel-beta-review": false
+      "codex/vercel-beta-review": false,
+      "codex/v31-founder-acceptance-20261111": false,
+      "codex/v31-phone-privacy-candidate-20261112": false
     }
   }
 }

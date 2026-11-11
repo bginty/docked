@@ -42,8 +42,14 @@ export function PublicPhoneVerification() {
     >
       <h1>Verify your phone</h1>
       <p>
-        Use one verified phone number for your Docked account. Your number is
-        private and is not displayed on your profile.
+        Verify an Australian mobile number to use Docked's public account
+        features. One verified number can be linked to one account. Supabase
+        stores your number and Twilio sends the verification text, including
+        through overseas processing. Your number is private on Docked and is not
+        used by Docked for marketing. Message records may remain after the code
+        expires. Read our Privacy policy for provider retention and deletion
+        details. If you cannot use your number, contact support.
+        Account-deletion controls remain available without phone verification.
       </p>
       <label className="app-auth-field">
         Australian mobile number (04 or +614)
