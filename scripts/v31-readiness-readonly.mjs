@@ -1,7 +1,10 @@
 // Read-only customer entry points and fail-closed release gates. No sign-in,
 // signup, purchase, token, wallet or inventory mutation.
 import assert from "node:assert/strict";
-import { writeFile } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
+import path from "node:path";
+const output = process.env.DOCKED_V31_READONLY_OUTPUT ??
+  "docs/qa/v31-public-readiness-20261110/live-http.json";
 const origin = "https://docked.com.au";
 const expected = [
   ["/app/login", 200],
@@ -28,6 +31,7 @@ for (let i = 0; i < expected.length; i += 3) {
   checks.push(
     ...(await Promise.all(
       expected.slice(i, i + 3).map(async ([route, status]) => {
+        const start = performance.now();
         const response = await fetch(origin + route, {
           cache: "no-store",
           redirect: "manual",
@@ -39,6 +43,7 @@ for (let i = 0; i < expected.length; i += 3) {
           route,
           status,
           cache: response.headers.get("cache-control"),
+          elapsedMs: Math.round(performance.now() - start),
         };
         if (route === "/api/beta-release") {
           const release = JSON.parse(body);
@@ -73,8 +78,9 @@ const report = {
   publicRegistrationEnabled: false,
   livePaymentsEnabled: false,
 };
+await mkdir(path.dirname(output), { recursive: true });
 await writeFile(
-  "docs/qa/v31-public-readiness-20261110/live-http.json",
+  output,
   JSON.stringify(report, null, 2) + "\n",
 );
 console.log(JSON.stringify(report, null, 2));

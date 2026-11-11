@@ -8,7 +8,10 @@ const headers = {
   "User-Agent":
     "DockedRosterReview/1.0 (https://docked.com.au; roster verification)",
 };
+const output = process.argv[2] ?? "private-data/roster-source-review";
+await fs.mkdir(output, { recursive: true });
 for (const [key, page] of Object.entries(sources)) {
+  if (process.argv.includes("--australian-only") && key === "nbaWest") continue;
   const url =
     "https://en.wikipedia.org/w/api.php?" +
     new URLSearchParams({
@@ -24,7 +27,7 @@ for (const [key, page] of Object.entries(sources)) {
   const data = await r.json();
   if (data.error) throw Error(JSON.stringify(data.error));
   await fs.writeFile(
-    `private-data/roster-source-review/${key}.json`,
+    `${output}/${key}.json`,
     JSON.stringify({
       ...data,
       docked: {

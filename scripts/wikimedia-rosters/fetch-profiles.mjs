@@ -1,5 +1,5 @@
 import fs from "node:fs/promises";
-const root = "private-data/roster-source-review";
+const root = process.argv[2] ?? "private-data/roster-source-review";
 const rows = JSON.parse(await fs.readFile(root + "/discovered.json", "utf8"));
 const titles = [...new Set(rows.map((x) => x.sourceTitle))];
 await fs.mkdir(root + "/profiles", { recursive: true });

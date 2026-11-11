@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-11T05:21:01.071Z",
+  "database": "disposable PostgreSQL 17",
+  "simulatedPayments": true,
+  "checks": [
+    "exact approved caps and Core remains outside limited issuance",
+    "database mint path respects disabled issuance",
+    "16 concurrent requests cannot mint a second lifetime Icon",
+    "all five terminal serials succeed once and stay sold out",
+    "counter reset, counter-only increment, deletion and truncation denied",
+    "wrong slot, wrong draw and partial pack roll back atomically",
+    "new alias/season cannot reset the same provider lifetime",
+    "parallel TEST mint is blocked after lifetime binding; ownership updates allowed",
+    "runtime cannot import definitions or rewrite approval controls"
+  ],
+  "passed": true
+}

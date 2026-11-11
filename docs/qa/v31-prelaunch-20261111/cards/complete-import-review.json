@@ -1,0 +1,81 @@
+{
+  "version": "v31-complete-preservation-only-inventory-proposal-v1",
+  "productionWrites": 0,
+  "productionImportApproved": false,
+  "preservationSourceApprovalPending": true,
+  "currentEligibilityApproved": false,
+  "completeForIsolatedRehearsal": true,
+  "identitiesResearched": 71,
+  "ambiguousHumanIdentities": 0,
+  "proposedNewCommercialIdentityRegistrations": 23,
+  "definitions": 6540,
+  "lifetimeConsumedCopies": 888,
+  "existingCopies": 888,
+  "preservedRetiredCopies": 8,
+  "issuedGroups": 735,
+  "original879CopiesPreserved": true,
+  "additionalRealAflTestCopiesIncluded": 9,
+  "hiddenNbaCopiesExcluded": 18,
+  "unresolvedDefinitions": 0,
+  "newMintedCards": 0,
+  "deletedCards": 0,
+  "remintedCards": 0,
+  "changedOwners": 0,
+  "approvedDefinitions": 0,
+  "availableStock": 0,
+  "reservedStock": 0,
+  "permanentCaps": {
+    "CORE": "unlimited",
+    "RARE": 5000,
+    "ELITE": 2500,
+    "ULTRA_RARE": 400,
+    "LEGENDARY": 50,
+    "ICON": 1
+  },
+  "issuedManifestDigest": "cbf8a22f68fcb77a2bb40c6517d338e8c2247e9a47a2db34dffc7db0ad8a4ed5",
+  "sourceRowsDigest": "9844ed7adf8ce0ecb13046d22d414be088865fbe07d990ee4e9a199cfa2a8c96",
+  "expectedRowsDigest": "8b784e7acc32717c5353bba98bf7ffd6380a1ea7baf965cea92d3c136f6e9241",
+  "reconciliationDigest": "a86eeb16e86401797262120b670044d16c7f944455851b67910d3b5daab85c3b",
+  "registrationDigest": "ba68a833d866105512ed6b7e137c910a74df3a335836cd477d62937460c87114",
+  "protectedCustodyDigest": "a1bbdf806cee3f51d870b31f5fcb74d6cae0df93846f34bb4c291ffaae99cb8e",
+  "completePrivatePlan": {
+    "file": "private-data/v31-card-research-20261111/complete-proposal.private.json",
+    "sha256": "4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4"
+  },
+  "sources": {
+    "census": {
+      "file": "private-data/v31-final-reconciliation-20261110/census.private.json",
+      "sha256": "caeea149888fdd11c81230354019705e89fac73a1c27d69d0233a95e0d4ae293"
+    },
+    "issued": {
+      "file": "private-data/v31-final-reconciliation-20261110/all-issued.private.json",
+      "sha256": "fd1511df9c8945e9a7af50ea872d9ef3f499921deeb29fe8fd69fad488e19974"
+    },
+    "candidate": {
+      "file": "private-data/commercial-pool-20261106-v2/candidate.private.json",
+      "sha256": "f436a9883a1ddda433fe81248533ad1d68d1aa02de8ca69d0863c465d8de60fc"
+    },
+    "priorMapping": {
+      "file": "docs/qa/v31-operational-acceptance-20261110/card-source-mapping.json",
+      "sha256": "0489f7ebaaa4b8792431e5c8b67b8ad1ab865f9163df071eafa4c6514e867e00"
+    },
+    "previousAdditional": {
+      "file": "docs/qa/v31-operational-acceptance-20261110/commercial-additional-definitions.json",
+      "sha256": "d2d8bdb5af4ec09c61f1ef6bfe8820b865b3d1df64acec9fe73b672e70d0a98e"
+    },
+    "research": {
+      "file": "docs/qa/v31-prelaunch-20261111/cards/identity-research.json",
+      "sha256": "160719ebb3deccfad41773c71a10fcd88e49c6429ad6270ebde179f4ff9d06ad"
+    },
+    "lookup": {
+      "file": "docs/qa/v31-operational-acceptance-20261110/card-catalogue-lookup.json",
+      "sha256": "69dc6cf76c396f4c959349c34a9447aa93c45780a275f57681c61047cba98a23"
+    },
+    "freshCustody": {
+      "file": "private-data/v31-card-research-20261111/fresh-custody.private.json",
+      "sha256": "a13367871a41348d7a0ef16d1c8d883c4eb4172ab2afdd9793db65af39bc7648"
+    }
+  },
+  "assembly": "Pinned candidate sourceRows + previous additional51 sourceRows + new additional24 sourceRows, sorted by definition ID; pass exact735 issued baselines to importer. Expected6540 rows consume888 lifetime copies, including all original879 and9 new real AFL TEST copies. Never import sourceRows without priorIssuance. All definitions remain unapproved and no cards are inserted.",
+  "approvalGroup": "Accept preservation-only historical source baselines and the exact23 commercial-only provider registrations; no current eligibility, source-rights expansion, new stock, beta-player/edition creation or owner changes. Production inventory import requires a separate exact-digest approval after fresh restored rehearsal."
+}

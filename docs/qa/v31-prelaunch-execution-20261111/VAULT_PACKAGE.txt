@@ -1,0 +1,103 @@
+V31 — exact recovery-vault preparation, 11 November 2026
+PREPARED; no Google resource, IAM, logging or billing change executed.
+
+Approved design: Google Secret Manager, existing docked-play-verification project,
+founder-controlled custody. No second custodian, new project or service account.
+Live backup/archive keys must not be accessed, transferred or rotated under this
+synthetic setup approval. Existing local custody remains until accepted transfer.
+
+Completed now
+- Added scripts/recovery-vault-readonly.ps1: fixed-project metadata-only readback,
+  approved founder-account check, direct IAM summaries, API/billing status,
+  audit types/exemptions, exact recovery-secret metadata and version-state counts.
+  It emits no token, secret payload, billing-account ID or unrelated principal.
+  It cannot falsely certify MFA, inherited IAM or billing-account allowance from
+  direct project metadata. Current run recorded GCLOUD_UNAVAILABLE.
+- Prepared config/operations/recovery-vault-canary.prepared.json with the exact
+  one-secret create body, scoped founder binding, audit types and acceptance cases.
+- Rechecked official Google IAM, audit, version-destruction and pricing references.
+
+Actual inspection blocker
+CUA reports local browser use disabled in Work settings. No gcloud is installed
+on PATH or the standard Google Cloud SDK locations checked. Founder was asked
+once to enable local browser use and leave the existing Google project signed in.
+The project/IAM/MFA/billing/logging state remains UNVERIFIED, not accepted.
+
+Read-only execution after access is available
+  .\scripts\recovery-vault-readonly.ps1
+The script uses only gcloud auth list; projects describe/get-iam-policy; services
+list --enabled; billing projects describe; secrets describe/get-iam-policy; and
+secrets versions list. It does not sign in, switch account, read payloads or write.
+Existing founder login and the exact expected project are required before reads.
+
+Inspect effective access beyond that report before provisioning
+Inspect project/folder/organisation policies, custom-role permissions, groups,
+service-account impersonation and broad Owner/Editor/Secret Manager Admin paths.
+Direct secret-only Accessor bindings do not override inherited permissions.
+Inspect Data Access/Admin Activity log buckets, retention, sinks and exclusions;
+no exemption for the founder or runtime accounts. Security logs remain outside
+the 90-day routine-incident deletion policy. Confirm fresh MFA sign-in and a
+second founder-controlled recovery method; no recovery codes in evidence.
+
+Concrete synthetic setup for one approval after inspection
+Project: docked-play-verification
+Secret: docked-recovery-acceptance only
+Payload: one locally generated 32-byte disposable canary; maximum one version
+and ten access attempts; payload never printed, committed or put in process args.
+Replication: automatic; Google-managed encryption; no expiry or rotation.
+Version destruction delay: 2592000 seconds (30 days).
+Standing payload reader: existing founder principal, individual secret only.
+No runtime/verifier/RTDN/member/browser readers and no project-wide Accessor.
+Temporary import: roles/secretmanager.secretVersionAdder only if required,
+removed after import. Use existing approved administration for canary lifecycle;
+do not create a standing Secret Version Manager/Admin grant.
+Audit: ADMIN_READ, DATA_READ and DATA_WRITE for secretmanager.googleapis.com;
+preserve existing policy bindings and audit entries, merge with current etag.
+No new paid service; verify remaining shared free allowance and log-cost exposure.
+
+Exact non-payload CLI actions, AFTER that approval (not executed here)
+  gcloud secrets create docked-recovery-acceptance --project=docked-play-verification --replication-policy=automatic --version-destroy-ttl=2592000s --labels=purpose=recovery-acceptance,environment=synthetic
+  gcloud secrets add-iam-policy-binding docked-recovery-acceptance --project=docked-play-verification --member=user:briantg_21@hotmail.com --role=roles/secretmanager.secretAccessor --condition=None
+Abort if the secret already exists or effective access is unexpected. Do not
+replace an existing policy with the prepared binding object. Obtain any API
+enablement/logging change approval with the same exact project/canary scope.
+For payload import use protected stdin/in-memory bytes and capture only the
+returned version identifier. PowerShell's text pipeline appends a newline;
+compare the exact imported bytes, not an assumed pre-pipeline digest.
+
+Acceptance and recovery procedure
+1. Fresh founder MFA session; verify independent recovery method without recording
+   codes. Read back exact resource/version/config and effective IAM.
+2. Access that exact canary version; compare digest in memory, emit pass/fail only.
+3. Existing actual runtime/verifier/RTDN principals must be denied. Do not grant
+   impersonation or access just to manufacture a test. If a real principal cannot
+   be safely exercised, record that limitation rather than passing a simulation.
+4. Wrong-version access must fail without falling back to latest.
+5. Disable the canary version, prove denial, re-enable it, prove identical digest.
+   Do not destroy any version or delete the whole secret as a test.
+6. Correlate access/admin logs by principal, exact version and timestamp; never
+   capture payload. Record denials separately if a particular denied request is
+   not emitted by the service. Remove temporary grants and recheck final IAM.
+7. Emergency: use founder's independent MFA/recovery method, revoke compromised
+   secret-scoped access, disable the affected version if necessary, preserve logs.
+   Whole-secret deletion is not protected by the version-destruction delay.
+8. Separate live-key transfer approval later: map each encrypted archive to an
+   exact vault version, test an isolated archive restore, preserve old versions
+   needed by backups/holds. Canary recovery alone is not live-backup acceptance.
+
+Cost evidence
+Google currently provides six active versions and 10000 accesses monthly per
+billing account, shared across projects. Enabled AND disabled versions count;
+automatic replication counts as one location. Overage is about US$0.06 per
+active version/location-month and US$0.03 per10000 accesses, with logs/tax/FX
+potentially additional. Account-specific free headroom is unverified; US$0 is
+conditional, not guaranteed. Budget alerts are not a hard spending cap.
+
+Official sources rechecked 11 November 2026
+https://cloud.google.com/secret-manager/pricing
+https://docs.cloud.google.com/secret-manager/docs/access-control
+https://docs.cloud.google.com/secret-manager/docs/audit-logging
+https://docs.cloud.google.com/secret-manager/docs/delay-destruction-of-secret-versions
+https://docs.cloud.google.com/sdk/gcloud/reference/secrets/create
+https://docs.cloud.google.com/sdk/gcloud/reference/secrets/add-iam-policy-binding
+https://docs.cloud.google.com/sdk/gcloud/reference/secrets/versions/add

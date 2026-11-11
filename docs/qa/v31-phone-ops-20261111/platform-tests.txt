@@ -1,0 +1,122 @@
+TAP version 13
+# Subtest: account erasure retains record keys and requires confirmed provider erasure
+ok 1 - account erasure retains record keys and requires confirmed provider erasure
+  ---
+  duration_ms: 2.6774
+  ...
+# Subtest: missing identity is retry-safe; outages and unconfirmed erasure do not complete
+ok 2 - missing identity is retry-safe; outages and unconfirmed erasure do not complete
+  ---
+  duration_ms: 2.2057
+  ...
+# Subtest: staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+ok 3 - staff capability matrix isolates editors, analysts and read-only auditors and requires MFA
+  ---
+  duration_ms: 2.6981
+  ...
+# Subtest: verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+ok 4 - verified-token claim parser refuses wrong subject, malformed session and unsupported assurance
+  ---
+  duration_ms: 3.3074
+  ...
+# {"event":"billing-ops-alert-delivery-uncertain"}
+# {"event":"billing-ops-alert-delivery-uncertain"}
+# Subtest: default-off and unapproved configuration do not claim or send
+ok 5 - default-off and unapproved configuration do not claim or send
+  ---
+  duration_ms: 3.8689
+  ...
+# Subtest: aggregate message excludes arbitrary sensitive input and validates missing data
+ok 6 - aggregate message excludes arbitrary sensitive input and validates missing data
+  ---
+  duration_ms: 3.8893
+  ...
+# Subtest: durable-fence contract blocks duplicate and concurrent mock delivery
+ok 7 - durable-fence contract blocks duplicate and concurrent mock delivery
+  ---
+  duration_ms: 0.7611
+  ...
+# Subtest: ambiguous transport and settlement outage cannot blindly resend a fenced job
+ok 8 - ambiguous transport and settlement outage cannot blindly resend a fenced job
+  ---
+  duration_ms: 1.8804
+  ...
+# Subtest: private phone acceptance admits only two existing accounts and keeps registration closed
+ok 9 - private phone acceptance admits only two existing accounts and keeps registration closed
+  ---
+  duration_ms: 8.9051
+  ...
+# Subtest: closed Google test window preserves isolated ledger reads without admitting checkout
+ok 10 - closed Google test window preserves isolated ledger reads without admitting checkout
+  ---
+  duration_ms: 0.9898
+  ...
+# Subtest: Google TEST admission cannot select Production, a different account, live checkout or an expired window
+ok 11 - Google TEST admission cannot select Production, a different account, live checkout or an expired window
+  ---
+  duration_ms: 0.8881
+  ...
+# Subtest: external Preview email uses exact expiring admission without granting transactions or invitations
+ok 12 - external Preview email uses exact expiring admission without granting transactions or invitations
+  ---
+  duration_ms: 1.7103
+  ...
+# Subtest: public acceptance is bound to existing protected Preview, with ordinary-customer mode and narrow Auth projections
+ok 13 - public acceptance is bound to existing protected Preview, with ordinary-customer mode and narrow Auth projections
+  ---
+  duration_ms: 0.6776
+  ...
+# Subtest: public acceptance rejects Production, cross-project credentials, privileged runtime and checkout
+ok 14 - public acceptance rejects Production, cross-project credentials, privileged runtime and checkout
+  ---
+  duration_ms: 0.7959
+  ...
+# Subtest: Owner CSV protects formulas; reporting defaults live and uses Sydney date boundaries
+ok 15 - Owner CSV protects formulas; reporting defaults live and uses Sydney date boundaries
+  ---
+  duration_ms: 64.8778
+  ...
+# Subtest: Payment totals separate test/live and include refunds fees and chargebacks; not profit
+ok 16 - Payment totals separate test/live and include refunds fees and chargebacks; not profit
+  ---
+  duration_ms: 1.3205
+  ...
+# Subtest: Final prizes exactly once, provisional denial, ties held, corrections preserve fulfilled audit
+ok 17 - Final prizes exactly once, provisional denial, ties held, corrections preserve fulfilled audit
+  ---
+  duration_ms: 5.0767
+  ...
+# Subtest: challenge uses user-session phone_change and fresh same-member provider confirmation
+ok 18 - challenge uses user-session phone_change and fresh same-member provider confirmation
+  ---
+  duration_ms: 3.9725
+  ...
+# Subtest: provider rejection, outage and expired/wrong code never expose raw provider data
+ok 19 - provider rejection, outage and expired/wrong code never expose raw provider data
+  ---
+  duration_ms: 1.3193
+  ...
+# Subtest: successful OTP response alone cannot prove identity, number or confirmed timestamp
+ok 20 - successful OTP response alone cannot prove identity, number or confirmed timestamp
+  ---
+  duration_ms: 0.7181
+  ...
+# Subtest: phone evidence must come from confirmed Auth fields, never a typed number
+ok 21 - phone evidence must come from confirmed Auth fields, never a typed number
+  ---
+  duration_ms: 2.8292
+  ...
+# Subtest: SMS cannot send before public/OTP/policy configuration; beta unchanged
+ok 22 - SMS cannot send before public/OTP/policy configuration; beta unchanged
+  ---
+  duration_ms: 0.8646
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4927.4059

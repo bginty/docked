@@ -1,0 +1,28 @@
+{
+  "observedAt": "2026-11-11T05:19:47.7076730Z",
+  "project": "docked-play-verification",
+  "status": "NOT_ACCEPTED",
+  "cloudWrites": 0,
+  "secretPayloadReads": 0,
+  "credentialsEmitted": false,
+  "activeFounderAccount": null,
+  "projectVerified": false,
+  "projectActive": null,
+  "parentHierarchyPresent": null,
+  "secretManagerApiEnabled": null,
+  "billingEnabled": null,
+  "billingAccountFreeAllowanceVerified": false,
+  "founderMfaVerified": false,
+  "effectiveInheritedIamVerified": false,
+  "auditLogRoutingVerified": false,
+  "actualCanaryAccessAndDenialTested": false,
+  "projectDirectBindings": [],
+  "auditLogTypes": [],
+  "auditExemptionsPresent": null,
+  "secrets": [],
+  "blockers": [
+    "GCLOUD_UNAVAILABLE",
+    "EFFECTIVE_IAM_MFA_BILLING_HEADROOM_AND_LOG_ROUTING_REQUIRE_ACCEPTANCE",
+    "SYNTHETIC_ACCESS_DENIAL_AND_RECOVERY_NOT_EXECUTED"
+  ]
+}

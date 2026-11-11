@@ -1,0 +1,33 @@
+{
+  "observedAt": "2026-11-11T05:56:50.067Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "scope": "existing-synthetic-preview-email-password-auth-only",
+  "accounts": [
+    {
+      "label": "fixture-1",
+      "authenticated": true,
+      "freshUserConfirmed": true,
+      "signoutAccepted": true,
+      "createdSessionAbsent": true,
+      "assetsUnchanged": true
+    },
+    {
+      "label": "fixture-2",
+      "authenticated": true,
+      "freshUserConfirmed": true,
+      "signoutAccepted": true,
+      "createdSessionAbsent": true,
+      "assetsUnchanged": true
+    }
+  ],
+  "productionAccess": false,
+  "signupAttempts": 0,
+  "passwordChanges": 0,
+  "recoveryAttempts": 0,
+  "smsAttempts": 0,
+  "emailAttempts": 0,
+  "applicationOrWebViewAcceptance": false,
+  "credentialsOrTokensEmitted": false,
+  "passed": true,
+  "completedAt": "2026-11-11T05:56:53.537Z"
+}

@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
-import { readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
 import postgres from "postgres";
 import { multiSportDatabase } from "../fixtures/multi-sport-db";
 import { rateLimitQuery } from "../../src/server/rate-limit-query";
@@ -240,8 +241,15 @@ test("Operational incidents final: retention exclusion, holds, audit and verifie
       ),
       0,
     );
+    const reportPath = process.env.DOCKED_OPERATIONAL_TEST_REPORT_DIR
+      ? join(
+          process.env.DOCKED_OPERATIONAL_TEST_REPORT_DIR,
+          "operational-final.json",
+        )
+      : "docs/qa/v31-final-reconciliation-20261110/operational-final-postgres.json";
+    await mkdir(dirname(reportPath), { recursive: true });
     await writeFile(
-      "docs/qa/v31-final-reconciliation-20261110/operational-final-postgres.json",
+      reportPath,
       JSON.stringify(
         {
           at: new Date().toISOString(),

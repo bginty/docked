@@ -1,0 +1,155 @@
+TAP version 13
+# Subtest: public launch preferences accept all visible sports without advertising hidden catalogues
+ok 1 - public launch preferences accept all visible sports without advertising hidden catalogues
+  ---
+  duration_ms: 7.3451
+  ...
+# Subtest: intermediate email change selects instructions only, never code or error responses
+ok 2 - intermediate email change selects instructions only, never code or error responses
+  ---
+  duration_ms: 0.683
+  ...
+# Subtest: authentication callbacks retain only reviewed app and legacy destinations
+ok 3 - authentication callbacks retain only reviewed app and legacy destinations
+  ---
+  duration_ms: 0.2688
+  ...
+# Subtest: production recipient policy defaults closed, support tests cannot email friends, beta requires exact list
+ok 4 - production recipient policy defaults closed, support tests cannot email friends, beta requires exact list
+  ---
+  duration_ms: 2.1086
+  ...
+# Subtest: invitation GET and mail scanner requests cannot consume a token
+ok 5 - invitation GET and mail scanner requests cannot consume a token
+  ---
+  duration_ms: 46.8147
+  ...
+# Subtest: confirmation rejects forged origins, malformed/duplicate fields and oversize bodies before Auth
+ok 6 - confirmation rejects forged origins, malformed/duplicate fields and oversize bodies before Auth
+  ---
+  duration_ms: 12.8788
+  ...
+# Subtest: only confirmed invite gets fixed password destination; invalid and uncertain outcomes stay distinct
+ok 7 - only confirmed invite gets fixed password destination; invalid and uncertain outcomes stay distinct
+  ---
+  duration_ms: 4.8374
+  ...
+# Subtest: invites require exact production identity and both new and existing activation gates
+ok 8 - invites require exact production identity and both new and existing activation gates
+  ---
+  duration_ms: 0.8208
+  ...
+# Subtest: invite messages use gated browser confirmation and encrypted stable queue identities
+ok 9 - invite messages use gated browser confirmation and encrypted stable queue identities
+  ---
+  duration_ms: 28.6245
+  ...
+# Subtest: alternate invitation host is rejected before rendering or verifying
+ok 10 - alternate invitation host is rejected before rendering or verifying
+  ---
+  duration_ms: 1.2586
+  ...
+# Subtest: isolated recovery keeps its own provider, CSP and verifier cookie without changing Production
+ok 11 - isolated recovery keeps its own provider, CSP and verifier cookie without changing Production
+  ---
+  duration_ms: 39.5688
+  ...
+# Subtest: recovery link scanners cannot consume tokens; only explicit POST reaches provider
+ok 12 - recovery link scanners cannot consume tokens; only explicit POST reaches provider
+  ---
+  duration_ms: 7.2451
+  ...
+# Subtest: recovery rejects cross-origin, duplicated, wrong-action and oversized requests before continuation
+ok 13 - recovery rejects cross-origin, duplicated, wrong-action and oversized requests before continuation
+  ---
+  duration_ms: 11.1304
+  ...
+# Subtest: missing PKCE cookie, unavailable service and closed gate never consume token or claim expiry
+ok 14 - missing PKCE cookie, unavailable service and closed gate never consume token or claim expiry
+  ---
+  duration_ms: 9.5288
+  ...
+# Subtest: recovery verifier presence is bound to the dedicated project and supports SSR chunks
+ok 15 - recovery verifier presence is bound to the dedicated project and supports SSR chunks
+  ---
+  duration_ms: 0.5648
+  ...
+# Subtest: owner renewal challenges existing MFA before showing consent; members need no mandatory MFA
+ok 16 - owner renewal challenges existing MFA before showing consent; members need no mandatory MFA
+  ---
+  duration_ms: 1.8656
+  ...
+# Subtest: MFA automatically uses verified own factor, never exposes factor ID or reenrols
+ok 17 - MFA automatically uses verified own factor, never exposes factor ID or reenrols
+  ---
+  duration_ms: 1.9517
+  ...
+# Subtest: MFA AAL2 session persists without another code or new factor
+ok 18 - MFA AAL2 session persists without another code or new factor
+  ---
+  duration_ms: 0.2692
+  ...
+# Subtest: existing-member profile completion returns to onboarding only after the MFA challenge
+ok 19 - existing-member profile completion returns to onboarding only after the MFA challenge
+  ---
+  duration_ms: 0.6199
+  ...
+# Subtest: First enrolment provides a QR image and once-only setup key; pending factor is reused
+ok 20 - First enrolment provides a QR image and once-only setup key; pending factor is reused
+  ---
+  duration_ms: 0.6594
+  ...
+# Subtest: Invalid codes, factor confusion and redirects fail safely
+ok 21 - Invalid codes, factor confusion and redirects fail safely
+  ---
+  duration_ms: 0.6807
+  ...
+# Subtest: live beta denies public signup even when ordinary registration flags are enabled
+ok 22 - live beta denies public signup even when ordinary registration flags are enabled
+  ---
+  duration_ms: 2.1896
+  ...
+# Subtest: production Auth mail is off by default and independent of optional delivery
+ok 23 - production Auth mail is off by default and independent of optional delivery
+  ---
+  duration_ms: 0.3272
+  ...
+# Subtest: a Preview invitation cannot bypass production mail or registration gates
+ok 24 - a Preview invitation cannot bypass production mail or registration gates
+  ---
+  duration_ms: 0.2922
+  ...
+# Subtest: all signup paths require explicit age, Terms and separate Privacy acceptance
+ok 25 - all signup paths require explicit age, Terms and separate Privacy acceptance
+  ---
+  duration_ms: 0.2246
+  ...
+# Subtest: production policy versions never default to draft and require operator readiness
+ok 26 - production policy versions never default to draft and require operator readiness
+  ---
+  duration_ms: 1.4094
+  ...
+# Subtest: safe UI registration projection includes database authority and cannot expose credentials
+ok 27 - safe UI registration projection includes database authority and cannot expose credentials
+  ---
+  duration_ms: 0.2691
+  ...
+# Subtest: changed production legal versions require fresh explicit acceptance
+ok 28 - changed production legal versions require fresh explicit acceptance
+  ---
+  duration_ms: 0.3508
+  ...
+# Subtest: only genuine username collisions are recoverable during signup provisioning
+ok 29 - only genuine username collisions are recoverable during signup provisioning
+  ---
+  duration_ms: 0.2438
+  ...
+1..29
+# tests 29
+# suites 0
+# pass 29
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3443.9468

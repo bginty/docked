@@ -1,0 +1,154 @@
+DOCKED V31 — phone, operational alerts and privacy work completed while Twilio waits
+11 November 2026 | PUBLIC LAUNCH NO-GO
+
+Implemented and verified now
+1. Preview Auth SMS limits tightened through the Management API: six SMS/hour,
+   60-second resend interval. Existing six-digit/300-second expiry retained.
+   Exact project/organisation checked; phone Auth OFF, signup disabled,
+   autoconfirm OFF, fixed OTP absent before/after. Static PATCH has only two
+   limit fields; all other returned Auth fields compared unchanged. Second apply
+   was idempotent (no PATCH). Production readback unchanged. No SMS sent; provider
+   credentials were not changed or emitted. Evidence: preview-limits-*.json and
+   auth-readback-after-limits.json; script defaults to GET-only dry run.
+2. Fixed a real API feedback defect: invalid Australian numbers and the one-minute
+   cooldown previously fell through to a misleading sign-in-again error. Exact
+   public-message allowlisting now retains corrective guidance and rejects raw
+   provider diagnostics, including malicious-looking allowed-prefix strings.
+   Authentication/MFA failures still use generic sign-in/support guidance.
+3. Operational tests can write to DOCKED_OPERATIONAL_TEST_REPORT_DIR. Fresh
+   embedded tests no longer need to overwrite historical real-Postgres artifacts;
+   their engine is correctly labelled. Existing default paths remain compatible.
+4. Completed proposed full privacy notice, exact verification-screen wording,
+   specific Play Data Safety phone answers and provider-deletion support procedure.
+   Nothing was published, submitted or installed as a new active policy version.
+
+Fresh test evidence
+- platform-tests.txt: 22/22 platform cases passed (phone normalisation/challenge,
+  verified identity, private test admission, alert fencing/redaction, erasure,
+  owner permissions and related boundaries).
+- account-regression-tests.txt: 29/29 recovery/invitation/MFA/account/readiness cases.
+- phone-error-regression.txt: 7/7 after the API fix, including two new regressions;
+  five overlap the earlier platform run. Total distinct platform cases: 53.
+- operational-tests.txt: 2/2 PGlite database scenarios. Fresh reports under pglite/
+  cover founder AAL2/session checks, excluded roles, repeat/stale/recurring incidents,
+  acknowledge/resolve history, immutable audit, retention dry-run/exclusions/holds,
+  disabled pruning/privileges, AU canonical uniqueness and queued cooldown races.
+- Scoped ESLint for changed TS sources/tests passed. Parent release run owns final
+  full typecheck/lint/build and native PostgreSQL/concurrency rehearsal evidence.
+No embedded/synthetic result is labelled hosted, physical SMS or two-connection
+PostgreSQL proof. No code was written to fake successful OTP delivery.
+Separately, fixture-hosted-auth.json records actual hosted email/password login
+for both selected existing synthetic Preview accounts at 05:56 UTC. Fresh Auth
+getUser matched each expected verified identity. Both newly created sessions were
+signed out individually, and direct read-only checks confirmed those session rows
+were absent. Card, receipt and credit-lot fingerprints remained unchanged. This is
+hosted Auth acceptance only, not an application/WebView or SMS acceptance claim.
+
+Phone implementation audit
+- Enrolment calls session-bound Auth.updateUser({phone}), not signUp/admin confirm.
+- Verification uses phone_change OTP then fresh getUser; exact account ID,
+  canonical requested AU mobile and nonfuture confirmation timestamp must match.
+- +614/614/04 forms normalise to E.164; landline/foreign/malformed input rejected.
+- App admission requires verified email, live session, active identity and existing
+  enrolled/privileged MFA. User-editable metadata never supplies verification.
+- App limits: one send/minute, three sends/account/hour, six verifies/account/hour,
+  global send guard. Preview now adds six SMS/hour and a 60-second cooldown.
+- Shared public admission/ordinary-invitation gates stay closed in private mode;
+  two exact existing test IDs and a <=6-hour window bind isolated phone commands.
+- OTP never enters database audit; audits store actor/action/provider indicator.
+- Existing verified numbers cannot be changed through the app enrolment command.
+  Direct Auth number-change/recovery behaviour still needs hosted acceptance;
+  the privacy proposal does not falsely promise a provider-enforced support-only
+  change workflow. No account/card/balance merge or admin confirmation is permitted.
+- Account controls and deletion stay reachable without phone completion. Existing
+  erasure retains opaque provenance keys and verifies Auth erasure; separate
+  provider SMS/carrier retention is disclosed, not claimed automatically erased.
+
+Exact private test gate, after specific Preview test authority
+Target only Docked Preview bckkllmndoxzpzdqrevb, protected known Preview origin.
+Keep Production Phone Auth OFF, Supabase disable_signup=true and
+REGISTRATION_ENABLED=false. Saved credentials are still absent as of 05:27 UTC;
+founder must enter them privately in Preview's Phone provider fields (remain OFF).
+Exact action: Supabase > Docked Preview > Authentication > Sign In / Providers
+> Phone > Twilio. Enter the matching Account SID (AC...), Auth Token and Messaging
+Service SID (MG...) for the existing "Docked private phone verification" service.
+Save with Enable Phone provider OFF. This is Programmable Messaging, not a new
+Twilio Verify service. Use the already prepared DOCKED sender; no new account,
+business submission, rental number or token rotation is requested.
+Wait for usable Australian sender approval; a sender-pool entry or business-profile
+submission alone is not proof. Confirm Twilio MFA and current +61-only permissions.
+Two existing ordinary synthetic Preview identities are now selected. Original
+ignored fixture records in existing worktrees match current Auth records and
+server-controlled historical capture admissions. Both are email-verified, active,
+without roles or enrolled MFA, and without a phone. Neither owns historical cards
+or spendable credit. Their three old acceptance receipts are fully refunded and
+revoked; 18 synthetic test cards are preserved. No real member was selected.
+fixture-selection.json records the redacted checks. Exact IDs and original private
+credential-file references are in ignored private-data/v31-phone-test/
+identities.prepared.private.json. Passwords were not copied or emitted; their
+normal hosted Auth login was subsequently verified and sessions closed as above.
+The prepared phone allowlist is inactive and has no test-window deadline. Revalidate
+with scripts/prepare-phone-test-identities.mjs before authorised testing.
+
+Private server configuration, prepared but NOT activated/deployed by this work:
+DOCKED_ISOLATED_PUBLIC=true
+DOCKED_ISOLATED_PHONE_TEST=true
+DOCKED_ISOLATED_PHONE_MEMBERS=<two verified existing fixture UUIDs>
+DOCKED_ISOLATED_PHONE_UNTIL=<UTC stop, at most 6h after supervised start>
+DOCKED_PUBLIC_CUSTOMERS=true
+DOCKED_PUBLIC_PHONE_OTP=true
+DOCKED_PUBLIC_PHONE_POLICY_REFERENCE=<approved private notice reference>
+REGISTRATION_ENABLED=false
+DOCKED_ISOLATED_GOOGLE_TEST=false
+Only then enable Preview Phone Auth for that expressly approved window. Keep
+Twilio credentials in the existing secure provider fields, never these reports.
+
+Budget now authorised: maximum A$20 test spend; no new funding/purchase authorised.
+The already funded account showed US$20 credit, a different currency; do not call
+it A$20 or infer permission to charge another US$20. The previous A$20 funding
+proposal is superseded. Before testing read current usage/pricing/FX/taxes; stop
+at the earlier of 20 actual segments or A$5 message usage within the approved A$20
+ceiling. If costs cannot be bounded, do not send. Auto-recharge stays off.
+No paid number rental/add-on is required by this plan. Expenditure this work: 0.
+Published Australian base rate rechecked 11 November: US$0.0515 per outbound SMS
+segment; 20 single-segment texts = US$1.03 before taxes, FX and applicable extras.
+The published alphanumeric sender has no rental fee; failed-message processing
+can incur US$0.001. Actual usage and account terms govern the test stop.
+Source: https://www.twilio.com/en-us/sms/pricing/au
+
+Genuine acceptance, still unexecuted
+1. Verify closed signup, target identities, scope/window/provider readback and costs.
+2. Founder enters physical Australian number privately; receive and enter real code.
+3. Verify same-account authoritative confirmation; record timing/status/cost only.
+4. Wrong/expired/replayed codes, resend limits and direct Auth requests must fail
+   appropriately. Provider expiry itself was NOT proven by mocked rejection tests.
+5. Second-account and simultaneous number binding: at most one confirmed owner;
+   preserve all original account/card/wallet IDs. Check direct number-change path.
+6. Provider-disabled failure/recovery, existing-account login and deletion access.
+7. Close window and Preview Phone Auth, reconcile segments/costs and record result.
+8. After separately approved dormant Production rollout, repeat exact installed-v31
+   WebView journey. Preview browser acceptance alone is not installed-v31 proof.
+
+Hosted founder incident action — one supervised session, no repeat email
+After approved schema/backend rollout, founder signs into /admin/incidents with
+the existing authenticator. Use Record delivery drill (the UI explicitly does
+not send email), select the synthetic incident, acknowledge with a factual
+acceptance reason, then resolve using its current revision. Reload to inspect
+the immutable event history. Retain restricted audit outcome, not MFA codes.
+Do not click a delivery-confirmation action for a new synthetic drill unless actual
+delivery evidence exists. Existing DOCKED-OPS-20261110-01 receipt remains accepted
+by founder attestation, received 10 November; do not resend/re-request confirmation.
+Historical provider trace/correlation remains distinct from that accepted receipt.
+
+Android / Google
+android-compatibility.json records a fresh empty native/config/dependency diff
+against f1b50b6f. Retained AAB evidence unchanged; no new binary, artifact rewrite,
+fresh physical-device result or fresh Play Console inspection is claimed.
+PRIVACY_AND_PLAY_APPROVAL.txt is the concrete declaration review package. Current
+Google approval does not approve a later unsubmitted phone declaration change.
+
+External actions in this work
+Production writes: 0; Preview Auth PATCH: 1 (two stricter limits); SMS: 0; email: 0;
+public signup: 0; policy/Play submissions: 0; key transfers/rotation: 0;
+deletion schedules: 0.
+Existing synthetic Preview Auth login sessions created and closed: 2.

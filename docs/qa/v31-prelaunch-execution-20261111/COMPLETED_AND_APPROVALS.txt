@@ -1,0 +1,186 @@
+DOCKED V31 — executed pre-launch work and precise approvals
+11 November 2026 | PUBLIC LAUNCH NO-GO
+
+This is the later execution report, superseding the earlier same-day broad task
+list. Production remains independently verified at f1b50b6f51d7429a36df9a8d5db99aed8886bd44
+(READY deployment dpl_9bwmvDvt5AEszaBtR311MjHLpHg7). Work is on the existing
+codex/v31-commercial-p1-p4 branch, based on fetched c84e33b3. The final delivery
+message names the pushed commit containing this report. The user's separate dirty
+main workspace was preserved. No Production migration, deployment or data write.
+
+1. Completed now
+
+Cards: researched all 23 missing and 48 historical identities. There are no
+unresolved human identities. Prepared deterministic commercial-only registrations
+and an exact complete preservation baseline; existing player/card IDs are retained.
+The fresh snapshot exposed nine additional real-player AFL cards issued after the
+old census. All original 879 copies are unchanged; the correct current limited
+total is 888. TEST_ONLY receipt wording does not erase those lifetime allocations.
+The separate 18 NBA records remain preserved and excluded; NBA stays hidden.
+The import preserves retired consumption, serials, custody and existing metadata.
+See ../v31-prelaunch-20261111/cards/ for the final digest, proposal and rehearsal.
+The complete local import, replay and concurrent-attempt rehearsal passed with
+6,540 definitions, 888 consumed copies and 735 groups. All 906 custody records
+and 554 current protected tables stayed unchanged; a bounded lock timeout was
+safely retried without a partial import. No new card, owner change or activation.
+
+Current source work: fetched all 32 official NFL roster pages, 18 AFL/17 NRL squad
+pages and 1,117 Australian profiles into a separate private cache. Corroborated
+1,213/1,293 base players (1,213 x five rarities = 6,065 definitions). Keep 80
+changed/uncertain base records and 75 historical-only additional definitions
+excluded from new issuance. No mass founder identity-research task is needed.
+Fixed the offline AFL parser's current_club alias handling; contradictory fields
+remain quarantined. Fresh facts are not a grant of commercial rights or approval.
+
+Database: captured and authenticated a new 133,880,651-byte encrypted Production
+snapshot READ ONLY, restored into PostgreSQL 17.11 with network=none/no ports/cron.
+Full dumped schema, roles and memberships matched the prior package. Normal data
+activity and the extra AFL pack were separately reviewed, not called unchanged.
+The five exact migration files were applied twice locally: 550 protected tables
+unchanged. Restricted outbox-v2 applied twice: 555 existing tables preserved,
+apart from its one expected disabled alert flag. Native suites passed 49 scenario
+groups plus two incident/retention cases. No deletion schedule or cleanup enabled.
+Prepared exact approval-bound SQL/deployment operators and emergency-stop SQL.
+The combined five-migration/history/outbox transaction passed and rolled back;
+emergency closure passed with the retention table present and absent. Six missing
+or invalid approval cases refused before hosted access. The exact isolated restore
+container was then stopped, discarding tmpfs plaintext and retaining encrypted
+backup/manifest/key. No other Docker resources were deleted or reset.
+Full matrix, checksums, permissions, dependencies, risks and recovery are in the
+database package. Source changes invalidate the corresponding operator approval.
+
+Phone/account/operations: fixed misleading invalid-number/resend errors and
+replaced prefix-based provider-message exposure with an exact safe allowlist.
+53 distinct phone/account/security platform cases and two separately labelled
+PGlite cases passed. Tightened only Preview's SMS limits to six/hour and 60 seconds;
+provider and signup stayed OFF, six-digit/300-second OTP retained. Repeat apply
+was idempotent and Production Auth readback unchanged. Two proven existing
+synthetic ordinary Preview accounts are selected in an ignored inactive allowlist;
+their old synthetic acceptance assets are preserved. Both then passed actual
+hosted Preview email/password sign-in and authoritative getUser checks; each
+created session was individually signed out and confirmed absent. Receipt/lot/card
+fingerprints stayed unchanged. No user created, reset or changed. This is hosted
+Auth evidence, not application WebView, phone delivery or founder MFA acceptance.
+Source procedure and exact secure Twilio entry steps are in
+../v31-phone-ops-20261111/PHONE_OPS_ACCEPTANCE.txt.
+
+Email acceptance remains CONFIRMED by founder attestation: DOCKED-OPS-20261110-01,
+received 10 November. Provider acceptance was previously reported. No automated
+inbox inspection is claimed and no test email was resent. Sole operational
+recipient remains support@docked.com.au. Independent historical provider trace
+and actual hosted acknowledgement/resolution remain distinct from local tests.
+
+Vault: prepared exact one-canary Google Secret Manager configuration, metadata-only
+inspection script, least-privilege access, audit/denial/recovery tests, cost and
+emergency procedure in VAULT_PACKAGE.txt. No cloud secret/IAM/billing change and
+no live-key access, transfer or rotation. Effective IAM/MFA/billing/logging are
+not accepted: browser use is disabled in Work settings and gcloud is unavailable.
+
+Privacy/Play: complete prospective notice and precise phone Data Safety delta
+prepared, including WebView collection, Twilio processing, overseas processing,
+provider retention/deletion and recovery. No unapproved seven-day deletion promise
+or new deletion prerequisite. Nothing published/submitted. Native/config/dependency
+diff against the approved v31 baseline is empty; no v32 requirement identified.
+An exact inactive two-file publication patch is prepared and passes applicability
+and component lint checks. Existing Billing SDK/mailbox/deletion disclosures and
+all other policy documents are preserved. See the privacy-publication/ manifest
+and APPLICATION.txt. Applying it later changes source; its reviewed publication
+commit must be separately bound, not represented as part of today's dormant code.
+
+Regression/build: 121 additional focused platform regressions passed across
+packs/refunds/store/scarcity/marketplace/fantasy/vault logic. Suite totals are not
+added together as a unique grand total. Seventeen live GET-only gate checks passed.
+Full typecheck, full lint and optimized webpack build passed. Default local
+Turbopack cannot follow this Windows worktree's external node_modules junction;
+the supported webpack build was used without changing dependencies/configuration.
+No fresh mobile FPS/load benchmark, signed-in hosted application UI, live-money settlement
+or physical-device OTP success is claimed. The installed-v31 check remains a
+release acceptance step, not an Android artifact rewrite.
+
+2. Ready for founder approval — distinct packages
+
+Backend package: approve the five ordered migrations and restricted outbox-v2 permissions in
+database/exact-package.json, plus controlled dormant backend stage/promotion of
+the final reviewed commit. Use config/operations/v31-backend-approval.template.json
+for the exact scope and bounded window. The existing Production deployment is the
+rollback target. Allow 10–15 minutes of quiet database maintenance; candidate
+build/verification is separate. Public registration, phone sending, inventory,
+commerce, Play publication, live-key changes and deletion schedules are excluded.
+
+Preservation import: accept the evidence-backed historical preservation group and 23 exact proposed
+commercial-only identity registrations, then approve only the complete fresh
+6,540-definition / 888-consumed-copy baseline at the final card-plan SHA-256.
+The separate exact import artifact binds source/code, fresh backup and drift.
+All definitions remain unapproved; no card is minted or reminted. Current
+issuance eligibility/rights for the separate 6,065-definition candidate is a
+distinct commercial decision. Recommended exclusion group is documented; no
+need to decide every excluded player's future individually before launching.
+
+Phone disclosures: review the complete proposed phone notice and declaration package in
+../v31-phone-ops-20261111/PRIVACY_AND_PLAY_APPROVAL.txt and
+../../policies/2026-11-11-phone-review/privacy.md. Wording acceptance, policy
+publication/Play declaration submission, and v31 publication are distinct scopes.
+Managed publishing remains ON. Phone is conservatively proposed collected/shared;
+the documented Twilio independent-processing rationale is an inference, not a
+claim of legal or Google approval.
+
+Vault canary: after actual Google project/access/billing inspection, authorise only the
+specified synthetic vault canary and minimum scoped IAM/logging setup if needed.
+Existing founder custody and approved Google Secret Manager choice are retained.
+Live-key transfer/rotation is not included. No unnecessary paid infrastructure.
+
+The final launch activation/publication decision is deliberately not requested
+now: genuine OTP, hosted incident/vault/device acceptance and applicable Google
+declaration review have not passed. These package approvals do not imply launch.
+
+3. Founder participation — actions Codex cannot complete alone
+
+- Enable local browser use in Work settings and leave the founder's existing
+  Google Cloud account signed in to docked-play-verification. This access request
+  has already been made once; no re-enrolment or second custodian is requested.
+- Privately enter existing Twilio AC Account SID, Auth Token and MG Messaging
+  Service SID in Docked Preview > Auth > Phone > Twilio; save with provider OFF.
+  Do not send secrets in chat. No new Twilio account/submission/funding is needed.
+- Attend one supervised founder acceptance session: existing MFA for incident
+  acknowledgement/resolution and vault recovery; later receive/enter a genuine
+  Australian OTP on the physical device after the exact test window is authorised.
+  No repeat email receipt confirmation or credential copying into reports.
+
+4. Waiting on Twilio
+
+Usable Australian sender approval, then secure configuration/readback and the
+explicit isolated Preview test window. Genuine delivery/expiry/replay/races,
+number-change/recovery and provider failure acceptance remain unexecuted. Repeat
+the installed-v31 journey only after approved closed Production configuration.
+Approved test spend is maximum A$20; existing account credit was US$20. The test
+procedure stops at 20 segments or A$5 usage, whichever comes first; no SMS or new
+charge occurred here. Six/hour rate limits may add elapsed acceptance waiting.
+
+5. Waiting on Google
+
+v31/1.30 remains recorded APPROVED / READY TO PUBLISH, managed publishing ON;
+this run did not perform a fresh Console inspection because browser access is
+disabled. The new phone Data Safety declaration has not been submitted and is
+not covered by that existing approval. Google reviews the proposed update;
+inspect Publishing overview and wait for applicable approval before publication.
+No v32 submission, managed-publishing change or public release occurred.
+
+6. Remaining engineering after exact approvals/access
+
+Allow approximately 6–10 focused hours for controlled rollout/import, approved
+wording/configuration, actual vault/incident/phone/device acceptance and final
+activation verification. This excludes Twilio/Google waiting, rate-limit waiting,
+founder availability and any newly discovered provider/device defect. Most source
+work is prepared; acceptance evidence cannot be manufactured in advance.
+The exact ordered commands, gates and reversible/non-reversible boundaries are
+in LAUNCH_RUNBOOK.txt. Australian public registration and commercial sales can
+be approved separately; an extended invite-only launch is not required.
+
+7. Launch status
+
+Technical: prepared and locally verified, pending approved rollout/hosted/device
+acceptance. Operational: NOT ACCEPTED until hosted incident/vault/SMS acceptance.
+Commercial: NOT APPROVED/ACTIVE; exact inventory and current source/rights/payment
+gates remain separate. Public launch remains NO-GO. Production stays unchanged,
+NBA hidden, public signup/live payments/trading/prizes/withdrawals/real scoring
+and operational deletion schedules remain disabled.

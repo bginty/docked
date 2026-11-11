@@ -1,6 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { executePhoneChallenge } from "../../src/core/phone-challenge";
+import {
+  executePhoneChallenge,
+  publicPhoneErrorMessage,
+} from "../../src/core/phone-challenge";
+import { normalizedPhone } from "../../src/core/public-phone";
 const request = {
   action: "verify" as const,
   phone: "0400000001",
@@ -69,6 +73,42 @@ test("successful OTP response alone cannot prove identity, number or confirmed t
     await assert.rejects(
       executePhoneChallenge(request, "member", auth),
       /did not complete/,
+    );
+  }
+});
+
+test("invalid Australian number and resend cooldown retain actionable public guidance", () => {
+  let invalidNumber: unknown;
+  try {
+    normalizedPhone("+14155550123");
+  } catch (error) {
+    invalidNumber = error;
+  }
+  assert.equal(
+    publicPhoneErrorMessage(invalidNumber),
+    "Enter an Australian mobile number, starting with 04 or +614.",
+  );
+  assert.equal(
+    publicPhoneErrorMessage(
+      Error("Please wait one minute before requesting another code."),
+    ),
+    "Please wait one minute before requesting another code.",
+  );
+});
+
+test("phone API cannot expose raw diagnostics merely because they start with a public prefix", () => {
+  for (const error of [
+    Error("Authentication required"),
+    Error("Privileged MFA required"),
+    Error("Unable to send a code. provider token=secret phone=+61400000001"),
+    Error("Phone verification failed: token=123456"),
+    Error("Too many attempts: raw request contains a phone number"),
+    { message: "Please wait one minute before requesting another code." },
+    null,
+  ]) {
+    assert.equal(
+      publicPhoneErrorMessage(error),
+      "Unable to verify your phone. Please sign in again or contact support.",
     );
   }
 });

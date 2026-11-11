@@ -1,0 +1,28 @@
+{
+  "status": "INACTIVE_PREPARED_ONLY",
+  "requiresApproval": "C-specific wording, publication/submission and controlled deployment authority; no approval inferred",
+  "version": "2026-11-11-privacy-phone-v4",
+  "effective": "on approved publication",
+  "patchSha256": "1bf4e24b1fb54e9e5025407137117c723faef8ad594e01f0408d4003e5dc9dfe",
+  "files": [
+    {
+      "path": "config/launch-policy-content.json",
+      "beforeNormalizedSha256": "da2b3a0067443e0fdd43e0b5080ad0d65370febd451bf7bc3db5dc972a8fc080",
+      "afterNormalizedSha256": "cfd82df98740dcaf8bedc9ae2a51c83976930a42bdf3b28ce41846237fc8bfda"
+    },
+    {
+      "path": "src/components/public-phone-verification.tsx",
+      "beforeNormalizedSha256": "9341a4b625143089078c48a3fffb49d62107be613c7c586fc68d5f40a16e2145",
+      "afterNormalizedSha256": "81abce3083f72be20acda0a313461d8aeaba41b23de44a22e5e6a41142bf2b06"
+    }
+  ],
+  "otherPolicyDocumentsUnchanged": true,
+  "topLevelPolicyMetadataUnchanged": true,
+  "consentEnvironmentValuePrepared": "PRIVACY_POLICY_VERSION=2026-11-11-privacy-phone-v4",
+  "environmentChanged": false,
+  "activeFilesChanged": false,
+  "published": false,
+  "googleSubmitted": false,
+  "nativeChanged": false,
+  "hashNormalization": "UTF-8 with LF newlines; no BOM"
+}

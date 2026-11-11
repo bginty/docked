@@ -4,6 +4,8 @@
 
 ## Current v31 launch checks — 11 November 2026
 
+The later [executed pre-launch work](qa/v31-prelaunch-execution-20261111/COMPLETED_AND_APPROVALS.txt) and [ordered launch runbook](qa/v31-prelaunch-execution-20261111/LAUNCH_RUNBOOK.txt) supersede the earlier same-day source-research and preparation tasks below. They include the fresh restored-Production rehearsal, complete preservation-only inventory proposal, phone error fix and stricter Preview limits. Public launch remains **NO-GO**. The linked current reports distinguish isolated proof from hosted/physical acceptance and preserve separate rollout, inventory, declaration and launch approvals.
+
 The latest [founder action report](qa/v31-launch-checks-20261111/FOUNDER_ACTIONS.txt) and [plain-text card decisions](qa/v31-launch-checks-20261111/CARD_DECISIONS.txt) supersede overlapping status and next-action statements below. Live Play Console inspection confirms **v31 / 1.30 Ready to publish**, with managed publishing **ON**. The approved release has not been published. Production remains `f1b50b6f`; public launch remains **NO-GO**.
 
 - [x] Google v31 review completed; current Data Safety selections inspected read-only.

@@ -727,7 +727,10 @@ async function main() {
       for (const a of all) assert.equal(a.lot, a.ledger);
     },
   );
-  mkdirSync("docs/qa/commercial-billing-20261101", { recursive: true });
+  const reportDir =
+    process.env.DOCKED_DB_TEST_REPORT_DIR ??
+    "docs/qa/commercial-billing-20261101";
+  mkdirSync(reportDir, { recursive: true });
   if (process.argv.includes("--browser"))
     await check(
       "rendered shared commercial packs, collection and wallet on mobile and desktop",
@@ -738,7 +741,7 @@ async function main() {
       },
     );
   writeFileSync(
-    "docs/qa/commercial-billing-20261101/postgres.json",
+    `${reportDir}/${process.env.DOCKED_DB_TEST_REPORT_DIR ? "billing-postgres" : "postgres"}.json`,
     JSON.stringify(
       {
         environment: "disposable-loopback-PostgreSQL",

@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: challenge uses user-session phone_change and fresh same-member provider confirmation
+ok 1 - challenge uses user-session phone_change and fresh same-member provider confirmation
+  ---
+  duration_ms: 4.1769
+  ...
+# Subtest: provider rejection, outage and expired/wrong code never expose raw provider data
+ok 2 - provider rejection, outage and expired/wrong code never expose raw provider data
+  ---
+  duration_ms: 1.5892
+  ...
+# Subtest: successful OTP response alone cannot prove identity, number or confirmed timestamp
+ok 3 - successful OTP response alone cannot prove identity, number or confirmed timestamp
+  ---
+  duration_ms: 0.8084
+  ...
+# Subtest: invalid Australian number and resend cooldown retain actionable public guidance
+ok 4 - invalid Australian number and resend cooldown retain actionable public guidance
+  ---
+  duration_ms: 0.4529
+  ...
+# Subtest: phone API cannot expose raw diagnostics merely because they start with a public prefix
+ok 5 - phone API cannot expose raw diagnostics merely because they start with a public prefix
+  ---
+  duration_ms: 0.4149
+  ...
+# Subtest: phone evidence must come from confirmed Auth fields, never a typed number
+ok 6 - phone evidence must come from confirmed Auth fields, never a typed number
+  ---
+  duration_ms: 3.4732
+  ...
+# Subtest: SMS cannot send before public/OTP/policy configuration; beta unchanged
+ok 7 - SMS cannot send before public/OTP/policy configuration; beta unchanged
+  ---
+  duration_ms: 0.9617
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2036.4003

@@ -1,0 +1,91 @@
+{
+  "version": "v31-dormant-backend-20261111-v1",
+  "project": "pojoymtniryarxxunyvz",
+  "productionBaseline": "f1b50b6f51d7429a36df9a8d5db99aed8886bd44",
+  "sourceCatalogue": {
+    "fingerprint": "ff2b792e3d265385380042ba4548ba08",
+    "objects": 9971
+  },
+  "archiveSha256": "f726c5bdceaf641ff6a7f7ae36a1a017db02900c6f7eb78ae3bc644c30fa6926",
+  "backupDirectory": "private-data/commercial-restore-20261111",
+  "restoreEvidence": "docs/qa/v31-prelaunch-execution-20261111/database/restore-20261111",
+  "files": [
+    {
+      "kind": "migration",
+      "path": "supabase/migrations/20261109231834_commercial_lifetime_supply_guards.sql",
+      "sha256": "ec1154357168027f106c9d5e0f03cc98fd9820a58f4196cb7f30103b98ff53bb",
+      "version": "20261109231834",
+      "name": "commercial_lifetime_supply_guards"
+    },
+    {
+      "kind": "migration",
+      "path": "supabase/migrations/20261109232000_public_practice_phone_guards.sql",
+      "sha256": "8179828fdd88bea9c95f4ac961905737f51d1aae78e25455748e7191a6d4fee0",
+      "version": "20261109232000",
+      "name": "public_practice_phone_guards"
+    },
+    {
+      "kind": "migration",
+      "path": "supabase/migrations/20261109232124_operational_incident_review.sql",
+      "sha256": "9ff6eae192460f1369e3db11ba387ab9418fcb2908a017a653f2c15e870a62bd",
+      "version": "20261109232124",
+      "name": "operational_incident_review"
+    },
+    {
+      "kind": "migration",
+      "path": "supabase/migrations/20261110005726_operational_incident_retention.sql",
+      "sha256": "1248d78d8c3a17d54d9d3732444e2e058cfe43e6af0aa857f5acfc17262de5bd",
+      "version": "20261110005726",
+      "name": "operational_incident_retention"
+    },
+    {
+      "kind": "migration",
+      "path": "supabase/migrations/20261110010050_australian_verified_phone_uniqueness.sql",
+      "sha256": "bc5c61ede682a41ff24500b89fda4db6cef71760f30d52c2c8fb652ac79c4e11",
+      "version": "20261110010050",
+      "name": "australian_verified_phone_uniqueness"
+    },
+    {
+      "kind": "outbox",
+      "path": "config/operations/billing-ops-outbox-v2.prepared.sql",
+      "sha256": "59dffc74f3f9a354366bedc994136264fb1922201a6c33f40864777b2546cf09"
+    },
+    {
+      "kind": "operator-dependency",
+      "path": "scripts/v31-approved-backend-migrations.mjs",
+      "sha256": "2131e6134e639a8ec88e4de2a6632da0e4f67485c91b450fa358e580e71ed8a1"
+    },
+    {
+      "kind": "operator-dependency",
+      "path": "scripts/v31-controlled-backend.mjs",
+      "sha256": "4683243c152f747858da496a26a0926029b2675446ec79b4cf947f34e5f6e669"
+    },
+    {
+      "kind": "operator-dependency",
+      "path": "scripts/lib/v31-exact-package.mjs",
+      "sha256": "fc1dee188e268c663dce5468001d215122b5257229a8f5a7246b40259a623e28"
+    },
+    {
+      "kind": "operator-dependency",
+      "path": "scripts/lib/v31-schema-fingerprint.ts",
+      "sha256": "3e8e3d41f01379dfd2a7c1d10a729ddff21f47162124ddba060910024fdcd55d"
+    },
+    {
+      "kind": "operator-dependency",
+      "path": "scripts/nba-private-beta-release.mjs",
+      "sha256": "6174ad04741572a03826581595d69ed10fb00d7856e84a313ff872ca909f29f0"
+    },
+    {
+      "kind": "operator-dependency",
+      "path": "src/core/hosted-beta.mjs",
+      "sha256": "da4aedf5319ac9b5df18a3acc7b93c9d8877ebbb9ba95357ecc92cfa0210568e"
+    },
+    {
+      "kind": "operator-dependency",
+      "path": "config/hosted-beta.json",
+      "sha256": "8affb69fc8d1b667eb9fd81be89c83630381d6533b260c875947eb6413048d2f"
+    }
+  ],
+  "scope": "Five ordered dormant migrations and restricted outbox permissions; controlled closed-gate backend deployment. No inventory import, public registration, commercial activation, Play publication or deletion schedule.",
+  "approvalStatus": "NOT_APPROVED"
+}

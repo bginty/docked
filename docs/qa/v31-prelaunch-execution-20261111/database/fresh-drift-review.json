@@ -1,0 +1,190 @@
+{
+  "checkedAt": "2026-11-11T05:34:59.856Z",
+  "previousSnapshotAt": "2026-11-10T01:18:41.912Z",
+  "freshSnapshotAt": "2026-11-11T05:34:00.942Z",
+  "freshArchiveSha256": "f726c5bdceaf641ff6a7f7ae36a1a017db02900c6f7eb78ae3bc644c30fa6926",
+  "previousSchemaSha256": "28ef4a78ecf45a3e0921c135ed93567af5f6c84ec6c47a497e5927be26d03e88",
+  "freshSchemaSha256": "28ef4a78ecf45a3e0921c135ed93567af5f6c84ec6c47a497e5927be26d03e88",
+  "schemaUnchanged": true,
+  "rolesUnchanged": true,
+  "membershipsUnchanged": true,
+  "unchangedTableFingerprints": 532,
+  "changedTables": [
+    {
+      "table": "\"auth\".\"mfa_amr_claims\"",
+      "previousRows": 207,
+      "currentRows": 208,
+      "previousHash": "3446c887933e90e0c98d3c31f36dd807",
+      "currentHash": "7b81d9ef694835acd9835620f9b62b4b"
+    },
+    {
+      "table": "\"auth\".\"refresh_tokens\"",
+      "previousRows": 555,
+      "currentRows": 561,
+      "previousHash": "af425d8ce2114627d14d385e78be162f",
+      "currentHash": "cf7b54b47b07ce8a20bd01bb8f8d8b9d"
+    },
+    {
+      "table": "\"auth\".\"sessions\"",
+      "previousRows": 138,
+      "currentRows": 139,
+      "previousHash": "c2265d56c325590b2b4ff562e914a3a3",
+      "currentHash": "a6e7eac83921a074afb4fa6f8f0bf430"
+    },
+    {
+      "table": "\"auth\".\"users\"",
+      "previousRows": 6,
+      "currentRows": 6,
+      "previousHash": "83d180f7e0fca0320624c17f408a8fb4",
+      "currentHash": "5fa9b8c5fef77f786faa0aa98d158a42"
+    },
+    {
+      "table": "\"beta_private\".\"rate_limits\"",
+      "previousRows": 122,
+      "currentRows": 122,
+      "previousHash": "b7c2ddcc48b9b087ccb07a2e1b8d5e26",
+      "currentHash": "0d458f24e44ee5909b9bff782e677c62"
+    },
+    {
+      "table": "\"credits_sandbox\".\"history\"",
+      "previousRows": 314,
+      "currentRows": 316,
+      "previousHash": "df8686ea2849174ea922a46c53897065",
+      "currentHash": "66ae914d25b13fe5fe2d2f82215fbb69"
+    },
+    {
+      "table": "\"credits_sandbox\".\"journal\"",
+      "previousRows": 147,
+      "currentRows": 148,
+      "previousHash": "fb7ec61e2451171c07fdc54feea34e49",
+      "currentHash": "2439f0038d8ecbaa56ee3f7c4dd36120"
+    },
+    {
+      "table": "\"credits_sandbox\".\"lines\"",
+      "previousRows": 318,
+      "currentRows": 320,
+      "previousHash": "c4384ea4c8acf03946bdf7c9d13c4afc",
+      "currentHash": "c697e3ccc75c93a52d98882f674e3d4e"
+    },
+    {
+      "table": "\"credits_sandbox\".\"nba_fixture_definitions\"",
+      "previousRows": 346,
+      "currentRows": 351,
+      "previousHash": "88d8b92200be4f758521f3e24da8eaca",
+      "currentHash": "b6e2b385cd9e1cb6e5e5e9fdd4aac851"
+    },
+    {
+      "table": "\"credits_sandbox\".\"nba_fixture_instances\"",
+      "previousRows": 398,
+      "currentRows": 407,
+      "previousHash": "ac19aa043f8d83723b7f7bb163c70a46",
+      "currentHash": "c93b59686cca303b1321bad1eb8f2877"
+    },
+    {
+      "table": "\"credits_sandbox\".\"pack_receipts\"",
+      "previousRows": 111,
+      "currentRows": 112,
+      "previousHash": "24afb1aa822a4cf9b796640766c29008",
+      "currentHash": "d90a908b8aabcd705585cf2c0ae72bcd"
+    },
+    {
+      "table": "\"credits_sandbox\".\"state\"",
+      "previousRows": 1,
+      "currentRows": 1,
+      "previousHash": "21464eedd75f8aa764d98cd1104894c9",
+      "currentHash": "5af7238acac853c099fd61380d238f3e"
+    },
+    {
+      "table": "\"cron\".\"job_run_details\"",
+      "previousRows": 152701,
+      "currentRows": 159625,
+      "previousHash": "621236ba13a5a2c5e77b883a0c9cee7e",
+      "currentHash": "07bd05afc9e50e01de0bc3795f0cfbe3"
+    },
+    {
+      "table": "\"net\".\"_http_response\"",
+      "previousRows": 27,
+      "currentRows": 27,
+      "previousHash": "618e26844bff464232655563548da19b",
+      "currentHash": "6085402870f1d159808718db4290a020"
+    },
+    {
+      "table": "\"private\".\"docked_mail_scheduler\"",
+      "previousRows": 1,
+      "currentRows": 1,
+      "previousHash": "6fa70223541540218af1ba2a7cfc370f",
+      "currentHash": "76eeca3772ff691564733562bbfd3a18"
+    },
+    {
+      "table": "\"sports_feed\".\"nfl_rounds\"",
+      "previousRows": 8,
+      "currentRows": 8,
+      "previousHash": "7f648a6dff7e1cd3490aef30fc5348fe",
+      "currentHash": "98bd214486e16b75dde2a6686d60c390"
+    },
+    {
+      "table": "\"sports_feed\".\"nfl_worker_runs\"",
+      "previousRows": 3088,
+      "currentRows": 3207,
+      "previousHash": "e8517cb67fcd4cd03ff6ec3d0f8ea905",
+      "currentHash": "1109ddac82e95423c82c7a029341d1d0"
+    },
+    {
+      "table": "\"sports_feed\".\"raw_revisions\"",
+      "previousRows": 112,
+      "currentRows": 112,
+      "previousHash": "55b008e8dfb3a28a9293990f56b002de",
+      "currentHash": "49f30800f2fb77b2d0e92db53393d262"
+    },
+    {
+      "table": "\"sports_feed\".\"sport_sandbox_inventory\"",
+      "previousRows": 14,
+      "currentRows": 14,
+      "previousHash": "9bc75d9440a4cafeda6ff4dcaf994a8e",
+      "currentHash": "8310b967417409308c72213dea672c1e"
+    },
+    {
+      "table": "\"sports_feed\".\"weekly_core_job_runs\"",
+      "previousRows": 56647,
+      "currentRows": 60035,
+      "previousHash": "11342b171840e3476362d38da43b0199",
+      "currentHash": "0c14faed65c88a5329af5ac0501a802e"
+    }
+  ],
+  "migrations": [
+    {
+      "file": "20261109231834_commercial_lifetime_supply_guards.sql",
+      "sha256": "ec1154357168027f106c9d5e0f03cc98fd9820a58f4196cb7f30103b98ff53bb",
+      "matchesPriorRehearsal": true
+    },
+    {
+      "file": "20261109232000_public_practice_phone_guards.sql",
+      "sha256": "8179828fdd88bea9c95f4ac961905737f51d1aae78e25455748e7191a6d4fee0",
+      "matchesPriorRehearsal": true
+    },
+    {
+      "file": "20261109232124_operational_incident_review.sql",
+      "sha256": "9ff6eae192460f1369e3db11ba387ab9418fcb2908a017a653f2c15e870a62bd",
+      "matchesPriorRehearsal": true
+    },
+    {
+      "file": "20261110005726_operational_incident_retention.sql",
+      "sha256": "1248d78d8c3a17d54d9d3732444e2e058cfe43e6af0aa857f5acfc17262de5bd",
+      "matchesPriorRehearsal": true
+    },
+    {
+      "file": "20261110010050_australian_verified_phone_uniqueness.sql",
+      "sha256": "bc5c61ede682a41ff24500b89fda4db6cef71760f30d52c2c8fb652ac79c4e11",
+      "matchesPriorRehearsal": true
+    }
+  ],
+  "permissionPackage": {
+    "path": "config/operations/billing-ops-outbox-v2.prepared.sql",
+    "rawSha256": "59dffc74f3f9a354366bedc994136264fb1922201a6c33f40864777b2546cf09",
+    "lfSha256": "b3e7ff04182b33f351c4c897550959ba3885c5f9960b1733a1a255ff5526e121",
+    "approval": "separate required"
+  },
+  "fullArchiveAuthentication": "See matching restore archive-integrity.json; schema-only extraction alone is insufficient",
+  "scope": "Fresh repeatable-read read-only snapshot against previous encrypted snapshot; hashes/counts only",
+  "productionWrites": 0
+}

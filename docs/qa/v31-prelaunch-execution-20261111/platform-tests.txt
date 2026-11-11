@@ -1,0 +1,615 @@
+TAP version 13
+# Subtest: verified commercial receipt uses provider identity, exact AUD charge and account
+ok 1 - verified commercial receipt uses provider identity, exact AUD charge and account
+  ---
+  duration_ms: 53.1172
+  ...
+# Subtest: TEST receipts cannot cross commercial boundary in either direction
+ok 2 - TEST receipts cannot cross commercial boundary in either direction
+  ---
+  duration_ms: 4.4979
+  ...
+# Subtest: reject manipulated account
+ok 3 - reject manipulated account
+  ---
+  duration_ms: 1.0896
+  ...
+# Subtest: reject manipulated product
+ok 4 - reject manipulated product
+  ---
+  duration_ms: 0.859
+  ...
+# Subtest: reject manipulated region
+ok 5 - reject manipulated region
+  ---
+  duration_ms: 2.8422
+  ...
+# Subtest: reject manipulated quantity
+ok 6 - reject manipulated quantity
+  ---
+  duration_ms: 1.7949
+  ...
+# Subtest: reject manipulated option
+ok 7 - reject manipulated option
+  ---
+  duration_ms: 1.2298
+  ...
+# Subtest: reject manipulated orderToken
+ok 8 - reject manipulated orderToken
+  ---
+  duration_ms: 1.3298
+  ...
+# Subtest: reject manipulated orderProduct
+ok 9 - reject manipulated orderProduct
+  ---
+  duration_ms: 1.6266
+  ...
+# Subtest: reject manipulated currency
+ok 10 - reject manipulated currency
+  ---
+  duration_ms: 1.7442
+  ...
+# Subtest: pending without order remains pending and is not a verified charge
+ok 11 - pending without order remains pending and is not a verified charge
+  ---
+  duration_ms: 0.8665
+  ...
+# Subtest: partial refunds are held, full refund is cumulative without double counting
+ok 12 - partial refunds are held, full refund is cumulative without double counting
+  ---
+  duration_ms: 3.5482
+  ...
+# Subtest: amount drift records a charge needing review, never silently changes credit allocation
+ok 13 - amount drift records a charge needing review, never silently changes credit allocation
+  ---
+  duration_ms: 1.3382
+  ...
+# Subtest: provider outages do not leak tokens or invent successful purchases
+ok 14 - provider outages do not leak tokens or invent successful purchases
+  ---
+  duration_ms: 0.9195
+  ...
+# Subtest: integer money and unchanged sport-specific pack configuration
+ok 15 - integer money and unchanged sport-specific pack configuration
+  ---
+  duration_ms: 19.1563
+  ...
+# Subtest: all sport/size variants require distinct supply for every positive-weight rarity
+ok 16 - all sport/size variants require distinct supply for every positive-weight rarity
+  ---
+  duration_ms: 28.0279
+  ...
+# Subtest: missing, fractional or invalid supply cannot satisfy a required rarity
+ok 17 - missing, fractional or invalid supply cannot satisfy a required rarity
+  ---
+  duration_ms: 0.4617
+  ...
+# Subtest: Customer API policies reject stale trade requests independent of sport or feature flags
+ok 18 - Customer API policies reject stale trade requests independent of sport or feature flags
+  ---
+  duration_ms: 7.7636
+  ...
+# Subtest: dated reconciliation reconstructs sale/resale, opening and closing; no double-counted proceeds
+ok 19 - dated reconciliation reconstructs sale/resale, opening and closing; no double-counted proceeds
+  ---
+  duration_ms: 96.5968
+  ...
+# Subtest: Sydney date boundaries handle DST and invalid/reversed ranges
+ok 20 - Sydney date boundaries handle DST and invalid/reversed ranges
+  ---
+  duration_ms: 3.2236
+  ...
+# Subtest: free swap atomically cancels superseded listings; replay and stale buy cannot create another owner
+ok 21 - free swap atomically cancels superseded listings; replay and stale buy cannot create another owner
+  ---
+  duration_ms: 13.4443
+  ...
+# Subtest: missing funding record or altered posting is detected; CSV neutralises formula text
+ok 22 - missing funding record or altered posting is detected; CSV neutralises formula text
+  ---
+  duration_ms: 6.0414
+  ...
+# Subtest: expired swap, forged ownership, failed purchase and stale amount preserve all records
+ok 23 - expired swap, forged ownership, failed purchase and stale amount preserve all records
+  ---
+  duration_ms: 13.1465
+  ...
+# Subtest: AUD deposits grant exact credits plus unopened bonus; duplicate captures, clears, openings and pack purchases
+ok 24 - AUD deposits grant exact credits plus unopened bonus; duplicate captures, clears, openings and pack purchases
+  ---
+  duration_ms: 92.1917
+  ...
+# Subtest: inventory exhaustion, late capture and cancellation never silently substitute cards or accept client price
+ok 25 - inventory exhaustion, late capture and cancellation never silently substitute cards or accept client price
+  ---
+  duration_ms: 10.9259
+  ...
+# Subtest: seller commission uses exact integer half-up and sales preserve provenance/restricted resale
+ok 26 - seller commission uses exact integer half-up and sales preserve provenance/restricted resale
+  ---
+  duration_ms: 26.1838
+  ...
+# Subtest: swaps reject/cancel free, accept debits 50 each exactly once; stale ownership and locks deny
+ok 27 - swaps reject/cancel free, accept debits 50 each exactly once; stale ownership and locks deny
+  ---
+  duration_ms: 34.3134
+  ...
+# Subtest: insufficient counterparty swap fee rolls back both owners and all fees
+ok 28 - insufficient counterparty swap fee rolls back both owners and all fees
+  ---
+  duration_ms: 35.5866
+  ...
+# Subtest: promotions are restricted, limited, MFA protected; spent reversal becomes review, not negative balance
+ok 29 - promotions are restricted, limited, MFA protected; spent reversal becomes review, not negative balance
+  ---
+  duration_ms: 8.6695
+  ...
+# Subtest: funded awards use approved sample schedule, final results, ties and duplicate/correction controls
+ok 30 - funded awards use approved sample schedule, final results, ties and duplicate/correction controls
+  ---
+  duration_ms: 20.2143
+  ...
+# Subtest: withdrawal KYC, reservation and uncertain payout cannot duplicate, cancel or auto-retry
+ok 31 - withdrawal KYC, reservation and uncertain payout cannot duplicate, cancel or auto-retry
+  ---
+  duration_ms: 47.3617
+  ...
+# Subtest: refund after bonus transfer keeps ownership and records recovery; partial refund compensates once
+ok 32 - refund after bonus transfer keeps ownership and records recovery; partial refund compensates once
+  ---
+  duration_ms: 44.6784
+  ...
+# Subtest: reserved keys, client-supplied prices, fake providers and live mode fail closed
+ok 33 - reserved keys, client-supplied prices, fake providers and live mode fail closed
+  ---
+  duration_ms: 6.2462
+  ...
+# Subtest: Pending cumulative full refund compensates all credits; expired reservations release finite supply
+ok 34 - Pending cumulative full refund compensates all credits; expired reservations release finite supply
+  ---
+  duration_ms: 12.7859
+  ...
+# Subtest: Unspent funded promotion reverses with compensating entries and restores its approved budget
+ok 35 - Unspent funded promotion reverses with compensating entries and restores its approved budget
+  ---
+  duration_ms: 5.8366
+  ...
+# Subtest: Restricted card value cannot become redeemable through an intermediate pure swap
+ok 36 - Restricted card value cannot become redeemable through an intermediate pure swap
+  ---
+  duration_ms: 29.1654
+  ...
+# Subtest: NFL calculation is explicit, fractional, reproducible and broken down by stat
+ok 37 - NFL calculation is explicit, fractional, reproducible and broken down by stat
+  ---
+  duration_ms: 16.2661
+  ...
+# Subtest: NFL missing or malformed observations cannot silently score as zero
+ok 38 - NFL missing or malformed observations cannot silently score as zero
+  ---
+  duration_ms: 6.5536
+  ...
+# Subtest: all offensive categories use only configured weights, not position or rarity
+ok 39 - all offensive categories use only configured weights, not position or rarity
+  ---
+  duration_ms: 6.9551
+  ...
+# Subtest: NFL slot matching handles FLEX reassignments regardless of card order
+ok 40 - NFL slot matching handles FLEX reassignments regardless of card order
+  ---
+  duration_ms: 8.8735
+  ...
+# Subtest: NFL slot validation denies duplicates, wrong sport, unsupported positions and bench
+ok 41 - NFL slot validation denies duplicates, wrong sport, unsupported positions and bench
+  ---
+  duration_ms: 3.6084
+  ...
+# Subtest: prepared NFL calculators do not activate existing Preview or production commands
+ok 42 - prepared NFL calculators do not activate existing Preview or production commands
+  ---
+  duration_ms: 15.338
+  ...
+# Subtest: approved XI; unknown sport does not inherit football rules
+ok 43 - approved XI; unknown sport does not inherit football rules
+  ---
+  duration_ms: 3.2479
+  ...
+# Subtest: owned-card selector rejects wrong ownership, position and duplicate player
+ok 44 - owned-card selector rejects wrong ownership, position and duplicate player
+  ---
+  duration_ms: 0.5192
+  ...
+# Subtest: points snapshot never falls back to todays cards; current and editable round differ
+ok 45 - points snapshot never falls back to todays cards; current and editable round differ
+  ---
+  duration_ms: 0.6774
+  ...
+# Subtest: unsupported statistics remain unavailable, no rarity multiplier
+ok 46 - unsupported statistics remain unavailable, no rarity multiplier
+  ---
+  duration_ms: 0.551
+  ...
+# Subtest: live epoch unset; 48h/28d boundaries use integer cents and expire before fee changes
+ok 47 - live epoch unset; 48h/28d boundaries use integer cents and expire before fee changes
+  ---
+  duration_ms: 2.935
+  ...
+# Subtest: uncertain transaction or response errors retain the same retry identity
+ok 48 - uncertain transaction or response errors retain the same retry identity
+  ---
+  duration_ms: 1.667
+  ...
+# Subtest: only explicit authoritative rejection allows a new operation
+ok 49 - only explicit authoritative rejection allows a new operation
+  ---
+  duration_ms: 0.3788
+  ...
+# Subtest: a rejected retry cannot resolve an earlier ambiguous commit or receipt replay
+ok 50 - a rejected retry cannot resolve an earlier ambiguous commit or receipt replay
+  ---
+  duration_ms: 0.4703
+  ...
+# Subtest: retired routes include descendants without blocking fantasy marketplace or social posts
+ok 51 - retired routes include descendants without blocking fantasy marketplace or social posts
+  ---
+  duration_ms: 2.3467
+  ...
+# Subtest: fantasy identity cannot grant gameplay, and retired switches cannot reactivate services
+ok 52 - fantasy identity cannot grant gameplay, and retired switches cannot reactivate services
+  ---
+  duration_ms: 1.2486
+  ...
+# Subtest: Android accepts only current fantasy destinations and rejects retired push families
+ok 53 - Android accepts only current fantasy destinations and rejects retired push families
+  ---
+  duration_ms: 1.2804
+  ...
+# Subtest: notification and invitation APIs cannot opt into retired capabilities
+ok 54 - notification and invitation APIs cannot opt into retired capabilities
+  ---
+  duration_ms: 6.6891
+  ...
+# Subtest: extracted account hashing preserves canonical digest semantics
+ok 55 - extracted account hashing preserves canonical digest semantics
+  ---
+  duration_ms: 18.0505
+  ...
+# Subtest: single-tier packs and partial tier eligibility accept configured tiers only
+ok 56 - single-tier packs and partial tier eligibility accept configured tiers only
+  ---
+  duration_ms: 17.0486
+  ...
+# Subtest: lost committed response retry retains exact idempotency key
+ok 57 - lost committed response retry retains exact idempotency key
+  ---
+  duration_ms: 1.5746
+  ...
+# Subtest: fantasy feature remains disabled in production and by default
+ok 58 - fantasy feature remains disabled in production and by default
+  ---
+  duration_ms: 0.4971
+  ...
+# Subtest: fantasy commands reject client ownership or unexpected admin fields
+ok 59 - fantasy commands reject client ownership or unexpected admin fields
+  ---
+  duration_ms: 1.916
+  ...
+# Subtest: approved whole-credit rounding, no minimum and cap
+ok 60 - approved whole-credit rounding, no minimum and cap
+  ---
+  duration_ms: 2.9739
+  ...
+# Subtest: two members: shared feed, in-place versioned price, cancel/relist, sale journal, ownership, snapshots and replay
+ok 61 - two members: shared feed, in-place versioned price, cancel/relist, sale journal, ownership, snapshots and replay
+  ---
+  duration_ms: 137.5518
+  ...
+# Subtest: market round labels use authoritative sport rather than the selected browse sport
+ok 62 - market round labels use authoritative sport rather than the selected browse sport
+  ---
+  duration_ms: 85.4003
+  ...
+# Subtest: local fixtures are generated for actual Auth identities without rewriting hashed journals
+ok 63 - local fixtures are generated for actual Auth identities without rewriting hashed journals
+  ---
+  duration_ms: 71.148
+  ...
+# Subtest: listing, fresh consent, exact 1000/950/50 receipt, ownership, replay and private history
+ok 64 - listing, fresh consent, exact 1000/950/50 receipt, ownership, replay and private history
+  ---
+  duration_ms: 63.3525
+  ...
+# Subtest: stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+ok 65 - stale review, self purchase, forged amounts, insufficiency, two buyers and cancel versus buy are all or nothing
+  ---
+  duration_ms: 80.9456
+  ...
+# Subtest: active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+ok 66 - active swap reserves both cards; exact expiry releases effective claim, acceptance denied and no fee escalation
+  ---
+  duration_ms: 58.2581
+  ...
+# Subtest: stable cursor pages, filters, own listings and private projections
+ok 67 - stable cursor pages, filters, own listings and private projections
+  ---
+  duration_ms: 49.9715
+  ...
+# Subtest: commission half-up, Core restriction and economy isolation
+ok 68 - commission half-up, Core restriction and economy isolation
+  ---
+  duration_ms: 22.2668
+  ...
+# Subtest: owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+ok 69 - owner-only reservation details, versioned salary, unavailable context and nonfinancial cancellation/swap activity
+  ---
+  duration_ms: 35.0876
+  ...
+# Subtest: fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+ok 70 - fresh rejection distinguishes cancelled listing and exact credit shortfall without partial grant
+  ---
+  duration_ms: 44.3955
+  ...
+# Subtest: quote is free; successful coupon purchase is atomic, single-use and replay-safe
+ok 71 - quote is free; successful coupon purchase is atomic, single-use and replay-safe
+  ---
+  duration_ms: 77.9178
+  ...
+# Subtest: failure, stale review, permission and campaign caps cannot consume a redemption
+ok 72 - failure, stale review, permission and campaign caps cannot consume a redemption
+  ---
+  duration_ms: 32.2671
+  ...
+# Subtest: whole-credit half-up savings, zero policy, first purchase and product restrictions
+ok 73 - whole-credit half-up savings, zero policy, first purchase and product restrictions
+  ---
+  duration_ms: 32.9282
+  ...
+# Subtest: AFL and NRL coupons require explicit product eligibility; failed purchases never redeem
+ok 74 - AFL and NRL coupons require explicit product eligibility; failed purchases never redeem
+  ---
+  duration_ms: 32.6055
+  ...
+# Subtest: design Preview flag never activates on production or by a client flag
+ok 75 - design Preview flag never activates on production or by a client flag
+  ---
+  duration_ms: 1.6376
+  ...
+# Subtest: reveal progress is bounded and separated by user, receipt and awarded card order
+ok 76 - reveal progress is bounded and separated by user, receipt and awarded card order
+  ---
+  duration_ms: 0.7721
+  ...
+# Subtest: resume stores only bounded presentation progress and isolates accounts/receipts
+ok 77 - resume stores only bounded presentation progress and isolates accounts/receipts
+  ---
+  duration_ms: 3.0652
+  ...
+# Subtest: Cards links use the existing pack shop and preserve sport and My Packs
+ok 78 - Cards links use the existing pack shop and preserve sport and My Packs
+  ---
+  duration_ms: 2.4411
+  ...
+# Subtest: legacy pack tabs resolve without overriding the current tab parameter
+ok 79 - legacy pack tabs resolve without overriding the current tab parameter
+  ---
+  duration_ms: 0.2973
+  ...
+# Subtest: review arithmetic, safe pack tabs and stable newest-first history
+ok 80 - review arithmetic, safe pack tabs and stable newest-first history
+  ---
+  duration_ms: 26.2635
+  ...
+# Subtest: stale purchase review cannot charge a different price; confirmed retry issues once
+ok 81 - stale purchase review cannot charge a different price; confirmed retry issues once
+  ---
+  duration_ms: 35.5356
+  ...
+# Subtest: Each league uses top 20 Elite and next 150 Premium without changing source records
+ok 82 - Each league uses top 20 Elite and next 150 Premium without changing source records
+  ---
+  duration_ms: 13.6781
+  ...
+# Subtest: Cutoff ties cannot be decided by arbitrary player ID; within-tier ties are allowed
+ok 83 - Cutoff ties cannot be decided by arbitrary player ID; within-tier ties are allowed
+  ---
+  duration_ms: 21.4851
+  ...
+# Subtest: Incomplete, provisional or missing points cannot create a sale-pool proposal
+ok 84 - Incomplete, provisional or missing points cannot create a sale-pool proposal
+  ---
+  duration_ms: 6.079
+  ...
+# Subtest: Mixed leagues, duplicate identities, fractional units and invalid seasons rejected
+ok 85 - Mixed leagues, duplicate identities, fractional units and invalid seasons rejected
+  ---
+  duration_ms: 5.6482
+  ...
+# Subtest: catalogue transition preserves issued packs and supply, verifies existing odds, and is repeatable
+ok 86 - catalogue transition preserves issued packs and supply, verifies existing odds, and is repeatable
+  ---
+  duration_ms: 45.6658
+  ...
+# Subtest: Premium 9 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+ok 87 - Premium 9 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+  ---
+  duration_ms: 38.5893
+  ...
+# Subtest: Premium 3 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+ok 88 - Premium 3 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+  ---
+  duration_ms: 25.9016
+  ...
+# Subtest: Premium 1 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+ok 89 - Premium 1 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+  ---
+  duration_ms: 20.8669
+  ...
+# Subtest: Standard 9 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+ok 90 - Standard 9 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+  ---
+  duration_ms: 18.1638
+  ...
+# Subtest: Standard 3 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+ok 91 - Standard 3 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+  ---
+  duration_ms: 19.1936
+  ...
+# Subtest: Standard 1 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+ok 92 - Standard 1 Pack: exact charge/count, saved terms, replay, no Core and immutable configuration
+  ---
+  duration_ms: 17.6001
+  ...
+# Subtest: unfulfillable one/three/nine card packs leave balances and supply unchanged
+ok 93 - unfulfillable one/three/nine card packs leave balances and supply unchanged
+  ---
+  duration_ms: 32.1152
+  ...
+# Subtest: vault proposal remains founder-scoped, unprovisioned and non-destructive
+ok 94 - vault proposal remains founder-scoped, unprovisioned and non-destructive
+  ---
+  duration_ms: 2.8158
+  ...
+# Subtest: approved credit contents stay separate from runtime purchase activation
+ok 95 - approved credit contents stay separate from runtime purchase activation
+  ---
+  duration_ms: 50.711
+  ...
+# Subtest: nfl: all six product disclosures match every possible server rarity draw
+ok 96 - nfl: all six product disclosures match every possible server rarity draw
+  ---
+  duration_ms: 165.611
+  ...
+# Subtest: afl: all six product disclosures match every possible server rarity draw
+ok 97 - afl: all six product disclosures match every possible server rarity draw
+  ---
+  duration_ms: 99.8605
+  ...
+# Subtest: nrl: all six product disclosures match every possible server rarity draw
+ok 98 - nrl: all six product disclosures match every possible server rarity draw
+  ---
+  duration_ms: 104.4731
+  ...
+# Subtest: nfl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 99 - nfl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 89.345
+  ...
+# Subtest: nfl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 100 - nfl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 21.6
+  ...
+# Subtest: nfl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 101 - nfl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 19.205
+  ...
+# Subtest: nfl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 102 - nfl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 22.3991
+  ...
+# Subtest: nfl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 103 - nfl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 23.267
+  ...
+# Subtest: nfl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 104 - nfl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 18.2977
+  ...
+# Subtest: afl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 105 - afl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 27.9253
+  ...
+# Subtest: afl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 106 - afl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 27.9817
+  ...
+# Subtest: afl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 107 - afl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 26.07
+  ...
+# Subtest: afl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 108 - afl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 21.1787
+  ...
+# Subtest: afl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 109 - afl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 25.4801
+  ...
+# Subtest: afl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 110 - afl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 19.1211
+  ...
+# Subtest: nrl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 111 - nrl Premium 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 23.5578
+  ...
+# Subtest: nrl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 112 - nrl Premium 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 20.1371
+  ...
+# Subtest: nrl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 113 - nrl Premium 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 20.0253
+  ...
+# Subtest: nrl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 114 - nrl Standard 9 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 20.2113
+  ...
+# Subtest: nrl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 115 - nrl Standard 3 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 22.2386
+  ...
+# Subtest: nrl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+ok 116 - nrl Standard 1 Pack: verified credit receipt → exact pack → open → refund after spend
+  ---
+  duration_ms: 19.6758
+  ...
+# Subtest: member wallet accepts only verified TEST provenance, never client claims or real deposits
+ok 117 - member wallet accepts only verified TEST provenance, never client claims or real deposits
+  ---
+  duration_ms: 10.482
+  ...
+# Subtest: refund after transfer preserves recipient ownership and locked fantasy card metadata
+ok 118 - refund after transfer preserves recipient ownership and locked fantasy card metadata
+  ---
+  duration_ms: 34.4285
+  ...
+# Subtest: failed pack fulfilment preserves verified credits; full unspent refund reverses exactly once
+ok 119 - failed pack fulfilment preserves verified credits; full unspent refund reverses exactly once
+  ---
+  duration_ms: 11.0136
+  ...
+# Subtest: refund before opening preserves the already-issued entitlement without issuing another pack
+ok 120 - refund before opening preserves the already-issued entitlement without issuing another pack
+  ---
+  duration_ms: 13.5407
+  ...
+# Subtest: declined or pending Google receipts cannot fund any paid pack
+ok 121 - declined or pending Google receipts cannot fund any paid pack
+  ---
+  duration_ms: 8.964
+  ...
+1..121
+# tests 121
+# suites 0
+# pass 121
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 23173.1106

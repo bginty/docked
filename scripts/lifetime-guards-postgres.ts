@@ -1,7 +1,7 @@
 /** Loopback PostgreSQL only, artificial player identities and no provider calls. */
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
-import { readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import postgres from "postgres";
 import { rarityRule, limitedRarities } from "../src/core/card-rarity";
 import {
@@ -238,8 +238,11 @@ async function main() {
       },
     );
     await sql.unsafe(migration);
+    const reportDir =
+      process.env.DOCKED_DB_TEST_REPORT_DIR ?? "docs/qa/v31-p1-p4-20261110";
+    mkdirSync(reportDir, { recursive: true });
     writeFileSync(
-      "docs/qa/v31-p1-p4-20261110/lifetime-postgres.json",
+      `${reportDir}/lifetime-postgres.json`,
       JSON.stringify(
         {
           at: new Date().toISOString(),

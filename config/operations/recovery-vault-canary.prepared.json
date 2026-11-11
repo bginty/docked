@@ -1,0 +1,40 @@
+{
+  "status": "PREPARED_NOT_APPLIED",
+  "project": "docked-play-verification",
+  "secretId": "docked-recovery-acceptance",
+  "createRequest": {
+    "replication": { "automatic": {} },
+    "versionDestroyTtl": "2592000s",
+    "labels": { "purpose": "recovery-acceptance", "environment": "synthetic" }
+  },
+  "payloadGeneration": "32 random bytes generated locally only at approved execution; pass protected stdin or in-memory request, never CLI arguments or logs",
+  "standingSecretBinding": {
+    "role": "roles/secretmanager.secretAccessor",
+    "members": ["user:briantg_21@hotmail.com"]
+  },
+  "iamMutationRule": "Read current policy and etag; preserve unrelated policy fields. Abort on unexpected inherited/direct access. Never apply this object as a replacement project IAM policy.",
+  "temporaryImportRole": "roles/secretmanager.secretVersionAdder",
+  "temporaryLifecycleRole": "Existing authorised administrator only; no new broad standing role",
+  "auditLogTypes": ["ADMIN_READ", "DATA_READ", "DATA_WRITE"],
+  "auditExemptions": [],
+  "newServiceAccounts": 0,
+  "newRuntimeAccess": false,
+  "liveKeyAccessOrTransfer": false,
+  "rotation": false,
+  "secretExpiration": false,
+  "destructionTest": false,
+  "maximumCanaryVersions": 1,
+  "maximumCanaryAccessAttempts": 10,
+  "billingGate": "Verify remaining shared billing-account free allowance and logging cost before provisioning; no new paid service authorised",
+  "acceptance": [
+    "Founder fresh MFA sign-in and independently usable recovery method",
+    "Exact project and effective direct/inherited/group/custom-role/impersonation review",
+    "Founder canary digest match without payload output",
+    "Existing runtime/verifier/RTDN identities denied; no grant just to impersonate them for a test",
+    "Wrong-version request fails safely without falling back to latest",
+    "Canary-only disable, denied access, re-enable and identical digest recovery",
+    "Data Access/Admin Activity audit correlation by resource/version/principal/time",
+    "Remove temporary additions and verify exact final IAM",
+    "Record synthetic recovery only; live encrypted-archive recovery remains separate"
+  ]
+}

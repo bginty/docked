@@ -1,0 +1,220 @@
+DOCKED V31 — ordered execution runbook, 11 November 2026
+PREPARED ONLY. PUBLIC LAUNCH NO-GO. This file is not execution approval.
+
+Purpose and release boundaries
+Use the committed codex/v31-commercial-p1-p4 source reviewed with this report.
+Resolve its full commit with git rev-parse HEAD from a clean checkout and record
+it in the founder's exact approval. Do not run historical 1/2 November apply
+commands against the new package. Do not use a blanket supabase db push.
+Production Supabase: pojoymtniryarxxunyvz. Preview: bckkllmndoxzpzdqrevb.
+Production baseline: f1b50b6f51d7429a36df9a8d5db99aed8886bd44,
+deployment dpl_9bwmvDvt5AEszaBtR311MjHLpHg7. Recheck immediately before changes.
+All commands are run from the reviewed worktree. Private inputs stay in ignored
+private-data, never chat, Git, process arguments, screenshots or public reports.
+
+Publication, Australian public registration and commerce are three separate
+release decisions. There is no extended invitation-only launch requirement.
+The approved strategy is Australian public registration after its gates pass;
+it may precede commercial sales. Never sell unavailable/unapproved inventory.
+NBA, trading, prizes, withdrawals and real scored competitions remain excluded.
+
+1. Preflight and authority
+Record exact founder authority for the stage being executed, source commit,
+package digest, project, exclusions, operator and expiry. Confirm clean Git,
+unchanged dependencies/native artifact, final checks and current provider state.
+Run read-only HTTP and schema checks:
+  node scripts/v31-readiness-readonly.mjs
+  node --import tsx scripts/v31-live-catalog-readonly.ts
+Use the reviewed database package's fresh backup/drift procedure. Preserve a
+consistent encrypted archive, digest and separately recoverable key. Compare
+schema/roles/memberships and inspect data changes; never assume a dated backup
+matches today's users, worker records or TEST activity. Abort unexplained drift.
+Confirm operational contact remains founder-only support@docked.com.au and the
+existing founder MFA factor remains enrolled. No repeat receipt attestation.
+
+2. Closed-gate backend deployment order
+Use config/operations/v31-backend-approval.template.json and
+database/exact-package.json. The approved artifact is an ignored private file
+containing the founder's real exact-package instruction, not a self-issued grant.
+Safe local/read-only commands:
+  node --import tsx scripts/v31-approved-backend-migrations.mjs inspect
+  node scripts/v31-controlled-backend.mjs prepare
+Only AFTER exact package approval, with the reviewed private approval artifact:
+  node --import tsx scripts/v31-approved-backend-migrations.mjs apply --approval=private-data/v31-backend-approval.json
+  node scripts/v31-controlled-backend.mjs stage --approval=private-data/v31-backend-approval.json
+  node scripts/v31-controlled-backend.mjs promote --approval=private-data/v31-backend-approval.json
+Stage must reach READY and pass protected-candidate checks before promote.
+The safe order is: fresh preflight/backup; reviewed SQL; protected dormant
+candidate; verify candidate; promote exact candidate; verify closed live gates.
+Even vercel --prod --skip-domain is a Production deployment and needs approval.
+Do not activate registration, phone delivery, commerce or monitoring delivery
+merely to get the dormant candidate to build. Preserve existing TEST notification
+reconciliation. Record the candidate URL/id and rollback deployment before promote.
+
+3. Database migrations and outbox
+Apply only the five checksum-bound files in this order, then scoped outbox-v2:
+  20261109231834_commercial_lifetime_supply_guards.sql
+  20261109232000_public_practice_phone_guards.sql
+  20261109232124_operational_incident_review.sql
+  20261110005726_operational_incident_retention.sql
+  20261110010050_australian_verified_phone_uniqueness.sql
+  config/operations/billing-ops-outbox-v2.prepared.sql
+Do not also apply outbox v1. Use the reviewed helper's transaction, exact target,
+dependency, timeout, approval, backup and drift checks. A short quiet window is
+required: the canonical Auth phone index is not concurrent. Lock timeout is 3s;
+statement timeout is 60s. Abort/review contention, do not raise limits blindly.
+Check migration history, exact functions, RLS/grants, no open launch controls,
+protected checksums, canonical uniqueness and absence of deletion schedules.
+Before commit, failure rolls the transaction back. After commit, prefer retaining
+unused additive safeguards and rolling the app back; never reset live ledgers or
+lifetime counts. Any forward SQL repair requires its exact reviewed approval.
+
+4. Operational acceptance
+After dormant rollout, use the exact supervised session in
+../v31-phone-ops-20261111/PHONE_OPS_ACCEPTANCE.txt: founder signs into
+/admin/incidents with existing MFA, records a synthetic drill without email,
+acknowledges, resolves and reloads immutable history. Verify stale revisions,
+unauthorised roles and delivery failures remain visible/denied appropriately.
+DOCKED-OPS-20261110-01 inbox receipt is already CONFIRMED by founder attestation
+for 10 November. Provider acceptance was previously reported. Independent
+provider-trace correlation is a separate evidence item, not automated inbox proof.
+Use existing Exchange admin trace access if available; no expanded mail grants.
+Retention remains 90 days for ordinary incidents only, with holds and financial,
+security/statutory records excluded. Inspect dry run; leave cleanup OFF.
+Complete VAULT_PACKAGE.txt canary/IAM/log/recovery acceptance separately. Live
+recovery-key transfer/rotation is not included in the synthetic canary action.
+
+5. Genuine phone acceptance
+Use ../v31-phone-ops-20261111/PHONE_OPS_ACCEPTANCE.txt exactly. Founder privately
+enters the existing Twilio credentials in Preview with the provider still OFF.
+After approved sender and specific Preview test-window authority, verify exact
+two existing synthetic members, <=6-hour window, closed signup and +61 delivery.
+Preview SMS caps are already six/hour and 60-second resend; OTP is six digits,
+300 seconds. Keep Production phone OFF until separately authorised testing.
+Stop at the earlier of 20 segments or A$5 usage; absolute approved spend A$20.
+No new account funding, number rental, paid add-on or auto-recharge is authorised.
+Founder receives/enters real OTP privately. Execute wrong/expired/replay,
+resend/brute-force, duplicate/racing owner, provider-failure and recovery/change
+cases; preserve original account/card/wallet IDs. No OTP/phone in evidence.
+Close provider/window and reconcile real usage. After approved closed Production
+configuration, repeat installed-v31 journey: v31 targets Production /app, so a
+Preview browser test cannot substitute for physical installed-v31 acceptance.
+
+6. Card decision and exact import approval
+Use ../v31-prelaunch-20261111/cards/ and its current approval queue. Accept only
+the supported historical-preservation recommendation and exact 23 proposed
+commercial-only identity registrations. Do not ask the founder to research names
+already established by the evidence. Current source eligibility and future
+issuance are separate from preserving existing ownership/lifetime consumption.
+Approve the complete frozen plan digest, never a partial 6,516-row proposal.
+The fresh complete baseline is 6,540 definitions / 888 consumed copies / 735 groups;
+use the final card report for its exact plan digest. The original 879 copies
+are unchanged; nine additional real-player AFL copies must also consume supply.
+All definitions remain unapproved. Eight retired copies still consume supply.
+Core unlimited; Rare 5,000; Elite 2,500; Ultra Rare 400; Legendary 50; Icon 1.
+
+7. Import and reconciliation — separately authorised
+Offline validation is safe and does not connect:
+  node --import tsx scripts/v31-reviewed-inventory-operator.ts
+The operator's explicit --capture-production-preflight is READ ONLY; its
+--apply-production --approval <private approval artifact> is a Production write
+and is prohibited until separate exact-digest authority. Follow the card package
+for required paths/hashes, one-hour backup and ten-minute preflight freshness.
+Run once after the approved migration package, with all commercial controls OFF.
+Verify exact definition digest, 888 lifetime consumption, original custody/table
+checksums, zero new cards/owners/remints/deletions, zero approved definitions.
+Idempotent replay must change nothing; do not truncate or re-import to resolve a
+conflict. Stop and investigate. A committed lifetime baseline must be preserved;
+rollback is not permission to reclaim serials or undo legitimate ownership.
+
+8. Payment and refund readiness
+Retain existing Google TEST purchase/refund evidence and the fresh isolated
+accounting/concurrency checks. They are not proof of real-money bank settlement.
+Before sales: confirm current merchant/payout/tax settings and product status,
+exact A$49/4,900 and A$99/9,900 credit mappings, receipt account binding, durable
+acknowledgement, authenticated RTDN and refund reconciliation. No price/odds change.
+Any further Google licence test needs its own bounded test window; no real-money
+charge is implied. Confirm refunds after spending retain cards and record the
+recovery hold without inventing spendable balance. Duplicates must be idempotent.
+Do not enable a product until every advertised sport/pack/rarity has an explicitly
+eligible definition and the original all-rarity availability check passes.
+
+9. Privacy and Google Data Safety
+Review the complete proposed policy and declaration package:
+../v31-phone-ops-20261111/PRIVACY_AND_PLAY_APPROVAL.txt and
+../../policies/2026-11-11-phone-review/privacy.md.
+After exact wording/publication/submission authority, install the approved notice
+and policy version, verify website/WebView links and consent renewal, then update
+Phone number and associated purposes in Play. Preserve all other reviewed data
+categories; WebView collection is included. Check actual Twilio retention first.
+Inspect Publishing overview and await any required declaration review. Do not
+assume previously approved v31 includes an unsubmitted phone disclosure update.
+
+10. Google managed publishing
+Verify the exact approved v31/1.30 and intended Australia-only batch. Keep managed
+publishing ON. No v32 is required by the current native/config/dependency diff.
+Only final explicit publication authority permits Publish changes. Publication
+cannot instantly recall installed binaries; staged rollback is not a recall.
+Do not publish old v30 changes in place of v31 or accidentally release unrelated
+pending declarations. Record Console state and effective listing/version after.
+
+11. Australian public registration — separate activation
+After phone, privacy, email/recovery, regional/account and hosted gates pass,
+prepare/read back one exact activation snapshot. Existing server controls require
+APP_ENV=production, a non-beta release channel, AUTH_EMAIL_ENABLED=true,
+REGISTRATION_ENABLED=true, private.feature_flags key='registration' enabled,
+current approved Terms/Privacy/legal entity, valid AU region/public policy and
+Supabase signup authority. DOCKED_PUBLIC_CUSTOMERS=true additionally requires
+DOCKED_BETA_STAGING not true. Phone delivery needs DOCKED_PUBLIC_PHONE_OTP=true
+and the approved policy reference. An environment flag alone is insufficient.
+Bind this activation to exact reviewed policy/region IDs and source, not a generic
+UPDATE-all or stale historical script. Do not repurpose privileged beta accounts.
+Open Australian registration publicly when these gates pass; no extended invite
+period is needed. Verify a genuine ordinary account, login/recovery/phone/consent,
+existing-account access and account deletion. No commercial switches are implied.
+
+12. Commercial activation — independent approval, later if necessary
+Require the exact current-eligibility/right-approved definition set, complete
+availability for each advertised pack, accepted payment/refund readiness and
+commercial policy. Fresh source observations must meet the existing <72-hour
+rule; historical identity evidence is not current commercial eligibility.
+Approve products/definitions and the exact reviewed commercial control snapshot
+only for explicitly authorised functions. The engine mints atomically at purchase
+with serial/lifetime locks; there is no arbitrary warehouse-stock fill operation.
+Keep transfers/gameplay/prizes/withdrawals/real scoring OFF unless separately
+authorised. Practice remains free, synthetic, no rewards; revalidate dated round
+deadlines before enabling any exact Practice rounds. NBA remains hidden.
+
+13. Post-launch observation
+At each activation boundary and at 5/15/60 minutes, record deployment identity,
+auth/OTP failures and spend, incident queue/delivery, receipt/ack/RTDN lag, wallet
+and refund reconciliation, card/serial totals and pack availability. Founder is
+sole initial incident custodian. Escalate failed delivery visibly; no silent loss.
+Sample installed Android login, collection, pack loading/reveal and navigation;
+measure real device timings. The current single HTTP latency batch is not a load
+test, mobile frame-rate result or service-level guarantee. Preserve evidence and
+stop the affected capability on reconciliation, security or scarcity failure.
+
+14. Emergency stop and recovery
+Use config/operations/v31-emergency-close.prepared.sql from the database package
+with explicit incident authority. It closes commercial/registration/public-play
+admission and tolerates the optional retention table being absent.
+Disable new registration via DB registration flag plus app/Auth gates; disable
+new commercial admission via sales/issuance/transfers/gameplay controls; disable
+public policy/Practice admission as appropriate. Provider OFF stops new SMS.
+For alert-delivery malfunction use config/operations/billing-ops-outbox.stop.prepared.sql
+only with exact authority; it stops new admission while preserving valid in-flight
+settlement. Do not delete outbox/incident/receipt/audit records or disable the
+refund/notification reconciliation needed for already accepted purchases.
+Roll back app alias to the captured known-good deployment only after checking it
+is compatible with the additive schema. Keep schema/lifetime/ownership data.
+Restore an encrypted backup into isolation first; a live database restore requires
+separate recovery approval and reconciliation of all later legitimate activity.
+
+Reversibility
+Reversible: dormant candidate/alias, closed/open admission flags, test provider
+window, canary enable/disable, unsubmitted declaration edits. These changes still
+require their stated authority. Committed schema is forward-recoverable, not
+automatically disposable. Card issuance, accepted purchases, email/SMS delivery,
+public downloads and completed privacy/deletion actions cannot simply be undone.
+No operational deletion schedule or live recovery-key rotation is part of launch.

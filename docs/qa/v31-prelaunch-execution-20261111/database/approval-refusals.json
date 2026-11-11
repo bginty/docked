@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-11T06:02:03.788Z",
+  "packageSha256": "5e4411920d5d67f7a9379700e913705b45a58e4cfe29a2ec41a115f7fe198799",
+  "cases": [
+    {
+      "script": "scripts/v31-approved-backend-migrations.mjs",
+      "mode": "apply",
+      "approved": false,
+      "refusedBeforeHostedClient": true
+    },
+    {
+      "script": "scripts/v31-controlled-backend.mjs",
+      "mode": "stage",
+      "approved": false,
+      "refusedBeforeHostedClient": true
+    },
+    {
+      "script": "scripts/v31-controlled-backend.mjs",
+      "mode": "promote",
+      "approved": false,
+      "refusedBeforeHostedClient": true
+    },
+    {
+      "script": "scripts/v31-approved-backend-migrations.mjs",
+      "mode": "apply",
+      "approved": false,
+      "refusedBeforeHostedClient": true
+    },
+    {
+      "script": "scripts/v31-controlled-backend.mjs",
+      "mode": "stage",
+      "approved": false,
+      "refusedBeforeHostedClient": true
+    },
+    {
+      "script": "scripts/v31-controlled-backend.mjs",
+      "mode": "prepare",
+      "approved": false,
+      "refusedBeforeHostedClient": true
+    }
+  ],
+  "productionWrites": 0
+}

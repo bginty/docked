@@ -1,9 +1,10 @@
 import sys,json,re,urllib.parse
 sys.path.insert(0,'private-data/roster-parser')
 from bs4 import BeautifulSoup
-root='private-data/roster-source-review/'
+root=(sys.argv[1].rstrip('/')+'/' if len(sys.argv)>1 else 'private-data/roster-source-review/')
 out=[]
 for key,file in [('nbaEast','nba-east-response.txt'),('nbaWest','nbaWest.json'),('afl','afl.json'),('nrl','nrl.json')]:
+ if '--australian-only' in sys.argv and key.startswith('nba'):continue
  d=json.load(open(root+file,encoding='utf8'));p=d['parse'];s=BeautifulSoup(p['text'],'html.parser')
  if key.startswith('nba'):
   for t in s.select('table.sortable'):

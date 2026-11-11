@@ -989,13 +989,16 @@ async function main() {
       isolatedSyntheticFinancialFaultsSeeded: true,
       productionApply: false,
     };
-    mkdirSync("docs/ops-launch-20261105/alerts-preparation", {
+    const reportDir =
+      process.env.DOCKED_DB_TEST_REPORT_DIR ??
+      "docs/ops-launch-20261105/alerts-preparation";
+    mkdirSync(reportDir, {
       recursive: true,
     });
     writeFileSync(
       process.argv.includes("--founder-email-drill")
         ? "docs/qa/v31-final-reconciliation-20261110/alerts-postgres.json"
-        : "docs/ops-launch-20261105/alerts-preparation/postgres-v2.json",
+        : `${reportDir}/postgres-v2.json`,
       JSON.stringify(report, null, 2) + "\n",
     );
   } finally {

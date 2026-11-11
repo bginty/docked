@@ -1,0 +1,233 @@
+{
+  "at": "2026-11-11T05:53:35.288Z",
+  "previousSnapshot": "2026-11-10T01:18:41.912Z",
+  "freshSnapshot": "2026-11-11T05:34:00.942Z",
+  "details": [
+    {
+      "table": "\"auth\".\"mfa_amr_claims\"",
+      "previousRows": 207,
+      "currentRows": 208,
+      "added": 1,
+      "removed": 0,
+      "updated": 0,
+      "changedColumns": [],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"auth\".\"refresh_tokens\"",
+      "previousRows": 555,
+      "currentRows": 561,
+      "added": 6,
+      "removed": 0,
+      "updated": 3,
+      "changedColumns": [
+        "revoked",
+        "updated_at"
+      ],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"auth\".\"sessions\"",
+      "previousRows": 138,
+      "currentRows": 139,
+      "added": 1,
+      "removed": 0,
+      "updated": 3,
+      "changedColumns": [
+        "ip",
+        "refreshed_at",
+        "updated_at"
+      ],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"auth\".\"users\"",
+      "previousRows": 6,
+      "currentRows": 6,
+      "added": 0,
+      "removed": 0,
+      "updated": 3,
+      "changedColumns": [
+        "last_sign_in_at",
+        "updated_at"
+      ],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"beta_private\".\"rate_limits\"",
+      "previousRows": 122,
+      "currentRows": 122,
+      "added": 0,
+      "removed": 0,
+      "updated": 9,
+      "changedColumns": [
+        "count",
+        "reset_at"
+      ],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"credits_sandbox\".\"history\"",
+      "previousRows": 314,
+      "currentRows": 316,
+      "added": 2,
+      "removed": 0,
+      "updated": 0,
+      "changedColumns": [],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"credits_sandbox\".\"journal\"",
+      "previousRows": 147,
+      "currentRows": 148,
+      "added": 1,
+      "removed": 0,
+      "updated": 0,
+      "changedColumns": [],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"credits_sandbox\".\"lines\"",
+      "previousRows": 318,
+      "currentRows": 320,
+      "added": 2,
+      "removed": 0,
+      "updated": 0,
+      "changedColumns": [],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"credits_sandbox\".\"nba_fixture_definitions\"",
+      "previousRows": 346,
+      "currentRows": 351,
+      "added": 5,
+      "removed": 0,
+      "updated": 0,
+      "changedColumns": [],
+      "addedRowLabels": {
+        "rarity": [
+          "ULTRA_RARE"
+        ]
+      }
+    },
+    {
+      "table": "\"credits_sandbox\".\"nba_fixture_instances\"",
+      "previousRows": 398,
+      "currentRows": 407,
+      "added": 9,
+      "removed": 0,
+      "updated": 0,
+      "changedColumns": [],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"credits_sandbox\".\"pack_receipts\"",
+      "previousRows": 111,
+      "currentRows": 112,
+      "added": 1,
+      "removed": 0,
+      "updated": 0,
+      "changedColumns": [],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"credits_sandbox\".\"state\"",
+      "previousRows": 1,
+      "currentRows": 1,
+      "added": 0,
+      "removed": 0,
+      "updated": 1,
+      "changedColumns": [
+        "document",
+        "revision"
+      ],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"cron\".\"job_run_details\"",
+      "previousRows": 152701,
+      "currentRows": 159625,
+      "added": 6924,
+      "removed": 0,
+      "updated": 0,
+      "changedColumns": [],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"private\".\"docked_mail_scheduler\"",
+      "previousRows": 1,
+      "currentRows": 1,
+      "added": 0,
+      "removed": 0,
+      "updated": 1,
+      "changedColumns": [
+        "last_tick_at"
+      ],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"sports_feed\".\"nfl_rounds\"",
+      "previousRows": 8,
+      "currentRows": 8,
+      "added": 0,
+      "removed": 0,
+      "updated": 6,
+      "changedColumns": [
+        "issues",
+        "last_checked",
+        "next_check"
+      ],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"sports_feed\".\"nfl_worker_runs\"",
+      "previousRows": 3088,
+      "currentRows": 3207,
+      "added": 119,
+      "removed": 0,
+      "updated": 0,
+      "changedColumns": [],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"sports_feed\".\"raw_revisions\"",
+      "previousRows": 112,
+      "currentRows": 112,
+      "added": 0,
+      "removed": 0,
+      "updated": 2,
+      "changedColumns": [
+        "body",
+        "purged_at"
+      ],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"sports_feed\".\"sport_sandbox_inventory\"",
+      "previousRows": 14,
+      "currentRows": 14,
+      "added": 0,
+      "removed": 0,
+      "updated": 1,
+      "changedColumns": [
+        "cards"
+      ],
+      "addedRowLabels": {}
+    },
+    {
+      "table": "\"sports_feed\".\"weekly_core_job_runs\"",
+      "previousRows": 56647,
+      "currentRows": 60035,
+      "added": 3388,
+      "removed": 0,
+      "updated": 0,
+      "changedColumns": [],
+      "addedRowLabels": {}
+    }
+  ],
+  "originalCustodyTablesUnchanged": true,
+  "commercialTablesUnchanged": true,
+  "supportedInventoryDelta": "Nine additional real AFL limited copies are held in the legacy fixture registry; TEST_ONLY receipt does not make their identities synthetic. Original879 remain unchanged; fresh lifetime baseline888. See card reconciliation for exact identity evidence.",
+  "scope": "Observed deltas only, not retrospective approval. Preserve every original and new issued copy; table names are not source eligibility evidence.",
+  "productionWrites": 0
+}

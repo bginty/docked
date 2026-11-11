@@ -30,7 +30,9 @@ const keys = { active: "isolated", values: { isolated: randomBytes(32) } };
 const ledger = new CommercialLedger(sql, "acceptance", keys);
 const authorize = async () => {};
 const checks: string[] = [];
-const evidenceDir = "docs/ops-paid-readiness-20261106/pack-supply";
+const evidenceDir =
+  process.env.DOCKED_DB_TEST_REPORT_DIR ??
+  "docs/ops-paid-readiness-20261106/pack-supply";
 let sequence = 0;
 function funding() {
   const token = `isolated-pack-supply-${++sequence}`;

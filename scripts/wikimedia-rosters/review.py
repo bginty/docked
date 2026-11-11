@@ -1,7 +1,8 @@
 import json,sys,re,hashlib,collections,glob,urllib.parse
 sys.path.insert(0,'private-data/roster-parser')
 import mwparserfromhell as mw
-root='private-data/roster-source-review/'
+from roster_fields import explicit_current_club
+root=(sys.argv[1].rstrip('/')+'/' if len(sys.argv)>1 else 'private-data/roster-source-review/')
 rows=json.load(open(root+'discovered.json',encoding='utf8'))
 pages={p['title']:p for p in json.load(open(root+'profiles.json',encoding='utf8'))}
 aliases={}
@@ -50,7 +51,10 @@ for r in rows:
   if re.search(r'midfield|wing|rover|centreman',plain) or plain=='centre':pos.append('MID')
   if 'forward' in plain:pos.append('FWD')
   if re.search(r'ruckman|ruck\b(?![\s-]*rover)',plain):pos.append('RUC')
-  current=team_value(f.get('currentclub',''))
+  # The AFL template renamed currentclub to current_club. Accept either explicit
+  # field; conflicting simultaneous values stay quarantined rather than guessed.
+  current,conflict=explicit_current_club(f,team_value,norm)
+  if conflict:reasons.append('Conflicting current club fields')
  else:
   terms=[]
   for t in mw.parse(raw).filter_templates():

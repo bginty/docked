@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
-import { readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
 import { multiSportDatabase } from "../fixtures/multi-sport-db";
 test("Operational incidents: founder MFA, least privilege, deduplication, concurrency and durable audit", async () => {
   const d = await multiSportDatabase();
@@ -144,13 +145,25 @@ test("Operational incidents: founder MFA, least privilege, deduplication, concur
     checks.push(
       "immutable event audit; no financial changes; no email sent or inbox delivery claimed",
     );
-    if (process.env.AUSTRALIAN_SALARY_TEST_DB)
+    if (
+      process.env.AUSTRALIAN_SALARY_TEST_DB ||
+      process.env.DOCKED_OPERATIONAL_TEST_REPORT_DIR
+    ) {
+      const reportPath = process.env.DOCKED_OPERATIONAL_TEST_REPORT_DIR
+        ? join(
+            process.env.DOCKED_OPERATIONAL_TEST_REPORT_DIR,
+            "operational-incidents.json",
+          )
+        : "docs/qa/v31-p1-p4-20261110/incidents-postgres.json";
+      await mkdir(dirname(reportPath), { recursive: true });
       await writeFile(
-        "docs/qa/v31-p1-p4-20261110/incidents-postgres.json",
+        reportPath,
         JSON.stringify(
           {
             at: new Date().toISOString(),
-            database: "disposable PostgreSQL 17",
+            database: process.env.AUSTRALIAN_SALARY_TEST_DB
+              ? "disposable PostgreSQL 17"
+              : "isolated PGlite",
             checks,
             passed: true,
             realEmail: false,
@@ -159,6 +172,7 @@ test("Operational incidents: founder MFA, least privilege, deduplication, concur
           2,
         ) + "\n",
       );
+    }
   } finally {
     await d.pg.close();
   }

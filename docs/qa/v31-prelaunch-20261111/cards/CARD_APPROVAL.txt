@@ -1,0 +1,119 @@
+DOCKED V31 — EXACT CARD ACCEPTANCE, 11 NOVEMBER 2026
+
+Result
+All 71 previously flagged identities are established by stable provider identity
+and source evidence: 66 NFL GSIS identities and five AFL Wikidata identities.
+The 23 missing catalogue IDs have explicit, deterministic commercial-only UUID
+registration proposals; these are not claimed to exist already. The other 48
+reuse established identities. There is no remaining human-identity guessing.
+
+The fresh restored Production snapshot disclosed nine additional REAL AFL cards
+issued under a TEST_ONLY roster-beta receipt. A TEST label does not erase lifetime
+consumption. All original 879 copies are unchanged; the correct fresh baseline is
+888 copies across 735 identity/rarity groups, including eight retired copies.
+All nine additions map exactly to existing source definitions. Their serials are
+valid, unique and within caps. The 18 NBA copies remain preserved and excluded;
+NBA remains hidden. The complete custody proof covers all 906 records.
+
+Proposed dormant import: 6,540 definitions, issued=legacy_issued=888, approved=0.
+No new card, duplicate, deletion, remint, owner change or beta catalogue change.
+Core remains unlimited and is not included in this limited-card import. Lifetime
+caps: Rare 5,000; Elite 2,500; Ultra Rare 400; Legendary 50; Icon 1.
+
+Exact private plan SHA-256:
+4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4
+File: private-data/v31-card-research-20261111/complete-proposal.private.json
+Issued-ID/serial manifest digest:
+cbf8a22f68fcb77a2bb40c6517d338e8c2247e9a47a2db34dffc7db0ad8a4ed5
+Expected reconciled rows digest:
+8b784e7acc32717c5353bba98bf7ffd6380a1ea7baf965cea92d3c136f6e9241
+The earlier 879-only digest is superseded. Never import it.
+
+Short founder approval queue
+1. Accept the evidence-backed historical source baseline and exact 23 proposed
+   commercial-only provider registrations for preservation only. Existing printed
+   teams, seasons, serials and ownership stay unchanged. This accepts historical
+   snapshots as dated records; it does not relabel them as current observations,
+   grant additional rights or waive current-eligibility policy.
+2. Separately approve the exact private-plan SHA above for the dormant Production
+   import after the reviewed database package, fresh backup and fresh drift checks.
+   This is separate from deployment approval and from commercial activation.
+3. For a later commercial-eligibility decision, review the exact proposed subset
+   in current-eligibility.NOT-APPROVED.json. Recommended launch scope holds the
+   80 unresolved CURRENT-membership cases (23 NFL, one AFL, 56 NRL) and all 75
+   historical-only additional definitions from NEW issuance. Existing ownership
+   remains intact. This avoids an 80-row founder research task. The 51 NRL cases
+   with future-season evidence are not silently promoted into the 2026 scope.
+   The remaining current NRL conflicts and Matthew Owies/AFL are also held.
+
+Current source work completed
+Freshly fetched and parsed all 32 official NFL roster pages, 18 AFL / 17 NRL
+squad pages and 1,117 Australian player profiles. Fixed an offline parser issue
+caused by AFL renaming currentclub to current_club; contradictory fields remain
+quarantined and two regression tests cover the alias and conflict behavior.
+1,213 / 1,293 base players have current evidence matching the pinned team,
+position and season: NFL 403, AFL 536, NRL 274 (6,065 definitions).
+These are factual recommendations only. Player/name/artwork/statistics rights,
+source licence conditions and current eligibility remain separate approvals.
+Re-fetch observations immediately before activation if older than 72 hours;
+original snapshot checkedAt values were never overwritten.
+
+Historical baseline ready does not mean saleable inventory ready
+All 6,540 definitions remain unapproved, so saleable inventory is zero. The
+existing purchase path mints atomically at issued+1 under deterministic definition
+locks; no warehouse stock-load quantity is required. The proposed 6,065-definition
+subset would have at least 401 NFL, 536 AFL and 274 NRL distinct players with
+remaining capacity in every advertised rarity. All 18 existing sport/family/size
+combinations pass the unchanged minimum-supply rule. These are hypothetical
+capacity checks, not authority to sell or mint. No quantities or odds were changed.
+
+Guarded operator commands — prepared, not executed against Production
+From the repository root:
+  node --import tsx scripts/v31-reviewed-inventory-operator.ts
+This defaults to OFFLINE_ONLY and verifies exact plan/caps/baselines without a DB.
+
+After the separately approved schema package and a fresh consistent encrypted
+backup, capture a read-only preflight (choose a new output filename on each run):
+  node --import tsx scripts/v31-reviewed-inventory-operator.ts --capture-production-preflight --output private-data/v31-card-research-20261111/import-preflight.private.json
+
+The operator records the explicit founder instruction in a PRIVATE approval
+artifact based on inventory-approval.NOT-APPROVED.json. It must bind the full
+plan SHA, 23-registration digest, transitive operator-package digest, preflight
+SHA and encrypted backup archive/manifest SHAs. Approval expires within 24 hours,
+backup must be no older than one hour, and preflight no older than ten minutes.
+Never set approved=true without the founder's exact instruction. This file is
+not a signature service and never substitutes for actual founder approval.
+
+Only after that separate instruction:
+  node --import tsx scripts/v31-reviewed-inventory-operator.ts --apply-production --approval private-data/v31-card-research-20261111/founder-approved-import.private.json
+
+The transaction checks the exact Production project and closed sales, issuance,
+transfers and gameplay controls; products remain unapproved. It requires an empty
+commercial account/receipt/pack/card baseline, or an exact idempotent replay of
+these definitions. It compares fresh full table checksums, catalogue/RLS/ACL
+fingerprint and all custody bindings; locks issuance/ownership stores; validates
+the complete imported rows and 888 lifetime consumption; and rolls back on drift.
+Lock timeout is three seconds and statement timeout 60 seconds. Use a short
+coordinated maintenance window with competing owner/test issuance stopped.
+
+Failure/recovery
+Before commit, any failure rolls back. A lock-timeout loser creates no partial
+inventory and can retry only after confirming the original transaction's result.
+After commit, definitions and lifetime counts are intentionally immutable: keep
+all gates closed and use reviewed forward recovery; never delete definitions or
+reset consumed serials. Existing commercial-pool-import.ts remains acceptance-only.
+
+Acceptance evidence
+identity-research.json: all 71 established identities with source links/hashes.
+fresh-custody-delta.json: exact nine-card drift, original records unchanged.
+complete-import-review.json and issued-lifetime-manifest.json: complete totals.
+restored-import-rehearsal.json: local restored import/retry/concurrency results.
+current-source-comparison.json: exact 1,293-player comparison and held reasons.
+current-eligibility.NOT-APPROVED.json: exact proposed/held IDs and 18 pack checks.
+operator-package.json: transitive code checksums; any change invalidates approval.
+
+Remaining card engineering after decisions: approximately 0.5–1.5 hours for a
+just-in-time source/drift refresh, any resulting exact-digest regeneration and
+authorised import/postflight. A changed source scope or additional live issuance
+requires a fresh proposal and review. Rights or new-season decisions have no
+reliable engineering-only time estimate. Production remains unchanged; NO-GO.

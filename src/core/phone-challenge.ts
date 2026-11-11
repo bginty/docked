@@ -12,6 +12,26 @@ type Auth = {
 export type PhoneChallenge =
   | { action: "send"; phone: string }
   | { action: "verify"; phone: string; token: string };
+
+const publicPhoneErrors = new Set([
+  "Phone verification is not available yet.",
+  "Phone verification is not available for this account.",
+  "Phone verification is unavailable.",
+  "Phone verification did not complete for this account.",
+  "Phone verification is busy. Please try again later.",
+  "Unable to send a code. Check your number or contact support.",
+  "The code could not be verified. Check it or request a new code.",
+  "Your phone is already verified. Contact support to change it.",
+  "Please wait one minute before requesting another code.",
+  "Too many attempts. Please try again later.",
+  "Enter an Australian mobile number, starting with 04 or +614.",
+]);
+/** Only exact application messages cross the API; never provider diagnostics. */
+export function publicPhoneErrorMessage(error: unknown) {
+  return error instanceof Error && publicPhoneErrors.has(error.message)
+    ? error.message
+    : "Unable to verify your phone. Please sign in again or contact support.";
+}
 /** Normal user-session provider calls. No admin confirmation or stored OTP. */
 export async function executePhoneChallenge(
   value: PhoneChallenge,

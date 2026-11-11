@@ -1,0 +1,18 @@
+{
+  "approved": false,
+  "authority": "REPLACE with the founder's explicit approval of this exact dormant package",
+  "reviewedCommit": "REPLACE with final 40-character reviewed Git commit",
+  "packageSha256": "REPLACE with SHA-256 of database/exact-package.json",
+  "productionBaseline": "f1b50b6f51d7429a36df9a8d5db99aed8886bd44",
+  "approvedAt": "REPLACE with founder approval time in UTC",
+  "expiresAt": "REPLACE with a bounded approved UTC maintenance window end",
+  "scopes": [
+    "database-migrations-and-outbox",
+    "backend-stage",
+    "backend-promote"
+  ],
+  "inventoryImport": false,
+  "commercialActivation": false,
+  "publicRegistration": false,
+  "playPublication": false
+}

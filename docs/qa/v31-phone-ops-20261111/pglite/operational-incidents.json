@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-11T05:18:04.128Z",
+  "database": "isolated PGlite",
+  "checks": [
+    "normal member and owner without MFA denied; confirmed founder session accepted",
+    "no browser/service/commercial runtime access or direct audit/config writes",
+    "repeat drill deduplicates; stale review rejected; decisions retained; recurrence reopens",
+    "immutable event audit; no financial changes; no email sent or inbox delivery claimed"
+  ],
+  "passed": true,
+  "realEmail": false
+}

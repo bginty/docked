@@ -1,0 +1,111 @@
+DOCKED V31 — exact phone privacy / Google declaration proposal
+11 November 2026 | PREPARED ONLY; NOT PUBLISHED OR SUBMITTED
+
+One founder review package
+Approve the complete proposed notice at
+../../policies/2026-11-11-phone-review/privacy.md together with the in-app notice
+and exact declaration delta below. Approval of wording does not itself authorise
+policy publication, Play submission, phone activation or v31 publication. Those
+external actions need their specific release authority. No new binary is proposed.
+The exact inactive two-file application patch, checksums and after-approval
+commands are in privacy-publication/APPLICATION.txt and manifest.json. The full
+notice also retains existing Billing SDK, mailbox and beta-deletion disclosures;
+no other policy document is changed. Current app files remain untouched.
+
+Exact proposed verification-screen notice (replace introductory paragraph only)
+"Verify an Australian mobile number to use Docked's public account features.
+One verified number can be linked to one account. Supabase stores your number
+and Twilio sends the verification text, including through overseas processing.
+Your number is private on Docked and is not used by Docked for marketing.
+Message records may remain after the code expires. Read our Privacy policy for
+provider retention and deletion details. If you cannot use your number, contact
+support. Account-deletion controls remain available without phone verification."
+Keep existing Privacy policy, Account controls and Contact support links.
+This text is proposed, not installed in a component or published policy version.
+
+Exact Play Console delta: App content > Data safety
+Keep the already saved, separately reviewed categories. Add/update this phone
+entry; do not replace the entire form with this one category.
+Personal info > Phone number: selected.
+Collected: YES. Shared: YES (conservative recommendation explained below).
+Processed ephemerally: NO; Supabase keeps a current account phone and Twilio
+keeps communication records after delivery.
+Required or optional: REQUIRED for the public Australian account experience.
+Collected purposes: App functionality; Account management;
+Fraud prevention, security and compliance.
+Shared purposes: App functionality; Account management;
+Fraud prevention, security and compliance; Analytics (provider service operation
+and improvement, not advertising or profiling by Docked).
+Advertising or marketing: NOT selected for this phone use.
+Personalisation: NOT selected for this phone use.
+Developer communications: NOT selected for this phone use; authentication texts
+are covered by functionality/account management, not general news or marketing.
+Encryption in transit: retain YES for app-to-server HTTPS; this must not be
+described to users as end-to-end encryption of carrier SMS.
+Account creation: retain Username/password and Username/password plus other
+authentication. No OAuth/passwordless-only answer is introduced by enrolment.
+Account deletion: retain https://docked.com.au/account-deletion and the in-app
+account-control path, with the retention exceptions in the proposed notice.
+No new contacts/call-log/SMS-inbox collection or Android permission is proposed.
+The user manually types the challenge code; there is no SMS-reading SDK here.
+Keep Purchase history selected and User payment info unselected for the existing
+Google checkout integration, provided the final integration remains unchanged.
+
+Sharing rationale and limitation
+This is a documented compliance recommendation, not a claim of Google approval.
+Google excludes transfers to processors acting only on the developer's behalf.
+Twilio's current DPA sections 3.3–3.4 also provide for independent-controller
+processing of phone-bearing communications usage/content for service/security
+and improvement purposes. Therefore do not assume a blanket processor exemption
+or mark Phone "not shared" merely because it is sent by Supabase rather than a
+native SDK. The conservative shared declaration covers that independent use.
+The proposal does not add advertising, sale of numbers or new application analytics.
+
+Retention: accurate now, no invented seven-day promise
+The proposed notice describes published Twilio defaults (400-day access plus
+possible older archives) and provider deletion-backup limits. Actual account
+"Message Records Data Access and Backup" settings still need read-only checking;
+browser control is unavailable in this turn. No paid data-control add-on, provider
+deletion schedule or new cron has been enabled or made a prerequisite.
+An optional later reduction can be considered with its exact control/cost review.
+The founder-approved 90-day policy is only routine operational incidents. It
+does not apply to Auth users, SMS logs, financial/security data or held records.
+Neither account erasure nor OTP expiry is represented as automatic deletion of
+every Twilio/carrier record. Provider record deletion requests remain a manual
+privacy-support workflow, with identity checks and applicable retention exceptions.
+
+Provider-record deletion support procedure (prepared, not executed)
+1. Authenticate the requester via established account controls or proportionate
+   recovery checks; never accept possession of a recycled phone as sole proof.
+2. Use an authorised provider operator to identify the requester's messages in
+   Twilio Console; minimise exposure of numbers and message bodies. Do not export
+   them into Git, public QA screenshots or general incident logs.
+3. Check security, legal and financial preservation needs; explain exclusions.
+4. Submit the exact permitted deletion through Twilio, recording only opaque
+   request/status/date evidence; no routine broad deletion or new schedule.
+5. Explain Twilio backup/legal exceptions and separate carrier records. Verify
+   provider outcome before marking that portion of the privacy request complete.
+This workflow is separate from the existing application Auth/profile erasure job.
+
+Google review and v31
+Last authenticated saved-form inspection on 11 November had Phone number OFF;
+this turn did not inspect or mutate Console. Google reviews Data Safety updates.
+After separate submission authority, save exact answers, inspect Publishing
+overview and send required declaration changes for review. Retain managed
+publishing ON and wait for approval of applicable pending changes. Do not promise
+the existing approved batch can be released unchanged after a declaration edit.
+This is a declaration/policy change; no Android binary change is inherently needed.
+Fresh native/dependency diff against f1b50b6f is empty. Retained submitted AAB
+SHA-256: 8becb6d044efc93baed6649f11ff100cc562bb09d200d45ec1a6742cf36e83b0.
+The AAB targets https://docked.com.au/app, so Preview browser results cannot prove
+installed-v31 phone acceptance; perform that after the approved dormant rollout.
+
+Primary sources checked 11 November 2026
+https://support.google.com/googleplay/android-developer/answer/10787469?hl=en
+https://support.google.com/googleplay/android-developer/answer/9859654?hl=en
+https://www.twilio.com/en-us/legal/data-protection-addendum
+https://www.twilio.com/en-us/legal/privacy
+https://help.twilio.com/articles/223181008-Twilio-SMS-message-and-traffic-storage
+https://help.twilio.com/articles/4410585868443
+https://supabase.com/legal/privacy-resources/data-residency-and-transfers-faq
+https://supabase.com/legal/customer-resources/data-processing-addendum

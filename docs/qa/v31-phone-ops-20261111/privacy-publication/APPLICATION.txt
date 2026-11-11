@@ -1,0 +1,78 @@
+DOCKED — exact inactive phone privacy publication package
+11 November 2026 | PREPARED ONLY; NO ACTIVE FILE OR ENVIRONMENT CHANGE
+
+Founder approval C covers the complete wording in
+docs/policies/2026-11-11-phone-review/privacy.md, the verification-screen paragraph
+in ../PRIVACY_AND_PLAY_APPROVAL.txt, and the exact patch below. Publication,
+Google submission and controlled backend deployment require their stated authority;
+approval of wording alone is not authority to deploy or open registration.
+
+Patch: phone-privacy-v4.prepared.patch
+SHA-256: 1bf4e24b1fb54e9e5025407137117c723faef8ad594e01f0408d4003e5dc9dfe
+Version: 2026-11-11-privacy-phone-v4
+Effective: on approved publication; no invented future publication date.
+Record the actual publication UTC time, deployment ID and approved source commit
+in the release evidence at publication. The version's date identifies preparation.
+
+Only two intended active files
+- config/launch-policy-content.json: privacy document metadata and sections only.
+  Other policy documents, the top-level version/date/operator and accepted history
+  are preserved. Existing Google Play Billing SDK automatic collection, mailbox
+  processing limitations, current purchase gates and beta erasure limitations are
+  retained alongside the new phone wording.
+- src/components/public-phone-verification.tsx: introductory paragraph only.
+  Inputs, submit paths, access restrictions and existing support/privacy/account
+  links are unchanged.
+
+Prepared verification already completed
+- git apply --check passed against the current unchanged active files.
+- Parsed config comparison proved all other policy documents/top-level metadata
+  unchanged. The readable proposed notice contains the exact proposed sections.
+- Prepared component passed ESLint via stdin using its real source filename.
+- Prepared config/component formatted with Prettier.
+- Fresh git diff for both active files is empty. No policy/build deployed.
+manifest.json contains normalised pre/post file SHA-256 values and patch SHA-256.
+
+After C-specific approval, in a clean review checkout
+1. Verify the patch hash and both expected preimage hashes in manifest.json.
+   File hashes use UTF-8 text with CRLF normalised to LF, without a BOM. Stop on
+   source drift; do not force an old patch onto changed policy or component code.
+2. Run these repository-root commands, stopping at any failure:
+
+   git apply --check docs/qa/v31-phone-ops-20261111/privacy-publication/phone-privacy-v4.prepared.patch
+   git apply docs/qa/v31-phone-ops-20261111/privacy-publication/phone-privacy-v4.prepared.patch
+   npx prettier --check config/launch-policy-content.json src/components/public-phone-verification.tsx
+   npx eslint src/components/public-phone-verification.tsx
+   npm run typecheck
+   npm run build
+
+3. Verify both postimage hashes and review the two-file diff. Do not regenerate
+   any Android artifact. Commit the approved patch and bind deployment to that
+   exact reviewed commit. The earlier dormant-backend source hash does not by
+   itself identify this later policy-patched source.
+4. For the approved public Production configuration, set
+   PRIVACY_POLICY_VERSION=2026-11-11-privacy-phone-v4 through the existing secure
+   operator environment workflow; preserve TERMS_VERSION and all release gates.
+   Do not rewrite historical consent events. Existing beta consent configuration
+   remains separate. A later phone activation may use this exact approved version
+   as DOCKED_PUBLIC_PHONE_POLICY_REFERENCE; that flag/reference is not enabled here.
+   Match the public gameplay policy version in its separate approved activation
+   transaction. Policy publication alone must not mutate gameplay or register users.
+5. Deploy only with the separately authorised source/environment package. Inspect
+   /privacy for this exact version and complete provider/SDK/retention wording.
+   In the authorised private account window inspect the phone screen, existing
+   privacy/account/support links and current-version consent capture. Verify that
+   old consent records remain unchanged and disabled feature controls remain shut.
+6. Apply only the approved Data Safety delta from ../PRIVACY_AND_PLAY_APPROVAL.txt
+   in Play Console, then inspect Publishing overview and submit required changes
+   for review only when authorised. Keep managed publishing ON. The existing v31
+   binary approval does not replace approval of changed declarations.
+
+Recovery
+Before deployment, git apply --reverse --check then git apply --reverse can remove
+this isolated patch, provided neither file has changed since. After publication,
+do not silently roll back a notice or consent version while phone processing
+continues. Disable affected phone/public admission through approved emergency
+controls and publish a reviewed correction that accurately describes current
+processing. Retain prior published versions and consent history. This package
+does not authorise policy retraction, feature activation or Google publication.

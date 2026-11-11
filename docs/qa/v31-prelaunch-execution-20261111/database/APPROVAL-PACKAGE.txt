@@ -1,0 +1,150 @@
+V31 dormant backend approval package — 11 November 2026
+PREPARED / NOT APPROVED / NO PRODUCTION WRITES
+
+One founder approval may cover these five ordered migrations, the exact restricted
+outbox permission file and controlled closed-gate backend staging/promotion.
+Inventory import, phone-provider activation, public registration, trading,
+payments, prizes/withdrawals, retention schedules and Google publication are
+excluded. Approved v31 Android binary is not rebuilt by these commands.
+
+Exact bytes and operator dependencies: exact-package.json. SHA-256 is emitted by
+node scripts/v31-build-exact-package.mjs and must be copied into the approval.
+The founder approves the final committed SHA plus that package SHA, not a moving
+branch. Template: config/operations/v31-backend-approval.template.json. The agent
+records the founder's actual instruction in a private approval file; the template
+is deliberately false and must never be treated as permission. Maximum window24h.
+
+Order / object and permission impact
+1 20261109231834_commercial_lifetime_supply_guards.sql
+  ec1154357168027f106c9d5e0f03cc98fd9820a58f4196cb7f30103b98ff53bb
+  definitions/cards/packs lifetime constraints, identity indexes, transactional
+  supply and parallel-mint guards on legacy registries. No issuance or ownership
+  mutation now. RLS unchanged; no new financial/table grants. Approved future
+  inventory import intentionally stops parallel limited TEST minting.
+2 20261109232000_public_practice_phone_guards.sql
+  8179828fdd88bea9c95f4ac961905737f51d1aae78e25455748e7191a6d4fee0
+  public_gameplay.identity and practice guards; private phone boolean helper.
+  Bound public rounds remain disabled, synthetic Practice only, zero fees/prizes.
+  Existing beta access unchanged; no new account/phone. No RLS relaxation.
+3 20261109232124_operational_incident_review.sql
+  9ff6eae192460f1369e3db11ba387ab9418fcb2908a017a653f2c15e870a62bd
+  Empty operations.incidents/events, owner_actor/observe/review and audit triggers.
+  Founder approved mailbox + owner role/profile/session + AAL2 on every review.
+  App wrapper only; direct browser/service/app table access denied; immutable audit.
+4 20261110005726_operational_incident_retention.sql
+  1248d78d8c3a17d54d9d3732444e2e058cfe43e6af0aa857f5acfc17262de5bd
+  Depends on3. One disabled90-day policy; preservation/receipts empty; founder
+  dry-run/hold wrapper. Unassigned NOLOGIN least-privilege pruning role. No cron,
+  membership or deletion. Financial/security/statutory/legal-hold records excluded.
+5 20261110010050_australian_verified_phone_uniqueness.sql
+  bc5c61ede682a41ff24500b89fda4db6cef71760f30d52c2c8fb652ac79c4e11
+  Depends on2. auth.users partial unique canonical phone index and Australian
+  mobile helper; no Auth permission change or number mutation. Duplicate verified
+  ownership fails closed. Nonconcurrent index briefly blocks Auth writes.
+6 config/operations/billing-ops-outbox-v2.prepared.sql
+  raw59dffc74f3f9a354366bedc994136264fb1922201a6c33f40864777b2546cf09
+  Restricted private.outbox/audit policies, aggregate signal/enqueue RPC for
+  commercial runtime, fenced dispatcher RPC only service_role. One disabled flag.
+  No email, dispatch schedule, recipient expansion or payment permission.
+  Founder recipient is unchanged (existing approved operational mailbox).
+
+Evidence
+Fresh read-only repeatable-read capture 2026-11-11T05:34:00.942Z; archive
+133,880,651bytes, AES-256-GCM authenticated/hash-verified with existing operator key.
+SHA f726c5bdceaf641ff6a7f7ae36a1a017db02900c6f7eb78ae3bc644c30fa6926.
+Restored PostgreSQL17.11, networknone, no ports, cron off, outbound worker disabled.
+All five files applied twice:550 protected durable tables unchanged. Separate
+outbox applied twice:555 existing tables unchanged except one disabled flag.
+No custom role passwords, Storage object bodies, external keys or hosted provider
+configuration are included in this logical backup. Managed-key custody acceptance
+is still separate. No live key rotation or upload occurred.
+
+Full dumped schema, roles and memberships match Nov10. Data drift is explicitly
+recorded in fresh-drift-review.json and snapshot-data-drift.json, not discarded:
+new real AFL limited issuance raised supported baseline879 to888 while preserving
+the original879; source registration table names alone do not imply synthetic.
+Auth activity, scheduler/worker records, rate-limit counts and provider retention
+also advanced. Two raw provider revision bodies/purged_at changed. These observed
+changes are preserved, not retrospectively approved. No commercial inventory exists.
+
+Native PostgreSQL verification:15 billing/refund groups,7 pack/supply groups,
+9 lifetime/concurrent issuance groups,18 alert/outbox groups, plus2 native
+incident/retention/Australian phone-race test cases. No real providers called.
+See billing/, pack-supply/, lifetime/, alerts/, operations-native/ JSON reports.
+Atomic builder/history and emergency-close rollback results are in
+atomic-package-rehearsal.json. Approval denial cases are in approval-refusals.json.
+
+Executable commands, from reviewed worktree; no secrets on CLI
+Read-only preflight:
+  node --import tsx scripts/v31-approved-backend-migrations.mjs inspect
+Read-only/local exact backend export after final commit:
+  node scripts/v31-controlled-backend.mjs prepare
+ONLY AFTER recorded exact founder approval:
+  node --import tsx scripts/v31-approved-backend-migrations.mjs apply --approval=private-data/v31-backend-approval.json
+  node scripts/v31-controlled-backend.mjs stage --approval=private-data/v31-backend-approval.json
+  node scripts/v31-controlled-backend.mjs promote --approval=private-data/v31-backend-approval.json
+Stage targets Production runtime even without a domain. It is NOT Preview and
+requires approval. Inspect staged closed routes/gates before promotion; do not run
+all three commands blindly. Promote requires Ready build and unchanged baseline.
+Backend helper pins f1b50b6f51d7429a36df9a8d5db99aed8886bd44, preserves approved
+hosted-beta restrictions, explicitly closes registration/public phone OTP and
+commercial service/surfaces/checkout. NBA customer visibility remains off.
+
+Database operator rejects schema drift, any pre-applied subset, open gates,
+nonempty commercial state, expired backup or changed original/new custody state.
+It runs all six SQL bodies and five migration-history inserts in ONE transaction,
+lock_timeout3s, statement_timeout60s; compares all550 existing table hashes
+within the same snapshot except exact expected history/disabled-flag additions.
+Never use supabase db push or the historical Nov1/Nov2 apply scripts for this set.
+Use original preflight.sql/postflight.sql in v31-final-reconciliation-20261110
+plus current exact operator checks; assert incident/retention counts0, RLS on,
+direct grants denied, disabled policy, valid unique index, unchanged cron.
+Real owner AAL2 hosted acceptance is required after deployment, separately from
+isolated database tests. Email inbox receipt is founder-attested, not automated.
+
+Maintenance / recovery
+Allow10–15min quiet maintenance for database preflight/application/postflight.
+The Auth index can briefly block Auth writes; lock contention aborts within3s,
+long statements within60s. No planned broad outage; allow10–20min separately
+for backend stage/build/route checks, subject to hosting queue. No money moves.
+Before transaction commit, failure rolls back all six bodies/history inserts.
+After commit, retain dormant guards and use a reviewed forward fix. Do not drop
+the canonical index, reset issuance, delete audit or restore an old full snapshot
+over newer legitimate transactions. Source backups support selective recovery.
+App rollback: inspect backend/rollback.json captured by prepare; promote the
+captured prior Ready deployment only after confirming its temporary test gates
+are closed. Otherwise stage a new closed-gate build. This is a separate incident
+authorisation; it is not implicitly performed by this package. No DB rollback is
+needed solely to roll back the compatible app.
+Prepared PowerShell app-only rollback commands AFTER incident approval and gate
+inspection (the deployment URL is read from the captured receipt, never guessed):
+  $rollback = Get-Content -Raw docs/qa/v31-prelaunch-execution-20261111/backend/rollback.json | ConvertFrom-Json
+  $vercelCli = 'C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js'
+  $vercelConfig = 'C:/Users/61412/Documents/ChatGPT/Docked.com.au/private-data/vercel-cli'
+  node $vercelCli inspect $rollback.url --global-config $vercelConfig --scope team_tf6xweKKyVCj9bTppUKttJ4l
+  node $vercelCli promote $rollback.url --yes --global-config $vercelConfig --scope team_tf6xweKKyVCj9bTppUKttJ4l
+Stop if receipt.commit differs from the reviewed baseline or its environment
+reopens any temporary test gate. In that case prepare a new closed-gate candidate.
+Emergency admission close: config/operations/v31-emergency-close.prepared.sql.
+It works with retention table present or absent, keeps primary registration,
+commercial/public gameplay closures mandatory, preserves receipts/cards/audit and
+operational alerts. Apply only under an authorised incident procedure. Hosted
+environment close also sets REGISTRATION_ENABLED, DOCKED_PUBLIC_CUSTOMERS,
+DOCKED_COMMERCIAL_SERVICE/SURFACES/CHECKOUT and DOCKED_PUBLIC_PHONE_OTP false.
+After any deployment, compare closed gates, supported custody and receipt/ledger
+totals; do not compensate differences by minting or changing customer balances.
+
+Backup refresh if the24-hour apply window expires
+Set DOCKED_RESTORE_RUN to a new unused YYYYMMDD run with optional letter suffix;
+run commercial-production-restore-drill.ts --prelaunch-readiness --keep-isolated-target,
+verify archive with --verify-archive, rerun v31-restored-outbox.mjs, refresh the
+read-only catalogue and regenerate exact package with v31-build-exact-package.mjs.
+Review any source/schema changes and obtain approval for the regenerated digest.
+This is a routine safety refresh, not permission to deploy a moving package.
+
+NO-GO remains. Required approval groups remain separate:
+A dormant schema/security and controlled backend (this package).
+B founder operational MFA/recovery vault and isolated physical OTP participation.
+C exact888-baseline inventory/source decisions and separate import authority.
+D public registration, commercial activity and Google publication, each explicitly
+  authorised only after its own final acceptance gates pass.

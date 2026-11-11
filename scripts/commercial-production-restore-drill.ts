@@ -16,8 +16,13 @@ import { Transform, Writable } from "node:stream";
 import { ownerDatabase } from "./owner-gameplay-db.mjs";
 import postgres from "postgres";
 import { readdirSync, readFileSync } from "node:fs";
+import { v31SchemaFingerprintSql } from "./lib/v31-schema-fingerprint";
 const previewRestore = process.argv.includes("--existing-free-preview");
-const finalReconciliation = process.argv.includes("--final-reconciliation");
+const prelaunchReadiness = process.argv.includes("--prelaunch-readiness");
+const finalReconciliation =
+  process.argv.includes("--final-reconciliation") || prelaunchReadiness;
+const keepIsolatedTarget = process.argv.includes("--keep-isolated-target");
+assert(!keepIsolatedTarget || prelaunchReadiness);
 const p1p4 = process.argv.includes("--p1-p4") || finalReconciliation;
 const remainingAdditions = process.argv.includes("--remaining-additions");
 const finalApproval = process.argv.includes("--final-approval");
@@ -57,14 +62,17 @@ const root = process.cwd(),
   main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
 const runId =
   process.env.DOCKED_RESTORE_RUN ??
-  (finalReconciliation
-    ? "20261110r"
-    : p1p4
-      ? "20261110"
-      : previewRestore
-        ? "20261102p"
-        : "20261102");
-assert.match(runId, /^(20261102[a-z]?|20261110[a-z]?)$/);
+  (prelaunchReadiness
+    ? "20261111"
+    : finalReconciliation
+      ? "20261110r"
+      : p1p4
+        ? "20261110"
+        : previewRestore
+          ? "20261102p"
+          : "20261102");
+assert.match(runId, /^2026\d{4}[a-z]?$/);
+assert(!prelaunchReadiness || /^2026\d{4}[a-z]?$/.test(runId));
 const dir =
   root +
   (previewRestore
@@ -73,19 +81,21 @@ const dir =
   runId;
 const evidence =
   root +
-  (finalReconciliation
-    ? "/docs/qa/v31-final-reconciliation-20261110/restore"
-    : p1p4
-      ? "/docs/qa/v31-p1-p4-20261110/restore"
-      : finalApproval
-        ? "/docs/qa/final-australia-20261102/restore"
-        : remainingAdditions
-          ? "/docs/qa/launch-convergence-20261102/restore"
-          : previewRestore
-            ? "/docs/qa/launch-resolution-20261102/restore"
-            : runId === "20261102"
-              ? "/docs/qa/public-activation-20261102"
-              : "/docs/qa/approved-production-20261102/restore");
+  (prelaunchReadiness
+    ? "/docs/qa/v31-prelaunch-execution-20261111/database/restore-" + runId
+    : finalReconciliation
+      ? "/docs/qa/v31-final-reconciliation-20261110/restore"
+      : p1p4
+        ? "/docs/qa/v31-p1-p4-20261110/restore"
+        : finalApproval
+          ? "/docs/qa/final-australia-20261102/restore"
+          : remainingAdditions
+            ? "/docs/qa/launch-convergence-20261102/restore"
+            : previewRestore
+              ? "/docs/qa/launch-resolution-20261102/restore"
+              : runId === "20261102"
+                ? "/docs/qa/public-activation-20261102"
+                : "/docs/qa/approved-production-20261102/restore");
 const attempt = process.argv.find((a) => a.startsWith("--attempt="))?.slice(10);
 assert.ok(attempt === undefined || /^[2-9]$/.test(attempt));
 const client = "supabase_db_deletion-auth-local",
@@ -162,6 +172,7 @@ type Manifest = {
   members: Membership[];
   sums: Record<string, Checksum>;
   rolesCapturedAt?: string;
+  catalogueFingerprint?: { fingerprint: string; objects: number };
 };
 const quote = (x: string) => "'" + x.replaceAll("'", "'\\''") + "'";
 const sqlQuote = (x: string) => '"' + x.replaceAll('"', '""') + '"';
@@ -344,6 +355,13 @@ async function mainRun() {
           await tx`set local statement_timeout='120s'`;
           const snapshot = (await tx`select pg_export_snapshot() snapshot`)[0]
             .snapshot;
+          const catalogueRow = (await tx.unsafe(v31SchemaFingerprintSql))[0];
+          assert.match(String(catalogueRow.fingerprint), /^[a-f0-9]{32}$/);
+          const catalogueFingerprint = {
+            fingerprint: String(catalogueRow.fingerprint),
+            objects: Number(catalogueRow.objects),
+          };
+          assert.ok(Number.isSafeInteger(catalogueFingerprint.objects));
           const roles =
             await tx`select rolname,rolsuper,rolinherit,rolcreaterole,rolcreatedb,rolreplication,rolbypassrls from pg_roles where rolname !~ '^pg_'`;
           const members =
@@ -432,6 +450,7 @@ async function mainRun() {
             roles: roles as unknown as Role[],
             members: members as unknown as Membership[],
             sums,
+            catalogueFingerprint,
           };
           await encrypt(
             Buffer.from(JSON.stringify(m)),
@@ -831,13 +850,19 @@ async function mainRun() {
     storageObjectBodiesIncluded: false,
     scope:
       "Logical PostgreSQL database and role definitions/membership; no custom role passwords, hosted configuration, Storage object bodies or external service secrets restored",
+    targetRetainedForLocalAcceptance: keepIsolatedTarget,
   };
   await writeFile(
     evidence + "/restore-drill.json",
     JSON.stringify(report, null, 2),
   );
-  console.log(JSON.stringify(report));
-  await run(["stop", target]);
+  console.log(
+    JSON.stringify({
+      ...report,
+      protectedTables: report.protectedTables.length,
+    }),
+  );
+  if (!keepIsolatedTarget) await run(["stop", target]);
   createdTarget = false;
 }
 mainRun().catch(async (error) => {

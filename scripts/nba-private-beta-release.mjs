@@ -302,10 +302,23 @@ if (process.argv[2] === "prepare") {
     assert.equal(env.DOCKED_BETA_STAGING, "true");
     env.DOCKED_MEMBER_GOOGLE_TEST = "true";
   }
-  if(process.env.DOCKED_RELEASE_COMMERCIAL_DORMANT==='true'){
-    assert(!process.argv.includes('--supervised-member-test'));
-    Object.assign(env,{DOCKED_COMMERCIAL_SERVICE:'false',DOCKED_COMMERCIAL_SURFACES:'false',DOCKED_COMMERCIAL_CHECKOUT:'false',DOCKED_PUBLIC_CUSTOMERS:'false'});
-    assert.equal(env.DOCKED_MEMBER_GOOGLE_TEST,'false');
+  if (process.env.DOCKED_RELEASE_COMMERCIAL_DORMANT === "true") {
+    assert(!process.argv.includes("--supervised-member-test"));
+    Object.assign(env, {
+      DOCKED_COMMERCIAL_SERVICE: "false",
+      DOCKED_COMMERCIAL_SURFACES: "false",
+      DOCKED_COMMERCIAL_CHECKOUT: "false",
+      DOCKED_PUBLIC_CUSTOMERS: "false",
+    });
+    assert.equal(env.DOCKED_MEMBER_GOOGLE_TEST, "false");
+  }
+  if (process.env.DOCKED_V31_DORMANT_RELEASE === "true") {
+    assert.equal(process.env.DOCKED_RELEASE_COMMERCIAL_DORMANT, "true");
+    Object.assign(env, {
+      REGISTRATION_ENABLED: "false",
+      DOCKED_PUBLIC_PHONE_OTP: "false",
+      DOCKED_ISOLATED_PHONE_TEST: "false",
+    });
   }
   assert.equal(
     base.env.filter(

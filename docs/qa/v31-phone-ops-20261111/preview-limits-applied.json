@@ -1,0 +1,29 @@
+{
+  "observedAt": "2026-11-11T05:26:51.3416362Z",
+  "target": "isolated-preview",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "organizationVerified": true,
+  "mode": "apply-static-preview-limits",
+  "productionWrites": 0,
+  "previewPatchSent": true,
+  "payload": {
+    "rate_limit_sms_sent": 6,
+    "sms_max_frequency": 60
+  },
+  "before": {
+    "resendSeconds": 5,
+    "smsPerHour": 30
+  },
+  "after": {
+    "resendSeconds": 60,
+    "smsPerHour": 6
+  },
+  "phoneAuthEnabled": false,
+  "signupDisabled": true,
+  "phoneAutoConfirm": false,
+  "otpDigits": 6,
+  "otpExpirySeconds": 300,
+  "allOtherReturnedAuthFieldsUnchanged": true,
+  "credentialsEmitted": false,
+  "smsAttempts": 0
+}
