@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-11T10:05:37.703Z",
+  "passed": true,
+  "target": "docked-v31-retention-acceptance-20261111",
+  "network": "none",
+  "ports": 0,
+  "hostedWrites": 0,
+  "syntheticOnly": true,
+  "operatorSuperuser": false,
+  "migrationSha256": "108418ea6c952cf1ed770de0a88d9995dca28aa98c0722fc78be0ad8455f4ebd",
+  "checks": [
+    "Original failure reproduced with non-superuser CREATEROLE; failed transaction leaves no role",
+    "Complete revised retention migration applied and reapplied as non-superuser postgres",
+    "Only unavoidable bootstrap ADMIN grant remains; no SET, inheritance, schema CREATE or enabled deletion",
+    "All six runtime roles denied prune execution and SET ROLE; disabled policy enforced",
+    "Unexpected runtime membership and LOGIN drift both rejected before setup grants",
+    "Later transaction failure rolls back setup without leaving executable membership"
+  ],
+  "finalState": {
+    "owner": "docked_incident_retention",
+    "enabled": false,
+    "creatorSet": false,
+    "memberships": [
+      {
+        "set": false,
+        "admin": true,
+        "member": "postgres",
+        "grantor": "bootstrap_admin",
+        "inherit": false
+      }
+    ],
+    "schemaCreate": false,
+    "creatorInherit": false
+  }
+}

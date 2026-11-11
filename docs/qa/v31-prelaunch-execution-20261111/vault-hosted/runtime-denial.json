@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-11T10:16:34.269Z",
+  "project": "docked-play-verification",
+  "secret": "docked-recovery-acceptance",
+  "version": 1,
+  "principal": "docked-play-test-verifier@docked-play-verification.iam.gserviceaccount.com",
+  "httpStatus": 403,
+  "errorCode": "PERMISSION_DENIED",
+  "denied": true,
+  "payloadEmitted": false,
+  "iamChanges": 0,
+  "liveSecretReads": 0,
+  "impersonation": false
+}

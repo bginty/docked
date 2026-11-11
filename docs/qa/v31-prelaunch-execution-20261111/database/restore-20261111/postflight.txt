@@ -8,10 +8,11 @@ SET
 0
 f
 t|t|f|f
-f|f|f|0
+f|f|f|1
 0
-CREATE UNIQUE INDEX docked_verified_phone_canonical ON auth.users USING btree (regexp_replace(phone, '^\+'::text, ''::text)) WHERE ((phone_confirmed_at IS NOT NULL) AND (phone ~ '^\+?[1-9][0-9]{7,14}$'::text))
+CREATE UNIQUE INDEX docked_verified_phone_canonical ON private.verified_phone_claims USING btree (canonical_phone)
 0
+1
 0
 f|f|f|f
 0

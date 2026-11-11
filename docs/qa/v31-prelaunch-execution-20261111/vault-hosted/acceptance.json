@@ -1,0 +1,77 @@
+{
+  "at": "2026-11-11T10:44:59.535467Z",
+  "project": "docked-play-verification",
+  "secret": "docked-recovery-acceptance",
+  "version": 1,
+  "syntheticOnly": true,
+  "founderSession": "Existing authenticated Google session; Cloud Shell explicitly authorised by founder",
+  "googleMfa": "Founder attestation plus authenticated Security page showing 2-Step Verification ON, authenticator and passkeys configured; no simulated fresh MFA challenge",
+  "independentRecovery": "Founder confirmed accessible recovery method if usual phone is lost",
+  "iam": {
+    "humanAccess": "Existing founder Owner (Legacy), inherited from project",
+    "secretSpecificBindingsAdded": 0,
+    "newRuntimePermissions": 0,
+    "limitation": "Existing Owner is broad administration, not a secret-scoped least-privilege role. No owner removal or new IAM grants performed. Only the actual verifier principal was actively denied; no impersonation grants were created."
+  },
+  "audit": {
+    "enabledBy": "Founder in Console, then independently read back",
+    "service": "secretmanager.googleapis.com",
+    "types": ["ADMIN_READ", "DATA_READ", "DATA_WRITE"],
+    "exemptionsShown": 0,
+    "otherServicesChanged": false,
+    "actualEventsObserved": [
+      {
+        "at": "2026-11-11T10:09:22.593Z",
+        "method": "CreateSecret",
+        "actor": "founder"
+      },
+      {
+        "at": "2026-11-11T10:09:25.110Z",
+        "method": "AddSecretVersion",
+        "actor": "founder"
+      },
+      {
+        "at": "2026-11-11T10:10:28.444Z",
+        "method": "AccessSecretVersion",
+        "actor": "founder"
+      },
+      {
+        "at": "2026-11-11T10:11:57.933Z",
+        "method": "DisableSecretVersion",
+        "actor": "founder"
+      },
+      {
+        "at": "2026-11-11T10:12:48.976Z",
+        "method": "EnableSecretVersion",
+        "actor": "founder"
+      },
+      {
+        "at": "2026-11-11T10:14:26.519Z",
+        "method": "AccessSecretVersion",
+        "actor": "founder"
+      },
+      {
+        "at": "2026-11-11T10:16:33.139Z",
+        "method": "AccessSecretVersion",
+        "actor": "existing verifier service account",
+        "result": "PERMISSION_DENIED"
+      }
+    ],
+    "limitation": "Access logging verified; no assertion of locked immutable log-bucket retention or a separately exported audit archive"
+  },
+  "checks": {
+    "payloadMatchedInMemory": true,
+    "actualVerifierHttp403": true,
+    "wrongVersionNotFound": true,
+    "disabledVersionProviderDenied": true,
+    "recoveredIdentical": true,
+    "destructionDelayDays": 30,
+    "finalState": "ENABLED",
+    "payloadPrintedOrCommitted": false
+  },
+  "liveKeysReadTransferredRotated": 0,
+  "newPaidInfrastructure": false,
+  "accountFreeAllowanceVerified": false,
+  "liveBackupVaultCustodyAccepted": false,
+  "emergencyProcedure": "Use the founder's independent recovery method; inspect principal/version audit history; revoke compromised scoped access under incident authority; disable the affected version reversibly. Do not delete the secret: whole-secret deletion is not covered by the version destruction delay. Preserve versions needed for existing encrypted backups. Live-key transfer and an isolated restore using that exact version require separate approval."
+}

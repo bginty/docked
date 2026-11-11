@@ -1,0 +1,13 @@
+{
+  "at": "2026-11-11T10:46:39.910Z",
+  "checks": [
+    "90-day age; unexpired records/legal holds/investigations/required audit/unknown/security/financial categories excluded",
+    "dormant by default; no app/worker activation privilege; exact deletion once; minimal immutable receipt retained",
+    "recurring incident retained; founder preservation action audited and stale decisions denied",
+    "AU mobile gate; canonical verified number unique; concurrent resend cooldown admits one; no phone copied to audit"
+  ],
+  "passed": true,
+  "engine": "PGlite",
+  "realSMS": false,
+  "productionWrites": 0
+}

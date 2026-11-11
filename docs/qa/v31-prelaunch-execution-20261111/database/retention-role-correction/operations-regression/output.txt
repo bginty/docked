@@ -1,0 +1,20 @@
+TAP version 13
+# Subtest: Operational incidents final: retention exclusion, holds, audit and verified-phone races
+ok 1 - Operational incidents final: retention exclusion, holds, audit and verified-phone races
+  ---
+  duration_ms: 23938.9968
+  ...
+# Subtest: Operational incidents: founder MFA, least privilege, deduplication, concurrency and durable audit
+ok 2 - Operational incidents: founder MFA, least privilege, deduplication, concurrency and durable audit
+  ---
+  duration_ms: 22984.4889
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 27613.6362

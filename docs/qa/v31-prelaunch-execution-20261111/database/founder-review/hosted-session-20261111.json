@@ -1,0 +1,74 @@
+{
+  "date": "2026-11-11",
+  "timezone": "Australia/Sydney",
+  "production": {
+    "commit": "f1b50b6f51d7429a36df9a8d5db99aed8886bd44",
+    "deployment": "dpl_9bwmvDvt5AEszaBtR311MjHLpHg7",
+    "approvedAttemptCommit": "47754edfd8abfac7a32ce62212c0374636441c41",
+    "approvedAttemptPackage": "3aa30b20eddd33835e43ee721e598743897c3663f193d2c041dbe9d62dc9840e",
+    "databaseResult": "FAILED_AND_ROLLED_BACK",
+    "reason": "PostgreSQL 17 non-superuser role creation adds an ADMIN-only membership; original retention guard rejected it",
+    "persistedMigrations": 0,
+    "persistedOutboxChange": false,
+    "applicationStageOrPromotionAttempted": false,
+    "rollbackVerified": "Fresh read-only preflight and explicit absence checks for all five histories, operations tables, canonical index, retention role and outbox flag/function; original catalogue fingerprint and custody match",
+    "revisedPackageApproval": "REQUIRED_BEFORE_RETRY"
+  },
+  "twilio": {
+    "previewCredentialsSaved": "Founder confirmed; independently checked presence only",
+    "previewPhoneProviderEnabled": false,
+    "previewSignupEnabled": false,
+    "productionPhoneProviderEnabled": false,
+    "productionTwilioCredentialsPresent": false,
+    "smsSent": 0,
+    "senderCountry": "AU",
+    "senderLabel": "Docked",
+    "senderStatus": "In review",
+    "senderStatusEvidence": "Authenticated Twilio Registrations screen",
+    "mfa": "Login & security shows Text message delivery method and Recovery Code Generated; social sign-in uses founder Google account",
+    "previewLimits": {
+      "smsPerHour": 6,
+      "resendSeconds": 60,
+      "expirySeconds": 300,
+      "digits": 6,
+      "fixedTestOtpEnabled": false
+    },
+    "testBudgetAUD": 20,
+    "nextSmsAuthority": "Separate isolated Preview test window after usable sender approval",
+    "messageAccessDays": 400,
+    "backupStorageEnabled": true,
+    "retentionSettingsChanged": false
+  },
+  "play": {
+    "source": "Authenticated Publishing overview inspected this session",
+    "versionCode": 31,
+    "versionName": "1.30",
+    "readyToPublish": true,
+    "managedPublishingOn": true,
+    "existingReadyChanges": 10,
+    "phoneDeclarationSubmitted": false,
+    "published": false,
+    "nativeChanges": false
+  },
+  "email": {
+    "test": "DOCKED-OPS-20261110-01",
+    "receipt": "CONFIRMED",
+    "receivedDate": "2026-11-10",
+    "evidence": "founder attestation",
+    "providerAcceptance": "previously reported",
+    "automatedInboxInspection": false,
+    "resent": false,
+    "approvedOperationalRecipient": "support@docked.com.au"
+  },
+  "incidentHostedAcceptance": "Not executed: backend deployment did not complete",
+  "inventoryDigest": "4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4",
+  "inventory": {
+    "preservedLimitedCopies": 888,
+    "proposedDefinitions": 6540,
+    "eligibleDefinitions": 6065,
+    "excludedDefinitions": 475,
+    "identityRegistrations": 23,
+    "imported": false
+  },
+  "launch": "NO-GO"
+}

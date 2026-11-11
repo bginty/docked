@@ -1,5 +1,5 @@
 {
-  "version": "v31-dormant-backend-20261111-v1",
+  "version": "v31-dormant-backend-20261111-v2-hosted-permissions",
   "project": "pojoymtniryarxxunyvz",
   "productionBaseline": "f1b50b6f51d7429a36df9a8d5db99aed8886bd44",
   "sourceCatalogue": {
@@ -27,21 +27,21 @@
     {
       "kind": "migration",
       "path": "supabase/migrations/20261109232124_operational_incident_review.sql",
-      "sha256": "9ff6eae192460f1369e3db11ba387ab9418fcb2908a017a653f2c15e870a62bd",
+      "sha256": "776c4ccf7795e734547e0db2088028b936ad8c226617b93115281d041eeeb3e7",
       "version": "20261109232124",
       "name": "operational_incident_review"
     },
     {
       "kind": "migration",
       "path": "supabase/migrations/20261110005726_operational_incident_retention.sql",
-      "sha256": "1248d78d8c3a17d54d9d3732444e2e058cfe43e6af0aa857f5acfc17262de5bd",
+      "sha256": "108418ea6c952cf1ed770de0a88d9995dca28aa98c0722fc78be0ad8455f4ebd",
       "version": "20261110005726",
       "name": "operational_incident_retention"
     },
     {
       "kind": "migration",
       "path": "supabase/migrations/20261110010050_australian_verified_phone_uniqueness.sql",
-      "sha256": "bc5c61ede682a41ff24500b89fda4db6cef71760f30d52c2c8fb652ac79c4e11",
+      "sha256": "1c86e313976a1d5b30eecdbba21c8329de3f38a27f44f99c2f53a83b1f34f996",
       "version": "20261110010050",
       "name": "australian_verified_phone_uniqueness"
     },
@@ -53,27 +53,27 @@
     {
       "kind": "operator-dependency",
       "path": "scripts/v31-approved-backend-migrations.mjs",
-      "sha256": "2131e6134e639a8ec88e4de2a6632da0e4f67485c91b450fa358e580e71ed8a1"
+      "sha256": "61a7380a4ef5d14e6401ac195094acf708099c3d4fa66a430e0829120ea56d7a"
     },
     {
       "kind": "operator-dependency",
       "path": "scripts/v31-controlled-backend.mjs",
-      "sha256": "4683243c152f747858da496a26a0926029b2675446ec79b4cf947f34e5f6e669"
+      "sha256": "94d4025600b8c18ed79b98d8253bdd201c63c5880f977560fe385f94747f8c72"
     },
     {
       "kind": "operator-dependency",
       "path": "scripts/lib/v31-exact-package.mjs",
-      "sha256": "fc1dee188e268c663dce5468001d215122b5257229a8f5a7246b40259a623e28"
+      "sha256": "5e9d23098e37c7407ad0749485af9ab7cdc48fb1117c9dce16a41d1100f4871f"
     },
     {
       "kind": "operator-dependency",
       "path": "scripts/lib/v31-schema-fingerprint.ts",
-      "sha256": "3e8e3d41f01379dfd2a7c1d10a729ddff21f47162124ddba060910024fdcd55d"
+      "sha256": "5c27d0bb2cfcbfe18579d48f370733ac641db68aaf0091289d256c8e48f4eba9"
     },
     {
       "kind": "operator-dependency",
       "path": "scripts/nba-private-beta-release.mjs",
-      "sha256": "479b4b1cac6c9a2b689e03d2f4ec59b1a77a6b590c0f79b220811b0d86fb5336"
+      "sha256": "2e168a34b9f3598f7b384a0c005db91893a7f910acf85612d8b331d0b1b60be4"
     },
     {
       "kind": "operator-dependency",
@@ -86,6 +86,13 @@
       "sha256": "8affb69fc8d1b667eb9fd81be89c83630381d6533b260c875947eb6413048d2f"
     }
   ],
-  "scope": "Five ordered dormant migrations and restricted outbox permissions; controlled closed-gate backend deployment. No inventory import, public registration, commercial activation, Play publication or deletion schedule.",
-  "approvalStatus": "NOT_APPROVED"
+  "scope": "Five ordered dormant migrations with hosted-permission corrections, restricted outbox permissions and controlled closed-gate backend deployment. No inventory import, public registration, phone sending, commercial activation, Play/policy publication, live-key changes or deletion schedule.",
+  "approvalStatus": "NOT_APPROVED",
+  "supersedesPackageSha256": "3aa30b20eddd33835e43ee721e598743897c3663f193d2c041dbe9d62dc9840e",
+  "sourceMemberships": {
+    "fingerprint": "ebd778dd5382b92f253e8ebeec994294",
+    "memberships": 34
+  },
+  "atomicEvidence": "docs/qa/v31-prelaunch-execution-20261111/database/retention-role-correction/atomic-rehearsal.json",
+  "outboxEvidence": "docs/qa/v31-prelaunch-execution-20261111/database/retention-role-correction/restored-outbox.json"
 }

@@ -1,14 +1,26 @@
 -- Dormant routine-incident minimisation, founder approved 90 days. No cron/login.
 -- Financial/payment/security/audit sources are never touched by this worker.
 do $$begin
+ if current_user<>'postgres' then raise exception 'Reviewed postgres migration operator required';end if;
  if to_regclass('operations.incidents')is null then raise exception 'Incident review migration required';end if;
  if not exists(select 1 from pg_roles where rolname='docked_incident_retention')then
   create role docked_incident_retention nologin nosuperuser nocreatedb nocreaterole noinherit nobypassrls;
  end if;
- if exists(select 1 from pg_roles where rolname='docked_incident_retention'and(rolcanlogin or rolsuper or rolbypassrls))
- or exists(select 1 from pg_auth_members where roleid=(select oid from pg_roles where rolname='docked_incident_retention'))then
-  raise exception 'Retention role must remain unassigned NOLOGIN, nonprivileged';end if;
+ if exists(select 1 from pg_roles where rolname='docked_incident_retention'and(rolcanlogin or rolsuper or rolbypassrls or rolcreatedb or rolcreaterole or rolreplication or rolinherit))
+ or exists(select 1 from pg_auth_members where member=(select oid from pg_roles where rolname='docked_incident_retention'))
+ or exists(select 1 from pg_auth_members a join pg_roles m on m.oid=a.member join pg_roles g on g.oid=a.grantor
+  where a.roleid=(select oid from pg_roles where rolname='docked_incident_retention')
+  and not(m.rolname='postgres' and g.rolsuper and a.admin_option and not a.inherit_option and not a.set_option))then
+  raise exception 'Retention role must have no executable memberships or elevated attributes';end if;
+ if has_schema_privilege('docked_incident_retention','operations','CREATE')then
+  raise exception 'Unexpected standing retention schema creation permission';end if;
 end$$;
+-- PostgreSQL 17 gives a non-superuser creator an unavoidable ADMIN-only grant
+-- from the bootstrap superuser (INHERIT FALSE, SET FALSE). Do not relax runtime
+-- access. The migration operator's own temporary grant exists only inside the
+-- reviewed transaction and is removed below after ownership/ACL maintenance.
+grant docked_incident_retention to postgres with admin false, inherit true, set true;
+grant usage,create on schema operations to docked_incident_retention;
 create table if not exists operations.retention_policy(
  id boolean primary key default true check(id), enabled boolean not null default false,
  routine_days int not null default 90 check(routine_days=90), version text not null default 'founder-routine-incidents-20261110-v1'
@@ -120,3 +132,12 @@ alter function operations.prune_routine(int)owner to docked_incident_retention;
 revoke all on function operations.routine_expired(text),operations.retention_review(text,jsonb),operations.audit_guard(),operations.prune_routine(int)from public,anon,authenticated,service_role,docked_app,docked_beta_app,docked_commercial_app;
 grant execute on function operations.routine_expired(text),operations.prune_routine(int)to docked_incident_retention;
 grant execute on function operations.retention_review(text,jsonb)to docked_app,docked_beta_app;
+revoke create on schema operations from docked_incident_retention;
+revoke docked_incident_retention from postgres granted by postgres;
+do $$begin
+ if exists(select 1 from pg_auth_members a join pg_roles m on m.oid=a.member join pg_roles g on g.oid=a.grantor
+  where a.roleid=(select oid from pg_roles where rolname='docked_incident_retention')
+  and not(m.rolname='postgres' and g.rolsuper and a.admin_option and not a.inherit_option and not a.set_option))
+ or has_schema_privilege('docked_incident_retention','operations','CREATE')then
+  raise exception 'Temporary retention setup access was not removed';end if;
+end$$;

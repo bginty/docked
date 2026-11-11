@@ -5,8 +5,13 @@ import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 const runId = process.env.DOCKED_RESTORE_RUN ?? "20261111";
 assert.match(runId, /^2026\d{4}[a-z]?$/);
-const target = `docked-commercial-restore-${runId}`;
-const out = "docs/qa/v31-prelaunch-execution-20261111/database";
+const attempt = process.argv.find((a) => a.startsWith("--attempt="))?.slice(10);
+assert(attempt === undefined || /^[1-9][0-9]*$/.test(attempt));
+const target =
+  `docked-commercial-restore-${runId}` + (attempt ? `-attempt-${attempt}` : "");
+const out =
+  "docs/qa/v31-prelaunch-execution-20261111/database" +
+  (attempt ? "/retention-role-correction" : "");
 const inspect = JSON.parse(
   spawnSync("docker", ["inspect", target], { encoding: "utf8" }).stdout,
 )[0];

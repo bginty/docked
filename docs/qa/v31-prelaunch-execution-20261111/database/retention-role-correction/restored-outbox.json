@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-11T10:46:43.174Z",
+  "target": "docked-commercial-restore-20261111-attempt-8",
+  "network": "none",
+  "package": "config/operations/billing-ops-outbox-v2.prepared.sql",
+  "sha256": "59dffc74f3f9a354366bedc994136264fb1922201a6c33f40864777b2546cf09",
+  "appliedTwice": true,
+  "protectedTables": 556,
+  "protectedRowsUnchanged": true,
+  "expectedAddition": "one disabled billing_ops_alerts feature flag",
+  "checks": {
+    "windowClosed": true,
+    "anonymousEnqueue": false,
+    "admissionDisabled": true,
+    "commercialEnqueue": true,
+    "retentionDisabled": true,
+    "authenticatedEnqueue": false,
+    "outboxOperationalRows": 0,
+    "commercialDirectOutbox": false,
+    "reservedOutboxPolicies": 4
+  },
+  "productionWrites": 0,
+  "emailSent": false
+}

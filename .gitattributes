@@ -15,3 +15,14 @@ supabase/migrations/20261110010050_australian_verified_phone_uniqueness.sql text
 docs/qa/v31-final-reconciliation-20261110/*.json text eol=lf
 docs/qa/v31-final-reconciliation-20261110/restore/*.json text eol=lf
 docs/qa/v31-operational-acceptance-20261110/*.json text eol=lf
+
+# Freeze the reviewed v31 package bytes, including existing CRLF dependencies.
+docs/qa/v31-prelaunch-execution-20261111/database/exact-package.json text eol=lf
+scripts/v31-approved-backend-migrations.mjs text eol=lf
+config/operations/billing-ops-outbox-v2.prepared.sql text eol=crlf
+scripts/v31-controlled-backend.mjs text eol=crlf
+scripts/lib/v31-exact-package.mjs text eol=crlf
+scripts/lib/v31-schema-fingerprint.ts text eol=crlf
+scripts/nba-private-beta-release.mjs text eol=crlf
+src/core/hosted-beta.mjs text eol=crlf
+config/hosted-beta.json text eol=crlf

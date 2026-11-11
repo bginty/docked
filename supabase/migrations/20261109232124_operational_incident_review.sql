@@ -103,6 +103,8 @@ drop trigger if exists operations_audit_immutable on operations.events;
 create trigger operations_audit_immutable before update or delete on operations.events for each row execute function operations.immutable();
 drop trigger if exists operations_audit_truncate on operations.events;
 create trigger operations_audit_truncate before truncate on operations.events for each statement execute function operations.immutable();
-revoke all on all functions in schema operations from public,anon,authenticated,service_role,docked_app,docked_beta_app,docked_commercial_app;
+-- Revoke only this migration's functions; the later pruning function has a
+-- separate NOLOGIN owner and must not require standing operator membership.
+revoke all on function operations.owner_actor(),operations.observe(text,text,bigint),operations.review(text,jsonb),operations.immutable() from public,anon,authenticated,service_role,docked_app,docked_beta_app,docked_commercial_app;
 grant usage on schema operations to docked_app,docked_beta_app;
 grant execute on function operations.review(text,jsonb) to docked_app,docked_beta_app;

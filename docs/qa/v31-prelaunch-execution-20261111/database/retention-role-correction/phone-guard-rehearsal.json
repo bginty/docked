@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-11T10:37:17.551Z",
+  "passed": true,
+  "syntheticOnly": true,
+  "target": "docked-v31-phone-guard-20261111-2",
+  "network": "none",
+  "publishedPorts": 0,
+  "productionWrites": 0,
+  "postgresSuperuser": false,
+  "authTableOwner": "supabase_auth_admin",
+  "migrationSha256": "1c86e313976a1d5b30eecdbba21c8329de3f38a27f44f99c2f53a83b1f34f996",
+  "checks": [
+    "Original Auth index ownership failure reproduced; revised migration/backfill/replay passed as non-owner, non-superuser postgres without changing Auth rows",
+    "Duplicate verification and conflicting phone change roll back Auth and original claim together",
+    "Concurrent +61/61 verification with read committed: exactly one transaction commits",
+    "Concurrent +61/61 verification with repeatable read: exactly one transaction commits",
+    "Unverification/delete release claims; transaction rollback preserves original claim; unrelated profile update works",
+    "Private registry RLS enabled; all six browser/runtime roles denied direct reads, writes and function execution",
+    "Identity reassignment and disabled trigger drift rejected; original Auth owner retains legitimate lifecycle access",
+    "Pre-existing canonical duplicates and orphaned claim drift fail closed without choosing an owner; failed rehearsal mutations roll back"
+  ]
+}

@@ -1,0 +1,76 @@
+DOCKED V31 — founder session result, 11 November 2026
+Public launch: NO-GO
+
+Production is still f1b50b6f51d7429a36df9a8d5db99aed8886bd44, deployment
+dpl_9bwmvDvt5AEszaBtR311MjHLpHg7. The authorised47754edf SQL attempt failed and
+rolled back. None of its five migrations/outbox changes persisted; no application
+stage or promotion was attempted. Fresh preflight at10:51UTC confirms the original
+catalogue, memberships and protected custody, empty commercial inventory, closed
+commercial controls and zero enabled rounds. NBA remains hidden.
+
+Completed engineering
+Corrected three migration permission/replay defects without changing the approved
+business rules: exact incident-function ACLs, PostgreSQL17 retention-role setup,
+and canonical phone uniqueness through a private registry/Auth trigger. Improved
+the release operator's role/permission and evidence checks. Applied all five
+revised migrations twice using the restored database's non-superuser role and
+original object owners;550 protected tables unchanged. Combined history/outbox
+transaction and rollback passed. Outbox replay preserved556 tables apart from its
+disabled flag. Real PostgreSQL phone races at read-committed and repeatable-read,
+recovery/rollback/drift/access cases, incident/retention regressions, typecheck
+and focused lint passed. No customer application/native artifact changes.
+
+Completed founder/provider acceptance
+- Twilio Preview credentials privately saved and presence checked; provider and
+  registration OFF. Production phone provider OFF and credentials absent.
+  Australian Docked sender independently confirmed In review. No SMS sent.
+- Google MFA configuration observed; founder confirmed independent recovery access.
+  Founder enabled only Secret Manager Admin read/Data read/Data write logging.
+  Created one disposable secret in the existing project. Actual verifier access
+  denied403; wrong version denied; disabled version denied; re-enabled exact
+  payload recovered identically. Access/admin/denial events observed. Existing
+  broad founder Owner preserved; no new IAM permissions, live-key movement or
+  rotation. Synthetic acceptance is not acceptance of a live backup-key transfer.
+- Google Play independently remains31/1.30 Ready to publish, managed publishing
+  ON. No form edit/publication. Phone declaration remains a separate proposed delta.
+- Operational email DOCKED-OPS-20261110-01 remains founder-confirmed receipt on
+  10November; provider acceptance previously reported. No resend or automated
+  inbox claim. Hosted incident acknowledgement/resolution awaits backend deployment.
+
+Exact next decision
+Approve the replacement closed-gate backend package in
+database/retention-role-correction/REVISED_APPROVAL.txt and the exact final pushed
+commit identified in the delivery response.
+Package SHA-256 fd4c09520ee1ad82bb754abcc15b9af876c3fe8f570d464767f0d1a91a315ef1.
+This approval is needed because the founder explicitly bound deployment to exact
+hashes and required a stop for changed files. The old approval is not reused.
+It covers five revised migrations, unchanged restricted outbox permissions and
+controlled backend staging/promotion; all public/commercial gates stay closed.
+
+Other frozen approvals/results
+Inventory digest4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4
+still covers888 consumed limited copies,6540 definitions,23 identity registrations,
+6065 eligible and475 excluded definitions. Business decisions already accepted;
+import authority remains separate. No card imported, minted, deleted or reminted.
+Complete phone privacy wording and exact Data Safety answers remain in
+../v31-phone-ops-20261111/PRIVACY_AND_PLAY_APPROVAL.txt and
+../../policies/2026-11-11-phone-review/privacy.md. Actual Twilio400-day access and
+enabled backup storage were checked and recorded; the prepared wording remains
+accurate. Inactive policy patch SHA1bf4e24b1fb54e9e5025407137117c723faef8ad594e01f0408d4003e5dc9dfe
+is unchanged. No publication/submission authority inferred.
+
+After replacement approval, next guided manual action is founder sign-in/MFA at
+/admin/incidents after successful rollout, followed by acknowledgement/resolution
+of the harmless no-email drill. Twilio sender approval then permits requesting
+the separately authorised Preview SMS window; genuine physical receipt/code
+verification, installed-v31 acceptance and final provider limits remain required.
+Do not repeat credentials, MFA enrolment, email receipt or the accepted card rules.
+
+Technical: revised package tested, awaiting replacement authority/rollout/device
+acceptance. Operational: synthetic vault accepted; hosted incident and actual SMS
+not accepted. Registration: NO-GO. Commercial: NO-GO; inventory import, payment/
+refund acceptance and activation authority still separate. Practice-only remains.
+Estimate4–7 focused engineering hours after approvals for rollout, hosted/device
+acceptance, policy/import/payment checks and final gate verification; exclude
+Twilio/Google review, rate-limit waiting and founder availability. New defects may
+change this estimate. Backend rollout/incident session alone is roughly45–90min.

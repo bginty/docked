@@ -1,16 +1,20 @@
 {
-  "at": "2026-11-11T05:40:09.377Z",
+  "at": "2026-11-11T10:42:26.220Z",
   "sourceProject": "pojoymtniryarxxunyvz",
   "backupAt": "2026-11-11T05:34:00.942Z",
   "archiveBytes": 133880651,
   "archiveSha256": "f726c5bdceaf641ff6a7f7ae36a1a017db02900c6f7eb78ae3bc644c30fa6926",
   "encryptedAtRest": "AES-256-GCM with existing operator-held key",
-  "restoreTarget": "docked-commercial-restore-20261111",
+  "restoreTarget": "docked-commercial-restore-20261111-attempt-8",
   "network": "none",
   "publishedPorts": 0,
   "cronActive": false,
   "postgres": "17.11",
+  "operatorSuperuser": false,
+  "effectiveMembershipOptionsMatch": true,
   "restored": true,
+  "resumedRetainedRestore": true,
+  "protectedComparison": "All 550 durable table hashes/counts equal authenticated backup after both migration passes",
   "migrationsReapplied": true,
   "reapplicationScope": "all listed",
   "migrations": [
@@ -24,15 +28,15 @@
     },
     {
       "file": "20261109232124_operational_incident_review.sql",
-      "sha256": "9ff6eae192460f1369e3db11ba387ab9418fcb2908a017a653f2c15e870a62bd"
+      "sha256": "776c4ccf7795e734547e0db2088028b936ad8c226617b93115281d041eeeb3e7"
     },
     {
       "file": "20261110005726_operational_incident_retention.sql",
-      "sha256": "1248d78d8c3a17d54d9d3732444e2e058cfe43e6af0aa857f5acfc17262de5bd"
+      "sha256": "108418ea6c952cf1ed770de0a88d9995dca28aa98c0722fc78be0ad8455f4ebd"
     },
     {
       "file": "20261110010050_australian_verified_phone_uniqueness.sql",
-      "sha256": "bc5c61ede682a41ff24500b89fda4db6cef71760f30d52c2c8fb652ac79c4e11"
+      "sha256": "1c86e313976a1d5b30eecdbba21c8329de3f38a27f44f99c2f53a83b1f34f996"
     }
   ],
   "protectedTables": [
@@ -596,6 +600,6 @@
   "approvedRoundChanges": [],
   "productionWrites": 0,
   "storageObjectBodiesIncluded": false,
-  "scope": "Logical PostgreSQL database and role definitions/membership; no custom role passwords, hosted configuration, Storage object bodies or external service secrets restored",
+  "scope": "Logical database restored with original object ownership; postgres has captured non-superuser attributes and is used for migrations. All effective membership options, including pg_* memberships, match a fresh read-only capture with backup drift checks. Bootstrap grantor names differ. No external services or keys restored.",
   "targetRetainedForLocalAcceptance": true
 }

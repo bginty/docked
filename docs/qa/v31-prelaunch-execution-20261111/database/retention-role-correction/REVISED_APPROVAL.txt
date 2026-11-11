@@ -1,0 +1,146 @@
+DOCKED V31 — revised closed-gate package, 11 November 2026
+PREPARED AND REHEARSED; NOT APPROVED FOR PRODUCTION
+
+Exact package SHA-256:
+fd4c09520ee1ad82bb754abcc15b9af876c3fe8f570d464767f0d1a91a315ef1
+Manifest: ../exact-package.json. Reviewed source commit: the exact pushed commit
+named in the accompanying founder response, not the moving branch. The operator
+requires that same full commit in its bounded approval file.
+
+Why a replacement approval is necessary
+The founder approved source47754edf and package3aa30b20...9840e. That exact SQL
+transaction was attempted, failed the retention membership guard and rolled back.
+No migration history, outbox change or application deployment persisted. A fresh
+read-only check confirmed the original catalogue and protected custody state.
+The founder's instruction says to stop on changed files/unreviewed risk and not
+silently substitute a package. The original approval does not cover these fixes.
+
+Root cause and reviewed changes
+1. Earlier local tests used a superuser and reassigned restored ownership. The
+   corrected rehearsal retains original object ownership and makes postgres a
+   non-superuser with the captured effective membership options, including pg_*.
+2. PostgreSQL17 automatically gives a non-superuser role creator ADMIN-only
+   membership. Retention now permits only that unavoidable bootstrap grant to
+   postgres, with INHERIT FALSE and SET FALSE. It rejects runtime membership,
+   elevated attributes and standing schema CREATE. A temporary migration-only
+   grant permits function ownership/ACL maintenance and is revoked before commit.
+   postgres cannot SET ROLE/inherit pruning after commit; six runtime roles cannot
+   execute pruning. The policy stays disabled, with90-day exclusions unchanged.
+3. Incident migration revokes its four exact functions instead of every function
+   in the schema. This preserves the separate pruning owner and makes replay work
+   without granting the operator standing pruning access. Founder MFA and table
+   restrictions are unchanged.
+4. Supabase's postgres does not own auth.users and cannot create the old index
+   there. A private RLS-protected verified_phone_claims table now has the canonical
+   unique key. A narrowly scoped Auth INSERT/DELETE/phone-change trigger maintains
+   it transactionally using the existing permitted TRIGGER privilege. No Auth
+   ownership/permission change. Duplicate races fail on the unique key even under
+   repeatable-read isolation; failed changes preserve the old phone/claim.
+   Deletion/unverification releases the claim. Identity reassignment, disabled
+   trigger drift, pre-existing duplicate numbers and orphan claims fail closed.
+   The registry has no direct browser, service_role or application grants. Existing
+   verified phones are backfilled without changing Auth; the reviewed snapshot has
+   zero eligible verified phones, so the proposed initial registry is empty.
+5. The operator also binds exact rehearsal hashes, non-superuser fidelity and all
+   34 Production membership options/grantors, then verifies final pruning denial,
+   private phone index/trigger and unchanged protected data within the transaction.
+
+Five migrations, in dependency order, plus unchanged restricted outbox
+20261109231834_commercial_lifetime_supply_guards.sql
+ ec1154357168027f106c9d5e0f03cc98fd9820a58f4196cb7f30103b98ff53bb
+ Lifetime definitions/cards/packs constraints and mint guards. No issuance.
+20261109232000_public_practice_phone_guards.sql
+ 8179828fdd88bea9c95f4ac961905737f51d1aae78e25455748e7191a6d4fee0
+ Practice/public identity and private verified-phone boolean helpers.
+20261109232124_operational_incident_review.sql
+ 776c4ccf7795e734547e0db2088028b936ad8c226617b93115281d041eeeb3e7
+ Empty operations incidents/events, immutable event triggers, founder/AAL2 RPC.
+20261110005726_operational_incident_retention.sql
+ 108418ea6c952cf1ed770de0a88d9995dca28aa98c0722fc78be0ad8455f4ebd
+ Depends on incident review. Disabled90-day policy, holds and minimal receipts;
+ dormant NOLOGIN function owner. No scheduler or deletion.
+20261110010050_australian_verified_phone_uniqueness.sql
+ 1c86e313976a1d5b30eecdbba21c8329de3f38a27f44f99c2f53a83b1f34f996
+ Depends on public phone helper. Private claims/index and Auth trigger; Australian
+ verified-phone eligibility helper. Auth records and ownership preserved.
+config/operations/billing-ops-outbox-v2.prepared.sql
+ 59dffc74f3f9a354366bedc994136264fb1922201a6c33f40864777b2546cf09
+ Restricted outbox policies/RPC, founder-only recipient, one disabled flag.
+
+Rehearsal evidence
+- Full encrypted snapshot restored with original owners and effective role
+  options. All five revised files applied twice as non-superuser postgres.
+  All550 protected table counts/hashes equal the authenticated backup afterward.
+- Atomic five-migration/history/outbox builder passed and rolled back locally;
+  catalogue unchanged, history0 afterward, gates/retention closed.
+- Outbox applied twice under the same role;556 existing tables preserved except
+  its expected disabled flag. No operational outbox rows or emails created.
+- Native synthetic tests reproduce both original permission failures and verify
+  corrected role setup, phone-change rollback, duplicates at two isolation
+  levels, deletion/unverification, access restrictions and drift refusal.
+- Current incident/retention regression tests pass. Typecheck and focused lint
+  pass. Customer application/native/config/dependency files match47754edf; no v32
+  reason introduced. A real installed-v31 acceptance is still required.
+- Bootstrap grantor names in the local cluster differ; effective memberships and
+  non-superuser ownership checks match. No hosted Auth/provider simulation is
+  represented as real SMS or founder incident acceptance.
+
+Backup and preflight
+Backup captured2026-11-11T05:34:00.942Z,133880651bytes, AES-256-GCM.
+Archive SHA f726c5bdceaf641ff6a7f7ae36a1a017db02900c6f7eb78ae3bc644c30fa6926.
+The corrected restore proves recoverability. This logical backup excludes Storage
+object bodies, role passwords and external credentials. Existing protected local
+key custody remains; no live key moved into the synthetic vault.
+Apply refuses backup age>=24h; refresh/rehearse/rebind if that window expires.
+Production baseline f1b50b6f51d7429a36df9a8d5db99aed8886bd44.
+Catalogue fingerprint ff2b792e3d265385380042ba4548ba08 (9971 objects).
+Membership fingerprint ebd778dd5382b92f253e8ebeec994294 (34 bindings).
+Repeat read-only preflight immediately before apply; reject drift, partial history,
+nonempty commercial inventory, changed custody, open gates or concurrent release.
+
+Approved-scope command sequence, ONLY AFTER replacement approval
+node --import tsx scripts/v31-approved-backend-migrations.mjs inspect
+node scripts/v31-controlled-backend.mjs prepare
+node --import tsx scripts/v31-approved-backend-migrations.mjs apply --approval=private-data/v31-backend-approval.json
+node scripts/v31-controlled-backend.mjs stage --approval=private-data/v31-backend-approval.json
+node scripts/v31-controlled-backend.mjs promote --approval=private-data/v31-backend-approval.json
+Stop between stages: verify550 protected hashes and expected schema/permissions;
+inspect the isolated Ready backend and closed routes before promotion; repeat live
+gates/custody afterward. Stage uses Production runtime and is included in the
+requested approval. It is not a Preview deployment.
+
+Maintenance and recovery
+Reserve10–15 minutes of quiet database maintenance. The private claim trigger
+installation briefly locks Auth writes; the lock lasts through transaction checks.
+Lock acquisition aborts after3seconds; each statement after60seconds. The full
+transaction remains atomic. Backend build/staging needs roughly10–20 additional
+minutes, subject to hosting. No planned broad outage; existing-account auth may
+briefly wait during the transaction. Do not promise zero disruption.
+Before commit, any failure rolls back all six SQL bodies/history writes. After a
+successful commit, retain dormant guards and use reviewed forward recovery; do not
+drop uniqueness, erase audit or restore an old database over later transactions.
+Conditional application-only rollback is to the captured f1b50b6f Ready deployment,
+only after verifying its closed-gate environment; otherwise stage a reviewed closed
+replacement. No destructive restore is authorised.
+
+Scope of the single replacement approval requested
+Approve this exact manifest/digest and exact final source commit for the five
+revised migrations, restricted outbox, controlled backend stage/verification and
+promotion, with conditional safe app-only rollback to f1b50b6f as above.
+Registration, commercial inventory, live payments, trading, prizes, withdrawals,
+real scoring, phone sending, operational deletion, live-key transfer/rotation,
+policy/Play declaration submission and Google publication remain excluded.
+NBA remains hidden; all six competitions remain disabled Practice-only.
+Public launch remains NO-GO.
+
+Separate later approvals, not requested again as business-rule decisions
+Business acceptance of888 preserved copies,23 sourced identities and6065 eligible/
+475 excluded definitions is already recorded. Actual complete frozen inventory
+import remains separate. Privacy wording/publication/Play declaration authority,
+usable-sender Preview SMS test window, and final publication/registration/commerce
+activation each remain separate from this backend approval.
+
+Official technical references
+https://www.postgresql.org/docs/17/role-attributes.html
+https://github.com/supabase/supautils/blob/master/README.md
+https://supabase.com/docs/guides/auth/managing-user-data

@@ -59,6 +59,40 @@ assert(
 );
 assert.equal(restore.archiveSha256, backup.sha256);
 assert.equal(pack.manifest.archiveSha256, backup.sha256);
+for (const f of pack.manifest.files.filter((f) => f.kind === "migration")) {
+  assert.equal(
+    restore.migrations.find((m) => f.path.endsWith("/" + m.file))?.sha256,
+    f.sha256,
+    "Rehearsal must cover these exact migration bytes",
+  );
+}
+assert.equal(
+  restore.operatorSuperuser,
+  false,
+  "Restore must exercise the hosted non-superuser migration role",
+);
+assert.equal(restore.effectiveMembershipOptionsMatch, true);
+const atomic = JSON.parse(readFileSync(pack.manifest.atomicEvidence, "utf8"));
+const outbox = JSON.parse(readFileSync(pack.manifest.outboxEvidence, "utf8"));
+assert(
+  atomic.passed &&
+    atomic.rolledBack &&
+    atomic.catalogueUnchangedAfterRollback &&
+    atomic.postgresSuperuser === false,
+);
+assert(outbox.appliedTwice && outbox.protectedRowsUnchanged);
+assert.equal(atomic.target, restore.restoreTarget);
+assert.equal(outbox.target, restore.restoreTarget);
+for (const f of pack.manifest.files.filter((f) =>
+  ["migration", "outbox"].includes(f.kind),
+)) {
+  assert.equal(
+    atomic.files.find((a) => a.path === f.path)?.sha256,
+    f.sha256,
+    "Atomic rehearsal must cover the exact SQL package",
+  );
+  if (f.kind === "outbox") assert.equal(outbox.sha256, f.sha256);
+}
 if (mode === "apply")
   assert(
     Date.now() - Date.parse(backup.at) < 24 * 3600_000,
@@ -134,6 +168,14 @@ try {
         normalize(backup.members),
         "Role membership drift requires review",
       );
+      const membership = (
+        await tx`select md5(coalesce(jsonb_agg(jsonb_build_array(r.rolname,m.rolname,g.rolname,a.admin_option,a.inherit_option,a.set_option) order by r.rolname,m.rolname,g.rolname)::text,'[]')) fingerprint,count(*)::int memberships from pg_auth_members a join pg_roles r on r.oid=a.roleid join pg_roles m on m.oid=a.member join pg_roles g on g.oid=a.grantor`
+      )[0];
+      assert.deepEqual(
+        { ...membership },
+        pack.manifest.sourceMemberships,
+        "Effective role memberships or grantor options drifted",
+      );
       const gates =
         await tx`select sales_enabled,issuance_enabled,transfers_enabled,gameplay_enabled from commercial_billing.control`;
       assert.equal(gates.length, 1);
@@ -178,6 +220,19 @@ try {
         );
       if (mode === "apply") {
         await tx.unsafe(v31MigrationSql(pack.manifest));
+        const retention = (
+          await tx`select jsonb_build_object(
+          'unsafeAttributes',exists(select 1 from pg_roles where rolname='docked_incident_retention' and (rolcanlogin or rolsuper or rolcreatedb or rolcreaterole or rolreplication or rolinherit or rolbypassrls)),
+          'creatorSet',pg_has_role('postgres','docked_incident_retention','SET'),
+          'creatorInherit',pg_has_role('postgres','docked_incident_retention','USAGE'),
+          'schemaCreate',has_schema_privilege('docked_incident_retention','operations','CREATE'),
+          'runtimeAccess',exists(select 1 from unnest(array['anon','authenticated','service_role','docked_app','docked_beta_app','docked_commercial_app']) r where pg_has_role(r,'docked_incident_retention','SET') or has_function_privilege(r,'operations.prune_routine(int)','execute')),
+          'unexpectedMembership',exists(select 1 from pg_auth_members a join pg_roles m on m.oid=a.member join pg_roles g on g.oid=a.grantor where (a.member='docked_incident_retention'::regrole) or (a.roleid='docked_incident_retention'::regrole and not(m.rolname='postgres' and g.rolsuper and a.admin_option and not a.inherit_option and not a.set_option)))) value`
+        )[0].value;
+        assert(
+          Object.values(retention).every((v) => v === false),
+          "Retention role must remain dormant without executable membership",
+        );
         assert.deepEqual(
           await sums(tx, true),
           before,
@@ -200,9 +255,23 @@ try {
         );
         assert.equal(
           (
-            await tx`select count(*)::int n from pg_index where indexrelid='auth.docked_verified_phone_canonical'::regclass and indisvalid and indisunique`
+            await tx`select count(*)::int n from pg_index where indexrelid='private.docked_verified_phone_canonical'::regclass and indisvalid and indisunique`
           )[0].n,
           1,
+        );
+        assert.equal(
+          (
+            await tx`select count(*)::int n from pg_trigger where tgrelid='auth.users'::regclass and tgname='docked_verified_phone_claim' and tgenabled='O' and tgfoid='private.sync_verified_phone_claim()'::regprocedure`
+          )[0].n,
+          1,
+        );
+        assert.equal(
+          (
+            await tx`select count(*)::int n from private.verified_phone_claims`
+          )[0].n,
+          (
+            await tx`select count(*)::int n from auth.users where phone_confirmed_at is not null and phone~'^\\+?[1-9][0-9]{7,14}$'`
+          )[0].n,
         );
       }
       return {

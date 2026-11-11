@@ -19,8 +19,9 @@ select has_function_privilege('docked_app','operations.review(text,jsonb)','exec
 select rolcanlogin,rolsuper,rolbypassrls,(select count(*)from pg_auth_members m where m.roleid=r.oid)members
  from pg_roles r where rolname='docked_incident_retention'; --false,false,false,0
 select count(*) expired_routine_candidates from operations.incidents i where operations.routine_expired(i.code); --0
-select indexdef from pg_indexes where schemaname='auth'and indexname='docked_verified_phone_canonical';
-select count(*) invalid_unique_indexes from pg_index where indexrelid='auth.docked_verified_phone_canonical'::regclass and(not indisvalid or not indisunique); --0
+select indexdef from pg_indexes where schemaname='private'and indexname='docked_verified_phone_canonical';
+select count(*) invalid_unique_indexes from pg_index where indexrelid='private.docked_verified_phone_canonical'::regclass and(not indisvalid or not indisunique); --0
+select count(*) enabled_phone_guard from pg_trigger where tgrelid='auth.users'::regclass and tgname='docked_verified_phone_claim' and tgenabled='O'; --1
 select count(*) missing_au_guard from pg_proc where oid='private.public_phone_verified(uuid)'::regprocedure and position('614'in prosrc)=0; --0
 select sales_enabled,issuance_enabled,transfers_enabled,gameplay_enabled from commercial_billing.control; --allfalse
 select count(*) from commercial_billing.cards; --0
