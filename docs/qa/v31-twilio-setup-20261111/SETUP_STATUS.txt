@@ -2,6 +2,16 @@ DOCKED V31 — Twilio private-test setup
 11 November 2026 (Australia/Sydney)
 Status: PARTIALLY CONFIGURED — NOT READY TO SEND
 
+Latest founder update, 11 November 2026: Twilio details have been completed and
+submitted; provider verification is pending. Evidence: founder attestation,
+not an independent Console approval check. Do not ask for account creation or
+business-detail submission again. Australian DOCKED sender approval still needs
+independent confirmation; business-profile submission alone does not prove it.
+Fresh GET-only readback at 03:03 UTC confirms the matching Twilio Account SID,
+Auth Token and Messaging Service SID remain absent in both Supabase projects.
+Phone Auth and public signup remain off. See
+auth-readback-after-founder-submission.json and BEFORE_PUBLISHING.txt.
+
 Founder has created and funded the Twilio account and requested browser setup.
 This supersedes earlier statements that no Twilio account exists. Live Console
 shows an active pay-as-you-go account with US$20.00 available, not A$20. The
@@ -29,9 +39,9 @@ retains its original 60 seconds. Both remain signup-disabled and Phone Auth OFF.
 At readback, all three Twilio provider fields were absent in both projects.
 No production configuration, database, deployment or Google Play changes.
 
-Founder handoff prepared
+Original founder handoff (submission update above supersedes step 1)
 1. Twilio Trust Hub > Primary compliance profile > Business: open at Get started.
-   No primary profile exists yet. Twilio requests exact legal name, registration
+   At the initial inspection no primary profile existed. Twilio requests legal name, registration
    ID/type, business address, authorised representative contact/title, website
    and notification email. Supply actual legal identity, not an invented entity.
    Complete its accuracy/identity-verification declaration directly. Then complete

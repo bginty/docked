@@ -1,0 +1,86 @@
+DOCKED V31 — what the founder needs before publication
+11 November 2026 | PUBLIC LAUNCH NO-GO
+
+Completed decisions stay completed
+- Google v31 / 1.30 was independently observed Ready to publish on 11 November;
+  managed publishing ON. No reason for v32 has been established.
+- Twilio account funded and service prepared; founder now confirms details
+  submitted and awaiting verification. No request to submit them again.
+- Operational email receipt accepted by founder attestation; no repeat test.
+- Founder-only custody, email-only alerts, 90-day routine-incident retention,
+  existing verified authenticator and permanent supply limits remain accepted.
+
+Do now while Twilio reviews
+1. Connect the existing Twilio credentials privately in Supabase > Docked Preview
+   > Authentication > Sign In / Providers > Phone. Enter matching Account SID,
+   Auth Token and the Messaging Service SID for Docked private phone verification.
+   Save with Enable Phone provider OFF. No credentials in chat. The 03:03 UTC
+   authenticated readback proves these fields are still empty, so this is a
+   distinct unfinished step. Account MFA still needs confirmation in Twilio.
+2. Review ../v31-launch-checks-20261111/CARD_DECISIONS.txt. Confirm/correct the
+   23 missing NFL identities (26 issued copies) and accept the 48 known-ID
+   historical baselines (72 copies) with uncertain new issuance disabled.
+   No UUIDs/SQL required. Preserve all 879 existing copies, serials, owners and
+   lifetime consumption. Engineering then freezes the complete import and digest;
+   do not approve the partial manifest or treat identity approval as an import.
+3. Review the exact five-file MIGRATION_APPROVAL_MATRIX.txt in
+   ../v31-operational-acceptance-20261110/, including its separately scoped
+   outbox-v2 permissions, and authorise only a backed-up, closed-registration
+   backend rollout of reviewed application 669f3261af3cb0858f9851d8f60dbe37d514c605
+   after fresh drift checks. Documentation-only commits do not change the app.
+   This would change Production and remains prohibited until that specific
+   authority is given. No import, commerce or public activation is included.
+4. Be available to sign in to existing Google project docked-play-verification
+   and use existing MFA. Review the prepared OPERATIONS_AND_VAULT.txt canary plan:
+   founder-only secret access, audit logs, tested emergency/recovery access,
+   30-day destruction delay, no runtime secret readers and no automatic rotation.
+   The managed-vault decision is already made; effective access/recovery still
+   needs acceptance. Any new billable service needs its actual quote approved.
+
+Engineering work and concrete approvals before the final publish button
+5. Finalise the exact phone/privacy/recovery notice with real Supabase/Twilio
+   processing and retention facts, then present the text and Data Safety answers
+   for founder approval. Phone number was unchecked in the last saved Play form.
+   Correct the form before public phone collection, submit any required review,
+   and keep managed publishing ON. Do not promise immediate erasure or apply the
+   90-day routine-incident policy to Auth/SMS records. Google review time is external.
+6. After Twilio approval, independently confirm the DOCKED Australian sender is
+   usable and match the saved credentials. Tighten the provider rate/resend limits
+   and run the existing isolated two-account test; founder enters the physical
+   Australian number and received code privately. No successful SMS is claimed.
+   Stop at 20 segments or A$5 usage within existing credit, whichever comes first;
+   automatic recharge stays off. These are bounded test controls, not public launch.
+7. After the separately approved dormant backend rollout, engineering verifies
+   exact installed-v31 login/phone/recovery/deletion/navigation, database guards,
+   closed public controls and operational permissions. Founder uses the existing
+   authenticator to acknowledge and resolve the test incident. Complete independent
+   delivery correlation and vault canary access/denial/audit/recovery tests.
+   Later live-key custody transfer and an isolated archive restore require their
+   own exact approval; no key rotation is part of this plan.
+8. For the prepared commercial release, approve the complete frozen inventory
+   manifest/digest separately, then complete its controlled import reconciliation
+   and applicable billing/receipt/odds acceptance. The listing advertises paid
+   credits/packs; its claims and actual released functionality must agree.
+   No live purchase/payment/trading authority is inferred from this checklist.
+9. Review the final dated GO/NO-GO and give final explicit authority to publish
+   approved v31 and enable the exact agreed server-side scope. Play publication,
+   public registration and commercial activation are separate controls/decisions.
+   Preserve NBA hidden; trading/prizes/withdrawals/real scored competitions and
+   deletion scheduling remain off. Those disabled features are not extra work
+   the founder must enable to publish this scope.
+
+Current estimate remains 16–28 focused engineering hours (about 2–4 working days)
+once required decisions, credentials, usable sender and founder participation are
+available. Twilio/Google verification delays are additional; this is an estimate,
+not a promise that approval alone completes launch testing.
+
+Current turn verification
+- origin fetched; local and remote branch match before this documentation update.
+- GET-only Auth check: signup disabled and Phone Auth off in both projects;
+  Twilio fields empty; Preview six-digit/300-second codes retained.
+- No Production mutations, SMS send, privacy publication, Google change, import,
+  deployment, key transfer, rotation or deletion schedule performed.
+
+Official Play guidance rechecked 11 November 2026
+https://support.google.com/googleplay/android-developer/answer/10787469?hl=en
+https://support.google.com/googleplay/android-developer/answer/9859654?hl=en

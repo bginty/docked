@@ -3,9 +3,12 @@ DOCKED V31 — final launch checks and founder actions
 
 SMS setup update: founder funded Twilio; browser setup is partially complete.
 See ../v31-twilio-setup-20261111/SETUP_STATUS.txt for the latest exact state.
-US$20 available, auto-recharge disabled, dedicated Messaging Service and DOCKED
-sender entry created; +61 destinations only. Business/sender verification,
-credential handoff, rate-limit tightening and physical-device test remain open.
+US$20 observed available, auto-recharge disabled, dedicated Messaging Service and
+DOCKED sender entry created; +61 destinations only. Founder now confirms Twilio
+details submitted, with verification pending. Do not repeat that submission.
+Fresh readback at 03:03 UTC still shows no Supabase Twilio credentials. Sender
+approval, credential handoff, rate limits and physical-device test remain open.
+See ../v31-twilio-setup-20261111/BEFORE_PUBLISHING.txt for the ordered next steps.
 
 Google v31 / 1.30 is READY TO PUBLISH. Managed publishing remains ON.
 Submission 2 includes the v31 Australian rollout and 10 approved changes.
@@ -54,7 +57,7 @@ A. SMS account and physical test
 Founder has created/funded Twilio; do not ask them to repeat account creation.
 Browser setup created the dedicated Messaging Service and DOCKED sender entry,
 disabled auto-recharge and verified +61-only destination permissions. Finish
-business/sender verification, confirm account MFA and enter credentials using
+provider verification, confirm account MFA and enter credentials using
 the prepared handoff. The branded sender is DOCKED; Twilio currently quotes five
 business days for alphanumeric provisioning. This is an external calendar risk,
 not an engineering estimate. Do not buy a number or accept additional spend
