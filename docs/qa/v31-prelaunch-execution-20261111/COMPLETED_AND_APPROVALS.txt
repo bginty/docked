@@ -48,6 +48,12 @@ container was then stopped, discarding tmpfs plaintext and retaining encrypted
 backup/manifest/key. No other Docker resources were deleted or reset.
 Full matrix, checksums, permissions, dependencies, risks and recovery are in the
 database package. Source changes invalidate the corresponding operator approval.
+Final read-only backend preparation found and fixed Windows command-length
+failure in the existing archive helper. Equivalent tracked-directory pathspecs
+now export exactly the same 985 reviewed source files, checked before extraction.
+Preparation passed and captured the unchanged live rollback deployment. No stage
+or deployment was attempted. Only that export dependency changed the final package
+digest; the five SQL files, outbox and SQL builder remain exactly as rehearsed.
 
 Phone/account/operations: fixed misleading invalid-number/resend errors and
 replaced prefix-based provider-message exposure with an exact safe allowlist.

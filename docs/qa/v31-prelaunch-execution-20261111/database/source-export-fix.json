@@ -1,0 +1,15 @@
+{
+  "verifiedAt": "2026-11-11T06:14:13.9429967Z",
+  "previousPackageSha256": "5e4411920d5d67f7a9379700e913705b45a58e4cfe29a2ec41a115f7fe198799",
+  "finalPackageSha256": "3aa30b20eddd33835e43ee721e598743897c3663f193d2c041dbe9d62dc9840e",
+  "changedDependencies": [
+    "scripts/nba-private-beta-release.mjs"
+  ],
+  "migrationsOutboxAndSqlBuilderUnchanged": true,
+  "reviewedTrackedArchiveFiles": 985,
+  "exactArchiveMembershipVerified": true,
+  "localReadOnlyPreparePassed": true,
+  "productionDeploymentAttempted": false,
+  "productionWrites": 0,
+  "explanation": "Replaced oversized Windows git archive argument list with equivalent directory pathspecs, verified exact tracked archive membership. Prior local SQL rehearsal remains applicable to unchanged SQL and SQL builder. Refresh prepare for the final reviewed commit before staging."
+}

@@ -89,9 +89,9 @@ if (process.argv[2] === "prepare") {
     "certs/supabase-prod-ca-2021.crt",
     "scripts/guard-hosted-build.mjs",
   ]);
+  const sourceRoots = ["src", "public", "config"];
   const allowed = (f) =>
-    ["src/", "public/", "config/"].some((p) => f.startsWith(p)) ||
-    explicit.has(f);
+    sourceRoots.some((p) => f.startsWith(p + "/")) || explicit.has(f);
   assert(
     !git("diff", "--name-only", "HEAD", "-z").split("\0").some(allowed),
     "Commit application changes before release",
@@ -102,10 +102,36 @@ if (process.argv[2] === "prepare") {
     .filter(allowed);
   await fs.mkdir(source, { recursive: true });
   const archive = path.join(parent, "source.tar");
+  // Directory pathspecs select the same tracked files without exceeding the
+  // Windows process argument limit as the asset catalogue grows. git archive
+  // still reads the exact commit, never ignored or untracked local files.
+  const archivePaths = [
+    ...sourceRoots,
+    ...[...explicit].filter((file) => files.includes(file)),
+  ];
   execFileSync(
     "git",
-    ["archive", "--format=tar", "--output=" + archive, sha, ...files],
+    [
+      "archive",
+      "--format=tar",
+      "--output=" + archive,
+      sha,
+      "--",
+      ...archivePaths,
+    ],
     { windowsHide: true, maxBuffer: 32e6 },
+  );
+  const archivedFiles = execFileSync("tar", ["-tf", archive], {
+    encoding: "utf8",
+    windowsHide: true,
+    maxBuffer: 32e6,
+  })
+    .split(/\r?\n/)
+    .filter((file) => file && !file.endsWith("/"));
+  assert.deepEqual(
+    archivedFiles.sort(),
+    files.toSorted(),
+    "Release archive must contain exactly the reviewed tracked source set",
   );
   execFileSync("tar", ["-xf", archive, "-C", source], {
     windowsHide: true,
