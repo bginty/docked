@@ -1,0 +1,21 @@
+{
+  "observedAt": "2026-11-12T22:14:00Z",
+  "evidenceType": "authenticated Google Play UI; approximate observation minute",
+  "merchantPayout": {
+    "companyBankPresent": true,
+    "primary": true,
+    "verificationWarningDisplayed": false,
+    "actualSettlementTested": false,
+    "balanceAud": 0,
+    "transactionsPresent": false,
+    "monthlyThresholdAud": 1,
+    "reducedServiceFeeEnrollmentOffered": true,
+    "reducedServiceFeeEnrollmentCompleted": false
+  },
+  "gstDeclaration": "RESOLVED by previously recorded founder attestation",
+  "latestObservedPlay": "v31 ready, managed publishing ON, Data Safety IN REVIEW at approximately 08:46 AEDT; later review navigation could not be verified",
+  "latestObservedTwilio": "IN REVIEW at 13 November 00:30 AEDT; no newer authenticated observation",
+  "browserLimitation": "Payout detail verified; subsequent review navigation timed out and debugger attachment failed. No provider mutations.",
+  "bankIdentifiersRecorded": false,
+  "providerMutations": 0
+}

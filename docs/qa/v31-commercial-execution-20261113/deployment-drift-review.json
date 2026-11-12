@@ -1,0 +1,105 @@
+{
+  "at": "2026-11-12T22:29:56.513Z",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "packageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "productionWrites": 0,
+  "schema": {
+    "fingerprint": "e3e825acd32fd1101423803826107183",
+    "objects": 10147
+  },
+  "changedTables": [
+    {
+      "table": "cron.job_run_details",
+      "before": {
+        "hash": "642ef5e73b9e079a85169309a1144668",
+        "count": 169597
+      },
+      "after": {
+        "hash": "f41a5abbccafa5b2b70a3d09314e90b4",
+        "count": 169703
+      }
+    },
+    {
+      "table": "private.docked_mail_scheduler",
+      "before": {
+        "hash": "0ff442fe143133f40007545268f879da",
+        "count": 1
+      },
+      "after": {
+        "hash": "83c97109a6563137fb6cdb9f1f6ca277",
+        "count": 1
+      }
+    },
+    {
+      "table": "sports_feed.nfl_rounds",
+      "before": {
+        "hash": "25bae85b084f141526bab94cb832cefc",
+        "count": 8
+      },
+      "after": {
+        "hash": "ac3d591d09c922b02410a6f2e863758d",
+        "count": 8
+      }
+    },
+    {
+      "table": "sports_feed.nfl_worker_runs",
+      "before": {
+        "hash": "a09770957385d39aa9070a0bff82e74f",
+        "count": 3379
+      },
+      "after": {
+        "hash": "8aa6e273b3c5f0dc98e3efcfef5825b1",
+        "count": 3380
+      }
+    },
+    {
+      "table": "sports_feed.weekly_core_job_runs",
+      "before": {
+        "hash": "fc2701aca367f397a6b6979e09c33822",
+        "count": 64915
+      },
+      "after": {
+        "hash": "2a0830b69d146193a9b6da2cf0b293e1",
+        "count": 64967
+      }
+    }
+  ],
+  "roundChanges": [
+    {
+      "recordDigest": "e319687303b7840a7ef07569de017d039bff3b12fba193d36973a724a04eb6b4",
+      "fields": [
+        "next_check",
+        "last_checked"
+      ],
+      "operationalTimestamps": {
+        "next_check": {
+          "before": "2026-11-12T20:45:01.818429+00:00",
+          "after": "2026-11-12T22:15:02.045519+00:00"
+        },
+        "last_checked": {
+          "before": "2026-11-12T20:30:01.818429+00:00",
+          "after": "2026-11-12T22:00:02.045519+00:00"
+        }
+      }
+    },
+    {
+      "recordDigest": "25deebacb245abf629f07a5159a2e349f0877a10e3121ffd8b58b4b316bf7a94",
+      "fields": [
+        "next_check",
+        "last_checked"
+      ],
+      "operationalTimestamps": {
+        "next_check": {
+          "before": "2026-11-12T21:00:01.872448+00:00",
+          "after": "2026-11-12T22:30:02.845596+00:00"
+        },
+        "last_checked": {
+          "before": "2026-11-12T20:45:01.872448+00:00",
+          "after": "2026-11-12T22:15:02.845596+00:00"
+        }
+      }
+    }
+  ],
+  "newMigrationsPresent": 0,
+  "runtimeExists": false
+}

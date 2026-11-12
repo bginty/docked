@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-12T22:30:44.379Z",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "packageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "source": "Existing 15-minute NFL reconcile job, unchanged source src/server/nfl-collection-worker.ts",
+  "immutableRoundRows": 8,
+  "immutableRoundDigest": "d8d612cb8eac0def5c882e0fbc4aeb5c7e6e879c526e1547191f7ca7050d01eb",
+  "roundBusinessDataUnchanged": true,
+  "permittedRoundTelemetry": [
+    "last_checked",
+    "next_check",
+    "lease_until"
+  ],
+  "existingWorkerAuditRowsUnchanged": 3378,
+  "newWorkerAuditRows": 3,
+  "newRuns": [
+    {
+      "startedAt": "2026-11-12T22:00:00.764419+00:00",
+      "finishedAt": "2026-11-12T22:00:02.08892+00:00",
+      "status": "pending-review",
+      "task": "reconcile"
+    },
+    {
+      "startedAt": "2026-11-12T22:15:01.227674+00:00",
+      "finishedAt": "2026-11-12T22:15:02.853669+00:00",
+      "status": "pending-review",
+      "task": "reconcile"
+    },
+    {
+      "startedAt": "2026-11-12T22:30:01.207499+00:00",
+      "finishedAt": "2026-11-12T22:30:03.091662+00:00",
+      "status": "pending-review",
+      "task": "reconcile"
+    }
+  ],
+  "issuesAndFixturesUnchanged": true,
+  "productionWrites": 0
+}

@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-12T22:39:07.058Z",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "packageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "project": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+  "deployment": "dpl_f5KQYtjsMsMyvagDNYqM5NeiJt8i",
+  "checks": [
+    {
+      "route": "/app/login",
+      "status": 200
+    },
+    {
+      "route": "/app/signup",
+      "status": 200
+    },
+    {
+      "route": "/privacy",
+      "status": 200
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "route": "/api/admin/incidents",
+      "status": 403
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "status": 403
+    }
+  ],
+  "protectedAllDeployments": true,
+  "providerAndRegistrationOff": true,
+  "commercialOff": true,
+  "noAcceptanceWindow": true,
+  "productionChanged": false
+}

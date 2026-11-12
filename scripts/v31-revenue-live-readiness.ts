@@ -126,8 +126,11 @@ async function main() {
       database,
       http: requests,
     };
+    const output = process.env.DOCKED_REVENUE_READINESS_OUTPUT ??
+      "docs/qa/v31-revenue-launch-20261113/production-live-readiness-final.json";
+    assert.match(output, /^docs\/qa\/[a-zA-Z0-9_/-]+\.json$/);
     writeFileSync(
-      "docs/qa/v31-revenue-launch-20261113/production-live-readiness-final.json",
+      output,
       JSON.stringify(report, null, 2) + "\n",
       { flag: "wx" },
     );

@@ -1,0 +1,149 @@
+DOCKED — authorised closed-gate execution, 13 November 2026 AEDT
+Current session evidence supersedes older status prose; frozen approval bytes
+and reviewed application source remain unchanged. Public launch: NO-GO.
+
+COMPLETED
+1. The separately approved seven historical Google TEST warnings are corrected.
+   Three original Google orders freshly read as REFUNDED/REVOKED, with matching
+   original account bindings and reconciled journals. Seven notification states
+   changed to done and exactly one immutable audit event was appended. Committed
+   readback passed: original payloads/references preserved; 29 protected financial,
+   ownership and settings tables unchanged. The 5,700-credit TEST recovery hold
+   is intact. No new purchase/refund, credit adjustment or issuance occurred.
+   Do not repeat the correction. Evidence: warning-provider-evidence.json,
+   warning-result.json, warning-committed-readback.json.
+2. Captured/authenticated a fresh encrypted Production backup and restored it
+   into a network-isolated local database with cron/network delivery disabled.
+   All 558 durable protected tables matched, and all 35 effective operator role
+   memberships were represented. Rehearsed only the two NEW migrations and the
+   initial restricted login/permissions; data remained unchanged, restricted
+   Auth/outbox access was denied, and reviewed rollback passed.
+   Evidence: fresh-backup/, fresh-restore/, fresh-runtime-ddl-rehearsal.json.
+3. Applied the four expressly approved dependencies to the existing Preview
+   project, preserving its 561 prior tables. Staged the exact approved source
+   260fe3399f1eacf03915c227216a1bab10d7b4d9 to the protected existing Preview project.
+   Deployment: dpl_f5KQYtjsMsMyvagDNYqM5NeiJt8i, READY.
+   https://docked-preview-2by64pioe-briant-s-projects.vercel.app
+   Six authenticated HTTP checks passed: login/signup render, exact phone policy,
+   commercial checkout denied, founder incident access denied to an unauthorised
+   viewer, NBA denied. No alias changed; no hosted payment or SMS acceptance claimed.
+   Evidence: preview-dependencies-applied.json, preview-application-verified.json.
+
+ACTUAL PRODUCTION / STOP CONDITION
+Application remains 17b38c1290fd37c05487b332e5c0db440da6805b,
+dpl_8WTycjDUx7VvEQm4pm5jW6B9WHEB. The two new Production migrations have NOT been
+applied; the new commercial runtime has NOT been provisioned. The five original
+migrations/outbox are already complete and were not repeated.
+
+Deployment stopped BEFORE migration SQL on unreviewed scheduler data drift.
+Investigation isolated it to the existing 15-minute NFL reconcile job: changing
+last_checked/next_check timestamps and appending pending-review reconcile audit
+rows. All eight round identities, fixtures, locked snapshots and issues match;
+all 3,378 prior worker audit rows match. No scoring/business change was found.
+Evidence: deployment-drift-review.json, scheduler-drift-explained.json.
+
+The exact source/package approval is recorded and valid until
+2026-11-13T21:57:08Z. One narrow drift-allowance question is already pending:
+same package, only last_checked/next_check/lease_until and appended pending-review
+reconcile logs; preserve every previous log and every business field. Do not ask
+for the original package approval again while it remains valid. Do not proceed
+without the pending drift decision. This stop follows the founder's explicit
+instruction to stop deployment on unreviewed drift, not a new launch restriction.
+
+The original backup/preflight predates the now-completed warning correction.
+Before any resumed deployment, capture a NEW encrypted backup and immutable
+preflight after that correction, authenticate and restore it, bind the operator
+to those new evidence paths, and compare the old baseline allowing ONLY the
+approved warning correction plus any separately accepted scheduler telemetry.
+Do not overwrite original evidence, reuse old whole-table fingerprints as if
+unchanged, ignore warning/audit tables, or repeat the warning correction.
+Keep the original local isolated restore and encrypted backup for audit/recovery.
+
+Inventory still comprises 6,540 dormant definitions, 888 lifetime-consumed copies,
+906 custody records, zero approved-for-sale definitions and zero new commercial
+cards. No import remains. Latest recommended issuance subset is 6,055 eligible /
+485 held, including the ten additional Nikko Remigio/Jack Todd holds already
+documented. Refresh source evidence within 72 hours of activation. No ownership,
+balances, inventory eligibility or customer pricing was changed this session.
+
+GOOGLE / MERCHANT
+GST declaration: RESOLVED by the recorded founder attestation; no repeat action.
+Authenticated merchant detail at approximately 09:14 AEDT confirms the existing
+company bank is Primary, with no displayed verification warning. Balance A$0,
+no transactions, monthly payout threshold A$1. Actual bank settlement remains
+untested and will be reconciled after legitimate sales, not fabricated from TEST
+orders. Reduced 15% service-fee enrolment is offered, not completed; do not assume
+that rate. It is not automatically a publication blocker.
+
+Latest verified Play status remains approximately 08:46 AEDT: v31 ready to publish,
+managed publishing ON, phone Data Safety IN REVIEW. Later review navigation could
+not be verified after browser control failed. A$49/4,900 and A$99/9,900 credit
+options remain AU-only and INACTIVE. Evidence: provider-readback.json and prior
+google-gst-readiness.json. No policy/declaration/publication change this session.
+
+TWILIO / AUTH
+Both Supabase Phone providers and public signup remain OFF. Preview still has
+saved values, six SMS/hour, 300-second OTP and 60-second resend. Presence alone
+does not prove that those values authenticate successfully.
+The new GET-only Twilio check stopped with HTTP 401 before reading the existing
+Messaging Service. The returned saved token did not match the usual token format;
+no value was printed. This establishes an unsuccessful connection check, not a
+sender rejection or definitive diagnosis of the stored secret. Privately compare
+the Account SID/Auth Token with the same existing Twilio account after sign-in.
+Do not rotate credentials, create another sender/service, request secrets in chat
+or re-enter credentials blindly. Production remains unconfigured and OFF.
+Evidence: twilio-api-attempt.json, twilio-saved-format.json.
+
+Latest actual Australian sender observation is IN REVIEW at approximately
+00:30 AEDT. The failed GET is not a new status observation. No SMS was sent and
+no provider setting or Auth setting changed. Sender-pool membership alone would
+also not establish Australian registration approval.
+
+Production organisation is Pro; leaked-password protection is available without
+an upgrade but currently OFF. Exact proposed patch and unchanged-settings checks
+are prepared in AUTH_HARDENING_PREPARATION.txt. No Auth change is approved/applied.
+Old-session password-change reauthentication and public anti-abuse controls still
+need the documented Preview/hosted acceptance before public registration.
+
+REMAINING APPROVALS AND PHYSICAL ACCEPTANCE (IN ORDER)
+1. The already pending narrow scheduler-drift allowance, then resumed exact
+   closed-gate deployment with new backup/preflight and staged/live checks.
+2. Private Twilio account comparison and current sender-status verification.
+   Once approved, separately authorise the existing bounded Preview SMS window:
+   <=2 hours, <=6 send attempts, <=20 segments, <=A$5 including tax/FX, combined
+   testing <=A$20. Genuine handset receive/verify, expiry/resend/duplicate tests.
+3. Separately authorise the prepared Google TEST purchase/refund/paid-pack window:
+   <=2 hours, <=6 checkouts, A$0 real charges, named legitimate QA accounts only.
+   Installed v31 must prove exact credits, nine permanent cards, retries/refunds
+   and recovery holds. Two independently verified accounts are required for
+   fixed-price marketplace acceptance. Swaps/counteroffers remain OFF.
+4. Approve the separately prepared same-key Google Secret Manager custody transfer
+   and isolated recovery test; no rotation, expanded runtime access or repeated
+   synthetic vault test. Existing recovery proposal identifies destination/access.
+5. Approve reviewed Auth hardening and final commercial wording; provide the
+   outstanding narrow source-material rights/paid-random-pack-resale assessment
+   and accountant's credit/pack/marketplace-fee GST attribution policy. GST
+   registration itself is complete. Do not count GST/revenue twice.
+6. Google phone Data Safety acceptance, current inventory subset sign-off, public
+   SMS operating budget and final explicit coordinated AU revenue-launch approval.
+   Marketplace has its own acceptance/activation gate. No registration-only launch.
+
+READINESS AND ESTIMATE
+Registration NO-GO; paid packs NO-GO; marketplace NO-GO; Google publication NO-GO.
+Candidate engineering has existing automated payment/refund/pack/market tests;
+this session adds fresh role/data/Preview proof, not real handset or hosted sales
+acceptance. NBA hidden, six disabled Practice competitions, deletion schedules OFF.
+Founder operational email, incident/MFA acceptance and synthetic recovery remain
+accepted and must not be repeated without a new technical reason.
+
+Approximately 6-10 focused engineering/acceptance hours after required access and
+approvals, plus 1-2 hours for two-party physical marketplace acceptance if ready.
+Includes refreshed backup, Production staging/promotion, credential diagnosis,
+Auth/SMS/Android payment acceptance and actual custody verification. Excludes
+Twilio/Google review, accountant/rights responses, founder availability and fixes
+for new defects found in physical tests. Commercial swaps are separate work.
+
+Use the existing reviewed HOSTED_ACCEPTANCE_SESSION.txt and
+COORDINATED_REVENUE_RUNBOOK.txt under ../v31-revenue-launch-20261113/ for bounded
+testing, coordinated activation and emergency shutdown. They remain unexecuted
+where separate authorisation is required. Current evidence does not open any gate.

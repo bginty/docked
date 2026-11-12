@@ -1,0 +1,157 @@
+{
+  "at": "2026-11-12T22:53:38.497Z",
+  "stagedFiles": 36,
+  "knownSecretFormsAbsent": true,
+  "applicationSourceChanged": false,
+  "reviewedApplicationPackageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "reviewedWarningPackageSha256": "657f783584433220e42e1e5834237f3ecfe69755292da9ee6599caaa651d325f",
+  "typecheckPassed": true,
+  "targetedOperatorLintPassed": true,
+  "powershellParsePassed": true,
+  "evidenceFiles": [
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/AUTH_HARDENING_PREPARATION.txt",
+      "sha256": "1c6bb3595c781ca934ba26d5725e10ea02ff74ac002fa31a6b5e460f32b1574e"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/SESSION_HANDOVER.txt",
+      "sha256": "e73f49876cbc99c478a24e26fcf50eeffdb6311f28e631b94bf06cc106687088"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/database-preflight.json",
+      "sha256": "2567aa4db24b914cb4ea6022172e96dd743f431b5c3ba69e996311c46492f9c9"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/deployment-drift-review.json",
+      "sha256": "2f0130fd986f6f07d1ed7fa6c616a725955b747abc2d41eb2920b1a7fcfb4ac6"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/fresh-backup/fresh-backup.json",
+      "sha256": "a3ab65bffcc3b88b891576aba7541d3f56c1c43487d123ce6d88c0590ba1e1a3"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/fresh-restore/restore-only.json",
+      "sha256": "90ac5feac795a09d05fca820a8f6861e5cf9ef1c2fb0807009bb5e15a6b4d60e"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/fresh-restore/role-fidelity.json",
+      "sha256": "3cf64fbfb13adb000412e8350daf2f31500f36183aec2ee0def22a5e1db4f34c"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/fresh-runtime-ddl-rehearsal.json",
+      "sha256": "1894ee9f07c8a4fec12d49100b0bc89502bd3908d3d83757ebebec4f877891b6"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/phone-post-preview-schema.json",
+      "sha256": "25fef2edbf2ba16cd65d8bed45afa3c68fb4f8c6a92e7e16949c45c1a8d971a4"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/preview-application-prepared.json",
+      "sha256": "a045838c83491b5034b62c0d53e31bdc5b8e4bd147120ddce3a8369b0d411bd0"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/preview-application-verified.json",
+      "sha256": "188d26541c56a7d3a5778cf167cd312a37b82498aa62ff797000e3af8bc2ce87"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/preview-dependencies-applied.json",
+      "sha256": "0a5f41588853cc33a5a94e60cd738a9c057f70ad22da257c0ee2ee8f3889a64f"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/preview-deployment-submitted.json",
+      "sha256": "13ceafd325f6e5b2281fed5fa5a876a66291ab22d936bf62b78dd8eab5f962c1"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/provider-readback.json",
+      "sha256": "30c0d658379c0a38001a74dea598291ba2f459b960b06fb3976782615a03a899"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/scheduler-drift-explained.json",
+      "sha256": "6d1b66de184cd80d8e963057a44df47ab9f9451d35d1023d739168e451359ef4"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/twilio-api-attempt.json",
+      "sha256": "4b0d529fdd2c47a4e7fb02eb86296379313cc7050f0c3bf1d70f188368e5a2e9"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/twilio-saved-format.json",
+      "sha256": "c759a54abe5616a14b6cbe5fe2b6f467bedcf0670f088d2430ef8ba670e764c6"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/warning-committed-readback.json",
+      "sha256": "6c05dd978aed07a630d18a188364f51005ee3a8ab6ddf113e306dab4dee14d2a"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/warning-preflight.json",
+      "sha256": "4293460abaad08af337571d559dee602b6a20c05f0b3f0d9a93ec84e342d0343"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/warning-provider-evidence.json",
+      "sha256": "41c4a2f30e32e813db70ed25ea8e06117ed663ee0f88d3769556a6c41334981d"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/warning-result.json",
+      "sha256": "362ec8a86356be31b5d7b24e0d9e58938a76cef78d6c4e29bc6f4ee630a7bae9"
+    },
+    {
+      "file": "docs/qa/v31-revenue-launch-20261113/phone-remote-session-readiness.json",
+      "sha256": "cd3cf676253224878a63dd7e370d0f549ea720312f79e477a9c1febc5c49a194"
+    },
+    {
+      "file": "docs/qa/v31-revenue-launch-20261113/production-remote-preflight.json",
+      "sha256": "a6554d4bd7e8d771107ccfa07a6cc999430a6d4c2c3df04f4234ed828a5481d6"
+    },
+    {
+      "file": "scripts/lib/v31-commercial-approval.mjs",
+      "sha256": "747589b00e7105c7380d9869a4fccfbbb3e17c62677e0c16198c77a76c42791c"
+    },
+    {
+      "file": "scripts/lib/v31-scheduler-drift.ts",
+      "sha256": "39576eea5cfe23ed6eabf35418a32080c58ab66a2bbde31a690919c7047c217d"
+    },
+    {
+      "file": "scripts/v31-commercial-application-release.mjs",
+      "sha256": "bf4d7d2c1ce4fe08e9f6decdc46bfe8daf350b25e506d52becbd90599517b9b6"
+    },
+    {
+      "file": "scripts/v31-commercial-database-execution.ts",
+      "sha256": "76502a347132931485e5884eb329d2486ab618044b7a05561ea04a6365295046"
+    },
+    {
+      "file": "scripts/v31-commercial-drift-review.ts",
+      "sha256": "27b77a6f81f1c68e3c5a6d6aac32e8fd68f54315a9131198e1bda29a931ee04e"
+    },
+    {
+      "file": "scripts/v31-commercial-fresh-rehearsal.ts",
+      "sha256": "80a0ace25d4b264b4f98a5f0b575e9eb01644a8f43dc987a639bc2ff4b419970"
+    },
+    {
+      "file": "scripts/v31-commercial-preview-dependencies.ts",
+      "sha256": "4722e2d055542c1c79bd5d5d26741a7398c43b16de7ff2d9043fa9125f07285e"
+    },
+    {
+      "file": "scripts/v31-commercial-preview-stage.mjs",
+      "sha256": "0b9a2907b8865f32be962bb55fc18194028cebbeddef5cf633c160a5ca89a55f"
+    },
+    {
+      "file": "scripts/v31-commercial-runtime-provision.ts",
+      "sha256": "48f7a8b33f6629b8bf3bb6b015a9db4ee1ff30916da08158baf7bd1de8b77167"
+    },
+    {
+      "file": "scripts/v31-commercial-scheduler-review.ts",
+      "sha256": "fb104276954b8c28937ade498244588608e1a323ea7ec22cfa9639d0cdda4b6e"
+    },
+    {
+      "file": "scripts/v31-revenue-live-readiness.ts",
+      "sha256": "42ea3eb77b17429287e355d226ba146baacdedff336c1cae3e64f7ea96ed2f60"
+    },
+    {
+      "file": "scripts/v31-twilio-readonly-readiness.ps1",
+      "sha256": "9f773eaaa5cf8ee91c7e11d1660257faa73e6f512ec14977ade3781ebb4b5668"
+    },
+    {
+      "file": "scripts/v31-warning-committed-readback.ts",
+      "sha256": "b06a1068294b6c0652a48955e952fd5dcaf1e44971912166e5d1d6c3e1cdc01d"
+    }
+  ]
+}

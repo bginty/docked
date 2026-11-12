@@ -1,0 +1,19 @@
+{
+  "recordedAt": "2026-11-12T22:51:16Z",
+  "evidenceType": "Live authenticated GET attempts; diagnostic saved after the attempts",
+  "supabasePreviewConfigurationRead": true,
+  "twilioReadEndpoint": "GET /v1/Services/{existingSavedService}",
+  "twilioReadAttempts": 2,
+  "twilioHttpStatus": 401,
+  "senderRegistrationStatusRetrieved": false,
+  "messagingServiceMembershipVerified": false,
+  "accountBalanceRetrieved": false,
+  "savedCredentialPresenceIsNotAuthenticationAcceptance": true,
+  "interpretation": "The existing Preview integration value returned by the Management API was not accepted for this Twilio read. Privately compare the saved Account SID/Auth Token with the same existing Twilio account; do not infer sender rejection, change or rotate credentials automatically, or request credentials in chat.",
+  "followup": "Founder-controlled Twilio sign-in and private credential comparison, only after the current deployment-drift decision. Reuse the existing service and sender. Phone stays OFF.",
+  "latestActualSenderObservation": "IN REVIEW at approximately 13 November 2026 00:30 AEDT; not independently refreshed by this failed API check",
+  "smsAttempts": 0,
+  "providerWrites": 0,
+  "authWrites": 0,
+  "credentialsEmitted": false
+}

@@ -1,0 +1,36 @@
+DOCKED — remaining Auth configuration, not applied
+
+Read-only Management API inspection 13 November 2026 08:57 AEDT:
+Production signup and Phone OFF; leaked-password protection OFF; password-change
+reauthentication OFF. Preview signup and Phone OFF, saved Twilio credentials,
+6 sends/hour, 300-second OTP, 60-second resend, six digits, no fixed test OTP.
+Production phone settings remain defaults and credentials absent; that is not
+a reason to re-enter the already saved Preview credentials.
+
+The Production organisation is independently confirmed on the existing Pro plan.
+Supabase documents leaked-password protection as available on Pro and above:
+https://supabase.com/docs/guides/auth/password-security
+No plan upgrade or new paid infrastructure is needed for that switch.
+
+Smallest proposed first hardening change, requiring separate authority:
+PATCH /v1/projects/pojoymtniryarxxunyvz/config/auth
+{"password_hibp_enabled":true}
+Preserve every other returned setting. Read before/after, verify signup/Phone
+remain OFF, then rerun the security advisor. No user/password reset, sign-out,
+SMS, registration or credential change is included. Hosted sign-in/reset acceptance
+must confirm the application's existing weak_password handling. Existing passwords
+are not replaced; the provider applies stronger checks when passwords are set.
+
+Password-change reauthentication is a second reviewed setting:
+security_update_password_require_reauthentication=true. Current password-reset UI
+uses a recovered session and does not implement a separate nonce-entry flow for
+an older signed-in session. Check fresh recovery and old-session behaviour in
+Preview before turning this on in Production; do not advertise that path as
+hosted-accepted. No relaxation of existing founder authenticator MFA is proposed.
+
+Production SMS configuration remains a later bounded approval: same verified
+Twilio Messaging Service, privately installed credentials, six-digit OTP,
+300-second expiry and 60-second resend, explicit budget/rate ceiling. Provider
+must remain OFF until its approved test window. The A$20 test budget is not a
+public operating budget. CAPTCHA remains an independently assessed public
+registration anti-abuse requirement, not silently enabled without integration.

@@ -1,0 +1,45 @@
+{
+  "at": "2026-11-12T22:30:00.582Z",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "packageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "project": "bckkllmndoxzpzdqrevb",
+  "files": [
+    {
+      "file": "supabase/migrations/20261109232000_public_practice_phone_guards.sql",
+      "sha256": "8179828fdd88bea9c95f4ac961905737f51d1aae78e25455748e7191a6d4fee0"
+    },
+    {
+      "file": "supabase/migrations/20261110010050_australian_verified_phone_uniqueness.sql",
+      "sha256": "1c86e313976a1d5b30eecdbba21c8329de3f38a27f44f99c2f53a83b1f34f996"
+    },
+    {
+      "file": "supabase/migrations/20261113002000_preserved_commercial_collection_read.sql",
+      "sha256": "53bee34e39e7008478a07884dcbbb5feb2a63be756c391e883271ed9a85377eb"
+    },
+    {
+      "file": "supabase/migrations/20261113003000_commercial_market_request_guards.sql",
+      "sha256": "20039c5149d57c9c560e8535a017ea052a610d64f4257e448cb006dadcc8c6bb"
+    }
+  ],
+  "schemaBefore": {
+    "fingerprint": "7bbbe599294bdab5ea115af4fb2fd337",
+    "objects": 10060
+  },
+  "schemaAfter": {
+    "fingerprint": "9528a8407475eddab701ebde470a6a3c",
+    "objects": 10081
+  },
+  "priorTablesUnchanged": 561,
+  "phoneClaimsSeeded": 0,
+  "migrationHistoryRowsAdded": 4,
+  "control": {
+    "environment": "acceptance",
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false,
+    "gameplay_enabled": false
+  },
+  "productionConnections": 0,
+  "smsSent": 0,
+  "customerTransactions": 0
+}
