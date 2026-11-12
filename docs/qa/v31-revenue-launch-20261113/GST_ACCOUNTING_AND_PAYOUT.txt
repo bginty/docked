@@ -1,0 +1,123 @@
+DOCKED — GST resolution, accounting and payout acceptance
+Recorded 13 November 2026 AEDT. Revenue launch remains NO-GO.
+
+Resolved founder declaration
+The founder confirms the corrected Google Australian GST declaration: registered
+YES, Accepted, submitted 12 November 2026, expiry Never expires. The complete ABN
+is supplied in the founder's message and retained in the private attestation;
+the repository does not repeat tax/bank identifiers. Evidence is founder
+attestation. No repeat confirmation or tax submission is required.
+This closes the GST-declaration action in the frozen coordinated runbook's
+step 3 without altering that package's reviewed bytes or deployment authority.
+
+Fresh provider observations
+Google UI: v31/1.30 ready to publish; managed publishing ON; separate phone Data
+Safety still IN REVIEW, approximately 08:46 AEDT. No publication action taken.
+Payments profile: existing bank account listed, earnings A$0, no transactions,
+A$1 monthly payout threshold. This establishes a configured destination, not
+completed bank verification or successful settlement. Detail navigation timed
+out and browser control subsequently stopped on URL verification; no bank data
+was edited. The 15% service-fee enrolment banner remains. Do not assume that rate.
+Google API at 08:48 AEDT: exact A$49/4,900 and A$99/9,900, AU-only, INACTIVE,
+no bonus or multi-quantity offers; refund-readback and original v31 artifacts
+available. Evidence: google-gst-readiness.json. All mutations zero.
+
+Accounting conclusions from source review and primary guidance
+1. Preserve both customer prices. Do not add 10% to A$49 or A$99 or reduce the
+   promised credit allocations. The verifier requires the exact approved gross
+   AUD amount; an unexpected gross amount goes to REVIEW, not credit fulfilment.
+2. Google's Australia guidance distinguishes Australian developers from foreign
+   developers. Docked's Australian entity retains responsibility for GST on its
+   Australian taxable sales. Accepted registration is not evidence that Google
+   remits Docked's sales GST. Nor does a Google API tax field prove BAS liability.
+3. For a supply taxable at purchase at 10% GST, the inclusive calculation is
+   gross / 11: A$49 = A$44.55 plus A$4.45 GST (rounded per transaction);
+   A$99 = A$90 plus A$9 GST. These are conditional accounting examples, not
+   invented provider tax amounts or final advice on credit-voucher classification.
+4. Existing code uses integer AUD cents and credits in separate balanced journals.
+   Provider order gross, optional tax and cumulative refund amounts are retained.
+   Missing provider tax stays null, not assumed zero and not filled with gross/11.
+   Credits granted remain 4,900/9,900 regardless of tax or Google fee deduction.
+   Pending/cancelled orders cannot create a verified paid credit entitlement;
+   partial-refund uncertainty is held and full refunds are not double-counted.
+5. The money journal deliberately books gross Google receivable against
+   unallocated digital-value liability. Its report explicitly leaves recognised
+   revenue/fees unknown and payout reconciliation false. It is not a complete
+   GST/BAS or bank-settlement ledger. Nothing was relabelled as settled revenue.
+6. Before sales, the accountant needs to set the treatment and attribution point
+   for Docked Credits (taxable digital entitlement versus any applicable voucher
+   treatment), pack redemption and the fixed-price marketplace fee. The ATO's
+   voucher rules can change the tax point. Do not tax the same value twice at
+   purchase and redemption; do not infer a seller's GST status from registration
+   in Docked. No marketplace cash-out or new tax/business rule is authorised here.
+   This is an accounting-policy decision, not another GST-registration question.
+
+Exact accounting acceptance procedure (read-only preparation)
+- Use Google's earnings report and relevant fee invoices, alongside the private
+  receipt/journal export. Preserve immutable report files, period and SHA-256.
+- Match package docked.fantasy, original order, product, currency, gross charge,
+  refund and event timestamps. Exclude TEST purchases from actual money receipts,
+  tax and payout totals. A successful TEST checkout proves no bank deposit.
+- Reconcile Charge / Charge refund, Google fee / fee refund, Tax / Tax refund
+  and adjustments separately using the actual report schema. Handle partial
+  refunds cumulatively; reverse the approved original tax allocation under the
+  applicable adjustment rules. Never subtract a full refund and its earlier
+  partials twice, or infer a refunded-tax figure solely from refunded credits.
+- Determine what each reported tax line represents and who remits it; do not
+  subtract the same GST once as Google's deduction and again as Docked liability.
+  Use the actual service-fee invoice and contractual base, not an assumed 15%.
+  Claim input tax credits only against appropriate supporting evidence.
+- Reconcile opening Google receivable + charges - cash refunds - actual fees
+  - actual withheld/remitted taxes +/- provider adjustments - bank payouts to
+  closing Google receivable. Track Docked's own GST payable separately.
+- Keep earned revenue, outstanding credit liability, credit-unit balances,
+  marketplace fees and cash settlement distinct. The operational incident 90-day
+  deletion policy does not cover financial/tax records.
+- Establish compliant invoice/adjustment-note availability, particularly the
+  A$99 purchase, with the accountant and actual Google buyer document. The app's
+  order receipt alone must not be described as a compliant tax invoice without
+  checking supplier/ABN/GST/date/description and other applicable requirements.
+
+Payout readiness still to establish
+When authenticated browser control is available, inspect the existing payment
+method only: verified/primary state, no deposit challenge or payout hold, correct
+legal-entity ownership. Do not change/add bank accounts or request a new deposit
+unnecessarily. Founder participation is required only for an actual pending
+private deposit challenge, bank evidence or binding fee-enrolment declaration.
+No real bank payout is expected before legitimate sales exist. The first monthly
+settlement match is post-launch monitoring; pre-launch requires the configured
+verified destination and no unresolved payout hold, not an impossible first
+payout in advance of the first paying customer.
+
+Remaining commercial gates (unchanged)
+Exact closed-gate engineering package remains proposed, not approved/deployed.
+Genuine authorised Preview SMS + installed-v31 billing/refund/nine-card tests,
+current source eligibility/rights, accounting policy, custody and final launch
+authority remain. Fixed-price marketplace requires hosted two-party acceptance;
+swaps remain OFF. No SMS or financial test was executed in this update.
+Keep v31 unpublished, signup closed, payments/trading disabled, NBA hidden and
+all six competitions disabled Practice. No Production deployment/mutation here.
+
+Primary references checked 13 November 2026 AEDT
+Google Australian developer GST responsibility:
+https://support.google.com/googleplay/android-developer/answer/138000?hl=en-AU
+Google earnings/report fields and fee/refund reconciliation:
+https://support.google.com/googleplay/android-developer/answer/6135870?hl=en-GB
+https://support.google.com/googleplay/android-developer/answer/2482017?hl=en-GB
+Google bank verification:
+https://support.google.com/googleplay/android-developer/answer/7161378?hl=en-GB
+ASIC Moneysmart, GST-inclusive calculation:
+https://moneysmart.gov.au/work-and-tax/gst-calculator
+ATO, voucher treatment (GSTR 2003/5; classification needs the actual terms):
+https://www.ato.gov.au/law/view/document?docid=GST/GSTR20035/NAT/ATO/00001
+
+Reviewed code
+src/core/commercial-billing.ts
+src/server/google-commercial-verifier.ts
+src/server/commercial-ledger.ts (receipt posting and financialReport)
+Existing acceptance evidence: billing-final.json and platform-final.txt.
+Targeted verifier recheck this session: all 15 commercial-google.test.ts tests
+passed, zero failures/skips; exact amounts, account/environment boundaries,
+pending state, cumulative refunds, provider failure and integer-money checks.
+These are local synthetic tests, not a new hosted purchase or refund acceptance.
+No application, schema, frozen approval package or customer pricing was changed.

@@ -36,9 +36,15 @@ Data Safety declaration still IN REVIEW at final authenticated refresh (~02:08
 AEDT). Credit options A$49/4,900 and A$99/9,900 are correct but INACTIVE.
 Twilio: last verified sender state IN REVIEW (~00:30 AEDT); session expired on
 the later refresh. Sign-in is needed for a current check. No SMS sent/spend made.
-Merchant identity/address Verified and Australian tax declaration Accepted. The
-current declaration says not GST registered; current company facts need founder/
-accountant confirmation. A payout and reduced service-fee enrolment are not proven.
+Merchant GST update, 13 November: RESOLVED by explicit founder attestation. The
+corrected Australian declaration is GST registered YES, Accepted, submitted
+12 November 2026, never expires. Do not request this confirmation again.
+Fresh Google checks at approximately 08:46-08:48 AEDT still show v31 ready to
+publish, managed publishing ON, phone Data Safety IN REVIEW, and both credit
+options INACTIVE at A$49/A$99. The linked payout bank remains listed, earnings
+A$0/no transactions. Its verification detail could not be inspected after browser
+control stopped. No bank-settlement or reduced service-fee acceptance is claimed.
+See GST_ACCOUNTING_AND_PAYOUT.txt for the separate accounting/payout acceptance.
 
 First paying customer readiness
 Engineering candidate is tested and prepared, not deployed or launch-accepted.
@@ -68,10 +74,13 @@ Precise next approvals / founder participation
    and participate with the physical Android and founder-controlled mobile. A
    second distinct controlled number is needed for a genuine two-party marketplace
    test. Existing Preview credentials/accounts are reused; no credential re-entry.
-4. Confirm current GST facts; provide/approve the actual source-material rights
-   and narrow paid-random-pack/credit-resale commercial assessment. Player-name
+4. GST registration/declaration confirmation is complete. Provide/approve the
+   actual source-material rights and narrow paid-random-pack/credit-resale
+   commercial assessment. Player-name
    advice is already accepted and is not requested again. Review exact launch
    wording and revised eligibility subset as part of commercial sign-off.
+   Complete the separate accounting treatment/report-to-bank reconciliation;
+   this does not reopen the accepted GST declaration.
 5. Await Google Data Safety acceptance. Final approval must explicitly cover the
    coordinated AU registration + phone + Google credits + paid packs + v31 release,
    and fixed-price marketplace if accepted, with a public SMS operating budget.

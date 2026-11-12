@@ -1,4 +1,26 @@
 DOCKED — verified provider and merchant status
+CURRENT UPDATE — 13 November 2026 AEDT
+Google merchant GST declaration issue: RESOLVED. The founder explicitly confirms
+GST registered YES; supplied company ABN; Accepted; submitted 12 November 2026;
+expiry Never expires. Evidence type: founder attestation, not independent Google
+tax-page inspection. This supersedes the earlier non-GST observation and request
+below. Do not ask the founder to repeat it.
+
+Read-only merchant/publishing UI approximately 08:46-08:49 AEDT: v31 ready to
+publish, managed publishing ON, separate Data Safety IN REVIEW. Existing payout
+bank listed; earnings A$0; no transactions; A$1 monthly payout threshold shown.
+15% fee enrolment still offered, not proven completed. Bank-detail navigation
+timed out; browser connection then disappeared and Windows fallback was stopped
+because the current browser URL could not be safely verified. Bank verification
+and actual settlement are therefore not independently confirmed. No settings
+changed, payment attempted, agreement accepted or publication performed.
+
+Read-only API evidence at 2026-11-12T21:48:32.892Z (13 November 08:48 AEDT):
+google-gst-readiness.json. Both AU credit options remain INACTIVE at A$49/4,900
+and A$99/9,900; refund-readback API and v31 artifact readback succeeded.
+GST_ACCOUNTING_AND_PAYOUT.txt is the current accounting/payout addendum.
+
+HISTORICAL OBSERVATIONS (retained; GST declaration facts below are superseded)
 Final browser refresh at approximately 12 November 15:08 UTC / 13 November
 02:08 AEDT: Google still shows v31/1.30 ready to publish, managed publishing ON,
 and the separate Data Safety change IN REVIEW. Nothing published. Twilio's
@@ -31,14 +53,11 @@ Google linked payments profile (read-only Settings / tax details)
 - A service-fee enrolment banner was present; eligibility/enrolment for the
   reduced 15% tier was not established. Do not forecast net revenue at 15% yet.
 
-Tax action to confirm once
-The founder/accountant must confirm whether the existing non-GST declaration
-remains correct across the company's activities. Australian-based developers
-retain responsibility for applicable GST on their sales; do not assume Google
-remits it for Docked. Registration generally becomes compulsory at A$75,000
-GST turnover (including expected turnover), with registration within 21 days
-of becoming aware. Under-threshold registration is optional. This is a tax
-decision requiring current company facts, not a request to register regardless.
+Tax declaration action — CLOSED
+The earlier request to confirm the non-GST declaration is superseded by the
+founder's accepted correction above. Australian-based developers retain
+responsibility for applicable GST on their sales; do not assume Google remits
+it for Docked. Accounting classification/reconciliation is a separate task.
 Primary references checked during this session:
 https://support.google.com/googleplay/android-developer/answer/138000?hl=en-AU
 https://business.gov.au/registrations/register-for-taxes/register-for-goods-and-services-tax-gst
