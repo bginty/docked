@@ -1,0 +1,29 @@
+DOCKED — original operational email independently traced
+Read-only Exchange admin center inspection on 12 November 2026 UTC / 13 November AEDT.
+
+Exact subject: Docked TEST incident drill — DOCKED-OPS-20261110-01.
+Sender and sole recipient: support@docked.com.au.
+Search: 10 November 2026, 01:00–01:30 UTC; exact subject prefix; one result.
+Provider result: DELIVERED to the recipient's Inbox folder.
+Exact provider delivery time: 10 November 2026, 01:04:06 UTC.
+Events: Receive, Submit, Deliver. All displayed at 01:04 UTC.
+MessageTrace ID: 94ec50ee-0fb5-4fa0-ca60-08df3ec681cb.
+Internet Message-ID:
+<SY8P300MB1029148CFDF2DDB979823EBAE2722@SY8P300MB1029.AUSP300.PROD.OUTLOOK.COM>
+
+This independently establishes the Microsoft transport result and message identity.
+It corroborates the original local outbox acceptance at 01:04:02.310 UTC and the
+founder's already accepted inbox attestation. It does NOT replace that attestation
+with a claim of automated inbox inspection, nor fabricate a Production incident
+for the original isolated email drill. The separate hosted no-email incident's
+founder acknowledgement/resolution and three immutable audit entries passed in
+the earlier founder session and were not repeated.
+
+The existing support account session accessed Exchange admin center. No additional
+runtime Mail.Read access, IAM grant, new email, extended-report email, forwarding,
+new recipient or message modification was performed. The previous application
+Graph 403 is retained as historical evidence of its deliberately restricted
+send-only access; it is no longer an outstanding provider-trace blocker.
+
+Observed UI: https://admin.cloud.microsoft/exchange#/messagetrace
+No inbox body, private credentials or unrelated messages were read or exported.

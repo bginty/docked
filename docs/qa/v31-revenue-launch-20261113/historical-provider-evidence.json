@@ -1,0 +1,74 @@
+{
+  "at": "2026-11-12T13:16:07.104Z",
+  "verified": true,
+  "method": "Genuine Google GETs; original Preview receipt/member/refund ledger; exact Production notification readback",
+  "warningManifestSha256": "e153fafab4ccc34aeb7892844a6e85fb5e10f484da8240f1088ac3881153427b",
+  "notificationFingerprint": "2c2a4c066eadfe768c1b84da3046a2c57d3a007a24f13a5f2e0c75515a9e41d4",
+  "cases": [
+    {
+      "caseNumber": 1,
+      "receiptKeyDigest": "fb76b98b7860ebb94db4312eec34bb3033e8c63857b1c347bf082fb016ce84e6",
+      "providerVerified": true,
+      "originalMemberBindingVerified": true,
+      "providerOrderState": "REFUNDED",
+      "providerReceiptState": "REVOKED",
+      "environment": "acceptance",
+      "accounting": {
+        "remaining": 0,
+        "outstanding_jobs": 0,
+        "unbalanced": 0,
+        "journals": 4,
+        "open_holds": 0,
+        "exposure": 0
+      },
+      "notificationCount": 2,
+      "providerAt": "2026-11-05T11:19:31.413Z",
+      "receiptFingerprint": "667531f9d6d2ab4d5026dafd70c4d769345fea4aae5a0d4f51ea68c1524f2b1c"
+    },
+    {
+      "caseNumber": 2,
+      "receiptKeyDigest": "9419414a2d116f185fd97115d76bd327966e2c5ddb9c967e99f3d2f333c54a41",
+      "providerVerified": true,
+      "originalMemberBindingVerified": true,
+      "providerOrderState": "REFUNDED",
+      "providerReceiptState": "REVOKED",
+      "environment": "acceptance",
+      "accounting": {
+        "remaining": 0,
+        "outstanding_jobs": 0,
+        "unbalanced": 0,
+        "journals": 4,
+        "open_holds": 1,
+        "exposure": 5700
+      },
+      "notificationCount": 3,
+      "providerAt": "2026-11-05T11:26:24.948Z",
+      "receiptFingerprint": "8a53a8217d541fe5e8926324a5be3bc340183a16a7515b0ff1fb617856f5b483"
+    },
+    {
+      "caseNumber": 3,
+      "receiptKeyDigest": "17bab9222b16387d0a6aab3ad1789c8e34495db5e485b460e57f2012d2f4059f",
+      "providerVerified": true,
+      "originalMemberBindingVerified": true,
+      "providerOrderState": "REFUNDED",
+      "providerReceiptState": "REVOKED",
+      "environment": "acceptance",
+      "accounting": {
+        "remaining": 0,
+        "outstanding_jobs": 0,
+        "unbalanced": 0,
+        "journals": 4,
+        "open_holds": 0,
+        "exposure": 0
+      },
+      "notificationCount": 2,
+      "providerAt": "2026-11-05T12:11:55.723Z",
+      "receiptFingerprint": "2d41bc388aa4aeca76972ae4e1fd2e66d365676982d4011146794ac84064a716"
+    }
+  ],
+  "productionWrites": 0,
+  "previewWrites": 0,
+  "providerBusinessMutations": 0,
+  "balanceChanges": 0,
+  "recoveryHoldsWaived": 0
+}

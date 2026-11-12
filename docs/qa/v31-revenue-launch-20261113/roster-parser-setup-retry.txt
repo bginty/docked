@@ -1,0 +1,18 @@
+Collecting beautifulsoup4==4.13.4 (from -r scripts/wikimedia-rosters/requirements.txt (line 1))
+  Using cached beautifulsoup4-4.13.4-py3-none-any.whl.metadata (3.8 kB)
+Collecting mwparserfromhell==0.7.2 (from -r scripts/wikimedia-rosters/requirements.txt (line 2))
+  Using cached mwparserfromhell-0.7.2-cp311-cp311-win_amd64.whl.metadata (10 kB)
+Collecting soupsieve>1.2 (from beautifulsoup4==4.13.4->-r scripts/wikimedia-rosters/requirements.txt (line 1))
+  Using cached soupsieve-4.1-py3-none-any.whl.metadata (4.4 kB)
+Collecting typing-extensions>=4.0.0 (from beautifulsoup4==4.13.4->-r scripts/wikimedia-rosters/requirements.txt (line 1))
+  Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Using cached beautifulsoup4-4.13.4-py3-none-any.whl (187 kB)
+Using cached mwparserfromhell-0.7.2-cp311-cp311-win_amd64.whl (156 kB)
+Using cached soupsieve-4.1-py3-none-any.whl (52 kB)
+Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Installing collected packages: typing-extensions, soupsieve, mwparserfromhell, beautifulsoup4
+
+Successfully installed beautifulsoup4-4.13.4 mwparserfromhell-0.7.2 soupsieve-4.1 typing-extensions-4.16.0
+
+[notice] A new release of pip is available: 25.1.1 -> 26.3
+[notice] To update, run: C:\Users\61412\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\python.exe -m pip install --upgrade pip

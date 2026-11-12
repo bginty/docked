@@ -1,0 +1,60 @@
+DOCKED — exact dormant commercial configuration preparation; NOT AUTHORISED
+
+Fresh Production evidence at 12 November 14:57 UTC:
+- Runtime is the 89-key approved privacy deployment. None of the seven required
+  commercial credential fields is present in that supplied runtime recipe.
+- docked_commercial_app is the existing restricted NOLOGIN privilege group.
+  There is no ordinary commercial login member. postgres is an operator and MUST
+  NOT be used by the application. docked_app already has its own restricted login.
+- Eight current Australian adult region policies are approved. Registration,
+  all commercial controls, operational email automation and deletion remain OFF.
+
+Prepare with the NEXT exact closed-gate approval, not under a past deployment:
+1. Provision one restricted login, docked_commercial_runtime, with membership in
+   docked_commercial_app only. NOSUPERUSER NOCREATEDB NOCREATEROLE NOREPLICATION
+   NOBYPASSRLS, INHERIT, CONNECTION LIMIT 6. No ownership or table grants added.
+   Generate a new high-entropy password privately, never as a command argument,
+   report, screenshot or Git value. Store the session-pooler connection as a
+   sensitive Production runtime secret. Preserve existing roles/passwords.
+2. Create NEW commercial receipt-encryption and account-binding secrets. There
+   are no commercial receipts or accounts yet; this is initial setup, not rotation.
+   Use a 32-byte encryption key identified as v1; binding secret >=32 random bytes.
+   Keep private recovery copies and record identifiers/digests only. Transfer into
+   the managed vault remains covered only by its separately reviewed custody scope.
+3. Use the existing founder-controlled Google verifier service account if its
+   actual Play permissions meet order verification, consume/acknowledge and refund
+   observation requirements. Its name containing 'test' is not evidence of a
+   separate Google environment. The server's commercial verifier must reject TEST
+   receipts. Verify the required provider permissions without creating an order.
+   Do not grant extra IAM or Play access silently if missing.
+4. Install dormant values: DOCKED_COMMERCIAL_DATABASE_URL,
+   DOCKED_COMMERCIAL_REFERENCE_KEY_ID=v1, DOCKED_COMMERCIAL_REFERENCE_KEY,
+   DOCKED_COMMERCIAL_ACCOUNT_BINDING_SECRET,
+   DOCKED_GOOGLE_COMMERCIAL_SERVICE_EMAIL,
+   DOCKED_GOOGLE_COMMERCIAL_PRIVATE_KEY,
+   DOCKED_GOOGLE_COMMERCIAL_WORKER_SECRET (new random worker authentication key).
+   Values stay server-only. The canary build verified no leakage in 239 assets.
+5. Keep DOCKED_COMMERCIAL_SERVICE/SURFACES/CHECKOUT/MARKETPLACE=false and all
+   commercial_billing.control activation fields=false. Secret presence is not
+   activation. Validate restricted connection identity, role attributes, RLS,
+   outbox denial, receipt encryption round trip in isolation and a zero-write
+   Production read. No receipt, wallet, listing, card or balance may be created.
+
+Public-mode configuration is a DISTINCT final activation package. The current
+approved runtime deliberately uses the beta namespace. Before opening it:
+- Approve config/hosted-production.json's existing Vercel/Sydney/Production
+  identities (approved is currently false); do not use old free-play operators.
+- Switch DATABASE_URL to the existing reviewed docked_app connection (already
+  used by member setup), set DOCKED_BETA_STAGING=false, stable release channel,
+  DOCKED_HOSTED_PRODUCTION=true, APP_ENV/SUPABASE_ENV=production and verified
+  public consent versions. Preserve the existing Auth identity project.
+- Stage this exact public runtime behind protection and closed database/Auth
+  registration and commercial gates. Check ordinary and founder identities,
+  permissions, MFA, collection parity, mobile bridge and all closed endpoints.
+- Only the final revenue activation authority may open public registration,
+  phone, sales/issuance and the separately accepted fixed-price marketplace.
+
+This configuration work can be performed by Codex after exact approval. The
+founder does not need to paste passwords/keys or create duplicate accounts.
+The A$20 SMS authority is a TEST cap. A public SMS operating limit/budget must be
+included in final activation; do not treat the test budget as unlimited spending.

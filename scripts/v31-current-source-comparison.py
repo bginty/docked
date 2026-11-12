@@ -1,15 +1,18 @@
 """Offline comparison of freshly fetched evidence. Never changes a catalogue."""
-import collections, datetime, hashlib, json, pathlib, re, unicodedata
+import collections, datetime, hashlib, json, pathlib, re, unicodedata, sys
 
-root = pathlib.Path('private-data/v31-card-research-20261111')
-out = pathlib.Path('docs/qa/v31-prelaunch-20261111/cards')
+root = pathlib.Path(sys.argv[1] if len(sys.argv)>1 else 'private-data/v31-card-research-20261111')
+out = pathlib.Path(sys.argv[2] if len(sys.argv)>2 else 'docs/qa/v31-prelaunch-20261111/cards')
+out.mkdir(parents=True, exist_ok=True)
 def read(path): return json.loads(pathlib.Path(path).read_text(encoding='utf8'))
 def norm(value): return re.sub('[^a-z0-9]', '', unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode().lower())
 def team(value):
     aliases = {'LA':'LAR','Sydney Swans':'Sydney','Adelaide Crows':'Adelaide','Geelong Cats':'Geelong','Gold Coast Suns':'Gold Coast','GWS Giants':'Greater Western Sydney','West Coast Eagles':'West Coast','Manly Warringah Sea Eagles':'Manly-Warringah Sea Eagles','Manly Sea Eagles':'Manly-Warringah Sea Eagles','The Dolphins':'Dolphins','South Sydney':'South Sydney Rabbitohs','Cronulla Sharks':'Cronulla-Sutherland Sharks','Canterbury Bulldogs':'Canterbury-Bankstown Bulldogs','St. George Illawarra':'St. George Illawarra Dragons','North Qld Cowboys':'North Queensland Cowboys','Nth Qld Cowboys':'North Queensland Cowboys'}
     return norm(aliases.get(value, value))
-candidate = read('private-data/commercial-pool-20261106-v2/candidate.private.json')
-proposal = read(root/'complete-proposal.private.json')
+candidate = read(sys.argv[3] if len(sys.argv)>3 else 'private-data/commercial-pool-20261106-v2/candidate.private.json')
+proposal = read('private-data/v31-card-research-20261111/complete-proposal.private.json')
+frozen_by_id = {r['id']:r for r in proposal['rows']}
+assert all(r['id'] in frozen_by_id and r['player_id']==frozen_by_id[r['id']]['player_id'] and r['snapshot']==frozen_by_id[r['id']]['snapshot'] for r in candidate['rows']), 'Base catalogue must exactly match the frozen preserved identities'
 nfl = read(root/'current-nfl/official-rosters.json')
 aus = read(root/'current-australian/review.json')
 profiles = read(root/'current-australian/profiles.json')

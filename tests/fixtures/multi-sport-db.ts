@@ -251,6 +251,7 @@ export async function multiSportDatabase(
       .state;
   return {
     pg,
+    native,
     q,
     user,
     other,

@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-12T13:44:37.187Z",
+  "environment": "network-isolated-restored-production",
+  "target": "docked-commercial-restore-20261112d",
+  "productionWrites": 0,
+  "originalSnapshotPredatesImport": true,
+  "localBaselineDefinitions": 6540,
+  "lifetimeConsumed": 888,
+  "custodyRecords": 906,
+  "custodyDigest": "a1bbdf806cee3f51d870b31f5fcb74d6cae0df93846f34bb4c291ffaae99cb8e",
+  "migration": "supabase/migrations/20261113002000_preserved_commercial_collection_read.sql",
+  "sha256": "53bee34e39e7008478a07884dcbbb5feb2a63be756c391e883271ed9a85377eb",
+  "migrationMs": 422,
+  "protectedTablesUnchanged": 558,
+  "ownersChecked": 5,
+  "visibleOpenedCards": 923,
+  "visibleBySport": {
+    "nfl": 534,
+    "afl": 308,
+    "nrl": 81
+  },
+  "retiredAndSealedCustodyPreserved": true,
+  "priorHistoricalProjectionMatches": true,
+  "permissions": {
+    "denied": true,
+    "nbaRows": 0,
+    "nullOwnerRows": 0,
+    "serverAllowed": true
+  },
+  "rollbackAndForwardRecoveryPassed": true,
+  "reapplicationPassed": true,
+  "localDockerQueryMaximumMs": 705,
+  "timingIncludesDockerStartup": true,
+  "hostedAcceptance": false
+}

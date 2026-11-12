@@ -1,0 +1,212 @@
+▲ Next.js 16.4.3 (webpack)
+✓ Running next.config.ts took 117ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 67s
+  Running TypeScript ...
+  Finished TypeScript in 110s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/69) ...
+  Generating static pages using 7 workers (17/69)
+  Generating static pages using 7 workers (34/69)
+  Generating static pages using 7 workers (51/69)
+✓ Generating static pages using 7 workers (69/69) in 13.0s
+  Finalizing page optimization ...
+  Collecting build traces ...
+⚠ 27 traced files were not included in the standalone output
+because their paths are outside of `outputFileTracingRoot`.
+First 100 skipped files:
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\compiled\jest-worker\processChild.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\compiled\jest-worker\threadChild.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\lib\start-server.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\next-server.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\next.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\require-hook.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\app-page\module.compiled.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\app-page\vendored\contexts\app-router-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\app-page\vendored\contexts\entrypoints.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\app-page\vendored\contexts\head-manager-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\app-page\vendored\contexts\hooks-client-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\app-page\vendored\contexts\image-config-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\app-page\vendored\contexts\router-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\app-page\vendored\contexts\server-inserted-html.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\pages\module.compiled.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\pages\vendored\contexts\app-router-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\pages\vendored\contexts\entrypoints.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\pages\vendored\contexts\head-manager-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\pages\vendored\contexts\hooks-client-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\pages\vendored\contexts\html-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\pages\vendored\contexts\image-config-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\pages\vendored\contexts\loadable-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\pages\vendored\contexts\loadable.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\pages\vendored\contexts\router-context.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\next\dist\server\route-modules\pages\vendored\contexts\server-inserted-html.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\styled-jsx\index.js
+  - ..\..\dual-store-readiness\Docked.com.au\node_modules\styled-jsx\style.js
+Set `outputFileTracingRoot` to a common parent directory
+to include these files.
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /[section]
+├ ○ /account-deletion
+├ ƒ /admin
+├ ƒ /admin/analytics
+├ ƒ /admin/commercial-billing
+├ ƒ /admin/community
+├ ƒ /admin/community/[section]
+├ ƒ /admin/coupons
+├ ƒ /admin/identity-verification
+├ ƒ /admin/incidents
+├ ƒ /admin/ingestion
+├ ƒ /admin/marketplace
+├ ƒ /admin/member-release
+├ ƒ /admin/nfl-history
+├ ƒ /admin/nfl-testing
+├ ƒ /admin/operations
+├ ƒ /admin/preview-testers
+├ ƒ /admin/redemptions
+├ ƒ /admin/sports
+├ ƒ /admin/workspace/[section]
+├ ƒ /api/admin/announcements
+├ ƒ /api/admin/commercial-billing
+├ ƒ /api/admin/community-analytics
+├ ƒ /api/admin/credit-requests
+├ ƒ /api/admin/health
+├ ƒ /api/admin/incidents
+├ ƒ /api/admin/marketplace
+├ ƒ /api/admin/member-release
+├ ƒ /api/admin/moderation-cases
+├ ƒ /api/admin/moderation-retention
+├ ƒ /api/admin/operations
+├ ƒ /api/admin/pack-coupons
+├ ƒ /api/admin/preview-testers
+├ ƒ /api/admin/record
+├ ƒ /api/admin/scoring-retry
+├ ƒ /api/admin/search
+├ ƒ /api/admin/sports-readiness
+├ ƒ /api/admin/sports-sandbox
+├ ƒ /api/analytics
+├ ƒ /api/app-session
+├ ƒ /api/auth
+├ ƒ /api/auth/customer-invitation
+├ ƒ /api/auth/customer-signup
+├ ƒ /api/auth/invitation-setup
+├ ƒ /api/auth/phone
+├ ƒ /api/auth/public-member-setup
+├ ƒ /api/beta-release
+├ ƒ /api/beta/invitations
+├ ƒ /api/community
+├ ƒ /api/fantasy
+├ ƒ /api/fantasy/auto-select
+├ ƒ /api/fantasy/card-history
+├ ƒ /api/fantasy/collection
+├ ƒ /api/fantasy/collection-export
+├ ƒ /api/fantasy/lineup-history
+├ ƒ /api/fantasy/market-proposal
+├ ƒ /api/fantasy/match-history
+├ ƒ /api/fantasy/results
+├ ƒ /api/fantasy/scoring-history
+├ ƒ /api/fantasy/standings
+├ ƒ /api/fantasy/starter-history
+├ ƒ /api/fantasy/swaps
+├ ƒ /api/identity-verification
+├ ƒ /api/internal/billing-retention
+├ ƒ /api/marketplace
+├ ƒ /api/marketplace/quote
+├ ƒ /api/member
+├ ƒ /api/mobile/capabilities
+├ ƒ /api/nba-beta
+├ ƒ /api/nfl/history/import
+├ ƒ /api/nfl/history/status
+├ ƒ /api/notifications
+├ ƒ /api/notifications/push
+├ ƒ /api/notifications/sale-push-worker
+├ ƒ /api/pack-coupons
+├ ƒ /api/profile/collection-record
+├ ƒ /api/public-gameplay
+├ ƒ /api/redemptions
+├ ƒ /api/scoring/collect
+├ ƒ /api/sports-beta
+├ ƒ /api/status
+├ ƒ /api/store/google/commercial
+├ ƒ /api/store/google/commercial/notifications
+├ ƒ /api/store/google/commercial/reconcile
+├ ƒ /api/store/google/notifications
+├ ƒ /api/store/google/reconcile
+├ ƒ /api/store/google/scheduled
+├ ƒ /api/store/google/test
+├ ƒ /api/test-wallet
+├ ƒ /api/testing/nfl/import
+├ ƒ /api/unsubscribe
+├ ƒ /api/webhooks/email
+├ ƒ /api/weekly-core
+├ ƒ /api/workspace-wallet
+├ ƒ /app
+├ ƒ /app/check-email
+├ ƒ /app/email-change-pending
+├ ƒ /app/forgot-password
+├ ƒ /app/invitation-setup
+├ ƒ /app/link-expired
+├ ƒ /app/login
+├ ƒ /app/onboarding
+├ ƒ /app/onboarding/public
+├ ƒ /app/owner-setup
+├ ƒ /app/password-updated
+├ ƒ /app/preview-owner
+├ ƒ /app/reset-password
+├ ƒ /app/signup
+├ ƒ /app/sports-preview
+├ ƒ /app/verified
+├ ƒ /app/verify-phone
+├ ○ /apple-icon.png
+├ ƒ /auth/callback
+├ ƒ /auth/invite
+├ ƒ /auth/recovery
+├ ƒ /auth/verify
+├ ƒ /beta-policies
+├ ○ /commercial-policy
+├ ○ /community
+├ ƒ /community/[post]
+├ ƒ /community/posts/[id]
+├ ○ /competitions
+├ ƒ /compose
+├ ƒ /dashboard
+├ ƒ /fantasy/[tab]
+├ ƒ /fantasy/announcements
+├ ƒ /fantasy/announcements/[id]
+├ ƒ /fantasy/history
+├ ƒ /fantasy/packs
+├ ƒ /fantasy/prizes
+├ ƒ /fantasy/results
+├ ƒ /fantasy/scoring
+├ ƒ /fantasy/scoring/how-it-works
+├ ƒ /fantasy/test-wallet
+├ ƒ /feed
+├ ƒ /following
+├ ○ /home
+├ ○ /manifest.webmanifest
+├ ƒ /notifications
+├ ○ /opengraph-image
+├ ƒ /preview/card-statistics
+├ ƒ /preview/pack-opening
+├ ○ /privacy
+├ ƒ /profile
+├ ƒ /profile/[handle]
+├ ƒ /profile/identity-verification
+├ ƒ /profile/withdrawals
+├ ○ /refund-policy
+├ ○ /retention
+├ ○ /robots.txt
+├ ○ /roster-sources
+├ ƒ /search
+├ ○ /sitemap.xml
+├ ○ /sports
+└ ƒ /sports/[sport]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand

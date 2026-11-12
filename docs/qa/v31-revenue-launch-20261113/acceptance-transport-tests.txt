@@ -1,0 +1,95 @@
+TAP version 13
+# Subtest: private phone acceptance admits only two existing accounts and keeps registration closed
+ok 1 - private phone acceptance admits only two existing accounts and keeps registration closed
+  ---
+  duration_ms: 6.7687
+  ...
+# Subtest: closed Google test window preserves isolated ledger reads without admitting checkout
+ok 2 - closed Google test window preserves isolated ledger reads without admitting checkout
+  ---
+  duration_ms: 1.1242
+  ...
+# Subtest: Google TEST admission cannot select Production, a different account, live checkout or an expired window
+not ok 3 - Google TEST admission cannot select Production, a different account, live checkout or an expired window
+  ---
+  duration_ms: 97.5795
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\platform\\isolated-public-preview.test.ts:2:6425'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+
+      isolatedBillingConfiguration({ ...e, ...patch })
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: ~
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\v31-founder-acceptance-20261111\Docked.com.au\tests\platform\isolated-public-preview.test.ts:159:3)
+    Test.runInAsyncScope (node:async_hooks:211:14)
+    Test.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    Test.postRun (node:internal/test_runner/test:1090:19)
+    Test.run (node:internal/test_runner/test:1018:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:677:7)
+  ...
+# Subtest: external Preview email uses exact expiring admission without granting transactions or invitations
+ok 4 - external Preview email uses exact expiring admission without granting transactions or invitations
+  ---
+  duration_ms: 1.4765
+  ...
+# Subtest: public acceptance is bound to existing protected Preview, with ordinary-customer mode and narrow Auth projections
+ok 5 - public acceptance is bound to existing protected Preview, with ordinary-customer mode and narrow Auth projections
+  ---
+  duration_ms: 0.8008
+  ...
+# Subtest: public acceptance rejects Production, cross-project credentials, privileged runtime and checkout
+ok 6 - public acceptance rejects Production, cross-project credentials, privileged runtime and checkout
+  ---
+  duration_ms: 1.1664
+  ...
+# Subtest: isolated notification relay preserves Google bearer and waits for durable upstream acknowledgement
+ok 7 - isolated notification relay preserves Google bearer and waits for durable upstream acknowledgement
+  ---
+  duration_ms: 48.968
+  ...
+# Subtest: ordinary v30 requests never enter transport; wrong project/target/expiry denied
+ok 8 - ordinary v30 requests never enter transport; wrong project/target/expiry denied
+  ---
+  duration_ms: 2.1279
+  ...
+# Subtest: admission requires exact secret, same-origin POST and bounded input
+ok 9 - admission requires exact secret, same-origin POST and bounded input
+  ---
+  duration_ms: 7.715
+  ...
+# Subtest: only Preview Auth reaches protected upstream; no Production cookie/bearer/admission forwarding
+ok 10 - only Preview Auth reaches protected upstream; no Production cookie/bearer/admission forwarding
+  ---
+  duration_ms: 3.482
+  ...
+# Subtest: expired or disabled sessions, admin routes and forged origins fail without live fallback
+ok 11 - expired or disabled sessions, admin routes and forged origins fail without live fallback
+  ---
+  duration_ms: 1.9491
+  ...
+# Subtest: native expired-session documents retain recovery controls without forwarding API or RSC requests
+ok 12 - native expired-session documents retain recovery controls without forwarding API or RSC requests
+  ---
+  duration_ms: 3.1947
+  ...
+# Subtest: redirects and Set-Cookie cannot escape Preview scope; expired marker can be exited explicitly
+ok 13 - redirects and Set-Cookie cannot escape Preview scope; expired marker can be exited explicitly
+  ---
+  duration_ms: 2.5209
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 12
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2231.5468

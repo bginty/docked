@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-12T15:13:45.033Z",
+  "transport": "loopback fixture",
+  "database": "native isolated PostgreSQL",
+  "hostedAuth": false,
+  "genuineGooglePayment": false,
+  "syntheticMembers": 2,
+  "widths": [
+    390,
+    1440
+  ],
+  "checks": [
+    "commercial label",
+    "seller fee quote and reprice",
+    "buyer reviewed exact changed price",
+    "no debit before confirmation",
+    "one atomic debit and ownership receipt",
+    "mobile purchase celebration",
+    "buyer and seller activity",
+    "cancellation shown without invented payment",
+    "transaction details target exact listing",
+    "commercial wallet header loads",
+    "NBA hidden",
+    "zero browser runtime errors"
+  ],
+  "requests": 12,
+  "localRequestP95Ms": 89,
+  "productionWrites": 0
+}

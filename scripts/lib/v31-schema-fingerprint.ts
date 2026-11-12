@@ -7,7 +7,10 @@ with namespaces as (
  select oid,nspname,pg_get_userbyid(nspowner) owner,nspacl::text acl
  from pg_namespace where nspname not in ('pg_catalog','information_schema') and nspname !~ '^pg_'
 ), entries as (
- select 'namespace' kind,nspname identity,jsonb_build_array(owner,acl) definition from namespaces
+ -- Cast the first UNION identity to text. PostgreSQL's name type otherwise
+ -- truncates every subsequent qualified identity to 63 bytes, introducing ties
+ -- and nondeterministic ordering for long constraint/function names.
+ select 'namespace' kind,nspname::text identity,jsonb_build_array(owner,acl) definition from namespaces
  union all
  select 'relation',n.nspname||'.'||c.relname,jsonb_build_array(c.relkind,c.relpersistence,pg_get_userbyid(c.relowner),c.relacl::text,c.relrowsecurity,c.relforcerowsecurity,c.reloptions,
  case when c.relkind in ('v','m') then pg_get_viewdef(c.oid,true) end)

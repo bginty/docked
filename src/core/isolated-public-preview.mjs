@@ -47,6 +47,7 @@ export function assertIsolatedPublicPreview(env, now = Date.now()) {
     throw Error("Isolated public acceptance target mismatch");
   };
   const phoneTest = env.DOCKED_ISOLATED_PHONE_TEST === "true";
+  const billingTest = env.DOCKED_ISOLATED_GOOGLE_TEST === "true";
   if (
     env.DOCKED_ISOLATED_PHONE_TEST &&
     !["true", "false"].includes(env.DOCKED_ISOLATED_PHONE_TEST)
@@ -83,7 +84,8 @@ export function assertIsolatedPublicPreview(env, now = Date.now()) {
     env.APP_ENV !== "preview" ||
     env.SUPABASE_ENV !== "preview" ||
     env.DOCKED_PUBLIC_CUSTOMERS !== "true" ||
-    env.REGISTRATION_ENABLED !== (phoneTest ? "false" : "true") ||
+    !["true", "false"].includes(env.REGISTRATION_ENABLED ?? "") ||
+    ((phoneTest || billingTest) && env.REGISTRATION_ENABLED !== "false") ||
     env.NEXT_PUBLIC_SUPABASE_URL !== `https://${ref}.supabase.co` ||
     !env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY?.startsWith("sb_publishable_")
   )

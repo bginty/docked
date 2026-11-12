@@ -1,0 +1,83 @@
+DOCKED — bounded founder session, after exact deployment/test authorisation
+No SMS, provider enablement, TEST checkout or payment activation is authorised now.
+
+Preparation already complete
+Founder email receipt and the Microsoft delivery trace; hosted AAL2 no-email
+incident acknowledgement/resolution/audit; Google MFA/recovery and synthetic vault
+recovery; Preview Twilio credentials; existing player identity approvals. Do not
+repeat these or ask for credentials in chat.
+
+Existing Preview: bckkllmndoxzpzdqrevb, original synthetic inventory only. It has
+two original ordinary QA accounts. One has an OPEN 5,700-credit TEST recovery hold;
+exclude it from purchases and never waive/reset it. One existing eligible account
+has no hold and no verified phone. Its private binding is prepared in
+private-data/v31-revenue-launch-20261113/preview-acceptance-candidates.private.json.
+Use its original fixture/credentials, not a replacement account or an admin.
+
+Preview schema dependencies
+It lacks Production's two phone/Practice guards. Those exact two migrations plus
+the new collection/marketplace migrations passed a hosted rollback-only rehearsal:
+preview-schema-rehearsal.json. No changes committed; Auth/financial/ownership rows
+and the full schema fingerprint were restored exactly. Install these four only
+in the separately approved Preview staging step. Do not reapply the two original
+phone migrations to Production, where they are already installed.
+
+1. Genuine Australian phone test (after existing DOCKED sender is APPROVED)
+- Founder separately authorises the existing Preview only, <=2 hours, allowlisted
+  original QA accounts, a founder-controlled Australian physical mobile, no signup.
+- Keep Production provider/registration OFF. Recheck Preview provider defaults:
+  6 digits, 300-second expiry, 60-second resend interval, 6 sends/hour, no test OTP,
+  no auto-confirm. Existing private credentials are reused securely.
+- Test-stop at the first error/unexpected recipient, six attempted sends in the
+  window, 20 billed segments or A$5 in the window, whichever comes first. Combined
+  session testing must not exceed founder's A$20 authority, including tax/FX.
+  Check Twilio currency/billing estimate before enabling; no automatic top-up.
+- Founder enters number/code privately. Verify genuine delivery and verification;
+  then expiry/invalid code/replay, immediate resend denial, canonical duplicate
+  number denial on the second existing QA account. Never copy OTPs to evidence.
+- Verify account phone enrolment retains identity/cards, session reauthentication
+  for a number change, provider-failure handling and recovery guidance. A second
+  physical number is needed to COMPLETE a genuine number-change test; if absent,
+  report that portion as locally tested only instead of claiming physical success.
+- Close the Preview phone provider and window, verify zero Production changes.
+  Keep the verified test identity for payment acceptance; do not erase history.
+
+2. Installed Android v31 and Google Play TEST billing (separate bounded approval)
+- Verify installed docked.fantasy v31/1.30, signed Play artifact and founder licence
+  tester on the physical Android device. No v32 reason established. Do not install
+  a debug build and call it v31 acceptance.
+- Stage reviewed Preview candidate and opt-in same-origin QA transport for <=2h;
+  all Production commercial/signup/phone gates remain OFF. Transport forwards
+  Preview cookies only, blocks administration, rejects wrong origins and expires
+  closed. Exit through /profile/qa_billing_exit; stale access must fail closed.
+- Google buy-au options currently INACTIVE (A$49/4,900 and A$99/9,900 credits).
+  Approval must explicitly cover temporary activation/restoration for the licence
+  test. Stop if the checkout does not visibly identify Google's TEST instrument
+  or shows a nonzero real charge. Do not place a real order under TEST authority.
+- Maximum six TEST checkouts, real charge A$0. Use the unblocked original account
+  after genuine phone verification/current consent. Rebind only the temporary
+  private acceptance configuration; preserve prior held-member fixture/history.
+- Verify both credit products; pending/cancelled/no-credit; exactly-once credit on
+  success/restart/retry; Standard 9 (700) and Premium 9 (5,000) debit once and show
+  nine permanent unique-player serials immediately, including reopen after app
+  death and poor network. Confirm correct sport, odds, fees, balance and history.
+- Request the bounded TEST refund through Google, then verify genuine notification,
+  server verification, consumption/acknowledgement, one reversal, balanced ledger,
+  propagation after spending/transfer and recovery hold. No unrelated clawback.
+- For marketplace acceptance, use the two ordinary test identities only after
+  independent genuine phone verification of EACH. Two founder-controlled numbers
+  are required; a duplicated number or fabricated verification is not acceptable.
+  Otherwise the two-party marketplace physical test remains pending.
+- Deactivate the temporarily active buy-au options, close Preview controls and QA
+  transport, reconcile the full session and preserve all receipts/audits/holds.
+  Genuine TEST evidence proves the flow, not bank settlement or a real payout.
+
+3. Production acceptance before coordinated publication
+Separately approve dormant credentials/public runtime, source subset/rights,
+phone configuration and a specifically bounded REAL Google purchase/refund if
+required for first-real-payment proof. Define the purchaser, maximum actual AUD,
+product and refund/retained-inventory consequences first. This is not covered by
+SMS A$20 or TEST A$0 authority. Do not fabricate a Production purchase or balance.
+Complete founder-only monitoring configuration and same-key vault custody under
+their exact separate scopes. Only then request the final coordinated public
+registration + paid packs + Play publication authority.

@@ -4,6 +4,7 @@ import { sameOrigin } from "@/server/auth";
 import { boundedCommunityBody } from "@/core/community-social";
 import { CreditsRejected } from "@/server/credits-sandbox-store";
 import { z } from "zod";
+import { CommercialMarketRejected } from "@/server/commercial-market-ledger";
 export const runtime = "nodejs";
 const headers = { "Cache-Control": "private, no-store" };
 export async function GET(req: Request) {
@@ -24,7 +25,7 @@ export async function GET(req: Request) {
           e instanceof z.ZodError
             ? "Invalid filters. Clear filters and retry."
             : auth
-              ? "Sign in with your invited account."
+              ? "Sign in to your account."
               : denied
                 ? "Market access is unavailable for this account. Owner accounts must complete MFA."
                 : "Market service unavailable. Retry; your cards and credits are unchanged.",
@@ -71,13 +72,15 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         error:
-          e instanceof CreditsRejected
+          e instanceof CreditsRejected || e instanceof CommercialMarketRejected
             ? e.message
             : e instanceof z.ZodError
               ? "Invalid listing details. Use a whole-credit price and refresh the listing."
               : "Unable to confirm. Retry the original request to check its receipt.",
         outcome:
-          e instanceof CreditsRejected || e instanceof z.ZodError
+          e instanceof CreditsRejected ||
+          e instanceof CommercialMarketRejected ||
+          e instanceof z.ZodError
             ? "rejected"
             : "unknown",
       },

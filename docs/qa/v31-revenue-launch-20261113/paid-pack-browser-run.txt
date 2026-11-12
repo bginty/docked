@@ -1,0 +1,174 @@
+PASS migration reapplication leaves gates closed and creates no accounts
+PASS pending and cancelled purchases never credit
+PASS delayed approval and 20 concurrent retries fulfil exactly once
+PASS refund after partial spending, opened pack, and replay preserves cards with a recovery hold
+PASS concurrent 9900 purchases and atomic failure preserve balances
+PASS card sale, fee, refund after transfer never debit unrelated member
+PASS partial refunds held, full refund replacement is not cumulative
+PASS charged price mismatch records money, grants no credits
+PASS durable notifications, outages, leases and reconciliation after restart
+PASS delayed approval after account closure requires remedy review, never new fulfilment
+PASS runtime least-privilege role can read and accept but cannot activate
+PASS refund after original pack is transferred preserves buyer funds and ownership
+PASS unopened refunded pack stays recorded and cannot be opened while held
+PASS empty supply, insufficient balance and stale account permission roll back atomically
+PASS RLS, immutability, environment isolation and balanced accounting
+ExpectError: expect(locator).toBeVisible() failed
+
+Locator: getByRole('button', { name: 'Skip remaining reveals' }).first()
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" getByRole('button', { name: 'Skip remaining reveals' }).first() with timeout 5000ms
+  - waiting for getByRole('button', { name: 'Skip remaining reveals' }).first()
+
+    at captureRawStack (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\playwright-core\lib\coreBundle.js:8588:17)
+    at callMatcherAsStep (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\playwright\lib\matchers\expect.js:13310:57)
+    at Object.toBeVisible (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\playwright\lib\matchers\expect.js:13302:23)
+    at commercialBrowser (C:\Users\61412\.codex\worktrees\v31-founder-acceptance-20261111\Docked.com.au\scripts\commercial-browser.ts:172:9)
+    at async <anonymous> (C:\Users\61412\.codex\worktrees\v31-founder-acceptance-20261111\Docked.com.au\scripts\commercial-billing-postgres.ts:740:9)
+    at async check (C:\Users\61412\.codex\worktrees\v31-founder-acceptance-20261111\Docked.com.au\scripts\commercial-billing-postgres.ts:60:3)
+    at async main (C:\Users\61412\.codex\worktrees\v31-founder-acceptance-20261111\Docked.com.au\scripts\commercial-billing-postgres.ts:735:5) {
+  matcherResult: {
+    message: 'expect(locator).toBeVisible() failed\n' +
+      '\n' +
+      "Locator: getByRole('button', { name: 'Skip remaining reveals' }).first()\n" +
+      'Expected: visible\n' +
+      'Timeout: 5000ms\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      `  - Expect "toBeVisible" getByRole('button', { name: 'Skip remaining reveals' }).first() with timeout 5000ms\n` +
+      "  - waiting for getByRole('button', { name: 'Skip remaining reveals' }).first()\n",
+    pass: false,
+    actual: undefined,
+    name: 'toBeVisible',
+    expected: 'visible',
+    log: [
+      `  - Expect "toBeVisible" getByRole('button', { name: 'Skip remaining reveals' }).first() with timeout 5000ms`,
+      "  - waiting for getByRole('button', { name: 'Skip remaining reveals' }).first()"
+    ],
+    timeout: 5000,
+    ariaSnapshot: '- banner:\n' +
+      '  - link "Docked home":\n' +
+      '    - /url: /fantasy/play\n' +
+      '    - img "Docked"\n' +
+      '  - navigation "App utilities":\n' +
+      '    - link "9,200 Docked Credits":\n' +
+      '      - /url: /fantasy/test-wallet\n' +
+      '      - strong: 9,200\n' +
+      '      - text: Docked Credits\n' +
+      '    - link "Notifications":\n' +
+      '      - /url: /notifications\n' +
+      '    - link "Settings":\n' +
+      '      - /url: /dashboard\n' +
+      '- navigation "Sport":\n' +
+      '  - button "NFL" [pressed]\n' +
+      '  - button "AFL"\n' +
+      '  - button "NRL"\n' +
+      '- navigation "Collection navigation":\n' +
+      '  - button "My Cards"\n' +
+      '  - button "Packs" [pressed]\n' +
+      '- region "Docked packs":\n' +
+      '  - paragraph: CARDS / PACKS\n' +
+      '  - heading "NFL Packs" [level=1]\n' +
+      '  - paragraph:\n' +
+      '    - strong: 9,200\n' +
+      '    - text: Docked Credits\n' +
+      '  - navigation "Pack navigation":\n' +
+      '    - button "Buy Packs"\n' +
+      '    - button "My Packs"\n' +
+      '    - button "History"\n' +
+      '  - complementary "Unfinished pack reveal":\n' +
+      '    - strong: Continue your pack\n' +
+      '    - paragraph: Standard 9 Pack · Card 1 of 9\n' +
+      '    - text: Uses your saved result. No new cards or credit charge.\n' +
+      '    - button "Resume Pack"\n' +
+      '  - heading "Premium" [level=2]\n' +
+      '  - paragraph: Ultra Rare, Legendary or Icon on every card.\n' +
+      '  - article:\n' +
+      '    - img "Docked Premium NFL · 9 cards"\n' +
+      '    - heading "Premium 9 Pack" [level=3]\n' +
+      '    - paragraph: 9 cards\n' +
+      '    - paragraph:\n' +
+      '      - strong: 5,000\n' +
+      '      - text: Docked Credits\n' +
+      '    - button "Buy Premium 9 Pack": Buy Premium\n' +
+      '  - article:\n' +
+      '    - img "Docked Premium NFL · 3 cards"\n' +
+      '    - heading "Premium 3 Pack" [level=3]\n' +
+      '    - paragraph: 3 cards\n' +
+      '    - paragraph:\n' +
+      '      - strong: 1,900\n' +
+      '      - text: Docked Credits\n' +
+      '    - button "Buy Premium 3 Pack": Buy Premium\n' +
+      '  - article:\n' +
+      '    - img "Docked Premium NFL · 1 card"\n' +
+      '    - heading "Premium 1 Pack" [level=3]\n' +
+      '    - paragraph: 1 card\n' +
+      '    - paragraph:\n' +
+      '      - strong: "700"\n' +
+      '      - text: Docked Credits\n' +
+      '    - button "Buy Premium 1 Pack": Buy Premium\n' +
+      '  - group: Rarity Chances\n' +
+      '  - group: Pack Details\n' +
+      '  - heading "Standard" [level=2]\n' +
+      '  - paragraph: Rare, Elite, Ultra Rare, Legendary or Icon.\n' +
+      '  - article:\n' +
+      '    - img "Docked Standard NFL · 9 cards"\n' +
+      '    - heading "Standard 9 Pack" [level=3]\n' +
+      '    - paragraph: 9 cards\n' +
+      '    - paragraph:\n' +
+      '      - strong: "700"\n' +
+      '      - text: Docked Credits\n' +
+      '    - button "Buy Standard 9 Pack": Buy Standard\n' +
+      '  - article:\n' +
+      '    - img "Docked Standard NFL · 3 cards"\n' +
+      '    - heading "Standard 3 Pack" [level=3]\n' +
+      '    - paragraph: 3 cards\n' +
+      '    - paragraph:\n' +
+      '      - strong: "300"\n' +
+      '      - text: Docked Credits\n' +
+      '    - button "Buy Standard 3 Pack": Buy Standard\n' +
+      '  - article:\n' +
+      '    - img "Docked Standard NFL · 1 card"\n' +
+      '    - heading "Standard 1 Pack" [level=3]\n' +
+      '    - paragraph: 1 card\n' +
+      '    - paragraph:\n' +
+      '      - strong: "100"\n' +
+      '      - text: Docked Credits\n' +
+      '    - button "Buy Standard 1 Pack": Buy Standard\n' +
+      '  - group: Rarity Chances\n' +
+      '  - group: Pack Details\n' +
+      '  - paragraph: Core cards are free and are never included in paid packs.\n' +
+      '  - button "Retry availability"\n' +
+      '  - paragraph: Docked Credits · Not withdrawable\n' +
+      '  - link "View Collection":\n' +
+      '    - /url: /fantasy/cards?sport=nfl\n' +
+      '- dialog "Standard 9 Pack":\n' +
+      '  - heading "Standard 9 Pack" [level=2]\n' +
+      '  - button "Close panel": ✕\n' +
+      '  - region "Docked pack opening":\n' +
+      '    - button "Reveal All"\n' +
+      '    - button "Sound off"\n' +
+      '    - group\n' +
+      '    - paragraph: Collect. Compete. Connect.\n' +
+      '    - paragraph: Card 1 of 9\n' +
+      '    - button "Reveal card"\n' +
+      '    - paragraph: Tap the card to reveal it\n' +
+      '- paragraph: No cash redemption. Competition rules apply.\n' +
+      '- navigation "Mobile app navigation":\n' +
+      '  - link "Play":\n' +
+      '    - /url: /fantasy/play\n' +
+      '  - link "Cards":\n' +
+      '    - /url: /fantasy/cards\n' +
+      '  - link "Market":\n' +
+      '    - /url: /fantasy/market\n' +
+      '  - link "Social":\n' +
+      '    - /url: /fantasy/social\n' +
+      '  - link "Profile":\n' +
+      '    - /url: /fantasy/profile'
+  }
+}

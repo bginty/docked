@@ -1,4 +1,6 @@
 import "server-only";
+import { commercialSurfaceEnabled } from "../core/commercial-presentation";
+import { memberCommercial } from "./member-commercial";
 import { memberTestSource } from "./member-test-wallet";
 import { setCommunityClaims } from "./community-social";
 import { isFixtureSport } from "@/core/fixture-sports";
@@ -12,6 +14,13 @@ export async function memberMarketplace(
   input?: unknown,
 ) {
   const query = marketQuery.parse(Object.fromEntries(params));
+  if (commercialSurfaceEnabled()) {
+    const customer = await memberCommercial(
+      input === undefined ? "read" : "mutation",
+    );
+    const result = input === undefined ? null : await customer.market(input);
+    return { state: await customer.marketView.read(query), result };
+  }
   const { s, hidden, trading, member, result, sql, who, fixtureSports } =
     await memberTestSource(input);
   if (isFixtureSport(query.sport) && !fixtureSports.includes(query.sport))

@@ -112,6 +112,7 @@ test("private phone acceptance admits only two existing accounts and keeps regis
 test("closed Google test window preserves isolated ledger reads without admitting checkout", () => {
   const e = {
     ...env,
+    REGISTRATION_ENABLED: "false",
     DOCKED_COMMERCIAL_DATABASE_URL: `postgresql://docked_isolated_commercial.${ref}:fixture@aws-0-ap-southeast-2.pooler.supabase.com:5432/postgres`,
     DOCKED_ISOLATED_GOOGLE_TEST: "false",
   };
@@ -148,11 +149,16 @@ test("Google TEST admission cannot select Production, a different account, live 
     ...env,
     DOCKED_COMMERCIAL_DATABASE_URL: `postgresql://docked_isolated_commercial.${ref}:fixture@aws-0-ap-southeast-2.pooler.supabase.com:5432/postgres`,
     DOCKED_ISOLATED_GOOGLE_TEST: "true",
+    NODE_ENV: "test" as const,
+    REGISTRATION_ENABLED: "false",
     DOCKED_ISOLATED_GOOGLE_MEMBER: id,
     DOCKED_ISOLATED_GOOGLE_EMAIL: email,
     DOCKED_ISOLATED_GOOGLE_UNTIL: new Date(Date.now() + 3600000).toISOString(),
   };
   assert(isolatedBillingIdentity(e, id, email));
+  assert.equal(customerOnboardingEnabled(e), false);
+  assert(productionAuthRequestDenial("signup", undefined, e));
+  assert.equal(productionAuthRequestDenial("login", undefined, e), null);
   assert(
     !isolatedBillingIdentity(e, "00000000-0000-4000-8000-000000000002", email),
   );
@@ -161,6 +167,12 @@ test("Google TEST admission cannot select Production, a different account, live 
   for (const patch of [
     { VERCEL_ENV: "production" },
     { DOCKED_COMMERCIAL_CHECKOUT: "true" },
+    { REGISTRATION_ENABLED: "true" },
+    {
+      DOCKED_ISOLATED_GOOGLE_UNTIL: new Date(
+        Date.now() + 3 * 3600000,
+      ).toISOString(),
+    },
     { DOCKED_ISOLATED_GOOGLE_UNTIL: "2000-01-01" },
     {
       DOCKED_COMMERCIAL_DATABASE_URL: e.DOCKED_COMMERCIAL_DATABASE_URL.replace(

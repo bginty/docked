@@ -20,6 +20,8 @@ const previewRestore = process.argv.includes("--existing-free-preview");
 const prelaunchReadiness = process.argv.includes("--prelaunch-readiness");
 const resumeRestored = process.argv.includes("--resume-restored");
 const captureOnly = process.argv.includes("--capture-only");
+const restoreOnly = process.argv.includes("--restore-only");
+assert(!restoreOnly || (prelaunchReadiness && process.argv.includes("--restore-existing") && !captureOnly));
 assert(
   !captureOnly || (process.argv.includes("--capture-fresh") && !resumeRestored),
 );
@@ -801,6 +803,24 @@ async function mainRun() {
     (await local("select current_setting('pg_net.database_name');")).trim(),
     "network_worker_disabled",
   );
+  if (restoreOnly) {
+    const report = {
+      at: new Date().toISOString(), sourceProject: manifest.project,
+      backupAt: manifest.at, archiveBytes: manifest.bytes, archiveSha256: manifest.sha256,
+      restored: true, restoreTarget: target, network: "none", publishedPorts: 0,
+      cronActive: false, operatorSuperuser: false, effectiveMembershipOptionsMatch: true,
+      protectedTables: protectedNames.length, protectedRecordsUnchanged: true,
+      migrationsApplied: false, productionWrites: 0, storageObjectBodiesIncluded: false,
+      targetRetainedForLocalAcceptance: keepIsolatedTarget,
+      purpose: "Authenticated baseline restore only; subsequent separately recorded non-production tests",
+    };
+    await writeFile(evidence + "/restore-only.json", JSON.stringify(report, null, 2) + "\n", { flag: "wx" });
+    console.log(JSON.stringify(report));
+    if (!keepIsolatedTarget) await run(["stop", target]);
+    createdTarget = false;
+    key.fill(0);
+    return;
+  }
   const previewRounds = previewRestore
     ? (JSON.parse(
         (

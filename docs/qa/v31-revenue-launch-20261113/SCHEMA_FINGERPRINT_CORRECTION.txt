@@ -1,0 +1,22 @@
+SCHEMA AUDIT TOOL CORRECTION — no database migration
+
+The first combined repair rollback had equal object counts but a differing
+fingerprint. Read-only comparison independently confirmed that the rolled-back
+commercial schema, original member_record function and its ACL matched Production.
+
+Root cause: the first branch of a PostgreSQL UNION used pg_namespace.nspname,
+whose type is name. This coerced later qualified object identities to name,
+truncating them at 63 bytes. Many distinct long constraints/functions then shared
+the same sort key. Equal-key row ordering could change after DDL even when the
+schema definitions had been restored correctly. This was not evidence of altered
+balances, ownership or lost rows; the separate 558-table checks remained exact.
+
+Correction: explicitly cast that first identity to text. The v2 fingerprint
+retains complete identities. The new isolated PostgreSQL-compatible regression
+test requires distinct long names and detects a changed check constraint.
+The combined rehearsal now requires every kind/identity pair to be unique.
+
+Prior approvals and historical hashes are not rewritten. Any newly prepared
+operator/package that binds this helper receives a new hash and needs its own
+exact approval before execution. No previously deployed migration is reapplied.
+Use revenue-repairs-v2-restored.json for the corrected final rehearsal result.

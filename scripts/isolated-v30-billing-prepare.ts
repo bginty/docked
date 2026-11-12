@@ -60,7 +60,7 @@ async function run() {
         [counts.receipts, counts.cards, counts.definitions],
         [0, 0, 0],
       );
-      const until = new Date(Date.now() + 5 * 3600000).toISOString();
+      const until = new Date(Date.now() + 2 * 3600000).toISOString();
       const approvals = Object.fromEntries(
         [
           "owner",
@@ -157,7 +157,7 @@ async function run() {
       assert.equal(state.before.sales_enabled, false);
       assert.equal(state.before.issuance_enabled, false);
       assert.equal(state.before.transfers_enabled, false);
-      const until = new Date(Date.now() + 5 * 3600000).toISOString();
+      const until = new Date(Date.now() + 2 * 3600000).toISOString();
       const approvals = Object.fromEntries(
         [
           "owner",

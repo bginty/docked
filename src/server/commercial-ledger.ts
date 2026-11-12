@@ -63,7 +63,7 @@ export class CommercialLedger {
       "utf8",
     );
   }
-  private async control(
+  protected async control(
     tx: Sql,
     scope?: "sales_enabled" | "issuance_enabled" | "transfers_enabled",
   ) {
@@ -79,7 +79,7 @@ export class CommercialLedger {
     }
     return c;
   }
-  private async accounts(tx: Sql, members: string[]) {
+  protected async accounts(tx: Sql, members: string[]) {
     for (const member of [...new Set(members)].sort()) {
       uuid.parse(member);
       await tx`insert into commercial_billing.accounts(member_id) values(${member}) on conflict do nothing`;
@@ -108,7 +108,7 @@ export class CommercialLedger {
       if (amount)
         await tx`insert into commercial_billing.lines values(${id},${n++},${account},${amount})`;
   }
-  private async audit(
+  protected async audit(
     tx: Sql,
     actor: string,
     action: string,
@@ -117,7 +117,7 @@ export class CommercialLedger {
   ) {
     await tx`insert into commercial_billing.audit(actor,action,reference,details) values(${actor},${action},${reference},${tx.json(details as never)})`;
   }
-  private async noHold(tx: Sql, member: string) {
+  protected async noHold(tx: Sql, member: string) {
     const r =
       await tx`select id from commercial_billing.recovery_cases where member_id=${member} and state='OPEN' limit 1`;
     if (r.length)
@@ -566,65 +566,77 @@ export class CommercialLedger {
     sellerQuote(price);
     return this.sql.begin(async (transaction) => {
       const tx = transaction as unknown as Sql;
-      await tx`select pg_advisory_xact_lock(71820342)`;
-      await this.control(tx, "transfers_enabled");
-      const [hint] =
-        await tx`select seller from commercial_billing.listings where id=${id}`;
-      if (!hint || hint.seller === member) throw Error("Listing unavailable");
-      await this.accounts(tx, [member, hint.seller]);
-      await authorize(tx, member);
-      await this.noHold(tx, member);
-      await this.noHold(tx, hint.seller);
-      const [l] =
-        await tx`select * from commercial_billing.listings where id=${id} for update`;
-      if (l.state === "SOLD" && l.buyer === member)
-        return {
-          id,
-          price: integer(l.price),
-          fee: integer(l.fee),
-          net: integer(l.net),
-        };
-      if (
-        l.state !== "OPEN" ||
-        integer(l.price) !== price ||
-        l.revision !== revision
-      )
-        throw Error("Listing changed; review again");
-      const [card] =
-        await tx`select * from commercial_billing.cards where id=${l.card} and owner_id=${l.seller} and not locked for update`;
-      if (!card) throw Error("Card unavailable");
-      const quote = sellerQuote(price),
-        funding = await this.spend(tx, member, price);
-      let fee = quote.fee;
-      for (const [n, part] of funding.entries()) {
-        const removed = Math.min(fee, part.amount);
-        fee -= removed;
-        const amount = part.amount - removed;
-        if (amount)
-          await tx`insert into commercial_billing.lots(member_id,receipt,source,original,remaining) values(${l.seller},${part.receipt},${`sale:${id}:${n}`},${amount},${amount})`;
-      }
-      await this.journal(
-        tx,
-        `sale:${id}`,
-        "CREDITS",
-        member,
-        "Credit-only card sale; seller fee policy preserved",
-        null,
-        [
-          [`member:${member}`, -price],
-          [`member:${l.seller}`, quote.net],
-          ["system:sale-fees", quote.fee],
-        ],
-      );
-      await tx`update commercial_billing.cards set owner_id=${member} where id=${l.card}`;
-      await tx`insert into commercial_billing.ownership_events(card,from_member,to_member,reference) values(${l.card},${l.seller},${member},${`sale:${id}`})`;
-      await tx`update commercial_billing.listings set state='SOLD',buyer=${member},fee=${quote.fee},net=${quote.net},sold_at=clock_timestamp(),funding=${tx.json(funding)} where id=${id}`;
-      await this.audit(tx, member, "card-sale", id, {
-        ...quote,
-        seller: l.seller,
-      });
-      return { id, ...quote };
+      return this.settleListing(tx, member, id, price, revision, authorize);
     });
+  }
+  /** Shared atomic settlement; caller may append its immutable request receipt
+   * in the same transaction. Never opens a nested or separate transaction. */
+  protected async settleListing(
+    tx: Sql,
+    member: string,
+    id: string,
+    price: number,
+    revision: number,
+    authorize: Authorize,
+  ) {
+    await tx`select pg_advisory_xact_lock(71820342)`;
+    await this.control(tx, "transfers_enabled");
+    const [hint] =
+      await tx`select seller from commercial_billing.listings where id=${id}`;
+    if (!hint || hint.seller === member) throw Error("Listing unavailable");
+    await this.accounts(tx, [member, hint.seller]);
+    await authorize(tx, member);
+    await this.noHold(tx, member);
+    await this.noHold(tx, hint.seller);
+    const [l] =
+      await tx`select * from commercial_billing.listings where id=${id} for update`;
+    if (l.state === "SOLD" && l.buyer === member)
+      return {
+        id,
+        price: integer(l.price),
+        fee: integer(l.fee),
+        net: integer(l.net),
+      };
+    if (
+      l.state !== "OPEN" ||
+      integer(l.price) !== price ||
+      l.revision !== revision
+    )
+      throw Error("Listing changed; review again");
+    const [card] =
+      await tx`select * from commercial_billing.cards where id=${l.card} and owner_id=${l.seller} and not locked for update`;
+    if (!card) throw Error("Card unavailable");
+    const quote = sellerQuote(price),
+      funding = await this.spend(tx, member, price);
+    let fee = quote.fee;
+    for (const [n, part] of funding.entries()) {
+      const removed = Math.min(fee, part.amount);
+      fee -= removed;
+      const amount = part.amount - removed;
+      if (amount)
+        await tx`insert into commercial_billing.lots(member_id,receipt,source,original,remaining) values(${l.seller},${part.receipt},${`sale:${id}:${n}`},${amount},${amount})`;
+    }
+    await this.journal(
+      tx,
+      `sale:${id}`,
+      "CREDITS",
+      member,
+      "Credit-only card sale; seller fee policy preserved",
+      null,
+      [
+        [`member:${member}`, -price],
+        [`member:${l.seller}`, quote.net],
+        ["system:sale-fees", quote.fee],
+      ],
+    );
+    await tx`update commercial_billing.cards set owner_id=${member} where id=${l.card}`;
+    await tx`insert into commercial_billing.ownership_events(card,from_member,to_member,reference) values(${l.card},${l.seller},${member},${`sale:${id}`})`;
+    await tx`update commercial_billing.listings set state='SOLD',buyer=${member},fee=${quote.fee},net=${quote.net},sold_at=clock_timestamp(),funding=${tx.json(funding)} where id=${id}`;
+    await this.audit(tx, member, "card-sale", id, {
+      ...quote,
+      seller: l.seller,
+    });
+    return { id, ...quote };
   }
   async resolveRecovery(
     id: string,

@@ -1,0 +1,284 @@
+{
+  "at": "2026-11-12T13:13:34.054Z",
+  "productionWrites": 0,
+  "planSha256": "4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4",
+  "commercial": {
+    "definitions": 6540,
+    "legacy_issued": 888,
+    "approved": 0,
+    "cards": 0,
+    "packs": 0,
+    "receipts": 0,
+    "accounts": 0,
+    "approved_products": 0,
+    "controls": {
+      "id": true,
+      "approvals": {},
+      "updated_at": "2026-11-01T23:14:45.99055+00:00",
+      "environment": "commercial",
+      "sales_enabled": false,
+      "policy_version": "commercial-launch-awaiting-approval-v1",
+      "gameplay_enabled": false,
+      "issuance_enabled": false,
+      "transfers_enabled": false
+    }
+  },
+  "preserved": {
+    "active_instances": 898,
+    "with_current_owner": 898,
+    "current_visible_beta_instances": 889,
+    "core": 0,
+    "limited": 898
+  },
+  "custodyRecords": 906,
+  "custodyDigest": "a1bbdf806cee3f51d870b31f5fcb74d6cae0df93846f34bb4c291ffaae99cb8e",
+  "supply": [
+    {
+      "sport": "nfl",
+      "rarity": "RARE",
+      "players": 403
+    },
+    {
+      "sport": "nfl",
+      "rarity": "ELITE",
+      "players": 403
+    },
+    {
+      "sport": "nfl",
+      "rarity": "ULTRA_RARE",
+      "players": 403
+    },
+    {
+      "sport": "nfl",
+      "rarity": "LEGENDARY",
+      "players": 403
+    },
+    {
+      "sport": "nfl",
+      "rarity": "ICON",
+      "players": 401
+    },
+    {
+      "sport": "afl",
+      "rarity": "RARE",
+      "players": 536
+    },
+    {
+      "sport": "afl",
+      "rarity": "ELITE",
+      "players": 536
+    },
+    {
+      "sport": "afl",
+      "rarity": "ULTRA_RARE",
+      "players": 536
+    },
+    {
+      "sport": "afl",
+      "rarity": "LEGENDARY",
+      "players": 536
+    },
+    {
+      "sport": "afl",
+      "rarity": "ICON",
+      "players": 536
+    },
+    {
+      "sport": "nrl",
+      "rarity": "RARE",
+      "players": 274
+    },
+    {
+      "sport": "nrl",
+      "rarity": "ELITE",
+      "players": 274
+    },
+    {
+      "sport": "nrl",
+      "rarity": "ULTRA_RARE",
+      "players": 274
+    },
+    {
+      "sport": "nrl",
+      "rarity": "LEGENDARY",
+      "players": 274
+    },
+    {
+      "sport": "nrl",
+      "rarity": "ICON",
+      "players": 274
+    }
+  ],
+  "products": [
+    {
+      "id": "nfl:standard-1-nfl-paid-sizes-v4",
+      "cards": 1,
+      "priceCredits": 100,
+      "configurationHash": "9d873b29dc5d6641c29f76bfb5980e46cecc7547ca0eb88c7426fcedbf517883",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "nfl:standard-3-nfl-paid-sizes-v4",
+      "cards": 3,
+      "priceCredits": 300,
+      "configurationHash": "ac9ff08c7d9d6c46849fd71650d97df24bfbb460c0ad7822d5658bd40dfdd136",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "nfl:standard-9-nfl-paid-sizes-v4",
+      "cards": 9,
+      "priceCredits": 700,
+      "configurationHash": "c1cbcc4feb968f94abad03504563e88ac650442f734ed7b330921bc667dd843e",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "nfl:premium-1-nfl-paid-sizes-v4",
+      "cards": 1,
+      "priceCredits": 700,
+      "configurationHash": "82a412cf853c92787c85732fc78e8787a381a1f8fd1bc3ce296006bd69eb8613",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "nfl:premium-3-nfl-paid-sizes-v4",
+      "cards": 3,
+      "priceCredits": 1900,
+      "configurationHash": "61a8bc2a4cff58524638346b5b1190202c7f482fc9c0f7ce254cacc90ba4599c",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "nfl:premium-9-nfl-paid-sizes-v4",
+      "cards": 9,
+      "priceCredits": 5000,
+      "configurationHash": "8cea851214503675942d71b6ca0872d2f809c349be0273b4be753a9c92814f85",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "afl:standard-1-nfl-paid-sizes-v4",
+      "cards": 1,
+      "priceCredits": 100,
+      "configurationHash": "865402db3939597fc28c98c012a22791f97157b2afe5d3327f32a1d3e70e6f89",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "afl:standard-3-nfl-paid-sizes-v4",
+      "cards": 3,
+      "priceCredits": 300,
+      "configurationHash": "68f6f804b5b77c73f9b2177374e6a62ea52c9a046e9418ca5a31545847855407",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "afl:standard-9-nfl-paid-sizes-v4",
+      "cards": 9,
+      "priceCredits": 700,
+      "configurationHash": "c371928d17e728039361ca9bedd8c08b8b63207c2ea941a346083a439439dbae",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "afl:premium-1-nfl-paid-sizes-v4",
+      "cards": 1,
+      "priceCredits": 700,
+      "configurationHash": "414849c1a7d5303699c2e9afb21fd0f1576abc1ac7b36455bc80c7307626ad5f",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "afl:premium-3-nfl-paid-sizes-v4",
+      "cards": 3,
+      "priceCredits": 1900,
+      "configurationHash": "b26898e82f37c85636560a81750d4f2c0088bdf37de80a110f26b223c3e7d3a0",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "afl:premium-9-nfl-paid-sizes-v4",
+      "cards": 9,
+      "priceCredits": 5000,
+      "configurationHash": "b2ce063027b7f8b69c287957b4c1d82836c24d61afc04316adfd2e5848640b77",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "nrl:standard-1-nfl-paid-sizes-v4",
+      "cards": 1,
+      "priceCredits": 100,
+      "configurationHash": "14256f6c7f0ac4bf53b3c98c3244e67cbb2999f58fb3112c282770b5a9ff53a1",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "nrl:standard-3-nfl-paid-sizes-v4",
+      "cards": 3,
+      "priceCredits": 300,
+      "configurationHash": "abd023befd309f29aab771cadbc1d41d7354ed632a771db534282e0facf14844",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "nrl:standard-9-nfl-paid-sizes-v4",
+      "cards": 9,
+      "priceCredits": 700,
+      "configurationHash": "4ce5a09e207adb0d55282ca9e99fb731ba686e597c0197ec073255d51ac68347",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "nrl:premium-1-nfl-paid-sizes-v4",
+      "cards": 1,
+      "priceCredits": 700,
+      "configurationHash": "3b6147838b361abfdf437e1c8ddfd59e352ba9eeae67e12b8f1c773f50cb6d93",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "nrl:premium-3-nfl-paid-sizes-v4",
+      "cards": 3,
+      "priceCredits": 1900,
+      "configurationHash": "b24f20b41f12654445bc9eb44263ef5bbfd1da9345821a73415cee25b197e717",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    },
+    {
+      "id": "nrl:premium-9-nfl-paid-sizes-v4",
+      "cards": 9,
+      "priceCredits": 5000,
+      "configurationHash": "a2394f87c75357fb3d071ee7a44572344f42cd4ce353b4b7830ae2348b384273",
+      "capacitySufficientIfSeparatelyApproved": true,
+      "availableForSale": false
+    }
+  ],
+  "audit": [
+    {
+      "tgname": "immutable",
+      "tgenabled": "O",
+      "definition": "CREATE TRIGGER immutable BEFORE DELETE OR UPDATE ON private.audit_events FOR EACH ROW EXECUTE FUNCTION private.immutable()"
+    }
+  ],
+  "historicalNotifications": {
+    "attention": 7,
+    "attempts": [
+      12,
+      12,
+      12,
+      12,
+      12,
+      12,
+      12
+    ],
+    "manifestSha256": "e153fafab4ccc34aeb7892844a6e85fb5e10f484da8240f1088ac3881153427b"
+  },
+  "limits": [
+    "No founder impersonation",
+    "No hosted purchase or SMS",
+    "Capacity is not rights approval",
+    "Commercial collection excludes existing beta custody until repaired"
+  ]
+}

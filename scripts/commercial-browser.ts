@@ -12,6 +12,9 @@ export async function commercialBrowser(
   ledger: CommercialLedger,
   member: string,
 ) {
+  const reportDir =
+    process.env.DOCKED_DB_TEST_REPORT_DIR ??
+    "docs/qa/commercial-billing-20261101";
   if (
     ledger.environment !== "acceptance" ||
     new URL(process.env.COMMERCIAL_ACCEPTANCE_DB ?? "").hostname !== "127.0.0.1"
@@ -147,6 +150,12 @@ export async function commercialBrowser(
         .getByRole("button", { name: "Buy Standard 9 Pack", exact: true })
         .click();
       await expect(page.getByRole("dialog")).toContainText("700");
+      for (const chance of ["85%", "12%", "2.5%", "0.49%", "0.01%"])
+        await expect(
+          page
+            .getByRole("dialog")
+            .getByRole("cell", { name: chance, exact: true }),
+        ).toBeVisible();
       assert.equal((await ledger.wallet(member)).balance, before);
       await page
         .getByRole("button", { name: "Confirm Purchase", exact: true })
@@ -159,10 +168,14 @@ export async function commercialBrowser(
         .first()
         .click();
       await expect(
-        page.getByRole("button", { name: "Skip remaining reveals" }).first(),
+        page
+          .getByRole("button", {
+            name: /^(Reveal All|Skip remaining reveals)$/,
+          })
+          .first(),
       ).toBeVisible();
       await page
-        .getByRole("button", { name: "Skip remaining reveals" })
+        .getByRole("button", { name: /^(Reveal All|Skip remaining reveals)$/ })
         .first()
         .click();
       await expect(
@@ -178,7 +191,7 @@ export async function commercialBrowser(
       assert.equal((await ledger.wallet(member)).balance, before - 700);
       await page.getByRole("button", { name: "Cancel", exact: true }).click();
       await page.screenshot({
-        path: `docs/qa/commercial-billing-20261101/${sport}-reveal-390.png`,
+        path: `${reportDir}/${sport}-reveal-390.png`,
         fullPage: true,
       });
       await page.goto(origin + "/fantasy/cards?sport=" + sport);
@@ -190,12 +203,12 @@ export async function commercialBrowser(
         false,
       );
       await page.screenshot({
-        path: `docs/qa/commercial-billing-20261101/${sport}-collection-390.png`,
+        path: `${reportDir}/${sport}-collection-390.png`,
         fullPage: true,
       });
       await page.setViewportSize({ width: 1440, height: 1000 });
       await page.screenshot({
-        path: `docs/qa/commercial-billing-20261101/${sport}-collection-1440.png`,
+        path: `${reportDir}/${sport}-collection-1440.png`,
         fullPage: true,
       });
       assert.deepEqual(errors, []);
@@ -221,6 +234,12 @@ export async function commercialBrowser(
       .getByRole("button", { name: "Buy Premium 9 Pack", exact: true })
       .click();
     await expect(premium.getByRole("dialog")).toContainText("5,000");
+    for (const chance of ["90%", "9.9%", "0.1%"])
+      await expect(
+        premium
+          .getByRole("dialog")
+          .getByRole("cell", { name: chance, exact: true }),
+      ).toBeVisible();
     assert.equal((await ledger.wallet(member)).balance, premiumBefore);
     await premium
       .getByRole("button", { name: "Confirm Purchase", exact: true })
@@ -230,7 +249,7 @@ export async function commercialBrowser(
       .first()
       .click();
     await premium
-      .getByRole("button", { name: "Skip remaining reveals" })
+      .getByRole("button", { name: /^(Reveal All|Skip remaining reveals)$/ })
       .first()
       .click();
     await expect(
@@ -238,7 +257,7 @@ export async function commercialBrowser(
     ).toBeVisible();
     assert.equal((await ledger.wallet(member)).balance, premiumBefore - 5000);
     await premium.screenshot({
-      path: "docs/qa/commercial-billing-20261101/afl-premium-reveal-390.png",
+      path: `${reportDir}/afl-premium-reveal-390.png`,
       fullPage: true,
     });
     checks.push({
@@ -260,7 +279,7 @@ export async function commercialBrowser(
       page.getByRole("heading", { name: "Docked Credits", exact: true }),
     ).toBeVisible();
     await page.screenshot({
-      path: "docs/qa/commercial-billing-20261101/wallet-390.png",
+      path: `${reportDir}/wallet-390.png`,
       fullPage: true,
     });
     await page.goto(origin + "/admin/commercial-billing");
@@ -282,7 +301,7 @@ export async function commercialBrowser(
         false,
       );
       await page.screenshot({
-        path: `docs/qa/commercial-billing-20261101/owner-review-${width}.png`,
+        path: `${reportDir}/owner-review-${width}.png`,
         fullPage: true,
       });
     }
@@ -301,7 +320,7 @@ export async function commercialBrowser(
     ).toBeEnabled();
     await page.getByRole("button", { name: "Cancel", exact: true }).click();
     writeFileSync(
-      "docs/qa/commercial-billing-20261101/browser.json",
+      `${reportDir}/browser.json`,
       JSON.stringify(
         {
           at: new Date().toISOString(),
@@ -325,7 +344,7 @@ export async function commercialBrowser(
     const page = browser.contexts().at(-1)?.pages().at(-1);
     if (page)
       await page.screenshot({
-        path: "docs/qa/commercial-billing-20261101/browser-failure.png",
+        path: `${reportDir}/browser-failure.png`,
         fullPage: true,
       });
     throw e;

@@ -22,6 +22,7 @@ export function useMarketCommand(
   onSuccess: (
     result: Record<string, unknown>,
     command: Record<string, unknown>,
+    state: MarketplaceView,
   ) => void,
 ) {
   const [busy, setBusy] = useState(false),
@@ -78,7 +79,7 @@ export function useMarketCommand(
       localStorage.removeItem(key);
       if (alive.current) {
         setPending(null);
-        success.current(d.result, envelope.command);
+        success.current(d.result, envelope.command, d.state);
       }
       marketChanged();
     } catch (e) {

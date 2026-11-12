@@ -40,12 +40,22 @@ export function v30TransportConfig(env: Env, now = Date.now()) {
   const oidc = env.DOCKED_V30_TRANSPORT_OIDC ?? "";
   if (
     env.VERCEL_PROJECT_ID !== "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST" ||
+    env.VERCEL_ORG_ID !== "team_tf6xweKKyVCj9bTppUKttJ4l" ||
     env.VERCEL_ENV !== "production" ||
     env.SITE_URL !== "https://docked.com.au" ||
     !/^[a-f0-9]{64}$/.test(key) ||
     !Number.isFinite(until) ||
     until <= now ||
-    until > now + 6 * 3600000 ||
+    until > now + 2 * 3600000 ||
+    [
+      "REGISTRATION_ENABLED",
+      "DOCKED_PUBLIC_PHONE_OTP",
+      "DOCKED_COMMERCIAL_CHECKOUT",
+      "DOCKED_COMMERCIAL_SURFACES",
+      "DOCKED_RETENTION_APPLY",
+      "PRIZES_ENABLED",
+      "COMPETITIONS_ENABLED",
+    ].some((flag) => env[flag] !== "false") ||
     !/^https:\/\/docked-preview-[a-z0-9]+-briant-s-projects\.vercel\.app$/.test(
       target,
     )
@@ -268,7 +278,10 @@ export async function isolatedV30Transport(
         ].includes(redirect.origin)
       )
         return fail();
-      h.set("Location", 'https://docked.com.au' + redirect.pathname + redirect.search);
+      h.set(
+        "Location",
+        "https://docked.com.au" + redirect.pathname + redirect.search,
+      );
     }
     for (const value of r.headers.getSetCookie()) {
       if (

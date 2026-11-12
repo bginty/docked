@@ -6,6 +6,7 @@ import { EnvironmentProvider } from "../../src/components/environment-context";
 import { OwnedCollection } from "../../src/components/owned-collection";
 import { CommercialBillingReview } from "../../src/components/commercial-billing-review";
 import { CommercialMember } from "../../src/components/commercial-member";
+import { Marketplace } from "../../src/components/credit-marketplace";
 Object.assign(window, { demoPath: location.pathname });
 function Fixture() {
   const [member, setMember] = useState("");
@@ -32,6 +33,8 @@ function Fixture() {
           {member &&
             (location.pathname === "/admin/commercial-billing" ? (
               <CommercialBillingReview />
+            ) : location.pathname === "/fantasy/market" ? (
+              <Marketplace member={member} />
             ) : location.pathname === "/fantasy/cards" ? (
               <OwnedCollection member={member} />
             ) : (

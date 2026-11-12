@@ -1,0 +1,8 @@
+PASS real commercial mode rejects synthetic supply before creating accounts or cards
+PASS direct requests cannot bypass the visible all-rarity supply gate
+PASS all18 products retain exact per-slot odds over every10000 ticket outcomes
+PASS all18 real SQL purchases have exact quantity, price, sport, unique players and idempotent openings
+PASS a fault after seven serial allocations rolls back funding, inventory and audit, then retry issues once
+PASS twenty buyers competing for the last allowed serial issue once without oversell or duplicate debit
+PASS all journals balance; issued-minus-legacy equals preserved instances; no negative spendable credit
+{"at":"2026-11-12T14:15:52.667Z","engine":"PostgreSQL 17.10 on x86_64-windows, compiled by msvc-19.44.35226, 64-bit","checks":["real commercial mode rejects synthetic supply before creating accounts or cards","direct requests cannot bypass the visible all-rarity supply gate","all18 products retain exact per-slot odds over every10000 ticket outcomes","all18 real SQL purchases have exact quantity, price, sport, unique players and idempotent openings","a fault after seven serial allocations rolls back funding, inventory and audit, then retry issues once","twenty buyers competing for the last allowed serial issue once without oversell or duplicate debit","all journals balance; issued-minus-legacy equals preserved instances; no negative spendable credit"],"passed":true,"productionWrites":0,"realPayments":0,"providerCalls":0,"permanentCardsIssued":0,"fixtureOnly":true}

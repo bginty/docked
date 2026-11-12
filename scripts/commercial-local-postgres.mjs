@@ -56,12 +56,16 @@ try {
   connection.username = "postgres";
   connection.password = password;
   const publicGameplay = process.argv.includes("--public-gameplay");
+  const collection = process.argv.includes("--collection");
+  const market = process.argv.includes("--market");
   const social = process.argv.includes("--social");
   const incidents =
     process.argv.includes("--incidents") ||
     process.argv.includes("--final-controls");
   const gameplay =
     process.argv.includes("--gameplay") ||
+    collection ||
+    market ||
     publicGameplay ||
     social ||
     incidents;
@@ -76,16 +80,20 @@ try {
       ...(gameplay
         ? [
             "--test",
-            `--test-name-pattern=${incidents ? "Operational incidents" : social ? "Commercial social" : publicGameplay ? `${process.argv.includes("--nfl") ? "NFL" : process.argv.includes("--nrl") ? "NRL" : "AFL"} public member` : process.argv.includes("--nrl") ? "NRL" : "AFL"}`,
-            incidents
-              ? process.argv.includes("--final-controls")
-                ? "tests/database/operational-final.test.ts"
-                : "tests/database/operational-incidents.test.ts"
-              : social
-                ? "tests/database/commercial-social.test.ts"
-                : publicGameplay
-                  ? "tests/database/public-customer.test.ts"
-                  : "tests/database/commercial-lineup.test.ts",
+            `--test-name-pattern=${market ? "Commercial marketplace" : collection ? "Commercial collection" : incidents ? "Operational incidents" : social ? "Commercial social" : publicGameplay ? `${process.argv.includes("--nfl") ? "NFL" : process.argv.includes("--nrl") ? "NRL" : "AFL"} public member` : process.argv.includes("--nrl") ? "NRL" : "AFL"}`,
+            market
+              ? "tests/database/commercial-marketplace.test.ts"
+              : collection
+                ? "tests/database/commercial-preserved-collection.test.ts"
+                : incidents
+                  ? process.argv.includes("--final-controls")
+                    ? "tests/database/operational-final.test.ts"
+                    : "tests/database/operational-incidents.test.ts"
+                  : social
+                    ? "tests/database/commercial-social.test.ts"
+                    : publicGameplay
+                      ? "tests/database/public-customer.test.ts"
+                      : "tests/database/commercial-lineup.test.ts",
           ]
         : [
             process.argv.includes("--lifetime-import")
@@ -121,6 +129,9 @@ try {
     {
       ...process.env,
       COMMERCIAL_ACCEPTANCE_DB: connection.toString(),
+      ...(market && process.argv.includes("--browser")
+        ? { DOCKED_MARKET_BROWSER: "true" }
+        : {}),
       ...(gameplay
         ? { AUSTRALIAN_SALARY_TEST_DB: gameConnection.toString() }
         : {}),

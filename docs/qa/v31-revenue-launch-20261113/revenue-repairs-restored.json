@@ -1,0 +1,48 @@
+{
+  "at": "2026-11-12T14:36:05.832Z",
+  "environment": "network-isolated authenticated Production restore",
+  "target": "docked-commercial-restore-20261112d-attempt-2",
+  "sourceArchiveAt": "2026-11-12T12:45:00.372Z",
+  "sourceArchiveSha256": "5ec25fb067d93d04d6359d8dbe2f2dedf54e47715eef8b2d7406ea75ac6c6092",
+  "productionWrites": 0,
+  "providerCalls": 0,
+  "originalFiveMigrationsReapplied": false,
+  "baselineReconstructedLocally": true,
+  "dormantDefinitions": 6540,
+  "lifetimeConsumed": 888,
+  "custodyRecords": 906,
+  "protectedTablesUnchanged": 558,
+  "migrationOperatorSuperuser": false,
+  "migrations": [
+    {
+      "file": "supabase/migrations/20261113002000_preserved_commercial_collection_read.sql",
+      "sha256": "53bee34e39e7008478a07884dcbbb5feb2a63be756c391e883271ed9a85377eb",
+      "localApplicationMs": 502
+    },
+    {
+      "file": "supabase/migrations/20261113003000_commercial_market_request_guards.sql",
+      "sha256": "20039c5149d57c9c560e8535a017ea052a610d64f4257e448cb006dadcc8c6bb",
+      "localApplicationMs": 336
+    }
+  ],
+  "grants": {
+    "indexesValid": true,
+    "runtimeAllowed": true,
+    "unauthorisedExecute": false,
+    "triggerExecuteDenied": true,
+    "unclaimedViewerDenied": true
+  },
+  "tableGrantsAndRlsUnchanged": true,
+  "schemaBefore": {
+    "fingerprint": "ecc43cb9f1e4f186ee9bb17d8aff29d1",
+    "objects": 10147
+  },
+  "schemaAfter": {
+    "fingerprint": "293ef093e4c40071708c0e01f3e3eca9",
+    "objects": 10153
+  },
+  "rollbackExactSchemaAndAclMatch": true,
+  "reapplicationPassed": true,
+  "forwardRecoveryPassed": true,
+  "hostedAcceptance": false
+}

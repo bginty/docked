@@ -1,0 +1,39 @@
+DOCKED — seven historical Google TEST notifications: exact approval proposal
+NOT APPROVED / NOT EXECUTED
+
+Approve a status-only Production correction for the seven frozen notifications:
+Package SHA-256: 657f783584433220e42e1e5834237f3ecfe69755292da9ee6599caaa651d325f
+Manifest SHA-256: e153fafab4ccc34aeb7892844a6e85fb5e10f484da8240f1088ac3881153427b
+Exact operator/dependencies: warning-disposition-package.json.
+
+Genuine Google GETs at 12 November 14:52 UTC again confirmed three original
+Preview TEST orders REFUNDED/REVOKED. Original member bindings match. All twelve
+journals balance; remaining credited lots and pending jobs are zero. The existing
+5,700-credit TEST recovery hold is preserved, not forgiven or paid. Provider
+evidence: historical-provider-evidence-final.json. No new order/refund was made.
+
+Scope: set those seven notification states to done, set completed_at, clear their
+expired leases, append ONE immutable private audit record containing before/after
+and evidence hashes. Meaning: externally reconciled original Preview TEST, not a
+Production fulfilment. No payload deletion, receipt import, financial/ownership
+change, refund, hold waiver, new inventory, provider mutation or feature opening.
+
+Execution requires explicit exact approval <=24 hours; a fresh authenticated
+encrypted Production backup <=1 hour; genuine provider/Preview correlation <=10
+minutes; unchanged manifest, operator and target rows; closed gates. Stop on
+drift. The transaction locks the notification table, has short timeouts, protects
+29 financial/ownership/settings tables, and rolls back on any mismatch. Local
+restored rehearsal verified all 558 pre-existing tables after rollback.
+
+Prepared commands, ONLY AFTER approval (do not reuse stale evidence filenames):
+node --conditions=react-server --import tsx scripts/v31-historical-warning-evidence.ts docs/qa/<session>/provider-evidence.json
+node --conditions=react-server --import tsx scripts/v31-historical-warning-operator.ts --preflight docs/qa/<session>/provider-evidence.json docs/qa/<session>/warning-preflight.json
+node --conditions=react-server --import tsx scripts/v31-historical-warning-operator.ts --execute docs/qa/<session>/provider-evidence.json docs/qa/<session>/warning-result.json private-data/<session>/warning-authority.json
+
+The authority record must contain the exact package/manifest/evidence hashes,
+projectRef pojoymtniryarxxunyvz, scope v31-seven-historical-test-warning-disposition,
+approval timestamp/reference, expiry, authenticated backup paths/capture time.
+The operator refuses execution without these. Never fabricate approval metadata.
+After an ambiguous connection failure, read the seven rows/audit first; do not
+retry blindly. A committed correction is recovered by an independently reviewed
+compensating audit/status transaction, never by editing its immutable audit row.

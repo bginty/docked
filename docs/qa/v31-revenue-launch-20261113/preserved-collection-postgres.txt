@@ -1,0 +1,29 @@
+TAP version 13
+# Subtest: Commercial collection preserves historical custody beside paid cards, pagination, counts and permissions
+not ok 1 - Commercial collection preserves historical custody beside paid cards, pagination, counts and permissions
+  ---
+  duration_ms: 13603.422
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\v31-founder-acceptance-20261111\\Docked.com.au\\tests\\database\\commercial-preserved-collection.test.ts:2:1457'
+  failureType: 'testCodeFailure'
+  error: 'Isolated nonwithdrawable economy required'
+  code: 'P0001'
+  name: 'PostgresError'
+  stack: |-
+    ErrorResponse (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\postgres\cjs\src\connection.js:815:30)
+    handle (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\postgres\cjs\src\connection.js:489:6)
+    Socket.data (C:\Users\61412\.codex\worktrees\dual-store-readiness\Docked.com.au\node_modules\postgres\cjs\src\connection.js:324:9)
+    Socket.emit (node:events:518:28)
+    addChunk (node:internal/streams/readable:561:12)
+    readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    Readable.push (node:internal/streams/readable:392:5)
+    TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16017.4181

@@ -1,0 +1,6 @@
+
+> docked-value-platform@1.0.0 typecheck
+> tsc --noEmit
+
+tests/platform/isolated-public-preview.test.ts(158,42): error TS2345: Argument of type '{ DOCKED_COMMERCIAL_DATABASE_URL: string; DOCKED_ISOLATED_GOOGLE_TEST: string; REGISTRATION_ENABLED: string; DOCKED_ISOLATED_GOOGLE_MEMBER: string; DOCKED_ISOLATED_GOOGLE_EMAIL: string; DOCKED_ISOLATED_GOOGLE_UNTIL: string; }' is not assignable to parameter of type 'ProcessEnv'.
+  Property 'NODE_ENV' is missing in type '{ DOCKED_COMMERCIAL_DATABASE_URL: string; DOCKED_ISOLATED_GOOGLE_TEST: string; REGISTRATION_ENABLED: string; DOCKED_ISOLATED_GOOGLE_MEMBER: string; DOCKED_ISOLATED_GOOGLE_EMAIL: string; DOCKED_ISOLATED_GOOGLE_UNTIL: string; }' but required in type 'ProcessEnv'.

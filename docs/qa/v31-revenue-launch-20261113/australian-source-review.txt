@@ -1,0 +1,6 @@
+basketball 0 teams 0 positions Counter()
+rejections []
+afl 565 teams 18 positions Counter({'MID': 213, 'FWD': 207, 'DEF': 203, 'RUC': 48})
+rejections [('No supported verified position', 31), ('No player infobox', 7), ('Roster/profile team conflict: ', 5)]
+nrl 295 teams 14 positions Counter({'MID': 93, 'WFB': 72, 'EDG': 59, 'HLF': 48, 'CTR': 45})
+rejections [('No player infobox', 81), ('Future-season roster, current membership requires separate evidence', 74), ('No supported verified position', 64), ('Roster/profile team conflict: ', 28), ('Roster/profile team conflict: Perth Bears', 16), ('Roster/profile team conflict: Melbourne Storm', 5), ('Roster/profile team conflict: Wests Tigers', 4), ('Roster/profile team conflict: Castleford Tigers', 4), ('Roster/profile team conflict: Catalans Dragons', 4), ('Roster/profile team conflict: Brisbane Broncos', 4), ('Roster/profile team conflict: St Helens', 3), ('Roster/profile team conflict: Manly Sea Eagles', 3), ('Roster/profile team conflict: Hull FC', 3), ('Roster/profile team conflict: Parramatta Eels', 3)]

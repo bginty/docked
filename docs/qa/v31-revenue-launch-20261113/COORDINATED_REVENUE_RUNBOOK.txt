@@ -1,0 +1,139 @@
+DOCKED — coordinated Australian REVENUE launch; NOT AUTHORISED
+
+Release invariant: the first public release supports verified Australian adult
+registration, Google Play credits and paid Standard/Premium packs. Do not publish
+a registration-only/browse-only alternative. NBA hidden; all six competitions
+disabled Practice; no prizes, withdrawals, scored games, offers or swaps.
+
+0. Evidence and authority (no mutation)
+Confirm exact commits/package hashes, fresh Production deployment/schema/runtime,
+valid encrypted backup <=1h with authenticated isolated restore, supply/ownership
+digests, source refresh <=72h, no unexplained warnings or reconciliation failures.
+Every required approval must name its scope, time limit and evidence. A string in
+a control table is not a substitute for real legal/provider/founder acceptance.
+
+1. Closed-gate engineering package (separate authority, reversible)
+Install ONLY the two new reviewed Production migrations in dependency order:
+20261113002000_preserved_commercial_collection_read.sql
+20261113003000_commercial_market_request_guards.sql
+The original FIVE migrations/outbox are already deployed and MUST NOT be rerun.
+Provision the separately reviewed inactive commercial login/credentials according
+to COMMERCIAL_CONFIGURATION_PROPOSAL.txt. Recheck privileges and no client leaks.
+Stage exact app source; preserve all 89 baseline values except reviewed source
+metadata and explicitly added inert settings. Validate all gates before promotion.
+After promotion verify commit, session/MFA, anonymous denial, ownership parity,
+inventory digest, SQL/RLS/permissions, zero financial mutations and no new email.
+The exact rollback SQL is revenue-repairs-v2-rollback.sql; app fallback is the
+current 17b38c1 privacy deployment, only while no new commercial records exist.
+
+2. Existing isolated Preview acceptance (separate bounded test authority)
+Apply its four rehearsed dependencies, stage the exact candidate and select the
+unblocked existing ordinary QA account. Complete HOSTED_ACCEPTANCE_SESSION.txt:
+genuine phone delivery/verification; installed v31; both Google TEST credit offers;
+Standard/Premium nine-card delivery; pending/cancel/retry/refund/recovery; local
+proof supplemented by actual hosted readback. Close all temporary provider,
+product and QA switches. Record TEST charges as A$0, never as real settlement.
+
+3. Operational and commercial sign-off (no public activation)
+Keep accepted founder incident/MFA/email evidence; the Microsoft original delivery
+trace is now available. Resolve the seven historical warnings only under its
+exact status-only approval. Configure the bounded founder-only email monitoring
+window/worker with recorded budgets/deduplication/failure handling. Do not resend
+the accepted email. Complete actual same-key custody under its separate proposal.
+Confirm current GST declaration, merchant support/refund owner and Play fees.
+Resolve source attribution/material rights and the narrow commercial-law/platform
+assessment of paid random packs plus credit resale. Do not infer these from the
+earlier player-name advice. IARC M / adult AU distribution remains the recorded
+classification; no new native binary requirement has been established.
+
+4. Freeze final revenue configuration (proposal, then exact authority)
+Bind the then-current eligible subset (currently 6,055; 485 held) to its digest and
+rights references; do not import again. Preserve all lifetime counters/serials.
+Approve launch-wording.NOT-APPROVED.json with the effective date/terms version,
+retain the approved phone privacy text, assess the final Play declaration against
+the actual enabled build/WebView/SDK behavior. Await the current phone Data Safety
+review. Managed publishing remains ON until the final coordinated release.
+Prepare a protected public-mode candidate using the existing docked_app identity,
+reviewed Production manifest and consent versions; all DB/Auth gates stay shut.
+Supply Production Twilio configuration privately from the approved existing
+account/service; define the public SMS cost/rate cap separately from TEST A$20.
+Verify the original installed v31 can use this runtime and preserves sessions.
+
+5. Fixed-price marketplace decision (separate from paid packs)
+Local engineering checks passed. Require hosted two-party ordinary-member tests,
+distinct genuinely verified phone numbers, fee/refund propagation and the relevant
+commercial/compliance sign-off before setting DOCKED_COMMERCIAL_MARKETPLACE=true
+or transfers_enabled=true. Until then it remains unavailable. This does not
+replace the mandatory revenue-generating paid-pack launch with browse-only access.
+Swaps/offers have no commercial implementation/acceptance in this package and stay
+OFF; the old TEST swap path must not become a paid marketplace by flipping flags.
+
+6. Final founder COORDINATED ACTIVATION authority (not granted)
+Name the exact app/deployment, schema/config/rights/eligibility digests, consent
+versions, provider state, approved public SMS operating budget, Google credit
+options/prices, pack offers/probabilities and marketplace inclusion. Explicitly
+authorise Google publication, AU public signup, SMS, sales/issuance and any
+fixed-price transfers. Define first-real-purchase/refund authority and maximum
+actual charge separately if not already accepted. No implicit financial action.
+
+Activation order in one controlled window
+a. Keep public registration and Play publication closed. Verify backup and stop
+   controls; begin staffed monitoring. Preserve all worker keys and audit history.
+b. Publish the approved commercial wording/consent version on the already tested
+   public-mode candidate. Complete protected checks before promoting it.
+c. In one reviewed database transaction bind approval evidence/expiry, approve
+   only the exact eligible definition IDs and two credit products. Do not change
+   issued/legacy_issued/snapshot/ownership. Keep sales/issuance/transfers OFF until
+   the app, phone and provider configurations are confirmed.
+d. Activate the two Google buy-au options at A$49/4,900 and A$99/9,900, AU only.
+   Enable approved Production phone settings and the commercial service/worker
+   configuration. Verify refund/acknowledgement processing is available. All
+   public registration gates remain closed during this preparation.
+e. Open sales_enabled and issuance_enabled together only after all 18 pack offers
+   have sufficient eligible supply and odds/prices match. Enable app commercial
+   surfaces/checkout and, if independently accepted, marketplace + transfers.
+   Validate a separately authorised bounded founder real purchase/refund where
+   required; otherwise record real settlement as unproven and include the agreed
+   first-live-purchase monitoring condition in final authority. Never invent credit.
+f. Verify phone, email, policy, region, spend/pack and emergency controls. Then open
+   Supabase signup, private.feature_flags registration, and REGISTRATION_ENABLED
+   together with the already-ready paid service. Immediately verify ordinary
+   Australian registration, email + phone enrolment and native billing discovery.
+g. Publish ONLY the reviewed v31/1.30 Australia changes in managed publishing after
+   the coordinated runtime is ready. Verify actual Play availability and version;
+   propagation may take time. Do not silently publish a new binary or unrelated
+   queued changes. Retain managed publishing ON for subsequent changes.
+h. Monitor the first legitimate purchases: exact order/account/region/amount,
+   one credit journal, consume/ack completion, pack price/count/serials, one owner,
+   balanced ledger, retry backlog, Twilio errors/spend and founder incident inbox.
+   Record evidence at launch, +15m, +1h and +24h during the staffed release period.
+
+Emergency stop — prepare before any paid transaction
+Immediate DB transaction as approved operator:
+BEGIN;
+SET LOCAL lock_timeout='3s';
+UPDATE commercial_billing.control SET sales_enabled=false,issuance_enabled=false,
+ transfers_enabled=false,gameplay_enabled=false WHERE id;
+UPDATE private.feature_flags SET enabled=false,reason='Founder emergency launch stop',
+ updated_at=clock_timestamp() WHERE key='registration';
+COMMIT;
+If lock timeout occurs, investigate the active transaction and verify gates; do not
+kill an unknown in-flight payment or assume the stop committed. Escalate safely.
+Turn off app checkout/marketplace/new signup and Supabase signup/SMS as appropriate;
+deactivate Google buy-au options to prevent new store orders. Freeze publication
+if still pending. Keep the commercial service's read/verification/reconciliation
+workers running with existing credentials so paid orders, refunds, acknowledgements
+and recovery holds are not stranded. Sales stop does not mean disabling refund
+processing. Existing confirmed responses replay without a second debit; owners
+can cancel open listings where their account remains eligible.
+
+Reversible: config gates, product availability, unsent managed-publication changes,
+prospective eligibility before any issuance. Conditionally reversible: new schema
+and app while no new-dependent records exist, with exact rollback/readback.
+Not safely reversible by deletion/old-snapshot restore: paid orders, financial
+journals, issued lifetime supply, ownership transfers, sent SMS, accepted consents
+and already distributed Android builds. Use audited forward recovery/refunds;
+never restore over customers' newer purchases or decrement lifetime issuance.
+After any paid transaction, do not fall back to f1b50b6f or erase commercial rows.
+
+No commands in this document have been executed as launch activation.

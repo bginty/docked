@@ -1,5 +1,8 @@
 DOCKED V31 — founder session, 12 November 2026 UTC
 PUBLIC LAUNCH NO-GO. This supersedes the prior application-continuation handover.
+Launch strategy superseded on 13 November: the founder requires paid packs and
+Google Play credit purchases from the first public Australian release. See
+../v31-revenue-launch-20261113/SCOPE.txt. Registration-only is not an alternative.
 
 Completed
 - Production is 17b38c1290fd37c05487b332e5c0db440da6805b, deployment
@@ -61,9 +64,8 @@ Remaining distinct gates
    merchant/payout/listing and final payment/operational acceptance before sales.
    Independent correlation of the accepted operational email's provider trace
    remains incomplete; founder inbox receipt itself is confirmed and not reopened.
-5. Separate final publication, Australian registration and commercial activation
-   approvals only after their respective gates pass. A registration-first launch
-   still needs a listing consistent with disabled paid features.
+5. Coordinated final publication, Australian registration and paid-pack commercial
+   activation only after all applicable gates pass and explicit founder approval.
 
 Readiness: deployed application and dormant Production inventory accepted;
 operational acceptance partial; phone/public registration and commerce not ready.

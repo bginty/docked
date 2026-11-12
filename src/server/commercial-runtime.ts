@@ -4,7 +4,7 @@ import { db } from "./db";
 import { authUsersRelation } from "../core/auth-relations";
 import { databaseConnectionOptions } from "./database-tls";
 import { databasePoolOptions } from "./database-pool";
-import { CommercialLedger } from "./commercial-ledger";
+import { CommercialMarketLedger } from "./commercial-market-ledger";
 import { GoogleCommercialVerifier } from "./google-commercial-verifier";
 import { CommercialReconciliation } from "./commercial-reconciliation";
 import { googlePlayOAuth } from "./google-play-oauth";
@@ -57,7 +57,7 @@ export async function commercialRuntime() {
     await connection`select environment from commercial_billing.control where id`;
   if (control?.environment !== environment)
     throw Error("Runtime and ledger environment mismatch");
-  const ledger = new CommercialLedger(connection, environment, {
+  const ledger = new CommercialMarketLedger(connection, environment, {
     active,
     values,
   });

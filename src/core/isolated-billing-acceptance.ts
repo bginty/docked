@@ -25,7 +25,7 @@ export function isolatedBillingConfiguration(env: Env, now = Date.now()) {
   if (
     !Number.isFinite(until) ||
     until <= now ||
-    until > now + 6 * 3600000 ||
+    until > now + 2 * 3600000 ||
     !/^[a-f0-9-]{36}$/.test(member) ||
     !/^docked-preview-public-member-[a-f0-9]+@example\.invalid$/.test(email) ||
     env.DOCKED_COMMERCIAL_CHECKOUT !== "false" ||

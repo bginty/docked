@@ -8,6 +8,7 @@ import { cardIdentity } from "@/core/card-display";
 import { CollectibleViewer, type ViewerCard } from "./collectible-viewer";
 import { FantasyCardArtwork } from "./fantasy-card-artwork";
 import { FantasySheet } from "./fantasy-sheet";
+import { useEnvironmentPresentation } from "./environment-context";
 import { MarketListingDialog, useMarketCommand } from "./market-listing-dialog";
 import { useSport } from "./sport-context";
 import {
@@ -37,6 +38,7 @@ export function Marketplace({ member }: { member: string }) {
   return <MemberMarketplace key={member} member={member} />;
 }
 function MemberMarketplace({ member }: { member: string }) {
+  const { commercialSurface } = useEnvironmentPresentation();
   const [acquisition, setAcquisition] = useState<CompletedAcquisition | null>(
     null,
   );
@@ -86,10 +88,32 @@ function MemberMarketplace({ member }: { member: string }) {
     error: commandError,
     pending,
     send,
-  } = useMarketCommand(member, (r, c) => {
+  } = useMarketCommand(member, (r, c, confirmed) => {
     // A pre-command read must not overwrite the confirmed command's state.
     // marketChanged schedules the fresh read after the busy state has settled.
     invalidateRead();
+    // A confirmed sale/cancellation is final even if the background refresh is
+    // delayed or this page is hidden. Do not leave a completed listing actionable.
+    // The POST's default query differs from this page, so keep its filters and
+    // remove only the exact confirmed listing; use its authoritative wallet.
+    if (r.status === "SOLD" || r.status === "CANCELLED") {
+      setResponse((current) => {
+        if (!current || current.state.query.tab === "activity") return current;
+        const rows = current.state.rows.filter((row) => row.id !== r.listing);
+        return {
+          ...current,
+          state: {
+            ...current.state,
+            rows,
+            total: Math.max(
+              0,
+              current.state.total - (current.state.rows.length - rows.length),
+            ),
+            wallet: confirmed.wallet,
+          },
+        };
+      });
+    }
     if (c.kind === "review-buy") setReview(r as Review);
     else {
       setAcquisition(completedAcquisition(r, c));
@@ -196,7 +220,11 @@ function MemberMarketplace({ member }: { member: string }) {
     <main className="marketplace fixed-market" data-market-ready={!!data}>
       <header className="market-heading">
         <h1>Marketplace</h1>
-        <p>Docked Credits · Test credits have no cash value.</p>
+        <p>
+          {commercialSurface
+            ? "Docked Credits · No cash withdrawals."
+            : "Docked Credits · Test credits have no cash value."}
+        </p>
       </header>
       <nav
         className="period-tabs market-tabs"
@@ -453,6 +481,7 @@ function MemberMarketplace({ member }: { member: string }) {
               ["all", "All"],
               ["purchase", "Bought"],
               ["sale", "Sold"],
+              ["cancellation", "Cancelled"],
             ].map(([value, label]) => (
               <button
                 className="button"
@@ -486,23 +515,40 @@ function MemberMarketplace({ member }: { member: string }) {
                 </div>
                 <div className="market-activity-amount">
                   <span className={`market-badge ${a.kind}`}>
-                    {a.kind === "sale" ? "Sold" : "Bought"}
+                    {a.kind === "cancellation"
+                      ? "Cancelled"
+                      : a.kind === "sale"
+                        ? "Sold"
+                        : "Bought"}
                   </span>
-                  <strong>
-                    {(a.kind === "sale" ? a.net : a.price)?.toLocaleString()}{" "}
-                    credits
-                  </strong>
-                  <span>{a.kind === "sale" ? "You received" : "Paid"}</span>
+                  {a.kind === "cancellation" ? (
+                    <span>No credits exchanged</span>
+                  ) : (
+                    <>
+                      <strong>
+                        {(a.kind === "sale"
+                          ? a.net
+                          : a.price
+                        )?.toLocaleString()}{" "}
+                        credits
+                      </strong>
+                      <span>{a.kind === "sale" ? "You received" : "Paid"}</span>
+                    </>
+                  )}
                   {a.kind === "sale" && (
                     <small>
                       Sale price {a.price?.toLocaleString()} · Fee{" "}
                       {a.fee?.toLocaleString()}
                     </small>
                   )}
-                  {a.status !== "SOLD" && <span>{a.status}</span>}
+                  {a.status !== "SOLD" && a.kind !== "cancellation" && (
+                    <span>{a.status}</span>
+                  )}
                   <button
                     className="button"
-                    onClick={() => navigate({ sale: a.id, cursor: "" })}
+                    onClick={() =>
+                      navigate({ sale: a.listing ?? a.id, cursor: "" })
+                    }
                   >
                     Transaction details
                   </button>
@@ -511,7 +557,7 @@ function MemberMarketplace({ member }: { member: string }) {
             ))}
           </div>
           {!data.activity.length && !error && (
-            <p>No completed purchases or sales yet.</p>
+            <p>No matching marketplace activity yet.</p>
           )}
           <Pagination
             next={data.activityNext}

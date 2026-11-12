@@ -10,6 +10,14 @@ const origin = "https://docked.com.au";
 const env = {
   DOCKED_V30_TRANSPORT: "true",
   VERCEL_PROJECT_ID: "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  VERCEL_ORG_ID: "team_tf6xweKKyVCj9bTppUKttJ4l",
+  REGISTRATION_ENABLED: "false",
+  DOCKED_PUBLIC_PHONE_OTP: "false",
+  DOCKED_COMMERCIAL_CHECKOUT: "false",
+  DOCKED_COMMERCIAL_SURFACES: "false",
+  DOCKED_RETENTION_APPLY: "false",
+  PRIZES_ENABLED: "false",
+  COMPETITIONS_ENABLED: "false",
   VERCEL_ENV: "production",
   SITE_URL: origin,
   DOCKED_V30_TRANSPORT_UNTIL: new Date(now + 3600000).toISOString(),
@@ -25,14 +33,50 @@ const env = {
 };
 const session =
   "__Host-docked-v30-acceptance=" + v30TransportConfig(env, now)!.session;
-test('isolated notification relay preserves Google bearer and waits for durable upstream acknowledgement',async()=>{
- const request=()=>new Request(origin+'/api/store/google/notifications',{method:'POST',headers:{authorization:'Bearer signed-google-fixture','content-type':'application/json'},body:'{"message":{}}'});
- let calls=0;
- const fake:typeof fetch=async(url,init)=>{calls++;assert.equal(url,env.DOCKED_V30_TRANSPORT_TARGET+'/api/store/google/commercial/notifications');assert.equal(new Headers(init!.headers).get('authorization'),'Bearer signed-google-fixture');assert.equal(new Headers(init!.headers).get('cookie'),null);return new Response(null,{status:204});};
- await relayIsolatedGoogleNotification(request(),env,fake);assert.equal(calls,1);
- await relayIsolatedGoogleNotification(request(),{...env,DOCKED_V30_TRANSPORT:'false'},fake);assert.equal(calls,1);
- await assert.rejects(relayIsolatedGoogleNotification(request(),env,async()=>new Response(null,{status:503})));
- const browser=request();browser.headers.set('origin',origin);await assert.rejects(relayIsolatedGoogleNotification(browser,env,fake));assert.equal(calls,1);
+test("isolated notification relay preserves Google bearer and waits for durable upstream acknowledgement", async () => {
+  const request = () =>
+    new Request(origin + "/api/store/google/notifications", {
+      method: "POST",
+      headers: {
+        authorization: "Bearer signed-google-fixture",
+        "content-type": "application/json",
+      },
+      body: '{"message":{}}',
+    });
+  let calls = 0;
+  const fake: typeof fetch = async (url, init) => {
+    calls++;
+    assert.equal(
+      url,
+      env.DOCKED_V30_TRANSPORT_TARGET +
+        "/api/store/google/commercial/notifications",
+    );
+    assert.equal(
+      new Headers(init!.headers).get("authorization"),
+      "Bearer signed-google-fixture",
+    );
+    assert.equal(new Headers(init!.headers).get("cookie"), null);
+    return new Response(null, { status: 204 });
+  };
+  await relayIsolatedGoogleNotification(request(), env, fake);
+  assert.equal(calls, 1);
+  await relayIsolatedGoogleNotification(
+    request(),
+    { ...env, DOCKED_V30_TRANSPORT: "false" },
+    fake,
+  );
+  assert.equal(calls, 1);
+  await assert.rejects(
+    relayIsolatedGoogleNotification(
+      request(),
+      env,
+      async () => new Response(null, { status: 503 }),
+    ),
+  );
+  const browser = request();
+  browser.headers.set("origin", origin);
+  await assert.rejects(relayIsolatedGoogleNotification(browser, env, fake));
+  assert.equal(calls, 1);
 });
 test("ordinary v30 requests never enter transport; wrong project/target/expiry denied", async () => {
   assert.equal(
@@ -41,6 +85,15 @@ test("ordinary v30 requests never enter transport; wrong project/target/expiry d
   );
   for (const patch of [
     { VERCEL_ENV: "preview" },
+    { VERCEL_ORG_ID: "wrong-team" },
+    { DOCKED_V30_TRANSPORT_UNTIL: new Date(now + 3 * 3600000).toISOString() },
+    { REGISTRATION_ENABLED: "true" },
+    { DOCKED_PUBLIC_PHONE_OTP: "true" },
+    { DOCKED_COMMERCIAL_CHECKOUT: "true" },
+    { DOCKED_COMMERCIAL_SURFACES: "true" },
+    { DOCKED_RETENTION_APPLY: "true" },
+    { PRIZES_ENABLED: "true" },
+    { COMPETITIONS_ENABLED: "true" },
     { DOCKED_V30_TRANSPORT_TARGET: origin },
     { DOCKED_V30_TRANSPORT_UNTIL: new Date(now - 1).toISOString() },
   ])
@@ -73,8 +126,8 @@ test("admission requires exact secret, same-origin POST and bounded input", asyn
     env,
   );
   assert.equal(r!.status, 303);
-  assert.equal(r!.headers.get('location'),'https://docked.com.au/app/login');
-  assert.equal(r!.headers.get('referrer-policy'),'same-origin');
+  assert.equal(r!.headers.get("location"), "https://docked.com.au/app/login");
+  assert.equal(r!.headers.get("referrer-policy"), "same-origin");
   assert.match(r!.headers.get("set-cookie")!, /HttpOnly; SameSite=Strict/);
 });
 test("only Preview Auth reaches protected upstream; no Production cookie/bearer/admission forwarding", async () => {
@@ -156,15 +209,23 @@ test("expired or disabled sessions, admin routes and forged origins fail without
 });
 test("native expired-session documents retain recovery controls without forwarding API or RSC requests", async () => {
   let calls = 0;
-  const upstream: typeof fetch = async () => { calls++; return new Response(); };
+  const upstream: typeof fetch = async () => {
+    calls++;
+    return new Response();
+  };
   for (const [path, headers, status] of [
     ["/app", { accept: "text/html" }, 200],
     ["/api/store/google/commercial", { accept: "text/html" }, 503],
     ["/app", { accept: "text/html", rsc: "1" }, 503],
   ] as const) {
-    const r = await isolatedV30Transport(new Request(origin + path, {
-      headers: { ...headers, cookie: session },
-    }), env, upstream, now + 7200000);
+    const r = await isolatedV30Transport(
+      new Request(origin + path, {
+        headers: { ...headers, cookie: session },
+      }),
+      env,
+      upstream,
+      now + 7200000,
+    );
     assert.equal(r!.status, status);
     assert.match(await r!.text(), /Reconnect authorised TEST session/);
     assert.equal(r!.headers.get("set-cookie"), null);

@@ -1,0 +1,9 @@
+▲ Next.js 16.4.3 (webpack)
+✓ Running next.config.ts took 224ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 30.8s
+  Running TypeScript ...
+scripts/v31-current-eligibility-delta.ts(21,8): error TS7034: Variable 'sources' implicitly has type 'any[]' in some locations where its type cannot be determined.
+scripts/v31-current-eligibility-delta.ts(28,280): error TS7005: Variable 'sources' implicitly has an 'any[]' type.
+Failed to type check.

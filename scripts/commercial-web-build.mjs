@@ -24,7 +24,11 @@ const env = {
   ),
 };
 for (const args of [
-  ["node_modules/next/dist/bin/next", "build"],
+  [
+    "node_modules/next/dist/bin/next",
+    "build",
+    ...(process.argv.includes("--webpack") ? ["--webpack"] : []),
+  ],
   ["--import", "tsx", "scripts/check-client-boundary.ts"],
 ]) {
   const r = spawnSync(process.execPath, args, {

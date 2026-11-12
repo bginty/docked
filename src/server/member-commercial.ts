@@ -13,6 +13,9 @@ import { commercialCard } from "../core/commercial-presentation";
 import { isolatedPreviewReadOnlyIdentity } from "../core/isolated-public-preview.mjs";
 import { isolatedBillingIdentity } from "../core/isolated-billing-acceptance";
 import { BillingOpsMonitor } from "./billing-ops-monitor";
+import type { Sql } from "postgres";
+import { CommercialMarketView } from "./commercial-market-view";
+import { CommercialMarketRejected } from "./commercial-market-ledger";
 /** Ordinary authenticated member; body never contains a customer, balance, price
  * or credited amount. TEST admission and synthetic identities are not reused. */
 export class CommercialRateLimit extends Error {}
@@ -77,9 +80,43 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
     throw new CommercialRateLimit("Please retry shortly");
   const { ledger, verifier, worker } = await commercialRuntime();
   const monitor = new BillingOpsMonitor(ledger.sql);
+  const marketEnabled = process.env.DOCKED_COMMERCIAL_MARKETPLACE === "true";
+  const marketActor = async (tx: Sql) => {
+    await authorize();
+    await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true)`;
+  };
+  const marketParty = async (tx: Sql, target: string) => {
+    const [row] =
+      await tx`select commercial_billing.market_party_allowed(${who.user.id}::uuid,${target}::uuid,${versions.terms},${versions.privacy}) allowed`;
+    if (row?.allowed !== true)
+      throw new CommercialMarketRejected(
+        "Marketplace access is unavailable for this account or counterparty.",
+      );
+  };
   return {
     member: who.user.id,
-    view: new CommercialMemberView(ledger, who.user.id, authorize),
+    view: new CommercialMemberView(
+      ledger,
+      who.user.id,
+      authorize,
+      true,
+      marketEnabled,
+    ),
+    marketView: new CommercialMarketView(
+      ledger,
+      who.user.id,
+      marketActor,
+      versions,
+      marketEnabled,
+    ),
+    market: async (body: unknown) => {
+      assertTransactionIdentity();
+      return ledger.command(who.user.id, body, {
+        actor: marketActor,
+        party: marketParty,
+        tradingEnabled: marketEnabled,
+      });
+    },
     wallet: () => ledger.wallet(who.user.id),
     session: async () => ({
       environment: "commercial",

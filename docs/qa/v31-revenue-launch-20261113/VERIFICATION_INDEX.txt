@@ -1,0 +1,88 @@
+DOCKED — verification evidence index, 13 November 2026 AEDT
+
+Use these final results; earlier failed/intermediate logs are retained for traceability.
+None of the local/browser fixtures is represented as physical Android, genuine
+SMS, hosted founder acceptance or real-money settlement.
+
+Production / ownership (read-only)
+- production-deployment-final.json: Vercel independently resolves docked.com.au
+  to 17b38c1290fd37c05487b332e5c0db440da6805b, dpl_8WTycjDUx7VvEQm4pm5jW6B9WHEB.
+- production-live-readiness-final.json: 89-key runtime recipe bound; 6,540 dormant
+  definitions, 888 lifetime copies, 906 unchanged custody records; zero commercial
+  cards/receipts; closed database/runtime flags and seven closed HTTP boundaries.
+  Fresh corrected Production schema fingerprint e3e825acd32fd1101423803826107183.
+- OPERATIONAL_DELIVERY_TRACE.txt: original 10 November alert Delivered to Inbox
+  in Microsoft trace; founder attestation remains the receipt evidence. No resend.
+
+Application / financial regression
+- platform-final.txt: 830 platform tests passed, zero failures/skips.
+- operator-regression-final.txt: nine targeted backup/disposition/fingerprint tests
+  passed (overlaps the platform set; do not add counts as independent coverage).
+- dormant-role-test.txt: restricted role proposal permissions/replay guard passed.
+- billing-final.json: 15 native PostgreSQL billing/refund/reconciliation checks.
+- paid-pack-browser-verified.txt / paid-pack-browser/browser.json: those 15 checks
+  plus the current paid-pack browser flow passed. Standard 9 delivered nine cards
+  in each NFL/AFL/NRL collection; Premium 9 charged 5,000 and delivered nine. Exact
+  rarity probabilities were visible in the confirmation dialog before charging.
+  Mobile/desktop collection, wallet and read-only refund-review UI also passed.
+- pack-supply-final.json: seven native checks, all 18 offers/10,000 rarity tickets,
+  all quantities including nine-card packs; rollback after seven allocations;
+  20-way last-serial race; balanced journals/no oversell/duplicate debit.
+- collection-final.txt / collection-restored.json: real PostgreSQL collection
+  projection and original-query parity for five owners / 923 visible opened cards.
+  That display scope differs from the 888 legitimate limited issuance baseline;
+  it includes historical/test/Core records, not newly minted commercial inventory.
+- market-browser-settlement-final.txt / market-browser.json: native concurrent
+  settlement, two ordinary synthetic actors, review/expiry/reprice/session/block/
+  phone/consent gates, refund-compatible provenance, immutable receipts, balances,
+  emergency stop/cancellation/replay; mobile 390px and desktop 1440px browser flow.
+  Final regression confirms a purchased listing disappears immediately after the
+  confirmed response. It also fixes cancelled activity labels and receipt links.
+  Latest local request P95 89ms over 12 requests; NOT hosted/device performance.
+- acceptance-transport-tests-final.txt: 13 bounded transport checks, wrong origins,
+  cookie isolation, protected expiry and closed Production feature requirements.
+- build-release-candidate.txt / lint-release-candidate.txt: final canary production
+  build, TypeScript and lint passed; no eight server-secret markers in 239 browser
+  assets. typecheck-all-tools.txt covers the final preparation/browser tooling.
+
+Faithful database rehearsals
+- revenue-repairs-v2-restored.json: authenticated network-isolated Production
+  restore, real PostgreSQL 17.11, non-superuser operator, effective roles/memberships
+  reproduced. Both NEW migrations apply/reapply, permissions and rollback/forward
+  recovery pass. All 558 pre-existing tables, 888 lifetime counters and 906 custody
+  records unchanged. Original five migrations were NOT reapplied.
+- restored-production-market/role-fidelity.json: role/membership fidelity proof.
+- warning-restored.json: seven-warning status-only proposal rehearsed, all tables
+  preserved after rollback; no Production execution.
+- preview-schema-rehearsal.json: real existing Preview rollback-only rehearsal of
+  its two missing phone guards plus the two new repairs, financial/Auth data and
+  complete schema unchanged after rollback. No schema/data changes committed.
+- SCHEMA_FINGERPRINT_CORRECTION.txt: corrected PostgreSQL name-to-text truncation
+  in the comparison tool; long identities now remain distinct and deterministic.
+  Old schema hashes are not rewritten or compared to v2 as if identical algorithms.
+
+Provider/source evidence
+- historical-provider-evidence-final.json: three genuine Google refunded/revoked
+  TEST orders correlate to original Preview accounting and seven Production rows.
+  5,700-credit recovery hold preserved. warning-disposition-preflight-final.json
+  covers the final frozen operator package; fresh evidence is required at execution.
+- google-catalogue-readiness-retry.json: actual v31 artifacts and two AU-only
+  buy-au options/prices verified; options INACTIVE, no checkout attempted.
+- phone-readiness.json / preview-acceptance-census.json: provider OFF both projects;
+  Preview credentials saved, one existing no-hold QA candidate. Production phone
+  credentials are absent and limits need separately approved configuration.
+- cards/current-eligibility-delta.NOT-APPROVED.json: fresh source recommendation
+  6,055 eligible / 485 held, complete imported inventory digest unchanged.
+- PROVIDER_AND_MERCHANT_STATUS.txt: authenticated Google/Twilio/merchant/tax findings
+  with timestamps, exact limits and primary compliance references.
+
+Historical failure logs
+Early restore/collection/market/typecheck/build attempts document corrected issues.
+The default Turbopack build could not resolve the external node_modules junction;
+the final webpack build is the supported verification path for this workstation.
+An early browser selector matched nested article elements; the final selector is
+specific. A separate final check found the real stale-listing display defect and
+the confirmed-state fix passed in market-browser-settlement-final.txt.
+The older paid-pack browser harness expected 'Skip remaining reveals'; it was
+updated to the existing v31 'Reveal All' control, without changing app reveal code.
+No failed attempt was promoted, and no hosted purchase/financial mutation occurred.

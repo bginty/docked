@@ -1,0 +1,210 @@
+{
+  "at": "2026-11-12T13:18:58.574Z",
+  "mode": "read-only-preflight",
+  "package": {
+    "manifestSha256": "e153fafab4ccc34aeb7892844a6e85fb5e10f484da8240f1088ac3881153427b",
+    "files": [
+      {
+        "file": "scripts/v31-historical-warning-operator.ts",
+        "sha256": "323892abac31e2e8096de745b7d71c757cf2508392851dfe4a1ad7710ba330e5"
+      },
+      {
+        "file": "scripts/v31-historical-warning-evidence.ts",
+        "sha256": "49e0a67528809f783b4f83b1f4a1eb2cc17ddeb1c1171da57a2853f1fbb50438"
+      },
+      {
+        "file": "scripts/lib/historical-warning-disposition.ts",
+        "sha256": "3b12f5cc16bc1e7ceb5498e34d5c969e9fb25d1df1a6581f3e7125a6eb93cd4a"
+      },
+      {
+        "file": "scripts/lib/reviewed-inventory.ts",
+        "sha256": "49cccb0ecc892b82e736b3b3943a8edc29062837de7aa5dfb1239a2ee2bbcec0"
+      },
+      {
+        "file": "scripts/owner-gameplay-db.mjs",
+        "sha256": "aac1b9d1450426ab0c6219d61606693f0af4ef418a62a9403b4216b0ee09a105"
+      },
+      {
+        "file": "src/core/scoring-engine.ts",
+        "sha256": "380d5dadf6b42451a1903568fb06237a54d58582207325489b7b57289d6279e8"
+      },
+      {
+        "file": "src/server/database-tls.ts",
+        "sha256": "bfca9e56d5a0a1a82035dbcc4875186e8e17a45ed4922e9eccc0b62216f756c9"
+      },
+      {
+        "file": "src/server/google-commercial-verifier.ts",
+        "sha256": "a12189260aaa1b2a9046a777809ed3e868f55aa013fe779b79c7fc8aadbd7222"
+      },
+      {
+        "file": "src/server/google-play-oauth.ts",
+        "sha256": "02575ea306a422f71df15fa46058ecebb3dc6a2db0837ffae3ac87db4c28466c"
+      },
+      {
+        "file": "src/server/store-purchase-verification.ts",
+        "sha256": "6d72ea29bf2a01c8acef52d4f0f373f4d44a07d0b3fe37d5fdb6b1618b72961d"
+      },
+      {
+        "file": "src/core/commercial-billing.ts",
+        "sha256": "5390b8d463ee4a8cbaaaed6b2d1d5f52a37e3c33cc20f40fc80061a37df4a5f4"
+      }
+    ],
+    "packageSha256": "c19b2c378f0bdbee3b3e12fa9ac5040046038d0211b6a805d8cfd3a92c454023"
+  },
+  "evidenceSha256": "2a1a623a8bbeeea9a853bae2ada9de37d49e469755e59997f79e7b143a7a2346",
+  "targetWarnings": 7,
+  "protectedTableCount": 29,
+  "protectedTableFingerprints": {
+    "commercial_billing.accounts": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.accounts"
+    },
+    "commercial_billing.audit": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.audit"
+    },
+    "commercial_billing.cards": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.cards"
+    },
+    "commercial_billing.control": {
+      "hash": "e1220b898c4a91fbd5eda948efdd47d1",
+      "count": 1,
+      "table": "commercial_billing.control"
+    },
+    "commercial_billing.definitions": {
+      "hash": "d18fa24dc3a350714b82289a74a9f7b4",
+      "count": 6540,
+      "table": "commercial_billing.definitions"
+    },
+    "commercial_billing.jobs": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.jobs"
+    },
+    "commercial_billing.journals": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.journals"
+    },
+    "commercial_billing.lines": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.lines"
+    },
+    "commercial_billing.listings": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.listings"
+    },
+    "commercial_billing.lots": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.lots"
+    },
+    "commercial_billing.ownership_events": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.ownership_events"
+    },
+    "commercial_billing.packs": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.packs"
+    },
+    "commercial_billing.products": {
+      "hash": "d074d2ed64ebfa954c6cbd7a89d6c7ee",
+      "count": 2,
+      "table": "commercial_billing.products"
+    },
+    "commercial_billing.receipt_events": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.receipt_events"
+    },
+    "commercial_billing.receipts": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.receipts"
+    },
+    "commercial_billing.recovery_cases": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.recovery_cases"
+    },
+    "commercial_billing.support_events": {
+      "hash": "d41d8cd98f00b204e9800998ecf8427e",
+      "count": 0,
+      "table": "commercial_billing.support_events"
+    },
+    "credits_sandbox.state": {
+      "hash": "5af7238acac853c099fd61380d238f3e",
+      "count": 1,
+      "table": "credits_sandbox.state"
+    },
+    "credits_sandbox.card_instances": {
+      "hash": "2c46300bc9832352e95840a663f8a8c7",
+      "count": 499,
+      "table": "credits_sandbox.card_instances"
+    },
+    "credits_sandbox.nba_fixture_instances": {
+      "hash": "c93b59686cca303b1321bad1eb8f2877",
+      "count": 407,
+      "table": "credits_sandbox.nba_fixture_instances"
+    },
+    "credits_sandbox.pack_receipts": {
+      "hash": "d90a908b8aabcd705585cf2c0ae72bcd",
+      "count": 112,
+      "table": "credits_sandbox.pack_receipts"
+    },
+    "credits_sandbox.permanent_players": {
+      "hash": "a9ffd0b2c5d6cae5d4162e2714ac1ecd",
+      "count": 986,
+      "table": "credits_sandbox.permanent_players"
+    },
+    "beta_fantasy.cards": {
+      "hash": "4f5735107c963fd5359ebf77de3e53c4",
+      "count": 59,
+      "table": "beta_fantasy.cards"
+    },
+    "beta_fantasy.ownership_events": {
+      "hash": "704a314a527c2d8d2aa625dc1546ca60",
+      "count": 59,
+      "table": "beta_fantasy.ownership_events"
+    },
+    "sports_feed.sport_sandbox_inventory": {
+      "hash": "8310b967417409308c72213dea672c1e",
+      "count": 14,
+      "table": "sports_feed.sport_sandbox_inventory"
+    },
+    "operations.incidents": {
+      "hash": "5fa1e4ef4adff46fa97f069122596394",
+      "count": 1,
+      "table": "operations.incidents"
+    },
+    "operations.events": {
+      "hash": "3a2d997f276ee214b12c0b44546e63eb",
+      "count": 3,
+      "table": "operations.events"
+    },
+    "private.feature_flags": {
+      "hash": "80558100f24f3859b06bc5b011d46e39",
+      "count": 12,
+      "table": "private.feature_flags"
+    },
+    "cron.job": {
+      "hash": "3a28cd5be439194810fa98d7d231671f",
+      "count": 9,
+      "table": "cron.job"
+    }
+  },
+  "productionWrites": 0,
+  "balancesChanged": 0,
+  "cardsChanged": 0,
+  "recoveryHoldsWaived": 0,
+  "providerMutations": 0,
+  "meaning": "externally reconciled original Preview TEST; not a Production fulfilment"
+}

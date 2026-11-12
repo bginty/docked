@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-12T13:51:30.030Z",
+  "target": "docked-commercial-restore-20261112d",
+  "network": "none",
+  "mode": "isolated rollback rehearsal",
+  "packageSha256": "10e112b960576b833c54c7f792ca743560db4b682816cdd1242628567a40edc0",
+  "targetRows": 7,
+  "during": {
+    "done": 7,
+    "operatorAudit": 1,
+    "preservedHoldEvidence": 1
+  },
+  "protectedTablesUnchanged": 558,
+  "allTableDigest": "809ff9f25122ab5c2719f184371642c2c06aa8188ec3caf2badad50f5d3a1f8c",
+  "productionWrites": 0,
+  "localCommittedWrites": 0,
+  "providerCalls": 0
+}
