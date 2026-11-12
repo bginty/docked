@@ -1,0 +1,72 @@
+{
+  "at": "2026-11-12T12:53:01.963Z",
+  "project": "pojoymtniryarxxunyvz",
+  "productionWrites": 0,
+  "planSha256": "4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4",
+  "exactManifestMatches": true,
+  "counts": {
+    "definitions": 6540,
+    "lifetime_consumed": 888,
+    "issued": 888,
+    "approved": 0,
+    "invalid_supply": 0,
+    "unique_definitions": 6540
+  },
+  "caps": [
+    {
+      "rarity": "ELITE",
+      "minimum": 2500,
+      "maximum": 2500,
+      "definitions": 1305
+    },
+    {
+      "rarity": "ICON",
+      "minimum": 1,
+      "maximum": 1,
+      "definitions": 1293
+    },
+    {
+      "rarity": "LEGENDARY",
+      "minimum": 50,
+      "maximum": 50,
+      "definitions": 1298
+    },
+    {
+      "rarity": "RARE",
+      "minimum": 5000,
+      "maximum": 5000,
+      "definitions": 1313
+    },
+    {
+      "rarity": "ULTRA_RARE",
+      "minimum": 400,
+      "maximum": 400,
+      "definitions": 1331
+    }
+  ],
+  "coreSupply": "unlimited; unchanged; not part of this limited inventory import",
+  "protectedCustodyDigest": "a1bbdf806cee3f51d870b31f5fcb74d6cae0df93846f34bb4c291ffaae99cb8e",
+  "custodyRecords": 906,
+  "protectedTablesCompared": 28,
+  "protectedRecordsUnchanged": true,
+  "schema": {
+    "objects": 10147,
+    "fingerprint": "7e9acf391f1f34b573eb818210128447"
+  },
+  "gates": {
+    "registration": false,
+    "alerts": false,
+    "retention": false,
+    "retention_days": 90,
+    "deletion_receipts": 0,
+    "practice_rounds": 6,
+    "active_or_scored_rounds": false,
+    "commerce": false,
+    "approved_products": 0,
+    "new_cards": 0,
+    "commercial_packs": 0,
+    "commercial_receipts": 0,
+    "commercial_accounts": 0,
+    "operational_emails": 0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "recordedAt": "2026-11-12T12:56:39.702Z",
+  "readbackFile": "scripts/v31-dormant-inventory-readback.ts",
+  "sha256": "f00dd97a22ed81782017d8997ea028ecd7ad2c996b2ccc88114df9aebb2f254b",
+  "eslintPassed": true,
+  "typecheckPassedBeforeFinalDiagnosticAndSqlBindingCorrection": true,
+  "finalReadOnlyDatabaseVerificationPassed": true,
+  "initialReadbackFailure": "JSON parameter double-encoded by database driver; corrected by binding text then casting to jsonb",
+  "importOperatorUnchanged": true,
+  "importRerun": false,
+  "finalTypecheckPassed": true,
+  "finalTypecheckRecordedAt": "2026-11-12T13:02:07.396Z",
+  "stagedSecretScanPassed": true
+}

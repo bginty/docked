@@ -21,28 +21,31 @@ Completed
   Production warning status still needs separately reviewed terminal disposition;
   no warning, balance, receipt or recovery hold was changed.
 
-Inventory: original authority was used, but import is NOT completed
-The exact approved attempt refused/rolled back on three scheduled bookkeeping
-tables. Independent readback remains definitions=0/cards=0, ownership preserved.
-A narrow scheduler-aware correction passed 17 targeted tests, ESLint/typecheck,
-native fresh-restored import/replay/concurrency tests and a hosted READ-ONLY
-comparison with real scheduler advancement. No corrected Production write yet.
+Inventory: corrected import COMPLETED under separate founder approval
+The first approved operator refused/rolled back on scheduled bookkeeping drift.
+The founder then approved exact operator ae5f9ab407098def266669d57d46537db041f4c77aa99524712f3fd97363365f.
+With a fresh authenticated encrypted backup, fresh preflight and unchanged pinned
+bytes, the corrected operator committed at 12:49:16 UTC on 12 November 2026.
+Production now has 6540 dormant definitions, 888 consumed lifetime copies and
+906 preserved custody records. No cards minted; all definitions approved=false.
+All 557 non-inventory tables were unchanged within the transaction; independent
+postflight matched every definition, all supply caps and 28 protected tables.
+The 6065/475 proposed eligibility partition remains frozen and inactive.
+See inventory-approved-1232/EXECUTION_RESULT.txt and independent-postflight.json.
 
 During preparation, Supabase rolled out Storage and Realtime changes. Their
 original archived DDL is compared, upstream sources identified, and the new
 snapshot restored. Docked's app schema and five migration records are unchanged.
-The fresh native import proves 6540 definitions / 888 lifetime copies / 906 custody
-records / zero new cards / zero approved definitions; 557 other tables unchanged.
-6065 eligible definitions remain proposed dormant and 475 excluded. No repeat
-identity/business-rule decision is requested.
+The native rehearsal was followed by the separately authorised Production import
+above. A later encrypted backup authenticated successfully and matched that same
+reviewed schema and role configuration. No repeat identity/business-rule decision
+or duplicate inventory import is needed.
 
-NEXT PRECISE DECISION
-Approve the changed inventory operator in REVISED_INVENTORY_APPROVAL.txt, separate
-from all activation. Plan remains 4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4.
-New operator ae5f9ab407098def266669d57d46537db041f4c77aa99524712f3fd97363365f.
-The exact original approval cannot cover changed code. Refresh preflight/backup
-as required, then execute only after this new authority. This is the next action,
-not a request to repeat card identities or approve commercial sales.
+NEXT DISTINCT APPROVALS
+Inventory approval has been fulfilled and must not be requested again.
+Real same-key recovery custody and bounded installed-v31 payment/refund acceptance
+remain separate; their proposals are linked below. Neither is authorised by the
+inventory approval. Historical warning disposition preserves the spent TEST hold.
 
 Remaining distinct gates
 1. Twilio sender approval, separately authorised bounded Preview window, genuine
@@ -62,7 +65,7 @@ Remaining distinct gates
    approvals only after their respective gates pass. A registration-first launch
    still needs a listing consistent with disabled paid features.
 
-Readiness: deployed application and tested dormant-import proposal ready;
+Readiness: deployed application and dormant Production inventory accepted;
 operational acceptance partial; phone/public registration and commerce not ready.
 Expected remaining engineering about 3–6 focused hours after approvals/access,
 excluding provider review, founder participation and any newly required repair.

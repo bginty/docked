@@ -1,0 +1,58 @@
+{
+  "at": "2026-11-12T12:40:50.613Z",
+  "productionSource": "17b38c1290fd37c05487b332e5c0db440da6805b",
+  "checks": [
+    {
+      "route": "/api/beta-release",
+      "method": "GET",
+      "status": 200,
+      "pass": true,
+      "bodySha256": "cb1d616c19befd61bab58084a7e60e62375e29d2bffa4530915eb9b196164944"
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "method": "GET",
+      "status": 403,
+      "pass": true,
+      "bodySha256": "cbce35432855c5ac87321b33c918f6537984fbdade976f209c20402cc31372a5"
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "method": "GET",
+      "status": 403,
+      "pass": true,
+      "bodySha256": "72a59fed2002acdde037f4c6bdb51c4edd6c10d961a8ac36d268691ae6bc33f0"
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "method": "GET",
+      "status": 403,
+      "pass": true,
+      "bodySha256": "9b25a01d8f58fb1539fe1dabc5f7ee1db29a28a5c8806b018eec9fc4a2c8f259"
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=basketball",
+      "method": "GET",
+      "status": 400,
+      "pass": true,
+      "bodySha256": "ab2bc59d59c3a624006f6348dc7d2bb70e6fa718f2398dc1ea82204b5656ec78"
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "GET",
+      "status": 403,
+      "pass": true,
+      "bodySha256": "1abb10718b5426c970bcf1bc0a3602932ae963d108a51c314422c20e9c277925"
+    },
+    {
+      "route": "/api/auth/phone",
+      "method": "POST",
+      "status": 403,
+      "pass": true,
+      "bodySha256": "6f0025946c3f931efb4cb40f831c857b909f223c265adb6ef94df6e37c3fb8a3"
+    }
+  ],
+  "passed": true,
+  "authenticatedMemberActions": false,
+  "smsSent": false
+}

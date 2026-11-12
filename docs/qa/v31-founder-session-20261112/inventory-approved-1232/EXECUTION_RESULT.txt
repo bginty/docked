@@ -1,0 +1,73 @@
+DOCKED V31 — approved dormant inventory import COMPLETED
+
+Founder authority: reply to call_cea0c6a309264c35b5aecb61b1b8fbfb,
+"Approve this exact corrected dormant import". Conservative 24-hour approval
+window: 12 November 2026 12:32 UTC through 13 November 2026 12:32 UTC.
+This is the changed-operator approval, separate from the prior refused attempt.
+
+Exact executed package
+Plan SHA-256: 4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4
+Operator SHA-256: ae5f9ab407098def266669d57d46537db041f4c77aa99524712f3fd97363365f
+Registration digest: ba68a833d866105512ed6b7e137c910a74df3a335836cd477d62937460c87114
+Code committed at d719075c; subsequent preparation HEAD cb4c0f2a did not change
+the pinned operator or plan. The execution rechecked all transitive source bytes.
+
+Fresh recovery and drift evidence
+Read-only consistent backup began after 12:33:43.571 UTC and completed at
+12:45:00.372 UTC. Use the earlier bound for the one-hour freshness requirement.
+133436528 encrypted archive bytes; AES-256-GCM authentication and plaintext
+SHA-256/length verification passed without writing plaintext to disk.
+Encrypted archive: 0287b33badf819fe2bf436add61dacc7ee41e17e691e81561ba7e5d87c659746
+Encrypted manifest: e8e997e7e768cf1f8d412037f118119328f929043ce68bf29a10e6dbde8f2285
+Schema 10147 objects / 7e9acf391f1f34b573eb818210128447; roles and memberships
+match the already rehearsed provider-updated snapshot. No migration was applied.
+The earlier full isolated restore/import/replay/concurrency rehearsal remained
+applicable. This new archive was authenticated; no duplicate full restore claimed.
+
+Final read-only preflight completed 12:46:25.594 UTC.
+SHA-256: 9b377584e6a9a88604862aa232c6fdf3d7ebce52eb3ef765c0fed70c53a6da97
+Custody, reviewed schema and closed-gate configuration matched before execution.
+Exact backup/preflight hashes are bound in execution-binding.json and the ignored
+private execution-authority artifact. No credentials or customer rows are public.
+
+Actual Production result
+Operator ran 12:47:38.749–12:49:16.080 UTC (23:47–23:49 Sydney on 12 November).
+Elapsed 97 seconds includes complete before/after protected-table hashing.
+It committed once successfully with exit code 0:
+- 6540 definitions inserted; approved definitions=0; new cards=0.
+- 888 existing limited copies consumed as permanent lifetime issuance.
+- All 906 custody records unchanged, including original ownership and locations.
+- All 557 non-inventory durable tables unchanged within the transaction.
+- Only permitted scheduler advancement since preflight: eight appended cron rows,
+  four zero-issuance weekly runs and a forward mail tick; original history exact.
+- 6065 proposed eligible definitions remain dormant; 475 remain excluded. The two
+  frozen lists still partition the exact 6540 IDs with their unchanged digests.
+- No customer balance, pack, receipt, account, ownership or catalogue alteration.
+
+Independent verification at 12:53:01.963 UTC
+All 6540 actual rows exactly match the frozen proposal, with no missing, extra or
+different rows. Issued=legacy_issued=888; unique definitions=6540; invalid supply=0.
+Caps verified: Rare 5000, Elite 2500, Ultra Rare 400, Legendary 50, Icon 1.
+Core remains unlimited and outside this limited-definition import.
+28 financial/custody/control/audit tables independently rechecked against preflight.
+Custody digest remains a1bbdf806cee3f51d870b31f5fcb74d6cae0df93846f34bb4c291ffaae99cb8e.
+The new read-only checker initially double-encoded its JSON parameter; corrected
+text-to-jsonb binding passed. Those failed reads did not change Production, and
+the approved import operator was not changed or rerun.
+New verifier: lint and TypeScript checks passed; final SQL binding tested against
+the actual database in a read-only transaction. Seven HTTP boundary checks passed
+both before and after the import.
+
+Application remains 17b38c1290fd37c05487b332e5c0db440da6805b, deployment
+dpl_8WTycjDUx7VvEQm4pm5jW6B9WHEB. No app redeployment, hosted migration, operational
+email, SMS, key transfer/rotation, payment test or Play publication occurred.
+Registration, issuance, sales, transfers/trading, gameplay activation and prizes
+remain closed. NBA is hidden; six disabled Practice rounds and 90-day disabled
+operational retention are preserved. Commercial cards/packs/receipts/accounts=0.
+
+The dormant import gate is complete. DO NOT IMPORT AGAIN or reclaim serials.
+Retain immutable definitions and consumed lifetime supply; any future repair or
+activation needs separately reviewed authority. Public launch remains NO-GO.
+Remaining launch gates: provider review/SMS acceptance, real backup-key custody,
+bounded installed-v31 payment/refund acceptance and historical warning disposition,
+then distinct publication/registration/commercial activation decisions.

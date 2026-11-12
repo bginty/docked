@@ -37,9 +37,16 @@ Current pricing checked 12 November: https://cloud.google.com/secret-manager/pri
 Six active versions and 10000 accesses/month are free across the billing account.
 Disabled versions count as active. Automatic replication counts as one location.
 
-Use inventory-backup/fresh-backup.json and the later provider Storage refresh to
-bind actual encrypted archive/manifest hashes before the distinct transfer request.
-The original pre-provider archive is
-7d544a757a5fc6a940c55e4e80ebef762732d0080d387ea901fb6f2041b69589.
-Its AES-GCM/hash authentication passed. Same-key encryption access for the backup
-does not by itself grant permission to transfer the key to Google.
+Concrete recovery-test archive: private-data/commercial-restore-20261112d.
+Encrypted archive SHA-256:
+0287b33badf819fe2bf436add61dacc7ee41e17e691e81561ba7e5d87c659746
+Encrypted manifest SHA-256:
+e8e997e7e768cf1f8d412037f118119328f929043ce68bf29a10e6dbde8f2285
+This authenticated pre-import snapshot completed 12 November 2026 12:45 UTC and
+contains 888 existing lifetime copies and zero commercial definitions. The
+separately approved import committed later. Recovery verification must match
+this archive's manifest, not falsely expect its contents to include that later
+import. Retain the frozen inventory plan and import receipt for forward recovery.
+Use inventory-approved-1232/fresh-backup.json and archive-integrity.json as evidence.
+Same-key encryption access for a backup does not grant permission to transfer
+the key. No actual transfer or live-key recovery test has been performed yet.
