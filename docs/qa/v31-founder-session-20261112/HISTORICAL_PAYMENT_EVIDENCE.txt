@@ -19,15 +19,33 @@ The API's nominal order total is 49/99/49 AUD; these TEST face values must not b
 misreported as real charges. The Console confirms zero paid totals. TEST results
 do not prove live settlement, fees, payouts or current hosted refund acceptance.
 
-Remaining binding gap
+Original environment and binding recovered at 10:35 UTC
 The returned obfuscated account identifier matches zero current Production Auth
 users under the existing account-binding secret. There is no existing receipt in
 credits_sandbox, store_billing_acceptance or store_member_acceptance for these
-three references. This does not establish the original synthetic/Preview account
-or prove any historic balance adjustment. All seven warnings remain preserved in
-attention, at their prior 12 attempts. No binding was invented and no grant was
-created to make reconciliation pass. Original test-environment/member evidence
-or a separately reviewed terminal archival disposition remains necessary.
+three references. The initial Production-only lookup therefore was incomplete.
+Read-only inspection of the ORIGINAL Preview project bckkllmndoxzpzdqrevb now
+matches all three exact order/token digests to commercial_billing.receipts.
+Each account binding matches exactly one original Preview member; all receipts
+are environment=acceptance, state=REVOKED and fully refunded. These matches use
+Google's actual identifiers and existing original records, not timing inference.
+See historical-preview-ledger-readback.json. The earlier synthetic configuration
+and two-of-three fixture checks are retained as intermediate evidence only.
+
+Refund accounting independently checked at 10:36 UTC
+All 12 receipt-linked journals balance, all three remaining test-credit lots are
+zero, and no associated pending/working/attention Preview jobs remain.
+Cases 1 and 3 removed all 4900 test credits each. Case 2 removed 4200 unspent
+credits and correctly retains an OPEN recovery case for 5700 spent test credits.
+That existing hold must remain: a full provider refund does not erase spent-credit
+recovery exposure. It is isolated TEST accounting, not a real customer debt.
+See historical-preview-refund-accounting.json. No hold was waived or rewritten.
+
+All seven Production warnings remain preserved in attention at 12 attempts.
+The evidence gap is resolved; a separately approved terminal disposition is still
+required to change their operational status. Do not retry them into a Production
+customer wallet, import Preview receipts, create replacement grants, or describe
+them as successfully fulfilled in Production. See HISTORICAL_WARNING_DISPOSITION.txt.
 
 Next hosted acceptance remains separate: installed v31, existing licensed tester,
 named isolated test wallet, <=2 hours, <=6 TEST checkouts, A$0 real spend, exact

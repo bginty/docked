@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-12T10:36:46.501Z",
+  "method": "Read-only exact original Preview order-linked refund accounting",
+  "cases": [
+    {
+      "caseNumber": 1,
+      "lots": 1,
+      "remaining_test_credits": "0",
+      "refund_removed": "4900",
+      "journals": 4,
+      "unbalanced_journals": 0,
+      "open_recovery_cases": 0,
+      "recovery_exposure": "0",
+      "outstanding_jobs": 0
+    },
+    {
+      "caseNumber": 2,
+      "lots": 1,
+      "remaining_test_credits": "0",
+      "refund_removed": "4200",
+      "journals": 4,
+      "unbalanced_journals": 0,
+      "open_recovery_cases": 1,
+      "recovery_exposure": "5700",
+      "outstanding_jobs": 0
+    },
+    {
+      "caseNumber": 3,
+      "lots": 1,
+      "remaining_test_credits": "0",
+      "refund_removed": "4900",
+      "journals": 4,
+      "unbalanced_journals": 0,
+      "open_recovery_cases": 0,
+      "recovery_exposure": "0",
+      "outstanding_jobs": 0
+    }
+  ],
+  "productionWrites": 0,
+  "previewWrites": 0
+}

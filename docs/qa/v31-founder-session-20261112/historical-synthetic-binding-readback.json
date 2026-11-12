@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-12T10:32:30.310Z",
+  "method": "Read-only Google provider account binding compared in memory with three existing synthetic acceptance configurations",
+  "cases": [
+    {
+      "caseNumber": 1,
+      "providerTest": true,
+      "providerState": "CANCELLED",
+      "originalSyntheticConfigMatches": []
+    },
+    {
+      "caseNumber": 2,
+      "providerTest": true,
+      "providerState": "CANCELLED",
+      "originalSyntheticConfigMatches": []
+    },
+    {
+      "caseNumber": 3,
+      "providerTest": true,
+      "providerState": "CANCELLED",
+      "originalSyntheticConfigMatches": []
+    }
+  ],
+  "productionWrites": 0,
+  "providerMutations": 0
+}

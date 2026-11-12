@@ -15,8 +15,11 @@ Completed
 - Twilio was authenticated and checked twice. Existing Australian Docked sender
   is still In review. No replacement, provider activation or SMS was performed.
 - Google provider evidence now correlates all seven historical warnings to three
-  refunded Australian TEST purchases. Console actual charges were A$0.00. The
-  original member/receipt binding remains absent; no warnings or balances changed.
+  refunded Australian TEST purchases. Console actual charges were A$0.00. All
+  original Preview members/receipts are now exactly bound and revoked. All 12
+  journals balance; spent-refund recovery of 5700 TEST credits remains preserved.
+  Production warning status still needs separately reviewed terminal disposition;
+  no warning, balance, receipt or recovery hold was changed.
 
 Inventory: original authority was used, but import is NOT completed
 The exact approved attempt refused/rolled back on three scheduled bookkeeping
@@ -48,8 +51,9 @@ Remaining distinct gates
 2. Real backup-key same-key vault transfer and isolated retrieval/restore under
    separate approval; exact destination/access/cost safeguards are prepared in
    RECOVERY_CUSTODY_PROPOSAL.txt. Synthetic recovery and founder MFA are complete.
-3. Original historical test-account binding/disposition and bounded installed-v31
-   Google TEST purchase/refund acceptance. A$0 real spending; no commerce switch.
+3. Historical warning disposition (original account/receipt evidence now proved)
+   and bounded installed-v31 Google TEST purchase/refund acceptance. A$0 real
+   spending; no commerce switch or waiver of the original Preview recovery hold.
 4. Google approval of the new phone declaration; source-rights/current eligibility,
    merchant/payout/listing and final payment/operational acceptance before sales.
    Independent correlation of the accepted operational email's provider trace
@@ -62,7 +66,8 @@ Readiness: deployed application and tested dormant-import proposal ready;
 operational acceptance partial; phone/public registration and commerce not ready.
 Expected remaining engineering about 3–6 focused hours after approvals/access,
 excluding provider review, founder participation and any newly required repair.
-Historical binding investigation has an uncertain external duration.
+Historical provider/account binding is now resolved; exact warning disposition
+and installed-v31 test admission/closure still need review and separate authority.
 
 Kept closed: NBA; six disabled Practice competitions; registration; Production
 and Preview SMS; payments, trading, prizes and withdrawals; retention cleanup.

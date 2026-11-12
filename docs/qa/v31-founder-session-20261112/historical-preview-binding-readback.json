@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-12T10:33:41.508Z",
+  "method": "Google provider account binding compared in memory with original isolated Preview billing member and existing binding keys",
+  "previewProject": "bckkllmndoxzpzdqrevb",
+  "fixtureClosed": true,
+  "cases": [
+    {
+      "caseNumber": 1,
+      "providerTest": true,
+      "providerState": "CANCELLED",
+      "previewAccountBindingMatches": [
+        "billing-ack-preview-20261105",
+        "dual-store-readiness",
+        "fixed-market-live"
+      ],
+      "previewMemberMatchesExistingBoundedBillingFixture": true
+    },
+    {
+      "caseNumber": 2,
+      "providerTest": true,
+      "providerState": "CANCELLED",
+      "previewAccountBindingMatches": [
+        "billing-ack-preview-20261105",
+        "dual-store-readiness",
+        "fixed-market-live"
+      ],
+      "previewMemberMatchesExistingBoundedBillingFixture": true
+    },
+    {
+      "caseNumber": 3,
+      "providerTest": true,
+      "providerState": "CANCELLED",
+      "previewAccountBindingMatches": [],
+      "previewMemberMatchesExistingBoundedBillingFixture": false
+    }
+  ],
+  "productionWrites": 0,
+  "providerMutations": 0
+}

@@ -1,0 +1,80 @@
+{
+  "at": "2026-11-12T10:35:30.229Z",
+  "method": "Read-only original Preview database and exact Google order/token/account-bound receipt correlation",
+  "previewProject": "bckkllmndoxzpzdqrevb",
+  "cases": [
+    {
+      "caseNumber": 1,
+      "providerTest": true,
+      "providerOrderState": "REFUNDED",
+      "providerPurchaseState": "CANCELLED",
+      "previewAccountMatches": 1,
+      "receipts": [
+        {
+          "environment": "acceptance",
+          "state": "REVOKED",
+          "account_binding_matches": true,
+          "order_matches": true,
+          "gross_cents": "4900",
+          "refunded_cents": "4900",
+          "credited": true,
+          "money_recorded": true,
+          "events": 2,
+          "memberMatchesBinding": true
+        }
+      ]
+    },
+    {
+      "caseNumber": 2,
+      "providerTest": true,
+      "providerOrderState": "REFUNDED",
+      "providerPurchaseState": "CANCELLED",
+      "previewAccountMatches": 1,
+      "receipts": [
+        {
+          "environment": "acceptance",
+          "state": "REVOKED",
+          "account_binding_matches": true,
+          "order_matches": true,
+          "gross_cents": "9900",
+          "refunded_cents": "9900",
+          "credited": true,
+          "money_recorded": true,
+          "events": 2,
+          "memberMatchesBinding": true
+        }
+      ]
+    },
+    {
+      "caseNumber": 3,
+      "providerTest": true,
+      "providerOrderState": "REFUNDED",
+      "providerPurchaseState": "CANCELLED",
+      "previewAccountMatches": 1,
+      "receipts": [
+        {
+          "environment": "acceptance",
+          "state": "REVOKED",
+          "account_binding_matches": true,
+          "order_matches": true,
+          "gross_cents": "4900",
+          "refunded_cents": "4900",
+          "credited": true,
+          "money_recorded": true,
+          "events": 2,
+          "memberMatchesBinding": true
+        }
+      ]
+    }
+  ],
+  "previewControl": {
+    "environment": "acceptance",
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false,
+    "gameplay_enabled": false
+  },
+  "productionWrites": 0,
+  "previewWrites": 0,
+  "providerMutations": 0
+}

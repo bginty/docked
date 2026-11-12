@@ -1,0 +1,44 @@
+DOCKED V31 — historical TEST warning disposition preparation
+NOT EXECUTED. No new founder approval is requested before the pending inventory
+decision. This is separate from payment acceptance and customer activation.
+
+Evidence now established
+The seven Production credits_sandbox.store_notifications rows are exactly linked
+2/3/2 to three original Preview commercial_billing receipts. Genuine Google
+orders.get/productsv2 responses prove TEST, Australia, REFUNDED/CANCELLED; the
+Console proves actual charge A$0. Each original Preview receipt has the exact
+order, token digest and member account binding, is REVOKED, and records its full
+refund. All 12 associated journals balance, remaining credit lots=0 and associated
+outstanding Preview jobs=0. Original Preview gates remain closed.
+
+The second purchase legitimately retains 5700 spent TEST credits in an OPEN
+recovery case (4200 of 9900 were removed from the unspent lot). Preserve that
+case, its related test inventory and complete history. Do not waive it merely
+to produce a clean dashboard or confuse it with a real customer liability.
+
+Proposed terminal disposition to bind to a reviewed operator before execution
+- Target only the exact seven hashed notification IDs/row fingerprints from the
+  original 5 November evidence, after a fresh read-only correlation and backup.
+- Preserve original ID, receipt key, kind, event/creation time, attempt count=12,
+  next-attempt timestamp and original failure text. Preserve an authenticated
+  before/after evidence record and provider/Preview correlation fingerprints.
+- Change only state attention -> done, completed_at -> actual disposition time,
+  and lease_until -> NULL, in one transaction, after asserting no active lease.
+- Record the meaning explicitly as 'externally reconciled original Preview TEST;
+  not a Production fulfilment'. A future audit reader must see this distinction.
+- Never call the purchase worker, add a Production receipt, grant credits, debit
+  balances, modify source Preview rows, waive recovery, delete notifications or
+  pretend a member receipt exists in Production.
+- Afterward prove the seven original payloads and attempts unchanged, all other
+  notifications unchanged, all financial/custody tables unchanged, and gates OFF.
+- Failure rolls back. If later evidence conflicts, an audited operator can return
+  only these rows to attention; do not replay automatically or erase history.
+
+Remaining preparation: freeze the exact private seven-row manifest and operator
+checksum, rehearse the terminal update and audit representation locally, and
+include those exact bytes in a separate approval. This document alone is not an
+executable mutation approval and no such change was made during this session.
+
+New payment acceptance still needs a separately bounded installed-v31 window.
+Preview test history does not replace acceptance of the actual published build's
+account binding, acknowledgement, refund notification and closure flow.
