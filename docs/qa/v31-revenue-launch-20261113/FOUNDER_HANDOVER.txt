@@ -1,0 +1,91 @@
+DOCKED — revenue-launch handover, 13 November 2026 AEDT
+Public launch: NO-GO. First public release remains a paid-pack revenue launch.
+
+Completed now
+- Verified the completed dormant import without restarting it: 6,540 definitions,
+  888 lifetime-issued copies consumed, 906 custody records unchanged, zero new
+  commercial cards and no approved-for-sale definitions. No import remains to do.
+- Implemented the historical collection bridge and secure fixed-price commercial
+  marketplace: reviewed/account-bound/idempotent settlement, eligibility/phone/
+  consent/block checks, one owner, fee/provenance and emergency-stop behavior.
+  Fixed cancelled-sale labels/receipt links and a confirmed-purchase stale listing.
+- Passed 830 platform tests plus targeted operator/role regressions; native payment,
+  refund and supply tests; mobile/desktop paid-pack and marketplace browser flows;
+  TypeScript, lint and canary build (no server secrets in 239 browser assets).
+  Standard 9 in all three sports and Premium 9 delivered nine cards in local
+  ledger/browser tests. Exact prices and rarity odds appeared before confirmation.
+- Rehearsed the two new migrations against the authenticated isolated Production
+  restore: all 558 prior tables unchanged; permissions, replay, rollback and forward
+  recovery passed. Existing Preview dependency rehearsal also rolled back cleanly.
+- Bound all seven old warnings to genuine refunded Google TEST orders and prepared
+  a status-only correction. The existing 5,700-credit TEST recovery hold stays.
+- Independently found the original Microsoft trace: DOCKED-OPS-20261110-01 was
+  delivered to Inbox. Founder receipt attestation retained; no automated inbox
+  inspection claim, no repeat email. Founder MFA/incident actions are not repeated.
+- Refreshed card sources; prepared exact commercial launch wording and the
+  coordinated activation/emergency runbook. Private data/keys remain outside Git.
+  Committed text logs have whitespace normalised; raw copies are retained privately.
+
+Actual Production and providers
+Production remains 17b38c1290fd37c05487b332e5c0db440da6805b;
+dpl_8WTycjDUx7VvEQm4pm5jW6B9WHEB. Original five migrations/outbox remain complete.
+All registration, SMS and commercial controls remain closed. NBA remains hidden;
+six competitions disabled Practice; no deployment or Production mutation this run.
+Google: v31/1.30 still READY TO PUBLISH; managed publishing ON. Separate phone
+Data Safety declaration still IN REVIEW at final authenticated refresh (~02:08
+AEDT). Credit options A$49/4,900 and A$99/9,900 are correct but INACTIVE.
+Twilio: last verified sender state IN REVIEW (~00:30 AEDT); session expired on
+the later refresh. Sign-in is needed for a current check. No SMS sent/spend made.
+Merchant identity/address Verified and Australian tax declaration Accepted. The
+current declaration says not GST registered; current company facts need founder/
+accountant confirmation. A payout and reduced service-fee enrolment are not proven.
+
+First paying customer readiness
+Engineering candidate is tested and prepared, not deployed or launch-accepted.
+Production has no commercial runtime credentials/login installed. This exact
+inactive setup is included in CLOSED_GATE_APPROVAL.txt; Codex can perform it after
+approval. Genuine SMS, installed-v31 billing/refund and hosted two-party marketplace
+acceptance are still required. Local/Google TEST proofs do not prove bank settlement.
+Fixed-price marketplace code is ready for hosted acceptance. Swaps/offers remain
+unimplemented for commercial use and OFF, not silently borrowed from test modes.
+
+Fresh inventory eligibility result
+The complete imported digest is unchanged. Recommend 6,055 eligible / 485 held,
+ten fewer than the earlier proposal: Nikko Remigio waived by KC; Jack Todd's
+announced Castleford move conflicts with current pinned-team sources. Hold their
+five definitions each under the existing source rule. Keep all historical cards
+and prior identity approvals. Exact evidence/digest: INVENTORY_ELIGIBILITY_DELTA.txt.
+Refresh again within 72h of activation; current eligibility is not rights clearance.
+
+Precise next approvals / founder participation
+1. Approve CLOSED_GATE_APPROVAL.txt: source 260fe3399f1eacf03915c227216a1bab10d7b4d9,
+   package 56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1.
+   This covers the two new migrations, inactive credentials and controlled app/
+   Preview staging/promotion. It excludes every commercial/public activation.
+2. Separately approve HISTORICAL_WARNING_APPROVAL.txt (seven statuses/audit only)
+   and the existing RECOVERY_CUSTODY_PROPOSAL.txt for same-key secure vault custody.
+3. Sign in to Twilio. After sender approval, authorise HOSTED_ACCEPTANCE_SESSION.txt
+   and participate with the physical Android and founder-controlled mobile. A
+   second distinct controlled number is needed for a genuine two-party marketplace
+   test. Existing Preview credentials/accounts are reused; no credential re-entry.
+4. Confirm current GST facts; provide/approve the actual source-material rights
+   and narrow paid-random-pack/credit-resale commercial assessment. Player-name
+   advice is already accepted and is not requested again. Review exact launch
+   wording and revised eligibility subset as part of commercial sign-off.
+5. Await Google Data Safety acceptance. Final approval must explicitly cover the
+   coordinated AU registration + phone + Google credits + paid packs + v31 release,
+   and fixed-price marketplace if accepted, with a public SMS operating budget.
+   A$20 remains the combined TEST ceiling; no unlimited ongoing SMS authority.
+
+Remaining technical execution estimate
+About 6–10 focused hours after approvals/access, including inactive runtime setup,
+controlled deployment, phone/Android billing-refund acceptance, custody and final
+configuration checks. Allow another 1–2 hours for two-party marketplace physical
+acceptance if the second number/device is available. Excludes Twilio/Google review,
+legal/tax response time and new defects found during real-device tests. Commercial
+swaps would be separate engineering work, not a ready toggle in this estimate.
+
+Evidence: VERIFICATION_INDEX.txt. Activation/recovery: COORDINATED_REVENUE_RUNBOOK.txt.
+The remaining execution now depends on exact founder approvals, private sign-in,
+physical acceptance and external decisions; no unauthorised activation was used
+to work around those gates. No registration-only launch is proposed.

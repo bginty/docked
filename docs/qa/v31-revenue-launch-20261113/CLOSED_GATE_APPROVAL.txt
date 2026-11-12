@@ -1,0 +1,88 @@
+DOCKED — next exact CLOSED-GATE engineering approval (NOT YET APPROVED)
+
+Source commit: 260fe3399f1eacf03915c227216a1bab10d7b4d9
+Package SHA-256: 56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1
+Exact manifest: closed-gate-package.json (UTF-8 LF bytes, final newline included).
+Proposed approval validity: 24 hours from the founder's explicit acceptance.
+
+Approval request
+Approve the exact source/package for protected staging, the two NEW migrations
+below, inactive commercial runtime provisioning, closed-gate promotion after all
+checks pass, and conditional recovery. Also allow the existing Preview's four
+rehearsed dependencies and candidate staging with its provider/commerce/signup
+OFF. Nothing here authorises public-mode activation or an SMS/payment test.
+
+Why fresh approval is required
+These are new source bytes, two newly required safeguards and one restricted
+runtime login. Previous approvals covered other exact packages and do not cover
+this one. The original five migrations and restricted outbox are already complete
+and will NOT be reapplied. The successful inventory import will NOT be repeated.
+
+New Production migration order and SHA-256
+1. 20261113002000_preserved_commercial_collection_read.sql
+   53bee34e39e7008478a07884dcbbb5feb2a63be756c391e883271ed9a85377eb
+2. 20261113003000_commercial_market_request_guards.sql
+   20039c5149d57c9c560e8535a017ea052a610d64f4257e448cb006dadcc8c6bb
+
+Affected objects and permissions
+1 adds commercial_billing.preserved_collection_rows(uuid,text), executable only
+by docked_commercial_app, and replaces member_record(text), executable only by
+docked_app. Reads the existing beta/legacy custody, pack opening and player data
+for authenticated collection display. No copy, mint, transfer or wallet conversion.
+2 adds two indexes to commercial_billing.audit; a restricted boolean eligibility
+function market_party_allowed(uuid,uuid,text,text); market_listing_guard() and the
+commercial_listing_terms trigger on commercial_billing.listings. Requires current
+session, AU adult consent, verified phone and block visibility; enforces immutable
+listing identity/revisions/settlement evidence. No new direct Auth/outbox access.
+Existing table grants and RLS remain unchanged. No business data update expected.
+
+Dormant runtime setup
+Exact role SQL and hash are in the package. Create docked_commercial_runtime as
+NOLOGIN, restricted to the existing commercial group, then securely install its
+new password/LOGIN only under this authority. No table grant, ownership, superuser,
+bypass RLS, role creation or unrelated IAM access. Install the NEW initial receipt,
+account-binding and worker secrets and reuse the existing verified Google account
+where permitted. Follow COMMERCIAL_CONFIGURATION_PROPOSAL.txt; never print values.
+Keep all service/checkout/marketplace flags OFF. No live key rotation or transfer.
+
+Backup, drift and transaction controls
+Current live baseline is 17b38c1290fd37c05487b332e5c0db440da6805b at
+dpl_8WTycjDUx7VvEQm4pm5jW6B9WHEB, Sydney. Preserve the 89-value recipe (except
+source metadata and explicitly listed inert additions); its hash is in the
+manifest. Recheck all role attributes/memberships separately from schema hashes.
+Fresh corrected Production schema fingerprint must match the reviewed baseline,
+or stop for review. Authenticate a full encrypted backup <=1h; preserve previous
+archives/keys. Require 6,540 dormant definitions, 888 lifetime copies, unchanged
+906 custody records, zero commercial accounts/receipts and all gates closed.
+Execute only exact SQL in one transaction with lock_timeout=3s and
+statement_timeout=60s. Preserve before/after fingerprints and permission evidence.
+
+Verification before promotion
+Both new migrations were rehearsed/reapplied/rolled back/forward-recovered on an
+authenticated isolated Production restore as a non-superuser. All 558 existing
+tables and custody/financial records stayed unchanged. The separate dormant role
+proposal passed its permission/replay test; its hosted administrator grant must
+be checked before provisioning. Local application times were 420ms and 388ms,
+not a hosted downtime guarantee. Reserve a quiet 5–10 minute database window.
+No planned public outage; contention must abort rather than wait indefinitely.
+
+Stage exact Git blob bytes; verify source SHA, runtime preservation, all closed
+boundaries, collection parity, founder MFA restrictions, hidden NBA, disabled
+Practice competitions, client-secret scan and unchanged financial/ownership data.
+Promote only after these pass; repeat live verification and confirm deployment ID.
+No Android source/binary changed. Genuine Android/phone/payment tests are separate.
+
+Recovery
+Before any new commercial record, revert app to the current 17b38c1 deployment
+and use the exact revenue-repairs-v2-rollback.sql if schema reversal is necessary.
+Recheck full schema/ACL and protected data. Newly provisioned runtime can be set
+NOLOGIN and its unused runtime settings withdrawn; preserve private recovery data.
+Do not roll back to older code after paid records or transfers exist; stop new
+spending and use audited forward recovery. Never restore over newer customer data.
+
+Explicit exclusions
+SMS/provider enablement; Google TEST/real orders or refunds; public registration;
+additional inventory import, eligibility activation, issuance, balance/ownership
+changes; live payments/trading/prizes/withdrawals; NBA/scored competitions; policy
+or Play publication/declaration changes; alert/deletion schedules; live-key custody
+transfer/rotation. Public launch remains NO-GO.

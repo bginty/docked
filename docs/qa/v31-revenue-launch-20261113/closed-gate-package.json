@@ -1,0 +1,4106 @@
+{
+  "version": "v31-revenue-closed-gate-review-v1",
+  "status": "PREPARED_NOT_APPROVED_NOT_DEPLOYED",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "sourceTree": "a86cecd0f8a8aebbbf6b10f4d79313c41869c5cc",
+  "baseCommit": "17b38c1290fd37c05487b332e5c0db440da6805b",
+  "baselineDeployment": "dpl_8WTycjDUx7VvEQm4pm5jW6B9WHEB",
+  "projectId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "teamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+  "databaseProject": "pojoymtniryarxxunyvz",
+  "previewProject": "bckkllmndoxzpzdqrevb",
+  "approvalValidityHours": 24,
+  "baselineRuntimeSettings": 89,
+  "baselineRuntimeRecipeSha256": "87730fe3516e45410aec59bafb0c2c4094abf198af1e432d54aebae1e5386355",
+  "baselineProductionSchema": {
+    "fingerprint": "e3e825acd32fd1101423803826107183",
+    "objects": 10147
+  },
+  "sourceFiles": [
+    {
+      "file": "certs/README.md",
+      "sha256": "017e0eaa8538bfae566d48e198db4e282946f8061646c885e2ea9a67d0ada571"
+    },
+    {
+      "file": "certs/supabase-prod-ca-2021.crt",
+      "sha256": "700723581420dd1ac98fd7e9ac529f0ef210eadcaf87fc868a3ad7d114c2f3b7"
+    },
+    {
+      "file": "config/android-live-beta.json",
+      "sha256": "0605058b7b9d65890ee1f3686b575edea9959bc72b1c446c5e343ca216ef5f01"
+    },
+    {
+      "file": "config/android-owner-qa.json",
+      "sha256": "fee62196c5ae94b70445c1c9982cebe3c309ef10019dfd259125c2bfcd2293c5"
+    },
+    {
+      "file": "config/android-preview.json",
+      "sha256": "715035e03a34898bc77678ffc5cf5dcc2bbddd637a7f13a460446f7791f16dcf"
+    },
+    {
+      "file": "config/apple-store-product-drafts.json",
+      "sha256": "ebff467eec853c331e698fc530a49585ba99c1aacc608324be5ea5c905d583cf"
+    },
+    {
+      "file": "config/beta-policy-content.json",
+      "sha256": "152555920a5e93bfeba148f181470360d935c18584a5916ac38a929b41f56c18"
+    },
+    {
+      "file": "config/card-rarities-v1.json",
+      "sha256": "3702099eb8deb84286248c0ca2923ca6904a32d4e13a06a4fae94d496d2376d8"
+    },
+    {
+      "file": "config/card-statistics-preview.json",
+      "sha256": "b8770e3a4fc3af446582410ba43494ac51f988289ce0b88503fb24918a1c2336"
+    },
+    {
+      "file": "config/controlled-beta.json",
+      "sha256": "c89437508128235ae392b91fd97f6377116212835b4d4ad52f83f9fba1a4c2c1"
+    },
+    {
+      "file": "config/free-beta-data.json",
+      "sha256": "4b1d9e182fd4e5c06fa46d26d37d4224d0e0ec642da9942b5856ecbf1a767905"
+    },
+    {
+      "file": "config/friends-policy-content.json",
+      "sha256": "cd64ec5b4b259a15c06f8406628ef6ec34d4efd4cb3de22f84763459abe8b7ab"
+    },
+    {
+      "file": "config/friends-release.json",
+      "sha256": "57e2154b4d2efdf0cec9a27d78dbdb669f184bd3f24047e14a50ed4eaa6b78ee"
+    },
+    {
+      "file": "config/history/README.md",
+      "sha256": "a3302ef5b50266323700a10c0836d6f6a7a195e9f10a76e93752f838659f562e"
+    },
+    {
+      "file": "config/history/afl-2026.json",
+      "sha256": "ebf0b2631898e9313a032a8151b6dfc47eb8b9890e0a00bc610485b60f5d0af9"
+    },
+    {
+      "file": "config/history/nrl-2026.json",
+      "sha256": "dd0ae9ae0d02d3d8695822547288f8e625bada3a7b428508707267160a128ee1"
+    },
+    {
+      "file": "config/hosted-beta.json",
+      "sha256": "f7dc6ee2520d57e766289df57934a8a14fd28345287b0165df0bf0e3178a8b59"
+    },
+    {
+      "file": "config/hosted-preview.json",
+      "sha256": "49601f736e726763fdae9943407faaaf7281aba254bc2b1ee1f29568be9c14a4"
+    },
+    {
+      "file": "config/hosted-production.json",
+      "sha256": "99cd299f12efa279ccbc3640982b26ab25c2e7f9f94aff43e021267bdd8e8ab3"
+    },
+    {
+      "file": "config/launch-policy-content.json",
+      "sha256": "cfd82df98740dcaf8bedc9ae2a51c83976930a42bdf3b28ce41846237fc8bfda"
+    },
+    {
+      "file": "config/mobile-store-release.json",
+      "sha256": "29f045ac94a00c0ec843528d06ecd3948294ade94ee2ebe8793ebeb489aa2c88"
+    },
+    {
+      "file": "config/nba-protected-approval.json",
+      "sha256": "bdc205382638d587eb961480511b4783af4572b651c55a505732b807105152c6"
+    },
+    {
+      "file": "config/netlify-build.json",
+      "sha256": "136a570f3fcf7bd5f78885690c6eb61b767bb4bdad8835c1865f674081af8ca7"
+    },
+    {
+      "file": "config/nfl-history.json",
+      "sha256": "7c4ced71336f2cc2cc9c03bfed5561db57dfd4c66893a6105aaa07b1acb9347b"
+    },
+    {
+      "file": "config/nfl-hosted-testing.json",
+      "sha256": "6121bc892ee5374624218f61d133a4ac6695e5c7336c8c47ab06afe2b48e0dda"
+    },
+    {
+      "file": "config/nfl-postgame-permit.json",
+      "sha256": "3f78b4334b409f2610c71b55d0422d5c278d661da09b3c6ec7cb03c388d66f57"
+    },
+    {
+      "file": "config/nfl-seven-v1.json",
+      "sha256": "22b2d8d8330cbe3b7cff1a6ac64b0473d6441bf181490b74a763e5b4924d3eef"
+    },
+    {
+      "file": "config/operations/billing-ops-outbox-v2.prepared.sql",
+      "sha256": "b3e7ff04182b33f351c4c897550959ba3885c5f9960b1733a1a255ff5526e121"
+    },
+    {
+      "file": "config/operations/billing-ops-outbox.prepared.sql",
+      "sha256": "68dfd76393b817e728a5896a8d499719b6a5d8f3148fde7b80c19e2e970a6038"
+    },
+    {
+      "file": "config/operations/billing-ops-outbox.stop.prepared.sql",
+      "sha256": "aa5c6d107a06c5542e43f4055efdfd4858ad2fae1d04fe2dbad1774a66e337fa"
+    },
+    {
+      "file": "config/operations/recovery-vault-canary.prepared.json",
+      "sha256": "4aa07dfd7b43e2d0f62e0e7d71b35ce603c7c1f028cee36ddd8f94ad6ed50ddc"
+    },
+    {
+      "file": "config/operations/recovery-vault.proposed.json",
+      "sha256": "dcba1894299f1b81faf15deb81cef64b2cb45d68164c0f95e12522aefefc5236"
+    },
+    {
+      "file": "config/operations/v31-backend-approval.template.json",
+      "sha256": "2088d32ceb550f1dd2ebfa4deaa813f8ccceadc902f0163db84ac9da83c9dc40"
+    },
+    {
+      "file": "config/operations/v31-emergency-close.prepared.sql",
+      "sha256": "f868b9ae49ac7eb9947bbf9f2ee7863a82ce31ef59a55e86e266e11bf3487778"
+    },
+    {
+      "file": "config/paypal-hosted-buttons.json",
+      "sha256": "a2b502b443a6603cd3e8adb2ffe03a60a39dd0061bdf04f61b246ab77bc1e4e0"
+    },
+    {
+      "file": "config/production-email/supabase/config.toml",
+      "sha256": "708a5865e5134118ff8df7751f411defad4e4ee3d4f1fd9165e9ec20bfc5b775"
+    },
+    {
+      "file": "config/production-email/supabase/migrations/20261008121711_docked_auth_email_outbox.sql",
+      "sha256": "289806ab529f56cc516293312e2de64d187eff9ee8fd47001190f5232588ce68"
+    },
+    {
+      "file": "config/production-email/supabase/migrations/20261008133413_docked_auth_mail_scheduler.sql",
+      "sha256": "55c4c5096f057f751ca3f8d3378369598ab26f75b679c3fbf22084a95365c27f"
+    },
+    {
+      "file": "config/production-email/supabase/migrations/20261009061531_owner_mail_scheduler_permissions.sql",
+      "sha256": "2d02d375414f80f2ebfa4138f59afc88cc33c10008655ea2738a11316527f4aa"
+    },
+    {
+      "file": "config/production-email/supabase/migrations/20261009062145_rollback_unhardened_owner_mail_network.sql",
+      "sha256": "ff5db4e6e3a63926657ac9483d2a6590f28d1b82db9b2e56d585e8d60743df99"
+    },
+    {
+      "file": "config/production-operator.example.json",
+      "sha256": "af2ea3621d62849750e6f0d89b287361d87cc456b8d9412567f5d1b44d51a0f6"
+    },
+    {
+      "file": "config/roster-jersey-presentation-v1.json",
+      "sha256": "12e4c2d396b0480cfd3896ff4d94a8070177e094f99456267609df915ac8ee67"
+    },
+    {
+      "file": "config/scoring-demo.json",
+      "sha256": "3d84dd587e3614d20af2be70f26ec1a705784771b8afed61e80c9a34a45e074a"
+    },
+    {
+      "file": "config/store-credit-package-drafts.json",
+      "sha256": "760047296cf9d78320a95423ac082aff84d21cfca341feafdb4437fbd7d657ee"
+    },
+    {
+      "file": "config/supabase-production/config.toml",
+      "sha256": "1370f9e4cb45aec76caea7abb617b8c78c49c05003acbe291ddbb2560ea5e476"
+    },
+    {
+      "file": "next.config.ts",
+      "sha256": "bbc2d710f16df618b1a25c66d22cada107cb28d86ccf5119b67875d694b5a351"
+    },
+    {
+      "file": "package-lock.json",
+      "sha256": "76a9f3c7e11eba9c7cb040a5191fe713ceeef691aa7de1ec6f35844794e8074b"
+    },
+    {
+      "file": "package.json",
+      "sha256": "53f993b475a1e75750b13d72fe961758698b83731cc02d387579178791c03cc2"
+    },
+    {
+      "file": "public/brand/docked/admin/sidebar-football.webp",
+      "sha256": "3fe7d795b55e09a43a60beba751dae108bd8b36c78f27c6bce3394c0d6da6bf6"
+    },
+    {
+      "file": "public/brand/docked/admin/three-sport-banner.webp",
+      "sha256": "76894501617d75af645bf8e24ab7eef3106ba6ff2ca5f76e9fe25c1cf06c8423"
+    },
+    {
+      "file": "public/brand/docked/free-play-offline.html",
+      "sha256": "a39c253db6f8fc428f5ba897a5e3a632ecfdf1923d3c2959a046cd5ea340c39c"
+    },
+    {
+      "file": "public/brand/docked/heroes/docked-hero-stadium-desktop-1600w.webp",
+      "sha256": "a8b2f1ea3f1094e3d8ac8d5bcab2c853a6170694b686a56549bc04f0bfec80a1"
+    },
+    {
+      "file": "public/brand/docked/heroes/docked-hero-stadium-mobile-750x750.webp",
+      "sha256": "f30462e7a4c38c270ed4219e1117f360cc25967f806e6d0dd2b0b2101398b0a3"
+    },
+    {
+      "file": "public/brand/docked/heroes/docked-hero-stadium-tablet-1024w.webp",
+      "sha256": "c406c5afc1b719a5251f9fa6b84443715813a9849e88f77af8b20422f658539c"
+    },
+    {
+      "file": "public/brand/docked/icons/apple-touch-icon-180.png",
+      "sha256": "e28d5dff1e3da9b75dda67eee53612cf521cb96029f35efe374343ced2ebb750"
+    },
+    {
+      "file": "public/brand/docked/icons/docked-icon-192.png",
+      "sha256": "f7b821eaadf8b3e65427f171b6b2965d4214169172d07aa7529a4235fc28e12f"
+    },
+    {
+      "file": "public/brand/docked/icons/docked-icon-512.png",
+      "sha256": "73491d176a647c16257c7239906f14d5a20b6d3d6aaf1473035e40901454efa2"
+    },
+    {
+      "file": "public/brand/docked/icons/docked-icon-maskable-512.png",
+      "sha256": "a37846ec5edf2980244a9c04366795f20f80e5dc397b35c76a62c5c3f6987a2f"
+    },
+    {
+      "file": "public/brand/docked/icons/favicon.ico",
+      "sha256": "8ab6f2046c67ec837456b8db4e6a81c4c04e05eff43fd19cb3f5afa238ef1183"
+    },
+    {
+      "file": "public/brand/docked/logos/docked-logo-horizontal.webp",
+      "sha256": "fe28faf98a13ef2d6b24133c2831d7b631262188fab3184a951a4ac9bd36e7e7"
+    },
+    {
+      "file": "public/brand/docked/logos/docked-wordmark-compact-400w.webp",
+      "sha256": "2b867dfa9b627ab9595b3f5605346dd304b7458b4171f3699ec223cd5bbf3e4e"
+    },
+    {
+      "file": "public/brand/docked/logos/docked-wordmark-compact-800w.webp",
+      "sha256": "f70c68b43b45709db2320a2830129dbecd2245c1557cb1ca9a1ec1528a379134"
+    },
+    {
+      "file": "public/brand/docked/offline.html",
+      "sha256": "6be4c9cf36aab2c9e40d0b511c56412c8174c41bb751753625add9690c053a13"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v1/premium-480.webp",
+      "sha256": "75f49d1acc65252c8c756fb450f2db4777a5119289811127c1b2e9b10f447c1a"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v1/premium-800.webp",
+      "sha256": "5a34cd2806b8410d8d07d83bf4db55ff85ef75f8314504173a9ba97c6a1c6355"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v1/premium-nrl-9-480.webp",
+      "sha256": "d79b14a777fc4ebb24e0af3be9d5c52a58d96af8d71cd9ca3d5008791fc629ff"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v1/premium-nrl-9-800.webp",
+      "sha256": "2ccb9c9e5ef08ff59be5e75ede8c93b9d6823dc54e19b526769a5eaebaf23c95"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v1/standard-480.webp",
+      "sha256": "20c8bf9e24f229daef744c301f29fbb9a40b4e1a5ff3adf1b0681d144c643777"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v1/standard-800.webp",
+      "sha256": "720f7b8446c580e0d6e77d4f62c93d794d6bc355342705f9d474e10d68919c7d"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v1/standard-afl-9-480.webp",
+      "sha256": "7091af906e3189620aa3016148a5bfef972b3f62778a3c112d8cdaf3ca986a99"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v1/standard-afl-9-800.webp",
+      "sha256": "5a5a5161421bbcaf0e6b3d46618403bf3435510f484261612f39cfbe56008133"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-afl-1-240.webp",
+      "sha256": "37b4724e847468ed98ab2e5f56802cf24ecf4433f9e677bf71caf92187fdf6fa"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-afl-1-480.webp",
+      "sha256": "31b55aece873e9f69adf44ade930fdd1c35f7369fcb0fd1126f6587293443e9d"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-afl-1-800.webp",
+      "sha256": "8cbafd8a800d02fe9d8a5d2e7f160e3b8ce19d8610f4adb4bda324b5783c1293"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-afl-3-240.webp",
+      "sha256": "07ffaccaa11e09eb607765ad1d68ab63c613261ced6a5244536716e2d61b62a3"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-afl-3-480.webp",
+      "sha256": "8b036d3782d758901a137e3fdf2d0a693d8623a0704d1274e1423a55077a8e15"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-afl-3-800.webp",
+      "sha256": "5ea155e100240fb7b072613ecbf8124ecaa6893720b92cb25161b96093a7c684"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-afl-9-240.webp",
+      "sha256": "7b025e72b3e0e8789e610ed53e9e95bb6a0fa62acf7c8278c617df1481a2e8a2"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-afl-9-480.webp",
+      "sha256": "bd95fd220ea67a6513a01139cfef252fc75d57a8767e5e8eb6ee3f8a0660e7b5"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-afl-9-800.webp",
+      "sha256": "2aca5fd6577dc58f1046bbdbd954579e1a6c21b806b60118c2c5f653142a2d65"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nfl-1-240.webp",
+      "sha256": "656e804fac215ae7f0c27d774be890d2974aaec064d267d0d641b9da5307e945"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nfl-1-480.webp",
+      "sha256": "5548f8a45c19f29871693284468539e0c8cae6cd44fedfb8c9ca12681c3166d0"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nfl-1-800.webp",
+      "sha256": "7922db8ba505b4a30232db9b7b47a30659aa692961caaab3876335ff6dd36229"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nfl-3-240.webp",
+      "sha256": "a1a01f4930836533df211a649312ce1eba65938fdd69b9958cd60d2c5cd995f8"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nfl-3-480.webp",
+      "sha256": "5b3475fb43c7b7f9f372516f860fda8736eca3630d50081f7f78089d1d215b69"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nfl-3-800.webp",
+      "sha256": "b1f5d999b9db9d0dba4154507c67dc2dc49b5b81c8ebe3383ab574a5e808664b"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nfl-9-240.webp",
+      "sha256": "5c7f37a22ab0c68895c2b6b3bc002d50ad0055f85b07c13fb0f3082a93bdc602"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nfl-9-480.webp",
+      "sha256": "d6d862f157bfe3c73a426f03a4aaa35c8e16e2906b528969e1df11e6bbbce73a"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nfl-9-800.webp",
+      "sha256": "0401b86852353ff285591da481247e808bea739b0ef39a36e72ee6f36036f8be"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nrl-1-240.webp",
+      "sha256": "ebac04142c7b14535b55421e14f8a0e84e894d9d8e0a5cafe3d6bfd1fabed8dc"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nrl-1-480.webp",
+      "sha256": "cf8ff8bb6ade25c61eadab02e21c8ce48180ba3ddd1ebee03065c34a8baa19ba"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nrl-1-800.webp",
+      "sha256": "b4fb057e149c64acec67d0c50ac80a811a5eda1eb8858a5e4edcc85c6b54c706"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nrl-3-240.webp",
+      "sha256": "46ade5797689e8fc33672f5a6627bc488fb755b23621b5a056337154939740c0"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nrl-3-480.webp",
+      "sha256": "1afa11d6d3a77668e2fc6f67c114c5a55ef3ba955f87b42da17a0dfbb4d4f0b2"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nrl-3-800.webp",
+      "sha256": "b035a4b2f1a6d60a6777cc1fa8f4542f1e4ef489e527f680ad0ebc70c6cb95c6"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nrl-9-240.webp",
+      "sha256": "c53dcbc4a52b44e9c3eb5af14c56d4a14df83de54f02aa4b776889a4ff58d47b"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nrl-9-480.webp",
+      "sha256": "ded24999eff38523a9b4843401bd454278f748143b345186b658beaeb66a0cac"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/premium-nrl-9-800.webp",
+      "sha256": "f9807d45155f5c91e7d42b76c8b795d6e0c858c15cee225a8a597c59bfea7e41"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-afl-1-240.webp",
+      "sha256": "097a25f3a2dfc18c83f2f3539213edd72a1b5f28fd5ea1e1b9ec97e974b17812"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-afl-1-480.webp",
+      "sha256": "89aa4754f0b390b9f1c904faa8489dd4e78f6afc4f2c9fc25517122480b8653a"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-afl-1-800.webp",
+      "sha256": "72341f6bf3d9ffa6fced8852e730c17b9c377a2b1e6f9ace708e2839b9c23003"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-afl-3-240.webp",
+      "sha256": "86cd745e6541bc53002ea391edaa106581afffb4f24a1b910a52b4e1aa49d50b"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-afl-3-480.webp",
+      "sha256": "8883d4a912158fb55dfffe6286dc40b8520161db724f8578912fbe9e2e1f5eb6"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-afl-3-800.webp",
+      "sha256": "f992ad140fe03aa4ef9bc07fa9cd02fd33cb3b011785f27011e9c808c73adcb7"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-afl-9-240.webp",
+      "sha256": "42b3628e385d637eb7890138d0b9c1e9e1aad3c421cac973b6770c885fca623e"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-afl-9-480.webp",
+      "sha256": "6101605a3b210856fac33b62af1505f1206eaef5e4bc3911757f830926c5b491"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-afl-9-800.webp",
+      "sha256": "b191d0af16f32814c78cf642c322f24a21657a84dc4769475e5925dfbc30d6de"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nfl-1-240.webp",
+      "sha256": "d24c3379002d3212767f96827c4f3d3a5de45c34cb429c026768c92e32178015"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nfl-1-480.webp",
+      "sha256": "7f19f7bcc42fdd1b6db0a6bcb6202dbf18369d248ac619795b73620ad9c1bab4"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nfl-1-800.webp",
+      "sha256": "b30db3c7baadc7839b6a36009992807e4239653dc9bbcef14dde3aa14a6c8dc7"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nfl-3-240.webp",
+      "sha256": "589d753f2f9ca81f329d6267afe6b8a0aac30f0f3f4ac6f73b40e5d01a315798"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nfl-3-480.webp",
+      "sha256": "6d30db05ae025883d33b24337a93449e29a6cc5a0369195481208387f553374b"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nfl-3-800.webp",
+      "sha256": "5abdea70167e71e5a0f168aa3dc7b61abe5829fc9f7f11d02d0d3b7e35bbedd2"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nfl-9-240.webp",
+      "sha256": "ec7c9bcbb63c80062057abd7731dd5e93f9c511b4d26bfcac6cbd6af42465e3f"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nfl-9-480.webp",
+      "sha256": "35d10f982d60e925cd05bc88d4583eea5b9540005c79ab4065eed49a93a2cab7"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nfl-9-800.webp",
+      "sha256": "6848df0eaa8102b7f8e3819669133f6b540c0db75b26ea225c32c61f1fa249ee"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nrl-1-240.webp",
+      "sha256": "298895b09a072df95495bb54597751ee7a4bb0cc6bc17c118702550d413ff6c0"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nrl-1-480.webp",
+      "sha256": "f29b5e9c84148ceccf681c6d9566fde076d4777a4ba1f4efce2ba93adf337a22"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nrl-1-800.webp",
+      "sha256": "895cbc01a57fbc07efc49be1e542384efa78e7a2456ebc9f1b4e1f6c9484cb65"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nrl-3-240.webp",
+      "sha256": "c01a4ef1cc3bf3d8a5ce767e7ca700bd57f614ddc74901da9f8ed63d08e75375"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nrl-3-480.webp",
+      "sha256": "991dc7cdc837fd45953671885c447804d1949fcc7307c68809217ca787fc5ae2"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nrl-3-800.webp",
+      "sha256": "8ce903e8592b45dbba47c4f9647a0a0614eba8a31da4b1112b7ed7bf3aaa0faf"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nrl-9-240.webp",
+      "sha256": "2e04e959d7ee9ef18b350192804150b1dfcf4d4388fc61687a1dd9b75e8f10fc"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nrl-9-480.webp",
+      "sha256": "8b225c4fb1dc6b38a7def095a0ad6cd0d344054eac2fe068e19fd4e21c8646ff"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/standard-nrl-9-800.webp",
+      "sha256": "b8114bcb1341065fefa046650e38bd5d0f7fa6a0ba406a0395506be507934aea"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/starter-afl-4-240.webp",
+      "sha256": "f982ab1da227b49af55d0e3861935661b5237ab9e232bfb3f9d54f835d065430"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/starter-afl-4-480.webp",
+      "sha256": "74a50525f3d3a74ca2d4d8f2636d1196f0ec04ca3afda256b4d5aae5e7f49c10"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/starter-afl-4-800.webp",
+      "sha256": "5b82687675b297eb6b6c396724e7c0ca71a3bbc417a641b02064195d852d89fb"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/starter-nfl-4-240.webp",
+      "sha256": "68274524f1de0895bf7e11910842ad5363310d86b1a1da80c8b51d48aeb06d7f"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/starter-nfl-4-480.webp",
+      "sha256": "0ee87d6611f7b00f074f3b30ff7935a46f08fd331463e821154b7474c3868d6b"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/starter-nfl-4-800.webp",
+      "sha256": "4c058c49d094d36815ca8aba4a6712d6f8eb0b9d71d648d31d79f4f3be23ae48"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/starter-nrl-4-240.webp",
+      "sha256": "c23e38c7e089b276f33ebca33b73e3da7298605f980ec5c28ac82ca2776f7b20"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/starter-nrl-4-480.webp",
+      "sha256": "762cc65c2094750fd0e3a5ab2310c5d9338e7dc302fafa325244aacf87deb383"
+    },
+    {
+      "file": "public/brand/docked/packs/foil-v2/starter-nrl-4-800.webp",
+      "sha256": "196f567064c6c07b821e7f3cc33d4bc58ec99c611d8de7d409a23859d6d1ef9f"
+    },
+    {
+      "file": "public/brand/docked/social/docked-open-graph-1200x630.jpg",
+      "sha256": "03b22195f31d30726ebc374d031a21183c0547789b2561c6820906f6bd2d4063"
+    },
+    {
+      "file": "public/brand/docked/splash/docked-splash-logo-768w.png",
+      "sha256": "484b1cff12da70284e2bb6e278de9fb4f002950f5abff42b3e221455715a87e5"
+    },
+    {
+      "file": "public/brand/fonts/OFL.txt",
+      "sha256": "855bd3bf8c48eaa45d3c0bbc077a12c977f3ca9a8efb3124e049b9300d56837f"
+    },
+    {
+      "file": "public/brand/fonts/Sora-Variable.ttf",
+      "sha256": "84ff7096ae3ec6c8be47d906d1a0ba4de7f2ce78c615275c77301964a316e16c"
+    },
+    {
+      "file": "public/brand/nfl-turf.svg",
+      "sha256": "ff976af1af7327427570b085a2e5849e9fa0f204b3699f520f69f30b4bedfd89"
+    },
+    {
+      "file": "public/data/rosters/jersey-evidence-2026-10-23.json",
+      "sha256": "14f8b3a2a5838388f75ae39ca2b326e0313adacf8b3cd3b5552feb2490fabe5e"
+    },
+    {
+      "file": "public/data/rosters/wikimedia-roster-beta-2026-10-23-v1.json",
+      "sha256": "dec3486cd976b54cd2a3ced2bf88a5378a139e6d2d4788c6202562793b36a5d9"
+    },
+    {
+      "file": "public/favicon.ico",
+      "sha256": "8ab6f2046c67ec837456b8db4e6a81c4c04e05eff43fd19cb3f5afa238ef1183"
+    },
+    {
+      "file": "public/icons/docked-192.png",
+      "sha256": "d0468b13b73aebd7e1139edba1be64f0775afb8a302836f864fdf11a4da42645"
+    },
+    {
+      "file": "public/icons/docked-512.png",
+      "sha256": "52307bf2dd8d8cfeca76ff03c25070171bd23381d031d8c3ad2c2a87d3650223"
+    },
+    {
+      "file": "public/icons/docked-maskable-512.png",
+      "sha256": "f03a33912ca7beb335ea47aa1bbf9eff9bf096b5e184467a8aac51db5592a758"
+    },
+    {
+      "file": "public/icons/docked.svg",
+      "sha256": "06642b7e2ba06402dcd6d476b9cebebb0383c43121f40905541929edc3eee30f"
+    },
+    {
+      "file": "public/images/sports/afl.webp",
+      "sha256": "6d60feb969526c0af3cdce42141844249c2737aa2c5f470e83440eb42fef5908"
+    },
+    {
+      "file": "public/images/sports/atmosphere-football.webp",
+      "sha256": "201d3950922f8842e4b5e5d6fc5d917d35cfdfc999d5a8b6359681cff1b4842a"
+    },
+    {
+      "file": "public/images/sports/baseball.webp",
+      "sha256": "1548826b419794332cc9566bc4249e53130feb28b4b085eef5dd9779d79164dc"
+    },
+    {
+      "file": "public/images/sports/basketball.webp",
+      "sha256": "a077c6dd802eac8cd34ed6c2cdfc8d4b56b70375a642408d4cc024a0fb854a6a"
+    },
+    {
+      "file": "public/images/sports/cricket.webp",
+      "sha256": "9392193aa8a19506bb7d6bf5f0c7961858a4d25957de3cce9beae0f2e3abbb5d"
+    },
+    {
+      "file": "public/images/sports/football.webp",
+      "sha256": "edf1e5a7b2d26c1897610f2894d3ecddf9181c5c585088e57aa9f0e099931263"
+    },
+    {
+      "file": "public/images/sports/hero-football.webp",
+      "sha256": "c823b138874c6ab21aff447629183a75ae4413c0ae6d8b17fd0c8cf304f1f181"
+    },
+    {
+      "file": "public/images/sports/horse-racing.webp",
+      "sha256": "d7d05410364b764cefe1fed1e8edace10365f9536681a39e0f762161f3424838"
+    },
+    {
+      "file": "public/images/sports/ice-hockey.webp",
+      "sha256": "53ae7c91eefd4de8f7760a659548ca7f942fc18bad32ea3983ba03ac50f33bb0"
+    },
+    {
+      "file": "public/images/sports/manifest.json",
+      "sha256": "1c30d2ee3c8d603ad7bcf3380b891aaa735f48dc29d991ffc49bf3d2b5b77a18"
+    },
+    {
+      "file": "public/images/sports/motorsport.webp",
+      "sha256": "4cc5aae23c3e64dca82b6549224c59899d79fd14c7263a8a2e55abded8dd5d99"
+    },
+    {
+      "file": "public/images/sports/nfl.webp",
+      "sha256": "fdd8e318ad72083a8b7e5e0701001b2676be3fbeee02e47a0eb363cc1e694982"
+    },
+    {
+      "file": "public/images/sports/responsive-manifest.json",
+      "sha256": "1967e4f7ced1f983a063b00eeaa8cab6b11e372c6caf6b7fae49785e3a802177"
+    },
+    {
+      "file": "public/images/sports/responsive/afl-320.webp",
+      "sha256": "5310113cffa4a61359f62554bb94af102e17f535fc7c66beca69aa6af4f9998e"
+    },
+    {
+      "file": "public/images/sports/responsive/afl-480.webp",
+      "sha256": "2e1ff75ca20dd40c770006a0deb10a77dd5115166fb0a0432841039af8abf982"
+    },
+    {
+      "file": "public/images/sports/responsive/afl-640.webp",
+      "sha256": "b6de862add99c8825aa60aed4bd05870bc2178577aef63553c8e760bfd68dfe9"
+    },
+    {
+      "file": "public/images/sports/responsive/afl-960.webp",
+      "sha256": "63e2748d63dc322b371f4b298d5aea441a211078a7f96d823745c688d947a9aa"
+    },
+    {
+      "file": "public/images/sports/responsive/atmosphere-football-320.webp",
+      "sha256": "b94b1079ede37a80e7c0fb28a7a095317f600d6513ef9a21a9645e02e6d06e8b"
+    },
+    {
+      "file": "public/images/sports/responsive/atmosphere-football-480.webp",
+      "sha256": "0b5a89d239b3ecb3ef8d9e544f1073e6973cabdd7c68bf57dd950f4fea1264f8"
+    },
+    {
+      "file": "public/images/sports/responsive/atmosphere-football-640.webp",
+      "sha256": "1065659a706233af1d2099d96165f3c22ca5ceb5ef3a5dc612dd0ceb4f97e391"
+    },
+    {
+      "file": "public/images/sports/responsive/atmosphere-football-960.webp",
+      "sha256": "83ce95bac7d15f9ef20fb47b170defcc7ad440beec8366f4cbbe165af55b84e2"
+    },
+    {
+      "file": "public/images/sports/responsive/baseball-320.webp",
+      "sha256": "3787289ff95bc31b4a38504760470d27c5f00f67427f82c9e7dc427c584b775a"
+    },
+    {
+      "file": "public/images/sports/responsive/baseball-480.webp",
+      "sha256": "e8ecaa2cf9d845260a07a8c74f55dc4c2fe92f7f6d0ef254967609a38aa63c56"
+    },
+    {
+      "file": "public/images/sports/responsive/baseball-640.webp",
+      "sha256": "2275d560a140212ce458059c4fa3e1cc702b592aab99d8dd7e1226bf09203eda"
+    },
+    {
+      "file": "public/images/sports/responsive/baseball-960.webp",
+      "sha256": "b71c4f0d04b8160646e323df029ff95240c150373463dd8e0d93c8edfc28ee96"
+    },
+    {
+      "file": "public/images/sports/responsive/basketball-320.webp",
+      "sha256": "4c59d23f60d49870a0dd397d6bf8815549a72d8e751bdee8d9379898d5d8d3fe"
+    },
+    {
+      "file": "public/images/sports/responsive/basketball-480.webp",
+      "sha256": "fae2059105ac7b8835601c30ccf5e9e93779a795a124a8c0bf0cdf5b622fc495"
+    },
+    {
+      "file": "public/images/sports/responsive/basketball-640.webp",
+      "sha256": "6cc97806d335e5799592c9327fedc6cf2324efa46f99c60874e02f1df9313f62"
+    },
+    {
+      "file": "public/images/sports/responsive/basketball-960.webp",
+      "sha256": "5f4b4cbdababd9ec08eaf677583e0a8f515bcb94c60ef6d5e59717d3c220ad92"
+    },
+    {
+      "file": "public/images/sports/responsive/cricket-320.webp",
+      "sha256": "1c43be92a0e1e0fa91a2c7b3dd6685c10f6c01cc0079bae6ab2a17cf4a59238f"
+    },
+    {
+      "file": "public/images/sports/responsive/cricket-480.webp",
+      "sha256": "6cbd5879840cafc532a83d6a399cb32465dfb95157563f1a0ec8b13ae878f9af"
+    },
+    {
+      "file": "public/images/sports/responsive/cricket-640.webp",
+      "sha256": "3ce9e715cd1c1fc0e259d9fa98d8514a49175ed7a1715132ac062352c4a5e963"
+    },
+    {
+      "file": "public/images/sports/responsive/cricket-960.webp",
+      "sha256": "bbeb853e729c08ed9b8a17d225d5738d5645921db6dd95bf87ec3a45a29da8c8"
+    },
+    {
+      "file": "public/images/sports/responsive/football-320.webp",
+      "sha256": "ffb615c822a79baa3429671806e94bf15cbf34616dab8e4bc193b2e3ea804099"
+    },
+    {
+      "file": "public/images/sports/responsive/football-480.webp",
+      "sha256": "ad6b0e1b214b4ecd9c712d55721a0a48734728e05ad987faf71a79072aa9f95c"
+    },
+    {
+      "file": "public/images/sports/responsive/football-640.webp",
+      "sha256": "e9da2893f87d3ddfefe21df6c001951ad86698f677ffe5c50f5819b5dc8669f0"
+    },
+    {
+      "file": "public/images/sports/responsive/football-960.webp",
+      "sha256": "75ddd7a8cfeb8c3d5c9d85816d9ad4e9a92ea168303bd44ff93cbb212dfc6148"
+    },
+    {
+      "file": "public/images/sports/responsive/hero-football-1280.webp",
+      "sha256": "2a28b4f0cf15b01c015c92a3fcafbfb4af50287ec7290a3ab5858a4d3af39921"
+    },
+    {
+      "file": "public/images/sports/responsive/hero-football-320.webp",
+      "sha256": "e503b4af9d11e728595cd1422f07620a71f7271306d0173716d2c11021ccb5a7"
+    },
+    {
+      "file": "public/images/sports/responsive/hero-football-480.webp",
+      "sha256": "7f25186634d558e5a619d3a84462b2c400d9f289fea96d26ee289074eb90e912"
+    },
+    {
+      "file": "public/images/sports/responsive/hero-football-640.webp",
+      "sha256": "9bf2e2e3630af9fd59546b03bbf95d7be1f67bd9a6f61da1dba533e60b243389"
+    },
+    {
+      "file": "public/images/sports/responsive/hero-football-960.webp",
+      "sha256": "eb6d999d2bfba0b3085562a88fe4c4c61ce82f97efbfeacf57037764c37f56c3"
+    },
+    {
+      "file": "public/images/sports/responsive/horse-racing-320.webp",
+      "sha256": "f017985ba3f3fd0a1b6ff5e2c1d5f61a7d742542fd0f2dfd7914bbd89ba6b8a5"
+    },
+    {
+      "file": "public/images/sports/responsive/horse-racing-480.webp",
+      "sha256": "f979374137d76628d2f22b7f6c530f8ce5a6e6ccc8ea3780d2c4d69dd6758a8b"
+    },
+    {
+      "file": "public/images/sports/responsive/horse-racing-640.webp",
+      "sha256": "e05bd5a78a5d9bd6b4d41515c6adae6748dd94d14ba9d2b55985b1cc4cf93cfa"
+    },
+    {
+      "file": "public/images/sports/responsive/horse-racing-960.webp",
+      "sha256": "442da952842a68187429d54eb50a0d3e888c9715b845ac52c3b103f4b637d5c6"
+    },
+    {
+      "file": "public/images/sports/responsive/ice-hockey-320.webp",
+      "sha256": "51c3eab2d3d8f187ae1cc4ecb399f3aa49d45195a13c014ad69c26c77b98d006"
+    },
+    {
+      "file": "public/images/sports/responsive/ice-hockey-480.webp",
+      "sha256": "e1b46a98fb36e0eaf867356565011d9e92d8bd653db48ee75e26c8d74a578c69"
+    },
+    {
+      "file": "public/images/sports/responsive/ice-hockey-640.webp",
+      "sha256": "b6585eee7bbf94bd4479f3e2d91222d9af2c086eab534443813449caa6bb8fb5"
+    },
+    {
+      "file": "public/images/sports/responsive/ice-hockey-960.webp",
+      "sha256": "d1822bbb6e9815fe9487f508e07e99ae78a5bc717be4e6bb1402f387cfcd48b6"
+    },
+    {
+      "file": "public/images/sports/responsive/motorsport-320.webp",
+      "sha256": "05b81a8a480612fd2bf430aa147d088d44435b549699118adf521144d6ffa11b"
+    },
+    {
+      "file": "public/images/sports/responsive/motorsport-480.webp",
+      "sha256": "70b2d1bede88747d15ee25361c1e2e6fc278e043854498ea308f9276a41f5105"
+    },
+    {
+      "file": "public/images/sports/responsive/motorsport-640.webp",
+      "sha256": "1be0a01e84c7d351a41e68d61d951d5d35ca437f4b9f4415883eaa2317582e4a"
+    },
+    {
+      "file": "public/images/sports/responsive/motorsport-960.webp",
+      "sha256": "7f8c0390e4b6fd16692d5072bb77ff2cbbad4aea815504faa9648aed8ec361c0"
+    },
+    {
+      "file": "public/images/sports/responsive/nfl-320.webp",
+      "sha256": "2cf22abd09b83058ba1d9a6934e1320062e3a3dbd051de77117e5aff39b08e32"
+    },
+    {
+      "file": "public/images/sports/responsive/nfl-480.webp",
+      "sha256": "1a4f82f04e79756e1a61167e6a2c2c0dc406cf674f2a5592b26e7ccff2708386"
+    },
+    {
+      "file": "public/images/sports/responsive/nfl-640.webp",
+      "sha256": "b616fb18010fb92cd16c6d770f64e5f6cb0ade6d56d3f660bd77f9aed1025c0f"
+    },
+    {
+      "file": "public/images/sports/responsive/nfl-960.webp",
+      "sha256": "1a3ed4ba8cf17c5dfa7e85e6812fa85be6d864403d999e4e516bf5345371cb0b"
+    },
+    {
+      "file": "public/images/sports/responsive/tennis-320.webp",
+      "sha256": "a1fc1fe41a2e0415e46d707ae97e1914398db5af32fa9e3b304fc993803758fa"
+    },
+    {
+      "file": "public/images/sports/responsive/tennis-480.webp",
+      "sha256": "4c9b07771939e954140aff1c9e49584eb6317d595dd8d8cfee64d831ce93e262"
+    },
+    {
+      "file": "public/images/sports/responsive/tennis-640.webp",
+      "sha256": "627ef0c9d69c87518cd8388b327fb7fa2b821c042e8479d8e2a6a2ba06301489"
+    },
+    {
+      "file": "public/images/sports/responsive/tennis-960.webp",
+      "sha256": "f180eaf8d46d2c1d8a5d976c38c135ea90aeecbce6bfcea2d959d9b6619917c3"
+    },
+    {
+      "file": "public/images/sports/tennis.webp",
+      "sha256": "d883a20704b493d23c4c9974497e199c9ee1d27f607b22534cc8a24ede0b725f"
+    },
+    {
+      "file": "public/offline.html",
+      "sha256": "4a407244e409693f1f5ca22554f165852828110462a2debb050d402bbf8dbbcc"
+    },
+    {
+      "file": "public/social-card.svg",
+      "sha256": "414b3c78e2df25c6fd756564d36a8efc7424c7f8831705a12a4fff291cfeca2b"
+    },
+    {
+      "file": "public/sw.js",
+      "sha256": "b3104fe3b443d068c5ec76cfbb20b66e8d4e5ca7d30f77d7b1f238880d5adc5a"
+    },
+    {
+      "file": "scripts/guard-hosted-build.mjs",
+      "sha256": "5eec731d553cd21f19f142150232cbd66cdabef741fc788b20fd4d179076999f"
+    },
+    {
+      "file": "src/app/[section]/page.tsx",
+      "sha256": "7f6005d4ce52515d08584fae9b0386a324fa3a51b5ab7118707a63081c01dc65"
+    },
+    {
+      "file": "src/app/account-deletion/page.tsx",
+      "sha256": "c52d47994020360943c831e019d066173517188e5319d7e52121a86a13e71fdd"
+    },
+    {
+      "file": "src/app/admin/analytics/page.tsx",
+      "sha256": "0c4b2d4e7aa4a39c984b2032c73487f86f8fca705dfe60a70364f80d03b85133"
+    },
+    {
+      "file": "src/app/admin/commercial-billing/page.tsx",
+      "sha256": "aa4cafe94e10192ad1bfb9382fb7cb82c6a11134e1c2701969d7d1ddc1ce6b6d"
+    },
+    {
+      "file": "src/app/admin/community/[section]/page.tsx",
+      "sha256": "cf0a1350f78586d6d1c97d7ad1d967f011cc04823821323cdb48694388fa2ad7"
+    },
+    {
+      "file": "src/app/admin/community/page.tsx",
+      "sha256": "2e7e5f7af699903499f74f8a61483471cf43efc05974cbb0617cf61b0b2fef85"
+    },
+    {
+      "file": "src/app/admin/coupons/page.tsx",
+      "sha256": "94614fbad97346170cbd6b3a5810c89f7a31983be308f0038d336a45ecc92daf"
+    },
+    {
+      "file": "src/app/admin/identity-verification/page.tsx",
+      "sha256": "c54f931aef55ebff82049e95ce0e3e05ec3b3ba679b89de2d29ed2e98cf95c27"
+    },
+    {
+      "file": "src/app/admin/incidents/page.tsx",
+      "sha256": "4436227bccc0633b03a00af2154c3ed1d86704b797182dee1799c1208b7b8fd7"
+    },
+    {
+      "file": "src/app/admin/ingestion/page.tsx",
+      "sha256": "c9b4ce21da2240437b99a32418bcf2a940f2b7db2f7de4a4a54f536490059f1d"
+    },
+    {
+      "file": "src/app/admin/marketplace/page.tsx",
+      "sha256": "47299330b9efe06d1354b27604ae7257a0037935e0f5673e30abc01aaba3ae4f"
+    },
+    {
+      "file": "src/app/admin/member-release/page.tsx",
+      "sha256": "d8aaf3f2f99c2711c755a70eb6498afb66b3279033d1c0e648897b737a30c2ae"
+    },
+    {
+      "file": "src/app/admin/nfl-history/page.tsx",
+      "sha256": "a4cf9a0a012d1b4a6db921d8454d12b0be084b04278598de2fb1078e704ea4de"
+    },
+    {
+      "file": "src/app/admin/nfl-testing/page.tsx",
+      "sha256": "c6426b5c60937550fa8b1d057964d5bfe4c2bd0e7584558865191382e5c3d563"
+    },
+    {
+      "file": "src/app/admin/operations/page.tsx",
+      "sha256": "64870274a9e91a2753e9ab277c406e8e5f52be0e1be7ba8346eb70b4ba5314fe"
+    },
+    {
+      "file": "src/app/admin/page.tsx",
+      "sha256": "a80c557b4b449022e47204cc7534d3ba476f556bb5c457bcbf6410acca72dcd6"
+    },
+    {
+      "file": "src/app/admin/preview-testers/page.tsx",
+      "sha256": "e72d26c7d91f9827381b7437c416769f966811de98d785014d1a345a12413e2e"
+    },
+    {
+      "file": "src/app/admin/redemptions/page.tsx",
+      "sha256": "2abfc282f7f7a523139f729616ee90a10802ee9590d2aeed7608a2d46917fa79"
+    },
+    {
+      "file": "src/app/admin/sports/page.tsx",
+      "sha256": "d4428fc440528956f322ecbdeadf5eb9defd916bdeba8e4805e21716aefe32c2"
+    },
+    {
+      "file": "src/app/admin/workspace/[section]/page.tsx",
+      "sha256": "b4fd2ece95ccc1c18e0620af71ad36f42de07de33134015af92ed5d1d09e15a7"
+    },
+    {
+      "file": "src/app/api/admin/announcements/route.ts",
+      "sha256": "4a72feebc15a55ba5cd24af41121b492698f5d0e671faf8153443d2153213cb0"
+    },
+    {
+      "file": "src/app/api/admin/commercial-billing/route.ts",
+      "sha256": "f83cedb8fbf768a11b81c1f2e7cf99bbc6c695d6585cada96cb5e9d620f13207"
+    },
+    {
+      "file": "src/app/api/admin/community-analytics/route.ts",
+      "sha256": "2426c87e8c7aeff2adf747f83817c827ec80dbc396a63454f15d78fc00e92377"
+    },
+    {
+      "file": "src/app/api/admin/credit-requests/route.ts",
+      "sha256": "d92539e6d1453ce34ea316f9018685cd6de7914006560f3ca4a90c90f6fa1f2c"
+    },
+    {
+      "file": "src/app/api/admin/health/route.ts",
+      "sha256": "4db414c7208f5e6f39c44a15f248e23f34df49bfde72e8067454d257e4238cbf"
+    },
+    {
+      "file": "src/app/api/admin/incidents/route.ts",
+      "sha256": "f35e90fef76988e5d5ee9691ffd1153957e6b6a978f0932f72926a5fba563cdb"
+    },
+    {
+      "file": "src/app/api/admin/marketplace/route.ts",
+      "sha256": "a7a3bd62193efd16d43ee60a21a2c35463a1aa2a649c5a669f2f302804d064e5"
+    },
+    {
+      "file": "src/app/api/admin/member-release/route.ts",
+      "sha256": "0fa5e1c2b7f8b05550a778d409b08b7ede57053f3fb4e856a74c53f608da53fa"
+    },
+    {
+      "file": "src/app/api/admin/moderation-cases/route.ts",
+      "sha256": "e82195af4a08b51d417a5b1c026ea3a8423c7cdc3a1f413704a2ba278348dfc8"
+    },
+    {
+      "file": "src/app/api/admin/moderation-retention/route.ts",
+      "sha256": "7e2545020461989169e84a3fd113c15de9e2e7583ae0289028e10b8dd0af8097"
+    },
+    {
+      "file": "src/app/api/admin/operations/route.ts",
+      "sha256": "a2af37e6e00f35d2ab33c118fa3a7817c8bb36fce3768ab23530b56432c3411c"
+    },
+    {
+      "file": "src/app/api/admin/pack-coupons/route.ts",
+      "sha256": "56a6510c672b390741f0fc4b9e9e1d1e969d8860a77c74dc60a2ee2a45707383"
+    },
+    {
+      "file": "src/app/api/admin/preview-testers/route.ts",
+      "sha256": "328e11bd77e94eb6449fc9221f3aa7d60e5a271f00f5f07b0136cfd139694277"
+    },
+    {
+      "file": "src/app/api/admin/record/route.ts",
+      "sha256": "67493f914da848e90492eef684451f7d41f03f1ca932f0952fe9f1fc06fbbe3e"
+    },
+    {
+      "file": "src/app/api/admin/scoring-retry/route.ts",
+      "sha256": "194377b35b82131f19ead63ad88696012042d5b4d41de1e1ab33a3407bf57012"
+    },
+    {
+      "file": "src/app/api/admin/search/route.ts",
+      "sha256": "bad2d319bb8b0617a368a59404aecc7668c0311b73daf71c07200270754b5591"
+    },
+    {
+      "file": "src/app/api/admin/sports-readiness/route.ts",
+      "sha256": "c82192e1bddb66b9783777d27a04e961bd2b700b56acb28bbe9fe19c26ad423b"
+    },
+    {
+      "file": "src/app/api/admin/sports-sandbox/route.ts",
+      "sha256": "b31942a8c4f60697d4aa519ed0e38de245cc0e4c7662e81533eef86be6949648"
+    },
+    {
+      "file": "src/app/api/analytics/route.ts",
+      "sha256": "5c1edc547fd1384571d1da5c5309fd312a1e6f0b67cd92e228b3f0c73db5f45d"
+    },
+    {
+      "file": "src/app/api/app-session/route.ts",
+      "sha256": "4d9dba2d77bf9ed608d88eb2c92202a2fdc0d696de8dba6adc13e575ff7c0562"
+    },
+    {
+      "file": "src/app/api/auth/customer-invitation/route.ts",
+      "sha256": "f25e5dc6215b0aecba81c6d14e0c674cd95cabde52498b30abd1becc5b8239db"
+    },
+    {
+      "file": "src/app/api/auth/customer-signup/route.ts",
+      "sha256": "9875df88d7c4ce04d1c117dd55fe9afdf0383f41f586dcbddaeb07c07a060028"
+    },
+    {
+      "file": "src/app/api/auth/invitation-setup/route.ts",
+      "sha256": "e973ffe584f0d97fe5cd8d0616b02172af17f48f8024f50857185f919db3ca8d"
+    },
+    {
+      "file": "src/app/api/auth/phone/route.ts",
+      "sha256": "f0ac2c94e069830045da82d0d34b506655ac234e711304e29944bef724231292"
+    },
+    {
+      "file": "src/app/api/auth/public-member-setup/route.ts",
+      "sha256": "dedeefe38b8c7d6a1d75fdbbe823147f9b62d63d8f0a83d366c5befdd5efa2e4"
+    },
+    {
+      "file": "src/app/api/auth/route.ts",
+      "sha256": "77fe901c1ea5c8ffb75b90092eff3733dee382df6b40d0fdceb0d38d2f4ca5ab"
+    },
+    {
+      "file": "src/app/api/beta-release/route.ts",
+      "sha256": "c607b42363e05090dd7ea25264c13bdce336d695a321a071c98cd286079ccc1a"
+    },
+    {
+      "file": "src/app/api/beta/invitations/route.ts",
+      "sha256": "beb25a76e91749d15580c2e02ad19aac1985d96e7e14568afdd768d287615562"
+    },
+    {
+      "file": "src/app/api/community/route.ts",
+      "sha256": "5ef20da1ed32512bfbe1dbe558a67a5f8fd1d8b5a8b80e251dc268b04968d070"
+    },
+    {
+      "file": "src/app/api/fantasy/auto-select/route.ts",
+      "sha256": "bb86a315e61dc1b564c59ef0b5eda01464d82365828dba3f917a868e91eb9d57"
+    },
+    {
+      "file": "src/app/api/fantasy/card-history/route.ts",
+      "sha256": "f74a6fb755b31164d66d8efbe43b80eea2fc43d1dbc9b2c4ec1225b5400daf00"
+    },
+    {
+      "file": "src/app/api/fantasy/collection-export/route.ts",
+      "sha256": "3936aee041c43a6e10ca36c6af68c2d76d5887b6007aaa5a6362f0bc5e30ba7a"
+    },
+    {
+      "file": "src/app/api/fantasy/collection/route.ts",
+      "sha256": "b794a2260b445134e2e7857b14f31a4d00ab7126c0cb396aa2728481dcb4a8a0"
+    },
+    {
+      "file": "src/app/api/fantasy/lineup-history/route.ts",
+      "sha256": "4a62d5457a3ab2ffe7d4797042c4721ef6b2ee96ba180bef29eb1193e546c155"
+    },
+    {
+      "file": "src/app/api/fantasy/market-proposal/route.ts",
+      "sha256": "aa96b7b0c6c40f906c80d717dedac199c309f7dd1edb0957581371f655e5a65a"
+    },
+    {
+      "file": "src/app/api/fantasy/match-history/route.ts",
+      "sha256": "0314fc210a3d7026f9a04c46e6fafe1e721415332a5a8c95e9d05d06a4dfe597"
+    },
+    {
+      "file": "src/app/api/fantasy/results/route.ts",
+      "sha256": "4d7bc99b969b08405aa7e8ae4763a2757be08f79def4cb5a69d167f8640ace32"
+    },
+    {
+      "file": "src/app/api/fantasy/route.ts",
+      "sha256": "630e8eee8421d0910ae13c7d676dd883184564f98d19ad5bc691ccd775ec8921"
+    },
+    {
+      "file": "src/app/api/fantasy/scoring-history/route.ts",
+      "sha256": "2351dc21dfd31ec7298e7b4bda8407d9753d1c68ad02ecd0a3bc25176cc363ae"
+    },
+    {
+      "file": "src/app/api/fantasy/standings/route.ts",
+      "sha256": "45e9e4e9d764f05e8d46e79b1892d1aa38ddae6c0628218850eebd86279137fc"
+    },
+    {
+      "file": "src/app/api/fantasy/starter-history/route.ts",
+      "sha256": "58cb128339084dab22c08d911ac33a9a4ccf6b1f424a22121949b5a9229fa802"
+    },
+    {
+      "file": "src/app/api/fantasy/swaps/route.ts",
+      "sha256": "bfd681ba897e4ebeac9aa8c8f1a55dbcc7224a9525277c44be5aedc5e497f57e"
+    },
+    {
+      "file": "src/app/api/identity-verification/route.ts",
+      "sha256": "27192bdf19ad5775a9d836f3d5988ac68d62740e9b6328a644f7cea54f6ced27"
+    },
+    {
+      "file": "src/app/api/internal/billing-retention/route.ts",
+      "sha256": "2b673c89690c2bc39292777d2fc7fb6ad4ecf5cb26d90566a8b678b6971ae2da"
+    },
+    {
+      "file": "src/app/api/marketplace/quote/route.ts",
+      "sha256": "ea828ec9100db33f5eee3f4c74353e7ba534e2b55b3f191d956bad793996f00f"
+    },
+    {
+      "file": "src/app/api/marketplace/route.ts",
+      "sha256": "f9ff7ff9240afdac2950e565c67779897ad6efe64012992dd242d36aaeabcdee"
+    },
+    {
+      "file": "src/app/api/member/route.ts",
+      "sha256": "ac3507a4328a4eb89335b21f88998eeb7af912cb59a361510f1876598bd6bb14"
+    },
+    {
+      "file": "src/app/api/mobile/capabilities/route.ts",
+      "sha256": "d38dab8adb1691a266b0d5f5bf0b961c19024a9a531f4fea9014d5f975b1d96e"
+    },
+    {
+      "file": "src/app/api/nba-beta/route.ts",
+      "sha256": "c78a5f9925487fa9495cf8b9cabcbb83b2548668d0a1472d65de33291f1b60ff"
+    },
+    {
+      "file": "src/app/api/nfl/history/import/route.ts",
+      "sha256": "55a1f051608ce6fc31b086af7872310b15cae82ff8468576533faf5d62389164"
+    },
+    {
+      "file": "src/app/api/nfl/history/status/route.ts",
+      "sha256": "d5c38c70b7c8087c472bbf7559a0a2c2c0fd0ac8db381bee551ccdcd70a8d786"
+    },
+    {
+      "file": "src/app/api/notifications/push/route.ts",
+      "sha256": "85e59a237ea04966f4a491b3adc42ce3c6f815aa6658003ad06dbab889dafcb4"
+    },
+    {
+      "file": "src/app/api/notifications/route.ts",
+      "sha256": "14abdf2f2273be81b362aea73f33ff44c9c4cc1184d41e1195e350c5bd6b622a"
+    },
+    {
+      "file": "src/app/api/notifications/sale-push-worker/route.ts",
+      "sha256": "df9ec227d79d114d2787d6421455c86dd2abea7700b1c5e3da53f355ea20d7de"
+    },
+    {
+      "file": "src/app/api/pack-coupons/route.ts",
+      "sha256": "dca3ea74fabf934bea016dd8229cda60c1159b1ca17029d813593f80bb93b1b8"
+    },
+    {
+      "file": "src/app/api/profile/collection-record/route.ts",
+      "sha256": "ddda21123c7af78b82ac8ecb65a4b82d136f5439a1a0798ba667571cf643b042"
+    },
+    {
+      "file": "src/app/api/public-gameplay/route.ts",
+      "sha256": "3e9e27afcaac0e0560c0cc932887b4c49d592bda992a4a9f00e239d7237ed182"
+    },
+    {
+      "file": "src/app/api/redemptions/route.ts",
+      "sha256": "af611f9372ad4ba70f15ffddbb4e1dc70e0ee021df6d47562d956978c6555996"
+    },
+    {
+      "file": "src/app/api/scoring/collect/route.ts",
+      "sha256": "1f03d8fba9a9eb61ff7b91a12093298660dd6951fe0a7d02824ed8737138facd"
+    },
+    {
+      "file": "src/app/api/sports-beta/route.ts",
+      "sha256": "65ca5c0802845fc97b6c480c8043b0e84e8186c88dc6ef2fdc939d8925a6baf3"
+    },
+    {
+      "file": "src/app/api/status/route.ts",
+      "sha256": "5c3f4d98abd594f8a63c14a75f822bf3326878655b3b0b0e2e5b663ec6cc938a"
+    },
+    {
+      "file": "src/app/api/store/google/commercial/notifications/route.ts",
+      "sha256": "16f3b3d58de621ce339bd6da1a699857ddc77d9c083f6c21577465a8aed306d4"
+    },
+    {
+      "file": "src/app/api/store/google/commercial/reconcile/route.ts",
+      "sha256": "2bfd55bda0a953c31ba1760397ca599cc21079b525e3401c1c863032d55c09ac"
+    },
+    {
+      "file": "src/app/api/store/google/commercial/route.ts",
+      "sha256": "a0ebe21660b6c3975d2fd562f01ba3c9e6f310b6ac697dd75b633120c6f4a817"
+    },
+    {
+      "file": "src/app/api/store/google/notifications/route.ts",
+      "sha256": "699a82d9b6c3d990c5e8988153ec96eae0198ef9969a5c3f943027b5d1edf556"
+    },
+    {
+      "file": "src/app/api/store/google/reconcile/route.ts",
+      "sha256": "8f68768b05a63ecf3fd2dca69946684c5e8b2e252335fa9a14712fd100f6f6db"
+    },
+    {
+      "file": "src/app/api/store/google/scheduled/route.ts",
+      "sha256": "2cf881fe20e37fea7e0edf40ee765d49b9b2cc558220131d22a8a850d3a2f199"
+    },
+    {
+      "file": "src/app/api/store/google/test/route.ts",
+      "sha256": "a5ab5543f14c2187058ea723e68ae57c2e5f025bb7ab9127c50522236a29d9da"
+    },
+    {
+      "file": "src/app/api/test-wallet/route.ts",
+      "sha256": "29b01a7d4e5311d2b12758cb8c9ba719a20c786a2a5ff9cee130fbd32e038316"
+    },
+    {
+      "file": "src/app/api/testing/nfl/import/route.ts",
+      "sha256": "fe70cd287e6c3ca43d78302ec3153b5b2fbd94340a0dc520351cf89cc60bae1b"
+    },
+    {
+      "file": "src/app/api/unsubscribe/route.ts",
+      "sha256": "813ae5ea60183e1d3813398fdf9d1b018eba178e64817890b9e505ae735a2855"
+    },
+    {
+      "file": "src/app/api/webhooks/email/route.ts",
+      "sha256": "0d6ca2682b554ebf489e51c3c2e3b47268d90183e4a94324ebbec9139063f02f"
+    },
+    {
+      "file": "src/app/api/weekly-core/route.ts",
+      "sha256": "a51dcec761fb376749654dde6c8ec6fce0a7b836f4575b28a0dd8be52f1415ea"
+    },
+    {
+      "file": "src/app/api/workspace-wallet/route.ts",
+      "sha256": "d7061d3705849ee06c346a64dc0368aa3e029f51c7739076d950c7d77d6018e0"
+    },
+    {
+      "file": "src/app/app-auth.css",
+      "sha256": "18f3853768cdc6eb6c26e0dfbf98338420ec2d7b68cfa4ec12eeef6ccf544545"
+    },
+    {
+      "file": "src/app/app/check-email/page.tsx",
+      "sha256": "0abd233486d8e3a8415d02dfb47453b0826fc3089d8985c831913a1c6094952d"
+    },
+    {
+      "file": "src/app/app/email-change-pending/page.tsx",
+      "sha256": "e8b18326797e73854727ef30e1192135d136bea7a5684d11412bf1762594f614"
+    },
+    {
+      "file": "src/app/app/error.tsx",
+      "sha256": "2ae46c27598bdf97437882437098e9278f959fa944952176f19f121f50f07dfc"
+    },
+    {
+      "file": "src/app/app/forgot-password/page.tsx",
+      "sha256": "88fd031abcb1e581ef1b24ddc8cf062aa469a24003820b4ab207fa33023e08da"
+    },
+    {
+      "file": "src/app/app/invitation-setup/page.tsx",
+      "sha256": "6314a79af68aca68fc03fd30f0cae2ec64727d41515029a220612c9de608e9d9"
+    },
+    {
+      "file": "src/app/app/layout.tsx",
+      "sha256": "dfec7f45a1ef392099989604c42ea3b2c5ffd43de52713e2ac1e4fe686303f88"
+    },
+    {
+      "file": "src/app/app/link-expired/page.tsx",
+      "sha256": "be2ae668d5beeab2d5271c3f08c93911aab1c0795b183b4d11ecee2b7c5aacc5"
+    },
+    {
+      "file": "src/app/app/loading.tsx",
+      "sha256": "5c33ab7f931671ba70f735217a2fcd922f1978a5a0446e72cc3e81a0deb6c53e"
+    },
+    {
+      "file": "src/app/app/login/page.tsx",
+      "sha256": "bc1bede1e349e6be6bca7caeee4b02d02f1e531decc0f146ae12012db3ca2b18"
+    },
+    {
+      "file": "src/app/app/onboarding/page.tsx",
+      "sha256": "15c654dda91a313be0b144f7752e6c55c0d767eb2a5948e15ae15403dae0b28b"
+    },
+    {
+      "file": "src/app/app/onboarding/public/page.tsx",
+      "sha256": "f7ec3aa6ea5f6db47366d2bab3a14bb30d0460f26d17f1cc6a76ef33d9aadadf"
+    },
+    {
+      "file": "src/app/app/owner-setup/page.tsx",
+      "sha256": "452a9097653becad997d61fbbd5fd7044b7c96075074da577bdb34eb84bfe72a"
+    },
+    {
+      "file": "src/app/app/page.tsx",
+      "sha256": "7c72bc3fe8b84faca1b92b6a345ec86f033d7ee4ea7d109b7227858f5a44c265"
+    },
+    {
+      "file": "src/app/app/password-updated/page.tsx",
+      "sha256": "eeb9ce316a18b74c0f5212701e59b9df004bbeb84e885fbcff90c805092df9d4"
+    },
+    {
+      "file": "src/app/app/preview-owner/page.tsx",
+      "sha256": "dfdeeb1279a15cc319337c017519fa94c4ee2acfc9f9ae215534d6ba5917145d"
+    },
+    {
+      "file": "src/app/app/reset-password/page.tsx",
+      "sha256": "92fb77a02a0894f97f1bac7ce05019c6af2beaa0b804b74e7171f779e9643ec8"
+    },
+    {
+      "file": "src/app/app/signup/page.tsx",
+      "sha256": "306cb47d9ef076f45eeec52eff1d9dbbf1fdd44df24652183af68c0dc8803a12"
+    },
+    {
+      "file": "src/app/app/sports-preview/page.tsx",
+      "sha256": "bf025f125d6e7697a802b658670868d5e35c70382600252b7a25a6f758c7287e"
+    },
+    {
+      "file": "src/app/app/verified/page.tsx",
+      "sha256": "12822cd95a3ca404389bcdb86e6b24660777330a1f66140e0744e5a96469af15"
+    },
+    {
+      "file": "src/app/app/verify-phone/page.tsx",
+      "sha256": "ab6be1641b203a4f345c284788156f345a02e61f8173fc1a84df808ff76c3dd0"
+    },
+    {
+      "file": "src/app/apple-icon.png",
+      "sha256": "e28d5dff1e3da9b75dda67eee53612cf521cb96029f35efe374343ced2ebb750"
+    },
+    {
+      "file": "src/app/auth/callback/route.ts",
+      "sha256": "852dd9667cfc377b8158e232d957bbb19e5055e427bc11a4ee4852d7d21fd43d"
+    },
+    {
+      "file": "src/app/auth/invite/route.ts",
+      "sha256": "521976d81f6f27052d8845a7c49f9ccf758031f13e3ca71d9bf0de1c10b4c9f7"
+    },
+    {
+      "file": "src/app/auth/recovery/route.ts",
+      "sha256": "52e3e93b30534443aafc35d89eab4d959ae784965f8fb6e4daab5c07d9ebd43a"
+    },
+    {
+      "file": "src/app/auth/verify/route.ts",
+      "sha256": "38b5819c62c9cf8268d7add7591f0d45adc70053b05752111f0f329fd24e1b48"
+    },
+    {
+      "file": "src/app/beta-experience.css",
+      "sha256": "ff22308d6d8029d4c0f5305441189919b06326eb64aaf69d498a070c5613a2ca"
+    },
+    {
+      "file": "src/app/beta-policies/page.tsx",
+      "sha256": "cc81cadefd31b761fd03021b5b806bfe87610efcfaa1dfafecb546321cd97828"
+    },
+    {
+      "file": "src/app/brand-theme.css",
+      "sha256": "cd70959d9a4ddb87760e086f9ae9797e8b2ab4b71b7d4614b32b76769b4f8da6"
+    },
+    {
+      "file": "src/app/card-viewer.css",
+      "sha256": "6fedbfdb4db6fc3d231cb49ca4d6c46f8e7ab462d61403fc0356f80e3e5d16e2"
+    },
+    {
+      "file": "src/app/collectible.css",
+      "sha256": "c93a65f4ed1b77b1a8a0935ab78720d5b7d109d52a79bf933a7d3a15e798aad0"
+    },
+    {
+      "file": "src/app/commercial-policy/page.tsx",
+      "sha256": "c3da49533a6a3aa933145fa0779a81b35d529967eaa915ee22192ecd97ef87a1"
+    },
+    {
+      "file": "src/app/community-app.css",
+      "sha256": "7c539d71cc7612e821f4853b75f4b6e6acd52e71f414f5b8bd1101faf7e0e42f"
+    },
+    {
+      "file": "src/app/community/[post]/page.tsx",
+      "sha256": "b22464228e1d8ed701722d3393bf5a9b36a47e878e9aae44529a30577698ebaa"
+    },
+    {
+      "file": "src/app/community/page.tsx",
+      "sha256": "7944cd85f67f8ab74edd2d344571eb755314e2e6678d9b98ef338f0716e3f890"
+    },
+    {
+      "file": "src/app/community/posts/[id]/page.tsx",
+      "sha256": "33789e53623efa82c44b72718cb3f4654dbb52f0ed04c73dae68be6e5e9e5778"
+    },
+    {
+      "file": "src/app/competitions/page.tsx",
+      "sha256": "8e63947c95c3fb638b76c8180b3b3cedb6408705ed88b73834aef17d8f1ce411"
+    },
+    {
+      "file": "src/app/compose/page.tsx",
+      "sha256": "59202a04af528380c61b5e48dddfeb3e5a935867e15a8b1a05d6be43a945facc"
+    },
+    {
+      "file": "src/app/dashboard/page.tsx",
+      "sha256": "d8f55f16058b3a8729b4fdce7f23a37657fefe35e10345a394cf6740cb19e460"
+    },
+    {
+      "file": "src/app/error.tsx",
+      "sha256": "7d376a766c74a14fe57453f11705d15e3549d55957cb32cb6755037e540f0d06"
+    },
+    {
+      "file": "src/app/fantasy-play.css",
+      "sha256": "222596be1b0c753b216f07755d2de70317e242824e1a4f663e2647839da202d9"
+    },
+    {
+      "file": "src/app/fantasy.css",
+      "sha256": "85214c87df19d611e3667f61b810918a7a5fd7218dfd8635b7afb774e6a74691"
+    },
+    {
+      "file": "src/app/fantasy/[tab]/error.tsx",
+      "sha256": "141f5ddf7458f7125f213b643e9841a8d4d4ed3fd0057d5ddc97432bd487416a"
+    },
+    {
+      "file": "src/app/fantasy/[tab]/loading.tsx",
+      "sha256": "a0d1f1474279422789f1f0a2ce5f9d6a209ffb96a9381bce3a913e33c8b4bd40"
+    },
+    {
+      "file": "src/app/fantasy/[tab]/page.tsx",
+      "sha256": "3b84addbb8bbae475cb384fdde6b3cbc359fed446047d7db875141209e294c87"
+    },
+    {
+      "file": "src/app/fantasy/announcements/[id]/page.tsx",
+      "sha256": "7d238e3ea2586be9e72e7da509cca3b9a73f4a85e36d32116031dcf101a91309"
+    },
+    {
+      "file": "src/app/fantasy/announcements/page.tsx",
+      "sha256": "00e30581c1e49bb3a14790282b1fbd5135577d4d3b6d4c6441859d5709b7ba7a"
+    },
+    {
+      "file": "src/app/fantasy/history/page.tsx",
+      "sha256": "2d23533de08a05cb8b036b3b00bf7bc8f8466bc54099c3d44654c1bec99c9d8b"
+    },
+    {
+      "file": "src/app/fantasy/layout.tsx",
+      "sha256": "c7fc60b03f7089f4f5abaef43387bf09f8140e82105f1014d31fcae6e74b5c47"
+    },
+    {
+      "file": "src/app/fantasy/loading.tsx",
+      "sha256": "a0d1f1474279422789f1f0a2ce5f9d6a209ffb96a9381bce3a913e33c8b4bd40"
+    },
+    {
+      "file": "src/app/fantasy/packs/page.tsx",
+      "sha256": "2c6e9218eb5c2a7ba6c656961cc089a3f597887edec1ede350f24703040374b8"
+    },
+    {
+      "file": "src/app/fantasy/prizes/page.tsx",
+      "sha256": "6286bc2ff15ce234053fa55ac3844212b50b130f0510e459f2e81bca2a32df25"
+    },
+    {
+      "file": "src/app/fantasy/results/page.tsx",
+      "sha256": "e7336404a11789b72f0b00e4069cdb56a96e1bd93266b6d373100eed0bf971f0"
+    },
+    {
+      "file": "src/app/fantasy/scoring/how-it-works/page.tsx",
+      "sha256": "459349fa21f030fabedf7928cf3e7b0f92656021e22967e4efd44b952d7897c5"
+    },
+    {
+      "file": "src/app/fantasy/scoring/page.tsx",
+      "sha256": "3b1e7dc97f032a1ca6cfa0c8a7842660c6af1c6f4e42aefe8cfb9610863f4a55"
+    },
+    {
+      "file": "src/app/fantasy/test-wallet/page.tsx",
+      "sha256": "cc6b7eb3ad6d98601fe7ea8bea324068c171bd44fbbd02c16773665af6ed90d3"
+    },
+    {
+      "file": "src/app/feed/loading.tsx",
+      "sha256": "d2f73fc4fa53680625224b294407be4133c515bb4d5e6a386ba40fbeda1cf63e"
+    },
+    {
+      "file": "src/app/feed/page.tsx",
+      "sha256": "e7190c772ba6132580ebed2214f55f50e236958346f9cd112aa51d8b677da35c"
+    },
+    {
+      "file": "src/app/foil-pack-artwork.css",
+      "sha256": "0583477595fca261923d51466548309846de30e0fef6d3e3d178117a2c11cdc5"
+    },
+    {
+      "file": "src/app/foil-pack-review.css",
+      "sha256": "e028ce98a82d2343db86b0b84788160476d40f6e1b07ccd08906b688235bef5b"
+    },
+    {
+      "file": "src/app/following/loading.tsx",
+      "sha256": "d2f73fc4fa53680625224b294407be4133c515bb4d5e6a386ba40fbeda1cf63e"
+    },
+    {
+      "file": "src/app/following/page.tsx",
+      "sha256": "48e3b2b1cd549a625256531340f4c6c8e48cd97d62b9773494d31c641ee45e11"
+    },
+    {
+      "file": "src/app/globals.css",
+      "sha256": "779669a984acb3558b4f5d614f753bfcbaeffeaa634d4573032a4c88d1f539d4"
+    },
+    {
+      "file": "src/app/home/error.tsx",
+      "sha256": "2de0a61931baa4957adabff7f32a54b067534a3d7165ef20feee6556a5453ed8"
+    },
+    {
+      "file": "src/app/home/loading.tsx",
+      "sha256": "d2f73fc4fa53680625224b294407be4133c515bb4d5e6a386ba40fbeda1cf63e"
+    },
+    {
+      "file": "src/app/home/page.tsx",
+      "sha256": "4a7a01f2316d212aaddfcee68e7999b75ec1124c94994863b7192f2fc3a93b2f"
+    },
+    {
+      "file": "src/app/layout.tsx",
+      "sha256": "5ab4f10ad6f011c85c3064cdad0a954804921e6526baf068895e1dc576cdd442"
+    },
+    {
+      "file": "src/app/manifest.ts",
+      "sha256": "e56034d29433a218070a3a407d78e569af498d32bb97dbc19e831a40418c8eb5"
+    },
+    {
+      "file": "src/app/marketplace.css",
+      "sha256": "de16ae0c968d3860daa279087d4542cd79447dccbb56f46fabd34c04dd9dc89a"
+    },
+    {
+      "file": "src/app/member-surfaces.css",
+      "sha256": "983ab4cf94fa9cc2854285d75c146dd8e84877f451ef3db52f2cf30edb060c49"
+    },
+    {
+      "file": "src/app/mobile-app.css",
+      "sha256": "c64b135314b309d78e836a60a82b6c19a3d8ca85d8f8d35c782748410f6b9e80"
+    },
+    {
+      "file": "src/app/mobile-cleanup.css",
+      "sha256": "ee56b24227ad9e5402d45d9e002d61154d5fafa8721970a39c8df75569f5b42d"
+    },
+    {
+      "file": "src/app/multi-sport.css",
+      "sha256": "0beece6dd16395a79213fd4e789e8f52fab504e61c5e9139e7f3cfbb38c03944"
+    },
+    {
+      "file": "src/app/native.css",
+      "sha256": "0a34dca436ac25c48a7278944648358c053c333010e288b01b86eee4802a9d77"
+    },
+    {
+      "file": "src/app/nfl-testing.css",
+      "sha256": "b6db2e3298bc86a85a77132da8671e2247af7d4cd41c542566e6764fa64b63e2"
+    },
+    {
+      "file": "src/app/not-found.tsx",
+      "sha256": "d42a1399947c0e768aed89e65f385783de70e43ae24a815de00cef8a28e6e888"
+    },
+    {
+      "file": "src/app/notifications/page.tsx",
+      "sha256": "8ff042c248baab92e51fc96919a4c727c7bf95fabbcb8e634b47341dd36f2d84"
+    },
+    {
+      "file": "src/app/opengraph-image.tsx",
+      "sha256": "13c820b2a3c875714e82c095a5c06fc0123f94dede2c3215cc7c6d7a22c1455d"
+    },
+    {
+      "file": "src/app/owned-collection.css",
+      "sha256": "1cec361bc24dcbe93e553de64c6ee0be4405b9e940f29f9b2938d547ed2a9213"
+    },
+    {
+      "file": "src/app/owner-command.css",
+      "sha256": "cb71883beae5ba4fc2407850e77cbeb1a3b9154eb334fcd5c75ac0c7c17a07f9"
+    },
+    {
+      "file": "src/app/owner-marketplace.css",
+      "sha256": "ea35b630a80305a6ddf69fbd0235bdf58a765993c085e5dc7c29221e88930568"
+    },
+    {
+      "file": "src/app/owner-reference.css",
+      "sha256": "eb532ddd2a0e817f884a8eba653d22c64d0d92669c86671720f8f65ecd72085b"
+    },
+    {
+      "file": "src/app/pack-cinema-v2.css",
+      "sha256": "daad817a80da2f42e58ed49261197d75250b8e2b1c8becea02a7f910edf1028e"
+    },
+    {
+      "file": "src/app/pack-cinematic.css",
+      "sha256": "cc1b19fcced17f24c5e5e8dfef3885a7bb82c9ac7699d3b42815007d89a7a71e"
+    },
+    {
+      "file": "src/app/pack-opening.css",
+      "sha256": "4551de0555c74f68d1bbed39c5c33146062598cdfee30b2bf319e42f56160315"
+    },
+    {
+      "file": "src/app/pack-pull-share.css",
+      "sha256": "2de3649f178128956d1bbeb7a08845a02af43b871e992eb42592c4961f758df8"
+    },
+    {
+      "file": "src/app/pack-shop.css",
+      "sha256": "051a93cebd97d913b13773c4717a3d9c9d8b9ce3976820cf16e12af37c0d9d35"
+    },
+    {
+      "file": "src/app/page.tsx",
+      "sha256": "cf4f0c77f3633584f6de6f724e3ae82fb25f871bff369d49dec5fe09fc9065df"
+    },
+    {
+      "file": "src/app/play-cards.css",
+      "sha256": "9818b5c0b440fc5031f7154831b1c99ae1abda38fe11ebef8a9389668105578b"
+    },
+    {
+      "file": "src/app/player-statistics.css",
+      "sha256": "7660e5f06e3e879f9029104ce133bc4dc0e58d2f9c7342e0e359881748e25b81"
+    },
+    {
+      "file": "src/app/premium-ux.css",
+      "sha256": "800ccbfa61be1ae04e3798934eeb05d30648ae933a2127fb1d112d668b467ae4"
+    },
+    {
+      "file": "src/app/preview/card-statistics/page.tsx",
+      "sha256": "70bbb8334fb25e9cb03b5781bb12e4543203b9efb23cdbfb00eedddf07cd4660"
+    },
+    {
+      "file": "src/app/preview/pack-opening/page.tsx",
+      "sha256": "f2f488d027a97dad841e8336a882cfd65a23199e446f91574c3303eacfc18439"
+    },
+    {
+      "file": "src/app/privacy/page.tsx",
+      "sha256": "de7a41f4bb16b164d07a9bddaa795cb9189d5403457c0e6dbb043a00264b8148"
+    },
+    {
+      "file": "src/app/prizes.css",
+      "sha256": "839d231fe01717327aefce351fd0a818d99751b8802d8ddce4d42c8973e243aa"
+    },
+    {
+      "file": "src/app/profile/[handle]/page.tsx",
+      "sha256": "c6707c4dabb2bbd51ac2cb2137a44def7e4b3c451e261cda6bfcbfbfffe13e16"
+    },
+    {
+      "file": "src/app/profile/identity-verification/page.tsx",
+      "sha256": "228c7af304f21d2fc7b1929adc4ba5e65418d62217ebd94369fbf0bbb73635be"
+    },
+    {
+      "file": "src/app/profile/page.tsx",
+      "sha256": "440828491317cc51937da45e41b5a59da2dd0e557dfa95b160cbc314ea1ddd9f"
+    },
+    {
+      "file": "src/app/profile/withdrawals/page.tsx",
+      "sha256": "4a05f49d35218b49393bc6d9e525d48b695c0d2c5ea48093c07b5723902de54e"
+    },
+    {
+      "file": "src/app/redemption.css",
+      "sha256": "963fd8e17df92afd97ef5556ff667a686331aa6c27248c8e6d713f42947ceae4"
+    },
+    {
+      "file": "src/app/refund-policy/page.tsx",
+      "sha256": "31cc441fb19873d943f07dd1d221cfa44e1729b0fb7f604d206cb951e9236d56"
+    },
+    {
+      "file": "src/app/retention/page.tsx",
+      "sha256": "8293fa1a779f4f9e5dc19a56042fcced26c30d1231ddc28ea937543830cae7d4"
+    },
+    {
+      "file": "src/app/robots.ts",
+      "sha256": "e68ad5f5ac2d937a00a3767f2fc701f18037dc0b6627de898d34e4521ea19568"
+    },
+    {
+      "file": "src/app/roster-sources/page.tsx",
+      "sha256": "76edaf6cda18936730ed0aa1d296667cc726ecb2721fe7e42af4beb01ef4d583"
+    },
+    {
+      "file": "src/app/scoring.css",
+      "sha256": "331e08d7124fd18680b157a6d557d35362a010e52d44c46382c1330eed644c0c"
+    },
+    {
+      "file": "src/app/search/page.tsx",
+      "sha256": "e790e17ca2142fb6492cb8720e278fcb167f7c4d4491d45ae4064a01d89209ca"
+    },
+    {
+      "file": "src/app/sitemap.ts",
+      "sha256": "be8d08ce70177c4e4865d7cfbd8039bb2976d83daf5deb57dff60a4fb69d7e76"
+    },
+    {
+      "file": "src/app/social-hub.css",
+      "sha256": "28d2f01a43d66eb5cadee05c2d385d3a48430ab13714b8310b9d66a9482a382e"
+    },
+    {
+      "file": "src/app/sports-experience.css",
+      "sha256": "d121949335ca40e2757407d42d45bc2975abe88d313b763fee8a1ce2d45bd37f"
+    },
+    {
+      "file": "src/app/sports-visuals.css",
+      "sha256": "043707534bf206fd12dc90ac3e0cb8152bb7f047e04618ba44ce1ee67c06db75"
+    },
+    {
+      "file": "src/app/sports/[sport]/page.tsx",
+      "sha256": "4e5eae8f7b73e5e6412a1a8d3d6d3e58d8b0a0eb1638bdf0a5a2d941c0ba9c46"
+    },
+    {
+      "file": "src/app/sports/page.tsx",
+      "sha256": "949deeffb77334d602d3d8c7c52c60a4e9241de962eb896d4970191e3e986444"
+    },
+    {
+      "file": "src/app/sports/sport-page.css",
+      "sha256": "579e56574c8c2656552cdcee4c89188b9d4e2eff611745fe6107c15b614fd699"
+    },
+    {
+      "file": "src/app/standings.css",
+      "sha256": "59d7f4d248914c5f77957db54c4b1e7d9cd2a2aebe97c356dc9f7ab7b71b3082"
+    },
+    {
+      "file": "src/app/startup-loading.css",
+      "sha256": "4564e2cb08cb51782c8bdf3ca9cd17a57fa3b69cd5a561ffba049d0847061de6"
+    },
+    {
+      "file": "src/app/test-wallet.css",
+      "sha256": "a863a63fd1d932823c7623b4dad61ac7adcb1f6d16a03fa7ea2f1df923bde296"
+    },
+    {
+      "file": "src/brand/README_FOR_CODEX.md",
+      "sha256": "6b6c1dee11b9ed52914c5aceeb67cd7000c3889ede8cfea29c61618586ee7dd2"
+    },
+    {
+      "file": "src/brand/brand-tokens.json",
+      "sha256": "7dcb4783aa96ecbedf8bb5f47983182d83e6a7739035929a54c7561cef8758d3"
+    },
+    {
+      "file": "src/brand/brand.ts",
+      "sha256": "9aa747dd0e795f91ba6b929243e78632f914bf2527fbca868ec9a3849b056b4f"
+    },
+    {
+      "file": "src/brand/canonical-logo.json",
+      "sha256": "d1e09cd89626d8ec104e930a68fc6783bebca545359afb8eb0ec026774292ec4"
+    },
+    {
+      "file": "src/brand/fantasy-assets.ts",
+      "sha256": "8945d11c5847fda76471638f8bcc1ae491b83d857434ea6f7b55a6e6d7f7a53c"
+    },
+    {
+      "file": "src/components/acquisition-share.tsx",
+      "sha256": "90f3f450d9ed46975556515e102d859a6fa2e34e90e4c520c9c19bfd54099552"
+    },
+    {
+      "file": "src/components/admin-announcement-draft.tsx",
+      "sha256": "024d1daabe629deeb174dd7a03f5e3947c8182357b2a237dfee8b11ec72cb9c6"
+    },
+    {
+      "file": "src/components/admin-global-search.tsx",
+      "sha256": "8597a68853fd8a240c97dcfd83c911e324f7abe9d870de6455faa4868e64428f"
+    },
+    {
+      "file": "src/components/admin-icon.tsx",
+      "sha256": "d1de433d76a40d20e45a80abe0bd15c131eb76f9ecdda2f66cb87535f66f1ab2"
+    },
+    {
+      "file": "src/components/admin-pack-coupons.tsx",
+      "sha256": "9adfe676f6c9038e9a85cac5d1edff7600963811b6005d73e3a9f5ce7ee754e6"
+    },
+    {
+      "file": "src/components/admin-record-detail.module.css",
+      "sha256": "f0027ba14ae082c2a8225add9811f60bca558676e61d7cbd4b062c7de068f7cb"
+    },
+    {
+      "file": "src/components/admin-record-detail.tsx",
+      "sha256": "dc36078648a25d01430a3ca69cdb885f31c47c7872c9416e7f744d6d0312416f"
+    },
+    {
+      "file": "src/components/admin-shell.tsx",
+      "sha256": "4177010f25c3ffe3cd0afd8044c6586697c0ddc7213181433f04900de89969ac"
+    },
+    {
+      "file": "src/components/analytics-observer.tsx",
+      "sha256": "cb5df3d707f1a57e111e73cf81df78d4bb81fc065f6dd63092664649e0ae97ce"
+    },
+    {
+      "file": "src/components/app-auth-forms.tsx",
+      "sha256": "6863cd8043e09c16e0f1fcd3bd0bc06915344fc6d247515d4a57ce6543bf8424"
+    },
+    {
+      "file": "src/components/app-auth-shell.tsx",
+      "sha256": "49741f3eea86ed17caa0b6e4bb977bc8e3b070b1beb8a6905a6edb44841c704b"
+    },
+    {
+      "file": "src/components/app-icon.tsx",
+      "sha256": "e14474e176552a422c4f72ea304739649ebf5bd9ee5d521a2f2f672765e3ab77"
+    },
+    {
+      "file": "src/components/app-member-screens.tsx",
+      "sha256": "a7e14ab4bdcd1051dcded7b9231171eac3ee36f307e742d236e73f30664f6e50"
+    },
+    {
+      "file": "src/components/app-member-ui.tsx",
+      "sha256": "d700266391fa244c4d907f01edbf0b283856fd8d656a4ad909214b15b751205d"
+    },
+    {
+      "file": "src/components/app-screen-loading.tsx",
+      "sha256": "17b1e0e5edd6203a849c366778216ba488335f19de5e6e64c29174d6b9f975a7"
+    },
+    {
+      "file": "src/components/app-shell.tsx",
+      "sha256": "b8d8b1e116ec0d05f0e03ca733f5d35e1cd9e0feba57b307918d7afd7ac4f948"
+    },
+    {
+      "file": "src/components/apple-test-credits.tsx",
+      "sha256": "2bdef5dae3628dd176ce71cc95a27984ac63d90cafc9f9942128d3bbc8efe45f"
+    },
+    {
+      "file": "src/components/avatar-editor.tsx",
+      "sha256": "fa05f3fbe8575b1df3b983705d7a0dccaabbba83081442d0dbef5913f7aea06a"
+    },
+    {
+      "file": "src/components/beta-credit-request-panel.tsx",
+      "sha256": "b5c1fe7b6114f67562134a82aaf7d1d5d377d59a988126787d1dbd06ba7874e9"
+    },
+    {
+      "file": "src/components/brand-logo.tsx",
+      "sha256": "aafdba033c400a5b9bfd59a220ef0966125da56cd73a545e8559001349f63282"
+    },
+    {
+      "file": "src/components/card-statistics-preview.tsx",
+      "sha256": "9c253dc6e11628330366558ed626cb638ae74938d825bebf43979e36b8f0e748"
+    },
+    {
+      "file": "src/components/collectible-face.tsx",
+      "sha256": "12a4977d843f38fd73cb6f33ae24f30ec460bf78f9c7b6424dc8f9c850a4da9f"
+    },
+    {
+      "file": "src/components/collectible-frame.tsx",
+      "sha256": "054b6f539c898b03aa9aa0c6c5cb29d91d71ff3b9ffa169018f2f104830c6ba8"
+    },
+    {
+      "file": "src/components/collectible-viewer.tsx",
+      "sha256": "341acdb9d4c2e3e51c0173fbc78a6b82f4ac2e635f4f78a116806ca672df4c7a"
+    },
+    {
+      "file": "src/components/collection-export.tsx",
+      "sha256": "f86376f6e2aff9171774027d1a743c0d75463a155a1e5a33b578b9dc548050ad"
+    },
+    {
+      "file": "src/components/collection-legacy-packs.tsx",
+      "sha256": "9cd932b094a1a35bb58bbaed224d252b956737684591e9d1abb527a8ee86f0c4"
+    },
+    {
+      "file": "src/components/collection-packs.tsx",
+      "sha256": "fd994dfa1a8cdcee572b5637d8b3e6b82696da267f313a826586b16f8691cb75"
+    },
+    {
+      "file": "src/components/commercial-billing-review.tsx",
+      "sha256": "085d6ee09928f778fa1a6dbe1b3413812f9ecca1f2aaa5b4ad20aeba5bff8217"
+    },
+    {
+      "file": "src/components/commercial-member.tsx",
+      "sha256": "8ca4c1b66750eced607da106540a3152e75658f02f37ff10889a19b25e8db00e"
+    },
+    {
+      "file": "src/components/community-admin-page.tsx",
+      "sha256": "f80f3d360b22fc7026bb6f93157accf6f79cc7924868caaf054e240e2d290bab"
+    },
+    {
+      "file": "src/components/community-admin.tsx",
+      "sha256": "7279770a416937b8806d2d40dc56d7e195bf9ac337d437592e2a1121cf54b2ad"
+    },
+    {
+      "file": "src/components/community-basics.tsx",
+      "sha256": "2a35c5d021ba7ff4238c0261de117817c332f34bb5fcc0d3fdef6f58714596de"
+    },
+    {
+      "file": "src/components/community-feed.tsx",
+      "sha256": "88a50a5339c2e9d1cf5ecb0c96f6ce756c57d957befc927e3897f0c35dc2d7e8"
+    },
+    {
+      "file": "src/components/compact-collectible.tsx",
+      "sha256": "487599fba22cbfe59e793d4dd64fea694ce75b916432b6d36cd63ed7d6d1474c"
+    },
+    {
+      "file": "src/components/competition-results.tsx",
+      "sha256": "c70ff735d7dbbbb18942720423faa872803c69bf087181168f75a83193dca99b"
+    },
+    {
+      "file": "src/components/competition-switch.tsx",
+      "sha256": "244cef9955143a0f717a47deac81e1a15cea7582c44da344243ef8d5b0e026ba"
+    },
+    {
+      "file": "src/components/competition-week-selector.tsx",
+      "sha256": "bf07d9fda1d3d5c5174c4e7b022e497cb06eb43c9c2e3832eff90b147ac102a1"
+    },
+    {
+      "file": "src/components/content-loading.tsx",
+      "sha256": "727469b398d63cb753ef61c5dc28eed82fc5d68297dd45b374da45c94efb7f18"
+    },
+    {
+      "file": "src/components/credit-marketplace.tsx",
+      "sha256": "5c7a6648e7d8a95c8d6f79325cd6966cea350d489280be0c8030f8c00a42958f"
+    },
+    {
+      "file": "src/components/credits-sandbox-review.tsx",
+      "sha256": "9faf80e59a6a9ec0cf2d7b76f0c4f12bf4b17fe0b22e14016c9ba299c82e5ba4"
+    },
+    {
+      "file": "src/components/customer-signup.tsx",
+      "sha256": "a03ca3abcaa9bafeea2366599c25db449b74498e45c7c04fce5397f1fb59b282"
+    },
+    {
+      "file": "src/components/economy-catalogue.tsx",
+      "sha256": "e467aeb05f7a2e2d25e9039c2687faebddf2eafce27c4e22c480c498de7ddfec"
+    },
+    {
+      "file": "src/components/economy-owner-report.tsx",
+      "sha256": "64d755ca9abc0482a99e74f245014b78f0abfad9fb319e98aadce6bdaa3ac44a"
+    },
+    {
+      "file": "src/components/environment-context.tsx",
+      "sha256": "379b61ed83cbf785d5530f6bc6e6de369cda2fd8d6ffb379e9313ed523192d8a"
+    },
+    {
+      "file": "src/components/fantasy-admin.tsx",
+      "sha256": "2bba94ad7c06e27d1f0cc0c02d4ac7161f20188b07662e927d41f4bfc5638eab"
+    },
+    {
+      "file": "src/components/fantasy-brand.tsx",
+      "sha256": "f05a3c7598bfb3672846c3ffaf78aab7da8c9800316e258f9352039fbb6f13b1"
+    },
+    {
+      "file": "src/components/fantasy-card-artwork.tsx",
+      "sha256": "b82dec523e89bd0501e2f76f2dbc64f186b1eb7c00aaf5172e8ea16645b1f70f"
+    },
+    {
+      "file": "src/components/fantasy-load-error.tsx",
+      "sha256": "73f43fd788a804177fc0cde0c45cec59bb3dce9f86792ccbc88312a60491d82a"
+    },
+    {
+      "file": "src/components/fantasy-market-proposal.tsx",
+      "sha256": "2f7f664f00a89445cd08e69a9d5aefbce8c19c7d4517ea51592dc328c9730381"
+    },
+    {
+      "file": "src/components/fantasy-play.tsx",
+      "sha256": "fa2051a72c5416c33441783a2775b3d8daa6ea64cec8aa430d0eca72dd4789c9"
+    },
+    {
+      "file": "src/components/fantasy-player-sheet.tsx",
+      "sha256": "6d99df7d1df3d7fc0c053f5277a15df462e407eb00f795d42fb77cc9a5faf44e"
+    },
+    {
+      "file": "src/components/fantasy-rewards.tsx",
+      "sha256": "e0cfaa5d272d15bef2baa3d7957ea8207ff6170484898150d28a91d971f6fc24"
+    },
+    {
+      "file": "src/components/fantasy-screen.tsx",
+      "sha256": "2d8f976e250fb59eb9868639e7480bc0c38ce27bb9d4e2cdbd9f2685c636f7fd"
+    },
+    {
+      "file": "src/components/fantasy-sheet.tsx",
+      "sha256": "86308a6bf84b239cd5c07f21f253013379ed7f2c6caa7b3a8a90f800fef4161c"
+    },
+    {
+      "file": "src/components/foil-pack-artwork.tsx",
+      "sha256": "ea32844f46bf8b7fe8903e93ceb4939bb7e05e96d6c3cdd67e90c36e3791effe"
+    },
+    {
+      "file": "src/components/foil-pack-opening-review.tsx",
+      "sha256": "db5261671decacddf4a7b39e1a1960fa819b05847459c6fe43ab78e3c602e285"
+    },
+    {
+      "file": "src/components/forms.tsx",
+      "sha256": "dbabb403c592f1feac34f354b7545cfe4b2c4a9086ed39085687ae3027b53473"
+    },
+    {
+      "file": "src/components/game-day-player-score.tsx",
+      "sha256": "5bae750099ab63a9e1bb518d6cc7057496d649a73169de530f52a7da8a2b7b34"
+    },
+    {
+      "file": "src/components/game-day-summary.tsx",
+      "sha256": "882467f4d97de4fdf6dba65f9d8b9e32df6e6e21f3c6372aa0067d092e9e74a6"
+    },
+    {
+      "file": "src/components/google-test-credits.tsx",
+      "sha256": "8ce89aa2f065b7d0d87576a3f14c076848cb4d22c91b266e2bc239769bb08e18"
+    },
+    {
+      "file": "src/components/historical-fixtures.tsx",
+      "sha256": "f71f1b9c0598c5433070d3b805f6a411eed0d24819e35d7ac8d02860d9aa9b04"
+    },
+    {
+      "file": "src/components/icon-celebration.tsx",
+      "sha256": "33fb222461ee86db27e925376411e904788fa0c7f92c15cb6a6afe1188600475"
+    },
+    {
+      "file": "src/components/identity-verification.tsx",
+      "sha256": "5ab54f56603caafbabecba7a342e84e217e1add882b82e63957a25a491cdf9aa"
+    },
+    {
+      "file": "src/components/ingestion-operations.tsx",
+      "sha256": "14fbbe042bb77554e35885b80a33de45fb2d81a974f179af8f942f1e8a1b561f"
+    },
+    {
+      "file": "src/components/legacy-competition-results.tsx",
+      "sha256": "38e3b2d9b7f93be33335985ea972decd765eaa86b5b10c41e291705a96312fd2"
+    },
+    {
+      "file": "src/components/local-date-time.tsx",
+      "sha256": "8c6f345616eee88b087ec163c2c2ca8eb2c071e40ce6290bb213a7539ab20fc1"
+    },
+    {
+      "file": "src/components/local-timestamp.tsx",
+      "sha256": "c1570dcad1ad81434ff43b3ab0167de5853aaadf45eb741eae356b89f834b7e9"
+    },
+    {
+      "file": "src/components/market-listing-dialog.tsx",
+      "sha256": "34db13c741f0148022b37f05706f9f07dcb5589faae0eabd7c0741ef7759fac7"
+    },
+    {
+      "file": "src/components/marketplace.tsx",
+      "sha256": "a93dfd7fdc0ec25488505178a9f2fd7c1d969030f3c74c00db8afc5055ad0b8e"
+    },
+    {
+      "file": "src/components/member-avatar.tsx",
+      "sha256": "610d0d321b7dfc5e2c16b052cd98928faa5128de4dbc571862c8b6f09b61b56f"
+    },
+    {
+      "file": "src/components/member-profile.tsx",
+      "sha256": "c40ae43488703065bff59a58311745de8dfc8b5654bc49aaa13d936aa6d4b57e"
+    },
+    {
+      "file": "src/components/member-release-admin.tsx",
+      "sha256": "6515dfc18d191ff9daa3464282eae3a11e5906de4060fe9006a84490eb65e576"
+    },
+    {
+      "file": "src/components/member-test-wallet.tsx",
+      "sha256": "12a188441b0fad6f450e78e1df59de36ade00d651345d6166d7882de0bf35c1c"
+    },
+    {
+      "file": "src/components/mfa-form.tsx",
+      "sha256": "028cf542f2128760401058bcc96ebf315c1867ad5dd3236fc9b6cac669e5792b"
+    },
+    {
+      "file": "src/components/moderation-case-panel.tsx",
+      "sha256": "6d0bb9f8e663b7b99db93b47fc3906c15921f95d8faabafe1af107a085ddb55e"
+    },
+    {
+      "file": "src/components/moderation-retention-panel.tsx",
+      "sha256": "cb3519189802bd6e08dcdf0c9621dfb3442f4f5f7ce5f3fcfc15ca2076d06220"
+    },
+    {
+      "file": "src/components/native-bridge.tsx",
+      "sha256": "3546dc087d05a342cb17b97b7e87c686795ff59009b3e81c226665e7e7140037"
+    },
+    {
+      "file": "src/components/native-image-picker.tsx",
+      "sha256": "c01b148d4514f9a8986b2378345834ecbd6dca7600a3162fc0ff86dada578569"
+    },
+    {
+      "file": "src/components/native-share.tsx",
+      "sha256": "3d5071cd7d7dd13dc21bc6268ea45424f55e113c2806d71d958733d339bcb913"
+    },
+    {
+      "file": "src/components/navigation-shortcut.tsx",
+      "sha256": "75e7efb8d0193eee22900a8c9f5bf4bf8645eee99748d4c60fe9ff42391af0a9"
+    },
+    {
+      "file": "src/components/nba-beta-screen.tsx",
+      "sha256": "9a53424f95c9c775632935faf4f3f83c1fc197513ddcba15ab2f12fdcb0e584b"
+    },
+    {
+      "file": "src/components/nba-proposal-summary.tsx",
+      "sha256": "22530bc547c8ffd7da9d51a7230a024ad10e8a0fe1903a15ae08cc3e59c30756"
+    },
+    {
+      "file": "src/components/nfl-refresh-health.tsx",
+      "sha256": "a6136fd307ff743c1640917a47d0838ffbdcaddd29af6a6e1706813da4107776"
+    },
+    {
+      "file": "src/components/nfl-round-operations.tsx",
+      "sha256": "4c69e1089ec42e7ab77e3d577f939dd80873816d3201e1004f47a2982d607dbf"
+    },
+    {
+      "file": "src/components/nfl-scoring-reference.tsx",
+      "sha256": "46e8d3097d892e5ceb38726a873d1458f60adadb0d7a76db9cfb25c59d4921ce"
+    },
+    {
+      "file": "src/components/nfl-seven-play.tsx",
+      "sha256": "acb0504799e18e9551ac2458c7731a9b38e558e4e207f22bbd85771a2a93d11b"
+    },
+    {
+      "file": "src/components/nfl-testing-panel.tsx",
+      "sha256": "9f4736e6a9bee9d6633760b596dc64cd3eabf93de70212ada2e998882d5b3ccf"
+    },
+    {
+      "file": "src/components/notification-centre.tsx",
+      "sha256": "4ab6474f5a4c2e39052b921b782adf61145ff50bb55cb40012d65782bef9ea00"
+    },
+    {
+      "file": "src/components/official-announcement.tsx",
+      "sha256": "f09c6e0089b0b53a41982a96eab878342c5aad6e689a0909a3ee87b55123f7cf"
+    },
+    {
+      "file": "src/components/operational-incidents.tsx",
+      "sha256": "deaad5e8c6517881025ac3e5b896845961461181b1585928198c9f179d878174"
+    },
+    {
+      "file": "src/components/operator-details.tsx",
+      "sha256": "5e9c0521d9ac404589a988dec500c8f3e0f2f0520dc3fb6e8c1a8e544c059ca4"
+    },
+    {
+      "file": "src/components/owned-collection.tsx",
+      "sha256": "71db37555e40d2ff384127e5e6721a2d8a011f39b5d3642666549c3398e492c4"
+    },
+    {
+      "file": "src/components/owner-dashboard.tsx",
+      "sha256": "e677c16b2a11eaa3e8bcd7be52c9d850219a80f2bfc1c1c908ffc83d81a0fb84"
+    },
+    {
+      "file": "src/components/owner-detail-disclosure.tsx",
+      "sha256": "9f92792bdf68d6fb7ece21e3f745c35d252dd7a155666be1bb02ae893c0b70af"
+    },
+    {
+      "file": "src/components/owner-health-check.tsx",
+      "sha256": "4dda9b7cf2dfdab38fdb876890e25e2e63d2237c22461f71d39dd077ccd926a2"
+    },
+    {
+      "file": "src/components/owner-marketplace.tsx",
+      "sha256": "555200b163cff71f686059b83617d856263a201842130b16fe1ccfd9eb84d194"
+    },
+    {
+      "file": "src/components/owner-operations-detail.tsx",
+      "sha256": "8c9613cad35747517854fb4c8cd0d90c7f9d3f61af931aaccd052066aefec0c5"
+    },
+    {
+      "file": "src/components/owner-period.tsx",
+      "sha256": "aedb53773e28ce1d31571476d0b89b6d16120d7adce2a61950e1330849894408"
+    },
+    {
+      "file": "src/components/owner-setup-status.tsx",
+      "sha256": "831ada38a2bb6fb3bccb913104d6731659313ddeece4ab69f36f0886c1973b9a"
+    },
+    {
+      "file": "src/components/pack-artwork.tsx",
+      "sha256": "1378a9937d8262b9e665b7505a252078f2196bbfaf01a7dd8f6b16138521fd03"
+    },
+    {
+      "file": "src/components/pack-cinema-audio.ts",
+      "sha256": "6f57ae5c4c8a351f6b7b07860f57cdf085c662f7dffb5102f018aafa22c40ce8"
+    },
+    {
+      "file": "src/components/pack-cinema-v2-model.ts",
+      "sha256": "b388177caaaf2fcd21f1ae973df17e8b1ee71e022e67fefe8e13fa4352e0d283"
+    },
+    {
+      "file": "src/components/pack-cinema-v2.tsx",
+      "sha256": "ae16faa69d64e86b62f85cd02f402b2d76de96ad1d744b26afff8ed2b0441cdc"
+    },
+    {
+      "file": "src/components/pack-cinema-vfx.ts",
+      "sha256": "8d4c635941e14c5daa14b5800195e75dbc5d7e985dca38fb4a9fbb3f405f4d88"
+    },
+    {
+      "file": "src/components/pack-cinematic.tsx",
+      "sha256": "e5c6446d98fa1132dd51dfe82509b42e35d66a1f2b2c21ef81519957554e7c62"
+    },
+    {
+      "file": "src/components/pack-feedback.ts",
+      "sha256": "d061de8599dac0a4924524c70a9510f1f1593e1ac2d480518ccba7723be4c82a"
+    },
+    {
+      "file": "src/components/pack-opening-lazy.tsx",
+      "sha256": "dcec6b270042a23d9c450f444eb875f09855ebae2b654e844218e60812757c18"
+    },
+    {
+      "file": "src/components/pack-opening-preview.tsx",
+      "sha256": "e3028dfbd53aefe7588b41c1db93ee8e1d9b2af2425e1d14bdc33233c4cd4c4c"
+    },
+    {
+      "file": "src/components/pack-opening.tsx",
+      "sha256": "e0d873c9ab2ccb05d15428dfb9e0574175785aec5cfdce1fc05e53f3f8cf1967"
+    },
+    {
+      "file": "src/components/pack-products.tsx",
+      "sha256": "52dc25440940ba30c6b2de8dcffab6ffadd98cde0899b33d098cb8f9ea352632"
+    },
+    {
+      "file": "src/components/pack-pull-image.ts",
+      "sha256": "5053801f0f4a06d3e68895c128ef53f968f8153ab77d91c612ff326bfaf31e78"
+    },
+    {
+      "file": "src/components/pack-pull-preview.tsx",
+      "sha256": "a6740788c627e43726e41cda8ff91c7a9e2f7ce96e0472c35fcbfa839584e628"
+    },
+    {
+      "file": "src/components/pack-pull-share.tsx",
+      "sha256": "c9873aeff3a483d9f4dc702c56e7e23881a6b3c96cd7606194af129a76d595eb"
+    },
+    {
+      "file": "src/components/pack-resume-notice.tsx",
+      "sha256": "d9483e4a93a6b877e2551bf821cf5386c7d2ba9d7bb9fc2739beaf90d09de06d"
+    },
+    {
+      "file": "src/components/pack-review-card.tsx",
+      "sha256": "69114c6a73182dffceecb6554c711eeeadff917372f6fa1b9c2106d0546c8000"
+    },
+    {
+      "file": "src/components/pack-shop.tsx",
+      "sha256": "7e1a621958a4597bd3699fcacc1c65c2bd699c4d40e2d22b29dab53fda915e1d"
+    },
+    {
+      "file": "src/components/pack-viewer-boundary.tsx",
+      "sha256": "406367b8461a762cfbc5a1e0f71ffdc3cc274f2e545470c436e980492b163ea3"
+    },
+    {
+      "file": "src/components/player-jersey.tsx",
+      "sha256": "d936201ef15827b424e9c43b1bcfc6d6ab513942b85f63dad21107db8dcd6999"
+    },
+    {
+      "file": "src/components/player-statistics.tsx",
+      "sha256": "25ab80eccac1e586cd3393cc51d6d21d032b02161b1f7dd493118e04d8cd001a"
+    },
+    {
+      "file": "src/components/portfolio-summary.tsx",
+      "sha256": "83a5a0608a63c2cc13baa1fa4108f5be550ed9b63ba8e75891c1d44c7a06e217"
+    },
+    {
+      "file": "src/components/postgame-results.tsx",
+      "sha256": "4f2df1708263a506338657a783c6b35503ef95c53d71364bca48663bc30dc85b"
+    },
+    {
+      "file": "src/components/preview-tester-controls.tsx",
+      "sha256": "5a79dee6e2ca29c182bb955ec532424da907d4f8888efb82025c7f8d5820aec6"
+    },
+    {
+      "file": "src/components/private-card-offers.tsx",
+      "sha256": "1bad5ce27dc3973239cb0ce0b6a99e81259ac8d06d2db3f871d39bc7055b3c58"
+    },
+    {
+      "file": "src/components/private-sport-page.tsx",
+      "sha256": "ae760522895b7f6d4ba05f28dc669cedaf7345ffcb43ef9d16890a5fbae3fcdc"
+    },
+    {
+      "file": "src/components/prize-register.tsx",
+      "sha256": "8262fb5b72295a32b0b93bdd37fc2883a838be81952b31a78c146daf3b1dbe12"
+    },
+    {
+      "file": "src/components/prizes-page.tsx",
+      "sha256": "4cb58f16f6861e870244a20093cd8eb8acfb5fb2069e91ab0e29a4c1ecfa8d87"
+    },
+    {
+      "file": "src/components/profile-overview.tsx",
+      "sha256": "cb8497514185d78cea2ee9941b60e5e3cf9eafb6a87d8ccfdb28c6c7664a755f"
+    },
+    {
+      "file": "src/components/public-gameplay.tsx",
+      "sha256": "3ab43e27e1fc8e427d0ee138ee72e528f445c0882f45b1236e1937617a1caa92"
+    },
+    {
+      "file": "src/components/public-phone-verification.tsx",
+      "sha256": "81abce3083f72be20acda0a313461d8aeaba41b23de44a22e5e6a41142bf2b06"
+    },
+    {
+      "file": "src/components/purchase-celebration.tsx",
+      "sha256": "cd8caae74c4ffcecb5312a1e65b7641295782ce27ae6c41f9864c8c1486cfed5"
+    },
+    {
+      "file": "src/components/purchase-transition.tsx",
+      "sha256": "7fc191a4ffc24d73f59bcd49d20101198434400087cd1a5aab942c91282b3d9a"
+    },
+    {
+      "file": "src/components/pwa-status.tsx",
+      "sha256": "83dc54dacd68d0c18adaf6d9fde7e9034cd29ab9f7b7d851cafcc107c6675ced"
+    },
+    {
+      "file": "src/components/rarity-badge.tsx",
+      "sha256": "20d1840bc252f25113418da7d067acb021836195ff2bfb06827d043bb9e31c40"
+    },
+    {
+      "file": "src/components/rarity-counts.tsx",
+      "sha256": "57342eba949cc294705c00846ae3a66f14a41a6c3016978d2cc7a236bcca7b91"
+    },
+    {
+      "file": "src/components/relative-social-time.tsx",
+      "sha256": "594247ad49a1ef7242d5aba51c52bc5e914ed29f20289e1b8e899ec24b860fbf"
+    },
+    {
+      "file": "src/components/release-policy-page.tsx",
+      "sha256": "2b364a30fbb74077ce680d3501d54e3382d9fcfc7717b2a6241ee43ea4f98bc5"
+    },
+    {
+      "file": "src/components/sandbox-swaps.tsx",
+      "sha256": "b8b6291569f89092737da45afe5872e4f052af7beb76beff1978cf6d08205a97"
+    },
+    {
+      "file": "src/components/scoring-retry.tsx",
+      "sha256": "7748973ab1a1128ad88c455f967c6cf341a3239d95e88d79d47c3704cc6943e6"
+    },
+    {
+      "file": "src/components/scoring-review.tsx",
+      "sha256": "a90cd3589cd959424e64b5cfc152c1e99d476014b726aa31bec6eac793de8aec"
+    },
+    {
+      "file": "src/components/scoring-rules-table.tsx",
+      "sha256": "46ce69e5b35d4839ed87fcf344a3eb3d63633e8304d2a81e548b1cf4078d9758"
+    },
+    {
+      "file": "src/components/seven-field.tsx",
+      "sha256": "91f765cd518de5a2bdd31d636d72ff78dc1c857c6fe68ec034e9fb18fc1d09d7"
+    },
+    {
+      "file": "src/components/social-composer.tsx",
+      "sha256": "d46c799157c4933a41d6b7d557a2193084654bb7f659116bb8e4002432d705a2"
+    },
+    {
+      "file": "src/components/social-discovery.tsx",
+      "sha256": "e4c09dd446372519575fd9cf4eaf12b6e69afc02e598b426f09485e67e3d9c45"
+    },
+    {
+      "file": "src/components/social-home-content.tsx",
+      "sha256": "5d411da8160dddda04c3210f30d487c680d080776c812a201d5135689392a732"
+    },
+    {
+      "file": "src/components/social-home.tsx",
+      "sha256": "d5bdee1ca3f5012e624120cad7ae01621d62233f18d081832849f7c3368762c0"
+    },
+    {
+      "file": "src/components/social-hub.tsx",
+      "sha256": "7af7227d60f4fd4b34292be2f3e33b75361159f121a96aaccac41f36c9218443"
+    },
+    {
+      "file": "src/components/social-interactions.tsx",
+      "sha256": "e82beb60e2e01893f06a610db7aeb1dbdad4b7a913603439f6b6fa8a4cd68c1b"
+    },
+    {
+      "file": "src/components/social-photo.tsx",
+      "sha256": "0cffb1474ac8db9d884a72a310d67c3f14bc9296cb15f248ec210ed075c24790"
+    },
+    {
+      "file": "src/components/social-showcase.tsx",
+      "sha256": "35fe9f932e9408349eec1648f5d65a521286bb6b3b4e6338d9551e53d7918a1c"
+    },
+    {
+      "file": "src/components/social-timeline.tsx",
+      "sha256": "316ab767a42feb334b084c16d53ff618a77cf6524bd1db315f8ccc1ad020cf0b"
+    },
+    {
+      "file": "src/components/sport-beta-commerce.tsx",
+      "sha256": "88b77f310df09df245eaca0d2f824a05de39bc5ca913bd9c604792b33223e5ed"
+    },
+    {
+      "file": "src/components/sport-context.tsx",
+      "sha256": "5e2c8eed0670d62ce9d7a4883be4cdc55eac795c2cdef919617078fde5415356"
+    },
+    {
+      "file": "src/components/sport-icon.tsx",
+      "sha256": "d2e4bff503b8b901c23094e809bf1f6e937d24a96f4afa7a704d64ccf574a740"
+    },
+    {
+      "file": "src/components/sport-image.tsx",
+      "sha256": "b90e2e5fc9243191f87c148823bffd1beb89ec111d7e7a2396bda10897edeb80"
+    },
+    {
+      "file": "src/components/sport-navigation.tsx",
+      "sha256": "468bf7fb5e2929a9858735752bb08fde55c43b0dd7a8da82ade9e305bde2879d"
+    },
+    {
+      "file": "src/components/sport-readiness-panel.tsx",
+      "sha256": "cb5b4b0b1a340cdc7cdd59957bd772851736c478ca1467db2c609a71462d7298"
+    },
+    {
+      "file": "src/components/sport-sandbox.tsx",
+      "sha256": "dc967de2599e8007cae6c155790a2825ec419427213ff019fbbbfeb6915bfee7"
+    },
+    {
+      "file": "src/components/sport-scoring-reference.tsx",
+      "sha256": "cd5dd4aecb0665d4a73d91853667abd9ab19c7a78c3367a80bb33c88fe0b0d47"
+    },
+    {
+      "file": "src/components/starter-pack-history.tsx",
+      "sha256": "fa6299f9cbfd0a296ad1af999925b05434bbe5f01e188e6124132f0d4e3b54bc"
+    },
+    {
+      "file": "src/components/startup-loading.tsx",
+      "sha256": "c24584a4658bafd060a4e714a7061fdfeff7817301d9ef8274fc4db354405a06"
+    },
+    {
+      "file": "src/components/static-sport-image.tsx",
+      "sha256": "a651da07d9fbcfc75ef47aca57c25f866417b08461421203accc00af1ae5082e"
+    },
+    {
+      "file": "src/components/team-name-setup.tsx",
+      "sha256": "0eadb296f36bb2745262699306449165abe62fe11b56dbf309088fd512851267"
+    },
+    {
+      "file": "src/components/test-wallet-overview.tsx",
+      "sha256": "beb07bd8a6a3f12c49f6bf6030484991bbcabeeca50418798ef680b20c73c26e"
+    },
+    {
+      "file": "src/components/ui.tsx",
+      "sha256": "f72690e2754d72c289200501045cef7370d4716c563ee2314e64c86ee9f94247"
+    },
+    {
+      "file": "src/components/use-client-ready.ts",
+      "sha256": "df628ab5b0c96a1d72baf4ad897ee8a970b7aaab9ed0aefb7b051e4c9b07c82f"
+    },
+    {
+      "file": "src/components/use-game-day.ts",
+      "sha256": "ffd849cb186e10d51cb2f5fe6f8dee1558e345d4bc7fbeca656ab4d72f445ca8"
+    },
+    {
+      "file": "src/components/use-server-clock.ts",
+      "sha256": "64a27b03e2b2d678f3d20551aac4e6cb4f3562f71766a52aea6fc456ad9279f9"
+    },
+    {
+      "file": "src/components/use-workspace-wallet.ts",
+      "sha256": "8d1a8e25b02e8681421bf38e4c469edf2ae03f881a5f525dce34afec506f1e36"
+    },
+    {
+      "file": "src/components/web-push-settings.tsx",
+      "sha256": "8a894262fa1c52efc4b0d7101657ec57de93d6826a44db587509998df7f555b3"
+    },
+    {
+      "file": "src/components/weekly-core-panel.tsx",
+      "sha256": "fce110b02633550a43890dc764f531c6d098e259600dc6bf42e77d86caafadbd"
+    },
+    {
+      "file": "src/components/weekly-lineup-result.tsx",
+      "sha256": "e937d56101e68de65b86db7167a68a68943d6ec9350c61fcd747b1308a17d4ab"
+    },
+    {
+      "file": "src/components/withdrawals.tsx",
+      "sha256": "6be03ecee70457b71ada5e1626edde9c9e970e1731b50f02ce31724024aa27dd"
+    },
+    {
+      "file": "src/components/workspace-page-title.tsx",
+      "sha256": "9fa3beb4f9d18aba57af1372ad6e4fb96e012cf024752fb61abbc9084fcea0f6"
+    },
+    {
+      "file": "src/components/workspace-wallet-link.tsx",
+      "sha256": "ddd69e64b5a32c2593ac1a53abbe544963fb3b32b3a17d5a90ae2699fda14c15"
+    },
+    {
+      "file": "src/content/sport-image-sizes.json",
+      "sha256": "771861256b1f51b3f2b353ed5ef33cd0533a5ec3f4d20823e26d406a86479643"
+    },
+    {
+      "file": "src/content/sport-visuals.ts",
+      "sha256": "7dd6000783e1097ce3c7fe8067caba7eb3159007a37cd06cd9be92720d81b17c"
+    },
+    {
+      "file": "src/content/sports.ts",
+      "sha256": "87967cec0e4d7faf30fad86bdcc05013aa725c17c16fa710c8b44e890c71e754"
+    },
+    {
+      "file": "src/core/additional-sport-statistics.ts",
+      "sha256": "abd727208c8bd7973e7292b7d4d6ae840c1e6314a4af0b56f3c95c5684f81cc4"
+    },
+    {
+      "file": "src/core/admin-announcements.ts",
+      "sha256": "ceafaa27ff9da2baa82bc7f4b28733fc927e37474e21041b7d42f59dfea0ac7a"
+    },
+    {
+      "file": "src/core/admin-navigation.ts",
+      "sha256": "f6a992c95bce06bbcb9cc3e047ba1d282ac1364b972ee1bcbd01ece813fd1f8c"
+    },
+    {
+      "file": "src/core/admin-record.ts",
+      "sha256": "f03a2a54ec90a9ce830e1f289e31524ba43dca516d1aca7105917a45b265305c"
+    },
+    {
+      "file": "src/core/admin-workspaces.ts",
+      "sha256": "b1fe037e8ebdd78d2ad24c0fe8b90ea223937733660d0b78ef204b7b2021bc01"
+    },
+    {
+      "file": "src/core/afl-jerseys.ts",
+      "sha256": "abade3d4aae8bd2c21c0e37ab06a1e0c93602b62d916c5694147c0d8456ca13d"
+    },
+    {
+      "file": "src/core/afl-twenty-two.ts",
+      "sha256": "d435d347fae9a5c9f6141b53ae679f0d313ef29a0e6b76850be5e1879dff149d"
+    },
+    {
+      "file": "src/core/analytics.ts",
+      "sha256": "ce11e3d4df8f94cbd1a0cc972250ca33d80aac96626b39811558f86bc62506ff"
+    },
+    {
+      "file": "src/core/app-auth.ts",
+      "sha256": "8b7df32367b40dc8b5f1d29dce3b352213628e13fb8875b99244db321801af18"
+    },
+    {
+      "file": "src/core/approved-australian-rules.ts",
+      "sha256": "4bef5598273da09db71dc4170ad7a27acb23c544e2df5166dfda11740c4cef7d"
+    },
+    {
+      "file": "src/core/australian-region.ts",
+      "sha256": "c9f35be34cd6c5d1533fbeb75ce96d61b5aca4ba123df07f37fb46368ce83686"
+    },
+    {
+      "file": "src/core/auth-cookies.ts",
+      "sha256": "fd77e34a42f4c5f119bea23af7e78ff53153f36accef5ea7f60ef3e449060a4c"
+    },
+    {
+      "file": "src/core/auth-invitation.ts",
+      "sha256": "00143b8c0014936b594b3549aca752d6d1b3cf824f2fcfae21e72ecbb72a3c64"
+    },
+    {
+      "file": "src/core/auth-policy.ts",
+      "sha256": "d1761be3b5d81c9e6f80235ae365f14ffa3694b6d3a645f3b6a4158c4ee2afa4"
+    },
+    {
+      "file": "src/core/auth-readiness.ts",
+      "sha256": "879ba3f54ecd1af111e1cb8ec0cd725bab1cbce00bddeff48eab3bcce1f780cf"
+    },
+    {
+      "file": "src/core/auth-recovery.ts",
+      "sha256": "54ebba54372eeee968f0f62340ed04ff5334ab0679db857680c2efdb9ebaab29"
+    },
+    {
+      "file": "src/core/auth-relations.ts",
+      "sha256": "60033becaacbd85298ca77d498f515e700a3851dd5bcf24fca44d55794897bc4"
+    },
+    {
+      "file": "src/core/authorised-scoring-feed.ts",
+      "sha256": "842cb47d6518b2d8810573a640b2094994a80e06f2ea0ea323c253dcae19abea"
+    },
+    {
+      "file": "src/core/avatar-crop.ts",
+      "sha256": "cf2efe320762feb94303f72c267ce0004ad6de5b0fc35ffa2fca89a2579e8ea0"
+    },
+    {
+      "file": "src/core/beta-credit-requests.ts",
+      "sha256": "e47fb680bc4b0d0b634db7117ddbb1b693a095af756c95b5b31b430494c9c615"
+    },
+    {
+      "file": "src/core/beta-invitation-plan.ts",
+      "sha256": "2708a8a61a6d0e1e1d0fe785be15646c57fa61eca77e235ba312b4a9dd55237e"
+    },
+    {
+      "file": "src/core/beta-policy-packet.mjs",
+      "sha256": "b05a7cf006faa79e9dc6bc5d01221dee387030b614a0f45681f2eb3614241b04"
+    },
+    {
+      "file": "src/core/beta-release-identity.mjs",
+      "sha256": "8b31ccb1c4d8a0de6b3c20f550b6069b1a970287b7a7ce01e94905205bff858d"
+    },
+    {
+      "file": "src/core/beta-signout.ts",
+      "sha256": "08d14e42b05e3762ea0985297df05b329d5d35cc61aaa0850d0fcc0e21f1b5a5"
+    },
+    {
+      "file": "src/core/beta-trading.ts",
+      "sha256": "a189200f16463fda963191b2b5794ecfa7024e06afd5973cf7837ceaba6799ae"
+    },
+    {
+      "file": "src/core/bounded-request.ts",
+      "sha256": "4ded4c8a8dff6f30faf5fb62245fe5e241cd85bf6f161778ea19760f97fa7242"
+    },
+    {
+      "file": "src/core/canonical-hash.ts",
+      "sha256": "5393c900f99312acf8816989621b35ccdf977673d0535562cd91a6eb38460128"
+    },
+    {
+      "file": "src/core/card-display.ts",
+      "sha256": "202f5eecddf24b8b54ab0e1e0457d38c81ecb8df7549f712adbcbcd69dfaf84c"
+    },
+    {
+      "file": "src/core/card-economy.ts",
+      "sha256": "8316b60f8ade9f308aea7dbee241a4c10e47760021c1b6db0f26b2d682170fd3"
+    },
+    {
+      "file": "src/core/card-presentation.ts",
+      "sha256": "b815b0af67cf72e7cbc1578f3553a3734fd5b62809c0671010069bbf08dea5fa"
+    },
+    {
+      "file": "src/core/card-rarity.ts",
+      "sha256": "32ec6b58cce89e28071c1dd09bad6191fddc89f8238f57c666522bb5fe182b5f"
+    },
+    {
+      "file": "src/core/card-score-display.ts",
+      "sha256": "9fdb77730c15be57ff3ecfdb1f2c46617819b4748ac04b17730e2091f8900bd7"
+    },
+    {
+      "file": "src/core/collection-export.ts",
+      "sha256": "bf37df0f135812d9b025179c10b7724d3f6f094d5269a73730d880fa75c41b70"
+    },
+    {
+      "file": "src/core/commerce-sandbox.ts",
+      "sha256": "9a8e38763040b3cdac36dcdb4de2de39af028cf24c2fa9dcc492d472f62fae79"
+    },
+    {
+      "file": "src/core/commercial-billing.ts",
+      "sha256": "ecd8db3a12a9e782dc74e4b885b233c9294ec9052424579bc4278f7ddea8e430"
+    },
+    {
+      "file": "src/core/commercial-market-command.ts",
+      "sha256": "b4c839e896ca081dc5c55a793a1521ab51ebbc3abff9c545808967a091b70209"
+    },
+    {
+      "file": "src/core/commercial-pack-supply.ts",
+      "sha256": "a7d936ebcb0178cd16b6c0e21c696d4271dcfc352159b01076dd5c2b748879ce"
+    },
+    {
+      "file": "src/core/commercial-pool-plan.ts",
+      "sha256": "b70fb25ebe18471a8d6e84ea901a5516b01dcaf548f18d81f283ee3844ea1e67"
+    },
+    {
+      "file": "src/core/commercial-presentation.ts",
+      "sha256": "62f2abcdc4bde9b7de469e0d883c5667582e6b9f445efa281f3e7001a17e15fe"
+    },
+    {
+      "file": "src/core/community-maintenance.ts",
+      "sha256": "e048add9bddd8701c7506b09208e6926cc65ccbc069003e69178a7074f17000e"
+    },
+    {
+      "file": "src/core/community-media.ts",
+      "sha256": "312f1ed2cbfa93e3e0e015a1163aab243d508203b50054962df9b3ccf0b0fa30"
+    },
+    {
+      "file": "src/core/community-navigation.ts",
+      "sha256": "d6c69f1001adbd46610666f66bccd3b420f23853a355733e32c10f3f8b523559"
+    },
+    {
+      "file": "src/core/community-policy.ts",
+      "sha256": "3b8584b17553d9a8222dd09ee2091e6ddc8d5a8fb7846c2e0ba7756a18263e5b"
+    },
+    {
+      "file": "src/core/community-social.ts",
+      "sha256": "3dd6cb088f3cbd0f6b97c886aed597cedc6802cab9644bf5cc43123b3d958306"
+    },
+    {
+      "file": "src/core/competition-display.ts",
+      "sha256": "ccab8b21e50ba049bdbdf979246ad16d3274f1cc555f65d1f0c15f908d74fcae"
+    },
+    {
+      "file": "src/core/competition-review.ts",
+      "sha256": "7107a047d93a5eede9fc55c3b23b71e1096df39479e978f353286e16857b9bbd"
+    },
+    {
+      "file": "src/core/credit-only.ts",
+      "sha256": "da1df4ebf7cce9160fd2c29bfdcf759bd273583892f31d57eda029fcac0087d9"
+    },
+    {
+      "file": "src/core/credit-reconciliation.ts",
+      "sha256": "3dc0f962bb345530d2ef874341c417a6dafe68d2f0a8c4db52acfefcbc799fde"
+    },
+    {
+      "file": "src/core/credit-sales-only.ts",
+      "sha256": "0a700a977fee766961c41c517eb128c962cb811ea15af9cebbabb9fa4ab1f627"
+    },
+    {
+      "file": "src/core/credits-policy.ts",
+      "sha256": "d88b544a9bc03448b983d314dee864aa5f2bc5dfbf64dea7cc21d340ffee554d"
+    },
+    {
+      "file": "src/core/credits-sandbox.ts",
+      "sha256": "8311656f7c4f8d5c7ef7e7f0db878f840957f6087b82dc73e91034ab824820f1"
+    },
+    {
+      "file": "src/core/customer-email-readiness.ts",
+      "sha256": "2dfd86e8c9c1f3b195b1dd261396249942b81057404d7dfedde534a635dffab2"
+    },
+    {
+      "file": "src/core/customer-onboarding.mjs",
+      "sha256": "bf503b0fc65807c789156a2cc4e44fa3c03f3cde4e8396ba198dce7f0ae86259"
+    },
+    {
+      "file": "src/core/customer-sports.ts",
+      "sha256": "094cac9a91a1846ba7487a5f4122f17633d70565e5603d197208701652ffaeb9"
+    },
+    {
+      "file": "src/core/customer-verification.ts",
+      "sha256": "115d93a74e0d8023da5fcd310c08e3cd0743a71bd4ec2bcbf6612c3016c5e57e"
+    },
+    {
+      "file": "src/core/deployment-environment.ts",
+      "sha256": "42c90b79d056ed39dec945e196c2b2007b2a0565101a62240914e3e4a1bf823b"
+    },
+    {
+      "file": "src/core/economy-catalogue.ts",
+      "sha256": "2dd0e5131ace53de98142f5a18c9b15b00006b094c7a3ed3ad61dea7bdb0724d"
+    },
+    {
+      "file": "src/core/economy-scoring.ts",
+      "sha256": "29feefa0cb8dc317fe5a75a57547c5235f5e96cc6a34c7da0fc956c460284f08"
+    },
+    {
+      "file": "src/core/fantasy-market-fees.ts",
+      "sha256": "0012eb28cf993365536575c3e81dd3e7350e48856f89fb5376effcec3c340fe8"
+    },
+    {
+      "file": "src/core/fantasy-nfl.ts",
+      "sha256": "6beaad8d5d535b4342a8da05addca71785536c4ea1c19d8148d7f928c6577d1f"
+    },
+    {
+      "file": "src/core/fantasy-play.ts",
+      "sha256": "e0e00aeb155bb8f06d17a76c2bfe975d95d246ff9f50ab93df1aec61a151bc81"
+    },
+    {
+      "file": "src/core/fantasy-production.ts",
+      "sha256": "6b06af7652d6cf56c596ff75e4f51028c2d84d91f7e2885e05ababdef13d9e97"
+    },
+    {
+      "file": "src/core/fantasy-request.ts",
+      "sha256": "dc24ebc744db070d0bf6910c459ef9e7cf8aca62b0d51f8a7a8fe458ed97419e"
+    },
+    {
+      "file": "src/core/fantasy-response.ts",
+      "sha256": "cb08b1e26d71e6e1e9f3a2b3db8a483a7ca6c6b2d51f17375daab2b05696a858"
+    },
+    {
+      "file": "src/core/fantasy.ts",
+      "sha256": "b8cf033a5381d6bd0c10e1c96e1fe7f935b868a14539d2374da77abc9dec0e30"
+    },
+    {
+      "file": "src/core/fixture-commerce.ts",
+      "sha256": "d8466ac894e42f2b1d20d424005aced5c0b223dd467fdadd1ac68dcb6cd59dcc"
+    },
+    {
+      "file": "src/core/fixture-sports.ts",
+      "sha256": "3f7bd5cb4e4012f51383688fa392fc24520d1be6d9379064beeb4448010541ab"
+    },
+    {
+      "file": "src/core/foil-pack-artwork.ts",
+      "sha256": "38cf9ea50bd3b36f21a18fa9ee0875e3da8212063e044e8e8830362c4d308535"
+    },
+    {
+      "file": "src/core/free-beta-scoring.ts",
+      "sha256": "62d423b4e07bcb4baa002ea176542d0cd9c17e1b3fc4da22d4792418d8d5b3f1"
+    },
+    {
+      "file": "src/core/free-core.ts",
+      "sha256": "811d353a1046c9c669dcd0e3d457c9ae84c47ae384d2df20b69ad7ca2d61c48a"
+    },
+    {
+      "file": "src/core/friends-release.mjs",
+      "sha256": "af4da591a614405299fede696f259dfb1cf7755d03895baf970bfbf6a7913e3d"
+    },
+    {
+      "file": "src/core/game-day.ts",
+      "sha256": "b91a8147ec9d22087c32ca0acce1f9aaa1cfdb7cdd3b18a1220b0b12c9fd0f4d"
+    },
+    {
+      "file": "src/core/historical-fixtures.ts",
+      "sha256": "962cb99f07feee3f082f584a38e6f6cdd6ad067c3f8fe44be852bfd79d09a834"
+    },
+    {
+      "file": "src/core/hosted-beta.mjs",
+      "sha256": "86f3165c9cd89a7486c742db5cd463df4b24e417dbe6aa800d4bbd957d928e6d"
+    },
+    {
+      "file": "src/core/hosted-preview.ts",
+      "sha256": "ef666420dc6b698527b3d2fcd8274408793f8a54e30bcac49f5db3cec4482aef"
+    },
+    {
+      "file": "src/core/hosted-production.mjs",
+      "sha256": "b51cce2d1aefcaf4f2a4a84268664671baf3805cfbf5242e46ec3e640208c35a"
+    },
+    {
+      "file": "src/core/hosted-review.mjs",
+      "sha256": "31f77e3bc6d729f7ea113c3a0bcb1b695424baa6c89062fda2e4d78747fc7b2b"
+    },
+    {
+      "file": "src/core/hosting-identity.mjs",
+      "sha256": "7a7d0357fdb9ff76663c2c9cdbc2a35ad9e0a9b498e1fe46fce4c3f6b1cdac50"
+    },
+    {
+      "file": "src/core/invitation-setup.ts",
+      "sha256": "0276fb7b7079cc2bf4e60b1f83ddf909df3839955b0055bfb46ed9d086c37a7a"
+    },
+    {
+      "file": "src/core/isolated-billing-acceptance.ts",
+      "sha256": "b6cb2d224c2cc8c1bc83f889c3b28160decf8f17b3af14fe75212c56a5f3c7bc"
+    },
+    {
+      "file": "src/core/isolated-public-preview.mjs",
+      "sha256": "dc5caed986c5e35a527e521d00e1fcb39ace304673bfee2632e410a2ed11f52d"
+    },
+    {
+      "file": "src/core/issued-inventory-manifest.ts",
+      "sha256": "bd70bbd7aeb209cd218caf443c74cb4a72ec3b1454774dcf28358d826730722e"
+    },
+    {
+      "file": "src/core/lifetime-reconciliation.ts",
+      "sha256": "045977c54599d8f45007635eff75de9b1db39ecf370737e618b2e6e4c01b5e87"
+    },
+    {
+      "file": "src/core/lineup-auto-select.ts",
+      "sha256": "edd49a814f8c9e09db12e016c9e89f45449fe7a7ddf86b358ad180b32e5f8a1e"
+    },
+    {
+      "file": "src/core/lineup-picker.ts",
+      "sha256": "b1f10b9eb06782adad28977573c4b4eb08af09cf7d0a275ea7aaaa9a6cb5535b"
+    },
+    {
+      "file": "src/core/local-marketplace-acceptance.mjs",
+      "sha256": "29e8419848c4483aa5b06e54925934530611c65871126ac3d3eaa03ac53dcb71"
+    },
+    {
+      "file": "src/core/manual-identity.ts",
+      "sha256": "8156aa5af3e5f3933d7a9b4d3a7504014f8a1200a009e2030f239da77128ccfd"
+    },
+    {
+      "file": "src/core/marketplace.ts",
+      "sha256": "d2f263b3213c92710441c5d51f5316cac7242791f628db37c613a9a5917a40e6"
+    },
+    {
+      "file": "src/core/member-access-recovery.ts",
+      "sha256": "890bcebe220c32e2023c112ca47d53542dc756cfc90cd8d7440de87bc690dbfa"
+    },
+    {
+      "file": "src/core/member-test-wallet.ts",
+      "sha256": "24d4a2875964e1f8fb533c983993db2efc51b812d7d7b9046ca488a42b27a189"
+    },
+    {
+      "file": "src/core/mfa-flow.ts",
+      "sha256": "56f1b906ad71e78d2b032b4c969c7543eb996a1135f568b8d3ccebc74d0ccbf3"
+    },
+    {
+      "file": "src/core/mfa-service.ts",
+      "sha256": "abb732e078c31b440a049c25fa0890bc93a150e338dca902d371d12417b81ebf"
+    },
+    {
+      "file": "src/core/mobile-capabilities.ts",
+      "sha256": "6323d02cb7a1826c84735bb1144d5427f759d6d14a1e2d9e8e13c17ec59b7598"
+    },
+    {
+      "file": "src/core/modal-lifecycle.ts",
+      "sha256": "b8199d0e9d9e55d6dd2d54f96edcd87b5f81221fc5603548e32c61eb56976876"
+    },
+    {
+      "file": "src/core/moderation-cases.ts",
+      "sha256": "cc5f995557a89514df02637b922707f5f634706c5a69bf68142a4c375a93b73b"
+    },
+    {
+      "file": "src/core/moderation-retention.ts",
+      "sha256": "34b0a89536cbc623370fd78333da25ba65100b049f0b05929d5f4bdd093f139b"
+    },
+    {
+      "file": "src/core/multisport-delivery.ts",
+      "sha256": "4ec6c8f83387b9bdd30df0f021ee4902c350928df820d3390413ed0f43a99dfc"
+    },
+    {
+      "file": "src/core/multisport-health.ts",
+      "sha256": "714a2f15b441323458fa5016990e1a7d324a1bc4f25647e7cb0321e7f2622c45"
+    },
+    {
+      "file": "src/core/multisport-ingestion.ts",
+      "sha256": "e78c0fbbe06c6d006be46091fc3e6c732293532f38b74dc8ea8d98ae5fa3c255"
+    },
+    {
+      "file": "src/core/multisport-roster-bridge.ts",
+      "sha256": "8b3f71b5279fc3129f102627264546f93c1493a4212022f26c0009efd9e510c6"
+    },
+    {
+      "file": "src/core/multisport-scoring-bridge.ts",
+      "sha256": "c43f07bd97fdb6001feb0ca7f19263c263e6e4c90c1a43f1c6922853ae1d55e3"
+    },
+    {
+      "file": "src/core/native-listener-scope.ts",
+      "sha256": "171b3cc2f8a56df194b9ab9cc1a9c1df96b10de4a35d413032e8360182df4ef1"
+    },
+    {
+      "file": "src/core/native-navigation.ts",
+      "sha256": "a4522d1dd5972329bf0f9e98fe04ce4b1784f6549a8d42f29943da1ee55f74b6"
+    },
+    {
+      "file": "src/core/nba-catalogue-review.ts",
+      "sha256": "084f64cabaddd194d3d996875d427ba6b90f80feccdc34bf9a3246d9dc3e6357"
+    },
+    {
+      "file": "src/core/nba-private-beta.ts",
+      "sha256": "97f6fba24e2a66103586ee8b1416b8b9bcdc026fae458331aa950f90045142bf"
+    },
+    {
+      "file": "src/core/nba-weekly.ts",
+      "sha256": "3add93063a3b906d84d6ee0749f5ec6384d9912dc6e608c47ac80afa0c8075e9"
+    },
+    {
+      "file": "src/core/nfl-card-eligibility.ts",
+      "sha256": "469907d9c448cf239d9e9dffc89673e0dc6d438c57c247e8e07e996d9afb0d83"
+    },
+    {
+      "file": "src/core/nfl-completed-zero.ts",
+      "sha256": "b8d0614c35382c6aa86c9e607a6776fb95aa3bd579e16ff0e9e8398b40f4bc02"
+    },
+    {
+      "file": "src/core/nfl-history-target.ts",
+      "sha256": "d92a93b1db9adec8856ec891bc8d03eb3c671109806245f7fe2804719d123463"
+    },
+    {
+      "file": "src/core/nfl-hosted-target.mjs",
+      "sha256": "a0ae7acf69f596668ea20416d15026e6883d379d71bdb262a5b7b78841b3188b"
+    },
+    {
+      "file": "src/core/nfl-player-history.ts",
+      "sha256": "8da3cc440a18d31927413aec2cf0d6471495834a4ec3c063b863752e00eb9454"
+    },
+    {
+      "file": "src/core/nfl-postgame-policy.ts",
+      "sha256": "d7c70374ad10182a44a99b6f6d21724d7183995efa23d669f9dad3d7cd08eab2"
+    },
+    {
+      "file": "src/core/nfl-refresh-status.ts",
+      "sha256": "80a32c417c9b1fff9c7e6dd95fb9610db77b3374578179dd0fe0d1c2fce7a828"
+    },
+    {
+      "file": "src/core/nfl-round-calendar.ts",
+      "sha256": "3c0c11c18867e406bd6acf8f9cdeeaa7aa296cfd477dd175ed05f2434d58daa6"
+    },
+    {
+      "file": "src/core/nfl-scoring-reference.ts",
+      "sha256": "7a999e939864bb8c3f5b6f2d621a3953335c5a7ac37f33fe539900400b6dd7c8"
+    },
+    {
+      "file": "src/core/nfl-seven.ts",
+      "sha256": "94cb142ed8bd9a808a21f46108efaaa0056be2b4e26ce3d3ab73f66d5dd5bba9"
+    },
+    {
+      "file": "src/core/nfl-test-cleanup.ts",
+      "sha256": "935827225237a5381f0dec9e7209c8b7035c1d545fd57ca2ca1c64dbb3f76cfc"
+    },
+    {
+      "file": "src/core/nfl-testing-feed.ts",
+      "sha256": "5587ae270405f52451df1fdd7fe920c46cf9221166f8f96ab51b020b2d095e6e"
+    },
+    {
+      "file": "src/core/nflverse-evidence.ts",
+      "sha256": "d342647e28b2dd2902cc06b5fb7318bf0330e94ae4b13bef4c0af92b6cae5388"
+    },
+    {
+      "file": "src/core/nrl-jerseys.ts",
+      "sha256": "c0aad76f730706bd00d628c2055a0054fa34e99ad5247d2c349b9f7950626437"
+    },
+    {
+      "file": "src/core/official-roster-refresh.ts",
+      "sha256": "df9d3abde8ab82c5af87f0c9d39620cce8408b3e2de92f0462785ca2602984a7"
+    },
+    {
+      "file": "src/core/operator-presentation.ts",
+      "sha256": "5879d0a18fb317abd2bcf2cc9ca7d3807a0d900f9146cfc2b94d79c541f3f2aa"
+    },
+    {
+      "file": "src/core/owned-collection.ts",
+      "sha256": "08a9d4ad5880a9c254550f285e9de600b40a29d8f7dec7d64d7b9bca4905a432"
+    },
+    {
+      "file": "src/core/owned-lineup-recommendation.ts",
+      "sha256": "38eef058b68c0545d60750922903830e4438de94621aa3f1ff76f6b0bec4d74b"
+    },
+    {
+      "file": "src/core/owner-command-centre.ts",
+      "sha256": "238a16c562ed4f541d4dc17f5c4ae97597ce6bbdf3db0a6be79a1102073fc46c"
+    },
+    {
+      "file": "src/core/owner-health.ts",
+      "sha256": "2e48952fd708a00d04801b1e3f4035702b62ab30b12f6cdf6f497ffe09bd9593"
+    },
+    {
+      "file": "src/core/owner-operations.ts",
+      "sha256": "182d3d4142081dd275229234d8d66b1bf19eba4a78b4be4247043b79413d303f"
+    },
+    {
+      "file": "src/core/owner-reference-data.ts",
+      "sha256": "e8db61909fc21b4429359a156a9155e73a181fea8d1285a07f810c6653ce1e54"
+    },
+    {
+      "file": "src/core/owner-reference-projection.ts",
+      "sha256": "4820136b56167d768439a01c021c874b361c9bc7416bea90866fa2a74288cc5e"
+    },
+    {
+      "file": "src/core/owner-report-period.ts",
+      "sha256": "ba65d3bef6293cfaac7ac9ff785bb707376eed7f312f324cb2127efeafaf8032"
+    },
+    {
+      "file": "src/core/owner-sport-feed.ts",
+      "sha256": "5c04f93762eea8300e8d985b1f8f562ffa58b525f258abb0da3a50520675d1fc"
+    },
+    {
+      "file": "src/core/owner-wallet-summary.ts",
+      "sha256": "39a4c4d2e6c9078274cc472b37a584038944cc25ad5dda12b4014dd3507230f9"
+    },
+    {
+      "file": "src/core/pack-availability.ts",
+      "sha256": "5e1f165575ae52ef81284c67975650f46e98bdf13096b54a577391645fbe1d92"
+    },
+    {
+      "file": "src/core/pack-coupons.ts",
+      "sha256": "00e62d60e1aa30ea300c477aa99b014f086e2af309103204dd3c3c7a41c48e0a"
+    },
+    {
+      "file": "src/core/pack-experience.ts",
+      "sha256": "ca7f967ac49d61a89e297db94f0a7355e5828f193677170d17aab34ea3e559ba"
+    },
+    {
+      "file": "src/core/pack-odds.ts",
+      "sha256": "da099ec22079a3558e3250698306d2ebdd27b0fe7be55707aa0aebd5c9d030e5"
+    },
+    {
+      "file": "src/core/pack-opening.ts",
+      "sha256": "75627329efb088e92529eca4509c2c8cc56cff62336e2a3808df06ef8c4e9a54"
+    },
+    {
+      "file": "src/core/pack-presentation.ts",
+      "sha256": "904ed5034d8b1029efd6c27a74b734d6a782b872396c7b8f344d8b10f832e09f"
+    },
+    {
+      "file": "src/core/pack-products.ts",
+      "sha256": "a8192518ae47ab41d64ab7da9ca21137606cbbc4949c6ec59dcc2b331830b583"
+    },
+    {
+      "file": "src/core/pack-reveal-progress.ts",
+      "sha256": "09e887af35e13626c92f2eb37c21b42bb1abb559a3d73cea23dac0b59ffa646a"
+    },
+    {
+      "file": "src/core/pack-shop-state.ts",
+      "sha256": "26cdfbca2d726dbdfaa46605a13bce87bc9ab8d89ae75e850dae1fab1115b060"
+    },
+    {
+      "file": "src/core/pack-tier-ranking.ts",
+      "sha256": "a903b65dd6832eb9e4a59516010e4eb6adad6cf71503fdcf68d4cb2eb06f9261"
+    },
+    {
+      "file": "src/core/paid-pack-catalogue.ts",
+      "sha256": "84b86c30baaebd533deb671183ca6ba724339aef88198af419e0bc1e5d33a041"
+    },
+    {
+      "file": "src/core/payment-report.ts",
+      "sha256": "291320d6e5c61502b1b0d4c9620157587b9b4683131ce4b7f3eee72d24bb52e1"
+    },
+    {
+      "file": "src/core/phone-challenge.ts",
+      "sha256": "954025430bba6762cdb740884d28ad2a126de835e2361dcdd361a84e1c59047c"
+    },
+    {
+      "file": "src/core/player-card-history.ts",
+      "sha256": "8a08db7bfe91af6c56ce9d5f37f424c54f4cd3919f8557732c44b709f0c2e2fe"
+    },
+    {
+      "file": "src/core/player-catalogue.ts",
+      "sha256": "30f4920de65f11c68f44cf27e2eb3b22262a321cf8fc137ee4f1f09060e3ab3d"
+    },
+    {
+      "file": "src/core/player-statistics.ts",
+      "sha256": "f2e0943a91c131321f019d40677dd9807126e8fe7c98e58e8716e417e99bd131"
+    },
+    {
+      "file": "src/core/policy.ts",
+      "sha256": "ed883217ee1a01f924b7ed92bd63677f2770900319b5decd44987ba59527dbb1"
+    },
+    {
+      "file": "src/core/portfolio-valuation.ts",
+      "sha256": "2ccc8dbbe6a9204a8e679026558337ad9f44c19ae3429707c61cdbff5645926b"
+    },
+    {
+      "file": "src/core/postgame-nflverse.ts",
+      "sha256": "bb1a18bbdea27804b9f24c52d178882ad59709b9e865b3475308718011cc5453"
+    },
+    {
+      "file": "src/core/preserved-collection.ts",
+      "sha256": "efba5eea13e5b28b854fadef6ba609c1197d48ccd83bb98b3f9f43fe118ec174"
+    },
+    {
+      "file": "src/core/preview-auth.ts",
+      "sha256": "6da6a006163e052779ff55fa4633c6510e35bf954fdf54d3860b6e15a2b047b1"
+    },
+    {
+      "file": "src/core/preview-community.ts",
+      "sha256": "a8ef40e6c308b840cb2eb66d82af60e4e995bafc58549d415393ee153113bf4b"
+    },
+    {
+      "file": "src/core/preview-maintenance.ts",
+      "sha256": "d8372d38c70ebb04ae918ca12dc411787fdac34e39890416c8d1c48d6b14b8f5"
+    },
+    {
+      "file": "src/core/preview-owner-auth.ts",
+      "sha256": "f40d7a1b15b02ef80cd4b06fa3fdf1db2e77c31532c1855b4ebd20e8abe2b92b"
+    },
+    {
+      "file": "src/core/preview-owner.ts",
+      "sha256": "cd76c70a816538f72a65d8dded2992e5a0cb0e238c98cc02a1d478a5d2c81218"
+    },
+    {
+      "file": "src/core/preview-testers.ts",
+      "sha256": "b6e063fed270e6b4aa5f68eeda683e058a62fe24c31968c0f433663da3a4211c"
+    },
+    {
+      "file": "src/core/private-card-offers.ts",
+      "sha256": "435732e437ad153e588c9cee7a8aab5e9a96c2cfb67a148a01c42d79cc4fd979"
+    },
+    {
+      "file": "src/core/private-preview.mjs",
+      "sha256": "829eebe855ac4e51689625adc4783c7d602889a7fbb40d813d5fd88d97f9b829"
+    },
+    {
+      "file": "src/core/prize-register.ts",
+      "sha256": "4e4fe474763ee89eb5476e12cc9148104d6b67351b201841c138e22f2de6df79"
+    },
+    {
+      "file": "src/core/prize-schedules.ts",
+      "sha256": "73ecc7f0f2fb87735604b4380c2d45eca50797016c27afcd162e2d287092fd90"
+    },
+    {
+      "file": "src/core/profile-overview.ts",
+      "sha256": "acb889345225fd6a783e760b8a83f0d47184ead8d085d099df891505838d75c9"
+    },
+    {
+      "file": "src/core/public-customer.ts",
+      "sha256": "20da23536baa20e83cfaca56de8dff4ff2181ac5c9a0870813243c533efc4cbd"
+    },
+    {
+      "file": "src/core/public-member-setup.ts",
+      "sha256": "212b7c2423212364a7a73ee4adb9d563f11876c5b5af45545d08bada31119e71"
+    },
+    {
+      "file": "src/core/public-phone.ts",
+      "sha256": "24d96d68cda782af44f032630fdb759126a3fb84dbfc3ceae5053c0350960124"
+    },
+    {
+      "file": "src/core/purchase-celebration.ts",
+      "sha256": "99adb25eaf903fb4f42ec4a26617ff2b2962ece6731664d8aad54fd467b491e2"
+    },
+    {
+      "file": "src/core/purchase-performance.ts",
+      "sha256": "81cea75ae229ee5de87a178402bf07345c9676858675b434e5859e117899733d"
+    },
+    {
+      "file": "src/core/rarity-theme.ts",
+      "sha256": "f9119242acce48bc043bf597bd718c98d28155bfce2f0d592edf99c5bdf82260"
+    },
+    {
+      "file": "src/core/rate-limited-action.ts",
+      "sha256": "7b0a67358d2ab2acb2eae4aa697f84f52e387d0ae5b6f642b123f2c9fdf6d0d6"
+    },
+    {
+      "file": "src/core/redemption-money.ts",
+      "sha256": "843f98d654dabdc296d5ce4f15a6bd9af388ff01a18fef6d1dd81edd128edc2f"
+    },
+    {
+      "file": "src/core/redemption-view.ts",
+      "sha256": "54a501853bbf20eecd900b51b2bd31b72ad99d0bacaf41e453cb5fde0ffcf9f7"
+    },
+    {
+      "file": "src/core/redemption.ts",
+      "sha256": "d8fcd96e9e3dd12fc32bc908bf5b18d50a1e6cd0c6238d368ab32f2462160f04"
+    },
+    {
+      "file": "src/core/refresh-queue.ts",
+      "sha256": "3511c573c2a698a0508b0fbf1e0cc5a38070887f74542d98767d93bf85b2844d"
+    },
+    {
+      "file": "src/core/retired-product.ts",
+      "sha256": "d01ef85e2747b3195a4ba35996cc27d6c88805d042d73956b128f2cf05d39305"
+    },
+    {
+      "file": "src/core/rolling-evidence.ts",
+      "sha256": "60e5ad79d547b18a521e636e8e3e469a02912c865f0aa5018f3c00f187fb12da"
+    },
+    {
+      "file": "src/core/roster-beta-prepare.ts",
+      "sha256": "860ede08ac9734b5b3af6f816704901c6ae457d34384bce2a32f6591c9be9562"
+    },
+    {
+      "file": "src/core/roster-beta.ts",
+      "sha256": "132effa1103764521323cd3308bf0ebd942cd4a4404b482946ac0eb372fa3421"
+    },
+    {
+      "file": "src/core/roster-card-metadata.ts",
+      "sha256": "1748408565279ca7c6ffd6c05313419062dda1e0f2349946f7274f336f4a8186"
+    },
+    {
+      "file": "src/core/round-rewards.ts",
+      "sha256": "6bff7be565a038353c91109d20e3a916e517ad605b30d1ea90ea365913b83429"
+    },
+    {
+      "file": "src/core/round-status.ts",
+      "sha256": "c7360c5c1ca654bd124e4ff4804b8eae1c2f16c22c7e6266dadbf1fe83ac361f"
+    },
+    {
+      "file": "src/core/sale-notice.ts",
+      "sha256": "390eef607a406b8e2cd8cad236b93341da11414a71724cff87f7f9bb15f850a2"
+    },
+    {
+      "file": "src/core/sandbox-card-view.ts",
+      "sha256": "97db65b65edf73d599d39da7a887294dd503ca2545d45379ee1e373413083e62"
+    },
+    {
+      "file": "src/core/sandbox-score-view.ts",
+      "sha256": "0a352a1ac967be25e22d6a3a9494753193e3fc7cfe0beeacf658c74f128edfa3"
+    },
+    {
+      "file": "src/core/sandbox-swaps.ts",
+      "sha256": "6691f2e62f431e57721ea7cf90f92b8afa7847624ec56f44f85e3d7550063e39"
+    },
+    {
+      "file": "src/core/scoring-context.ts",
+      "sha256": "33dcfbbc64fd1aef2362ca8ecef6a19fa87854d6a885de23b2efae8f9a67ab69"
+    },
+    {
+      "file": "src/core/scoring-engine.ts",
+      "sha256": "267f8dc31ed227b5cb3f88e5973f8197530dc5fdcb5543f2d3ed51caef531a10"
+    },
+    {
+      "file": "src/core/scoring-provider.ts",
+      "sha256": "ea1ac3b6f41c01ff00c264bfc2aa1a712be37d54e8215d5dfafb057caaabcb6a"
+    },
+    {
+      "file": "src/core/scoring-release.ts",
+      "sha256": "b8dc4ec0a96f476a60d167b18d2ab466cde8f7caf234cb617dbdd6f3dbf5bc4b"
+    },
+    {
+      "file": "src/core/scoring-synthetic.ts",
+      "sha256": "3a61a95dd78a1b7dd15e86470d841c20950ea86832a9303d57eaf3297e1cd1eb"
+    },
+    {
+      "file": "src/core/scoring-v1.ts",
+      "sha256": "4707904d45836d72051f96665ccb6141930c6f51f5b810af684a97c86cca227b"
+    },
+    {
+      "file": "src/core/social-attachment.ts",
+      "sha256": "caecfcf456018fc2078cb4b671b2bdaf32b2cb2249b8bd66608a6c4f346b89e2"
+    },
+    {
+      "file": "src/core/social-hub.ts",
+      "sha256": "7e995569b02fb2584820b073e7f9b4ede07c202ff9986942c948ac6513c5dd73"
+    },
+    {
+      "file": "src/core/sport-configuration.ts",
+      "sha256": "ad9f4b15ccd6eb6536ea1649e602332b767abcadb48343891de23779dc6e1c56"
+    },
+    {
+      "file": "src/core/sport-event-rules.ts",
+      "sha256": "a0ebae5c6f56f11b7277f00f5e78ea933f8a804c392a34d63fa9fb618e02085b"
+    },
+    {
+      "file": "src/core/sport-fixture-contract.ts",
+      "sha256": "b62bf02213135211ced9e66e988b4e9c506d69e62623bf591b6c700f537e5613"
+    },
+    {
+      "file": "src/core/sport-image-loader.ts",
+      "sha256": "801e2936ed7b90050dfd8b9419e770e9d7eb7cec0f768577756d2e37bb4f1d43"
+    },
+    {
+      "file": "src/core/sport-issuance-preview.ts",
+      "sha256": "9a875e4b1886324e62b7b060b366b281131721c42e3426821c9605a2604755df"
+    },
+    {
+      "file": "src/core/sport-lineup-view.ts",
+      "sha256": "fca530cf08a414cbe311ed6909a3c3fa0d63e813ff5fd7759860d587db7b984e"
+    },
+    {
+      "file": "src/core/sport-readiness-report.ts",
+      "sha256": "52c6384a689a439cf220ea541ff8e3353f0c8b47713711a990c8e7f204866fee"
+    },
+    {
+      "file": "src/core/sport-readiness.ts",
+      "sha256": "b2ffc928983602625c4b0eaf0ec5753fb41b3fce28f8a1af8fe22e30ed3b9a69"
+    },
+    {
+      "file": "src/core/sport-roster-review.ts",
+      "sha256": "752b4846793bfeffc79c9fe611454704049d4be7a846d6573b24a861fb0ed314"
+    },
+    {
+      "file": "src/core/sport-sandbox-configuration.ts",
+      "sha256": "5aa0b22a1008b845676a431176596bd656751ccfc4e11000f6a78e55ce36732f"
+    },
+    {
+      "file": "src/core/sport-sandbox.ts",
+      "sha256": "0e0641678bff8e2e15dfce50f156e702567e25628a98e5e6ed2c77cd8b39543e"
+    },
+    {
+      "file": "src/core/sport-scoring-history.ts",
+      "sha256": "42bcb10d19c72064bba802c21ccc2f6acfeb3df6dcf24b5346f06091a1a63d8a"
+    },
+    {
+      "file": "src/core/sport-standings.ts",
+      "sha256": "3f916c53d1515e251acf4f838388aabc87cee702cb67592e12487eebb5c646b6"
+    },
+    {
+      "file": "src/core/sport-team-colours.ts",
+      "sha256": "f4898a3d661b23408bdd4d7d8600d1f4c5689403f02e9a6ed885c451faa0f372"
+    },
+    {
+      "file": "src/core/sports-feed-adapters.ts",
+      "sha256": "132f85d86c37b59787d0d93f3aac6e4a35299c9a264e498d015de37e64e53c81"
+    },
+    {
+      "file": "src/core/sports-private-beta.ts",
+      "sha256": "a3babfbc486505b45a304943052576d717adb6ce81cd4bfc7d2d4b91f20411b2"
+    },
+    {
+      "file": "src/core/standings.ts",
+      "sha256": "a154da98f974c976c6754ff60270f9e6bbd64ecde2ff64d57a0b4dda29bf36de"
+    },
+    {
+      "file": "src/core/team-continuity.ts",
+      "sha256": "43a5a1b58b2ba77fd2cf1de0322e7313fb96a1c07e7d096f1af2ffd71ae85848"
+    },
+    {
+      "file": "src/core/web-push.ts",
+      "sha256": "1b8135bb5f408813f713884075827742cc0a3ba75d85ab3ec776a1ec35bf5f8a"
+    },
+    {
+      "file": "src/core/weekly-core.ts",
+      "sha256": "24e13eca59b9e7a7206e8628201dbf78b55d2dec793d6a56545f9bb6f84e129d"
+    },
+    {
+      "file": "src/core/workspace-sport.ts",
+      "sha256": "955c54b554be75f4c0c1c02abe4f3da41145bea93c2c47c6556fbb07b142986a"
+    },
+    {
+      "file": "src/instrumentation.ts",
+      "sha256": "be5aa4e042b62683abadc80d6b9359cf5f7dd27d5c0bf1f068ad000feff10a18"
+    },
+    {
+      "file": "src/proxy.ts",
+      "sha256": "aa7fc4e249dc09939357494773bf6b2d0d0596e3a874ccebb97d9c95ea58d571"
+    },
+    {
+      "file": "src/server/account-deletion.ts",
+      "sha256": "db653077986b8be8e2fbb0d3f89db2b8e7fe53019937e7524f0129d3a2af1810"
+    },
+    {
+      "file": "src/server/account-job.ts",
+      "sha256": "336c78295391f06d556c078f208eadcc44e30e09f17700c373fcbc20747698b2"
+    },
+    {
+      "file": "src/server/acquisition-query.ts",
+      "sha256": "d9ff6ca976153e0394dc25003be52dacc0818b85e7fbe65f8fef76688fa19b37"
+    },
+    {
+      "file": "src/server/admin-announcements.ts",
+      "sha256": "e4a64cb929446fad2321225792420da7890dba5189d8c3967c6b8c91a9b82c3c"
+    },
+    {
+      "file": "src/server/admin-display-name.ts",
+      "sha256": "4a12f2ce078ec2acc42c8ecd05a60044e06958ec1e149c40c34efed00dda6dc6"
+    },
+    {
+      "file": "src/server/admin-record.ts",
+      "sha256": "5244e557664037bbaf28ed30af3136ad7267e14455fe4ba4369a122f409fa93b"
+    },
+    {
+      "file": "src/server/admin-search.ts",
+      "sha256": "7fab48ce1e071ad03e774191560ec497e43d5b50fce770f68364fdd3c4be6462"
+    },
+    {
+      "file": "src/server/admin-unread-notifications.ts",
+      "sha256": "cfc074ddb42076d773b3e7cc54ec750db9785a1198a1e32d23772121b2699851"
+    },
+    {
+      "file": "src/server/analytics.ts",
+      "sha256": "722c1b05b05bc13fd5253c095f536c5c0fe606a7607ab388c2e7c685e018654f"
+    },
+    {
+      "file": "src/server/app-onboarding.ts",
+      "sha256": "c24844b324635d4ebc290ab6f0d48a1fa962197857d64864dc3cd7b949827f33"
+    },
+    {
+      "file": "src/server/app-view.ts",
+      "sha256": "7b94876fd698edc6b9c3264c58383d87a8a01b32f0f92240a5b73cdb16bef94c"
+    },
+    {
+      "file": "src/server/apple-store-reconciliation.ts",
+      "sha256": "00fe1fbc19eb3cc90473c82bda6665a09c4c210ffa96f33bfadce67396925d50"
+    },
+    {
+      "file": "src/server/apple-store-verification.ts",
+      "sha256": "c12af080b5b9b6b74af42cf8c6c96f632622e6c06710d7c77bddefb24f283fb7"
+    },
+    {
+      "file": "src/server/apple-test-http.ts",
+      "sha256": "467a4778a34d495a10f4b189302b041af2429fffece796c17a1a0d449a466be2"
+    },
+    {
+      "file": "src/server/auth-erasure.ts",
+      "sha256": "a56862ae818f354850e08d4f88478e5cdfefa0bcbd5b345ed167bdf0cbaa98bb"
+    },
+    {
+      "file": "src/server/auth.ts",
+      "sha256": "4b4d11ecc1f7e06a757f33b536fc5c068a7de525ffc7ac9f8a602cfd4ba857a0"
+    },
+    {
+      "file": "src/server/beta-credit-requests.ts",
+      "sha256": "94f3ceba59db4eb330a3d524e2bcdd975990cebb3bf862b6cc6937f90cbf1201"
+    },
+    {
+      "file": "src/server/beta-sql.ts",
+      "sha256": "b7ce262018c1e7dc149a97db8399c82ce28cff01cae9b2ac2c431ca63ab52469"
+    },
+    {
+      "file": "src/server/beta-trading.ts",
+      "sha256": "c173c7b1476980ec4053c6a55ed69adf2d290639598e59376392e7214dcac5e1"
+    },
+    {
+      "file": "src/server/billing-ops-alerts.mjs",
+      "sha256": "c12ae9a5afed5399ddf3e3a51774737fe2a2dc6ad2be01f58c9a42a0f10fa2ab"
+    },
+    {
+      "file": "src/server/billing-ops-monitor.ts",
+      "sha256": "d36859f7689dbe8b3542474c37cd823dad4e80ffc7f6274c40c5189860823fd3"
+    },
+    {
+      "file": "src/server/billing-ops-queue.mjs",
+      "sha256": "3242ce22c0e5c1154c53701d249b3f594ed1fae3010ae4c0a835d3863f0b1e83"
+    },
+    {
+      "file": "src/server/card-player-history.ts",
+      "sha256": "15480df0c6ab9ba9172253dccf2611b510b202e892943892a8d2914720835a68"
+    },
+    {
+      "file": "src/server/collection-export.ts",
+      "sha256": "b812b5542b740be84d99ccd91816638af592809e3c3c9d2c503be89a34ac2634"
+    },
+    {
+      "file": "src/server/commerce-sandbox-store.ts",
+      "sha256": "99ca2170dead029a308aa03ec811f2e0a6a6ae20c7a9e233cdf6d53025d37557"
+    },
+    {
+      "file": "src/server/commercial-ledger.ts",
+      "sha256": "2f7c9f532a7bb3b23afa14e66003d5bda9fb21d218d923720fa63b7a7320add4"
+    },
+    {
+      "file": "src/server/commercial-market-ledger.ts",
+      "sha256": "622d221808a21b06e975fc53f5f1547c532b6012fcb151e11483c06fcefb397f"
+    },
+    {
+      "file": "src/server/commercial-market-view.ts",
+      "sha256": "1f7175ff03baa35845872bdcae5dcbf8048da2b657d732d3eadfd1eeb1969843"
+    },
+    {
+      "file": "src/server/commercial-member-view.ts",
+      "sha256": "d0e29707f4c791dc2dd5fe924bd0f2604dddc160857e787f74dc623e01c13bb0"
+    },
+    {
+      "file": "src/server/commercial-reconciliation.ts",
+      "sha256": "f445422ed57c714fdfab0b3db95d7c387fde126d5b5f197c4fdfaed74cabcf03"
+    },
+    {
+      "file": "src/server/commercial-retention-runtime.ts",
+      "sha256": "f76d803aabb51fa4cd1d5db22facfd27da6fa0ebe19b9bcabe0244cdb7e4910a"
+    },
+    {
+      "file": "src/server/commercial-retention.ts",
+      "sha256": "1d44de01e0cc12d61aa6614eeee9d4f579047940c73a6bcc2f71813fcd642601"
+    },
+    {
+      "file": "src/server/commercial-runtime.ts",
+      "sha256": "013d715fe42a0910c975bb09cee1ebb71edc6ed8a30a1ea9d3e9b36479c29923"
+    },
+    {
+      "file": "src/server/community-analytics.ts",
+      "sha256": "ba54f25590669e1925fdb52f2d5a83e4ffe3c799ac2211f261f3e7af52299e69"
+    },
+    {
+      "file": "src/server/community-discovery.ts",
+      "sha256": "236da61c77200b69b613242db98757d22666621a5b40b728bf0e88e997ac5b26"
+    },
+    {
+      "file": "src/server/community-image.ts",
+      "sha256": "7e1e8824f563db164d16d2c05fa1a4139396aec6e1a55b5fab0a6ed736b2ad3f"
+    },
+    {
+      "file": "src/server/community-maintenance-query.ts",
+      "sha256": "3b38cb35b43e416ec42548b0804c462d24eaf9488fbe553c06ca647573a47155"
+    },
+    {
+      "file": "src/server/community-moderation-query.ts",
+      "sha256": "73807cc0cb443aa3210f50a0a9c51968ec748c2dfa9d30c7e3da1b7295d2fc4a"
+    },
+    {
+      "file": "src/server/community-policy.ts",
+      "sha256": "5ff672549d51fd12e9b66d62c207727490d0a6055daf74965cff8209aa422643"
+    },
+    {
+      "file": "src/server/community-social.ts",
+      "sha256": "85338943f8f8c65041eb5de11449c5cec50481d827223a8e5748e5a52a316ecf"
+    },
+    {
+      "file": "src/server/config.ts",
+      "sha256": "5400af95a3cb2bccbf002ea5b1dee6bcd47e2f3a622729221eef618b93b40b95"
+    },
+    {
+      "file": "src/server/credits-sandbox-store.ts",
+      "sha256": "51c3d3b35bbe875ad063bd5a1807094c81cfbe935812a743a7e02ef389bbf89e"
+    },
+    {
+      "file": "src/server/database-pool.ts",
+      "sha256": "6761d4ad8108f8bad4e00f62ce1c0845c75e072b723f1bdd993b00197a57bc51"
+    },
+    {
+      "file": "src/server/database-tls.ts",
+      "sha256": "477d657e29d9a34baf6358a7ac160b1ecde7de001fa97350ffbd999510ad73c6"
+    },
+    {
+      "file": "src/server/db.ts",
+      "sha256": "23f6a848d325ce32a0dc92b0617b3f2b86047a26c4fc272ad2667cf036b78edd"
+    },
+    {
+      "file": "src/server/economy-catalogue.ts",
+      "sha256": "6827e6c7dba7918a38a9be896e9769b8423d09e190b61e5f75f9c1e7a1421d77"
+    },
+    {
+      "file": "src/server/existing-member-onboarding.ts",
+      "sha256": "4e38bf17824a65e769b02d5bf61e8eada3919cb9032ede16fc650c6ae5e96927"
+    },
+    {
+      "file": "src/server/fantasy.ts",
+      "sha256": "97946af69fdbc3a2c60751f11b145098eef33624c5a285e93e1ea659c53e7743"
+    },
+    {
+      "file": "src/server/fixture-commerce.ts",
+      "sha256": "d49f21d39c1691d1d9214556ded8365195bced398210881d67e0eb378e63312b"
+    },
+    {
+      "file": "src/server/game-day.ts",
+      "sha256": "537ec89d8f3a5dedb07acea093897f984427077d41ec38ce0e40a38dadd35b8d"
+    },
+    {
+      "file": "src/server/google-commercial-verifier.ts",
+      "sha256": "a868823917cf6508650fc7630d2be74c4e45ab0d77578d4fe9b6ab5171d5a6d8"
+    },
+    {
+      "file": "src/server/google-play-lab-http.ts",
+      "sha256": "6ec1375baab3aa6b2e306a392a5042c7579630e3e2a76264d14b2c2068ce249a"
+    },
+    {
+      "file": "src/server/google-play-oauth.ts",
+      "sha256": "c8aafbe133394d7ab320e6bb53e289bbfd7ec1e0f1ffa78f4ec47a7c7ef1901a"
+    },
+    {
+      "file": "src/server/google-reconciliation-http.ts",
+      "sha256": "f30e519bd3070274c08440ef8dd63e3bfd54286cde362c68d0ddb6ade1e8ab3a"
+    },
+    {
+      "file": "src/server/google-reconciliation-services.ts",
+      "sha256": "f192b3f0e8c355714fd5086fc69ad9969a49237f8ee22cfb1c8d223d6420a330"
+    },
+    {
+      "file": "src/server/google-store-notifications.ts",
+      "sha256": "2e87c520de6d5e1065b620fdd7ac7d7830766d33dea33736c6af493ebda92ffd"
+    },
+    {
+      "file": "src/server/historical-fixtures.ts",
+      "sha256": "9c92c5d4f9efa9c5449476ab2f7b0d301f685fb60bd3dd3d0b85a453439727e4"
+    },
+    {
+      "file": "src/server/hosted-google-acceptance.ts",
+      "sha256": "c702f72ec27cb37d1560ed749719e90c95e33042d2911444636583afac803a1c"
+    },
+    {
+      "file": "src/server/identity-documents.ts",
+      "sha256": "a6c4a596d2ce0ff65d6078060ab18c1b9662e0fdd73cf9a41402911d84d46b3a"
+    },
+    {
+      "file": "src/server/identity-outbox.ts",
+      "sha256": "24a6a511fd5b3083e1c561ab83bf2469b7b41e624a1b3fb8dc9780cddaf43006"
+    },
+    {
+      "file": "src/server/identity-webhook.ts",
+      "sha256": "5312113bdd4d845e9e609d74e79e0bc7bb83ed89a83cb3c8ccabdbdb61fb2763"
+    },
+    {
+      "file": "src/server/isolated-v30-transport.ts",
+      "sha256": "ade6e6593a2f43300ac69202e28eba552b4649b02576d31bd45a39edd8cc7d47"
+    },
+    {
+      "file": "src/server/lineup-privacy.ts",
+      "sha256": "016a73cb5e2ee6129b5d2e1fda21b90db7f0d3daa4b21f461de697238d843e2c"
+    },
+    {
+      "file": "src/server/market-visibility.ts",
+      "sha256": "a0daf84736db9acb2006001582e4979b77caa633ac9a96c71f395759f8464b57"
+    },
+    {
+      "file": "src/server/marketplace.ts",
+      "sha256": "67cb5b88927f4b060019456a71b144c4fec54aa0ad972854fd0978a5c67fdb1c"
+    },
+    {
+      "file": "src/server/member-announcements.ts",
+      "sha256": "e79d1025da9f8f4c91fad3f477abe70bc286b3134ca8eb9593fd3d99efc5c78e"
+    },
+    {
+      "file": "src/server/member-collection-record.ts",
+      "sha256": "dc3d38b6fae9b909abace19b0bf61a923ad2fec2157b5fbc2cf57ddaf2c8705e"
+    },
+    {
+      "file": "src/server/member-commercial.ts",
+      "sha256": "740beb7fb80845a2be481efe973be782f53f3a83bd42c8f22e550ab1de26157b"
+    },
+    {
+      "file": "src/server/member-google-reconciliation.ts",
+      "sha256": "f524d7489e60ac0d406d483baaa35b8ff864c030e91bdecca716e887ccacab92"
+    },
+    {
+      "file": "src/server/member-google-test.ts",
+      "sha256": "0fe7d8072be51ea398b667d4b09a84ed0df322fb1cbd55bf678a9c08067f85e4"
+    },
+    {
+      "file": "src/server/member-read-isolation.ts",
+      "sha256": "4d2880ba470dddbba5caa83ef12f039a3e68d489bda05ddda5c68ea0cda0ebc3"
+    },
+    {
+      "file": "src/server/member-release.ts",
+      "sha256": "0fe286ad4f3573be413ba5420851ba7056b45418e4f3e6bb7ad5a539eb8b36da"
+    },
+    {
+      "file": "src/server/member-store-purchases.ts",
+      "sha256": "0b9436ea9bfffe8f16edca1f1d92c8e99d35afb2b995d05d1612585f5429bdf1"
+    },
+    {
+      "file": "src/server/member-test-wallet.ts",
+      "sha256": "284c681992ef6b4eeef5c5ba4667b14516c34b7599189090d2041dfefd2e7443"
+    },
+    {
+      "file": "src/server/mfa-flow.ts",
+      "sha256": "b798687d5510dfb5a5a576a2559afdd5bdf1276f4d7bc80d8bcecab39d39956a"
+    },
+    {
+      "file": "src/server/moderation-cases.ts",
+      "sha256": "208713ceac2b3c6bc6343a514a9dbc1f0dc0a72afebf0c2c8bb49c034234afaa"
+    },
+    {
+      "file": "src/server/moderation-retention.ts",
+      "sha256": "5b48abca2915cc8c046c38a3e98ce8d2260e79fae30375369f81fd5e5020dd8e"
+    },
+    {
+      "file": "src/server/multisport-delivery-store.ts",
+      "sha256": "466f494fc1cfa1dc0218a4aa345c5d12d9bf9278f04dab3dbd94f36d46297066"
+    },
+    {
+      "file": "src/server/multisport-feed-health.ts",
+      "sha256": "8fd8145b4b7e57a268f5d182fc2f21918866dabfb9c301ed10c5687f1cafbf89"
+    },
+    {
+      "file": "src/server/multisport-feed-http.ts",
+      "sha256": "f11548030fb15df727ddb11b334c15261478546d86786026fae27f4de421ca15"
+    },
+    {
+      "file": "src/server/multisport-feed-jobs.ts",
+      "sha256": "9ab214dc958d2101f08bdfcef79ea4bfa2934d3daf729347437347a73574c1c7"
+    },
+    {
+      "file": "src/server/multisport-refresh.ts",
+      "sha256": "55bf7b7693f9185b2625c5bd206e84a7d66a271642b8ba7426e526ef1e0886e9"
+    },
+    {
+      "file": "src/server/nba-private-beta.ts",
+      "sha256": "c82d9e3152ae522cb266bfac450ac77c00d46d2bd27959ede49a0bc40bae2f74"
+    },
+    {
+      "file": "src/server/nfl-collection-diagnostics.ts",
+      "sha256": "7316c0e83eac21bbf1396c28b09b9e039908fb0c617d3b648934d4d0605ccd27"
+    },
+    {
+      "file": "src/server/nfl-collection-worker.ts",
+      "sha256": "f8151968ad731dc68e157e6c5889a2dbc0cd423570771bbffd999e7c46d61f72"
+    },
+    {
+      "file": "src/server/nfl-feed-postgres-types.ts",
+      "sha256": "093a8e24aaae6967f8c6e5d001d6df439c5352edae5cec5779ae1c211140812a"
+    },
+    {
+      "file": "src/server/nfl-history-connection.ts",
+      "sha256": "bdb96c4c045aef12c6957904cd9c7b15fc6355f5c9792c2d4be8f57952987dd6"
+    },
+    {
+      "file": "src/server/nfl-history-store.ts",
+      "sha256": "d45e07c3008746e022e7372fb3104c82a75dfce763ab29a458bb87aec4ae7982"
+    },
+    {
+      "file": "src/server/nfl-member-rounds.ts",
+      "sha256": "512d692843282ef61af4aa13ea75c5e2d357e42872a9467789c859bc534679b8"
+    },
+    {
+      "file": "src/server/nfl-player-history.ts",
+      "sha256": "6052d47d43b0a435bbdb444290b8048fa0fa28161947b36f79f4e78358ada26d"
+    },
+    {
+      "file": "src/server/nfl-postgame-reconcile.ts",
+      "sha256": "5c387fc008369108c0dd1949c8f1020ada278da1aa1da97a5da266f41514ae0b"
+    },
+    {
+      "file": "src/server/nfl-scoring-history.ts",
+      "sha256": "302923f93954affe12eba7bec673c1846728c58b4308d10af235f2d72d0cfe16"
+    },
+    {
+      "file": "src/server/nfl-testing-batch.ts",
+      "sha256": "8c57acc3bdbfc546e9defbb5b86873c975328d950369b1049194a6d0626289cc"
+    },
+    {
+      "file": "src/server/nfl-testing-client.ts",
+      "sha256": "fddc3a419902b0db59a5e65477c0c4553aab4deeb3b902197383d897330ec0f3"
+    },
+    {
+      "file": "src/server/nfl-testing-connection.ts",
+      "sha256": "07b9d137f99efe908967f77f0712529dda2771e857b7c9c3b1e23d8f89ff5c33"
+    },
+    {
+      "file": "src/server/nfl-testing-database.ts",
+      "sha256": "ab3ebccd29816aa5174d16272d5a7fae3316e9c15d8865bf2913b382cb630157"
+    },
+    {
+      "file": "src/server/nfl-testing-identities.ts",
+      "sha256": "7aa7794d8b4a9e5056401b807ff3efd87c2b2bdb9507078a21e510458f815e17"
+    },
+    {
+      "file": "src/server/nfl-testing-reconcile.ts",
+      "sha256": "6c95c947e9450e6e696a39930f36a23736f8a687b0e17d7ffa11411cf618f1cd"
+    },
+    {
+      "file": "src/server/nfl-testing-report.ts",
+      "sha256": "efb010ee80fd69e1c6d6f027fa42a6ddc7f70360c7826f685fa1b1083ebbc446"
+    },
+    {
+      "file": "src/server/nfl-testing-store.ts",
+      "sha256": "bfb2ce33322230bad58804e5b88f298f2926645eb51db26a977aad2dd918ef02"
+    },
+    {
+      "file": "src/server/nflverse-bundle.ts",
+      "sha256": "78433cd6271c76d18b5a35da96f8c8a8a928580e960c3ac6030014ccdd3cbe40"
+    },
+    {
+      "file": "src/server/official-roster-refresh.ts",
+      "sha256": "ee7b67feb1bba491559f13ab4967760d02413d25e5550000842025ae93a23439"
+    },
+    {
+      "file": "src/server/onboarding-identity.ts",
+      "sha256": "76194b9654c957a0df438c631c1cff542abd9f1fd11c373806a48daa0bff5ff5"
+    },
+    {
+      "file": "src/server/onboarding.ts",
+      "sha256": "160ad0d9bf0be54f38886ac170a8ebae33c3c4e8a6630b6da8abde6ee5b22e73"
+    },
+    {
+      "file": "src/server/operational-incidents.ts",
+      "sha256": "10c92025d29819f84063bbb45a8cc8588c3e28f001dbf3f6f5e02fd41e41237f"
+    },
+    {
+      "file": "src/server/outbox-lease.ts",
+      "sha256": "094b0b2cd711c3f6d89afe641662f6b3b771ca0b1627218fcdab034bda766c64"
+    },
+    {
+      "file": "src/server/owned-collection.ts",
+      "sha256": "820889d7254dbbd1b9a469c86a063e53fd1224ce6ed9bf910df27d638b129c8e"
+    },
+    {
+      "file": "src/server/owner-health.ts",
+      "sha256": "ad8101939d93d3aadf8b94635fb16554e2b831ea050603ab35ea2195af03ed63"
+    },
+    {
+      "file": "src/server/owner-marketplace.ts",
+      "sha256": "fb446bd3bbe1bd5a0863ed3360814bf41136c8928d16737c3705a6f19451099a"
+    },
+    {
+      "file": "src/server/owner-operations.ts",
+      "sha256": "ef3d302d5189d4e8a158ce1a5e5396c271defd36c3a0b27bef585e4427fa74a2"
+    },
+    {
+      "file": "src/server/owner-reference-data.ts",
+      "sha256": "c2da108e3216ab6a5bf65e5747a9fdde0dc4de3a2d85b762225462ed7c57ee3d"
+    },
+    {
+      "file": "src/server/owner-sport-reconcile.ts",
+      "sha256": "25fef49d50d3ecc33370de0c7ec1ed431231ad21b606ca34812371bdd14fb5e6"
+    },
+    {
+      "file": "src/server/pack-coupons.ts",
+      "sha256": "d8299bd861ed26f8d1d13cb05d852f1af43341160b87d07218ddffebb61ddee7"
+    },
+    {
+      "file": "src/server/paid-pack-transition.ts",
+      "sha256": "2fa3f9215bf15077fe76e69780621be1f5c84ff1ede1e1b6de7ca702a0ac2b5d"
+    },
+    {
+      "file": "src/server/paypal-sandbox.ts",
+      "sha256": "e9c191b476ce37121b2a3b3df15a22045755cd22f106996b3f2a09ab0de3d6b6"
+    },
+    {
+      "file": "src/server/player-jerseys-query.ts",
+      "sha256": "67133c909f3629f9eceef14d961ec374f9d57ca69fb8f2f0bb1a15d9fdbf042d"
+    },
+    {
+      "file": "src/server/postgame-download.ts",
+      "sha256": "73a75fe169fb497e9eda33dcd1169d91803a44cad15cdbd720dfe01335137d61"
+    },
+    {
+      "file": "src/server/postgame-results.ts",
+      "sha256": "df3f2799a128777680db210bd155d7086d44a65c97ef27783c60aa32ebc5d712"
+    },
+    {
+      "file": "src/server/premium-pack-transition.ts",
+      "sha256": "ad300570275086b932a666c0f6aea1132f18a5e02bb7a6acc1e4601a47d91bb8"
+    },
+    {
+      "file": "src/server/presentation.ts",
+      "sha256": "d3d821711d53e435fab4ed9272539353680b81ae412fcbdaa59f16aceb3c82b6"
+    },
+    {
+      "file": "src/server/preview-auth-query.ts",
+      "sha256": "3bee0e473ffa06505bcea627679199ea5e20408df3580c12293ea512b0688917"
+    },
+    {
+      "file": "src/server/preview-auth.ts",
+      "sha256": "47ccfd4d4fa8c92ba54e1da521c40dec974899e2be6c9a62d9f81b72a2b96913"
+    },
+    {
+      "file": "src/server/preview-community-query.ts",
+      "sha256": "fbd7d75835be2ff203ceaaf0ca90fe271abb3273ef5f8befd77555eb643ab608"
+    },
+    {
+      "file": "src/server/preview-community.ts",
+      "sha256": "c43474992bb6f390269caf5d56ee696c63dee189a745ca80bd8e0b8e7a6d40a9"
+    },
+    {
+      "file": "src/server/preview-export-query.ts",
+      "sha256": "3042180369ce72cfc00d2e8f5a06ef80cdb24f61d2a30a50ceb8845b16ad01ba"
+    },
+    {
+      "file": "src/server/preview-export.ts",
+      "sha256": "a57c012aaf5eb618d23c2c0d9ea0cd0ac710ae46ea67c2a4e14fe42e0b9a487b"
+    },
+    {
+      "file": "src/server/preview-invitations.ts",
+      "sha256": "c6e511cacb21d87bcc2e7476485a876149d6907de303c283b9d0ecd0e5471408"
+    },
+    {
+      "file": "src/server/preview-maintenance.ts",
+      "sha256": "1e8c65499c4dc1c9df52b9c631706d72e7e0b4e82b8e0ec705ad5308d101d2a3"
+    },
+    {
+      "file": "src/server/private-card-offers.ts",
+      "sha256": "3d6f74b6979529466029bfc803bd0b77a9dc8ef2a8e12df624b08abd26070ddc"
+    },
+    {
+      "file": "src/server/prize-sandbox-store.ts",
+      "sha256": "62767d5a45752585e8634654b9f0c7373f3314e6e39b8d89f62833b346e673f3"
+    },
+    {
+      "file": "src/server/public-gameplay.ts",
+      "sha256": "85d5d7b5b2352201f72d90f6b6471389b081126e65be3cc2551975408bb10180"
+    },
+    {
+      "file": "src/server/public-member-setup.ts",
+      "sha256": "207c6af19a2cbf9d3c247e71c46a13369b6db48ef97eb655525106ff9ee40960"
+    },
+    {
+      "file": "src/server/public-phone.ts",
+      "sha256": "8237af8df3500f4015922b41f8ad81dfc4e6a9452085634e30cc72303bca044d"
+    },
+    {
+      "file": "src/server/purchase-timing.ts",
+      "sha256": "1d59ea0211b2a647ee380f9ce49f6a356dd5a7f7d1c8cecf05027270d5706215"
+    },
+    {
+      "file": "src/server/rate-limit-query.ts",
+      "sha256": "9badbcc1892f289f3c56240eec410a0bfb5bb46b0398b99491d8d51410126c02"
+    },
+    {
+      "file": "src/server/redemption-adapter.ts",
+      "sha256": "9f20894bd7d9db8497ed45efae988108cbc4ba35bcbe9703aa2dbbd1ecb3fcfc"
+    },
+    {
+      "file": "src/server/redemption-notifications.ts",
+      "sha256": "3d03d2d4d2c4533ad2c9c00f5476057a16c8b01a1e567310ed3de02399706a7a"
+    },
+    {
+      "file": "src/server/redemption-vault.ts",
+      "sha256": "3046a7fbc95afdf53c9bdc3a47aee2a0fd737fc7ff26f5058c8e931a303f5d3c"
+    },
+    {
+      "file": "src/server/redemptions.ts",
+      "sha256": "7c239738421864dc4a51378b6ad9fc08a68949e06620ac7bf7034352de8db92f"
+    },
+    {
+      "file": "src/server/region-access.ts",
+      "sha256": "89409171d1fbd73222c5016c7e8ab72c813386ee5ba18eda249dd52bac99cfa1"
+    },
+    {
+      "file": "src/server/reserved-transaction.ts",
+      "sha256": "8e2b2fedb90a73c3fd16cbfaa971851645872008835207c5b1e1ea24e5ba2115"
+    },
+    {
+      "file": "src/server/sandbox-swaps.ts",
+      "sha256": "98fb4b245a7098285231bc042ec0b90039f30b51eef2d8cb98f29142e41a1d3c"
+    },
+    {
+      "file": "src/server/scoring-store.ts",
+      "sha256": "1556545776a36a3a2796efdfc8b37dda39d228a9c152ebd504bf9dbd04659bdf"
+    },
+    {
+      "file": "src/server/signup-profile.ts",
+      "sha256": "b9ef47b0b077b8cec8ec97955aa62b0749b1801392ab6d965611d9cec834c14c"
+    },
+    {
+      "file": "src/server/social-card-projection.ts",
+      "sha256": "363d4a2eca156e6a4444631bf5635503c663a245981a15f5fabd5e634ef7d631"
+    },
+    {
+      "file": "src/server/social-hub.ts",
+      "sha256": "07d5718c5c3a07f580161ec3497e2382d0954c771a0295fa4cb140667e87440c"
+    },
+    {
+      "file": "src/server/sport-readiness-store.ts",
+      "sha256": "9014579c00492d8803bc974d4eff7103a9d7c903ce6f1b44efe0a483dab7dfe1"
+    },
+    {
+      "file": "src/server/sport-readiness.ts",
+      "sha256": "38320c98c1feef2a6db7f1a6ba8a0ad41767b58389da7313f8552f694bd9d38f"
+    },
+    {
+      "file": "src/server/sport-sandbox.ts",
+      "sha256": "7778140580382fec12af227074ade8dbeb853eaeb80fec35382cdffab338e24b"
+    },
+    {
+      "file": "src/server/sport-scoring-history.ts",
+      "sha256": "c7ec1eb6c1bfe400b4c0c843f17b1c53a535e95fc140c3b00eeba2d4413f82ef"
+    },
+    {
+      "file": "src/server/sports-feed-client.ts",
+      "sha256": "edc1dc9ccd1495064ea15e297877ba71bb50c5f8affe640909b44896dbcb5ee4"
+    },
+    {
+      "file": "src/server/sports-feed-reconcile.ts",
+      "sha256": "bd10f9ed6d7c67167b17f76cd5ca0814f3465be013fbccf4f37ccf48ab824288"
+    },
+    {
+      "file": "src/server/sports-feed-store.ts",
+      "sha256": "24c4156df411a21e977f02dc035502d1394f4b18effceb7ecdd6e3ba392b7287"
+    },
+    {
+      "file": "src/server/sports-feed-worker.ts",
+      "sha256": "e17bd16fae304746fed9927f87521fe7f12cab6e90c3e64233e9bbd9423cb783"
+    },
+    {
+      "file": "src/server/sports-private-beta.ts",
+      "sha256": "a820ec64866b3f1bc8f7a82b35050c3c7187bde07d3271e9acb5bfb43ed02592"
+    },
+    {
+      "file": "src/server/sql-savepoint.ts",
+      "sha256": "b3065abdbe2e56a953222efec1a72b66f93a0e6e35158def5da7b76ee13b0ac0"
+    },
+    {
+      "file": "src/server/store-admission-query.ts",
+      "sha256": "9395fc5088fd772dcd35dc49f9df6e169e65e1efb7d67140cd61dbbab284e017"
+    },
+    {
+      "file": "src/server/store-purchase-verification.ts",
+      "sha256": "63f8a3de8459363e350646f53da482c852a4c160219ce2f5304c25465ac0fc28"
+    },
+    {
+      "file": "src/server/store-reconciliation.ts",
+      "sha256": "85513d2651c31273b9f27334cf0638db904ea78d3ad7cb99e93ddf8c6aeca888"
+    },
+    {
+      "file": "src/server/store-test-inbox.ts",
+      "sha256": "c4aa918d29c186f6e2ae9c0d4d97cd0513cc9c8e49fa0cd6293a535cee9b838b"
+    },
+    {
+      "file": "src/server/store-test-settlement.ts",
+      "sha256": "8b500b5f0c7759e3d1671ed5c71137c5d9c42269d33dff6e216ab79c39f1df80"
+    },
+    {
+      "file": "src/server/web-push-config.ts",
+      "sha256": "eef8c918a42692fc41b7cf17d6cf6d97c3308ea4527536cd20f2346e86c31e99"
+    },
+    {
+      "file": "src/server/webhooks.ts",
+      "sha256": "60281bb7ab937bcee835ee93ce18bd995dcc0b09cba5f68706ffd5fdaeb40176"
+    },
+    {
+      "file": "src/server/weekly-core.ts",
+      "sha256": "06e7bbeb75f8eeb555b0edd860e4fd6cab3c96c38315144892d66a4acb317aff"
+    },
+    {
+      "file": "src/server/weekly-prize-transition.ts",
+      "sha256": "7a2a59100ada61f2e0aae304c0f8a19d4e6e964b641374ee04a526ad69f54afe"
+    },
+    {
+      "file": "tsconfig.json",
+      "sha256": "3266af2193d6431f932bf7a638af7481127636f5f53adcb5a957f52f6e739702"
+    },
+    {
+      "file": "vercel.json",
+      "sha256": "c7e564ac70d756d4bd1cfd94608f2cccf561dfdd916c72a8742f6c1d19e2ef76"
+    }
+  ],
+  "changedApplicationFiles": [
+    {
+      "file": "src/app/api/marketplace/route.ts",
+      "sha256": "f9ff7ff9240afdac2950e565c67779897ad6efe64012992dd242d36aaeabcdee"
+    },
+    {
+      "file": "src/components/credit-marketplace.tsx",
+      "sha256": "5c7a6648e7d8a95c8d6f79325cd6966cea350d489280be0c8030f8c00a42958f"
+    },
+    {
+      "file": "src/components/market-listing-dialog.tsx",
+      "sha256": "34db13c741f0148022b37f05706f9f07dcb5589faae0eabd7c0741ef7759fac7"
+    },
+    {
+      "file": "src/core/auth-readiness.ts",
+      "sha256": "879ba3f54ecd1af111e1cb8ec0cd725bab1cbce00bddeff48eab3bcce1f780cf"
+    },
+    {
+      "file": "src/core/commercial-market-command.ts",
+      "sha256": "b4c839e896ca081dc5c55a793a1521ab51ebbc3abff9c545808967a091b70209"
+    },
+    {
+      "file": "src/core/isolated-billing-acceptance.ts",
+      "sha256": "b6cb2d224c2cc8c1bc83f889c3b28160decf8f17b3af14fe75212c56a5f3c7bc"
+    },
+    {
+      "file": "src/core/isolated-public-preview.mjs",
+      "sha256": "dc5caed986c5e35a527e521d00e1fcb39ace304673bfee2632e410a2ed11f52d"
+    },
+    {
+      "file": "src/core/preserved-collection.ts",
+      "sha256": "efba5eea13e5b28b854fadef6ba609c1197d48ccd83bb98b3f9f43fe118ec174"
+    },
+    {
+      "file": "src/server/commercial-ledger.ts",
+      "sha256": "2f7c9f532a7bb3b23afa14e66003d5bda9fb21d218d923720fa63b7a7320add4"
+    },
+    {
+      "file": "src/server/commercial-market-ledger.ts",
+      "sha256": "622d221808a21b06e975fc53f5f1547c532b6012fcb151e11483c06fcefb397f"
+    },
+    {
+      "file": "src/server/commercial-market-view.ts",
+      "sha256": "1f7175ff03baa35845872bdcae5dcbf8048da2b657d732d3eadfd1eeb1969843"
+    },
+    {
+      "file": "src/server/commercial-member-view.ts",
+      "sha256": "d0e29707f4c791dc2dd5fe924bd0f2604dddc160857e787f74dc623e01c13bb0"
+    },
+    {
+      "file": "src/server/commercial-runtime.ts",
+      "sha256": "013d715fe42a0910c975bb09cee1ebb71edc6ed8a30a1ea9d3e9b36479c29923"
+    },
+    {
+      "file": "src/server/isolated-v30-transport.ts",
+      "sha256": "ade6e6593a2f43300ac69202e28eba552b4649b02576d31bd45a39edd8cc7d47"
+    },
+    {
+      "file": "src/server/marketplace.ts",
+      "sha256": "67cb5b88927f4b060019456a71b144c4fec54aa0ad972854fd0978a5c67fdb1c"
+    },
+    {
+      "file": "src/server/member-commercial.ts",
+      "sha256": "740beb7fb80845a2be481efe973be782f53f3a83bd42c8f22e550ab1de26157b"
+    }
+  ],
+  "productionMigrations": [
+    {
+      "file": "supabase/migrations/20261113002000_preserved_commercial_collection_read.sql",
+      "sha256": "53bee34e39e7008478a07884dcbbb5feb2a63be756c391e883271ed9a85377eb"
+    },
+    {
+      "file": "supabase/migrations/20261113003000_commercial_market_request_guards.sql",
+      "sha256": "20039c5149d57c9c560e8535a017ea052a610d64f4257e448cb006dadcc8c6bb"
+    }
+  ],
+  "dormantRoleProposal": {
+    "file": "supabase/proposals/20261113_dormant_commercial_runtime_role.NOT-APPROVED.sql",
+    "sha256": "e2fd87ac4a0f8279af4d768ab74c280de869bfa18e10fe87368a112b45bb3fd8"
+  },
+  "rollback": {
+    "file": "docs/qa/v31-revenue-launch-20261113/revenue-repairs-v2-rollback.sql",
+    "sha256": "542b12cc47b300294c5aef8eb1fd6ef78a0eb7a40a24c612ff0e4379e38562d0"
+  },
+  "reviewDocuments": [
+    {
+      "file": "docs/qa/v31-revenue-launch-20261113/COMMERCIAL_CONFIGURATION_PROPOSAL.txt",
+      "sha256": "40200cec265bb2abdc3f0cd14b992f8e03735c8700184f75586dba2a9717c656"
+    },
+    {
+      "file": "docs/qa/v31-revenue-launch-20261113/COORDINATED_REVENUE_RUNBOOK.txt",
+      "sha256": "423b34e84b86507663a9918ff461046d9b24b914dd97c796aa47dbe72692cb45"
+    },
+    {
+      "file": "docs/qa/v31-revenue-launch-20261113/HOSTED_ACCEPTANCE_SESSION.txt",
+      "sha256": "67f8b2afa277f3574799b465d5cb43ee128d1d1739aca276f8403d4a6e67c582"
+    },
+    {
+      "file": "docs/qa/v31-revenue-launch-20261113/INVENTORY_ELIGIBILITY_DELTA.txt",
+      "sha256": "46133567bd3636a713c797a0f595031917b7fbc8562ea50fae2f4388bf9e2a71"
+    }
+  ],
+  "scope": [
+    "Stage exact candidate with all public/commercial gates closed, verify, promote only after passing checks",
+    "Apply ONLY the two listed new Production migrations; preserve original five and outbox",
+    "Provision the named inactive restricted commercial login and initial server secrets under the exact configuration proposal; no existing-key rotation or vault transfer",
+    "Apply the four rollback-rehearsed dependencies to existing Preview and stage same candidate with provider/signup/commerce closed",
+    "Conditional app-only rollback to current 17b38c1 or exact schema rollback while no new commercial records exist"
+  ],
+  "exclusions": [
+    "Original five migrations or repeat inventory import",
+    "SMS or Google TEST orders, phone/provider enablement",
+    "New inventory issuance/eligibility approval, wallet/balance/ownership changes",
+    "Public-mode or registration activation, live payments/trading, prizes/withdrawals",
+    "Google Play publication, policy publication, declaration submission",
+    "Operational email automation/deletion schedules",
+    "Live-key transfer/rotation or broader IAM"
+  ],
+  "preflight": [
+    "Fresh live source/deployment and all 89 baseline runtime settings; stop on changed bytes",
+    "Corrected v2 schema fingerprint and exact grants/roles; no unexplained drift",
+    "Authenticated full encrypted backup <=1h and isolated restore evidence",
+    "6540 dormant definitions/888 lifetime copies/906 custody; no accounts/receipts",
+    "Five existing migrations/outbox present, all controls and Auth provider/signup closed"
+  ],
+  "postflight": [
+    "Changed schema/function/index/trigger and RLS/ACL proofs; zero financial/ownership changes",
+    "Exact deployed source and runtime recipe; restricted login no activation or direct outbox rights",
+    "Closed endpoints, founder MFA, original collection parity and Android v31 bridge",
+    "Preview separate-project binding; no sender enabled or TEST/live purchase"
+  ],
+  "downtime": "No planned public downtime; use a quiet 5-10 minute database window. Two new migrations took 420/388ms locally; hosted locks are not guaranteed. lock_timeout 3s / statement_timeout 60s; abort on contention.",
+  "hashConvention": "SHA-256 of Git blob bytes; package SHA-256 of UTF-8 LF JSON including final newline. New secret values are generated/installed privately after exact authority, recorded by hash only; never embedded here."
+}
