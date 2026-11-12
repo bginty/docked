@@ -1,0 +1,20 @@
+Local Docker recovery, 12 November 2026
+
+The installed official Docker Desktop failed on stale Windows socket endpoints.
+After stopping its processes, the two exact runtime directories were inspected:
+AppData/Local/Docker/run and AppData/Local/docker-secrets-engine. They contained
+only zero-byte runtime endpoints. Both were preserved under timestamped sibling
+names and empty runtime directories recreated. No recursive deletion, factory
+reset, WSL shutdown, image/volume deletion or persistent database move occurred.
+The existing engine then started and the encrypted backup client worked.
+
+This is a targeted recovery, not proof the underlying Docker defect is fixed.
+Relevant upstream reports:
+https://github.com/docker/for-win/issues/15064
+https://github.com/docker/desktop-feedback/issues/675
+
+An old isolated restore container used tmpfs and reinitialises when restarted.
+Restarting it did not recover its former restored database; the attempted test
+therefore failed safely before import. It is not counted as a passing rehearsal.
+Freshly restored targets use explicit network=none, no published ports, cron OFF
+and pg_net worker disabled. Production data never reaches a listening local API.

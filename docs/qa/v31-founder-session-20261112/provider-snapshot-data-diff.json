@@ -1,0 +1,155 @@
+{
+  "beforeAt": "2026-11-12T09:35:26.129Z",
+  "afterAt": "2026-11-12T10:06:42.948Z",
+  "productionWrites": 0,
+  "changes": [
+    {
+      "table": "\"auth\".\"refresh_tokens\"",
+      "before": {
+        "hash": "13cf7eed22491b1be46de5d996d89bf2",
+        "count": 569
+      },
+      "after": {
+        "hash": "b819a08ca0feb18fefbfb674c5b0d8dd",
+        "count": 570
+      }
+    },
+    {
+      "table": "\"auth\".\"sessions\"",
+      "before": {
+        "hash": "2fe2db2481d65b776e4da786233efbc5",
+        "count": 139
+      },
+      "after": {
+        "hash": "5f74f2431aae6afe0ed32dbf755a24c3",
+        "count": 139
+      }
+    },
+    {
+      "table": "\"auth\".\"users\"",
+      "before": {
+        "hash": "3434a8b23e7fe8ff50ae1bad32e82f9b",
+        "count": 6
+      },
+      "after": {
+        "hash": "8e1a6df72923ae700d8feb0a15d8b27a",
+        "count": 6
+      }
+    },
+    {
+      "table": "\"beta_private\".\"rate_limits\"",
+      "before": {
+        "hash": "0d458f24e44ee5909b9bff782e677c62",
+        "count": 122
+      },
+      "after": {
+        "hash": "71e590d93388e73e3c1f155022b7b009",
+        "count": 122
+      }
+    },
+    {
+      "table": "\"cron\".\"job_run_details\"",
+      "before": {
+        "hash": "0808b4277c79b0a21f01899bd6e9d0a3",
+        "count": 166495
+      },
+      "after": {
+        "hash": "23763290b5d5912c275f2b9df6052a48",
+        "count": 166621
+      }
+    },
+    {
+      "table": "\"net\".\"_http_response\"",
+      "before": {
+        "hash": "659b6a7fec69250654132b165ec22e8d",
+        "count": 24
+      },
+      "after": {
+        "hash": "1dc1b461bd439fc1b7d9183036ce9cc9",
+        "count": 24
+      }
+    },
+    {
+      "table": "\"private\".\"docked_mail_scheduler\"",
+      "before": {
+        "hash": "7a83eba04c805c464e6134c019cb3f58",
+        "count": 1
+      },
+      "after": {
+        "hash": "3d0173b29c553b53a8cf9f533331f8a8",
+        "count": 1
+      }
+    },
+    {
+      "table": "\"realtime\".\"schema_migrations\"",
+      "before": {
+        "hash": "d5f8d557ec1760b5db7183a0999c421a",
+        "count": 91
+      },
+      "after": {
+        "hash": "667e108cb20cdc415d1975ac179aeaaa",
+        "count": 96
+      }
+    },
+    {
+      "table": "\"sports_feed\".\"nfl_rounds\"",
+      "before": {
+        "hash": "80180ad22ed6ab3434f6d2cc8147ae25",
+        "count": 8
+      },
+      "after": {
+        "hash": "e4c4ce50920601860476fe318c3e0f5e",
+        "count": 8
+      }
+    },
+    {
+      "table": "\"sports_feed\".\"nfl_worker_runs\"",
+      "before": {
+        "hash": "0913e7a0859e8cce976bd4c26b54de4e",
+        "count": 3325
+      },
+      "after": {
+        "hash": "cdd0abca9b5425e17e9d402cdf3026be",
+        "count": 3327
+      }
+    },
+    {
+      "table": "\"sports_feed\".\"weekly_core_job_runs\"",
+      "before": {
+        "hash": "92d8f6540d608a22fdeeab01f1442821",
+        "count": 63397
+      },
+      "after": {
+        "hash": "c537219f5d65cfa894d878c3fd13c821",
+        "count": 63459
+      }
+    },
+    {
+      "table": "\"storage\".\"migrations\"",
+      "before": {
+        "hash": "c015c3ba966f4d68de8e707a2db6dc0b",
+        "count": 74
+      },
+      "after": {
+        "hash": "e601e6ed26dc5b17ccf1686244a428a9",
+        "count": 80
+      }
+    },
+    {
+      "table": "\"storage\".\"bucket_lifecycle_states\"",
+      "before": null,
+      "after": {
+        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+        "count": 0
+      }
+    },
+    {
+      "table": "\"storage\".\"lifecycle_abandoned_artifacts\"",
+      "before": null,
+      "after": {
+        "hash": "d41d8cd98f00b204e9800998ecf8427e",
+        "count": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-12T10:19:37.645Z",
+  "productionWrites": 0,
+  "protectedTables": 558,
+  "scheduler": {
+    "cronRowsAdded": 9,
+    "weeklyZeroIssuanceRowsAdded": 4,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true
+  },
+  "inventory": {
+    "definitions": 0,
+    "consumed": 0,
+    "approved": 0
+  },
+  "control": {
+    "environment": "commercial",
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false,
+    "gameplay_enabled": false
+  },
+  "custodyDigest": "a1bbdf806cee3f51d870b31f5fcb74d6cae0df93846f34bb4c291ffaae99cb8e",
+  "schema": {
+    "objects": 10147,
+    "fingerprint": "7e9acf391f1f34b573eb818210128447"
+  },
+  "operatorPackageDigest": "ae5f9ab407098def266669d57d46537db041f4c77aa99524712f3fd97363365f"
+}

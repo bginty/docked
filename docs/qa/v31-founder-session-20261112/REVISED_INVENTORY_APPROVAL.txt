@@ -1,0 +1,71 @@
+DOCKED V31 — revised dormant import approval request; NOT YET APPROVED
+
+WHY A NEW EXECUTION APPROVAL IS REQUIRED
+The first approved operator refused/rolled back on routine scheduler bookkeeping
+changes. Production remains at zero commercial definitions and zero new cards.
+The founder's earlier instruction pinned exact operator bytes. The narrow tooling
+correction changes those bytes, so the original approval cannot authorise it.
+Card identities, inventory totals and business-rule approvals are NOT reopened.
+
+EXACT PACKAGE
+Production project: pojoymtniryarxxunyvz.
+Plan SHA-256: 4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4
+Registration digest: ba68a833d866105512ed6b7e137c910a74df3a335836cd477d62937460c87114
+NEW transitive operator digest:
+ae5f9ab407098def266669d57d46537db041f4c77aa99524712f3fd97363365f
+Exact per-file hashes: scheduler-corrected-restored-rehearsal.json / checksums.
+Reviewed schema: 10147 objects, 7e9acf391f1f34b573eb818210128447.
+The separately observed provider rollout is reviewed in PROVIDER_DRIFT_REVIEW.txt;
+this authority does not apply, undo or repair Supabase's migrations.
+
+APPROVED ACTION REQUESTED
+Authorise this exact preservation-only import for 24 hours: 6540 definitions,
+888 existing lifetime-issued limited copies, all 906 custody records preserved.
+6065 eligible definitions stay dormant; 475 stay excluded; approved=0 for ALL.
+No new cards, serial reclamation, reminting, account/balance/ownership/catalogue
+changes, sales, public registration, trading, prizes, withdrawals or activation.
+Lifetime caps are unchanged: Core unlimited; Rare 5000; Elite 2500; Ultra Rare
+400; Legendary 50; Icon 1. All existing limited copies consume lifetime supply.
+
+NARROW CORRECTION
+Between preflight and execution, allow only verified mail-heartbeat advancement,
+append-only cron records matching unchanged jobs/commands, and appended weekly
+job records with zero issuance/failures. Existing log rows remain exact; all other
+mail scheduler fields remain exact. PostgreSQL timestamp microseconds are retained.
+All other durable tables, schema, custody and controls must match the preflight.
+Inside the transaction, all 557 non-inventory tables must match exactly before
+and after, INCLUDING these scheduler tables. No scheduler is paused or modified.
+
+EXECUTION CONDITIONS
+Bind an authenticated encrypted consistent backup <=1 hour old and a read-only
+preflight <=10 minutes old. Recheck the reviewed schema and exact plan/operator
+hashes; attach actual backup/preflight checksums to the private execution record.
+Current encrypted archive SHA:
+489367d8e97e1158c762f901aacbb28454538698164b0174563f8d3259af6cad
+Current encrypted manifest SHA:
+c04158e80c506882faffff5190e75af4e5213551c87b4c08e30cec3f7e069fb5
+For freshness, conservatively treat 09:52 UTC as the lower bound of this snapshot
+(it contains the provider migrations completed then); recapture after 10:52 UTC.
+10:06:42.948 UTC is backup completion, not a fabricated snapshot-start timestamp.
+The operator also rejects expired/future approvals, stale preflight, changed files,
+changed custody, unexpected table changes, partial inventory and open gates.
+
+VERIFICATION / RECOVERY
+17 targeted tests passed; ESLint/typecheck passed. The full fresh isolated restore,
+initial import, exact replay, concurrent bounded contention and safe retry passed.
+557 protected tables unchanged, zero new cards/owners, 888 lifetime copies intact.
+Read-only hosted validation also passed with real scheduler advancement: nine
+cron entries, four zero-issuance weekly runs and a forward mail tick; existing
+history unchanged and all other table/schema/custody/control checks exact.
+Fresh read-only hosted drift validation remains required again at execution.
+Transaction failure rolls back; inspect the actual failure before another attempt.
+After commit retain immutable definitions and consumed supply; use reviewed forward
+repair only. No destructive inventory undo or database-wide rollback is authorised.
+Expected import itself is seconds, with a 3-second lock timeout and 60-second
+statement timeout. Abort on contention; no maintenance outage is pre-authorised.
+
+After approval, capture preflight with the reviewed operator, bind the founder
+reply and fresh artifact hashes, then run its existing --apply-production path.
+The Production application stays 17b38c1290fd37c05487b332e5c0db440da6805b.
+No application deployment, hosted DDL, SMS, payment test, policy/Play publication,
+key transfer, public registration or commercial activation is included.

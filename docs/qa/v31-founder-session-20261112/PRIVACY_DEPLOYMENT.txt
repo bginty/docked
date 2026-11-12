@@ -1,0 +1,51 @@
+DOCKED V31 — approved privacy publication executed 12 November 2026
+
+Production: 17b38c1290fd37c05487b332e5c0db440da6805b
+Deployment: dpl_8WTycjDUx7VvEQm4pm5jW6B9WHEB (READY, Sydney)
+Live domain: https://docked.com.au
+Package: 565589b6f748fccd138bd10018f7eb621adc9efb7677f4082963039d8eb0c33b
+Founder authority and its 24-hour scope: privacy-authority.json.
+Promotion: 2026-11-12T09:06:11.411Z. No rollback required.
+
+All 985 exported source files were checked against exact Git blob bytes. Initial
+preflight stopped before deployment on Windows archive EOL conversion. Re-export
+and exact-blob restoration removed only CRLF conversions; approved source and
+package bytes never changed. The release operator batches object reads to avoid
+985 separate Git processes. It is preparation tooling, not deployed app source.
+
+Passed 26 protected staging and 26 Production HTTP checks: release identity,
+login/setup entry, policy/deletion pages, closed commerce/gameplay/QA, hidden NBA
+history, anonymous incident denial and wrong-origin phone/incident denial.
+The live privacy notice includes the exact v4 phone/Twilio/overseas/retention text.
+All 89 runtime keys remain; the supplied baseline recipe changes only the approved
+public privacy version and source SHA. Existing runtime branch guard is preserved;
+deployment Git metadata identifies the actual approved candidate branch.
+Runtime secret values were supplied from the checksum-bound recipe; the hosting
+API proves key presence, not independent secret-value readback. Crons unchanged.
+
+Fresh preflight/promotion/postflight match all five existing migration hashes,
+10104 schema objects, 35 role memberships and 25 protected table fingerprints.
+888 limited cards and 906 custody records unchanged. All public/commercial/SMS
+and cleanup controls remain closed; six disabled Practice rounds. No migrations,
+inventory import, phone/provider activation or financial action occurred here.
+The founder session remained accepted after an actual browser reload following
+promotion, with all three immutable incident review events visible.
+Initial postflight warning/error/fatal log query returned no matching groups;
+the baseline had six scheduled log entries for seven existing TEST warnings.
+This short observation is not proof of ongoing reliability or payment acceptance.
+
+Google Play
+Added ONLY Phone number to the existing Data Safety form, preserving other data
+categories, encryption, authentication answers and account-deletion URL.
+Collected/shared YES, non-ephemeral, required; collected functionality/account/
+fraud-security, shared same plus provider analytics. No phone advertising,
+personalisation or developer-communications purpose.
+Saved and sent the single Data Safety change for review. Console then showed
+Changes in review. Later readback confirmed preliminary checks had finished and
+the declaration was still in review. This is submission evidence, not Google
+approval. Ten previous approved changes including v31 remain
+ready but unpublished; managed publishing stays ON. See google-review.png.
+
+No Android/native/dependency change. No v32 produced or required by this package.
+Phone receipt, installed-v31 OTP and hosted payment/refund acceptance remain
+separate tasks. Public launch remains NO-GO.

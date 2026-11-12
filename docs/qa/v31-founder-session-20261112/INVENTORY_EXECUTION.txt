@@ -1,0 +1,44 @@
+DOCKED V31 — approved import attempt and preparation status, 12 Nov 2026 UTC
+
+Founder approved the exact preservation import in inventory-authority.json.
+Plan 4b039916c4ef00698e10bfa9d14c41ce23b9febf06cf78e035ae595a08dd3ee4
+Original operator b5f561e04aede8e36d80649196fee5931e7fa656fccbad22bf515edc744c5d04
+
+The 09:35:26 UTC consistent encrypted backup passed AES-GCM authentication and
+plaintext checksum verification without plaintext files. The 09:36:33 preflight
+was bound to that backup and the exact founder approval. Production execution
+was attempted once. Its fail-closed guard refused/rolled back the operation.
+Independent readback confirmed definitions=0, consumed=0, new cards=0 and all
+commercial controls false. No automatic retry or changed-hash execution occurred.
+
+Read-only diagnosis
+All schema, custody, control and inventory fields matched the preflight. The only
+table differences were cron.job_run_details, private.docked_mail_scheduler and
+sports_feed.weekly_core_job_runs, which the original full-table drift guard rejects.
+No ownership, financial, account or catalogue drift was accepted or repaired.
+
+A separate tooling correction has passed targeted, restored and read-only hosted
+tests; see REVISED_INVENTORY_APPROVAL.txt. Between snapshots it verifies
+existing log-prefix checksums, unchanged cron job identities/commands, zero weekly
+issuance/failures, and a forward-only mail heartbeat with every other scheduler
+field unchanged. All other table hashes remain exact. Inside the import transaction
+ALL non-inventory tables still have to match exactly before/after, including the
+three scheduler tables. Lock/statement timeouts, plan/authority/backup age checks,
+zero approved definitions and zero new cards remain unchanged.
+
+Native read-only diagnostics exposed microsecond truncation in the PostgreSQL
+client's timestamp parameter serializer. Binding the log boundary as text before
+casting preserves the exact existing row and its checksum. No history was edited.
+
+At 09:52 UTC, a separate Supabase Storage rollout applied migrations 74–79.
+The schema guard independently detected 10104 -> 10147 catalogue entries and
+stopped the read-only verification. The two new Storage tables are empty, RLS is
+enabled, and their owner is supabase_storage_admin. Docked's five migration records
+remain unchanged. The provider-drift review and fresh restore have since passed,
+including the associated Realtime update. See PROVIDER_DRIFT_REVIEW.txt. No schema
+drift was silently waived and the corrected import still needs fresh authority.
+
+The frozen business plan remains 6540 definitions / 888 limited copies / 906
+custody records, with 6065 eligible definitions dormant and 475 excluded. All
+definitions remain unapproved for issuance. No repeat card-identity decision is
+needed. A revised operator hash requires a new, distinct execution approval.

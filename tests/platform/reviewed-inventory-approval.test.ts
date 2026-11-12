@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { validateFreshPreflight, validateImportApproval } from "../../scripts/v31-reviewed-inventory-operator";
+import { validateFreshPreflight, validateImportApproval, validateInventoryPreflight } from "../../scripts/v31-reviewed-inventory-operator";
 
 const now = Date.parse("2026-11-11T06:00:00Z");
 const expected = { planSha256: "1".repeat(64), registrationDigest: "2".repeat(64), operatorPackageDigest: "3".repeat(64) };
@@ -39,4 +39,17 @@ test("preflight age accepts ten minutes and rejects stale, future and malformed 
   validateFreshPreflight({ capturedAt: "2026-11-11T05:50:00Z" }, now);
   for (const capturedAt of ["2026-11-11T05:49:59Z", "2026-11-11T06:00:01Z", "invalid", undefined])
     assert.throws(() => validateFreshPreflight({ capturedAt }, now));
+});
+
+test("scheduler correction still refuses financial, ownership, schema, control and table-set drift before writes", async () => {
+  const baseline = {
+    schemaFingerprint: "same", protectedCustodyDigest: "same", control: { sales_enabled: false }, inventory: { definitions: 0 },
+    tables: { "credits_sandbox.state": { count: 1, hash: "same" }, "cron.job": { count: 3, hash: "same" } },
+  };
+  const tx = { unsafe: async () => { throw Error("Unexpected query before rejected drift"); } };
+  for (const field of ["schemaFingerprint", "protectedCustodyDigest", "control", "inventory"])
+    await assert.rejects(() => validateInventoryPreflight(tx, { ...baseline, [field]: "changed" }, baseline), /Fresh .* drift/);
+  for (const table of ["credits_sandbox.state", "cron.job"])
+    await assert.rejects(() => validateInventoryPreflight(tx, { ...baseline, tables: { ...baseline.tables, [table]: { count: 1, hash: "changed" } } }, baseline), /Fresh protected table drift/);
+  await assert.rejects(() => validateInventoryPreflight(tx, { ...baseline, tables: {} }, baseline), /Durable table set changed/);
 });

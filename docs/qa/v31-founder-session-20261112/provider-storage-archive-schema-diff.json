@@ -1,0 +1,346 @@
+{
+  "at": "2026-11-12T10:11:47.807Z",
+  "productionWrites": 0,
+  "plaintextFilesWritten": false,
+  "method": "Original authenticated pg_dump archives compared via pg_restore schema-only, before any restore transformations",
+  "beforeAt": "2026-11-12T09:35:26.129Z",
+  "afterAt": "2026-11-12T10:06:42.948Z",
+  "previousObjects": 5774,
+  "currentObjects": 5801,
+  "added": [
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "filters_hash(realtime.user_defined_filter[])",
+      "type": "FUNCTION",
+      "hash": "fb25b0a4169b51dd90d4179cf8ab9702c51a24929b160ff53c726cdad4368029"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "delete_lifecycle_objects(uuid[])",
+      "type": "FUNCTION",
+      "hash": "6b43ab429eee85d7118847d6dca11cfcd891ecd27c9525fb0691a6f62554be90"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "enforce_versioning_status_transition()",
+      "type": "FUNCTION",
+      "hash": "e26f0b93f73c1b23283f71a9c7a2a2b8e3fe88e7eb93642d0ff66b8a29c2a9a0"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "protect_active_lifecycle_states()",
+      "type": "FUNCTION",
+      "hash": "3ad966a6c69849aca73df65803cf2ae571aed31cead035223de2d7d6b324d261"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "reconcile_lifecycle_state(text, boolean)",
+      "type": "FUNCTION",
+      "hash": "f71c4487d381bc1c4042ec2968d02a84a788c25000a078c088cda7ca1bd132ec"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "wake_lifecycle_state()",
+      "type": "FUNCTION",
+      "hash": "2012a5ea3b6a1d693125af4aed4cea453782af1da20ca879f184b2e91b0b4b9b"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "bucket_lifecycle_states",
+      "type": "TABLE",
+      "hash": "0e0841652b476626fd4fbd2ee3257d989db73e45787872b18c7553d2b8afb296"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "lifecycle_abandoned_artifacts",
+      "type": "TABLE",
+      "hash": "2905930abdde854e11796daf1df9b75eee5724a193828d79cd624618000c8ecb"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "bucket_lifecycle_states bucket_lifecycle_states_pkey",
+      "type": "CONSTRAINT",
+      "hash": "101a694a1ba774e4794296e89dd4a457185db57e3e9e5ed376192e4c0e1d40c7"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "lifecycle_abandoned_artifacts lifecycle_abandoned_artifacts_pkey",
+      "type": "CONSTRAINT",
+      "hash": "73c8c7822806abe5791ed83f9cfdc2dc6d4be9699855102306497378a38c544a"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "messages_replay_index",
+      "type": "INDEX",
+      "hash": "7895c12e2401149c5d9fb6c59f939fd44ce46284e537ddd8e0268652fd27ad8d"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "subscription_subscription_id_entity_filters_hash_key",
+      "type": "INDEX",
+      "hash": "832575dbf9267be9a48fddcf0c6676a2e24fee85b827c59fc79fa2edc543ebdd"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "bucket_lifecycle_states_due_idx",
+      "type": "INDEX",
+      "hash": "c2875f736fc74e402c8059bcebbcd4950cd98b8b250e9d86ca356ba9f515d26f"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "lifecycle_abandoned_artifacts_attempted_at_idx",
+      "type": "INDEX",
+      "hash": "d3aeb937cdd18cacec2dd381a49f0535dbfe38546e05b8212d64827766d818e9"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "objects_archived_due_idx",
+      "type": "INDEX",
+      "hash": "288de2efcb09279d538b910e69c99ebcdf76160da8b50814f4a28800abb4aed2"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "objects_archived_order_uq",
+      "type": "INDEX",
+      "hash": "df6788ddf59ba36a5bb273808d111d0562c622e6fb472f30bd46e5742c71fc0d"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "buckets enforce_versioning_status_transition",
+      "type": "TRIGGER",
+      "hash": "d944d123925455127876d6e3029b768b222bbbe643c89dfa0985db0e63c4712f"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "buckets protect_active_lifecycle_states",
+      "type": "TRIGGER",
+      "hash": "b0c1968cd0922a2a44324f4c030af518bd4a1fba0ad1793da093f288f87a9475"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "buckets wake_lifecycle_on_policy_write",
+      "type": "TRIGGER",
+      "hash": "a628703d6eacad54061fee57e1b0077b6ef03fd364887b72362d0b877dc845a1"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "buckets wake_lifecycle_on_versioning_enable",
+      "type": "TRIGGER",
+      "hash": "e28b4fc56c424a7ac145ad81ff8d504a5577dc19b298afd80ba032744be4f989"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "bucket_lifecycle_states bucket_lifecycle_states_bucket_id_fkey",
+      "type": "FK CONSTRAINT",
+      "hash": "696947184e9afb05941da4591854275798fb2b45f863aa438b965a3a76c3c303"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "bucket_lifecycle_states",
+      "type": "ROW SECURITY",
+      "hash": "13f4b2a15f71edb173c8f2f4bfed946d6969f9253a42345fc232b3898136f958"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "lifecycle_abandoned_artifacts",
+      "type": "ROW SECURITY",
+      "hash": "3bc7ab049d77c24d4b5875a0baa4a6590bef64d964fe3bb09f879fbe1617b712"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "FUNCTION filters_hash(filters realtime.user_defined_filter[])",
+      "type": "ACL",
+      "hash": "4dd7531398e98a3519d3ca9bb9a39eb9dfdbb93199bb049514fa9da7f76eed29"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "FUNCTION delete_lifecycle_objects(object_ids uuid[])",
+      "type": "ACL",
+      "hash": "0bbfd0d3d3bf6263778d8272e7780b823a739d5a0ff9f677800a5b595657021d"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "FUNCTION protect_active_lifecycle_states()",
+      "type": "ACL",
+      "hash": "ded92433e75316f5272b170d07719a6c73a852ddfa1761c49f54ed91a4e40f27"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "FUNCTION reconcile_lifecycle_state(target_bucket_id text, policy_changed boolean)",
+      "type": "ACL",
+      "hash": "161c0e93ffe427e11343cf32328719ba6f9e791328100abef25c5d64bcdb4dfc"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "FUNCTION wake_lifecycle_state()",
+      "type": "ACL",
+      "hash": "d75e6f3e920f3995cfb5bea0056e0b2884689f86493df78c0858b254b52f1986"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "TABLE bucket_lifecycle_states",
+      "type": "ACL",
+      "hash": "bc33c6aaef7136863cd4aca5e66ae0f0166d573adae6c61073a775761403552c"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "TABLE lifecycle_abandoned_artifacts",
+      "type": "ACL",
+      "hash": "d8c4344e6711c3b838e9fa10b09aac83e4a4c8fec53724ebcacae4fee1f1cfd5"
+    }
+  ],
+  "removed": [
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "messages_inserted_at_topic_index",
+      "type": "INDEX",
+      "hash": "b7f30ac3c65c47572f2b22fa1229fb1f3aaea8e81e64839a0bf2da7f106ee14b"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "subscription_subscription_id_entity_filters_action_filter_selec",
+      "type": "INDEX",
+      "hash": "7889ce7cbc6c995c9bf847cefdf166f9b8c9a6d2468dbd2515e81f20b8028322"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_admin",
+      "name": "TABLE schema_migrations",
+      "type": "ACL",
+      "hash": "eeed8479e65748f501ee598c324795f5d3b9a84df89bfe2ad85a0458e934e044"
+    }
+  ],
+  "changed": [
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "apply_rls(jsonb, integer)",
+      "type": "FUNCTION",
+      "hash": "f527795fc446f058dbe0d84badec880a7263570de11dcd0ff2a7f0079724d615",
+      "previousHash": "49337aecc56a0a6b34076b8fc7daf720a3d718ff4597c4fc850de135fa351e98"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "enforce_bucket_lifecycle_service_role()",
+      "type": "FUNCTION",
+      "hash": "e46a27e0597b1943a034509527a98eea08693df4441f8dff3c667ef0b2bd2ff4",
+      "previousHash": "d288f322094af224dce22957b27ecebb61ca364fa1266296fc26bc931b8d94fb"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "messages",
+      "type": "TABLE",
+      "hash": "0f42c1c22a8459c78ff91eb7962fd1f5e608800ab9fdf38dddb92a14873bcbf0",
+      "previousHash": "3c70f4958b8a837e92e66ee8bcd890a5bd1cff0b67a7339e2b262724fa34b2b1"
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_storage_admin",
+      "name": "buckets",
+      "type": "TABLE",
+      "hash": "737ee092d9bda9166c4b052d74b0935e02d933675cb5a1b9a164f78d6ef27e75",
+      "previousHash": "3a1a649d02109416c23ef81af2a9bfdc0587077c04f78f218705d7d6e439cf18"
+    }
+  ],
+  "changesOutsideStorage": [
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "filters_hash(realtime.user_defined_filter[])",
+      "type": "FUNCTION",
+      "hash": "fb25b0a4169b51dd90d4179cf8ab9702c51a24929b160ff53c726cdad4368029"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "messages_replay_index",
+      "type": "INDEX",
+      "hash": "7895c12e2401149c5d9fb6c59f939fd44ce46284e537ddd8e0268652fd27ad8d"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "subscription_subscription_id_entity_filters_hash_key",
+      "type": "INDEX",
+      "hash": "832575dbf9267be9a48fddcf0c6676a2e24fee85b827c59fc79fa2edc543ebdd"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "FUNCTION filters_hash(filters realtime.user_defined_filter[])",
+      "type": "ACL",
+      "hash": "4dd7531398e98a3519d3ca9bb9a39eb9dfdbb93199bb049514fa9da7f76eed29"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "messages_inserted_at_topic_index",
+      "type": "INDEX",
+      "hash": "b7f30ac3c65c47572f2b22fa1229fb1f3aaea8e81e64839a0bf2da7f106ee14b"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "subscription_subscription_id_entity_filters_action_filter_selec",
+      "type": "INDEX",
+      "hash": "7889ce7cbc6c995c9bf847cefdf166f9b8c9a6d2468dbd2515e81f20b8028322"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_admin",
+      "name": "TABLE schema_migrations",
+      "type": "ACL",
+      "hash": "eeed8479e65748f501ee598c324795f5d3b9a84df89bfe2ad85a0458e934e044"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "apply_rls(jsonb, integer)",
+      "type": "FUNCTION",
+      "hash": "f527795fc446f058dbe0d84badec880a7263570de11dcd0ff2a7f0079724d615",
+      "previousHash": "49337aecc56a0a6b34076b8fc7daf720a3d718ff4597c4fc850de135fa351e98"
+    },
+    {
+      "schema": "realtime",
+      "owner": "supabase_realtime_admin",
+      "name": "messages",
+      "type": "TABLE",
+      "hash": "0f42c1c22a8459c78ff91eb7962fd1f5e608800ab9fdf38dddb92a14873bcbf0",
+      "previousHash": "3c70f4958b8a837e92e66ee8bcd890a5bd1cff0b67a7339e2b262724fa34b2b1"
+    }
+  ]
+}

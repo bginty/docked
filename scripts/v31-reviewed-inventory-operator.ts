@@ -9,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import { ownerDatabase } from "./owner-gameplay-db.mjs";
 import { digest } from "../src/core/scoring-engine";
 import { validateReviewedInventory, reviewedInventorySql, custodyQuery, schemaQuery, tableListQuery, checksumQuery } from "./lib/reviewed-inventory";
+import { captureInventoryScheduler, verifyInventorySchedulerDrift, inventorySchedulerTables } from "./lib/inventory-scheduler-drift";
 
 const projectRef = "pojoymtniryarxxunyvz";
 const root = process.cwd();
@@ -76,7 +77,7 @@ export function validateImportApproval(approval: any, expected: { planSha256: st
     assert.match(approval[field], /^[0-9a-f]{64}$/);
 }
 
-async function capture(tx: any) {
+export async function captureInventoryPreflight(tx: any) {
   const [{ value: tables }] = await tx.unsafe(tableListQuery);
   const sums: Record<string, unknown> = {};
   for (let offset = 0; offset < tables.length; offset += 25) {
@@ -88,7 +89,18 @@ async function capture(tx: any) {
   const [{ value: schema }] = await tx.unsafe(schemaQuery);
   const [control] = await tx`select environment,sales_enabled,issuance_enabled,transfers_enabled,gameplay_enabled from commercial_billing.control where id`;
   const [inventory] = await tx`select count(*)::int definitions,coalesce(sum(legacy_issued),0)::int consumed,count(*)filter(where approved)::int approved from commercial_billing.definitions`;
-  return { projectRef, capturedAt: new Date().toISOString(), tables: sums, protectedCustodyDigest: digest(custody), schemaFingerprint: schema, control, inventory };
+  const scheduler = await captureInventoryScheduler(tx);
+  return { projectRef, capturedAt: new Date().toISOString(), tables: sums, protectedCustodyDigest: digest(custody), schemaFingerprint: schema, control, inventory, scheduler };
+}
+
+export async function validateInventoryPreflight(tx: any, before: any, baseline: any) {
+  for (const field of ["schemaFingerprint", "protectedCustodyDigest", "control", "inventory"])
+    assert.equal(digest(before[field]), digest(baseline[field]), `Fresh ${field} drift; no implicit repair`);
+  assert.deepEqual(Object.keys(before.tables).sort(), Object.keys(baseline.tables).sort(), "Durable table set changed");
+  for (const table of Object.keys(before.tables))
+    if (!(inventorySchedulerTables as readonly string[]).includes(table))
+      assert.deepEqual(before.tables[table], baseline.tables[table], `Fresh protected table drift: ${table}`);
+  return verifyInventorySchedulerDrift(tx, baseline.scheduler, before.scheduler, baseline.tables);
 }
 
 async function main() {
@@ -127,7 +139,7 @@ async function main() {
   try {
     if (captureMode) {
       const target = privatePath(option("--output", "private-data/v31-card-research-20261111/import-preflight.private.json")!);
-      const snapshot = await sql.begin("isolation level repeatable read read only", capture);
+      const snapshot = await sql.begin("isolation level repeatable read read only", captureInventoryPreflight);
       assert.equal(snapshot.protectedCustodyDigest, plan.protectedCustodyDigest, "Historical allocations/custody changed; reconcile before approval");
       writeFileSync(target, JSON.stringify({ ...snapshot, ...expected, productionWrites: 0 }, null, 2) + "\n", { flag: "wx" });
       console.log(JSON.stringify({ mode: "READ_ONLY_PREFLIGHT", file: path.relative(root, target), sha256: sha(target), inventory: snapshot.inventory, productionWrites: 0 }));
@@ -138,13 +150,12 @@ async function main() {
       await tx`set local statement_timeout='60s'`;
       await tx.unsafe("lock table credits_sandbox.state,credits_sandbox.card_instances,credits_sandbox.nba_fixture_instances,credits_sandbox.permanent_players,sports_feed.sport_sandbox_inventory in share row exclusive mode");
       await tx.unsafe("lock table commercial_billing.definitions in share row exclusive mode");
-      const before = await capture(tx);
+      const before = await captureInventoryPreflight(tx);
       assert.equal(before.control.environment, "commercial", "Exact Production commercial environment required");
-      for (const field of ["tables", "schemaFingerprint", "protectedCustodyDigest", "control", "inventory"])
-        assert.equal(digest(before[field as keyof typeof before]), digest(baseline[field]), `Fresh ${field} drift; no implicit repair`);
+      const schedulerDrift = await validateInventoryPreflight(tx, before, baseline);
       assert.equal(before.protectedCustodyDigest, plan.protectedCustodyDigest);
       await tx.unsafe(reviewedInventorySql(plan));
-      const after = await capture(tx);
+      const after = await captureInventoryPreflight(tx);
       assert.equal(after.protectedCustodyDigest, plan.protectedCustodyDigest);
       assert.deepEqual(after.schemaFingerprint, before.schemaFingerprint);
       for (const [table, checksum] of Object.entries(before.tables))
@@ -152,7 +163,7 @@ async function main() {
       assert.equal(after.inventory.definitions, 6540);
       assert.equal(after.inventory.consumed, 888);
       assert.equal(after.inventory.approved, 0);
-      return { definitions: 6540, consumed: 888, inserted: before.inventory.definitions === 0 ? 6540 : 0, unchanged: before.inventory.definitions === 6540 ? 6540 : 0, protectedTables: Object.keys(before.tables).length - 1, custodyUnchanged: true, cardsCreated: 0, approvedDefinitions: 0, activation: false };
+      return { definitions: 6540, consumed: 888, inserted: before.inventory.definitions === 0 ? 6540 : 0, unchanged: before.inventory.definitions === 6540 ? 6540 : 0, protectedTables: Object.keys(before.tables).length - 1, custodyUnchanged: true, cardsCreated: 0, approvedDefinitions: 0, activation: false, schedulerDrift };
     });
     console.log(JSON.stringify({ mode: "APPROVED_PRODUCTION_IMPORT", ...result, planSha256: expected.planSha256 }));
   } finally { await sql.end(); }

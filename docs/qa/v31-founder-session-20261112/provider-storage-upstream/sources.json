@@ -1,0 +1,38 @@
+[
+  {
+    "file": "0074-unlock-object-versioning.sql",
+    "url": "https://raw.githubusercontent.com/supabase/storage/master/migrations/tenant/0074-unlock-object-versioning.sql",
+    "gitBlob": "d0e28135e866601b78de24dee901c026fcb4a2eb",
+    "sha256": "60fb345d3c03dd8a629a73aa6b296743a9c9f81887c9cc81af8fcf71d9994ec0"
+  },
+  {
+    "file": "0075-enforce-bucket-lifecycle-update-role.sql",
+    "url": "https://raw.githubusercontent.com/supabase/storage/master/migrations/tenant/0075-enforce-bucket-lifecycle-update-role.sql",
+    "gitBlob": "7203d256c273874c38062e59d9d7c6d2bdcdb148",
+    "sha256": "f710375fbd569d8af66c71c9582a5abeeef4dd481744110e0171d0965630db65"
+  },
+  {
+    "file": "0076-noncurrent-lifecycle.sql",
+    "url": "https://raw.githubusercontent.com/supabase/storage/master/migrations/tenant/0076-noncurrent-lifecycle.sql",
+    "gitBlob": "3d105303a57e0d125ff4ecfd8c63d3c7aef594b2",
+    "sha256": "6ed59af15ccf744b9a9ff8a1cc34b58a45ab2f7cafee50d3e305229d95a5dde6"
+  },
+  {
+    "file": "0077-noncurrent-lifecycle-archived-order-index.sql",
+    "url": "https://raw.githubusercontent.com/supabase/storage/master/migrations/tenant/0077-noncurrent-lifecycle-archived-order-index.sql",
+    "gitBlob": "c6ba36d9452d9fc0500bb436ed239d8d41ec3854",
+    "sha256": "cdd2f92d11e519bd566e4bc8d42df0cca4458293b9c411e71594c2c06722e733"
+  },
+  {
+    "file": "0078-noncurrent-lifecycle-archived-due-index.sql",
+    "url": "https://raw.githubusercontent.com/supabase/storage/master/migrations/tenant/0078-noncurrent-lifecycle-archived-due-index.sql",
+    "gitBlob": "45cc0fb544d2ed25ea73d7eda3c51485ef49a864",
+    "sha256": "ba09c1d78afda8a80d4f5af676880c65f3246088c33d0c21f135e302c38be03f"
+  },
+  {
+    "file": "0079-lifecycle-writer-coordination.sql",
+    "url": "https://raw.githubusercontent.com/supabase/storage/master/migrations/tenant/0079-lifecycle-writer-coordination.sql",
+    "gitBlob": "ed4364a9163354a40c4eddb775440bd93d947fc8",
+    "sha256": "45cab4f5bb2f5b264ba517562d3f1d42d4715359a73d885e9a70a5ddb5967e82"
+  }
+]

@@ -1,0 +1,36 @@
+DOCKED V31 — hosted founder no-email incident acceptance
+12 November 2026 | PASS for the bounded no-email review workflow
+
+Production application during acceptance: 60f9e66acecaa9ce6419ad07e2691b777400a3d4.
+The founder personally recorded the prepared drill, acknowledged it and resolved
+it with evidence. Codex did not perform the founder acknowledgement or resolution.
+The existing founder session already satisfied the AAL2 gate; no fresh MFA prompt
+was displayed or claimed in this session.
+
+Observed -> Acknowledged -> Resolved
+07:43:05 UTC: support_delivery_drill recorded, revision 1.
+08:42:42 UTC: founder acknowledgement with review evidence, revision 2.
+08:44:27 UTC: founder resolution with evidence, revision 3.
+After reload, the resolved incident and all three audit entries remained visible.
+Independent database readback confirms the acknowledgement/resolution actors match
+the approved founder account. The initial observation event is system-authored
+(actor null), not falsely reported as a stored founder actor.
+
+Audit preservation and restrictions
+Original observation and acknowledgement row fingerprints stayed unchanged after
+resolution. Audit RLS and immutable-update/truncate triggers are enabled. The six
+inspected runtime roles have no audit UPDATE/DELETE/TRUNCATE or prune permission.
+Only the intended app roles may invoke review, which enforces the approved founder
+email, AAL2 and a live Auth session. No destructive audit test was run on Production.
+The previous isolated immutability tests remain separate evidence.
+
+Operational-email outbox count remained zero before and after all actions.
+Alerts, registration, commercial activation, active/scored rounds and retention
+cleanup remain disabled. No additional email was queued or sent by this drill.
+This does not assert a new end-to-end provider-delivery acceptance test.
+DOCKED-OPS-20261110-01 inbox receipt remains CONFIRMED by the founder's 10 November
+attestation. No automated inbox inspection or repeated email test is claimed.
+
+Evidence: baseline.json, drill-recorded.json, drill-acknowledged.json,
+drill-resolved.json and permissions.json in this directory.
+Public launch remains NO-GO; this closes the founder incident-review gate only.

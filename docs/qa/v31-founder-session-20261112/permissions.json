@@ -1,0 +1,56 @@
+{
+  "auditRls": true,
+  "observedAt": "2026-11-12T07:44:20.48186+00:00",
+  "auditGuards": [
+    {
+      "name": "operations_audit_immutable",
+      "enabled": "O"
+    },
+    {
+      "name": "operations_audit_truncate",
+      "enabled": "O"
+    }
+  ],
+  "runtimeRoles": [
+    {
+      "prune": false,
+      "review": false,
+      "rolname": "anon",
+      "audit_mutation": false
+    },
+    {
+      "prune": false,
+      "review": false,
+      "rolname": "authenticated",
+      "audit_mutation": false
+    },
+    {
+      "prune": false,
+      "review": true,
+      "rolname": "docked_app",
+      "audit_mutation": false
+    },
+    {
+      "prune": false,
+      "review": true,
+      "rolname": "docked_beta_app",
+      "audit_mutation": false
+    },
+    {
+      "prune": false,
+      "review": false,
+      "rolname": "docked_commercial_app",
+      "audit_mutation": false
+    },
+    {
+      "prune": false,
+      "review": false,
+      "rolname": "service_role",
+      "audit_mutation": false
+    }
+  ],
+  "gateRequiresAal2": true,
+  "retentionEnabled": false,
+  "gateChecksLiveSession": true,
+  "gateChecksFounderEmail": true
+}

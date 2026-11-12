@@ -1,0 +1,86 @@
+{
+  "at": "2026-11-12T09:49:01.971Z",
+  "method": "Google orders.get and purchases.productsv2.getproductpurchasev2 using existing service account; read-only database correlation",
+  "productionWrites": 0,
+  "providerMutations": 0,
+  "cases": [
+    {
+      "caseNumber": 1,
+      "providerOrderState": "REFUNDED",
+      "providerPurchaseState": "CANCELLED",
+      "providerTest": true,
+      "region": "AU",
+      "products": [
+        "docked_credits_4900_v1"
+      ],
+      "total": {
+        "currencyCode": "AUD",
+        "units": "49"
+      },
+      "providerLastEventAt": "2026-11-05T11:19:31.413Z",
+      "orderPurchaseReferenceMatches": true,
+      "originalAccountMatches": 0,
+      "notifications": {
+        "count": 2,
+        "attention": 2
+      },
+      "existingReceipts": {
+        "main": 0,
+        "billing": 0,
+        "member": 0
+      }
+    },
+    {
+      "caseNumber": 2,
+      "providerOrderState": "REFUNDED",
+      "providerPurchaseState": "CANCELLED",
+      "providerTest": true,
+      "region": "AU",
+      "products": [
+        "docked_credits_9900_v1"
+      ],
+      "total": {
+        "currencyCode": "AUD",
+        "units": "99"
+      },
+      "providerLastEventAt": "2026-11-05T11:26:24.948Z",
+      "orderPurchaseReferenceMatches": true,
+      "originalAccountMatches": 0,
+      "notifications": {
+        "count": 3,
+        "attention": 3
+      },
+      "existingReceipts": {
+        "main": 0,
+        "billing": 0,
+        "member": 0
+      }
+    },
+    {
+      "caseNumber": 3,
+      "providerOrderState": "REFUNDED",
+      "providerPurchaseState": "CANCELLED",
+      "providerTest": true,
+      "region": "AU",
+      "products": [
+        "docked_credits_4900_v1"
+      ],
+      "total": {
+        "currencyCode": "AUD",
+        "units": "49"
+      },
+      "providerLastEventAt": "2026-11-05T12:11:55.723Z",
+      "orderPurchaseReferenceMatches": true,
+      "originalAccountMatches": 0,
+      "notifications": {
+        "count": 2,
+        "attention": 2
+      },
+      "existingReceipts": {
+        "main": 0,
+        "billing": 0,
+        "member": 0
+      }
+    }
+  ]
+}

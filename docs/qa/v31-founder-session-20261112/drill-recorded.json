@@ -1,0 +1,23 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "action": "OBSERVED",
+      "revision": 1,
+      "createdAt": "2026-11-12T07:43:05.12359+00:00",
+      "rowFingerprint": "85e1ac546b2462d03375acfe151b8b24"
+    }
+  ],
+  "incident": {
+    "code": "support_delivery_drill",
+    "state": "OPEN",
+    "revision": 1,
+    "severity": "info",
+    "last_seen": "2026-11-12T07:43:05.120038+00:00",
+    "first_seen": "2026-11-12T07:43:05.116911+00:00",
+    "observed_count": 1
+  },
+  "observedAt": "2026-11-12T07:43:26.827205+00:00",
+  "alertsEnabled": false,
+  "operationalEmails": 0
+}

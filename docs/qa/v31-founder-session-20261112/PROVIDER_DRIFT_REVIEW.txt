@@ -1,0 +1,59 @@
+DOCKED V31 — Supabase-managed dependency change reviewed 12 November 2026
+
+During this session Supabase recorded Realtime migrations at 09:51:54 UTC and
+Storage migrations 74–79 at 09:52:00 UTC. Codex did not apply them. The existing
+Docked five-migration history remains unchanged. The full schema guard correctly
+detected 10104 -> 10147 catalogue entries before any second inventory attempt.
+New fingerprint: 7e9acf391f1f34b573eb818210128447.
+
+Authoritative comparison
+Compared the ORIGINAL authenticated pre/post-rollout pg_dump archives using
+schema-only extraction in memory; no SQL was executed by the comparison. All
+non-Storage/non-Realtime schema sections match byte-for-byte. The diff contains
+30 added, 3 removed and 4 changed pg_dump object sections, confined to those two
+provider schemas. These section counts differ from the catalogue-entry counts.
+See provider-storage-archive-schema-diff.json and provider-storage-upstream source
+manifests. Original schemas avoid restore-induced column ordering and ACL-grantor
+differences. A preliminary restored-catalogue diagnostic was NOT treated as proof
+of Production application-schema changes and remains private.
+
+Storage
+Provider versioning/lifecycle support added two empty tables, indexes, service
+functions and bucket triggers. Both new tables have RLS enabled and are owned by
+supabase_storage_admin. Direct table grants are limited to the existing provider
+administrator, postgres and service_role; no anon/authenticated table grant.
+No bucket lifecycle configuration, Docked retention switch or cleanup schedule
+was enabled by Codex. Storage object bodies are not part of the logical DB backup.
+
+Realtime
+The exact upstream migrations add a replay index and hash-based subscription
+index, revise filtering of raw WAL values, and revoke grants on the provider's
+migration ledger. The inspected filters_hash and apply_rls functions are security
+INVOKER, not new elevated definer entry points. Message RLS stays enabled. Existing
+message grants are preserved in the original-archive comparison; the changed ACL
+section is the removal of migration-ledger grants. No Docked app-role IAM change.
+
+Fresh recovery proof
+The post-rollout archive was captured at completion time 10:06:42.948 UTC and
+restored with faithful effective role memberships, network=none, no ports, cron
+OFF and the external transport worker disabled. All 558 durable table hashes and
+counts match. The same five Docked migrations were re-rehearsed only locally;
+no hosted migration was repeated. See provider-storage-refresh/restore-drill.json.
+
+The corrected full inventory import was then rehearsed on this fresh restore:
+6540 inserted, 888 consumed, 906 custody records unchanged, zero new cards or
+approved definitions; all 557 other durable tables, schema and controls unchanged.
+Exact replay inserted zero. Concurrent replay gave one success and one bounded
+lock timeout followed by safe retry. Initial import: 1933 ms, not a downtime SLA.
+See scheduler-corrected-restored-rehearsal.json.
+
+The completed isolated targets were stopped to release memory. Their tmpfs data
+is disposable; encrypted source archives and signed/checksummed evidence remain.
+A future local restore must use the archive, not assume a restarted tmpfs target
+still contains the earlier database. No backup-key transfer or rotation occurred.
+
+Snapshot data changes are separately enumerated in provider-snapshot-data-diff.json.
+They include session refresh/rate-limit telemetry and existing scheduled workers
+over the longer capture interval. This report does not waive those tables from
+the final import's short preflight: only the three explicitly verified scheduler
+tables have the narrow exception. Any other new drift stops execution.

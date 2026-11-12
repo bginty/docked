@@ -19,6 +19,10 @@ import { v31SchemaFingerprintSql } from "./lib/v31-schema-fingerprint";
 const previewRestore = process.argv.includes("--existing-free-preview");
 const prelaunchReadiness = process.argv.includes("--prelaunch-readiness");
 const resumeRestored = process.argv.includes("--resume-restored");
+const captureOnly = process.argv.includes("--capture-only");
+assert(
+  !captureOnly || (process.argv.includes("--capture-fresh") && !resumeRestored),
+);
 assert(
   prelaunchReadiness &&
     process.argv.includes("--restore-existing") !==
@@ -556,6 +560,35 @@ async function mainRun() {
         }
       }
     }
+  }
+  if (captureOnly) {
+    const encryptedManifest = await readFile(dir + "/manifest.aes");
+    const encryptedArchive = await readFile(dir + "/production.dump.aes");
+    const result = {
+      at: new Date().toISOString(),
+      capturedAt: manifest.at,
+      project: sourceRef,
+      backupDirectory: dir.slice(root.length + 1),
+      archiveBytes: encryptedArchive.length,
+      backupArchiveSha256: createHash("sha256")
+        .update(encryptedArchive)
+        .digest("hex"),
+      backupManifestSha256: createHash("sha256")
+        .update(encryptedManifest)
+        .digest("hex"),
+      protectedTables: Object.keys(manifest.sums).length,
+      productionWrites: 0,
+      localRestorePerformed: false,
+      migrationsApplied: false,
+      plaintextWritten: false,
+    };
+    key.fill(0);
+    await writeFile(
+      evidence + "/fresh-backup.json",
+      JSON.stringify(result, null, 2) + "\n",
+    );
+    console.log(JSON.stringify(result));
+    return;
   }
   if (!resumeRestored) {
     {

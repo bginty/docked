@@ -1,0 +1,44 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "action": "OBSERVED",
+      "revision": 1,
+      "createdAt": "2026-11-12T07:43:05.12359+00:00",
+      "reasonPresent": false,
+      "actorIsFounder": null,
+      "rowFingerprint": "85e1ac546b2462d03375acfe151b8b24"
+    },
+    {
+      "id": 2,
+      "action": "ACKNOWLEDGE",
+      "revision": 2,
+      "createdAt": "2026-11-12T08:42:42.071954+00:00",
+      "reasonPresent": true,
+      "actorIsFounder": true,
+      "rowFingerprint": "a2a2eacc28dc52e67903b3c755cad1d6"
+    },
+    {
+      "id": 3,
+      "action": "RESOLVE",
+      "revision": 3,
+      "createdAt": "2026-11-12T08:44:27.318235+00:00",
+      "reasonPresent": true,
+      "actorIsFounder": true,
+      "rowFingerprint": "c7743f591283fc21bcdb8cba96b20525"
+    }
+  ],
+  "incident": {
+    "code": "support_delivery_drill",
+    "state": "RESOLVED",
+    "revision": 3
+  },
+  "observedAt": "2026-11-12T08:45:30.578442+00:00",
+  "alertsEnabled": false,
+  "retentionEnabled": false,
+  "commercialEnabled": false,
+  "operationalEmails": 0,
+  "registrationEnabled": false,
+  "activeOrScoredRounds": 0,
+  "priorEventsUnchanged": true
+}

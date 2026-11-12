@@ -1,0 +1,45 @@
+DOCKED V31 — same-key custody proposal; NOT EXECUTED / NOT YET APPROVED
+
+Synthetic vault recovery, founder Google MFA, accessible recovery method and the
+three Secret Manager Data Access audit categories were already accepted. Do not
+repeat those decisions. This is the distinct real backup-key custody step.
+
+Source: C:/Users/61412/.docked-secrets/launch-migration-backup-key.hex.
+Destination: Google project docked-play-verification (1007288339937), proposed new
+Secret Manager secret docked-recovery-backup, one immutable version containing
+the SAME key. The database archive is never the secret payload. No key rotation.
+Retain the local recovery copy and every version referenced by a retained backup.
+
+Read-only Console inspection this session found only docked-recovery-acceptance.
+The proposed real-key secret does not yet exist. The visible inherited reader was
+the founder's project Owner (Legacy) role. This is broad existing ownership, not
+a claim that Owner is a least-privilege accessor. No new reader, service account,
+IAM grant, runtime access or project is proposed. Recheck IAM immediately before
+the transfer and stop if an unexpected principal or existing payload appears.
+
+Proposed configuration: automatic replication matching the existing vault design,
+Google-managed encryption, no automatic rotation or expiry, 30-day secret-version
+destruction delay. Whole-secret deletion is not protected by that delay. Use the
+exact returned version number for recovery; never rely on an unpinned latest alias.
+
+Acceptance: privately transfer the existing key without exposing its value to
+screenshots, chat, command arguments or Git; retain only metadata and audit proof.
+Retrieve the pinned version, authenticate/decrypt the named encrypted backup into
+a network-isolated restore, compare schema/counts/fingerprints and verify secret
+access audit entries. No Production restore, key replacement or access expansion.
+If Google requests authentication, the founder completes it privately.
+
+Costs: verify billing-account free allowance before creating a version. Existing
+pricing estimate is US$0.06 per active version-month beyond free allowance, plus
+access operations and any logging overages. This is not a verified account quote
+or spending approval. No paid infrastructure is created under this proposal.
+Current pricing checked 12 November: https://cloud.google.com/secret-manager/pricing
+Six active versions and 10000 accesses/month are free across the billing account.
+Disabled versions count as active. Automatic replication counts as one location.
+
+Use inventory-backup/fresh-backup.json and the later provider Storage refresh to
+bind actual encrypted archive/manifest hashes before the distinct transfer request.
+The original pre-provider archive is
+7d544a757a5fc6a940c55e4e80ebef762732d0080d387ea901fb6f2041b69589.
+Its AES-GCM/hash authentication passed. Same-key encryption access for the backup
+does not by itself grant permission to transfer the key to Google.

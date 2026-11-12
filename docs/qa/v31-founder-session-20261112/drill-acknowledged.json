@@ -1,0 +1,31 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "action": "OBSERVED",
+      "revision": 1,
+      "createdAt": "2026-11-12T07:43:05.12359+00:00",
+      "reasonPresent": false,
+      "actorIsFounder": null,
+      "rowFingerprint": "85e1ac546b2462d03375acfe151b8b24"
+    },
+    {
+      "id": 2,
+      "action": "ACKNOWLEDGE",
+      "revision": 2,
+      "createdAt": "2026-11-12T08:42:42.071954+00:00",
+      "reasonPresent": true,
+      "actorIsFounder": true,
+      "rowFingerprint": "a2a2eacc28dc52e67903b3c755cad1d6"
+    }
+  ],
+  "incident": {
+    "code": "support_delivery_drill",
+    "state": "ACKNOWLEDGED",
+    "revision": 2
+  },
+  "observedAt": "2026-11-12T08:43:09.89253+00:00",
+  "alertsEnabled": false,
+  "operationalEmails": 0,
+  "originalObservationUnchanged": true
+}

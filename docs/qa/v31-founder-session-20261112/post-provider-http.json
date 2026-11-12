@@ -1,0 +1,166 @@
+{
+  "at": "2026-11-12T10:21:59.655Z",
+  "reason": "Post provider Storage/Realtime rollout regression",
+  "source": "17b38c1290fd37c05487b332e5c0db440da6805b",
+  "httpChecks": 26,
+  "checks": [
+    {
+      "route": "/account-deletion",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/admin/incidents",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "POST",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/auth/phone",
+      "method": "POST",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/beta-release",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=afl",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=basketball",
+      "method": "GET",
+      "status": 400,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=nfl",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=nrl",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=afl",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nrl",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/app/invitation-setup",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/app/login",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/app/signup",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/commercial-policy",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/preview/pack-opening",
+      "method": "GET",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "route": "/privacy",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/profile/qa_billing",
+      "method": "GET",
+      "status": 503,
+      "pass": true
+    },
+    {
+      "route": "/refund-policy",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/retention",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    }
+  ],
+  "newEmailOrSmsRequested": false,
+  "commercialControlsActivated": false
+}

@@ -1,0 +1,22 @@
+BEGIN
+SET
+90|f|founder-routine-incidents-20261110-v1
+1
+3
+0
+0
+0
+f
+t|t|f|f
+f|f|f|1
+0
+CREATE UNIQUE INDEX docked_verified_phone_canonical ON private.verified_phone_claims USING btree (canonical_phone)
+0
+1
+0
+f|f|f|f
+0
+0
+0
+9
+COMMIT

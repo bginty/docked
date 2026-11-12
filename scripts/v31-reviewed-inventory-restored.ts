@@ -13,6 +13,10 @@ import {
   checksumQuery,
 } from "./lib/reviewed-inventory";
 import { inventoryOperatorPackage } from "./v31-reviewed-inventory-operator";
+import {
+  captureInventoryScheduler,
+  verifyInventorySchedulerDrift,
+} from "./lib/inventory-scheduler-drift";
 
 assert.equal(process.argv[2], "--isolated-restored");
 const container =
@@ -20,14 +24,14 @@ const container =
   "docked-commercial-restore-20261111";
 assert.match(
   container,
-  /^docked-commercial-restore-202611(?:11|12)(?:-attempt-[2-9])?$/,
+  /^docked-commercial-restore-(?:20261111|20261112[bc]?)(?:-attempt-[2-9])?$/,
 );
 const archiveDirectory =
   process.env.DOCKED_RESTORED_INVENTORY_ARCHIVE ??
   "private-data/commercial-restore-20261111";
 assert.match(
   archiveDirectory,
-  /^private-data\/commercial-restore-202611(?:11|12)$/,
+  /^private-data\/commercial-restore-(?:20261111|20261112[bc]?)$/,
 );
 const reportPath =
   process.env.DOCKED_RESTORED_INVENTORY_REPORT ??
@@ -211,6 +215,27 @@ async function main() {
     "Existing provider mapping must be reused after fresh review",
   );
   assert.equal(lookup.catalogueCollisions, 0);
+  // Exercise the scheduler-aware preflight against the native restored schema.
+  // This adapter uses only the inspected network-isolated Unix-socket target.
+  const schedulerDb = {
+    unsafe: async (query: string, params: string[] = []) => {
+      const bound = query.replace(/\$(\d+)\b/g, (_match, index) => {
+        const value = params[Number(index) - 1];
+        assert.equal(typeof value, "string");
+        return `'${value.replaceAll("'", "''")}'`;
+      });
+      return (
+        await psql(`select coalesce(jsonb_agg(r),'[]') from (${bound}) r`)
+      )[0];
+    },
+  };
+  const schedulerBaseline = await captureInventoryScheduler(schedulerDb);
+  const schedulerGuard = await verifyInventorySchedulerDrift(
+    schedulerDb,
+    schedulerBaseline,
+    await captureInventoryScheduler(schedulerDb),
+    before.tables as any,
+  );
   const sql = reviewedInventorySql(plan);
   const start = Date.now();
   await psql(`begin;\n${sql}\ncommit;`);
@@ -264,6 +289,7 @@ async function main() {
     container,
     planSha256: sha(planFile),
     ...inventoryOperatorPackage(),
+    schedulerGuard,
     sourceDefinitions: 6540,
     freshArchiveDefinitions: 0,
     committedRestoredImportDefinitions: 6540,

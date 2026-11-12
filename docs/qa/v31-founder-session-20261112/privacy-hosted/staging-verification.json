@@ -1,0 +1,175 @@
+{
+  "at": "2026-11-12T09:04:59.960Z",
+  "source": "17b38c1290fd37c05487b332e5c0db440da6805b",
+  "packageSha256": "565589b6f748fccd138bd10018f7eb621adc9efb7677f4082963039d8eb0c33b",
+  "deployment": "dpl_8WTycjDUx7VvEQm4pm5jW6B9WHEB",
+  "target": "https://docked-production-e5zwp4r4g-briant-s-projects.vercel.app",
+  "live": false,
+  "httpChecks": 26,
+  "checks": [
+    {
+      "route": "/account-deletion",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/admin/incidents",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "POST",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/auth/phone",
+      "method": "POST",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/beta-release",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=afl",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=basketball",
+      "method": "GET",
+      "status": 400,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=nfl",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=nrl",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=afl",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nrl",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/app/invitation-setup",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/app/login",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/app/signup",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/commercial-policy",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/preview/pack-opening",
+      "method": "GET",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "route": "/privacy",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/profile/qa_billing",
+      "method": "GET",
+      "status": 503,
+      "pass": true
+    },
+    {
+      "route": "/refund-policy",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/retention",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    }
+  ],
+  "runtimeKeys": 89,
+  "runtimeRecipeVerified": true,
+  "hostedSecretValuesReadBack": false,
+  "cronsUnchanged": true,
+  "privacyVersion": "2026-11-11-privacy-phone-v4",
+  "actualFounderConsentSubmissionTested": false,
+  "smsSent": false,
+  "playPublished": false
+}

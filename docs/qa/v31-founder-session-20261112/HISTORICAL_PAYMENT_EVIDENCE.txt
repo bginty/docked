@@ -1,0 +1,39 @@
+DOCKED V31 — genuine Google TEST order evidence, 12 November 2026
+
+Authenticated Google Play Console order details show three Australian TEST orders
+on 5 November, all Refunded and AUD 0.00 actually charged:
+1. 4900 credits, purchased 11:17:18 UTC, refunded 11:19:31 UTC.
+2. 9900 credits, purchased 11:21:24 UTC, refunded 11:26:24 UTC.
+3. 4900 credits, purchased 12:11:10 UTC, refunded 12:11:55 UTC.
+The privately retained browser observations include original order references.
+No checkout, refund button, retry, dismissal or balance change was performed.
+
+The existing service account then retrieved each exact order and its purchase
+through Google's read-only APIs. All three are TEST / AU / REFUNDED / CANCELLED.
+Their provider purchase-token digests match respectively 2, 3 and 2 of the seven
+Production notification warnings. This is exact provider correlation, not a guess
+from timestamps. Raw tokens, identifiers and account bindings were not printed or
+committed. See historical-google-provider-readback.json for redacted results.
+
+The API's nominal order total is 49/99/49 AUD; these TEST face values must not be
+misreported as real charges. The Console confirms zero paid totals. TEST results
+do not prove live settlement, fees, payouts or current hosted refund acceptance.
+
+Remaining binding gap
+The returned obfuscated account identifier matches zero current Production Auth
+users under the existing account-binding secret. There is no existing receipt in
+credits_sandbox, store_billing_acceptance or store_member_acceptance for these
+three references. This does not establish the original synthetic/Preview account
+or prove any historic balance adjustment. All seven warnings remain preserved in
+attention, at their prior 12 attempts. No binding was invented and no grant was
+created to make reconciliation pass. Original test-environment/member evidence
+or a separately reviewed terminal archival disposition remains necessary.
+
+Next hosted acceptance remains separate: installed v31, existing licensed tester,
+named isolated test wallet, <=2 hours, <=6 TEST checkouts, A$0 real spend, exact
+temporary admission/runtime/product diff and closure commands reviewed first.
+No blanket payment activation approval is requested or inferred.
+
+Primary API references checked 12 November:
+https://developers.google.com/android-publisher/api-ref/rest/v3/orders/get
+https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.productsv2/getproductpurchasev2
