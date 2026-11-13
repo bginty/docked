@@ -1,0 +1,91 @@
+{
+  "at": "2026-11-13T01:24:32.527Z",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "packageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "totalSourceRows": 112,
+  "unchangedSourceRows": 110,
+  "differences": [
+    {
+      "id": 12,
+      "provider": "nflverse",
+      "resource": "0867151048bc7e7bb42540d7869184a3f732a6ff5d887686d837f7d25c14432e",
+      "fields": [
+        "bodyMd5",
+        "bodyNull",
+        "purged_at"
+      ],
+      "previousBodyPresent": true,
+      "currentBodyNull": true,
+      "expiresAt": "2026-11-13T00:05:02.166219+00:00",
+      "purgedAt": "2026-11-13T00:17:00.154994+00:00",
+      "expiredBeforePurge": true,
+      "beforeRecordSha256": "ea6d535e684063ab5969fb048eea21446e94f99a122696d022565a9476761e6a",
+      "afterRecordSha256": "ed96e6a6532452baee01987c0cc17957bed8099717584bae79224ef8044c401a"
+    },
+    {
+      "id": 13,
+      "provider": "nflverse",
+      "resource": "2ec2841459fd1e30d65678ab101250bc9d55d27fb157bdec19c411817b3311fe",
+      "fields": [
+        "bodyMd5",
+        "bodyNull",
+        "purged_at"
+      ],
+      "previousBodyPresent": true,
+      "currentBodyNull": true,
+      "expiresAt": "2026-11-13T00:15:02.388079+00:00",
+      "purgedAt": "2026-11-13T00:17:00.221159+00:00",
+      "expiredBeforePurge": true,
+      "beforeRecordSha256": "85de875efccd764b6eeb6db71dd96e34b04856a27abb3f4411fa6a1446fc29ba",
+      "afterRecordSha256": "0bd432f14bb8495a5eef8184061c67707f8f3c7d01d859ef4ed316dd1ec2967d"
+    }
+  ],
+  "failures": [
+    {
+      "id": "3388",
+      "status": "failed",
+      "task": "weekly",
+      "stage": "worker",
+      "diagnostic": "UNCLASSIFIED",
+      "started_at": "2026-11-13 00:05:00.449426+00",
+      "finished_at": "2026-11-13 00:05:00.459342+00"
+    },
+    {
+      "id": "3389",
+      "status": "failed",
+      "task": "pbp",
+      "stage": "worker",
+      "diagnostic": "UNCLASSIFIED",
+      "started_at": "2026-11-13 00:10:00.355391+00",
+      "finished_at": "2026-11-13 00:10:00.362601+00"
+    },
+    {
+      "id": "3390",
+      "status": "failed",
+      "task": "rosters",
+      "stage": "worker",
+      "diagnostic": "UNCLASSIFIED",
+      "started_at": "2026-11-13 00:15:00.539468+00",
+      "finished_at": "2026-11-13 00:15:00.544558+00"
+    }
+  ],
+  "existingRetentionJobs": [
+    {
+      "jobid": "1",
+      "jobname": "docked-beta-nfl-raw-expiry",
+      "schedule": "17 * * * *",
+      "command_hash": "7797a6873a635869b31361865d01980e"
+    }
+  ],
+  "originalSourceTableFingerprint": {
+    "hash": "da1a7ed409e95dbd646dc51ea2fa8288",
+    "count": 112
+  },
+  "currentSourceTableFingerprint": {
+    "hash": "12ddb445e216e94aca91cae4b6860a51",
+    "count": 112
+  },
+  "productionWrites": 0,
+  "retentionEnabledByThisSession": false,
+  "withinApprovedSchedulerAllowance": false
+}

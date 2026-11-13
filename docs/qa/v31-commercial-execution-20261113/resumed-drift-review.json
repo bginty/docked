@@ -1,0 +1,99 @@
+{
+  "at": "2026-11-13T01:22:41.431Z",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "packageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "schema": {
+    "fingerprint": "e3e825acd32fd1101423803826107183",
+    "objects": 10147
+  },
+  "unchangedTables": 550,
+  "changedTables": [
+    "credits_sandbox.store_notifications",
+    "cron.job_run_details",
+    "private.audit_events",
+    "private.docked_mail_scheduler",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.raw_revisions",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "unexpectedTables": [
+    "sports_feed.raw_revisions"
+  ],
+  "warning": {
+    "notificationsCorrected": 7,
+    "unrelatedNotificationsUnchanged": true,
+    "immutableAuditEventsAdded": 1,
+    "priorAuditEventsUnchanged": true
+  },
+  "immutableRoundRows": 8,
+  "immutableRoundDigest": "d8d612cb8eac0def5c882e0fbc4aeb5c7e6e879c526e1547191f7ca7050d01eb",
+  "priorNflAuditRowsUnchanged": 3378,
+  "permittedReconcileRows": 14,
+  "outsideAllowance": [
+    {
+      "id": 3388,
+      "status": "failed",
+      "task": "weekly",
+      "startedAt": "2026-11-13T00:05:00.449426+00:00",
+      "finishedAt": "2026-11-13T00:05:00.459342+00:00",
+      "detailKeys": [
+        "diagnostic",
+        "error",
+        "season",
+        "stage",
+        "task"
+      ],
+      "errorCode": "SOURCE_OR_CONFIGURATION_UNAVAILABLE",
+      "recordSha256": "9d54dea1068ce60ba5b573ab5f4aca19aacac111e8f7a6a52eefe32b9097fd4f",
+      "detailSha256": "6c4ac784268e559f328df383973f66049e8b3a33bc4505bb728e483643ebd1a7",
+      "priorIdenticalFailures": 6
+    },
+    {
+      "id": 3389,
+      "status": "failed",
+      "task": "pbp",
+      "startedAt": "2026-11-13T00:10:00.355391+00:00",
+      "finishedAt": "2026-11-13T00:10:00.362601+00:00",
+      "detailKeys": [
+        "diagnostic",
+        "error",
+        "season",
+        "stage",
+        "task"
+      ],
+      "errorCode": "SOURCE_OR_CONFIGURATION_UNAVAILABLE",
+      "recordSha256": "92d947fc27f0e4beff56fce990740c525c430eb3c47cf9a5d5e38af2d1d30cc9",
+      "detailSha256": "c568fdc7d0ba62980b512cc207d37238ac0f1fa29874f0700a08be9431e3fcb0",
+      "priorIdenticalFailures": 6
+    },
+    {
+      "id": 3390,
+      "status": "failed",
+      "task": "rosters",
+      "startedAt": "2026-11-13T00:15:00.539468+00:00",
+      "finishedAt": "2026-11-13T00:15:00.544558+00:00",
+      "detailKeys": [
+        "diagnostic",
+        "error",
+        "season",
+        "stage",
+        "task"
+      ],
+      "errorCode": "SOURCE_OR_CONFIGURATION_UNAVAILABLE",
+      "recordSha256": "df840b78ec5411e25ec7f487af69ddf4e42c7f877524200d8717baff55f23297",
+      "detailSha256": "8e02a54001e9dacc0f6a5e7a4aa6b7ad1e8f3b8596228eae9dcf1d89215b3011",
+      "priorIdenticalFailures": 6
+    }
+  ],
+  "bookkeeping": {
+    "cronRowsAdded": 833,
+    "weeklyZeroIssuanceRowsAdded": 406,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true
+  },
+  "rolesAndMembershipsUnchanged": true,
+  "newMigrationsPresent": 0,
+  "productionWrites": 0,
+  "deploymentAllowed": false
+}

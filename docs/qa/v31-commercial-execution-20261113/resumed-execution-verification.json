@@ -1,0 +1,80 @@
+{
+  "at": "2026-11-13T01:35:36.809Z",
+  "stagedFiles": 16,
+  "knownSecretFormsAbsent": true,
+  "applicationSourceChanged": false,
+  "reviewedApplicationPackageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "reviewedWarningPackageSha256": "657f783584433220e42e1e5834237f3ecfe69755292da9ee6599caaa651d325f",
+  "typecheckPassed": true,
+  "targetedOperatorLintPassed": true,
+  "powershellParsePassed": true,
+  "evidenceFiles": [
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/ADDITIONAL_DRIFT_REVIEW.txt",
+      "sha256": "303d6d49c3388533d9b0786f6ca9c75a73c9253a5bda11215d2d4c5aa07baefe"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/RESUMED_HANDOVER.txt",
+      "sha256": "9d37b5cadbe8ffcae6cdcc6759654e4541ffad7b7eeabac01c8aae73f70fd8bd"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/additional-drift-package.json",
+      "sha256": "0e5eaaa860de858ac9f6ef16f209d4e049b099cf83bbb4f1acafb2ed802cc22e"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/production-resumed-stop.json",
+      "sha256": "daeaa57f392323e77b34b67ef8a0b22dc97431a8b1f60add9bca29f00df19637"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/resumed-backup/fresh-backup.json",
+      "sha256": "9b4564253c49bf90dd6f739b8f6f75e7893eef955fed0935470d2a80624ad8f3"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/resumed-drift-review.json",
+      "sha256": "7dd948348cb241931532274a038349bc541ab90877bfed02109f66972bd85320"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/resumed-provider-readback.json",
+      "sha256": "dbab5c70315ed222b8391d038b195824a8977114c1bf495fc6c195b6b386dff6"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/resumed-restore/restore-only.json",
+      "sha256": "faae61441c50969dc902e7fa1abd42b918f5495d594cc67dd29c4b479d00e4f0"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/resumed-restore/role-fidelity.json",
+      "sha256": "fb9989d9ed2cfcefb18033d1babb4a8ca5be5460e0fc723ef1e8d8507b449cc5"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/resumed-source-review.json",
+      "sha256": "f5f81add44eeeeaae2f8030f6d872e2b4d3f4ebc1953c1c8a88f318258651871"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/twilio-credential-shape-diagnostic.json",
+      "sha256": "923aac2195a9539f7be81a985b376dedcf545853df88d311cecb79963e84f847"
+    },
+    {
+      "file": "scripts/lib/v31-resumed-drift.ts",
+      "sha256": "f3130a346a2cce7316b03d5efd357dcd336f4fbf4b322ef199fde5618cfc4a0d"
+    },
+    {
+      "file": "scripts/v31-commercial-database-execution.ts",
+      "sha256": "befb561bdfcf2022d112341e2bfa40e1a765d8509c554053261aabf0ed721766"
+    },
+    {
+      "file": "scripts/v31-resumed-drift-review.ts",
+      "sha256": "463f8240ab29ce4e87605fe116ec8dd9bf8113786a5097c399ef91b7fad93ad2"
+    },
+    {
+      "file": "scripts/v31-resumed-local-baseline.ts",
+      "sha256": "002a86759bb0c44a0ed9090d340d5805bdc25b32c478b259acb9c5f7ce9e89ab"
+    },
+    {
+      "file": "scripts/v31-resumed-source-review.ts",
+      "sha256": "2c39e5a99b3a8b051493688720799aa53228f545f2791ff6bb2e87d1ad5bbdc3"
+    }
+  ],
+  "targetedTestsPassed": 21,
+  "productionMutationsThisContinuation": 0,
+  "deploymentStopped": true
+}

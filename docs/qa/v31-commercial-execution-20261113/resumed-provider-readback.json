@@ -1,0 +1,27 @@
+{
+  "recordedAt": "2026-11-13T01:27:59.766Z",
+  "observedDuringUtc": "2026-11-13 approximately 01:16 to 01:20",
+  "evidenceType": "Authenticated Chrome UI",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "packageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "google": {
+    "productionVersion": "31 (1.30)",
+    "status": "READY_TO_PUBLISH",
+    "managedPublishing": "ON",
+    "phoneDataSafety": "IN_REVIEW",
+    "mutations": 0
+  },
+  "twilio": {
+    "existingAccountOpened": true,
+    "existingAustralianSender": "Docked",
+    "registrationStatus": "IN_REVIEW",
+    "submissionDisplayed": "11/11/2026",
+    "credentialPage": "Existing API keys & tokens",
+    "verificationRequired": "Founder email access code; user handoff pending",
+    "savedPreviewCredentialComparisonCompleted": false,
+    "auth401CauseConfirmed": false,
+    "newSenderOrServiceCreated": false,
+    "smsSent": 0,
+    "providerSettingChanges": 0
+  }
+}

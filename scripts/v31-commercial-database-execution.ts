@@ -11,7 +11,13 @@ import {
 import { v31SchemaFingerprintSql } from "./lib/v31-schema-fingerprint";
 import { authenticateDatabaseBackup } from "./lib/authenticated-database-backup";
 import { digest } from "../src/core/scoring-engine";
-import { approvedSchedulerDrift } from "./lib/v31-scheduler-drift";
+import {
+  captureSchedulerState,
+  verifySchedulerState,
+  reconcileOriginalWarningCorrection,
+  schedulerTables,
+  reconcileApprovedSourceBaseline,
+} from "./lib/v31-resumed-drift";
 import {
   authority,
   packet,
@@ -23,6 +29,7 @@ import {
   writePrivate,
   sourceCommit,
   packageSha256,
+  readJson,
 } from "./lib/v31-commercial-approval.mjs";
 const mode = process.argv[2];
 assert(["preflight", "apply", "verify"].includes(mode));
@@ -165,14 +172,77 @@ async function main() {
             )[0].n,
             0,
           );
-          return { ...b, schema, tables: await checksums(tx) };
+          const tables = await checksums(tx);
+          const old = readJson(privateDir + "/resumed-local-a.private.json");
+          const fresh = readJson(privateDir + "/resumed-local-b.private.json");
+          const prior = readJson(
+            privateDir + "/database-preflight.private.json",
+          );
+          assert.deepEqual(b.roles, prior.roles);
+          assert.deepEqual(b.memberships, prior.memberships);
+          assert.deepEqual(
+            Object.keys(tables).sort(),
+            Object.keys(old.tables).sort(),
+          );
+          const originalScheduler = await verifySchedulerState(
+            tx,
+            old.scheduler,
+            old.tables,
+          );
+          const warningCorrection = await reconcileOriginalWarningCorrection(
+            tx,
+            old,
+          );
+          const acceptedSourceBaseline =
+            await reconcileApprovedSourceBaseline(tx);
+          for (const table of Object.keys(tables)) {
+            if (
+              ![
+                ...schedulerTables,
+                "credits_sandbox.store_notifications",
+                "private.audit_events",
+                "sports_feed.raw_revisions",
+              ].includes(table)
+            )
+              assert.deepEqual(
+                tables[table],
+                old.tables[table],
+                "Unreviewed drift from original restore: " + table,
+              );
+            if (!schedulerTables.includes(table))
+              assert.deepEqual(
+                tables[table],
+                fresh.tables[table],
+                "Drift from fresh post-correction restore: " + table,
+              );
+          }
+          const freshScheduler = await verifySchedulerState(
+            tx,
+            fresh.scheduler,
+            fresh.tables,
+          );
+          const scheduler = await captureSchedulerState(tx);
+          const migrationHistory = [
+            ...(await tx`select version,name,statements from supabase_migrations.schema_migrations order by version`),
+          ];
+          return {
+            ...b,
+            schema,
+            tables,
+            scheduler,
+            migrationHistory,
+            originalScheduler,
+            freshScheduler,
+            warningCorrection,
+            acceptedSourceBaseline,
+          };
         },
       );
-      writePrivate("database-preflight.private.json", {
+      writePrivate("database-resumed-preflight.private.json", {
         at: new Date().toISOString(),
         ...result,
       });
-      writeEvidence("database-preflight.json", {
+      writeEvidence("database-resumed-preflight.json", {
         at: new Date().toISOString(),
         sourceCommit,
         packageSha256,
@@ -182,6 +252,10 @@ async function main() {
         protectedTables: Object.keys(result.tables).length,
         operatorCanGrantReviewedRole: true,
         productionWrites: 0,
+        originalScheduler: result.originalScheduler,
+        freshScheduler: result.freshScheduler,
+        warningCorrection: result.warningCorrection,
+        acceptedSourceBaseline: result.acceptedSourceBaseline,
       });
       console.log(
         "Exact Production schema, five original migrations, custody and role preflight passed",
@@ -195,7 +269,7 @@ async function main() {
           const b = await baseline(tx);
           const original = JSON.parse(
             readFileSync(
-              privateDir + "/database-preflight.private.json",
+              privateDir + "/database-resumed-preflight.private.json",
               "utf8",
             ),
           );
@@ -216,13 +290,29 @@ async function main() {
             "Existing memberships changed",
           );
           const sums = await checksums(tx);
-          const schedulerDrift = await approvedSchedulerDrift(tx);
-          const exclusions = [
-            "cron.job_run_details",
-            "private.docked_mail_scheduler",
-            "sports_feed.weekly_core_job_runs",
-            "supabase_migrations.schema_migrations",
+          const schedulerDrift = await verifySchedulerState(
+            tx,
+            original.scheduler,
+            original.tables,
+          );
+          const exclusions = ["supabase_migrations.schema_migrations"];
+          const history = [
+            ...(await tx`select version,name,statements from supabase_migrations.schema_migrations order by version`),
           ];
+          assert.deepEqual(
+            history.filter((r: any) => !versions.includes(r.version)),
+            original.migrationHistory,
+            "Prior migration history changed",
+          );
+          for (const [i, f] of p.productionMigrations.entries())
+            assert.deepEqual(
+              history.find((r: any) => r.version === versions[i]),
+              {
+                version: versions[i],
+                name: f.file.split("/").at(-1).slice(15, -4),
+                statements: [blob(f.file).toString()],
+              },
+            );
           const protectedNames = Object.keys(sums).filter(
             (t) =>
               !exclusions.includes(t) && !schedulerDrift?.tables.includes(t),
@@ -264,7 +354,7 @@ async function main() {
       );
       return;
     }
-    const backupDirectory = root + "/private-data/commercial-restore-20261113a";
+    const backupDirectory = root + "/private-data/commercial-restore-20261113b";
     const authentication = await authenticateDatabaseBackup({
       manifestPath: backupDirectory + "/manifest.aes",
       archivePath: backupDirectory + "/production.dump.aes",
@@ -275,7 +365,7 @@ async function main() {
       maxAgeMs: 3600000,
     });
     const restored = JSON.parse(
-      readFileSync(evidence + "/fresh-restore/restore-only.json", "utf8"),
+      readFileSync(evidence + "/resumed-restore/restore-only.json", "utf8"),
     );
     assert.equal(restored.archiveSha256, authentication.plaintextSha256);
     assert.equal(restored.restored, true);
@@ -296,7 +386,20 @@ async function main() {
     );
     key.fill(0);
     const original = JSON.parse(
-      readFileSync(privateDir + "/database-preflight.private.json", "utf8"),
+      readFileSync(
+        privateDir + "/database-resumed-preflight.private.json",
+        "utf8",
+      ),
+    );
+    assert(
+      Date.now() - Date.parse(original.at) >= 0 &&
+        Date.now() - Date.parse(original.at) <= 600000,
+      "Preflight must be <=10 minutes old",
+    );
+    assert(
+      Date.parse(backup.at) >
+        Date.parse(readJson(evidence + "/warning-result.json").at),
+      "Backup must follow completed correction",
     );
     const result = await sql.begin(
       "isolation level repeatable read",
@@ -316,14 +419,19 @@ async function main() {
           0,
         );
         const sums = await checksums(tx);
-        const schedulerDrift = await approvedSchedulerDrift(tx);
+        const schedulerDrift = await verifySchedulerState(
+          tx,
+          original.scheduler,
+          original.tables,
+        );
+        const fresh = readJson(privateDir + "/resumed-local-b.private.json");
+        await verifySchedulerState(tx, fresh.scheduler, fresh.tables);
+        assert.deepEqual(
+          Object.keys(sums).sort(),
+          Object.keys(original.tables).sort(),
+        );
         for (const table of Object.keys(sums).filter(
-          (x) =>
-            ![
-              "cron.job_run_details",
-              "private.docked_mail_scheduler",
-              "sports_feed.weekly_core_job_runs",
-            ].includes(x) && !schedulerDrift?.tables.includes(x),
+          (x) => !schedulerDrift.tables.includes(x),
         )) {
           const quoted = table
             .split(".")
@@ -333,6 +441,11 @@ async function main() {
             sums[table],
             backup.sums[quoted],
             "Backup data drift: " + table,
+          );
+          assert.deepEqual(
+            sums[table],
+            original.tables[table],
+            "Preflight data drift: " + table,
           );
         }
         const entriesBefore = await tx.unsafe(fields);

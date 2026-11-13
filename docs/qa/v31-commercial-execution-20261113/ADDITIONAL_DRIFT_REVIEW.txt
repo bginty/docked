@@ -1,0 +1,35 @@
+DOCKED — exact observed baseline review, not yet approved
+
+Source 260fe3399f1eacf03915c227216a1bab10d7b4d9
+Original package 56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1
+Additional drift manifest SHA-256 0e5eaaa860de858ac9f6ef16f209d4e049b099cf83bbb4f1acafb2ed802cc22e
+Manifest encoding: UTF-8 with LF newlines, as in Git (no byte-order mark).
+
+Three existing daily NFL jobs appended failed audit rows 3388 (weekly),
+3389 (pbp), 3390 (rosters), at 11:05/11:10/11:15 AEDT. Each matches
+six prior failures. The source permit in both live and candidate code expired
+on 10 November; the guard rejects before download/cache writes. Stored error
+is generic UNCLASSIFIED, so the expired permit is the code-supported explanation,
+not a newly captured provider error. No rights renewal or collector repair proposed.
+
+The pre-existing docked-beta-nfl-raw-expiry job nulled expired bodies in raw
+source rows 12 and 13 at 11:17 AEDT. Only body and purged_at changed; the two
+expiry times, original source hashes and all other metadata are preserved.
+All 110 other source rows are unchanged. This predates the fresh backup.
+This session did not enable or execute deletion. Operational incident cleanup
+remains OFF. No restoration of expired source content into Production is proposed.
+
+Approve accepting only these five exact, already-observed records as the
+reconciled baseline for the unchanged original deployment package? The original
+24-hour approval still expires 2026-11-13T21:57:08Z. No future failed audit,
+source-body purge, changed job, altered permission or business-data drift is
+allowed by this acceptance. No Production status correction is included.
+
+The existing warning correction and permitted telemetry reconcile; 550 other
+durable tables are byte-fingerprint identical to the original isolated restore.
+Round business data, original worker history, financial/ownership/inventory data,
+roles and memberships are unchanged. The additional drift was rejected before
+any new Production migration, runtime provisioning or application staging.
+
+Detailed evidence: resumed-drift-review.json; resumed-source-review.json.
+Fresh backup/restore: resumed-backup/; resumed-restore/.
