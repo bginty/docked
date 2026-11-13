@@ -13,11 +13,13 @@ import {
 } from "./lib/v31-commercial-approval.mjs";
 import { v31SchemaFingerprintSql } from "./lib/v31-schema-fingerprint";
 import { tableListQuery, checksumQuery } from "./lib/reviewed-inventory";
+import { commercialPermissionQuery, expectedCommercialPermissions } from "./lib/v31-commercial-permissions";
+const acceptedRestore = process.argv.includes("--accepted-restore");
 const p = packet(),
-  restored = readJson(evidence + "/fresh-restore/restore-only.json");
+  restored = readJson(evidence + (acceptedRestore ? "/accepted-restore" : "/fresh-restore") + "/restore-only.json");
 assert.equal(restored.restored, true);
 assert.equal(restored.protectedRecordsUnchanged, true);
-assert.equal(restored.restoreTarget, "docked-commercial-restore-20261113a");
+assert.equal(restored.restoreTarget, "docked-commercial-restore-20261113" + (acceptedRestore ? "c" : "a"));
 const target = restored.restoreTarget;
 const configuration = JSON.parse(
   execFileSync("docker", ["inspect", target], {
@@ -30,7 +32,7 @@ assert.equal(
   Object.keys(configuration.HostConfig.PortBindings ?? {}).length,
   0,
 );
-function local(query: string) {
+function local(query: string, user = "postgres") {
   return execFileSync(
     "docker",
     [
@@ -41,7 +43,7 @@ function local(query: string) {
       "-h",
       "/restore",
       "-U",
-      "postgres",
+      user,
       "-d",
       "postgres",
       "-v",
@@ -78,6 +80,42 @@ const client = createHmac("sha256", salted).update("Client Key").digest(),
   server = createHmac("sha256", salted).update("Server Key").digest("base64");
 const scram =
   "SCRAM-SHA-256$4096:" + salt.toString("base64") + "$" + stored + ":" + server;
+const permissionChecks = `
+do $check$ begin
+ if (${commercialPermissionQuery}) is distinct from '${JSON.stringify(expectedCommercialPermissions)}'::jsonb then raise exception 'Exact permission boundary failed';end if;
+end $check$;
+savepoint expose_test;
+grant select on private.outbox to docked_commercial_app;
+do $check$ begin
+ if not ((${commercialPermissionQuery})->>'outboxExposed')::boolean then raise exception 'Unsafe grant not detected';end if;
+end $check$;
+rollback to expose_test;
+do $check$ begin
+ if (${commercialPermissionQuery}) is distinct from '${JSON.stringify(expectedCommercialPermissions)}'::jsonb then raise exception 'Boundary not restored';end if;
+end $check$;
+`;
+const legacyBoundaryChecks = `begin;
+set local role postgres;
+insert into private.outbox(dedupe_key,kind,payload,expires_at)
+values('billing-ops-v2:local-acceptance-only','service','{"purpose":"billing_ops_health_v1"}',clock_timestamp()+interval '1 hour');
+reset role;
+set local role docked_app;
+do $check$ declare n integer; begin
+ if exists(select 1 from private.outbox where dedupe_key='billing-ops-v2:local-acceptance-only') then raise exception 'Reserved row visible to ordinary mail role';end if;
+ update private.outbox set state='dead' where dedupe_key='billing-ops-v2:local-acceptance-only';
+ get diagnostics n = row_count;
+ if n<>0 then raise exception 'Reserved row mutable by ordinary mail role';end if;
+ begin
+  insert into private.outbox(dedupe_key,kind,payload,expires_at) values('billing-ops-v2:local-forged-only','service','{"purpose":"billing_ops_health_v1"}',clock_timestamp()+interval '1 hour');
+  raise exception 'Reserved insert accepted';
+ exception when insufficient_privilege then null;
+ end;
+ insert into private.outbox(dedupe_key,kind,payload,expires_at) values('local-customer-mail-preserved-only','service','{}',clock_timestamp()+interval '1 hour');
+end $check$;
+reset role;
+rollback;
+`;
+local(legacyBoundaryChecks, "bootstrap_admin");
 const query =
   "begin;set local lock_timeout='3s';set local statement_timeout='60s';\n" +
   p.productionMigrations.map((f: any) => blob(f.file).toString()).join("\n") +
@@ -93,6 +131,7 @@ do $$begin
  if not exists(select 1 from pg_auth_members where roleid='docked_commercial_app'::regrole and member='docked_commercial_runtime'::regrole and inherit_option and not admin_option and not set_option)then raise exception 'Membership mismatch';end if;
 end$$;
 ` +
+  permissionChecks +
   sumSql +
   ";\nrollback;";
 const output = local(query);
@@ -128,9 +167,13 @@ const report = {
   initialScramLoginRehearsed: true,
   protectedTablesUnchanged: tables.length,
   outboxAndAuthDenied: true,
+  legacyMailPermissionsPreserved: true,
+  reservedOperationalReadUpdateInsertDenied: true,
+  ordinaryCustomerMailInsertAllowed: true,
+  unsafeCommercialOutboxGrantDetected: true,
   roleMembershipRestricted: true,
   rollbackVerified: true,
   productionWrites: 0,
 };
-writeEvidence("fresh-runtime-ddl-rehearsal.json", report);
+writeEvidence(acceptedRestore ? "accepted-runtime-ddl-rehearsal.json" : "fresh-runtime-ddl-rehearsal.json", report);
 console.log(JSON.stringify(report));

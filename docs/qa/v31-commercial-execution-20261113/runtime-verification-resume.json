@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-13T08:51:48.623Z",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "packageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "provisionedOnce": true,
+  "initialVerificationStop": "The restricted login cannot resolve a private-schema relation by name because it has no schema USAGE.",
+  "correction": "Resolve the two protected relation OIDs under the existing operator and check privileges with those OIDs using the real restricted login. No permission is granted.",
+  "existingInitialMaterialHashVerified": true,
+  "passwordRegenerated": false,
+  "permissionsExpanded": false,
+  "verification": "runtime-verified.json",
+  "actualRestrictedLoginVerified": true,
+  "productionBusinessWrites": 0
+}

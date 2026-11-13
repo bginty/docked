@@ -1,4 +1,8 @@
-# GET-only inspection of the existing saved Preview integration. No OTP request,
+# GET-only inspection of the Preview configuration readback. The management API
+# can return a protected representation instead of the actual Auth Token. A 401
+# obtained using that representation does NOT prove the saved credential is bad.
+# The authenticated Dashboard Reveal value must be verified independently.
+# No OTP request,
 # Auth change, sender registration or service mutation. No private values logged.
 param([switch]$InspectSavedFormatOnly)
 $ErrorActionPreference = 'Stop'
@@ -38,7 +42,7 @@ try {
     $twilioFormat | ConvertTo-Json
     return
   }
-  if (-not $twilioFormat.authTokenHasExpected32HexFormat) { throw 'Saved token cannot be used as a Twilio Auth Token' }
+  if (-not $twilioFormat.authTokenHasExpected32HexFormat) { throw 'Protected management readback is not a usable credential; inspect the existing Dashboard Reveal value without replacing or rotating it' }
   $twilioHeaders = @{ Authorization = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes($twilioConfig.sms_twilio_account_sid + ':' + $twilioConfig.sms_twilio_auth_token)) }
   $twilioServiceUrl = 'https://messaging.twilio.com/v1/Services/' + $twilioConfig.sms_twilio_message_service_sid
   $twilioPhase = 'existing-messaging-service'

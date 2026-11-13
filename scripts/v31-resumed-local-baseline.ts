@@ -9,7 +9,7 @@ import {
   packageSha256,
 } from "./lib/v31-commercial-approval.mjs";
 const run = process.argv[2];
-assert(["a", "b"].includes(run));
+assert(["a", "b", "c"].includes(run));
 const local = {
   unsafe: async (q: string) =>
     JSON.parse(

@@ -11,6 +11,7 @@ import {
 import { v31SchemaFingerprintSql } from "./lib/v31-schema-fingerprint";
 import { authenticateDatabaseBackup } from "./lib/authenticated-database-backup";
 import { digest } from "../src/core/scoring-engine";
+import { commercialPermissionQuery, expectedCommercialPermissions } from "./lib/v31-commercial-permissions";
 import {
   captureSchedulerState,
   verifySchedulerState,
@@ -123,29 +124,11 @@ async function baseline(tx: any) {
   };
 }
 async function grants(tx: any) {
-  const [r] = await tx.unsafe(`select jsonb_build_object(
-    'indexesValid',(select count(*)=2 and bool_and(indisvalid) from pg_index where indexrelid in ('commercial_billing.commercial_market_request_identity'::regclass,'commercial_billing.commercial_market_listing_activity'::regclass)),
-    'collectionRuntimeAllowed',has_function_privilege('docked_commercial_app','commercial_billing.preserved_collection_rows(uuid,text)','execute'),
-    'marketRuntimeAllowed',has_function_privilege('docked_commercial_app','commercial_billing.market_party_allowed(uuid,uuid,text,text)','execute'),
-    'memberRuntimeAllowed',has_function_privilege('docked_app','commercial_billing.member_record(text)','execute'),
-    'unauthorisedExecute',exists(select 1 from unnest(array['anon','authenticated','service_role','docked_app','docked_beta_app']) r where has_function_privilege(r,'commercial_billing.preserved_collection_rows(uuid,text)','execute') or has_function_privilege(r,'commercial_billing.market_party_allowed(uuid,uuid,text,text)','execute')),
-    'triggerCallable',exists(select 1 from unnest(array['anon','authenticated','service_role','docked_app','docked_beta_app','docked_commercial_app']) r where has_function_privilege(r,'commercial_billing.market_listing_guard()','execute')),
-    'triggerPresent',exists(select 1 from pg_trigger where tgrelid='commercial_billing.listings'::regclass and tgname='commercial_listing_terms' and tgenabled='O'),
-    'outboxExposed',exists(select 1 from unnest(array['anon','authenticated','docked_app','docked_commercial_app']) r where has_table_privilege(r,'private.outbox','select,insert,update,delete')),
-    'unclaimedViewerDenied',not commercial_billing.market_party_allowed(null,null,'','')) value`);
-  assert.deepEqual(r.value, {
-    indexesValid: true,
-    collectionRuntimeAllowed: true,
-    marketRuntimeAllowed: true,
-    memberRuntimeAllowed: true,
-    unauthorisedExecute: false,
-    triggerCallable: false,
-    triggerPresent: true,
-    outboxExposed: false,
-    unclaimedViewerDenied: true,
-  });
+  const [r] = await tx.unsafe(commercialPermissionQuery);
+  assert.deepEqual(r.value, expectedCommercialPermissions);
   return r.value;
 }
+
 let committed = false;
 async function main() {
   const cwd = process.cwd();
@@ -174,7 +157,7 @@ async function main() {
           );
           const tables = await checksums(tx);
           const old = readJson(privateDir + "/resumed-local-a.private.json");
-          const fresh = readJson(privateDir + "/resumed-local-b.private.json");
+          const fresh = readJson(privateDir + "/resumed-local-c.private.json");
           const prior = readJson(
             privateDir + "/database-preflight.private.json",
           );
@@ -238,11 +221,11 @@ async function main() {
           };
         },
       );
-      writePrivate("database-resumed-preflight.private.json", {
+      writePrivate("database-accepted-preflight.private.json", {
         at: new Date().toISOString(),
         ...result,
       });
-      writeEvidence("database-resumed-preflight.json", {
+      writeEvidence("database-accepted-preflight.json", {
         at: new Date().toISOString(),
         sourceCommit,
         packageSha256,
@@ -269,7 +252,7 @@ async function main() {
           const b = await baseline(tx);
           const original = JSON.parse(
             readFileSync(
-              privateDir + "/database-resumed-preflight.private.json",
+              privateDir + "/database-accepted-preflight.private.json",
               "utf8",
             ),
           );
@@ -354,7 +337,7 @@ async function main() {
       );
       return;
     }
-    const backupDirectory = root + "/private-data/commercial-restore-20261113b";
+    const backupDirectory = root + "/private-data/commercial-restore-20261113c";
     const authentication = await authenticateDatabaseBackup({
       manifestPath: backupDirectory + "/manifest.aes",
       archivePath: backupDirectory + "/production.dump.aes",
@@ -365,7 +348,7 @@ async function main() {
       maxAgeMs: 3600000,
     });
     const restored = JSON.parse(
-      readFileSync(evidence + "/resumed-restore/restore-only.json", "utf8"),
+      readFileSync(evidence + "/accepted-restore/restore-only.json", "utf8"),
     );
     assert.equal(restored.archiveSha256, authentication.plaintextSha256);
     assert.equal(restored.restored, true);
@@ -387,7 +370,7 @@ async function main() {
     key.fill(0);
     const original = JSON.parse(
       readFileSync(
-        privateDir + "/database-resumed-preflight.private.json",
+        privateDir + "/database-accepted-preflight.private.json",
         "utf8",
       ),
     );
@@ -424,7 +407,7 @@ async function main() {
           original.scheduler,
           original.tables,
         );
-        const fresh = readJson(privateDir + "/resumed-local-b.private.json");
+        const fresh = readJson(privateDir + "/resumed-local-c.private.json");
         await verifySchedulerState(tx, fresh.scheduler, fresh.tables);
         assert.deepEqual(
           Object.keys(sums).sort(),

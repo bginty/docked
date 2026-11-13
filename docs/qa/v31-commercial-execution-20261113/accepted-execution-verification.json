@@ -1,0 +1,156 @@
+{
+  "at": "2026-11-13T09:07:38.187Z",
+  "stagedFiles": 34,
+  "knownSecretFormsAbsent": true,
+  "applicationSourceChanged": false,
+  "reviewedPackageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "typecheckPassed": true,
+  "changedOperatorLintPassed": true,
+  "powershellParsePassed": true,
+  "isolatedNegativeOutboxTestsPassed": true,
+  "isolated558TableRehearsalPassed": true,
+  "stagingAndProductionChecksEach": 26,
+  "browserAssetsScannedEach": 20,
+  "actualProductionSource": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "actualProductionDeployment": "dpl_Foja51Pk9DV5WtPtsa61MRdZ7JUV",
+  "customerBusinessMutations": 0,
+  "launch": "NO-GO",
+  "files": [
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/ACCEPTED_HANDOVER.txt",
+      "sha256": "e8676d21ff8667f5c11da759229708206e69ab888be44534669925dcceff7f1e"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/NEXT_FOUNDER_SESSION.txt",
+      "sha256": "c028947ef0ff2fcce693a1db47a0e56d58ae9c93d6cddd0f77934b71615bf442"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/accepted-auth-gates.json",
+      "sha256": "1b1218fadb88a5f40a9857bf7b0581cbd8bca7ed33b2abe40abbfba923558e17"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/accepted-backup/fresh-backup.json",
+      "sha256": "9cfc8ec5e6489e3eb8eb24a8fee43865dcbeb8f3f04d6cd94f0b19db958e01d8"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/accepted-provider-readback.json",
+      "sha256": "75c25f656262b7ec2ab8d3932cb09cc215efcb4e80db3a1ad0af4eb8df6816d6"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/accepted-restore/restore-only.json",
+      "sha256": "eeb059d9a8105dcd8d4ee1d893c11430fcc2ee9cf53ffaebba30afca6d2d8b76"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/accepted-restore/role-fidelity.json",
+      "sha256": "463ef9716f4289ec84caab4ec4deb4fe373f14982b2f325d27a49de8283f36a1"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/accepted-runtime-ddl-rehearsal.json",
+      "sha256": "21d52582c9a1a40c399970467283351b9c3d312fde43b2a8171e84c7193b6da5"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/application-prepared.json",
+      "sha256": "d420c45f41cd231044e199c9ff68b91e04ea2ec73c0b103e96cea16c289aaee3"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/database-accepted-preflight.json",
+      "sha256": "cbb763f5fab2724ec34a181f865bdfa69697a73e5f9efd68a22d94e679434223"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/database-applied.json",
+      "sha256": "745300178789778a8510c9f25f179440927fac0777101f041d59cdf0df37b681"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/database-resumed-preflight.json",
+      "sha256": "a0d78e8591ffbb0dbb30e88d06432f8c448cbf082535b040757a6faddf762c45"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/deployment-promoted.json",
+      "sha256": "a2f0e9f1627b1c9e0113d738eeba5652296788028c269ff66829dd545d12ba67"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/deployment-submitted.json",
+      "sha256": "4af61ec6274bcb1cffcf68e1695d161db54b25aa1a12d991e6a1529acf91852e"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/independent-production-alias.json",
+      "sha256": "716de91dccef5ad80df7dfbe903b27f3bfda2a49484fad05f422f55693564f1a"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/permission-guard-stop.json",
+      "sha256": "34d49104b7294a134e39d8596418689a361ebadc2be1c527d431c43c7f2aa088"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/postflight-database.json",
+      "sha256": "567bbbe9ea98200eee1cca11781d709637523418d23b7d14fc83bd8067b18a90"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/production-verification.json",
+      "sha256": "ba07b5eec57cb0283102967013c76c08971ad8bac7d8ab2efbaf63e4d5b6e889"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/promotion-database.json",
+      "sha256": "140f93d31001f031697b628cefbae46c7257f6a6af2818f550456604104e9275"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/promotion-preflight.json",
+      "sha256": "3d0d60d7c0d4bd85e24eb7083a3eee228049cf22d6df4baefef9b2d19649010d"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/runtime-provisioned.json",
+      "sha256": "0a7ca7dc53d15b946a8b3a426a79bda3001519e2c19848d8dc0ae959672d3b26"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/runtime-verification-resume.json",
+      "sha256": "370fb93c6487ff717db31d2c0610284b3f23e041695e0b15077846006bf58634"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/runtime-verified.json",
+      "sha256": "073c96e8497f2ab5aea3a1241856107cdbffb7f3253e3274b100519abcbfd54b"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/stage-database.json",
+      "sha256": "f1c437dff086bc610b4348a2e12093b3b1c52aa0883b7f73d991ef3d056f0bdd"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/stage-preflight.json",
+      "sha256": "69c0657edc7b490abd5699418414de96ba3e0f172578ec7623dd6b5792eb0ddd"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/staging-database.json",
+      "sha256": "7abdf72daa4346cd9b41abd6f26e84dd65f44a28a888e72a32d69950cd636501"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/staging-protection.json",
+      "sha256": "74632f0a2f888849b8edd25a67a9d8c3c5bc203052fb746206a0b9f8101e773e"
+    },
+    {
+      "file": "docs/qa/v31-commercial-execution-20261113/staging-verification.json",
+      "sha256": "70a6bdc216cc6cca546574aff7ad15e1d8e98f9795499af1efe8e78cbb20490f"
+    },
+    {
+      "file": "scripts/lib/v31-commercial-permissions.ts",
+      "sha256": "c016e0c8e9239680edad8f04cd4ae89502115f64e905c2c5c74f9c1945f42ebd"
+    },
+    {
+      "file": "scripts/v31-commercial-database-execution.ts",
+      "sha256": "dcac136f7e70cf9fc291ce2107dc6dfa05b4509be98f303ddd2742cd51b12f9b"
+    },
+    {
+      "file": "scripts/v31-commercial-fresh-rehearsal.ts",
+      "sha256": "00b394bde959263d26677e214aa4ba976496ca9a92b20e721fa27333547f8806"
+    },
+    {
+      "file": "scripts/v31-commercial-runtime-provision.ts",
+      "sha256": "171d18a1cb4176987d90ce88c9bb8e7a74956dc1e5ab61a807f16e9c35305a7c"
+    },
+    {
+      "file": "scripts/v31-resumed-local-baseline.ts",
+      "sha256": "e564cf62be7fddf289a42fbb81fa57d0f8b19d7930b49c3ae4c311f5677ce2ac"
+    },
+    {
+      "file": "scripts/v31-twilio-readonly-readiness.ps1",
+      "sha256": "65c2e616ea338e6249672d8783327a6b2d807549be755009e3c2a36dc33c41ee"
+    }
+  ]
+}

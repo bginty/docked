@@ -21,6 +21,8 @@ import {
 } from "./lib/v31-commercial-approval.mjs";
 const mode = process.argv[2];
 assert(["provision", "verify"].includes(mode));
+const completeInitialVerification = process.argv.includes("--complete-initial-verification");
+assert(!completeInitialVerification || mode === "verify");
 const p = authority("inactive-commercial-runtime");
 const role = "docked_commercial_runtime";
 const privateFile = privateDir + "/runtime-initial.private.json";
@@ -179,6 +181,16 @@ async function main() {
       writeEvidence("runtime-provisioned.json", result);
     }
     const values = readJson(privateFile);
+    const provisioned = readJson(evidence + "/runtime-provisioned.json");
+    assert.equal(provisioned.sourceCommit, sourceCommit);
+    assert.equal(provisioned.packageSha256, packageSha256);
+    assert.equal(hash(JSON.stringify(values)), provisioned.initialMaterialSha256);
+    if (completeInitialVerification)
+      assert(!existsSync(evidence + "/runtime-verified.json"));
+    // Resolve relation OIDs as the operator. Resolving private.outbox by name as
+    // the restricted login itself correctly fails without schema USAGE; this
+    // must not be mistaken for a bad credential or repaired with a new grant.
+    const [protectedRelations] = await sql`select 'private.outbox'::regclass::oid outbox,'auth.users'::regclass::oid auth`;
     const connection = postgres(values.DOCKED_COMMERCIAL_DATABASE_URL, {
       ...databaseConnectionOptions(values.DOCKED_COMMERCIAL_DATABASE_URL, {
         DATABASE_SSL_CA_FILE: root + "/certs/supabase-prod-ca-2021.crt",
@@ -204,7 +216,7 @@ async function main() {
             permitted: true,
           });
           const [x] =
-            await tx`select has_table_privilege(current_user,'private.outbox','select,insert,update,delete') outbox,has_table_privilege(current_user,'auth.users','select,insert,update,delete') auth,has_schema_privilege(current_user,'public','create') public_create`;
+            await tx`select has_table_privilege(current_user,${protectedRelations.outbox}::oid,'select,insert,update,delete') outbox,has_table_privilege(current_user,${protectedRelations.auth}::oid,'select,insert,update,delete') auth,has_schema_privilege(current_user,'public','create') public_create`;
           assert.deepEqual(x, {
             outbox: false,
             auth: false,
@@ -233,9 +245,10 @@ async function main() {
         wrongBindingDenied: true,
         productionWrites: 0,
         commercialService: false,
+        initialProvisionVerificationResumed: completeInitialVerification,
       };
       writeEvidence(
-        mode === "provision"
+        mode === "provision" || completeInitialVerification
           ? "runtime-verified.json"
           : "runtime-reverified.json",
         report,

@@ -1,0 +1,57 @@
+{
+  "at": "2026-11-13T08:51:17.059Z",
+  "verified": true,
+  "schema": {
+    "fingerprint": "c71bc7bd594ebb1b09713991cf346022",
+    "objects": 10153
+  },
+  "counts": {
+    "definitions": 6540,
+    "approved": 0,
+    "consumed": 888,
+    "cards": 0,
+    "packs": 0,
+    "accounts": 0,
+    "receipts": 0,
+    "closed_control": 1,
+    "enabled_rounds": 0,
+    "active_flags": 0,
+    "retention_enabled": 0
+  },
+  "custodyRecords": 906,
+  "grants": {
+    "indexesValid": true,
+    "outboxExposed": false,
+    "triggerPresent": true,
+    "triggerCallable": false,
+    "unauthorisedExecute": false,
+    "marketRuntimeAllowed": true,
+    "memberRuntimeAllowed": true,
+    "unclaimedViewerDenied": true,
+    "collectionRuntimeAllowed": true,
+    "legacyMailOutboxBoundaryPreserved": true
+  },
+  "protectedTablesUnchanged": 552,
+  "checksumExclusions": [
+    "supabase_migrations.schema_migrations"
+  ],
+  "existingRolesAndMembershipsUnchanged": true,
+  "schedulerDrift": {
+    "tables": [
+      "cron.job_run_details",
+      "private.docked_mail_scheduler",
+      "sports_feed.weekly_core_job_runs",
+      "sports_feed.nfl_rounds",
+      "sports_feed.nfl_worker_runs"
+    ],
+    "immutableRoundRows": 8,
+    "immutableRoundDigest": "d8d612cb8eac0def5c882e0fbc4aeb5c7e6e879c526e1547191f7ca7050d01eb",
+    "existingWorkerAuditRowsUnchanged": 3424,
+    "appendedPendingReviewReconcileRows": 1,
+    "acceptedExactHistoricalFailureRows": 0,
+    "cronRowsAdded": 33,
+    "weeklyZeroIssuanceRowsAdded": 16,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true
+  }
+}

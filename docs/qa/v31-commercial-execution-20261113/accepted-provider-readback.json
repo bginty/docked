@@ -1,0 +1,38 @@
+{
+  "observedDateUtc": "2026-11-13",
+  "observedWindowUtc": "08:18-08:25",
+  "evidenceType": "Authenticated Chrome UI; in-memory digest comparison of separately revealed existing values",
+  "twilio": {
+    "existingAccountAccessRestored": true,
+    "additionalEmailCodeNeeded": false,
+    "accountSidMatchesPreview": true,
+    "actualSavedPreviewTokenMatchesExistingLiveToken": true,
+    "comparisonSelfCheck": "SHA-256 standard abc known-answer vector passed",
+    "managementApiReadbackMatchesActualSecret": false,
+    "previous401Diagnostic": "Read-only probe used the protected management configuration representation, not the actual saved token. It does not establish a provider credential failure.",
+    "savedCredentialReplacementNeeded": false,
+    "actualCredentialProviderGetAcceptance": "Not independently exercised in this browser comparison",
+    "sender": "Docked",
+    "country": "Australia",
+    "senderStatus": "In Review",
+    "displayedDate": "13/11/2026",
+    "previewPhoneEnabled": false,
+    "previewSignupEnabled": false,
+    "credentialsChanged": false,
+    "serviceCreated": false,
+    "smsAttempts": 0,
+    "credentialValuesInThisReport": false
+  },
+  "googlePlay": {
+    "submission": 3,
+    "submittedDisplay": "Nov 12, 2026, 8:09 PM",
+    "readyDisplay": "Nov 13, 2026, 2:41 PM",
+    "status": "Ready to publish",
+    "changes": 10,
+    "includesDataSafety": true,
+    "includesProductionV31_1_30": true,
+    "managedPublishing": "ON",
+    "publishedByAgent": false,
+    "declarationsChangedByAgent": false
+  }
+}

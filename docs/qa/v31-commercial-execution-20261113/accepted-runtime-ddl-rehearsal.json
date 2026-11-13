@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-13T08:42:25.244Z",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "packageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "archiveSha256": "83bebfa2766c3cbee87b3c33e3518060f36805485b536c423255392b4c56a893",
+  "target": "docked-commercial-restore-20261113c",
+  "network": "none",
+  "operatorSuperuser": false,
+  "exactMigrationsAndRole": true,
+  "initialScramLoginRehearsed": true,
+  "protectedTablesUnchanged": 558,
+  "outboxAndAuthDenied": true,
+  "legacyMailPermissionsPreserved": true,
+  "reservedOperationalReadUpdateInsertDenied": true,
+  "ordinaryCustomerMailInsertAllowed": true,
+  "unsafeCommercialOutboxGrantDetected": true,
+  "roleMembershipRestricted": true,
+  "rollbackVerified": true,
+  "productionWrites": 0
+}

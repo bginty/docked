@@ -1,0 +1,46 @@
+{
+  "at": "2026-11-13T08:47:31.773Z",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "packageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "role": {
+    "rolname": "docked_commercial_runtime",
+    "rolsuper": false,
+    "rolbypassrls": false,
+    "rolcreaterole": false,
+    "rolcreatedb": false,
+    "rolreplication": false,
+    "rolinherit": true,
+    "rolcanlogin": true,
+    "rolconnlimit": 6
+  },
+  "memberships": [
+    {
+      "role": "docked_commercial_app",
+      "admin_option": false,
+      "inherit_option": true,
+      "set_option": false
+    }
+  ],
+  "counts": {
+    "definitions": 6540,
+    "consumed": 888,
+    "approved": 0,
+    "accounts": 0,
+    "receipts": 0,
+    "cards": 0,
+    "closed": 1
+  },
+  "secretFields": [
+    "DOCKED_COMMERCIAL_DATABASE_URL",
+    "DOCKED_COMMERCIAL_REFERENCE_KEY_ID",
+    "DOCKED_COMMERCIAL_REFERENCE_KEY",
+    "DOCKED_COMMERCIAL_ACCOUNT_BINDING_SECRET",
+    "DOCKED_GOOGLE_COMMERCIAL_SERVICE_EMAIL",
+    "DOCKED_GOOGLE_COMMERCIAL_PRIVATE_KEY",
+    "DOCKED_GOOGLE_COMMERCIAL_WORKER_SECRET"
+  ],
+  "initialMaterialSha256": "1f6917d545ebeb4bde53e8398f7c27f851c4660b3425d19dd98fbd9644e9c9d6",
+  "existingSecretsChanged": false,
+  "newTableGrants": 0,
+  "customerMutations": 0
+}

@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-13T08:43:02.423Z",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "packageSha256": "56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1",
+  "initialAttemptCommitted": false,
+  "newMigrationRowsAfterRollback": 0,
+  "reason": "Deployment verifier incorrectly included existing docked_app customer-mail grants in the blanket no-outbox-access assertion.",
+  "existingLegacyMailPermissions": [
+    "SELECT",
+    "INSERT",
+    "UPDATE"
+  ],
+  "legacyMailDelete": false,
+  "commercialAndPublicDirectOutbox": false,
+  "productionPermissionChanges": 0,
+  "operatorCorrection": "Preserve exact legacy mail grants and four restrictive RLS policies; deny public/service/commercial direct access. Existing full-catalogue ACL/policy comparison retained.",
+  "applicationAndMigrationBytesChanged": false,
+  "isolatedRehearsal": "accepted-runtime-ddl-rehearsal.json",
+  "freshPreflightRequired": true
+}

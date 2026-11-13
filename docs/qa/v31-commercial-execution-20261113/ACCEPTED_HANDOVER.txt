@@ -1,0 +1,122 @@
+DOCKED — authorised closed-gate deployment COMPLETE, 13 November 2026
+This supersedes RESUMED_HANDOVER.txt's stopped-deployment status. Historical
+evidence remains preserved. Public revenue launch remains NO-GO.
+
+Actual Production
+Source: 260fe3399f1eacf03915c227216a1bab10d7b4d9
+Deployment: dpl_Foja51Pk9DV5WtPtsa61MRdZ7JUV at https://docked.com.au
+Approved package: 56cf519359e3accae8300d7d904dbf637db0a8654a3752b1f21a0b99eb01a1c1
+Independent Vercel connector confirmed the live alias and source after promotion.
+Original authority expires 2026-11-13T21:57:08Z; no expiry extension was inferred.
+Founder approval of additional baseline manifest
+0e5eaaa860de858ac9f6ef16f209d4e049b099cf83bbb4f1acafb2ed802cc22e
+was recorded. Only its five exact historical records and the separately approved
+scheduler bookkeeping were accepted; future failures/purges remain prohibited.
+
+Completed and verified
+- NEW encrypted post-warning backup c, captured 2026-11-13T08:28:40.033Z.
+  Encrypted archive: c2a3f0b66098a67e64fe67f513bce2f7ab453764db5e6a4b77757e550b8f3aed
+  Encrypted manifest: d08d363639a14cfb7b9e123301a8fbfe79c47397c63326bfd646d81340ed9da3
+  Plaintext archive digest: 83bebfa2766c3cbee87b3c33e3518060f36805485b536c423255392b4c56a893
+  Authenticated isolated restore: 558 durable tables match, network none, no
+  published ports/cron, non-superuser operator and effective membership fidelity.
+  Older encrypted backups and the existing recovery key were preserved.
+- Applied only 20261113002000_preserved_commercial_collection_read.sql
+  SHA-256 53bee34e39e7008478a07884dcbbb5feb2a63be756c391e883271ed9a85377eb
+  then 20261113003000_commercial_market_request_guards.sql
+  SHA-256 20039c5149d57c9c560e8535a017ea052a610d64f4257e448cb006dadcc8c6bb.
+  Seven exact schema objects changed. All 558 data-table fingerprints were
+  unchanged inside the DDL transaction; exactly two migration-history rows added.
+  Schema now c71bc7bd594ebb1b09713991cf346022, 10,153 catalogue objects.
+- Existing five migrations, outbox setup, dormant inventory import and historical
+  warning correction were NOT repeated. Existing table ACLs/RLS remain intact.
+- Provisioned the one approved dormant runtime login with connection limit 6,
+  restricted commercial membership and seven initial server-secret fields.
+  Actual login verified: no superuser/bypass/role-creation/database-creation,
+  no direct outbox/Auth access and no public-schema CREATE. Initial material was
+  generated once; no password regeneration, live-key rotation or vault transfer.
+  Receipt encryption round trip and wrong-binding rejection passed.
+- Exported and verified 990 exact approved Git files. Preserved the existing
+  89-value runtime recipe except approved source metadata; added the reviewed
+  dormant secrets and explicit marketplace=false, for 97 supplied settings.
+  Secret values were not independently read back from hosted Vercel; immutable
+  source/export, supplied recipe digest, hosted key presence and behavior checked.
+- Protected staging denied unauthenticated access. Staging and live Production
+  each passed 26 endpoint checks and scans of 20 delivered JS/CSS assets for the
+  runtime secret forms. Fresh database checks passed before and after promotion.
+  Postflight: 552 ordinary tables unchanged; five scheduler tables verified at row
+  level against the bounded allowance; exact migration history checked separately.
+  No original audit history, round business state or source metadata was altered.
+- 6,540 definitions remain dormant, approved count zero; 888 lifetime-issued
+  copies and all 906 custody records preserved. Zero commercial cards, packs,
+  accounts or receipts created. No balance change. Seven historical TEST warnings
+  remain resolved and the 5,700-credit recovery hold is preserved.
+
+Two verifier corrections, with no expanded deployment scope
+1. An initial transaction rolled back because the operator incorrectly rejected
+   docked_app's existing customer-mail outbox grants. The corrected check preserves
+   those grants and four restrictive RLS policies while denying public/commercial
+   direct access. Isolated tests proved reserved-row read/update/insert denial,
+   ordinary-mail insertion, detection of an unsafe commercial grant, full data
+   preservation and rollback. Approved application/migration bytes did not change.
+2. Initial runtime verification could not resolve private.outbox by name because
+   the restricted login correctly lacks private-schema USAGE. Verification now
+   uses operator-resolved relation OIDs without granting any access. The existing
+   provisioned material was hash-checked and verified without reprovisioning.
+TypeScript, changed-operator lint and PowerShell parsing passed. No new Android
+binary/source was introduced. Genuine installed-v31 acceptance is still pending.
+
+External status independently checked this session
+Google submission 3 (Nov 12, 8:09 PM) is READY TO PUBLISH, including Data Safety
+and v31/1.30. Console shows ready on Nov 13 at 2:41 PM. Managed publishing ON;
+nothing published or resubmitted. No further Google review is currently shown.
+Twilio's existing Australian Docked sender is IN REVIEW (displayed 13/11/2026).
+Account access reopened without another email-code handoff. The actual revealed
+Preview token matches the existing Twilio live token; Account SID also matches.
+The earlier 401 used Supabase's protected configuration representation, not the
+actual saved secret. No replacement credentials/service are needed from that
+diagnostic. Actual-token API acceptance and genuine SMS delivery are NOT claimed.
+Production and Preview Auth Phone/signup remain OFF; no test OTP/autoconfirm.
+Production OTP defaults still require the separately reviewed operational setup;
+Preview is prepared at 6 digits/300 seconds/60-second resend/six SMS per hour.
+
+Controls and recovery
+Registration, SMS, payments, paid issuance, marketplace, prizes and withdrawals
+remain OFF. NBA remains hidden. Six competitions remain disabled Practice.
+Operational email automation and incident deletion schedules remain OFF. No new
+operational test email was sent; prior founder receipt/MFA incident acceptance and
+synthetic vault acceptance remain valid. No live recovery key was transferred.
+Conditional pre-commerce recovery remains the reviewed 17b38c1 app baseline and
+exact reviewed SQL recovery, with fresh invariants checked before action. No
+rollback was needed after promotion. Never restore over newer customer records.
+
+Next founder decisions, without repeating completed approvals
+Use NEXT_FOUNDER_SESSION.txt for the current exact bounded-session preparation.
+First, once Twilio approves the existing sender: authorise Preview-only OTP for
+<=2 hours, <=6 attempts, <=20 segments, <=A$5 including tax/FX; aggregate <=A$20.
+The founder privately enters the real mobile/code on the physical device.
+Then separately approve installed-v31 Google TEST payment/refund acceptance:
+<=2 hours, <=6 TEST checkouts, A$0 real charges, temporary AU product activation
+and restoration plus the reviewed expiring QA transport/configuration. Freeze the
+actual runtime diff and private account/window bindings before that approval.
+Preserve A$49/A$99 pricing. The held identity is excluded; two-party marketplace
+acceptance requires a second eligible unblocked tester and distinct verified phone.
+Actual same-key vault custody, Production Auth/public-runtime setup, current card
+source/commercial rights and GST accounting sign-off remain distinct decisions.
+Google merchant GST declaration is RESOLVED; do not ask for it again. A public SMS
+operating budget must be explicit; the A$20 test cap is not unlimited launch spend.
+Final coordinated revenue activation/publication requires separate explicit
+founder authority after all applicable gates pass. No registration-only proposal.
+
+Readiness: closed-gate backend deployment VERIFIED; genuine SMS/Android payment,
+refund and marketplace acceptance NOT complete; operational/commercial launch
+NOT ready. Allow approximately 4–8 focused hours for remaining configuration and
+hosted/device acceptance, plus 1–2 hours for two-party marketplace acceptance once
+eligible testers are available. Excludes external approval/rights/accounting waits.
+
+Principal evidence
+database-applied.json; accepted-runtime-ddl-rehearsal.json; runtime-verified.json;
+staging-verification.json; production-verification.json; postflight-database.json;
+independent-production-alias.json; accepted-auth-gates.json;
+accepted-provider-readback.json; permission-guard-stop.json;
+runtime-verification-resume.json; accepted-backup/ and accepted-restore/.
