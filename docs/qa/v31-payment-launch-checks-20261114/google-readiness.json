@@ -1,0 +1,126 @@
+{
+  "at": "2026-11-14T01:54:21.565Z",
+  "oauthHttpStatus": 200,
+  "checks": [
+    {
+      "name": "catalogue",
+      "httpStatus": 200,
+      "products": [
+        {
+          "id": "docked_credits_4900_v1",
+          "packageName": "docked.fantasy",
+          "listings": [
+            {
+              "languageCode": "en-US",
+              "title": "4,900 Docked Credits",
+              "description": "4,900 Docked Credits for your Docked account. No bonus credits."
+            }
+          ],
+          "restrictedPaymentCountries": null,
+          "taxAndComplianceSettings": null,
+          "regionsVersion": {
+            "version": "2026/01"
+          },
+          "offerTags": [],
+          "options": [
+            {
+              "id": "buy-au",
+              "state": "INACTIVE",
+              "buyOption": {
+                "legacyCompatible": true
+              },
+              "rentOption": null,
+              "newRegionsConfig": null,
+              "taxAndComplianceSettings": {
+                "withdrawalRightType": "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
+              },
+              "offerTags": [],
+              "multiQuantityEnabled": false,
+              "regions": [
+                {
+                  "region": "AU",
+                  "availability": "AVAILABLE",
+                  "price": {
+                    "currencyCode": "AUD",
+                    "units": "49"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "docked_credits_9900_v1",
+          "packageName": "docked.fantasy",
+          "listings": [
+            {
+              "languageCode": "en-US",
+              "title": "9,900 Docked Credits",
+              "description": "9,900 Docked Credits for your Docked account. No bonus credits."
+            }
+          ],
+          "restrictedPaymentCountries": null,
+          "taxAndComplianceSettings": null,
+          "regionsVersion": {
+            "version": "2026/01"
+          },
+          "offerTags": [],
+          "options": [
+            {
+              "id": "buy-au",
+              "state": "INACTIVE",
+              "buyOption": {
+                "legacyCompatible": true
+              },
+              "rentOption": null,
+              "newRegionsConfig": null,
+              "taxAndComplianceSettings": {
+                "withdrawalRightType": "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
+              },
+              "offerTags": [],
+              "multiQuantityEnabled": false,
+              "regions": [
+                {
+                  "region": "AU",
+                  "availability": "AVAILABLE",
+                  "price": {
+                    "currencyCode": "AUD",
+                    "units": "99"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "catalogue-offers-docked_credits_4900_v1",
+      "httpStatus": 204,
+      "emptyResponse": true
+    },
+    {
+      "name": "catalogue-offers-docked_credits_9900_v1",
+      "httpStatus": 204,
+      "emptyResponse": true
+    },
+    {
+      "name": "refund-readback",
+      "httpStatus": 200,
+      "returnedRefunds": 1
+    },
+    {
+      "name": "generated-release-31",
+      "httpStatus": 200,
+      "signingKeys": [
+        {
+          "sha256": "64:F8:4E:E6:33:3C:E0:FE:7A:E3:08:A3:81:B0:9B:BF:AA:C0:2A:E6:EA:5A:CD:47:68:91:9C:E0:BC:DD:28:F1",
+          "splits": 173,
+          "standalone": 0,
+          "universal": true
+        }
+      ]
+    }
+  ],
+  "mutations": 0
+}

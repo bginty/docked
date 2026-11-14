@@ -1,0 +1,90 @@
+{
+  "at": "2026-11-14T02:08:00.713Z",
+  "productionCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "applicationAndAndroidBytesUnchanged": true,
+  "reviewedDeploymentPackageUnchanged": true,
+  "localPostgresScenariosPassed": 16,
+  "typecheckPassed": true,
+  "changedScriptsLintPassed": true,
+  "productionHttpChecksPassed": 9,
+  "hostedWrites": 0,
+  "newSms": 0,
+  "newPurchases": 0,
+  "newRefunds": 0,
+  "launch": "NO-GO",
+  "files": [
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/auth-gates.json",
+      "sha256": "da895adb6ce793f10e674d217be174241327428d370e51d0d5d39a08d32e7a2b"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/billing-postgres.json",
+      "sha256": "ecfec965724ffc809457e2d6088342249935d1780870ae28c94fe289cede4b70"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/billing-postgres.txt",
+      "sha256": "8abacf93f49451a2158efe7ec8bcc9bde4d4c0b91b7506b111b788f0c915da27"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/changed-script-lint.txt",
+      "sha256": "756615088aee69ca89bfedf4eacefdf3b076a5976597db25ed508e917a498def"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/DEVICE_SESSION_ORDER.txt",
+      "sha256": "4638f39ddb3e772ed4f57f830c1fb4a53679c455c06c8b0d5c770ac8be27fd9b"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/EMERGENCY_RECOVERY_ADDENDUM.txt",
+      "sha256": "9be07fc8691ad3557c375640edf58d69ed32b44e1e9734348701150495f539b2"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/google-readiness.json",
+      "sha256": "ce730168b18f713ab6382f0174b5427492ca57717747ced2588f32cd90521fda"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/GOOGLE_AND_PAYOUT.txt",
+      "sha256": "804ca4b40b4385c84f4db718f9e2319da0db9663edd497ac3b56f938fbd44fc2"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/HANDOVER.txt",
+      "sha256": "fa63fcbd0c83e4151b4188a1044d73b51b530897f9bffb0ca418a3db9e298557"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/http-closed-gates.json",
+      "sha256": "7d813227a53db3be207fbff4c971e7667ed05d88e19f290beb9ea3e42429e462"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/preview-readonly-corrected.json",
+      "sha256": "c3fd509107c6a199606890b8d27b4c36b145dd99cda85cb99ef331239680d113"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/preview-readonly.json",
+      "sha256": "a5fe446a33dd98758eb04f2c91bb55140b251c057adc919b00e0256ac6c7e88d"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/production-alias.json",
+      "sha256": "fc2deed69449d743f6189cfd4c21da007e03b30ed673f5a81dbd8134ee6b3a45"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/production-readonly.json",
+      "sha256": "1d54380f8377d14187073a72dea34e212fb3155583ce7db494356ea7d5fa4d60"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/production-readonly.sql",
+      "sha256": "8b408814bc3162071b5b562211e0b87368c6d2911792ba51a22c58929d33178f"
+    },
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/typecheck.txt",
+      "sha256": "4d4b0315ace63a75b5d83c813ed47c0b0734e998356483f820c33444fdf38200"
+    },
+    {
+      "file": "scripts/commercial-billing-postgres.ts",
+      "sha256": "ef97d0dfb7550e60abdb356fa0f8e136bafb04ca4211bb5b119d29f6c2d16937"
+    },
+    {
+      "file": "scripts/v31-preview-acceptance-census.ts",
+      "sha256": "839b5c4602893127c388791c10675fe0a3340b690f5d153836255803140d8a92"
+    }
+  ],
+  "hashEncoding": "UTF-8 with LF line endings"
+}

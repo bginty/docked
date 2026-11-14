@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-14T01:59:42.6717440Z",
+  "preview": {
+    "phoneEnabled": false,
+    "resendInterval": 60,
+    "signupDisabled": true,
+    "hourlySmsLimit": 6,
+    "autoConfirm": false,
+    "otpExpirySeconds": 300,
+    "otpDigits": 6,
+    "testOtpPresent": false,
+    "hibpEnabled": false
+  },
+  "writes": 0,
+  "production": {
+    "phoneEnabled": false,
+    "resendInterval": 5,
+    "signupDisabled": true,
+    "hourlySmsLimit": 30,
+    "autoConfirm": false,
+    "otpExpirySeconds": 60,
+    "otpDigits": 6,
+    "testOtpPresent": false,
+    "hibpEnabled": false
+  },
+  "smsAttempts": 0
+}

@@ -1,0 +1,115 @@
+DOCKED — payment/refund and launch checks, 14 November 2026 AEDT
+Public launch NO-GO. First public launch remains registration + verified phone +
+Google credit purchases + paid packs. All current public/commercial gates closed.
+
+Completed this session
+- Fetched origin; starting branch HEAD 965be944. No newer branch work was fetched.
+- Authenticated Vercel readback and public release endpoint confirm Production
+  260fe3399f1eacf03915c227216a1bab10d7b4d9, deployment
+  dpl_Foja51Pk9DV5WtPtsa61MRdZ7JUV. No deployment or migration performed.
+- Fresh repeatable-read Production query: unchanged schema fingerprint
+  c71bc7bd594ebb1b09713991cf346022 / 10,153 objects; all ten reviewed permission
+  predicates match. Restricted outbox boundary, valid indexes and triggers intact.
+  6,540 definitions, 888 issued/lifetime-consumed copies, 906 custody records;
+  zero approved definitions, commercial cards, packs, accounts or receipts.
+  Sales, issuance, transfers, gameplay, feature flags and retention schedules OFF.
+  All 17 historical Google notifications are done; no warning correction repeated.
+  This is a fresh count/schema/permission check, not a new full-table restore audit.
+- Fresh Auth readback: Production and Preview phone OFF and signup disabled;
+  no test OTP or automatic phone confirmation. No SMS sent or settings changed.
+  Preview remains six digits / 300s expiry / 60s resend / six sends per hour.
+  Production still has its inactive pre-test defaults (60s/5s/30 per hour); it must
+  receive the separately reviewed hardened configuration before public SMS use.
+- Google authenticated API: both AU buy-au options INACTIVE, unchanged A$49 for
+  4,900 and A$99 for 9,900 credits; refund readback and signed v31 artifact readback
+  successful. No consume, refund, checkout, activation or publication performed.
+- Google authenticated UI: v31 plus Data Safety READY TO PUBLISH, managed
+  publishing ON. Existing payout bank Primary, no deposit action shown. The
+  previous payment-method navigation blocker is resolved; no actual payout claim.
+  See GOOGLE_AND_PAYOUT.txt for the precise inference and remaining fee enrolment.
+- Added a real PostgreSQL emergency-stop regression: bound pending payment may
+  finish and be refunded once after product approval, sales and issuance are OFF
+  and approval expires. New purchases create no stray account/receipt; packs
+  remain denied. All 16 local billing scenarios passed, including 20-way replay,
+  atomic wallet/ownership, partial/full refund, transfer provenance, recovery holds,
+  RLS, immutable journals and balanced accounting. All data was synthetic/loopback.
+- Fixed the old Preview census's nonexistent normalisation-function probe. The
+  real canonical-phone registry and enabled Auth trigger are present. No Auth
+  schema change was needed. Retain first probe as diagnostic history; use
+  preview-readonly-corrected.json for the actual dependency result.
+- Read-only Preview census: two original QA identities, only one eligible and
+  unblocked, none phone verified; one original open recovery hold, 5,700 credits.
+  All Preview commercial gates are false. No identity/phone/balance/hold changed.
+  The Supabase connector lacked Preview access; the existing authorised Preview
+  operator connection supplied this read-only check. No permission grants added.
+- Nine fresh GET-only Production checks passed, including registration metadata,
+  commercial/admin denial, expired QA transport and hidden NBA/closed gameplay.
+- Prepared DEVICE_SESSION_ORDER.txt: six bounded TEST checkout attempts, both
+  credit products, Standard/Premium nine-card packs in NFL/AFL/NRL, retry recovery,
+  unused refund before spent-fund refunds, and exact single-member expected deltas.
+  This avoids putting the tester on a hold before the positive tests finish.
+- TypeScript and changed-script lint passed. Application, migration, frozen
+  inventory plan, prices, approved Android artifact and existing approval-package
+  bytes are unchanged. Only test/operator diagnostic and new evidence/docs changed.
+
+Boundaries of what remains unproven
+Twilio's existing Australian Docked sender was read as IN REVIEW earlier today;
+the compliance profile is complete. No genuine OTP, installed-v31 payment/refund
+or two-party marketplace acceptance occurred. TEST success cannot establish tax
+computation or bank settlement. The existing local suite is not hosted acceptance.
+The emergency regression covers ALREADY-BOUND receipts. Unmatched Google charges
+during a shutdown need provider-backed operator remedy; see the recovery addendum.
+
+Exactly what is needed from the founder next
+1. During the Twilio wait, supply the location/reference for written commercial
+   source-material rights and the paid random-pack/closed-loop credit resale
+   assessment, plus the accountant's treatment of credits, redemption, refunds,
+   marketplace fees and invoice/adjustment-note responsibility. These are distinct
+   from accepted player-name identities and the already RESOLVED Google GST
+   declaration. Do not ask the founder to repeat those completed confirmations.
+2. Approve the existing separate same-key backup custody proposal when ready:
+   docs/qa/v31-founder-session-20261112/RECOVERY_CUSTODY_PROPOSAL.txt. Source is the
+   existing local launch-migration-backup-key.hex; destination is
+   docked-play-verification / docked-recovery-backup, one pinned secret version.
+   Same key, no rotation, no expanded runtime/IAM access; verify existing IAM,
+   free allowance and named archive before transfer and isolated recovery. Live
+   transfer remains unapproved. Existing synthetic recovery/MFA is not repeated.
+3. Have the physical Android with installed v31 and founder licence-test Google
+   account available. After sender approval, separately approve <=2h Preview OTP:
+   <=6 sends, <=20 segments, <=A$5 including tax/FX, aggregate <=A$20. Then review
+   the separately frozen <=2h / <=6 TEST checkout / A$0 real-charge payment scope,
+   including temporary AU product activation/restoration and expiring QA transport.
+   Founder privately enters phone/codes and performs purchase/refund confirmations.
+4. For marketplace, identify a second legitimate eligible tester and a distinct
+   controlled mobile, with explicit isolated admission approval. The held original
+   identity is excluded. Complete marketplace acceptance before the deliberate
+   spent-refund holds, or leave marketplace pending; swaps/offers remain OFF.
+5. Optional fee improvement: Google still offers 15% enrolment. Founder must
+   accurately declare associated developer accounts and accept the displayed
+   terms. This is not a mandatory technical launch gate, and 15% is not assumed.
+
+Final activation is still a distinct decision
+Before the coordinated revenue launch, freeze the reviewed public-mode runtime,
+Production Auth hardening and SMS operating budget, founder alert operation,
+current eligible source subset/rights and commercial wording. The complete dormant
+import is already done. Current conservative eligibility proposal remains 6,055
+eligible / 485 held (ten additional holds), pending final approval and source
+refresh within 72h of activation; do not revert to 6,065 without new evidence.
+Then seek final explicit publication + AU registration + phone + Google credits +
+paid packs authority, with marketplace only if independently accepted. A bounded
+real-payment/refund proof, if required, needs its own actual AUD spending scope.
+No card-identity, email, original migration, import or warning approval is repeated.
+
+Remaining execution estimate
+Approximately 4–8 focused hours for final runtime/configuration, authorised phone
+and Android payment/refund acceptance, custody and final verification; another
+1–2 hours for two-party marketplace acceptance with eligible testers. External
+Twilio, rights/accounting and founder availability are excluded; new physical-test
+defects can change the estimate. No remaining broad regression rerun is justified
+until source, dependencies or runtime change.
+
+Evidence
+production-alias.json, production-readonly.json/sql, auth-gates.json,
+google-readiness.json, preview-readonly-corrected.json, http-closed-gates.json,
+billing-postgres.json/txt, typecheck.txt, changed-script-lint.txt,
+GOOGLE_AND_PAYOUT.txt, DEVICE_SESSION_ORDER.txt, EMERGENCY_RECOVERY_ADDENDUM.txt.

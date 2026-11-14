@@ -1,0 +1,43 @@
+DOCKED — current Google account readback, 14 November 2026 AEDT
+Authenticated browser inspection and authenticated GET-only Google API checks.
+No provider state changed, agreement accepted, purchase/refund performed or
+publication requested.
+
+Submission 3: READY TO PUBLISH, approval shown 13 November 2026 at 2:41 PM.
+Ten changes include v31/1.30, Australia distribution and Data Safety. Publishing
+overview confirms Managed publishing ON. No further Google review currently
+shown for this submission. The older IN REVIEW reports are historical.
+
+Payments profile: existing organisation payout bank is marked Primary. The
+payment-method page shows Remove/Edit, no Fix/Verify/deposit-entry prompt.
+No bank number or tax identifier is recorded here. Earnings A$0, no transactions,
+A$1 monthly payout threshold. Merchant GST declaration remains RESOLVED by the
+accepted founder attestation; no repeat confirmation/submission required.
+The earlier inability to reach the payout-method page is resolved.
+Google's help says bank verification precedes selecting Primary, so the observed
+Primary state is consistent with completed bank setup. This is an inference,
+not a bank-statement inspection, explicit Verified badge or successful settlement.
+No request to change the bank or repeat a deposit test is warranted from this UI.
+
+The 15% service-fee enrolment banner remains. Do not forecast 15% as accepted.
+Founder must declare associated developer accounts accurately and personally
+review/accept the fee terms if enrolling. Codex has not created an account group,
+declared absence of other accounts, or accepted any agreement. This is distinct
+from successful billing and the already resolved GST declaration.
+
+API: both buy-au options INACTIVE, AU only, unchanged A$49/4,900 and A$99/9,900,
+no multi-quantity and no additional offer payload. Refund-readback HTTP 200;
+Google-generated v31 artifact/signing metadata HTTP 200. No artifact changed.
+See google-readiness.json. Read access is not proof of a successful new TEST
+checkout, consume/refund write permission or actual cash settlement.
+
+Current acceptance boundary
+Genuine OTP and installed Android TEST billing/refund remain outstanding. The
+precise six-attempt order is DEVICE_SESSION_ORDER.txt. TEST taxes are not computed;
+the GST accounting classification and actual report/invoice reconciliation cannot
+be signed off using a TEST payment. Preserve unknown provider tax/fees as unknown.
+
+Primary sources checked today:
+https://support.google.com/googleplay/android-developer/answer/7161378?hl=en-GB
+https://support.google.com/googleplay/android-developer/answer/10632485?hl=en
+https://developer.android.com/google/play/billing/test

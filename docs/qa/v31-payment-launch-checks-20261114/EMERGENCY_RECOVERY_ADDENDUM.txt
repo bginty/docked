@@ -1,0 +1,33 @@
+DOCKED — emergency recovery clarification, 14 November 2026
+Prepared procedure; not activation or refund authority.
+
+New isolated PostgreSQL regression proves that a receipt already bound before
+shutdown can progress PENDING -> PURCHASED -> consumed -> REVOKED while sales,
+issuance and transfers are false, product approval is false and commercial
+approval has expired. Exactly one credit, cash-refund journal and unspent-credit
+reversal remain. New unbound purchases and packs are denied; denied transactions
+create no stray account or receipt. Full 16-scenario local suite passes.
+This is synthetic/local evidence, not a new hosted or physical payment.
+
+Keep DOCKED_COMMERCIAL_SERVICE and the existing reconciliation authentication
+working after sales/issuance stop. Do not disable the service or destroy keys to
+stop new checkout: that also stops refund/acknowledgement processing. Keep paid
+orders, jobs, receipt references, financial evidence and ownership intact.
+
+Limitation: a Google charge whose receipt never reached authenticated Docked
+binding before shutdown cannot be automatically credited from an unknown push
+notification. Unknown references remain a retry/attention item and new binding
+fails closed. The bound-receipt regression does not claim otherwise.
+During emergency triage, compare genuine Google orders with bound Docked receipts.
+For an unmatched charge, obtain the legitimate account/order evidence securely
+and use the separately authorised Google refund/remedy procedure. Do not reopen
+sales, fabricate a wallet credit, guess the member from a notification, or declare
+recovery complete solely because the commercial receipt table has no new row.
+Do not rely on eventual automatic acknowledgement-timeout refunds as proof of a
+completed remedy. Track actual provider outcome and notify the affected customer
+only under the authorised incident/support workflow.
+
+No old-snapshot restore after customer transactions; use audited forward recovery.
+Prior coordinated activation order otherwise remains in force. The previous two
+migration, warning-correction and dormant-import steps are COMPLETE, not actions
+to repeat. A public-only registration release remains outside founder strategy.

@@ -1,0 +1,37 @@
+{
+  "environment": "disposable-loopback-PostgreSQL",
+  "synthetic": true,
+  "realSettlement": false,
+  "checks": [
+    "migration reapplication leaves gates closed and creates no accounts",
+    "pending and cancelled purchases never credit",
+    "delayed approval and 20 concurrent retries fulfil exactly once",
+    "refund after partial spending, opened pack, and replay preserves cards with a recovery hold",
+    "concurrent 9900 purchases and atomic failure preserve balances",
+    "card sale, fee, refund after transfer never debit unrelated member",
+    "partial refunds held, full refund replacement is not cumulative",
+    "charged price mismatch records money, grants no credits",
+    "durable notifications, outages, leases and reconciliation after restart",
+    "emergency stop and expired approval preserve bound payment/refund recovery without admitting new sales",
+    "delayed approval after account closure requires remedy review, never new fulfilment",
+    "runtime least-privilege role can read and accept but cannot activate",
+    "refund after original pack is transferred preserves buyer funds and ownership",
+    "unopened refunded pack stays recorded and cannot be opened while held",
+    "empty supply, insufficient balance and stale account permission roll back atomically",
+    "RLS, immutability, environment isolation and balanced accounting"
+  ],
+  "report": {
+    "environment": "acceptance",
+    "asOf": "2026-11-14T01:55:36.927Z",
+    "purchases": 15,
+    "gross_cents": "88400",
+    "refund_cents": "49100",
+    "review": 1,
+    "outstandingCredits": 34649,
+    "open_cases": 6,
+    "exposure_credits": "1200",
+    "providerPayoutReconciled": false,
+    "providerFees": null,
+    "recognizedRevenue": null
+  }
+}

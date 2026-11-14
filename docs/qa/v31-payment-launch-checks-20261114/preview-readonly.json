@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-14T02:01:09.441319+00:00",
+  "gates": {
+    "sales": false,
+    "gameplay": false,
+    "issuance": false,
+    "transfers": false,
+    "environment": "acceptance"
+  },
+  "holds": {
+    "open": 1,
+    "exposure_credits": 5700
+  },
+  "members": {
+    "phone_verified": 0,
+    "eligible_unblocked": 1,
+    "original_qa_accounts": 2
+  },
+  "dependencies": {
+    "phone": true,
+    "market": true,
+    "collection": true,
+    "normalisation": false
+  },
+  "previewWrites": 0,
+  "productionWrites": 0,
+  "phonesDisclosed": 0,
+  "identitiesCreated": 0,
+  "holdsCleared": 0
+}

@@ -1,0 +1,52 @@
+{
+  "at": "2026-11-14T02:05:08.405Z",
+  "sourceCommit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "method": "GET only; no authenticated customer actions",
+  "checks": [
+    {
+      "route": "/api/beta-release",
+      "status": 200,
+      "passed": true
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "route": "/api/admin/incidents",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "route": "/profile/qa_billing",
+      "status": 503,
+      "passed": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=afl",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nrl",
+      "status": 403,
+      "passed": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=basketball",
+      "status": 400,
+      "passed": true
+    }
+  ]
+}

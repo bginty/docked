@@ -59,7 +59,9 @@ async function main() {
         const [control] =
           await tx`select environment,sales_enabled,issuance_enabled,transfers_enabled from commercial_billing.control where id`;
         const [schema] =
-          await tx`select to_regprocedure('private.public_phone_verified(uuid)') is not null phone_guard_present,to_regprocedure('private.normalise_australian_phone(text)') is not null normalisation_function_present`;
+          await tx`select to_regprocedure('private.public_phone_verified(uuid)') is not null phone_guard_present,
+            to_regclass('private.verified_phone_claims') is not null canonical_claim_registry_present,
+            exists(select 1 from pg_trigger where tgrelid='auth.users'::regclass and tgname='docked_verified_phone_claim' and tgenabled='O' and tgfoid=to_regprocedure('private.sync_verified_phone_claim()')) canonical_claim_trigger_present`;
         return {
           at: new Date().toISOString(),
           projectRef: config.projectRef,

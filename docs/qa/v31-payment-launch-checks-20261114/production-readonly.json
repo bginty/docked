@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-14T01:57:33.737497+00:00",
+  "gates": {
+    "sales": false,
+    "gameplay": false,
+    "issuance": false,
+    "transfers": false,
+    "environment": "commercial"
+  },
+  "counts": {
+    "cards": 0,
+    "packs": 0,
+    "issued": 888,
+    "accounts": 0,
+    "approved": 0,
+    "receipts": 0,
+    "definitions": 6540,
+    "legacy_issued": 888,
+    "retention_enabled": 0,
+    "active_feature_flags": 0,
+    "enabled_competitions": 0
+  },
+  "schema": {
+    "objects": 10153,
+    "fingerprint": "c71bc7bd594ebb1b09713991cf346022"
+  },
+  "permissions": {
+    "indexesValid": true,
+    "outboxExposed": false,
+    "triggerPresent": true,
+    "triggerCallable": false,
+    "unauthorisedExecute": false,
+    "marketRuntimeAllowed": true,
+    "memberRuntimeAllowed": true,
+    "unclaimedViewerDenied": true,
+    "collectionRuntimeAllowed": true,
+    "legacyMailOutboxBoundaryPreserved": true
+  },
+  "notifications": [
+    {
+      "count": 17,
+      "state": "done"
+    }
+  ],
+  "custody_records": 906,
+  "mutations": 0
+}

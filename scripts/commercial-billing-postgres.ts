@@ -424,6 +424,117 @@ async function main() {
     },
   );
   await check(
+    "emergency stop and expired approval preserve bound payment/refund recovery without admitting new sales",
+    async () => {
+      await sql`update commercial_billing.jobs set state='done'`;
+      const who = randomUUID(),
+        x = receipt();
+      x.r = { ...x.r, state: "PENDING", paid: false, grossCents: null };
+      await accept(x, who);
+      const [before] =
+        await sql`select * from commercial_billing.control where id`;
+      try {
+        await sql`update commercial_billing.control set sales_enabled=false,issuance_enabled=false,transfers_enabled=false,approvals=${sql.json({ ...approvals, validUntil: "2000-01-01T00:00:00Z" })}`;
+        await sql`update commercial_billing.products set approved=false`;
+        await assert.rejects(ledger.checkout(who, authorize));
+        const unrelated = receipt(),
+          newcomer = randomUUID();
+        await assert.rejects(accept(unrelated, newcomer));
+        assert.equal(
+          (
+            await sql`select count(*)::int n from commercial_billing.accounts where member_id=${newcomer}`
+          )[0].n,
+          0,
+        );
+        assert.equal(
+          (
+            await sql`select count(*)::int n from commercial_billing.receipts where key=${unrelated.r.key}`
+          )[0].n,
+          0,
+        );
+
+        x.r = { ...x.r, state: "PURCHASED", paid: true, grossCents: 4900 };
+        let consumed = 0;
+        const worker = new CommercialReconciliation(
+          ledger,
+          {
+            verify: async () => x.r,
+            consume: async () => {
+              consumed++;
+            },
+          },
+          async () => true,
+        );
+        const notice = {
+          id: createHash("sha256").update(randomUUID()).digest("hex"),
+          receiptKey: x.r.key,
+          kind: "purchase" as const,
+          occurredAt: Date.now(),
+        };
+        await worker.enqueue(notice);
+        await worker.runOne();
+        assert.equal((await ledger.wallet(who)).balance, 4900);
+        assert.equal(await worker.acknowledgeReceipt(x.r.key, who), true);
+        assert.equal(consumed, 1);
+        await assert.rejects(
+          ledger.buyPack(
+            who,
+            randomUUID(),
+            {
+              sport: "nfl",
+              family: "STANDARD",
+              size: 9,
+              confirmed: true,
+              configurationHash: commercialPack("nfl", "STANDARD", 9)
+                .configurationHash,
+            },
+            authorize,
+          ),
+        );
+
+        x.r = { ...x.r, state: "REVOKED", refundedCents: 4900 };
+        const refundNotice = {
+          ...notice,
+          id: createHash("sha256").update(randomUUID()).digest("hex"),
+          kind: "voided" as const,
+        };
+        assert.equal(await worker.enqueue(refundNotice), true);
+        assert.equal(await worker.enqueue(refundNotice), false);
+        await Promise.all([worker.runOne(), worker.runOne()]);
+        await ledger.accept(x.r, who, x.token, authorize, false);
+        assert.equal((await ledger.wallet(who)).balance, 0);
+        assert.equal(
+          (
+            await sql`select count(*)::int n from commercial_billing.journals where id=${`${x.r.key}:credit`}`
+          )[0].n,
+          1,
+        );
+        assert.equal(
+          (
+            await sql`select count(*)::int n from commercial_billing.journals where id=${`${x.r.key}:refund:4900`}`
+          )[0].n,
+          1,
+        );
+        assert.equal(
+          (
+            await sql`select count(*)::int n from commercial_billing.journals where id=${`${x.r.key}:reverse-unspent`}`
+          )[0].n,
+          1,
+        );
+        assert.equal(
+          (
+            await sql`select count(*)::int n from commercial_billing.packs where member_id=${who}`
+          )[0].n,
+          0,
+        );
+        assert.equal(consumed, 1);
+      } finally {
+        await sql`update commercial_billing.control set sales_enabled=${before.sales_enabled},issuance_enabled=${before.issuance_enabled},transfers_enabled=${before.transfers_enabled},approvals=${sql.json(before.approvals)}`;
+        await sql`update commercial_billing.products set approved=true`;
+      }
+    },
+  );
+  await check(
     "delayed approval after account closure requires remedy review, never new fulfilment",
     async () => {
       await sql`update commercial_billing.jobs set state='done'`;

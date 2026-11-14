@@ -1,0 +1,16 @@
+PASS migration reapplication leaves gates closed and creates no accounts
+PASS pending and cancelled purchases never credit
+PASS delayed approval and 20 concurrent retries fulfil exactly once
+PASS refund after partial spending, opened pack, and replay preserves cards with a recovery hold
+PASS concurrent 9900 purchases and atomic failure preserve balances
+PASS card sale, fee, refund after transfer never debit unrelated member
+PASS partial refunds held, full refund replacement is not cumulative
+PASS charged price mismatch records money, grants no credits
+PASS durable notifications, outages, leases and reconciliation after restart
+PASS emergency stop and expired approval preserve bound payment/refund recovery without admitting new sales
+PASS delayed approval after account closure requires remedy review, never new fulfilment
+PASS runtime least-privilege role can read and accept but cannot activate
+PASS refund after original pack is transferred preserves buyer funds and ownership
+PASS unopened refunded pack stays recorded and cannot be opened while held
+PASS empty supply, insufficient balance and stale account permission roll back atomically
+PASS RLS, immutability, environment isolation and balanced accounting
