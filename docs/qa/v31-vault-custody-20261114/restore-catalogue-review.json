@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-14T02:53:13.573Z",
+  "reference": "docs/qa/v31-revenue-launch-20261113/revenue-repairs-v2-restored.json",
+  "sameArchiveCapturedAt": "2026-11-12T12:45:00.372Z",
+  "archivePlaintextSha256": "5ec25fb067d93d04d6359d8dbe2f2dedf54e47715eef8b2d7406ea75ac6c6092",
+  "restoredCatalogue": {
+    "fingerprint": "8512b589d29cb4e36f2fa6d4580cd0f4",
+    "objects": 10147
+  },
+  "fingerprintAlgorithm": "v2-text-identities-no-name-truncation",
+  "firstAttemptPassed558ProtectedTableFingerprints": true,
+  "firstAttemptStoppedOnIncorrectRawManifestComparison": true,
+  "correction": "Compare the isolated v2 catalogue with the independently recorded same-archive v2 baseline; retain exact encrypted archive/manifest hashes and all protected data fingerprints. Historical v1 source hash remains recorded, not rewritten.",
+  "hostedRecoveryLimitation": "Local bootstrap extension owners, provider grants and historical membership-pair reconstruction are not a hosted restore acceptance."
+}

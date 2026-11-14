@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-14T02:55:28.169Z",
+  "method": "GET only",
+  "productionWrites": 0,
+  "results": [
+    {
+      "path": "/api/beta-release",
+      "status": 200,
+      "release": {
+        "channel": "beta",
+        "origin": "https://docked.com.au",
+        "hostingProvider": "vercel",
+        "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+        "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+        "commit": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+        "deploymentId": "dpl_Foja51Pk9DV5WtPtsa61MRdZ7JUV",
+        "projectRef": "pojoymtniryarxxunyvz",
+        "publicRegistration": false,
+        "invitedAuthentication": true
+      }
+    },
+    {
+      "path": "/api/store/google/commercial",
+      "status": 403
+    },
+    {
+      "path": "/api/workspace-wallet",
+      "status": 403
+    },
+    {
+      "path": "/profile/qa_billing",
+      "status": 503
+    }
+  ]
+}

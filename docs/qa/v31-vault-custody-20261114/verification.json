@@ -1,0 +1,63 @@
+{
+  "at": "2026-11-14T02:58:37.408Z",
+  "typecheck": "passed",
+  "changedScriptLint": "passed",
+  "archiveAuthentication": "passed",
+  "sameArchiveCatalogueProvenance": "passed",
+  "isolatedRestore": "passed; 558 protected tables and 10147 catalogue objects",
+  "actualSecretAudit": "passed",
+  "productionWrites": 0,
+  "publicLaunch": "NO-GO",
+  "evidence": [
+    {
+      "file": "docs/qa/v31-vault-custody-20261114/access-audit.json",
+      "sha256": "5c45c4a246f373aa8e47c680203c914158d20cd174877f4bbd4ab173fe549c17",
+      "encoding": "UTF-8 LF"
+    },
+    {
+      "file": "docs/qa/v31-vault-custody-20261114/archive-provenance.json",
+      "sha256": "f8e237c0918af51f2cbd7c2797969829cd9271c142f0cbefbecca3a2ee3b0e51",
+      "encoding": "UTF-8 LF"
+    },
+    {
+      "file": "docs/qa/v31-vault-custody-20261114/cleanup.json",
+      "sha256": "2bf87048e0bb9db6c547b1f258463ff504a0e5b580048b3467de712850f90051",
+      "encoding": "UTF-8 LF"
+    },
+    {
+      "file": "docs/qa/v31-vault-custody-20261114/custody-receipt.json",
+      "sha256": "b2b0f8afccd6cfb5572eada072f48106b6801c9d0768f646a8cbeca534178abe",
+      "encoding": "UTF-8 LF"
+    },
+    {
+      "file": "docs/qa/v31-vault-custody-20261114/HANDOVER.txt",
+      "sha256": "0bd2ebed93d984ccde390a60c81b43e31438c65deca6739afb5506ef9832de78",
+      "encoding": "UTF-8 LF"
+    },
+    {
+      "file": "docs/qa/v31-vault-custody-20261114/isolated-recovery.json",
+      "sha256": "6eede1c0ec3adbaeb4ffc8c9709f09da99fdefa983fe343c0cba7cd5c82768e2",
+      "encoding": "UTF-8 LF"
+    },
+    {
+      "file": "docs/qa/v31-vault-custody-20261114/production-postcheck.json",
+      "sha256": "f534d6a74addfd7f287768fb82984c0510161a84c7a5c23879346f6c935b5240",
+      "encoding": "UTF-8 LF"
+    },
+    {
+      "file": "docs/qa/v31-vault-custody-20261114/restore-catalogue-review.json",
+      "sha256": "a50254e1fad07487b8ef6ce17653be75c0b66a29c173767e38b369266df2ae68",
+      "encoding": "UTF-8 LF"
+    },
+    {
+      "file": "docs/qa/v31-vault-custody-20261114/vault-version-1.jpg",
+      "sha256": "de2933a74a005758c978ed4ae83909cbaa1e8093b7c1222d5c828f9f5dcd6466",
+      "encoding": "binary"
+    },
+    {
+      "file": "scripts/v31-vault-custody-restore.ts",
+      "sha256": "2d24bf23f822933311ca31cb6adf33f2678fdf0f36c6d31226e6bef624b7992b",
+      "encoding": "UTF-8 LF"
+    }
+  ]
+}

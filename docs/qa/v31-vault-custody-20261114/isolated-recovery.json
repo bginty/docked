@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-14T02:54:16.962Z",
+  "secretResource": "projects/1007288339937/secrets/docked-recovery-backup/versions/1",
+  "sameOriginalKey": true,
+  "keyRotation": false,
+  "originalLocalCopyRetained": true,
+  "archiveCapturedAt": "2026-11-12T12:45:00.372Z",
+  "encryptedArchiveSha256": "0287b33badf819fe2bf436add61dacc7ee41e17e691e81561ba7e5d87c659746",
+  "encryptedManifestSha256": "e8e997e7e768cf1f8d412037f118119328f929043ce68bf29a10e6dbde8f2285",
+  "authenticated": true,
+  "restored": true,
+  "restoreTarget": "docked-vault-custody-20261114-verified",
+  "network": "none",
+  "publishedPorts": 0,
+  "protectedTables": 558,
+  "allProtectedTableCountsAndFingerprintsMatch": true,
+  "catalogueFingerprint": {
+    "fingerprint": "8512b589d29cb4e36f2fa6d4580cd0f4",
+    "objects": 10147
+  },
+  "sourceCatalogueFingerprint": {
+    "fingerprint": "7e9acf391f1f34b573eb818210128447",
+    "objects": 10147
+  },
+  "catalogueComparison": "Exact independent isolated restore baseline; host-local source fingerprint is not portable across pg_dump/restore",
+  "commercialDefinitionsAtBackup": 0,
+  "historicalPreImportSnapshot": true,
+  "productionWrites": 0,
+  "migrationsApplied": false,
+  "membershipFidelity": "Historical role/member pairs only; no current hosted authentication claim",
+  "excludedUnloggedTransportCaches": [
+    "\"net\".\"_http_response\"",
+    "\"net\".\"http_request_queue\""
+  ],
+  "cronActive": false,
+  "pgNetActive": false,
+  "plaintextArchiveOrRetrievedKeyPersisted": false,
+  "restoredDataStorage": "tmpfs; container stopped after test"
+}

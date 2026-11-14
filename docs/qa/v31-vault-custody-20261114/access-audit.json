@@ -1,0 +1,62 @@
+[
+  {
+    "insertId": "1i5qbgbe92h7d",
+    "protoPayload": {
+      "authenticationInfo": {
+        "principalEmail": "briantg_21@hotmail.com"
+      },
+      "methodName": "google.cloud.secretmanager.v1.SecretManagerService.AccessSecretVersion",
+      "resourceName": "projects/1007288339937/secrets/docked-recovery-backup/versions/1",
+      "status": {}
+    },
+    "timestamp": "2026-11-14T02:37:53.111864879Z"
+  },
+  {
+    "insertId": "rqy5cge71ice",
+    "protoPayload": {
+      "authenticationInfo": {
+        "principalEmail": "briantg_21@hotmail.com"
+      },
+      "methodName": "google.cloud.secretmanager.v1.SecretManagerService.GetIamPolicy",
+      "resourceName": "projects/1007288339937/secrets/docked-recovery-backup",
+      "status": {}
+    },
+    "timestamp": "2026-11-14T02:37:51.807838604Z"
+  },
+  {
+    "insertId": "1rjgwhbe5k9s1",
+    "protoPayload": {
+      "authenticationInfo": {
+        "principalEmail": "briantg_21@hotmail.com"
+      },
+      "methodName": "google.cloud.secretmanager.v1.SecretManagerService.ListSecretVersions",
+      "resourceName": "projects/1007288339937/secrets/docked-recovery-backup",
+      "status": {}
+    },
+    "timestamp": "2026-11-14T02:37:50.680192179Z"
+  },
+  {
+    "insertId": "o5v8aad3s6e",
+    "protoPayload": {
+      "authenticationInfo": {
+        "principalEmail": "briantg_21@hotmail.com"
+      },
+      "methodName": "google.cloud.secretmanager.v1.SecretManagerService.AddSecretVersion",
+      "resourceName": "projects/1007288339937/secrets/docked-recovery-backup/versions/1",
+      "status": {}
+    },
+    "timestamp": "2026-11-14T02:37:47.085433197Z"
+  },
+  {
+    "insertId": "1ejc59de5pk0d",
+    "protoPayload": {
+      "authenticationInfo": {
+        "principalEmail": "briantg_21@hotmail.com"
+      },
+      "methodName": "google.cloud.secretmanager.v1.SecretManagerService.CreateSecret",
+      "resourceName": "projects/1007288339937/secrets/docked-recovery-backup",
+      "status": {}
+    },
+    "timestamp": "2026-11-14T02:37:44.825536553Z"
+  }
+]

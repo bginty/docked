@@ -1,0 +1,121 @@
+DOCKED — approved same-key custody and isolated recovery, 14 November 2026
+Result: COMPLETED. Real key custody and isolated archive recovery accepted.
+
+Authority
+Founder explicitly approved the existing RECOVERY_CUSTODY_PROPOSAL.txt and then
+instructed continuation after opening Secret Manager. Google Cloud Shell
+authorisation was completed privately by the founder. No repeat approval for
+synthetic recovery, MFA, email receipt, card identities or credential entry.
+
+Actual vault custody
+Project: docked-play-verification (1007288339937).
+Secret: docked-recovery-backup. Pinned enabled version: 1.
+Created 2026-11-14T02:37:44Z; version access 02:37:53Z.
+The version contains the SAME original launch-migration-backup-key.hex bytes.
+The original local recovery copy is retained. No key rotation, new service
+account, IAM grant, runtime reader or access expansion occurred.
+Automatic replication, Google-managed encryption, 30-day version destruction
+delay; no rotation schedule, expiry or notification topic. Whole-secret deletion
+is not protected by version destruction delay. Do not delete versions required
+by retained archives. Always retrieve numeric version 1, never a latest fallback.
+
+Fresh access check
+Project IAM before and after matched exactly, including the etag. No direct
+secret bindings. Existing founder Owner is broad inherited access; this is not
+a claim of least-privilege Owner. The only other project binding was the existing
+Google Pub/Sub service agent, not a new application secret reader. The project
+has no organisation/folder ancestor. ADMIN_READ, DATA_READ and DATA_WRITE audit
+logging remained enabled for Secret Manager, without exemptions.
+Actual CreateSecret, AddSecretVersion and AccessSecretVersion records identify
+the founder and this exact secret/version with successful statuses. Five
+correlated metadata events are recorded in access-audit.json. Audit logging
+is verified; a locked immutable log bucket or separate audit export is not claimed.
+
+Recovery proof
+The pinned version was retrieved to temporary Cloud Shell RAM, compared with
+the uploaded source, and RSA-OAEP wrapped using a local temporary public key.
+Only wrapped ciphertext and metadata were downloaded. Both temporary plaintext
+key files in Cloud Shell were removed; the original Windows key was untouched.
+The local temporary wrapping private key was removed after successful recovery.
+The local recovery operator unwraps in memory and never substitutes the original
+key for failed retrieval. The original file is used only for same-byte comparison.
+The exact approved encrypted archive and manifest SHA-256 checks remain mandatory.
+
+Named archive: private-data/commercial-restore-20261112d, captured
+2026-11-12T12:45:00.372Z. This is the PRE-IMPORT snapshot: 888 accepted existing
+limited copies and zero commercial definitions, not the later live inventory.
+Use isolated-recovery.json for the final execution result: authenticated archive,
+558 protected table counts/data fingerprints, and the 10,147-object restored
+catalogue are checked. Both pg_net transport caches are excluded because they
+are unlogged and must not replay. Cron and networking stay disabled, with no
+published ports. Restore data lives in container tmpfs and the target is stopped
+after verification. No hosted migrations, restore, inventory or financial writes.
+
+The first attempt correctly stopped on a wrongly chosen comparison between the
+historical v1 hosted catalogue hash and the v2 isolated catalogue. The shared
+fingerprint algorithm had already been corrected in reviewed source 260fe339.
+The corrected operator binds the independently recorded v2 baseline for THIS
+SAME archive in revenue-repairs-v2-restored.json, as well as the immutable
+encrypted archive hashes and every protected table fingerprint. Historical
+manifest bytes and general Production drift protections remain unchanged.
+See restore-catalogue-review.json and archive-provenance.json.
+
+Recovery limits
+This accepts real key custody and isolated database archive recovery. The logical
+dump does not include Storage object bodies or live role passwords. Local
+bootstrap extension owners/provider grants and historical role/member pairs do
+not constitute hosted disaster-recovery acceptance. A real hosted recovery must
+re-establish provider-managed grants, exact membership options and separately
+stored runtime configuration before any traffic is admitted.
+
+Transfer handling
+The browser download form unexpectedly used its default home directory despite
+the displayed path. That additional local ZIP was isolated, never opened, and
+deleted. The exact encrypted bundle was then downloaded through Google's
+documented file-specific cloudshell download command. No home-directory contents
+or secret values were printed, added to Git or included in reports.
+
+Costs checked before creation
+The linked billing account has three projects. Docked had one enabled synthetic
+version, no regional secrets and seven November access audit events. Secret
+Manager was disabled in the other two projects; neither API was enabled.
+The account-wide actual/live billing report showed A$0.00 for Secret access
+operations, Secret version replica storage and Cloud Logging. Creating one
+automatic-replication version is consistent with the included six-version /
+10,000-access monthly allowance. This is point-in-time allowance evidence, not
+a guarantee of future bills or a claim that disabled projects were enumerated.
+No additional paid infrastructure or billing changes were made.
+Pricing: https://cloud.google.com/secret-manager/pricing
+
+Production and launch gates
+Fresh public release readback still identifies source
+260fe3399f1eacf03915c227216a1bab10d7b4d9 and deployment
+dpl_Foja51Pk9DV5WtPtsa61MRdZ7JUV, with publicRegistration=false.
+No Production configuration, application, migration or customer data was changed.
+The earlier same-day read-only census remains the inventory evidence: 6,540
+dormant definitions, 888 lifetime-consumed copies and 906 custody records;
+zero newly issued commercial cards or approved definitions. The completed
+16-scenario payment/refund regression remains valid; it was not rerun unchanged.
+Twilio's current tab could not be read reliably in this session. Last verified
+sender state remains IN REVIEW. No SMS or payment/refund test was initiated.
+Last verified Play state remains READY TO PUBLISH with managed publishing ON.
+
+What is needed next
+1. Provide the location/reference for written commercial source-material rights,
+   the paid random-pack/credit resale assessment, and the accountant's treatment
+   of credits, redemption, refunds, marketplace fees and invoice responsibility.
+   The accepted merchant GST declaration is already resolved.
+2. Once Twilio approves the existing sender, authorise the separately bounded
+   Preview OTP window and complete the real Australian-device verification.
+   Production Phone stays OFF; existing budget limits remain unchanged.
+3. Separately approve the frozen Google TEST payment/refund window and perform
+   the Android v31 confirmations. Keep A$49/A$99 pricing and nine-card packs.
+   A second legitimate unblocked tester is required for two-party marketplace
+   acceptance; the existing 5,700-credit recovery hold must not be bypassed.
+4. Final coordinated revenue-launch activation remains a distinct approval
+   after acceptance, rights/accounting and current eligible-source checks pass.
+
+Same-key custody needs no further founder approval. No public registration-only
+launch is proposed. NBA stays hidden; all six competitions remain disabled
+Practice. Registration, SMS, payments, trading, prizes, withdrawals and deletion
+schedules remain closed. Public launch remains NO-GO.

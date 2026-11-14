@@ -1,0 +1,20 @@
+{
+  "project": "docked-play-verification",
+  "secret": "docked-recovery-backup",
+  "version": "1",
+  "sameKeyComparedInCloud": true,
+  "iamUnchanged": true,
+  "directBindings": 0,
+  "freeAllowanceVerified": true,
+  "wrappedSha256": "12e10d00392bade3a531fbbaef8738e551d3b0bb55e377a09411684d76009872",
+  "temporaryCloudPlaintextRemoved": true,
+  "secretMetadata": {
+    "createTime": "2026-11-14T02:37:44.867396Z",
+    "etag": "\"1660336e180f74\"",
+    "name": "projects/1007288339937/secrets/docked-recovery-backup",
+    "replication": {
+      "automatic": {}
+    },
+    "versionDestroyTtl": "2592000s"
+  }
+}
