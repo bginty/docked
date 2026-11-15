@@ -1,0 +1,58 @@
+{
+  "recordedAt": "2026-11-15T20:57:31.521Z",
+  "scope": "Previously approved Brenton-only free-credit target through the existing founder MFA-protected UI; no deployment",
+  "member": "Brenton (existing named tester)",
+  "memberAcceptance": {
+    "verified": true,
+    "ownActor": true,
+    "country": "US",
+    "state": "CA",
+    "currentPolicies": true,
+    "noticeVersion": "2026-11-15-private-tester-v1",
+    "acceptedAtUTC": "2026-11-15T20:31:08.708140Z"
+  },
+  "grant": {
+    "requestId": "14365bc7-8a54-47c4-ac63-682f8f1bb06a",
+    "amount": 100000,
+    "beforeBalance": 0,
+    "afterBalance": 100000,
+    "category": "promotional",
+    "redeemable": false,
+    "method": "Existing founder credit controls; authenticated owner session accepted by server",
+    "firstSubmission": "Committed; UI response deadline expired",
+    "recovery": "Retry saved issuance request; same request confirmed by UI; one matching journal entry",
+    "uiConfirmation": "100,000 free Docked Credits issued. Request 14365bc7-8a54-47c4-ac63-682f8f1bb06a."
+  },
+  "before": {
+    "checked_at": "2026-11-15 20:53:14.211394+00",
+    "beta_issued": 2,
+    "lifetime_issued": 890,
+    "commercial_cards": 0,
+    "any_commercial_gate": false,
+    "registration_enabled": false,
+    "journal_entries": 150,
+    "journal_md5": "51d876235c3e6a20b4fe79b9e8c0105a",
+    "lots_count": 24,
+    "economy_md5": "e1aa6a21db74b6f81a9d86e97a226ed3",
+    "campaign_used": null,
+    "campaign_limit": "100000"
+  },
+  "after": {
+    "checked_at": "2026-11-15 20:55:47.215514+00",
+    "journal_entries": 151,
+    "original_journal_unchanged": true,
+    "card_economy_unchanged": true,
+    "matching_grants": 1,
+    "grant_journal_sum": "0",
+    "brenton_available_credits": "100000",
+    "free_nonredeemable_only": true,
+    "remaining_campaign": "0",
+    "beta_issued": 2,
+    "lifetime_issued": 890,
+    "commercial_cards": 0,
+    "any_commercial_gate": false,
+    "registration_enabled": false
+  },
+  "password": "No credentials read, recorded, changed or transmitted in this grant session. User received instructions to change password privately.",
+  "boundaries": "No pack purchases/openings, no card minting, no commercial activation, no public registration, no SMS, no Google Play publication, no campaign cap increase."
+}
