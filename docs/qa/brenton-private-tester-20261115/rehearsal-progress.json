@@ -1,0 +1,20 @@
+{
+  "sourceScriptSha256": "6e22721c0f79db6a22a806e4eb08d93eb026d0df8b01561f5da5ec5d305c9104",
+  "migrationSha256": "2ac2200e3ac1f3e2d8d39c5d23361c7dc7eeab8d2b5ad319fa339e4fdf5ad966",
+  "restoreTarget": "docked-commercial-restore-20261115l",
+  "command": "npx tsx scripts/named-private-tester-restored.ts",
+  "initialExitCode": 1,
+  "evidence": "Eight PASS results observed from the actual command. The final completed checksum comparison reported only beta_packs.events: the expected control-change audit from reconstructing existing private-pack controls in the older disconnected snapshot. Application and migration bytes were unchanged. A separate read-only completion verifies that exact event and original history; no financial test is repeated.",
+  "completedChecks": [
+    "Existing approved pack dependency reconstructed on the older disconnected snapshot only",
+    "Migration commit and rollback preserve every original table row",
+    "Preparation is one-account only, does not admit or record consent, and refuses accidental replay",
+    "Wrong person, region, age, notice, session and public/direct-write privilege all denied",
+    "Two concurrent acceptances produce one immutable own-session US/CA acceptance",
+    "Profile, display name and distinct consent records persist with California and audit history is immutable",
+    "Revocation and public registration disable the exception; member cannot issue credits",
+    "100,000 free credits, nine-card Standard and Premium packs, retries and lifetime supply verified; financial test rolled back"
+  ],
+  "remainingComparison": ["beta_packs.events"],
+  "productionWrites": 0
+}

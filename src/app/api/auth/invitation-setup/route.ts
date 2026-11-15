@@ -17,6 +17,11 @@ import {
 } from "@/server/signup-profile";
 import type { TransactionSql } from "postgres";
 import { betaPolicyVersions } from "@/core/hosted-beta.mjs";
+import {
+  namedTesterConsentMatches,
+  namedTesterNoticeVersion,
+  type NamedTesterSetup,
+} from "@/core/named-private-tester";
 
 const headers = { "Cache-Control": "private, no-store" };
 function transaction(tx: TransactionSql): SignupTransaction {
@@ -46,14 +51,6 @@ export async function POST(request: Request) {
           ? "Select your Australian state or territory, then try again."
           : "Username, region, age attestation and separate Terms and Privacy acceptance are required.",
       );
-    if (
-      process.env.DOCKED_BETA_STAGING === "true" &&
-      input.data.country !== "AU"
-    )
-      return fail(
-        400,
-        "This free beta is available to invited Australian adults only.",
-      );
     const versions = currentConsentVersions();
     const client = await authClient();
     if (!client) return fail(503, "Account service unavailable.");
@@ -70,21 +67,35 @@ export async function POST(request: Request) {
     } = await client.auth.getUser(token);
     if (error && !conclusiveAuthFailure(error))
       return fail(503, "Authentication service is temporarily unavailable.");
-    const customer =
+    const eligibility =
       !error &&
       user?.email_confirmed_at &&
       !user.is_anonymous &&
       customerOnboardingEnabled()
         ? (
-            await db()`select private.customer_signup_identity(${user.id}::uuid) allowed`
-          )[0]?.allowed === true
-        : false;
-    const renewal =
-      !error && user?.email_confirmed_at && customerOnboardingEnabled()
-        ? (
-            await db()`select private.pending_beta_consent(${user.id}::uuid) allowed`
-          )[0]?.allowed === true
-        : false;
+            await db()`select private.customer_signup_identity(${user.id}::uuid) customer,
+              private.pending_beta_consent(${user.id}::uuid) renewal,
+              private.named_tester_setup_identity(${user.id}::uuid) named_tester`
+          )[0]
+        : null;
+    const customer = eligibility?.customer === true;
+    const renewal = eligibility?.renewal === true;
+    const namedTester: NamedTesterSetup | null =
+      eligibility?.named_tester === true
+        ? { country: "US", state: "CA", version: namedTesterNoticeVersion }
+        : null;
+    if (
+      process.env.DOCKED_BETA_STAGING === "true" &&
+      (namedTester
+        ? !namedTesterConsentMatches(namedTester, input.data)
+        : input.data.country !== "AU")
+    )
+      return fail(
+        400,
+        namedTester
+          ? "Confirm California, United States and accept your personal testing exception."
+          : "This free beta is available to invited Australian adults only.",
+      );
     if (error || !user || (!verifiedInvitedUser(user) && !customer && !renewal))
       return fail(401, "A verified invited account is required.");
     const claims = verifiedSessionClaims(token, user.id);
@@ -112,7 +123,9 @@ export async function POST(request: Request) {
           throw Error(
             "Explicit beta invitation and policy acceptance required",
           );
-        if (renewal) {
+        if (namedTester) {
+          await tx`select private.accept_named_tester(${user.id}::uuid,${claims.sessionId}::uuid,${input.data.country},${input.data.state},${input.data.age},${tx.json(policyVersions)}::jsonb,${input.data.namedTesterVersion!},${input.data.namedTesterRules === true})`;
+        } else if (renewal) {
           await tx`select private.renew_customer_consent(${user.id}::uuid,${claims.sessionId}::uuid,${input.data.country},${input.data.state},${tx.json(policyVersions)}::jsonb)`;
         } else if (customer)
           await tx`select private.accept_customer_admission(${user.id}::uuid,${claims.sessionId}::uuid,${input.data.country},${input.data.state},${input.data.age},${tx.json(policyVersions)}::jsonb)`;
@@ -130,7 +143,7 @@ export async function POST(request: Request) {
         // This explicit final form is the entire required onboarding step.
         // Optional sport/notification preferences can be changed later.
         await tx`insert into private.app_onboarding(user_id,interests) values(${user.id},'both') on conflict do nothing`;
-        await tx`update public.profiles set sports=array['nfl'],timezone='Australia/Sydney',onboarding_completed_at=coalesce(onboarding_completed_at,clock_timestamp()) where id=${user.id}`;
+        await tx`update public.profiles set sports=array['nfl'],timezone=${namedTester ? "America/Los_Angeles" : "Australia/Sydney"},onboarding_completed_at=coalesce(onboarding_completed_at,clock_timestamp()) where id=${user.id}`;
       }
     });
     return NextResponse.json(

@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-15T10:32:13.556Z",
+  "passed": true,
+  "productionWrites": 0,
+  "network": "none",
+  "publishedPorts": 0,
+  "backupAt": "2026-11-15T07:54:55.523Z",
+  "sourceArchiveSha256": "9221e34d239ec0bc46ad3581fef0c89be86645f8b19e721eb1115aee793d934c",
+  "migrationSha256": "2ac2200e3ac1f3e2d8d39c5d23361c7dc7eeab8d2b5ad319fa339e4fdf5ad966",
+  "originalTables": 567,
+  "originalDataPreservedByMigration": true,
+  "unrelatedRecordsPreserved": true,
+  "creditGrantAndPackTestRolledBack": true,
+  "hostedLoginOrConsentClaimed": false,
+  "initialCommandExitCode": 1,
+  "completion": "Read-only verification of the sole expected fixture audit after completed full record comparison; see rehearsal-progress.json",
+  "fixture": {
+    "exactFixtureEvent": 2,
+    "originalEventsUnchanged": true,
+    "controlMatchesExactFixture": true
+  },
+  "checks": [
+    "Existing approved pack dependency reconstructed on the older disconnected snapshot only",
+    "Migration commit and rollback preserve every original table row",
+    "Preparation is one-account only, does not admit or record consent, and refuses accidental replay",
+    "Wrong person, region, age, notice, session and public/direct-write privilege all denied",
+    "Two concurrent acceptances produce one immutable own-session US/CA acceptance",
+    "Profile, display name and distinct consent records persist with California and audit history is immutable",
+    "Revocation and public registration disable the exception; member cannot issue credits",
+    "100,000 free credits, nine-card Standard and Premium packs, retries and lifetime supply verified; financial test rolled back",
+    "All original member audit, unrelated records, balances, cards and custody preserved; one exact local control audit verified separately"
+  ]
+}

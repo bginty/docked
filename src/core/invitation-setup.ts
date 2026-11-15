@@ -17,6 +17,8 @@ export const invitationSetup = z
       .regex(/^[a-f0-9]{64}$/)
       .optional(),
     betaRules: z.boolean().optional(),
+    namedTesterRules: z.boolean().optional(),
+    namedTesterVersion: z.string().max(80).optional(),
   })
   .superRefine((value, context) => {
     if (value.country === "AU" && !australianRegion(value.state))

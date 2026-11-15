@@ -1,0 +1,33 @@
+BRENTON: PERSONAL US PRIVATE TESTING EXCEPTION
+Prepared 15 November 2026 (Australia/Sydney). Not deployed or activated.
+
+Founder direction
+The founder requested support for the existing account, email/password login and approximately 100,000 free test credits, and reported age 34, California and acceptance of terms. These are founder statements, not an authenticated member consent event. The founder separately authorised PREPARING this personal US exception. Production deployment still requires the exact frozen package approval.
+
+Account boundary
+Existing account d6ab4838-7108-4c50-8ab8-c5947ab55bd8 only. Never recreate the user, change the email, make the public display name an email, grant a staff role, add a general US regional policy, alter the ten-tester lifetime limit or claim Australian residence. Existing friends/sport-test identity remains intact. The prior expired customer invitation remains unchanged in history.
+
+Application and database
+One migration introduces an initially empty, private, RLS-protected exception table. It accepts only the pinned existing UUID and US/CA. A separate reviewed support action enables its single row and conditional pack-wallet membership. No account gains gameplay from this preparation alone.
+
+The account's login leads to the existing own-session setup screen with US/CA displayed read-only. The member chooses a public display name and separately accepts age, Terms, Privacy, beta rules and the personal testing notice. The database independently validates user/session, account email binding, ban status, invitation deadline, exact region, current policy versions and the notice version. Concurrent submission is idempotent. Immutable admission events distinguish operator preparation from the member's own acceptance.
+
+The setup invitation lasts seven days from provisioning. Completed test access remains revocable and fails closed when registration or commercial database controls open. Expiry before acceptance requires a new reviewed invitation; no automatic renewal. No policy versions for existing Australian members change.
+
+Password handling
+After the approved application is verified live, use the supported Supabase Auth admin API for this UUID to set a cryptographically generated initial password and administratively confirm access. Record email_ownership_verified=false and founder-authorised provisioning provenance. This is not inbox verification. The operator does not request an invitation email or SMS. Provider security notifications, if configured, remain provider behaviour and must not be represented as a delivery test.
+
+The password is saved only in an ACL-restricted local handoff outside Git before the API call. No credential is printed to chat, logs or the package. The founder shares it privately with Brenton. It is an initial password, not an automatically expiring or one-time password. Brenton should change it privately after login. Uncertain Auth/readback outcomes revoke the named exception and stop automatic retry. Never log in as Brenton or accept his notices for him.
+
+Credits and permanent cards
+The requested target is 100,000 spendable FREE credits. The last read-only check found zero credits and 100,000 remaining in the existing founder campaign. No campaign cap increase is included. Do not blindly add 100,000 if the balance changes. The account operator changes no ledger or balances; it prepares the grant request. Once his own setup passes, execute the normal founder grant using the founder's real MFA-protected session, confirm one ledger result and reconcile the wallet. A lost response must retrieve the same request, never issue another grant.
+
+At that unchanged baseline, this grant would use the campaign's entire remaining allowance. No further campaign capacity is implied or automatically created.
+
+Standard and Premium pack opening uses the current beta pack implementation and lifetime supply bridge. It creates permanent limited cards and consumes lifetime issuance capacity. No automatic pack purchases are authorised. The founder's separately reported pack timeout/performance issue is not fixed or claimed resolved by this admission change.
+
+Unchanged gates
+Public registration, purchased credits, real payments, trading/swaps, prizes, withdrawals, SMS, NBA, real scored competitions and Play publication remain disabled. The existing invited members' founder-credit pack access remains as already approved. No source licence, roster freshness, inventory definition or rarity cap is changed. No new generic California commercial or community eligibility policy is created; regional features outside the reviewed pack-test path continue to deny access.
+
+Evidence limits
+Restored-database and local browser tests do not prove hosted Brenton login, his personal consent or a real hosted pack purchase. Those require the reviewed deployment and his participation. The restored snapshot predates some recent beta purchases; the final Production preflight must preserve the current live totals, not overwrite them with the earlier 888-card baseline.

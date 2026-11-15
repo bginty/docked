@@ -10,6 +10,10 @@ import { useRouter } from "next/navigation";
 import { appSports } from "@/core/app-auth";
 import { australianRegions } from "@/core/australian-region";
 import { useEnvironmentPresentation } from "./environment-context";
+import {
+  namedTesterNotice,
+  type NamedTesterSetup,
+} from "@/core/named-private-tester";
 
 export function AppAuthField({
   label,
@@ -44,10 +48,12 @@ export function AppAuthForm({
   mode,
   customerSetup = false,
   next,
+  namedTester = null,
 }: {
   mode: "login" | "signup" | "recover" | "reset" | "resend" | "complete";
   customerSetup?: boolean;
   next?: string;
+  namedTester?: NamedTesterSetup | null;
 }) {
   const router = useRouter();
   const environment = useEnvironmentPresentation();
@@ -223,15 +229,26 @@ export function AppAuthForm({
               name="country"
               placeholder="AU"
               defaultValue={
-                customerSetup || environment.publicCustomer ? "AU" : undefined
+                namedTester?.country ??
+                (customerSetup || environment.publicCustomer ? "AU" : undefined)
               }
-              readOnly={customerSetup || environment.publicCustomer}
+              readOnly={
+                !!namedTester || customerSetup || environment.publicCustomer
+              }
               autoComplete="country"
               pattern="[A-Z]{2}"
               maxLength={2}
               required
             />
-            {environment.liveBeta || environment.publicCustomer ? (
+            {namedTester ? (
+              <AppAuthField
+                label="State / region"
+                name="state"
+                value="CA"
+                readOnly
+                autoComplete="address-level1"
+              />
+            ) : environment.liveBeta || environment.publicCustomer ? (
               <label className="app-auth-field">
                 <span>State / region</span>
                 <select
@@ -261,6 +278,22 @@ export function AppAuthForm({
               />
             )}
           </div>
+          {namedTester && (
+            <section aria-label="Your private testing invitation">
+              <h2>Your private testing invitation</h2>
+              {namedTesterNotice.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+              <input
+                type="hidden"
+                name="namedTesterVersion"
+                value={namedTester.version}
+              />
+              <Consent name="namedTesterRules" required>
+                I accept this personal private testing exception.
+              </Consent>
+            </section>
+          )}
           <Consent name="age" required>
             I am 18 or older and meet the legal age for my region.
           </Consent>

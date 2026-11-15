@@ -1,0 +1,82 @@
+{
+  "at": "2026-11-15T10:22:15.926Z",
+  "passed": true,
+  "productionWrites": 0,
+  "rls": true,
+  "policies": 0,
+  "functions": [
+    {
+      "name": "accept_named_tester",
+      "settings": [
+        "search_path=\"\""
+      ],
+      "anonymous": false,
+      "betaRuntime": true,
+      "ordinaryApp": false,
+      "authenticated": false,
+      "securityDefiner": true
+    },
+    {
+      "name": "named_tester_authorized",
+      "settings": [
+        "search_path=\"\""
+      ],
+      "anonymous": false,
+      "betaRuntime": false,
+      "ordinaryApp": false,
+      "authenticated": false,
+      "securityDefiner": true
+    },
+    {
+      "name": "named_tester_exception_guard",
+      "settings": [
+        "search_path=\"\""
+      ],
+      "anonymous": false,
+      "betaRuntime": false,
+      "ordinaryApp": false,
+      "authenticated": false,
+      "securityDefiner": false
+    },
+    {
+      "name": "named_tester_exception_serialize",
+      "settings": [
+        "search_path=\"\""
+      ],
+      "anonymous": false,
+      "betaRuntime": false,
+      "ordinaryApp": false,
+      "authenticated": false,
+      "securityDefiner": false
+    },
+    {
+      "name": "named_tester_setup_identity",
+      "settings": [
+        "search_path=\"\""
+      ],
+      "anonymous": false,
+      "betaRuntime": true,
+      "ordinaryApp": false,
+      "authenticated": false,
+      "securityDefiner": true
+    }
+  ],
+  "tableAccess": [
+    {
+      "role": "anon",
+      "allowed": false
+    },
+    {
+      "role": "authenticated",
+      "allowed": false
+    },
+    {
+      "role": "docked_app",
+      "allowed": false
+    },
+    {
+      "role": "docked_beta_app",
+      "allowed": false
+    }
+  ]
+}

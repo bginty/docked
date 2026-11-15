@@ -35,3 +35,22 @@ docs/qa/season-catalogue-20261115/** text eol=lf
 scripts/season-catalogue-*.ts text eol=lf
 scripts/season-catalogue-release.mjs text eol=lf
 scripts/lib/season-catalogue-package.mjs text eol=lf
+
+# Exact named-tester review package: preserve approved bytes on Windows.
+.gitattributes text eol=lf
+supabase/migrations/20261115092124_named_private_tester_exception.sql text eol=lf
+scripts/named-private-tester* text eol=lf
+scripts/lib/named-tester* text eol=lf
+src/core/named-private-tester.ts text eol=lf
+src/core/invitation-setup.ts text eol=lf
+src/server/named-private-tester.ts text eol=lf
+src/app/api/auth/invitation-setup/route.ts text eol=lf
+src/app/app/invitation-setup/page.tsx text eol=lf
+src/components/app-auth-forms.tsx text eol=lf
+tests/platform/named-private-tester.test.ts text eol=lf
+tests/browser/named-private-tester.test.ts text eol=lf
+tests/fixtures/named-private-tester.tsx text eol=lf
+tests/named-private-tester.playwright.config.ts text eol=lf
+tests/database/customer-invitation.test.ts text eol=lf
+docs/qa/brenton-private-tester-20261115/** text eol=lf
+docs/qa/brenton-private-tester-20261115/*.png -text

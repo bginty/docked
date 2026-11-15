@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "scope": "Completed isolated engineering checks; Production deployment and Brenton's personal hosted acceptance are pending",
+  "productionWrites": 0,
+  "platform": {
+    "passed": 11,
+    "files": ["tests/platform/named-private-tester.test.ts", "tests/platform/invitation-setup.test.ts", "tests/platform/auth-invitation.test.ts"]
+  },
+  "databaseRegression": {
+    "passed": 1,
+    "file": "tests/database/customer-invitation.test.ts",
+    "coverage": "Existing Australian customer invitation, cap, verification, own consent and roles through the full migration chain"
+  },
+  "browser": {
+    "distinctFixtureTestsPassed": 6,
+    "evidence": "browser-regression.json",
+    "styledNamedTesterRerunPassed": 2,
+    "styledEvidence": "browser-results.json",
+    "viewports": [390, 1440],
+    "screenshotsVisuallyReviewed": true,
+    "hostedLoginClaimed": false
+  },
+  "restoredDatabase": {
+    "passed": true,
+    "checks": 9,
+    "evidence": "restored-acceptance.json",
+    "snapshotProtectedTables": 561,
+    "tablesAfterExistingDependencyReconstruction": 567,
+    "initialComparisonCorrection": "The first command completed its financial rollback and full table comparison, then rejected the existing-control fixture's expected audit append. The exact append, unchanged original event checksum and original member audit were independently verified read-only. This correction affects the test comparison only; application and migration bytes were unchanged. See rehearsal-progress.json.",
+    "isolatedTargetStopped": true
+  },
+  "permissions": {
+    "passed": true,
+    "evidence": "security-acceptance.json",
+    "newPrivateTableDefaultDeny": true,
+    "newRuntimeEntrypoints": 2
+  },
+  "typecheck": {"command": "npx tsc --noEmit", "exitCode": 0},
+  "lint": {"scope": "All changed TypeScript/JavaScript and the final test-comparison correction", "exitCode": 0},
+  "build": {
+    "command": "npx next build --webpack",
+    "compileTypecheckPrerenderPassed": true,
+    "standaloneTracingComplete": false,
+    "localArtifactApprovedForDeployment": false,
+    "limitation": "The shared external node_modules junction prevents complete standalone tracing. Default Turbopack cannot resolve that external root. A clean protected Vercel build from the frozen Git source is mandatory after approval; never deploy this local artifact."
+  },
+  "liveReadOnlyAccountRecheck": {
+    "existingAccount": true,
+    "emailConfirmed": false,
+    "admission": "reserved",
+    "profileExists": false,
+    "spendableCredits": 0,
+    "remainingFounderCampaign": 100000
+  },
+  "existingLiveSecurityAdvisories": {
+    "newMigrationNotDeployed": true,
+    "rls_enabled_no_policy_INFO": 1,
+    "auth_leaked_password_protection_WARN": 1,
+    "newHostedAdvisorAcceptanceClaimed": false
+  },
+  "remainingAcceptance": [
+    "Exact founder deployment approval, fresh backup/drift checks, clean protected staging and Production verification",
+    "Secure one-account provisioning after the approved source is verified live",
+    "Brenton's own login, age, Terms, Privacy and personal testing notice acceptance",
+    "Existing founder MFA-protected grant to the already-requested 100,000 free-credit target",
+    "Separate resolution of the previously reported pack timeout; this admission change does not claim to fix it"
+  ]
+}

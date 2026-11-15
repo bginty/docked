@@ -1,0 +1,31 @@
+EXECUTION ORDER — EXACT PACKAGE APPROVAL REQUIRED
+
+1. Validate founder approval: source commit, complete package SHA-256, scope and timestamp <=24 hours. Recompute every reviewed file and migration checksum. Stop on changed bytes or expired approval. This preparation approval is NOT deployment permission.
+
+2. Read https://docked.com.au/api/beta-release and Vercel's active alias/deployment independently. Baseline application must match production-baseline.json. Compare all runtime/project values with the latest approved private-beta receipt; preserve them except the candidate commit/deployment identity. Registration, bought credits, commercial controls, trading, SMS and publication remain off.
+
+3. Capture a NEW authenticated encrypted Production backup, restore it with no network/published ports and verify its protected tables. Backup <=1 hour old and deployment preflight <=10 minutes old. Compare the exact changed function definitions/ACLs and admission constraints with production-baseline.json. Account must remain the same ordinary reserved identity, with no profile, consent or unexpected access. Reconcile all current card issuance, serials, ownership, custody, ledger and inventory counts. New legitimate private-beta purchases are preserved as the CURRENT baseline; never restore old totals. Stop for unexplained drift.
+
+4. Apply ONLY 20261115092124_named_private_tester_exception.sql in one transaction with lock_timeout=3s and statement_timeout=30s. No previous migration, inventory import or source adoption is repeated. Validate the new private table has zero rows, RLS is on, runtime has no table writes and only the two reviewed setup/acceptance entry points are granted. Existing function permissions remain unchanged. Hash all existing affected table rows before and after in the same locked transaction. Any difference or failure rolls back the transaction. Record the migration in the existing reviewed migration-history process only after success.
+
+5. Stage the exact Git application source under Vercel deployment protection, using the existing runtime and disabled commercial/public gates. Verify release identity, auth/setup, founder MFA, ordinary Australian members, closed registration/trading/credit purchase endpoints, privacy and nine-card catalogue. Promote only after the complete staged checks pass. No native Android artifact changes. Verify actual Production commit, runtime values, anonymous denials and existing members again.
+
+   Require a clean Vercel build from the frozen Git source. The local webpack build compiled, typechecked and prerendered successfully, but the shared node_modules junction prevented complete standalone file tracing. Do not deploy the local .next artifact or broaden its tracing root to other private worktrees. Hosted staging remains an acceptance step after approval.
+
+6. Provision this account with the reviewed support operator:
+   npx tsx scripts/named-private-tester-account.ts --apply --approval=<private-approval.json> --backup=<fresh-verified-restore-only.json>
+   The approval receipt fields are sourceCommit, packageSha256, approvedAt and scope exactly:
+   Brenton-only private tester deployment and account provisioning
+   The default operator invocation without --apply is read-only.
+   The operator independently requires the approved source to be live, unchanged reviewed bytes, a fresh restored encrypted backup, zero starting credits and sufficient remaining campaign capacity. It prepares only three target-specific access rows and an audit entry, then uses Auth's admin API. It makes no consent, profile, grant or card writes. It stops instead of repeating existing preparation or credentials.
+
+7. Founder retrieves the private local handoff and shares it directly with Brenton. Brenton signs in at https://docked.com.au/app/login and completes his own setup. Verify US/CA, current distinct consents, one immutable acceptance event and ordinary privileges. Do not impersonate him or copy the founder's attestation into his own-consent record.
+
+8. Using the founder's actual MFA-protected credit interface/session, grant the already-requested 100,000-credit target through the existing promotion ledger. Re-read the balance and campaign allowance first. Use one request ID and recover its result on interruption. No cash backing/redemption, purchase or automatic opening. Verify exact wallet delta, journal balance, unchanged other wallets/cards and remaining campaign cap. The proposed grant request is c0956ff1-44ca-4af3-a8ca-468b697a9b67. If a different UI-generated request is used, record that exact request and never execute both.
+
+RECOVERY AND DOWNTIME
+No planned public outage. The new constraints and grant/acceptance serialization require short admission/wallet lock acquisition; abort after three seconds if unavailable, rather than extending the interruption. Stage/promotion follows the existing controlled Vercel procedure. Any observed delays or faults must be reported before promotion.
+
+Before migration commit: transaction rollback leaves no change. After migration but before account activation: leave the empty additive schema and restore only the previous verified application if needed. After account activation: disable only beta_private.named_tester_exception.enabled for this UUID, which immediately blocks new application/pack operations. Preserve the invitation, audit, consent, credits, issued serials and ownership. A new reviewed forward fix is preferred. Do not remove schema/constraints supporting an accepted US/CA record, delete a legitimate card, reverse a credit grant silently or restore a whole database over legitimate concurrent activity.
+
+If Auth mutation is uncertain, keep the generated handoff restricted, revoke the exception, inspect Auth readback and the local receipt; never reset twice automatically. Restoring the previous password is neither possible nor part of rollback. If a credit response is uncertain, reconcile the original request and journal before further action. Existing emergency private-pack/grant switches remain available for a wider genuine incident, without opening or changing public/commercial gates.

@@ -1,0 +1,26 @@
+SINGLE MIGRATION: 20261115092124_named_private_tester_exception.sql
+Exact checksum is frozen in deployment-package.json and DEPLOYMENT_APPROVAL.txt.
+
+Dependencies: the already-deployed beta admission/friends controls, immutable admission events, customer consent functions, commercial_billing.control and founder-credit beta_packs bridge. No original migration is rerun. production-baseline.json records the current definitions, ACLs and admission constraints for drift comparison.
+
+New table: beta_private.named_tester_exception. Initially empty; the UUID is constrained to the single existing account. Country US and state CA are fixed, as is the notice version. Email and notice content are bound by SHA-256; scope fields are immutable. The setup deadline is at most seven days after preparation. Only the enabled flag may change under operator authority. Ordinary row deletion is denied; existing Auth erasure may cascade while admission audit history remains.
+
+Existing table: beta_private.admissions. Three CHECK constraints are replaced to permit this single US/CA identity, while preserving AU requirements for all other accepted users. De-identified suspended/revoked records can retain historical country data without becoming eligible again. No admission rows are changed by the migration.
+
+Replaced functions, preserving existing ACLs:
+- admitted_before_owner_gameplay(uuid): retains existing locking, controls and policy checks; adds the enabled, ordinary, exact-identity exception for US/CA.
+- customer_signup_identity(uuid): keeps the existing ordinary customer path and adds only the current named invitation. It does not renew or alter the expired customer invitation.
+- pending_beta_consent(uuid): recognises a named member who must accept an updated policy, retaining existing protections.
+- profile_admission_guard(): matches the profile to the accepted country's actual state and policy; US/CA requires the named exception.
+
+New functions:
+- named_tester_exception_serialize(), named_tester_exception_guard(): serialize with the existing wallet/admission locks and append operator changes to immutable audit history.
+- named_tester_authorized(uuid): internal exact identity/email/role/ban/control guard. Denies access once public registration or any commercial control opens.
+- named_tester_setup_identity(uuid): authenticated server's eligibility projection; never changes records.
+- accept_named_tester(uuid,uuid,text,text,boolean,jsonb,text,boolean): own active session only; current eligibility and explicit notice acceptance; idempotent concurrent acceptance and policy renewal through the existing consent mechanism.
+
+RLS/permissions: RLS enabled with no default client policy on the new private table. No PUBLIC, anon, authenticated, ordinary app or beta runtime table access. New functions revoke PUBLIC/anon/authenticated/ordinary-app execution. Only named_tester_setup_identity and accept_named_tester are granted to docked_beta_app. Internal SECURITY DEFINER functions use an empty search_path and qualified relations. They are not exposed as public Auth/RPC endpoints. Existing owner MFA and founder-grant functions are unchanged.
+
+Data changes after separate deployment approval: the reviewed support operator adds exactly one named exception, one tester wallet-access row and one pack-membership row, plus preparation audit/control revision. Supabase admin updates only the existing target's password, access confirmation and explicit support metadata. It does not modify age/region/consent/profile or balances. Brenton's own later setup records those choices. Founder credits remain a separate authenticated ledger action after eligibility, using the already-approved target; no cap increase.
+
+Locks/recovery: short exclusive locks on the small admission table for constraint replacement; existing advisory/admission serialization for preparation, revocation and acceptance. Set a three-second lock timeout and roll back instead of forcing an interruption. A failed migration transaction is fully reversible. After acceptance, retain the schema and disable the named exception; preserve all accepted records, serials and balances. No table restoration over later legitimate activity.

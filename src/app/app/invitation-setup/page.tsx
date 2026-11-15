@@ -2,8 +2,9 @@ import { customerOnboardingEnabled } from "@/core/customer-onboarding.mjs";
 import { AppAuthForm } from "@/components/app-auth-forms";
 import { productionInvitationsEnabled } from "@/core/auth-invitation";
 import Link from "next/link";
+import { namedPrivateTesterSetup } from "@/server/named-private-tester";
 
-export default function InvitationSetup() {
+export default async function InvitationSetup() {
   if (!productionInvitationsEnabled(process.env))
     return (
       <>
@@ -25,6 +26,7 @@ export default function InvitationSetup() {
       <AppAuthForm
         mode="complete"
         customerSetup={customerOnboardingEnabled()}
+        namedTester={await namedPrivateTesterSetup()}
       />
     </>
   );
