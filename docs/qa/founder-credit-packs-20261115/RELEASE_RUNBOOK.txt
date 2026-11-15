@@ -41,8 +41,10 @@ EXACT PRIVATE-BETA DEPLOYMENT ORDER — NOT PUBLIC LAUNCH
    import or deployed stable-season migrations.
 
 6. Promote the exact staged application only after checks pass. Verify the actual
-   Production deployment/commit and existing closed controls. Before adoption an
-   app-only rollback to a42004fa is possible after compatibility verification.
+   Production deployment/commit and existing closed controls. Leave the baseline
+   alias intact if staging fails. After promotion, use containment and forward
+   recovery: a42004fa lacks the fixture-trading pause enforcement and, after
+   adoption, also cannot read the new offers safely. It is not an approved rollback.
 
 7. Under advisory lock 71820342, apply the exact private adopt.private.sql once.
    Its five scoped ANALYZE commands prepare first-request query plans inside the
@@ -62,6 +64,9 @@ EXACT PRIVATE-BETA DEPLOYMENT ORDER — NOT PUBLIC LAUNCH
    A 3–5-second lock timeout limits waiting to acquire locks; it does not limit
    their holding time. Review the measured restored timings before scheduling.
    No general maintenance outage is intended.
+   The final isolated configuration statement took 24–26 seconds; total adoption
+   was about 30 seconds. Reserve up to two minutes for wallet-write interruption;
+   general read access can continue. Production timing must be observed.
 
 9. Founder can visit /admin/workspace/rewards with existing MFA, select an admitted
    member and issue a chosen free-credit amount. The user then purchases/opens a
