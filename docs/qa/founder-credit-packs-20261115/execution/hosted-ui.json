@@ -1,0 +1,56 @@
+{
+  "at": "2026-11-15T08:28:01.912Z",
+  "method": "Read-only Chrome inspection through founder's existing authenticated session; no new MFA challenge",
+  "founderScreen": "https://docked.com.au/admin/workspace/rewards",
+  "founderCreditFormEnabled": true,
+  "approvedRecipients": 4,
+  "remainingFreeCreditAllocation": 100000,
+  "grantFormSubmitted": false,
+  "packOffers": {
+    "sports": [
+      "nfl",
+      "afl",
+      "nrl"
+    ],
+    "sizes": [
+      1,
+      3,
+      9
+    ],
+    "standardCredits": [
+      100,
+      300,
+      700
+    ],
+    "premiumCredits": [
+      700,
+      1900,
+      5000
+    ],
+    "purchaseButtonsEnabled": true
+  },
+  "nflOddsObserved": {
+    "standard": {
+      "Rare": 85,
+      "Elite": 12,
+      "Ultra Rare": 2.5,
+      "Legendary": 0.49,
+      "Icon": 0.01
+    },
+    "premium": {
+      "Ultra Rare": 90,
+      "Legendary": 9.9,
+      "Icon": 0.1
+    }
+  },
+  "weeklyCoreEntitlementsVisible": true,
+  "boughtCreditControlsAbsent": true,
+  "nbaSelectorAbsent": true,
+  "financialActionsPerformed": 0,
+  "ordinaryMemberSessionImpersonated": false,
+  "actualHostedGrantOrFulfilmentTest": false,
+  "followups": [
+    "Legacy request-only help text remains below the new working credit form, including obsolete page-wide issuance wording.",
+    "NRL market still renders an old Buy card button. No click or purchase was attempted. Exact deployed server guard rejects trading commands before fixture authorization; reviewed runtime and Production project setting are true. UI cleanup requires a separately reviewed application release."
+  ]
+}

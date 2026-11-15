@@ -1,0 +1,75 @@
+{
+  "at": "2026-11-15T08:14:53.842Z",
+  "phase": "after-new-default-off-migration",
+  "lints": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 233,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "level": "WARN",
+      "count": 1,
+      "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+    }
+  ],
+  "newFindings": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "object": {
+        "name": "control",
+        "type": "table",
+        "schema": "beta_packs"
+      }
+    },
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "object": {
+        "name": "definitions",
+        "type": "table",
+        "schema": "beta_packs"
+      }
+    },
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "object": {
+        "name": "events",
+        "type": "table",
+        "schema": "beta_packs"
+      }
+    },
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "object": {
+        "name": "issued",
+        "type": "table",
+        "schema": "beta_packs"
+      }
+    },
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "object": {
+        "name": "members",
+        "type": "table",
+        "schema": "beta_packs"
+      }
+    },
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "object": {
+        "name": "products",
+        "type": "table",
+        "schema": "beta_packs"
+      }
+    }
+  ],
+  "interpretation": "Six intentional default-deny beta_packs tables. Direct table grants are denied; four narrow runtime functions are independently verified. Existing leaked-password-protection warning unchanged; no new WARN/ERROR findings."
+}

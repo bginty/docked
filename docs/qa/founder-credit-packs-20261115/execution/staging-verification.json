@@ -1,0 +1,188 @@
+{
+  "at": "2026-11-15T08:10:33.411Z",
+  "sourceCommit": "4cfd826bc535f658d9a16c7a5b54d32ffeb07a40",
+  "packageSha256": "e1dd34ce56895bde81d8c187d260ede5b6e898fce6bf0921a79e6e16c09e7af8",
+  "deployment": "dpl_4VL9MFBGv1fKuWeTkiRLJ1eEBuay",
+  "target": "https://docked-production-cg9e4pj1e-briant-s-projects.vercel.app",
+  "live": false,
+  "httpChecks": 28,
+  "deliveredBrowserAssetsScanned": 20,
+  "exactRuntimeSecretValuesAbsent": true,
+  "checks": [
+    {
+      "route": "/account-deletion",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/admin/incidents",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/api/admin/founder-credits",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/admin/founder-credits",
+      "method": "POST",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "POST",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/auth/phone",
+      "method": "POST",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/beta-release",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=afl",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=basketball",
+      "method": "GET",
+      "status": 400,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=nfl",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/fantasy/scoring-history?sport=nrl",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "method": "GET",
+      "status": 401,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=afl",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nrl",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "method": "GET",
+      "status": 403,
+      "pass": true
+    },
+    {
+      "route": "/app/invitation-setup",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/app/login",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/app/signup",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/commercial-policy",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/preview/pack-opening",
+      "method": "GET",
+      "status": 404,
+      "pass": true
+    },
+    {
+      "route": "/privacy",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/profile/qa_billing",
+      "method": "GET",
+      "status": 503,
+      "pass": true
+    },
+    {
+      "route": "/refund-policy",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    },
+    {
+      "route": "/retention",
+      "method": "GET",
+      "status": 200,
+      "pass": true
+    }
+  ],
+  "runtimeSettings": 97,
+  "runtimeRecipeSha256": "1240ad639f17f2cdf976eb23f64e5cef3d3bedf2fe5d6bd8ad03cdcbf1c1f5d8",
+  "hostedSecretValuesReadBack": false,
+  "cronsUnchanged": true,
+  "smsSent": false,
+  "playPublished": false,
+  "financialMutations": 0
+}

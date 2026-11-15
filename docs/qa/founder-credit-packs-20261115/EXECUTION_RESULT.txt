@@ -1,0 +1,101 @@
+PRIVATE-BETA DEPLOYMENT COMPLETED — 15 NOVEMBER 2026
+
+Production source: 4cfd826bc535f658d9a16c7a5b54d32ffeb07a40
+Package: e1dd34ce56895bde81d8c187d260ede5b6e898fce6bf0921a79e6e16c09e7af8
+Deployment: dpl_4VL9MFBGv1fKuWeTkiRLJ1eEBuay
+Promoted: 2026-11-15T08:14:57.483Z
+Private pack/grant activation committed: 2026-11-15T08:20:05.709Z
+Founder response: "Approve this exact private-beta deployment".
+The approval was recorded at 07:26:03 UTC, valid for 24 hours. No repeat approval
+was requested. Existing five migrations, inventory import and earlier approvals
+were not repeated. No native Android artifact changed.
+
+Delivered
+The four frozen invited members can use freely issued credits on the 18 approved
+NFL/AFL/NRL Standard/Premium offers. The founder's new MFA-protected form is at
+https://docked.com.au/admin/workspace/rewards under "Issue free Docked Credits".
+The existing session was accepted. Four recipients and 100,000 credits of remaining
+free allocation were visible. No recipient, amount or reason was chosen; no grant,
+purchase, pack opening, customer balance adjustment or lifetime issuance occurred.
+
+Only the approved new 20261115043326_founder_credit_pack_lifetime_bridge migration
+was installed, with its exact migration-history version. SHA-256:
+27438d7517eb90e5399f5d66f780ee1ee8dec195906a8bc2768217fe38938209
+It was verified default OFF before app promotion. Frozen plan/SQL hashes remained:
+b5a99b11fbcfeffc6180f5b41e2f7aa60528271194a709c281bd3586cca53855
+f82280fd5b382068df57649518f924c0edfd08279679ee0e75583612fe8504da
+Adoption and activation were one guarded transaction, including the five reviewed
+ANALYZE statements. The lock-through-commit interval was 74.906 seconds; this is
+an upper bound for the wallet-write pause and was within the two-minute allowance.
+The schema transaction held its advisory lock through commit for 47.610 seconds.
+
+Final commit checks, with totals/custody rechecked after browser inspection
+- 6,540 original commercial definitions; all remain commercially unapproved.
+- 888 total lifetime-issued copies, all 888 preserved baseline; 0 new beta copies.
+- 906 custody records; custody digest unchanged.
+- 4 private members; 1,210 players; 6,050 bindings; 18 immutable offers.
+- beta_packs.enabled and grants_enabled true.
+- Commercial cards, accounts, receipts and packs all 0; commercial controls OFF.
+- Public flags, real-scored rounds and operational deletion schedules OFF.
+- Six new tables use RLS/default denial; direct public/runtime table access denied;
+  only the four reviewed beta runtime functions are executable.
+- Existing balances, ownership, historical entitlements and protected rows unchanged.
+The authorized private-beta ledger is the sole newly enabled issuance route; it
+shares permanent counters with the dormant commercial ledger. No counter reset.
+
+Verification evidence
+A new native PostgreSQL export was streamed into AES-256-GCM encryption. Capture
+started approximately 07:27 UTC; the archive finalized at 07:54:55 UTC and restored
+at 07:58:39 UTC. Both approved writes completed within one hour of capture start.
+Archive plaintext digest (authenticated, not written to disk):
+9221e34d239ec0bc46ad3581fef0c89be86645f8b19e721eb1115aee793d934c
+All 561 protected restored tables matched. Network NONE, no published ports,
+cron OFF and outbound network worker disabled. Recorded role/schema/table drift checks
+passed before schema/adoption, with only independently verified scheduler
+bookkeeping accepted. No general drift protection was disabled.
+
+Vercel built the exact 997-file source export; no local standalone build was used.
+The staged hostname redirected anonymous requests to Vercel authentication.
+28 staging and 28 live HTTP checks passed. Twenty browser assets were scanned
+against exact server secrets in memory; no exposure found. All 97 runtime settings
+were preserved apart from source metadata and the approved trading pause.
+DOCKED_TEST_MARKET_READ_ONLY=true was also added Production-only to project settings;
+all 43 existing project entries were read back unchanged.
+
+Browser checks showed enabled Standard/Premium 1/3/9-card buttons in NFL/AFL/NRL,
+the approved prices, visible rarity probabilities, existing Weekly Core packs,
+and no purchased-credit controls. No NBA selector appeared. Existing collection
+cards were visible. No other member was impersonated. These read-only hosted
+checks do not claim a hosted grant or pack-fulfilment test; prior restored/
+concurrency/idempotency tests remain the transactional acceptance evidence.
+
+Security advisor: no new WARN/ERROR finding. Six new INFO findings reflect the
+intentional RLS default-deny tables. The prior leaked-password-protection warning
+remains unchanged; see execution/security-before.json and security-after.json.
+
+Non-blocking UI followups (no unapproved app bytes deployed)
+1. The old request-only panel/help text remains below the new working credit form;
+   its page-wide "no credits ... from this page" wording is obsolete. Use the top
+   "Issue free Docked Credits" form. The old request form still records decisions only.
+2. The NRL market still displays an old Buy card button. The deployed server guard
+   rejects list/reprice/buy/review-buy/offer/accept commands before fixture access.
+   Runtime/project read-only settings are true. No trade was attempted to test this.
+   Remove/disable the stale controls in a separately reviewed application update.
+These presentation issues do not grant access or relax the backend trading gate.
+
+Remaining founder-controlled use
+Choose the recipient, amount and reason in the new top form, confirm and submit.
+Members may then buy/open their chosen packs normally. If issuance is uncertain,
+use Retry saved issuance request; do not create a new request to duplicate it.
+Read-only reconciliation of the first actual chosen grant/pack can follow.
+
+Public registration, bought credits, SMS, Google Play publication, real-money
+checkout, commercial activation, marketplace/trading, NBA, prizes, withdrawals,
+scored competitions, deletion schedules and live-key changes remain excluded.
+Public launch remains NO-GO.
+
+Recovery
+Use the reviewed pause-private-packs.sql for containment if required; preserve
+all allocations, balances, ownership and lifetime counters. Keep the compatible
+reader and recover forward. The older a42004fa app is not an approved rollback.
+Encrypted backup and private operator receipts remain ignored/uncommitted.

@@ -1,0 +1,52 @@
+{
+  "at": "2026-11-15T08:20:05.709Z",
+  "sourceCommit": "4cfd826bc535f658d9a16c7a5b54d32ffeb07a40",
+  "packageSha256": "e1dd34ce56895bde81d8c187d260ede5b6e898fce6bf0921a79e6e16c09e7af8",
+  "committed": true,
+  "backup": {
+    "authenticated": true,
+    "capturedAt": "2026-11-15T07:54:55.523Z",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "bytes": 133867963,
+    "plaintextSha256": "9221e34d239ec0bc46ad3581fef0c89be86645f8b19e721eb1115aee793d934c",
+    "tableCount": 563,
+    "plaintextWritten": false
+  },
+  "drift": {
+    "cronRowsAdded": 5,
+    "weeklyZeroIssuanceRowsAdded": 2,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true,
+    "nflPendingReviewRowsAdded": 0
+  },
+  "invariants": {
+    "definitions": 6540,
+    "issued": 888,
+    "baseline": 888,
+    "approved": 0,
+    "commercial_cards": 0,
+    "commercial_accounts": 0,
+    "commercial_packs": 0,
+    "commercial_receipts": 0,
+    "commercial_controls_on": 0,
+    "active_rounds": 0,
+    "active_public_flags": 0,
+    "deletion_schedules_on": 0,
+    "members": 4,
+    "custodyRecords": 906,
+    "custodyDigest": "a1bbdf806cee3f51d870b31f5fcb74d6cae0df93846f34bb4c291ffaae99cb8e",
+    "privatePacks": {
+      "issued": 0,
+      "enabled": true,
+      "members": 4,
+      "players": 1210,
+      "products": 18,
+      "definitions": 6050,
+      "grantsEnabled": true
+    }
+  },
+  "protectedRowsAndCustodyUnchanged": true,
+  "creditsIssued": 0,
+  "cardsIssued": 0,
+  "lockThroughCommitMilliseconds": 74906
+}
