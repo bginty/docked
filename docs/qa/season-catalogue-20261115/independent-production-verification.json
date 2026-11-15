@@ -1,0 +1,52 @@
+{
+  "recordedAt": "2026-11-15T04:04:26.271Z",
+  "sourceCommit": "a42004fa87db16ddb0818b2c479bca6a38ae0645",
+  "deployment": "dpl_F9SkmmpMoYZULiJSTRgSnnJAJ3V2",
+  "verificationSources": [
+    "Vercel deployment lookup for docked.com.au",
+    "Public HTTPS /api/beta-release",
+    "Supabase connector transaction READ ONLY; ROLLBACK"
+  ],
+  "publicRegistration": false,
+  "migrations": [
+    "20261115011415",
+    "20261115011418"
+  ],
+  "pools": [
+    {
+      "sport": "afl",
+      "members": 545,
+      "eligible": 545
+    },
+    {
+      "sport": "nfl",
+      "members": 478,
+      "eligible": 478
+    },
+    {
+      "sport": "nrl",
+      "members": 337,
+      "eligible": 337
+    }
+  ],
+  "catalogueRls": true,
+  "commercialClosed": true,
+  "definitions": 6540,
+  "limitedIssued": 888,
+  "enabledRounds": 0,
+  "enabledFeatureFlags": 0,
+  "runtimeLogScan": {
+    "source": "Vercel connector",
+    "deployment": "dpl_F9SkmmpMoYZULiJSTRgSnnJAJ3V2",
+    "since": "2026-11-15T04:01:00Z",
+    "levels": [
+      "error",
+      "fatal"
+    ],
+    "groupBy": "requestPath",
+    "returnedGroups": 0,
+    "note": "Point-in-time query during post-deployment verification; not a guarantee about subsequent activity."
+  },
+  "productionWrites": 0,
+  "hostedMemberPackOpening": false
+}

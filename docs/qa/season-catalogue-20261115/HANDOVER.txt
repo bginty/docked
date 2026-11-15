@@ -1,40 +1,57 @@
-15 November 2026 — deployment AUTHORIZED, awaiting Vercel authentication.
+15 November 2026 — stable season catalogue deployed and verified.
 
-Implementation source: a42004fa87db16ddb0818b2c479bca6a38ae0645
+Actual Production source: a42004fa87db16ddb0818b2c479bca6a38ae0645
+Deployment: dpl_F9SkmmpMoYZULiJSTRgSnnJAJ3V2
 Package SHA-256: 106249bc5851632ae2d0dcc26cbf91c45d89405a9cab507528c2b6f4aecdaeaf
-User authority: "push to production when done" for this correction only.
+Founder authority: "push to production when done" for this correction only.
+Database committed 04:00:32 UTC; application promoted 04:01:45 UTC.
+Live verification passed 04:02:18 UTC (15:02 Sydney).
+Do not repeat either migration, catalogue adoption or application deployment.
 
-Completed: frozen 478 NFL / 545 AFL / 337 NRL season memberships; independent
-rights restrictions; no roster renewal; unchanged commercial definitions/caps.
-20 NFL identities held for first pool admission, with precise source records.
-Local four-card, paid nine-card, concurrency, rights and browser tests passed.
-Application build, TypeScript and lint passed. Fresh encrypted backup and restored
-exact Git package passed, with all 558 protected tables unchanged and full rollback.
-Production read-only preflight passed, including 6,540 dormant definitions,
-888 limited issued copies, 906 custody records and closed financial/launch gates.
+Verified result
+478 NFL / 545 AFL / 337 NRL approved 2026 memberships are eligible for existing
+private four-card Weekly Core packs. Routine roster age, injury, team changes,
+inactivity and provider outages no longer remove these established identities.
+Genuine retained-use rights restrictions still block new issuance. Original
+evidence dates, historical team and provenance remain intact. The 20 NFL first
+admission cases remain held; see NFL_ADMISSION_REVIEW.txt. No roster renewal or
+new source collection was performed. Core is unlimited; limited lifetime caps
+and existing serials remain unchanged. The Android v31 binary is unchanged.
 
-Not performed: Production migrations/adoption, app staging/promotion, member pack
-opening, source collection, SMS, payment, Play publication or gate activation.
-Vercel's saved CLI token returned HTTP 403 Not authorized. A device login is
-pending in the current session; founder has been asked once to complete it.
-The Vercel connector can inspect the project, but its creation tool does not expose
-the full controls needed to preserve deployment-specific runtime and skip live
-domain assignment. Do not substitute an unverified API deployment.
+Preservation and verification
+Fresh authenticated AES-256-GCM backup captured 03:39:40 UTC, restored with no
+network or outbound jobs. All 558 protected tables matched. The exact Git SQL,
+adoption and migration-history appends passed a fresh transaction/rollback
+rehearsal at 03:58:58 UTC. Production preflight was refreshed at 03:58:03 UTC.
+Only independently checked routine scheduler telemetry advanced before apply.
+All 6,540 dormant definitions, 888 limited issued copies and 906 custody records
+were preserved. No existing pack entitlement changed and no new card was minted.
+Both staging and Production passed 26 route/access checks; 20 delivered browser
+assets contained none of the exact server-secret values. All 97 runtime settings
+were preserved except the source-commit metadata. Independent Vercel, public
+release endpoint and Supabase read-only checks confirmed the deployed result.
+No error/fatal runtime log groups were returned in the post-promotion query;
+this short observation window is not a guarantee about later member activity.
 
-Resume after login, without asking for deployment approval again:
-1. node scripts/season-catalogue-release.mjs prepare
-2. node scripts/season-catalogue-release.mjs stage
-3. Wait for READY, then node scripts/season-catalogue-release.mjs verify-staging
-4. Refresh expired preflight/backup as needed, preserving prior evidence. Backup
-   <=1 hour, preflight <=10 minutes. Operator private JSON files use exclusive
-   creation; archive old evidence before creating a new preflight, never bypass it.
-5. node --import tsx scripts/season-catalogue-production.ts apply
-6. node scripts/season-catalogue-release.mjs promote
-7. node scripts/season-catalogue-release.mjs verify-live
-8. Commit/push execution evidence and report the actual live source. Invite founder
-   to open an existing earned weekly pack; do not mint on their behalf.
+Local recovery
+Docker/WSL stopped responding during the first offline restore. The completed
+encrypted archive was preserved; the stalled local process was stopped and the
+local engine recovered. The incomplete isolated container was recreated, and
+--restore-existing --restore-only verified the same authenticated archive.
+A guarded retry without --restore-existing stopped on EEXIST without replacing
+the archive. No failed local attempt applied Production SQL. Old backup and
+preflight evidence is archived; private diagnostics remain outside Git.
 
-Current encrypted archive is private-data/commercial-restore-20261115; captured
-2026-11-15T01:46:04.741Z, with matching authenticated offline restore. Refresh if
-too old. Prior exact package rehearsal is fresh-package-rehearsal.json.
-All public/commercial gates remain closed. Public launch remains NO-GO.
+Remaining member acceptance
+The operator did not open a real member pack. Founder should refresh Docked and
+open one already-earned Weekly Core pack, confirm four permanent Core cards and
+that reopening/retry shows the same receipt. This member acceptance remains
+unobserved; isolated PostgreSQL concurrency/retry and browser tests passed.
+
+Public registration, SMS, payments, commercial issuance, marketplace, prizes,
+withdrawals and deletion schedules remain disabled. NBA stays hidden and all six
+competitions remain disabled Practice. Google Play was not published. Public
+launch remains NO-GO. See DESIGN.txt, DEPLOYMENT_SCOPE.txt, database-applied.json,
+fresh-package-rehearsal.json and production-verification.json for exact evidence
+and forward-recovery constraints. Do not restore the database over later member
+activity or reverse legitimate cards, serials or earned entitlements.

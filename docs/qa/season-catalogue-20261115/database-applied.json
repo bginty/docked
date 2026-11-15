@@ -1,0 +1,63 @@
+{
+  "at": "2026-11-15T04:00:32.786Z",
+  "sourceCommit": "a42004fa87db16ddb0818b2c479bca6a38ae0645",
+  "packageSha256": "106249bc5851632ae2d0dcc26cbf91c45d89405a9cab507528c2b6f4aecdaeaf",
+  "committed": true,
+  "backup": {
+    "authenticated": true,
+    "capturedAt": "2026-11-15T03:39:40.369Z",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "bytes": 133524237,
+    "plaintextSha256": "092c864afd1c2540d2469cb250c23b5303d6b05faae1f96fc957b16af7da03c0",
+    "tableCount": 560,
+    "plaintextWritten": false
+  },
+  "baseline": {
+    "definitions": 6540,
+    "issued": 888,
+    "approved": 0,
+    "cards": 0,
+    "packs": 0,
+    "accounts": 0,
+    "receipts": 0,
+    "closed": 1,
+    "activeRounds": 0,
+    "activeFlags": 0,
+    "deletionSchedules": 0,
+    "custodyRecords": 906,
+    "custodyDigest": "a1bbdf806cee3f51d870b31f5fcb74d6cae0df93846f34bb4c291ffaae99cb8e",
+    "pool": [
+      {
+        "sport": "afl",
+        "members": 545,
+        "eligible": 545
+      },
+      {
+        "sport": "nfl",
+        "members": 478,
+        "eligible": 478
+      },
+      {
+        "sport": "nrl",
+        "members": 337,
+        "eligible": 337
+      }
+    ]
+  },
+  "drift": {
+    "cronRowsAdded": 12,
+    "weeklyZeroIssuanceRowsAdded": 6,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true
+  },
+  "schemaAfter": {
+    "fingerprint": "d23eac5f77e6751af3716286d9069587",
+    "objects": 10218
+  },
+  "existingRowsUnchanged": true,
+  "newMemberships": 1360,
+  "heldNflCandidates": 20,
+  "newSourceCollections": 0,
+  "commercialWrites": 0,
+  "newCards": 0
+}
