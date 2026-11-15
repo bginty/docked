@@ -627,6 +627,36 @@ async function mainRun() {
     (await local("select current_setting('pg_net.database_name');")).trim(),
     "network_worker_disabled",
   );
+  // Read-only release backup mode. Authenticate and verify every restored table,
+  // then stop before any old or new migration is rehearsed.
+  if (process.argv.includes("--restore-only")) {
+    const report = {
+      at: new Date().toISOString(),
+      backupAt: manifest.at,
+      sourceProject: manifest.project,
+      archiveSha256: manifest.sha256,
+      archiveBytes: manifest.bytes,
+      encryptedAtRest: "AES-256-GCM",
+      restoreTarget: target,
+      network: "none",
+      publishedPorts: 0,
+      restored: true,
+      protectedTables: protectedNames.length,
+      protectedRecordsUnchanged: true,
+      migrationsReapplied: false,
+      productionWrites: 0,
+      cronActive: false,
+    };
+    await writeFile(
+      evidence + "/restore-only.json",
+      JSON.stringify(report, null, 2),
+    );
+    console.log(JSON.stringify(report));
+    if (!keepIsolatedTarget) await run(["stop", target]);
+    createdTarget = false;
+    key.fill(0);
+    return;
+  }
   const previewRounds = previewRestore
     ? (JSON.parse(
         (

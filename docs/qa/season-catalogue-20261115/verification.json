@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-15T01:39:59.350970+00:00",
+  "productionWrites": 0,
+  "weeklyDatabase": {
+    "engine": "isolated PostgreSQL 17.10",
+    "passed": true,
+    "concurrentRequestsPerSport": 6,
+    "sports": [
+      "nfl",
+      "afl",
+      "nrl"
+    ],
+    "fourCoreCards": true,
+    "unopenedOldEntitlements": true,
+    "staleEvidenceAndInactiveTransferredPlayers": true,
+    "priorOwnershipPreserved": true,
+    "rightsExpiryRevocationAndScope": true,
+    "immutableHistoryAndNoApiGrants": true,
+    "coreBeyondLegacyCeiling": true
+  },
+  "platformTests": {
+    "passed": 4,
+    "providerOutageAndExpiredCollectionPermit": true
+  },
+  "browserTests": {
+    "passed": 6,
+    "engine": "isolated Chrome Playwright fixtures"
+  },
+  "paidPackRegression": "commercial-regression/postgres.json",
+  "applicationBuild": {
+    "passed": true,
+    "command": "node node_modules/next/dist/bin/next build --webpack",
+    "note": "Shared node_modules local build only; normal clean hosted build required. No standalone upload."
+  },
+  "lint": true,
+  "typecheck": true,
+  "hostedMemberPackOpening": false,
+  "smsSent": false,
+  "paymentsActivated": false
+}

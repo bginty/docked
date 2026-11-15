@@ -1,0 +1,63 @@
+Authorisation: founder instruction "push to production when done" received during
+this stable-catalogue correction on 15 November 2026. This authorises deployment
+of the completed correction, not commercial/public launch or the held 20 entries.
+The earlier rolling-roster package is superseded, not reused as authority.
+
+Exact source/file hashes are frozen in production-package.json. Preserve its
+bytes and reviewed exported source. No uncommitted source or local standalone
+build is deployed. Target: docked-production / prj_l0rpVDPRuIRp9UcBUkudeyUK5yST,
+team_tf6xweKKyVCj9bTppUKttJ4l; database pojoymtniryarxxunyvz only.
+Base: 260fe3399f1eacf03915c227216a1bab10d7b4d9,
+dpl_Foja51Pk9DV5WtPtsa61MRdZ7JUV.
+
+Order
+1. Complete local SQL, restored snapshot, browser, lint/type and application build.
+2. Fresh authenticated encrypted Production backup, restored offline with all
+   protected rows verified. Existing backup key only; no rotation or IAM changes.
+3. Export the frozen source and preserve EVERY current runtime setting; only the
+   source-commit metadata changes. Stage a Production build without assigning the
+   live domain. Verify the protected deployment, 26 route/access/closed-gate checks
+   and delivered browser assets. Native v31 and Play settings are unchanged.
+4. Fresh Production preflight (<=10 minutes), encrypted backup <=1 hour old.
+   Check baseline functions, full schema, roles, restricted outbox, source identities,
+   lifetime/custody totals and all existing table checksums. Reject unexplained
+   changes. Only independently verified existing scheduler telemetry may advance;
+   no failure, source-body purge or altered historical audit is implicitly allowed.
+5. Apply in one transaction, in this order:
+   20261115011415_approved_season_catalogue.sql
+   20261115011418_season_catalogue_pack_eligibility.sql
+   adopt-catalogue.sql (exact 478 NFL + 545 AFL + 337 NRL memberships)
+   Record these two migration versions only. Never repeat the original seven.
+6. Verify no old cards, serials, custody, entitlements, source timestamps, commercial
+   definitions or controls changed. New rights/members only; no minted cards.
+7. Promote only the verified staged application. Verify the actual Production
+   source, same runtime settings, all closed gates and 478/545/337 eligible pools.
+
+Expected writes/permissions
+New private season_catalogue rights/members/decisions tables; 3 source-use grants,
+1,360 immutable memberships; RLS enabled, no app/API/service/worker direct grants.
+SECURITY DEFINER eligibility has fixed empty search_path and no public execute.
+Replace two existing weekly-open functions, the existing NFL mint trigger function
+and Core card guard; adjust only the Core side of the edition issued ceiling.
+Existing function execute permissions are preserved. Add two migration records.
+No existing ownership/data row is changed by this deployment.
+
+Downtime and recovery
+No planned site outage. Use 3-second lock timeout; perform expensive read-only
+drift checks before acquiring the reward lock. Weekly openings may briefly wait
+while the atomic DDL/adoption commits. A failed transaction rolls back completely.
+App-only rollback to the verified base is compatible with the new SQL receipt
+shape and does not delete catalogue entries or cards. Do not restore the entire
+database over customer activity. After any opening, preserve all receipts/serials;
+forward repair is preferred. Never restore the old Core ceiling if issued exceeds
+it. If new issuance must be stopped, record an authorised explicit catalogue hold
+or use the existing weekly programme emergency control; keep earned packs saved.
+Before SQL commit, rollback is exact; after new legitimate openings, reversal of
+cards or entitlements is prohibited. New rights decisions are append-only.
+
+Unchanged: public registration, SMS/Phone provider, payments, commercial issuance,
+trading, prizes, withdrawals, deletion schedules OFF. NBA hidden; six competitions
+disabled Practice. No Play publication, policy submission, commercial import,
+new identity admission, source collection renewal or live-key changes.
+Existing invited members may open their already-earned FREE four-Core packs.
+Public launch remains NO-GO.

@@ -1,10 +1,9 @@
 import postgame from "../../config/nfl-postgame-permit.json";
-import roster from "../../config/nfl-roster-permit.json";
 
-/** The roster review is separate from statistics/scoring. Deploying its reviewed
- * renewal must never renew the expired play-by-play or weekly-statistics permit. */
+/** Collection approval remains independent of retained season-catalogue use.
+ * No rolling renewal is implied by deploying the catalogue correction. */
 export function nflCollectionPermit(
-  task: "weekly" | "pbp" | "rosters" | "reconcile",
+  _task: "weekly" | "pbp" | "rosters" | "reconcile",
 ) {
-  return task === "rosters" ? roster : postgame;
+  return postgame;
 }

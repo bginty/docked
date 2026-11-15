@@ -2,7 +2,7 @@
  * Unknown server, database and network errors keep the generic recovery message. */
 export const packOpeningMessages = {
   WEEKLY_POOL_UNAVAILABLE:
-    "Your weekly pack is saved. Opening is temporarily unavailable while the player list is refreshed. Please try again later.",
+    "Your weekly pack is saved. Opening is temporarily unavailable for this card pool. Please try again later.",
   AUTH_REQUIRED: "Sign in again to open your saved pack.",
   MFA_REQUIRED: "Complete account verification to open your saved pack.",
 } as const;

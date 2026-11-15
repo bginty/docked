@@ -184,7 +184,15 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
         `insert into sports_feed.raw_revisions(provider,resource,body_hash,body,observed_at,rights_evidence,expires_at)values('synthetic','weekly','weekly','{}',clock_timestamp(),'isolated QA',clock_timestamp()+interval '1 day')returning id`,
       )
     )[0].id;
-    let heldPlayer = "";
+    const cataloguePlayers: {
+      player: string;
+      edition: string;
+      pos: string;
+      i: number;
+    }[] = [];
+    await q(
+      "insert into season_catalogue.rights values('fixture-nfl','nfl','2026','free_weekly','2000-01-01',null,'{\"scope\":\"isolated fixture\"}','Isolated synthetic catalogue approval')",
+    );
     for (const [i, pos] of ["QB", "RB", "WR", "TE", "K", "WR"].entries()) {
       const player = randomUUID(),
         edition = randomUUID();
@@ -193,7 +201,7 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
         [player, `Synthetic weekly ${i}`, pos],
       );
       await q(
-        "insert into beta_fantasy.editions(id,player_id,tier,season,kind,max_supply,status)values($1,$2,'CORE','2026','regular',1000000,'launched')",
+        "insert into beta_fantasy.editions(id,player_id,tier,season,kind,max_supply,status)values($1,$2,'CORE','2026','regular',1,'launched')",
         [edition, player],
       );
       await q(
@@ -209,7 +217,7 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
           i === 5 ? "practice-squad" : i === 3 ? "reserve" : "active",
         ],
       );
-      if (i === 3) heldPlayer = player;
+      if (i < 4) cataloguePlayers.push({ player, edition, pos, i });
     }
     await pg.exec("update nfl_roster.control set enabled=true");
     const pack = first.packs[0].id,
@@ -246,30 +254,40 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
       (await q("select count(*)::int n from beta_fantasy.requests"))[0].n,
       0,
     );
-    // Only synthetic fixture observations are refreshed here. Production source
-    // evidence must come from a genuine approved provider refresh.
+    // Approval is separate from observing a row. Adopt four explicit fixture
+    // identities, including an injured/reserve player; leave two unapproved.
+    for (const p of cataloguePlayers)
+      await q(
+        `insert into season_catalogue.members values('nfl','2026',$1,'free_weekly','fixture-nfl','synthetic',($1::uuid)::text,$2::text::jsonb,$3,'{}',repeat('a',64),'Isolated prior season identity approval')`,
+        [
+          p.player,
+          JSON.stringify({
+            name: `Synthetic weekly ${p.i}`,
+            position: p.pos,
+            currentTeam: "ORIGINAL",
+            colour: "#1677FF",
+            shirt: 1,
+            status: p.i === 3 ? "injured" : "active",
+          }),
+          p.edition,
+        ],
+      );
     await pg.exec(
-      "update sports_feed.nfl_players set observed_at=clock_timestamp()",
+      "update sports_feed.nfl_players set current_team='TRANSFERRED',source_status='RES'; update beta_fantasy.players set team='TRANSFERRED',status='injured'",
     );
-    await assert.rejects(() => open(), /Four eligible Core players/);
-    assert.equal(
-      (await q("select count(*)::int n from beta_fantasy.cards"))[0].n,
-      0,
-      "incomplete official pool rolls all draws back",
+    const staleSources = await q(
+      "select to_jsonb(p) p from sports_feed.nfl_players p order by player_id",
     );
     assert.equal(
       (
         await q(
-          "select receipt from sports_feed.weekly_core_packs where id=$1",
-          [pack],
+          "select count(*)::int n from sports_feed.nfl_players where observed_at>clock_timestamp()-interval '72 hours'",
         )
-      )[0].receipt,
-      null,
+      )[0].n,
+      0,
     );
-    await q(
-      "insert into nfl_roster.observations values($1,'weekly-3','TEST','TE','active',true,'https://www.nfl.com/',repeat('b',64),clock_timestamp(),'{}')",
-      [heldPlayer],
-    );
+    // Provider and current status are deliberately unavailable for acquisition.
+    // Original observations are not rewritten and old unopened packs still open.
     if (racing) {
       const opened = await Promise.all(
         Array.from({ length: 6 }, () =>
@@ -339,9 +357,37 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
       receipt.cards.map((c: any) => c.player_id).sort(),
       "same pool, no owned-player exclusion",
     );
-    // Only three eligible players: any partial mints must roll back with the entire operation.
+    assert.deepEqual(
+      await q(
+        "select to_jsonb(p) p from sports_feed.nfl_players p order by player_id",
+      ),
+      staleSources,
+      "opening never changes evidence timestamps",
+    );
+    assert.ok(
+      (
+        await q(
+          "select issued,max_supply from beta_fantasy.editions where issued>max_supply",
+        )
+      ).length === 4,
+      "Core remains unlimited beyond the legacy display ceiling",
+    );
+    // Retirement/transfer is not a rights revocation or an identity correction.
     await pg.exec(
       "update sports_feed.nfl_players set source_status='RET' where player_id=(select id from beta_fantasy.players where position='QB')",
+    );
+    assert.equal(
+      (
+        await q(
+          "select season_catalogue.can_issue('nfl','2026',$1,'free_weekly') ok",
+          [cataloguePlayers[0].player],
+        )
+      )[0].ok,
+      true,
+    );
+    await q(
+      "insert into season_catalogue.decisions(rights_id,player_id,blocked,reason,authority_reference) values('fixture-nfl',$1,true,'Explicit source rights restriction','Isolated authorised rights decision')",
+      [cataloguePlayers[0].player],
     );
     const before = (
       await q("select count(*)::int n from beta_fantasy.cards")
@@ -360,6 +406,59 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
       ).openedAt,
       null,
     );
+    // Previously completed receipt remains accessible after a rights restriction.
+    await read(users[0]);
+    assert.deepEqual(await open(pack, randomUUID()), receipt);
+    await assert.rejects(
+      () => q("update season_catalogue.members set snapshot='{}'"),
+      /immutable/i,
+    );
+    await assert.rejects(
+      () => q("delete from season_catalogue.rights"),
+      /immutable/i,
+    );
+    await assert.rejects(
+      () => q("truncate season_catalogue.decisions"),
+      /immutable/i,
+    );
+    await q(
+      "insert into season_catalogue.rights values('expired-fixture','nfl','2025','free_weekly','2000-01-01','2001-01-01','{}','Isolated expired source use rights')",
+    );
+    await q(
+      "insert into season_catalogue.members select sport,'2025',player_id,scope,'expired-fixture',provider,provider_id,snapshot,edition_id,evidence,evidence_sha256,approval_reference from season_catalogue.members where sport='nfl'",
+    );
+    assert.equal(
+      (
+        await q(
+          "select season_catalogue.can_issue('nfl','2025',$1,'free_weekly') ok",
+          [cataloguePlayers[1].player],
+        )
+      )[0].ok,
+      false,
+      "genuine source-use expiry is enforced",
+    );
+    assert.equal(
+      (
+        await q(
+          "select season_catalogue.can_issue('nfl','2026',$1,'commercial') ok",
+          [cataloguePlayers[1].player],
+        )
+      )[0].ok,
+      false,
+      "free rights never imply commercial rights",
+    );
+    await q(
+      "insert into season_catalogue.decisions(rights_id,blocked,reason,authority_reference)values('fixture-nfl',true,'Explicit provider licence revoked','Isolated authorised full revocation')",
+    );
+    assert.equal(
+      (
+        await q(
+          "select season_catalogue.can_issue('nfl','2026',$1,'free_weekly') ok",
+          [cataloguePlayers[1].player],
+        )
+      )[0].ok,
+      false,
+    );
     await assert.rejects(
       () =>
         q(
@@ -375,7 +474,23 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
         ]),
       /only open once/,
     );
-    for (const role of ["anon", "authenticated", "docked_beta_app"]) {
+    for (const role of [
+      "anon",
+      "authenticated",
+      "docked_beta_app",
+      "service_role",
+      "docked_commercial_app",
+    ]) {
+      for (const table of ["members", "rights", "decisions"])
+        assert.equal(
+          (
+            await q(
+              "select has_table_privilege($1,$2,'SELECT,INSERT,UPDATE,DELETE,TRUNCATE') allowed",
+              [role, "season_catalogue." + table],
+            )
+          )[0].allowed,
+          false,
+        );
       assert.equal(
         (
           await q(
@@ -427,13 +542,33 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
       [users[0]],
     );
     for (const sport of ["afl", "nrl"]) {
+      await q(
+        "insert into season_catalogue.rights values($1,$2,'2026','free_weekly','2000-01-01',null,'{}','Isolated roster snapshot use approval')",
+        [sport + "-fixture", sport],
+      );
       for (const player of roster.players
         .filter((p) => p.sport === sport)
-        .slice(0, 4))
+        .slice(0, 4)) {
         await q(
           "insert into credits_sandbox.nba_fixture_players(id,identity)values($1,$2::text::jsonb)",
           [player.id, JSON.stringify(player)],
         );
+        await q(
+          "insert into season_catalogue.members values($1,'2026',$2,'free_weekly',$3,$4,$5,$6::text::jsonb,null,'{}',repeat('b',64),'Isolated previously verified player approval')",
+          [
+            sport,
+            player.fixturePlayerId,
+            sport + "-fixture",
+            player.provider,
+            player.providerId,
+            JSON.stringify({
+              ...player,
+              status: "injured",
+              currentTeam: "historical team",
+            }),
+          ],
+        );
+      }
       await q(
         "select set_config('request.jwt.claim.sub',$1,false),set_config('docked.private_beta_sport',$2,false)",
         [users[0], sport],

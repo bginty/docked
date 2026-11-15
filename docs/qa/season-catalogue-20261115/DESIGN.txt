@@ -1,0 +1,87 @@
+DOCKED — stable season catalogue correction, 15 November 2026
+
+Root cause
+The NFL weekly query required both nflverse observations and official roster
+evidence within 72 hours, and current active status. A card-insert trigger repeated
+the official check. Once collection stopped, 498 candidates became zero eligible.
+The collection review expired on 10 November. ba5154ec proposed another short
+roster collection window; that would only postpone this same failure.
+
+Separate responsibilities
+1. Season membership: immutable approved identity snapshot, canonical player ID,
+   provider ID, position, historical team, original evidence and approval reference.
+2. Scarcity: existing lifetime commercial definitions/counters, provider-identity
+   uniqueness, serial locks and legacy consumption. Season membership never resets
+   a counter. Rare 5,000; Elite 2,500; Ultra Rare 400; Legendary 50; Icon 1.
+   Core is unlimited; the old NFL Core edition ceiling is no longer an issuance
+   cap. Existing serials stay intact and subsequent Core serials remain sequential.
+3. Participation: current team, injury, reserve, release and transfer observations
+   stay in their original live tables. They do not edit approved card snapshots.
+4. Statistics/scoring: existing provider, freshness, fixture and permission checks
+   remain authoritative. The six disabled Practice competitions are unchanged.
+5. Rights: immutable scoped source-use grants plus append-only identity/rights
+   restrictions. Actual expiry/revocation blocks new draws; existing ownership and
+   receipts remain readable. Collection permission is a separate prerequisite to
+   fetching new material. Missing provider responses do not revoke membership.
+
+Established pool
+478 NFL identities match the permanent registry and launched 2026 Core edition,
+retained verified official identity/position evidence, and demonstrated prior
+acquisition eligibility. Normalisation reuses the existing QB/RB/WR/TE mapping,
+including approved FB/HB and dual-role mappings. This is not approval of all 498.
+20 identities have verified historical evidence but no demonstrated prior pool
+admission: 9 reserve, 8 practice-squad, 3 released. They remain held, with exact IDs,
+source URLs, dates and hashes in NFL_ADMISSION_REVIEW.txt. Inclusion is a separate
+first admission decision; ownership of any existing cards is unaffected.
+545 AFL and 337 NRL identities reuse the existing verified roster/profile registry
+and its immutable source revisions. No new player identity is fabricated.
+The catalogue is explicitly 2026. A subsequent season requires an approved new
+catalogue/version; it must not silently replace the pool for old entitlements.
+
+Free and paid issuance
+The proposed 1,360 memberships authorise only the existing private free Weekly
+Core paths (four cards). No live provider call occurs during opening. Prior
+request/pack receipts are checked before drawing, and the existing transaction,
+per-pack locks and global reward lock prevent partial or duplicate awards.
+The insert trigger uses the same source-use check for non-transferable NFL Core.
+Other limited/transferable legacy paths retain their prior safeguards.
+
+Commercial definitions already provide immutable approved inventory independent of
+live roster freshness. Keep that implementation, its lifetime-per-player key,
+source snapshots, separate approved flag and time-bound commercial rights gate.
+Do not promote free beta source grants into commercial permission. All 6,540
+definitions and all 888 legacy copies remain unchanged/dormant. This correction
+does not revisit the separately frozen commercial source exclusions or import.
+Nine-card purchases, all 18 product configurations, funding rollback, exact odds
+and concurrent last-serial protection passed the real PostgreSQL regression.
+
+Rights and the proposed 22 November renewal
+nflverse publishes its data under CC BY 4.0; the retained Australian factual
+snapshots carry CC BY-SA 4.0 attribution and revision provenance. These licences
+permit continuing use subject to their terms. This does not establish all player
+publicity, trademark, imagery or commercial-card rights. No logos, images, live
+statistics rights or commercial permission are granted by this correction.
+https://github.com/nflverse/nflverse-data/blob/main/LICENSE.md
+https://creativecommons.org/licenses/by/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/
+
+The 22 November extension is removed. A valid collection review is still required
+before fresh roster/statistics collection resumes, but no particular 22 November
+deadline is needed to open the approved retained pool. Expired collection remains
+blocked; raw retention/deletion and scheduler definitions are unchanged. A genuine
+restriction on retained source use must be recorded as a rights decision, which
+blocks issuance without rewriting history or pretending a timestamp is fresh.
+
+Verification
+Real PostgreSQL: full migration chain, four-card openings for all three sports,
+six concurrent calls per sport, old unopened entitlements, existing ownership,
+stale feed/official evidence, inactive and transferred identities, explicit rights
+revocation, expiry and scope restrictions, immutable audit rows and no API grants.
+Core issuance was tested beyond the legacy edition ceiling with unique serials.
+Paid regression: all 18 products, nine-card delivery, 10,000 rarity ticket outcomes,
+failure after seven allocations rolls back everything, 20 competing buyers issue
+the final serial once, balanced journals and no negative spendable balance.
+Browser: six reveal/retry/accessibility cases passed in isolated Chrome fixtures.
+Restored Production: all 558 existing tables and custody hash unchanged through
+the full migration/adoption transaction and rollback rehearsal. No hosted opening
+or real payment/SMS acceptance is inferred from these isolated tests.

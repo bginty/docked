@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-15T01:30:40.440Z",
+  "source": "docked-commercial-restore-20261113c",
+  "target": "docked-season-catalogue-20261115",
+  "hostedChanges": false,
+  "protectedTables": 558,
+  "allExistingRowsUnchanged": true,
+  "custodySha256": "1218a041d109e04ec0172c8717aec4ac6754aae4caf3c0c1c79bf72b49805ace",
+  "pool": [
+    {
+      "sport": "afl",
+      "members": 545,
+      "eligible": 545
+    },
+    {
+      "sport": "nfl",
+      "members": 478,
+      "eligible": 478
+    },
+    {
+      "sport": "nrl",
+      "members": 337,
+      "eligible": 337
+    }
+  ],
+  "inventory": {
+    "issued": 888,
+    "approved": 0,
+    "definitions": 6540
+  },
+  "permissions": {
+    "rls": true,
+    "publicGrants": 0
+  },
+  "transactionRollbackPassed": true,
+  "migrationHashes": [
+    {
+      "file": "20261115011415_approved_season_catalogue.sql",
+      "sha256": "6810517a0508535ea0e87d1ae7c59779388d36aa8796047fc66901c6da6d3640"
+    },
+    {
+      "file": "20261115011418_season_catalogue_pack_eligibility.sql",
+      "sha256": "523eedb503bf045cb11afac49971405a8736b03789dd34cec0ae6dad8dc34f3f"
+    }
+  ],
+  "adoptionSha256": "2c34d2a49770fabacb48c62c8de40a0e1eea3b29d328a540be3028d699faea8e"
+}
