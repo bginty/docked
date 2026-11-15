@@ -1,0 +1,20 @@
+{
+  "scope": "non-production verification; no hosted opening or source refresh",
+  "platformTestsPassed": 15,
+  "browserCasesPassed": 6,
+  "database": "PASS: real isolated PostgreSQL; stale feed rollback; same-request recovery; six concurrent opens per sport; receipts/private ownership preserved",
+  "typescript": "passed",
+  "changedFileLint": "passed",
+  "build": {
+    "command": "node node_modules/next/dist/bin/next build --webpack",
+    "exitCode": 0,
+    "limitation": "Shared node_modules junction prevents default Turbopack and complete standalone tracing. Do not deploy local output; exact-source Vercel build/staging required."
+  },
+  "browserRuntime": "Installed Chrome with isolated Playwright fixtures. Bundled headless executable absent. No founder browser session or hosted mutations.",
+  "productionChanged": false,
+  "sourceReview": "355 projected eligible weekly players; 29 official team pages checked; 3 unavailable remain excluded",
+  "initialHarnessFindings": [
+    "Database fixture lacked already-required Auth unique phone columns; test fixture corrected only.",
+    "Default Playwright browser binary absent; installed Chrome isolated test channel used."
+  ]
+}

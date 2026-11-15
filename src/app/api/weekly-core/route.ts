@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { sameOrigin } from "@/server/auth";
 import { weeklyCore } from "@/server/weekly-core";
 import { boundedCommunityBody } from "@/core/community-social";
+import { packOpeningMessages } from "@/core/pack-opening-error";
 const headers = { "Cache-Control": "private, no-store" };
 export const runtime = "nodejs";
 export async function GET(req: Request) {
@@ -53,14 +54,31 @@ export async function POST(req: Request) {
   } catch (error) {
     if (error instanceof Error && error.message === "Authentication required")
       return NextResponse.json(
-        { error: "Sign in to open your weekly pack." },
+        { code: "AUTH_REQUIRED", error: packOpeningMessages.AUTH_REQUIRED },
         { status: 401, headers },
       );
     if (error instanceof Error && error.message === "Privileged MFA required")
       return NextResponse.json(
-        { error: "Complete verification to open your weekly pack." },
+        { code: "MFA_REQUIRED", error: packOpeningMessages.MFA_REQUIRED },
         { status: 403, headers },
       );
+    if (
+      error instanceof Error &&
+      [
+        "Four eligible Core players are not available. Your pack is still unopened.",
+        "Four verified Core players are not available. Your pack is still unopened.",
+      ].includes(error.message)
+    ) {
+      console.warn("weekly_core_open_failed", { reason: "POOL_UNAVAILABLE" });
+      return NextResponse.json(
+        {
+          code: "WEEKLY_POOL_UNAVAILABLE",
+          error: packOpeningMessages.WEEKLY_POOL_UNAVAILABLE,
+        },
+        { status: 503, headers },
+      );
+    }
+    console.warn("weekly_core_open_failed", { reason: "UNCONFIRMED" });
     return NextResponse.json(
       {
         error:

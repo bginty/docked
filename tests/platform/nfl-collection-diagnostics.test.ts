@@ -7,6 +7,10 @@ import {
 } from "../../src/server/nfl-collection-diagnostics";
 test("source diagnostics are bounded codes, not raw error or credential text", () => {
   assert.equal(
+    collectionDiagnostic(new Error("Post-game source review expired")),
+    "SOURCE_REVIEW_EXPIRED",
+  );
+  assert.equal(
     collectionDiagnostic(new Error("NFL source HTTP 403")),
     "NFL_SOURCE_HTTP_403",
   );

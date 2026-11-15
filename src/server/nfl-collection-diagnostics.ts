@@ -18,6 +18,7 @@ export function collectionDiagnostic(error: unknown): string {
   if (/^NFL source HTTP [1-5][0-9]{2}$/.test(error.message))
     return error.message.replaceAll(" ", "_").toUpperCase();
   const known: Record<string, string> = {
+    "Post-game source review expired": "SOURCE_REVIEW_EXPIRED",
     "Unexpected source redirect": "SOURCE_REDIRECT_REJECTED",
     "Unexpected NFL content type": "SOURCE_CONTENT_TYPE_REJECTED",
     "Missing source body": "SOURCE_BODY_MISSING",
@@ -26,10 +27,12 @@ export function collectionDiagnostic(error: unknown): string {
     "304 without retained evidence": "SOURCE_304_WITHOUT_EVIDENCE",
     "Lost source lease": "SOURCE_LEASE_LOST",
     "Retained source unavailable": "RETAINED_SOURCE_UNAVAILABLE",
-    "Duplicate/mismatched player or fixture row": "INVALID_PLAYER_OR_FIXTURE_ROW",
+    "Duplicate/mismatched player or fixture row":
+      "INVALID_PLAYER_OR_FIXTURE_ROW",
     "Frozen mapping changed": "FROZEN_MAPPING_REVIEW_REQUIRED",
     "Frozen fixture mismatch": "FROZEN_FIXTURE_REVIEW_REQUIRED",
-    "Retained NFL source expired during reconciliation": "RETAINED_SOURCE_EXPIRED",
+    "Retained NFL source expired during reconciliation":
+      "RETAINED_SOURCE_EXPIRED",
     "Buffer is not defined": "RUNTIME_BUFFER_UNAVAILABLE",
   };
   return known[error.message] ?? "UNCLASSIFIED";

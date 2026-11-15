@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { boundedFetch } from "@/core/bounded-request";
 import { weeklyCountdown, type WeeklyCoreView } from "@/core/weekly-core";
+import { packOpeningError } from "@/core/pack-opening-error";
 import type { AwardedCard, PackReceipt } from "@/core/pack-opening";
 import { useServerClock } from "./use-server-clock";
 import { PackArtwork } from "./pack-artwork";
@@ -129,8 +130,11 @@ export function WeeklyCorePanel({
         data.state?.member !== member ||
         data.receipt?.id !== selected.id
       )
-        throw Error(
-          data.error || "Unable to confirm opening. Retry this pack safely.",
+        throw (
+          packOpeningError(data.code) ??
+          Error(
+            data.error || "Unable to confirm opening. Retry this pack safely.",
+          )
         );
       if (alive.current) {
         setState(data.state);
@@ -161,7 +165,7 @@ export function WeeklyCorePanel({
           ) : state?.enabled ? (
             <p className={ready.length ? "weekly-ready" : "small-note"}>
               {ready.length
-                ? `${ready.length} ${ready.length === 1 ? "pack" : "packs"} ready to open`
+                ? `${ready.length} unopened ${ready.length === 1 ? "pack" : "packs"}`
                 : "All your weekly packs are open"}
             </p>
           ) : (
@@ -224,7 +228,7 @@ export function WeeklyCorePanel({
               />
               <div>
                 <h3>Weekly {sport.toUpperCase()} Starter Pack</h3>
-                <p>Free reward · {p.openedAt ? "Opened" : "Ready to open"}</p>
+                <p>Free reward · {p.openedAt ? "Opened" : "Unopened"}</p>
                 <p className="small-note">
                   Issued {new Date(p.issuedAt).toLocaleString("en-AU")}
                   {p.openedAt &&

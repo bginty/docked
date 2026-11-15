@@ -130,7 +130,9 @@ export async function downloadNflDataset(
   if (!cache) return { status: "cooldown", rawId: null };
   let stage: CollectionStage = "retention";
   try {
-    await new SportsFeedStore(sql).purgeExpired();
+    // A roster refresh must not delete unrelated retained source bodies. The
+    // existing retention job is separate; all expiry checks below still apply.
+    if (dataset !== "rosters") await new SportsFeedStore(sql).purgeExpired();
     const [retained] =
       await sql`select * from sports_feed.raw_revisions where id=${cache.raw_id ?? null} and body is not null and expires_at>clock_timestamp()`;
     stage = "fetch";

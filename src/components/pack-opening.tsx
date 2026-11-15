@@ -1,6 +1,7 @@
 "use client";
 import { rarityStyle } from "@/core/rarity-theme";
 import { brand } from "@/brand/brand";
+import { PackOpeningError } from "@/core/pack-opening-error";
 import {
   useCallback,
   useEffect,
@@ -373,10 +374,12 @@ export default function PackOpening(props: PackOpeningProps) {
       requestAnimationFrame(() =>
         requestAnimationFrame(() => rendered("confirmed")),
       );
-    } catch {
+    } catch (error) {
       if (alive.current) {
         setError(
-          "Could not confirm your pack. Retry to retrieve the same result; your cards will not be rerolled.",
+          error instanceof PackOpeningError
+            ? error.message
+            : "Could not confirm your pack. Retry to retrieve the same result; your cards will not be rerolled.",
         );
         setStage("sealed");
       }

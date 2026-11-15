@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { build } from "esbuild";
 import { createRequire } from "node:module";
 import vm from "node:vm";
+import { packOpeningMessages } from "../../src/core/pack-opening-error";
 
 test("weekly pack HTTP distinguishes signed-out, MFA and temporary errors without leaking details", async () => {
   const result = await build({
@@ -26,6 +27,7 @@ test("weekly pack HTTP distinguishes signed-out, MFA and temporary errors withou
   });
   let failure: Error | null = null;
   let calls = 0;
+  const logs: unknown[] = [];
   const nativeRequire = createRequire(import.meta.url);
   const module = {
     exports: {} as {
@@ -41,6 +43,7 @@ test("weekly pack HTTP distinguishes signed-out, MFA and temporary errors withou
     Response,
     TextDecoder,
     URL,
+    console: { warn: (...args: unknown[]) => logs.push(args) },
     require: (id: string) =>
       id === "@/server/auth"
         ? { sameOrigin: () => true }
@@ -54,10 +57,22 @@ test("weekly pack HTTP distinguishes signed-out, MFA and temporary errors withou
             }
           : nativeRequire(id),
   });
-  for (const [message, getStatus, postStatus] of [
-    ["Authentication required", 401, 401],
-    ["Privileged MFA required", 403, 403],
-    ["private database connection detail", 503, 400],
+  for (const [message, getStatus, postStatus, code] of [
+    ["Authentication required", 401, 401, "AUTH_REQUIRED"],
+    ["Privileged MFA required", 403, 403, "MFA_REQUIRED"],
+    ["private database connection detail", 503, 400, undefined],
+    [
+      "Four eligible Core players are not available. Your pack is still unopened.",
+      503,
+      503,
+      "WEEKLY_POOL_UNAVAILABLE",
+    ],
+    [
+      "Four verified Core players are not available. Your pack is still unopened.",
+      503,
+      503,
+      "WEEKLY_POOL_UNAVAILABLE",
+    ],
   ] as const) {
     failure = new Error(message);
     const get = await module.exports.GET(
@@ -73,7 +88,10 @@ test("weekly pack HTTP distinguishes signed-out, MFA and temporary errors withou
     assert.equal(post.status, postStatus);
     assert.equal(get.headers.get("cache-control"), "private, no-store");
     assert(!JSON.stringify(await get.json()).includes("private database"));
-    assert(!JSON.stringify(await post.json()).includes("private database"));
+    const data = await post.json();
+    assert.equal(data.code, code);
+    if (code) assert.equal(data.error, packOpeningMessages[code]);
+    assert(!JSON.stringify(data).includes("private database"));
   }
   failure = null;
   assert.equal(
@@ -84,5 +102,7 @@ test("weekly pack HTTP distinguishes signed-out, MFA and temporary errors withou
     ).status,
     200,
   );
-  assert.equal(calls, 7);
+  assert.equal(calls, 11);
+  assert.doesNotMatch(JSON.stringify(logs), /private database/);
+  assert.match(JSON.stringify(logs), /POOL_UNAVAILABLE/);
 });

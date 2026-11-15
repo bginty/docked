@@ -33,7 +33,7 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
     (await pg.query<any>(sql, args)).rows;
   try {
     await pg.exec(
-      `create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,email_confirmed_at timestamptz,is_anonymous boolean default false,banned_until timestamptz);create table auth.sessions(id uuid primary key,user_id uuid references auth.users,not_after timestamptz);create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;create function auth.jwt() returns jsonb language sql stable as $$select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb$$;grant usage on schema auth to authenticated;grant execute on all functions in schema auth to authenticated;`,
+      `create role anon;create role authenticated;create role service_role;create schema auth;create table auth.users(id uuid primary key,email_confirmed_at timestamptz,is_anonymous boolean default false,banned_until timestamptz,phone text unique,phone_confirmed_at timestamptz);create table auth.sessions(id uuid primary key,user_id uuid references auth.users,not_after timestamptz);create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;create function auth.jwt() returns jsonb language sql stable as $$select coalesce(nullif(current_setting('request.jwt.claims',true),''),'{}')::jsonb$$;grant usage on schema auth to authenticated;grant execute on all functions in schema auth to authenticated;`,
     );
     for (const f of (await readdir("supabase/migrations"))
       .filter((f) => f.endsWith(".sql"))
@@ -216,6 +216,41 @@ test("weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy a
       request = randomUUID();
     const open = async (id = pack, key = request) =>
       (await q("select sports_feed.open_weekly_core($1,$2) r", [id, key]))[0].r;
+    // Reproduce the hosted outage: source observations stop refreshing. Failed
+    // attempts must preserve entitlements, cards, counters and request history.
+    await pg.exec(
+      "update sports_feed.nfl_players set observed_at=clock_timestamp()-interval '73 hours'",
+    );
+    const beforeStale = await q(
+      "select id,opened_at,receipt from sports_feed.weekly_core_packs order by id",
+    );
+    const countersBeforeStale = await q(
+      "select id,issued from beta_fantasy.editions order by id",
+    );
+    await assert.rejects(() => open(), /Four eligible Core players/);
+    assert.deepEqual(
+      await q(
+        "select id,opened_at,receipt from sports_feed.weekly_core_packs order by id",
+      ),
+      beforeStale,
+    );
+    assert.deepEqual(
+      await q("select id,issued from beta_fantasy.editions order by id"),
+      countersBeforeStale,
+    );
+    assert.equal(
+      (await q("select count(*)::int n from beta_fantasy.cards"))[0].n,
+      0,
+    );
+    assert.equal(
+      (await q("select count(*)::int n from beta_fantasy.requests"))[0].n,
+      0,
+    );
+    // Only synthetic fixture observations are refreshed here. Production source
+    // evidence must come from a genuine approved provider refresh.
+    await pg.exec(
+      "update sports_feed.nfl_players set observed_at=clock_timestamp()",
+    );
     await assert.rejects(() => open(), /Four eligible Core players/);
     assert.equal(
       (await q("select count(*)::int n from beta_fantasy.cards"))[0].n,

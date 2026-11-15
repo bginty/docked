@@ -1,0 +1,241 @@
+{
+  "checkedAt": "2026-11-15T00:20:22.261Z",
+  "scope": "read-only research; no hosted evidence refreshed or cards issued",
+  "hosted": {
+    "candidates": 498,
+    "eligible": 0,
+    "lastObservations": {
+      "feed": "2026-11-09T00:15:05.092Z",
+      "official": "2026-11-09T12:15:11.811Z"
+    }
+  },
+  "source": {
+    "url": "https://github.com/nflverse/nflverse-data/releases/download/rosters/roster_2026.csv",
+    "sha256": "929be7558faa71f8442e49d1eb29b84883135e3388369f47b03c7316197e9528",
+    "modifiedAt": "Sat, 14 Nov 2026 14:07:15 GMT",
+    "rows": 3073
+  },
+  "officialTeams": [
+    {
+      "team": "ARI",
+      "checkedAt": "2026-11-15T00:20:18.409Z",
+      "status": "unavailable; no eligibility inferred"
+    },
+    {
+      "team": "ATL",
+      "checkedAt": "2026-11-15T00:20:22.188Z",
+      "status": "checked",
+      "active": 14,
+      "sourceHash": "60e2db2011235b1650816a622ec0a7dce931a3794d1b9bf43f86b1bee7a68edd"
+    },
+    {
+      "team": "BAL",
+      "checkedAt": "2026-11-15T00:20:20.393Z",
+      "status": "checked",
+      "active": 11,
+      "sourceHash": "41d6f4d26518854947c8ca5b6cb3cc4320f5070292a12c1dc36d67192eaffb4a"
+    },
+    {
+      "team": "BUF",
+      "checkedAt": "2026-11-15T00:20:18.146Z",
+      "status": "checked",
+      "active": 13,
+      "sourceHash": "d7b25e8bbb073366c5bd6af36e0c8a2cd9169323afa1a1f1d0064186ce0913e8"
+    },
+    {
+      "team": "CAR",
+      "checkedAt": "2026-11-15T00:20:17.304Z",
+      "status": "checked",
+      "active": 16,
+      "sourceHash": "bbe1ad60f47f2d5b0466e4116a663dca445722d8c019eb6a74d8cdbdda952ff6"
+    },
+    {
+      "team": "CHI",
+      "checkedAt": "2026-11-15T00:20:21.429Z",
+      "status": "checked",
+      "active": 13,
+      "sourceHash": "d8dadaea4f2016de14180aa008526df741692374bc75855e47de0195f9099e00"
+    },
+    {
+      "team": "CIN",
+      "checkedAt": "2026-11-15T00:20:19.256Z",
+      "status": "checked",
+      "active": 11,
+      "sourceHash": "7091382b112727d4374ddf4d77705e7b82d9d2cd365a39217d52fd46aa63eff2"
+    },
+    {
+      "team": "CLE",
+      "checkedAt": "2026-11-15T00:20:19.491Z",
+      "status": "checked",
+      "active": 15,
+      "sourceHash": "0c8a3f251086555383357f81b6743c613dcbc7f2b21c704db092d7fa9ded36eb"
+    },
+    {
+      "team": "DAL",
+      "checkedAt": "2026-11-15T00:20:18.945Z",
+      "status": "checked",
+      "active": 14,
+      "sourceHash": "03a13603d64bd4a73055dd12c18d476419bda64caf8a016ec5af37027d1b4349"
+    },
+    {
+      "team": "DEN",
+      "checkedAt": "2026-11-15T00:20:15.860Z",
+      "status": "checked",
+      "active": 15,
+      "sourceHash": "f85e93621880d1f0849bd1663999d1473b1f7bab87d3689f0ac9cfc139eb5baa"
+    },
+    {
+      "team": "DET",
+      "checkedAt": "2026-11-15T00:20:21.974Z",
+      "status": "checked",
+      "active": 12,
+      "sourceHash": "08ba895da486280425d5f1432aa410bfa99ce7564f7123131bb7dc862cc026bb"
+    },
+    {
+      "team": "GB",
+      "checkedAt": "2026-11-15T00:20:21.301Z",
+      "status": "checked",
+      "active": 16,
+      "sourceHash": "99e95a7b495a1bd2f2c11d9ba38afb51a6eeccf2493dbdda44c49f188d0b37db"
+    },
+    {
+      "team": "HOU",
+      "checkedAt": "2026-11-15T00:20:19.288Z",
+      "status": "checked",
+      "active": 14,
+      "sourceHash": "08fb74701e6024ed3dad38be335ce0fccb24991203e9010ce25395b21d16bc16"
+    },
+    {
+      "team": "IND",
+      "checkedAt": "2026-11-15T00:20:17.254Z",
+      "status": "checked",
+      "active": 13,
+      "sourceHash": "c7692367b4f597361d55b65d4a01fffe7d2cc3832b4967316a87dd534dbae647"
+    },
+    {
+      "team": "JAX",
+      "checkedAt": "2026-11-15T00:20:15.771Z",
+      "status": "checked",
+      "active": 16,
+      "sourceHash": "f916c069e518d3375297294875d600ce06e5835cdbc3d13c1f6a8b72eca84bd5"
+    },
+    {
+      "team": "KC",
+      "checkedAt": "2026-11-15T00:20:16.618Z",
+      "status": "checked",
+      "active": 15,
+      "sourceHash": "30f2a8b12b80cf116e2dcaee0527c1c901d6ccc8d7986b8e73f77dcd0648b9ef"
+    },
+    {
+      "team": "LAC",
+      "checkedAt": "2026-11-15T00:20:22.258Z",
+      "status": "checked",
+      "active": 13,
+      "sourceHash": "4d203248f0926fe843a0ad994f947bc8667d471afcd230b3b4fa66cb989eb631"
+    },
+    {
+      "team": "LAR",
+      "checkedAt": "2026-11-15T00:20:17.204Z",
+      "status": "checked",
+      "active": 13,
+      "sourceHash": "00b7bc6d591518116f13e6b5527f7c2fda5b138aff2fe130254c48bbd387f1bd"
+    },
+    {
+      "team": "LV",
+      "checkedAt": "2026-11-15T00:20:20.077Z",
+      "status": "checked",
+      "active": 14,
+      "sourceHash": "6b335b6153b364eff59f3bf1a5cac776d471f32bad00d0336426bf4b721d9e10"
+    },
+    {
+      "team": "MIA",
+      "checkedAt": "2026-11-15T00:20:15.813Z",
+      "status": "unavailable; no eligibility inferred"
+    },
+    {
+      "team": "MIN",
+      "checkedAt": "2026-11-15T00:20:16.521Z",
+      "status": "checked",
+      "active": 14,
+      "sourceHash": "e818fcbc327111389a26f3b79bb8129802b6b502a04829fb84700a6d7924b2cb"
+    },
+    {
+      "team": "NE",
+      "checkedAt": "2026-11-15T00:20:16.597Z",
+      "status": "checked",
+      "active": 15,
+      "sourceHash": "f46776f06a520599b00214f02b89dade1072f29225938ef65aaf5750d5fc9b76"
+    },
+    {
+      "team": "NO",
+      "checkedAt": "2026-11-15T00:20:18.163Z",
+      "status": "checked",
+      "active": 13,
+      "sourceHash": "4dd67fd3ec76bdcb5390540bcc3b5ebb7f19a6df9ab440078ad166c3bb176e8a"
+    },
+    {
+      "team": "NYG",
+      "checkedAt": "2026-11-15T00:20:21.448Z",
+      "status": "checked",
+      "active": 14,
+      "sourceHash": "a495cad64a2881a88eb8a20730a408a7aec12c1cc2b896626a9b8bc4fe808a5e"
+    },
+    {
+      "team": "NYJ",
+      "checkedAt": "2026-11-15T00:20:21.093Z",
+      "status": "checked",
+      "active": 17,
+      "sourceHash": "a8ca2835ece7f4d472fb8b6bdb9e09b6cee8666f2b0c6346259f3d41093ada3f"
+    },
+    {
+      "team": "PHI",
+      "checkedAt": "2026-11-15T00:20:15.541Z",
+      "status": "unavailable; no eligibility inferred"
+    },
+    {
+      "team": "PIT",
+      "checkedAt": "2026-11-15T00:20:17.331Z",
+      "status": "checked",
+      "active": 17,
+      "sourceHash": "5d2ff7a66dfc31b18f0ab62c4b9bc9557ed054f0b70169352046c8cd12ecba12"
+    },
+    {
+      "team": "SEA",
+      "checkedAt": "2026-11-15T00:20:22.110Z",
+      "status": "checked",
+      "active": 16,
+      "sourceHash": "71e82f63cb56aeab81d275aaf86e610efef5f80aed43d22ce0549e08e0c29efe"
+    },
+    {
+      "team": "SF",
+      "checkedAt": "2026-11-15T00:20:19.920Z",
+      "status": "checked",
+      "active": 16,
+      "sourceHash": "17fc5f60227dbca231466c65ff3c42e11d5c5bc613bd98eccb5f63cf54f14172"
+    },
+    {
+      "team": "TB",
+      "checkedAt": "2026-11-15T00:20:16.559Z",
+      "status": "checked",
+      "active": 14,
+      "sourceHash": "c474e50e51a262a07b69c39bd5dc9e902aa1f7114a7f2b029b41716ea97850b2"
+    },
+    {
+      "team": "TEN",
+      "checkedAt": "2026-11-15T00:20:18.022Z",
+      "status": "checked",
+      "active": 13,
+      "sourceHash": "411faccc24c7c2a7182301906f4ea65c06976ba01a651eec6de7ba59978e4b3b"
+    },
+    {
+      "team": "WAS",
+      "checkedAt": "2026-11-15T00:20:20.356Z",
+      "status": "checked",
+      "active": 14,
+      "sourceHash": "49f8f438659bba4da24f604d6f8b87078086a05ed383de4d2209ef3ffb5d1714"
+    }
+  ],
+  "projectedEligibleWeeklyPlayers": 355,
+  "enoughForFourCoreCards": true,
+  "limitations": "Projection only. Requires approved genuine refresh and fresh hosted postcheck; source research does not approve commercial player, image or trademark rights."
+}

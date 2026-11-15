@@ -1,0 +1,81 @@
+DOCKED — weekly NFL pack opening incident, 15 November 2026
+Production remains unchanged; public launch remains NO-GO.
+
+Finding
+The supplied 27-second iPhone recording shows Weekly NFL Starter / Weekly Core
+Pack, four Core cards, three unopened entitlements, and the generic confirmation
+failure. It does not demonstrate a Google payment or paid-pack failure.
+
+Read-only Production checks found 498 candidate players but ZERO eligible players.
+Latest NFL feed observation: 2026-11-09T00:15:05.092Z.
+Latest official roster check: 2026-11-09T12:15:11.811Z.
+Both required observations are older than the unchanged 72-hour limit.
+The existing source-review permit expired 2026-11-10T00:00:00Z. The deployed guard
+rejects it before downloading. Recent roster worker runs fail in milliseconds;
+their old diagnostic is UNCLASSIFIED, not independent proof of a provider outage.
+All three checked opening/refresh function grants are present. 495 of the 498
+weekly identities are covered by the existing reviewed-identity refresher.
+Production retains 15 NFL weekly packs (13 unopened); last successful NFL opening
+was 19 October. No pack-opening request or other hosted mutation was performed.
+This is an established dependency failure, not evidence that the animation chose
+or lost cards. Expired evidence is intentionally rejected; that protection stays.
+
+Prepared repair — NOT DEPLOYED
+- Separate roster-only review through 2026-11-22T00:00:00Z, for existing isolated
+  free beta only. The original weekly-statistics, play-by-play and reconciliation
+  permit is unchanged and expired. The new review requires founder approval.
+- Existing roster refresh remains limited to reviewed identities. No new player
+  registrations, manual timestamp refresh, relaxed matching or 72-hour bypass.
+- Roster collection no longer invokes unrelated expired-source-body deletion;
+  existing expiry validation and independent retention jobs remain unchanged.
+- Weekly HTTP failures distinguish unavailable player pool, sign-in and MFA.
+  The reveal UI displays only fixed allowlisted messages; other errors stay
+  generic. The list says "unopened", avoiding an unsupported readiness promise.
+- Private worker diagnostics identify SOURCE_REVIEW_EXPIRED without raw secrets.
+
+Actual verification
+- Read-only source review: 3,073 provider rows; 29/32 official team pages checked.
+  355 existing NFL identities project eligible after a genuine approved refresh.
+  Three unavailable pages remain excluded. See source-review.json for hashes,
+  timestamps and per-team outcomes. This did NOT refresh Production evidence.
+- Real isolated PostgreSQL: stale source causes complete rollback; pack receipts,
+  card counts, edition counters and request history unchanged. After synthetic
+  recovery, same request returns four Core cards once. Six simultaneous opening
+  requests per sport preserve saved receipts and cross-account boundaries.
+- 15 focused platform tests passed, including HTTP error safety, expired review,
+  provider failure, no roster-driven source deletion, and statistics isolation.
+- Six browser cases passed: actual weekly panel failure/retry preserves the same
+  request and pack, four-card reveal, lost-response recovery, replay, reduced
+  motion, keyboard input and accessibility at mobile/desktop sizes. Chrome was
+  used with isolated fixtures; no authenticated hosted account or device purchase.
+- Changed-file lint and TypeScript checks passed. Full local webpack build is
+  recorded separately. Default Turbopack cannot traverse this worktree's shared
+  node_modules junction. Local standalone tracing is incomplete for that reason;
+  do not deploy local build output. A fresh normal Vercel build and protected
+  staging verification are required before promotion.
+- Updated the isolated test's Auth fixture for the existing unique-phone schema;
+  this is test-only, not a new migration or Auth change.
+
+Production / boundaries
+GET /api/beta-release still reports source 260fe3399f1eacf03915c227216a1bab10d7b4d9,
+deployment dpl_Foja51Pk9DV5WtPtsa61MRdZ7JUV, publicRegistration=false.
+No deployment, migration, provider configuration, source refresh, mint, purchase,
+balance/ownership change, inventory import, publication or gate change occurred.
+The existing limited-card baseline is not altered by this repair. Commercial
+inventory activation and player/image/trademark rights remain separate gates.
+
+Next action
+Review REPAIR_APPROVAL.txt and its frozen manifest. It requests one narrow
+application deployment plus genuine roster-only refresh, with all public and
+commercial gates still closed. The founder's exact-package requirement is why
+this new application/source-review change cannot be applied under old approvals.
+After approval, allow approximately 30–60 minutes for fresh backup/drift checks,
+staging, promotion, refresh and hosted readback, excluding any provider failure.
+Then the founder can open one already-earned weekly pack; no operator opens or
+impersonates the founder. Live success remains unconfirmed until that acceptance.
+
+Source review reference
+https://github.com/nflverse/nflverse-data/blob/main/LICENSE.md
+Reviewed 15 November: CC BY 4.0 attribution applies to the licensed data. This is
+not a grant for third-party player likenesses, official imagery or trademarks,
+nor a blanket commercial-source acceptance. Existing attribution is retained.

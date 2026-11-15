@@ -10,6 +10,7 @@ import {
 import { connectLockedNflEntries } from "./nfl-member-rounds";
 import { prepareNflBundleReconciliation } from "./nfl-postgame-reconcile";
 import permit from "../../config/nfl-postgame-permit.json";
+import { nflCollectionPermit } from "./nfl-collection-permit";
 import { postgameMappingFromRound } from "../core/postgame-nflverse";
 
 export async function runNflCollection(
@@ -22,7 +23,7 @@ export async function runNflCollection(
   try {
     let detail: Record<string, unknown>;
     if (task !== "reconcile") {
-      detail = await downloadNflDataset(sql, permit, task, season);
+      detail = await downloadNflDataset(sql, nflCollectionPermit(task), task, season);
       if (task === "rosters") {
         const [cache] =
           await sql`select raw_id from sports_feed.postgame_cache where resource=${nflResource("rosters", season)}`;
