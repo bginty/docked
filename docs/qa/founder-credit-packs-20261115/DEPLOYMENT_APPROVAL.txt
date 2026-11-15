@@ -1,0 +1,75 @@
+EXACT PRIVATE-BETA FREE-CREDIT PACK DEPLOYMENT — APPROVAL REQUEST
+
+Source: 4cfd826bc535f658d9a16c7a5b54d32ffeb07a40
+Package SHA-256:
+e1dd34ce56895bde81d8c187d260ede5b6e898fce6bf0921a79e6e16c09e7af8
+Manifest: production-package.json (997 application files; exact Git bytes).
+Production baseline: a42004fa87db16ddb0818b2c479bca6a38ae0645
+Deployment: dpl_F9SkmmpMoYZULiJSTRgSnnJAJ3V2
+
+The founder has already approved access for ALL FOUR currently invited beta
+members and understands that pack openings consume permanent lifetime supply.
+This request concerns the concrete new Production package, not a repeated
+business, card-identity, email, MFA, credential or vault approval.
+
+Approve for 24 hours after acceptance:
+1. Protected staging, clean Vercel build, verification and controlled promotion
+   of the exact source above. No Android binary change.
+2. Apply exactly one NEW, default-off migration:
+   20261115043326_founder_credit_pack_lifetime_bridge.sql
+   SHA-256 27438d7517eb90e5399f5d66f780ee1ee8dec195906a8bc2768217fe38938209
+   Six private beta_packs tables and narrow functions, RLS/revokes, immutable
+   allocations/audit, one lifetime counter shared with the dormant commercial
+   ledger, serial collision prevention, scoped retained-source eligibility and
+   preserved inventory checks with cached JSON. No earlier migration is repeated.
+3. Adopt the frozen private-beta plan:
+   plan SHA-256 b5a99b11fbcfeffc6180f5b41e2f7aa60528271194a709c281bd3586cca53855
+   SQL SHA-256 f82280fd5b382068df57649518f924c0edfd08279679ee0e75583612fe8504da
+   Bind 1,210 established players / 6,050 existing definitions, the four frozen
+   members and 18 immutable Standard/Premium offers. Preserve all 6,540 original
+   definitions, the 888 limited-card baseline, ownership/custody, balances and
+   existing entitlements. The five scoped ANALYZE commands prepare planner
+   statistics. Adoption itself creates zero credits and zero cards.
+4. Enable only beta_packs.control.enabled and grants_enabled using the hashed
+   activate-private-packs.sql. Founder chooses each grant recipient, amount and
+   reason using existing MFA. Existing 100,000-credit campaign limit applies in
+   total; credits remain nonwithdrawable. No automatic grant or pack purchase.
+5. Set DOCKED_TEST_MARKET_READ_ONLY=true in the candidate and Production project
+   environment. Preserve the other runtime values apart from source metadata.
+   This closes the older beta trading path, including AFL/NRL. Historical trading
+   controls and audits stay intact; cancellation remains available.
+
+Required execution gates
+- Fresh authenticated encrypted backup <=1 hour old, verified isolated restore,
+  and fresh preflight <=10 minutes. The earlier test snapshot is not deployment
+  freshness authority. Stop on unexpected source/member/financial/security drift,
+  changed hashes or expired approval. Verify any routine scheduler bookkeeping.
+- Default-off migration, exact staged application and verified promotion precede
+  adoption/activation. Check narrow permissions, inventory/custody, secret-free
+  browser assets, founder-only grants and all excluded gates before/after.
+- Isolated schema/adoption rollback and a nine-card allocation passed. All 557
+  protected tables outside intended configuration, plus custody/ownership,
+  matched. The first catalogue read took 739 ms including the Docker round trip.
+- Configuration statement measured 24–26 seconds; total adoption about 30 seconds.
+  Reserve up to two minutes of wallet-write interruption, with general reads
+  available. Observe actual Production timing rather than assuming zero downtime.
+
+Containment and recovery
+Use the hashed pause-private-packs.sql to stop new grants/purchases. Preserve
+credits, allocated cards, earned sealed packs and lifetime counters. Keep the
+compatible application and recover forward. a42004fa is not an approved rollback:
+it lacks the fixture-trading pause and cannot validate the new offer IDs. If
+staging fails, leave the existing Production alias untouched.
+
+Excluded
+Buying credits, real-money billing, commercial checkout/inventory activation,
+public registration, SMS, marketplace/trading, Play publication, NBA, scored
+competitions, prizes, withdrawals, deletion schedules and live-key changes.
+No commercial inventory re-import, chosen customer grant, smoke-test mint or
+customer balance adjustment is authorised by Codex. Public launch remains NO-GO.
+
+Suggested approval:
+"Approve this exact private-beta free-credit pack deployment."
+
+Details: IMPLEMENTATION_REVIEW.txt, RELEASE_RUNBOOK.txt, VERIFICATION.txt,
+postgres.json, rights-acceptance.json and restored-rehearsal.json beside this file.
