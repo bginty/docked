@@ -1,0 +1,54 @@
+{
+  "at": "2026-11-15T11:36:12.211Z",
+  "sourceCommit": "4cfd826bc535f658d9a16c7a5b54d32ffeb07a40",
+  "request": "9a3f285b-8e4e-4088-b621-45f8b59e3e13",
+  "member": "623d1e69-d0f3-493f-9713-108e8c21469a",
+  "card": "05fd76fc-6217-49c1-8c2c-fff5e5572fe9",
+  "baselineRevision": 323,
+  "currentRevision": 324,
+  "creditDebit": 700,
+  "oldIssued": 889,
+  "currentIssued": 890,
+  "newCards": 1,
+  "sourceEligible": true,
+  "originalRecordsPreserved": true,
+  "otherWalletsUnchanged": true,
+  "authenticationAuthorityUnchanged": true,
+  "observedRefreshRotation": true,
+  "authDiffs": [
+    {
+      "table": "auth.users",
+      "id": "623d1e69-d0f3-493f-9713-108e8c21469a",
+      "changedFields": [
+        "updated_at"
+      ]
+    },
+    {
+      "table": "auth.sessions",
+      "id": "existing founder session (private evidence retained)",
+      "changedFields": [
+        "updated_at",
+        "refreshed_at",
+        "ip"
+      ]
+    },
+    {
+      "table": "auth.sessions",
+      "id": "existing founder session (private evidence retained)",
+      "changedFields": [
+        "updated_at",
+        "refreshed_at",
+        "ip"
+      ]
+    }
+  ],
+  "rateChanges": [
+    "beta-credit-request:623d1e69-d0f3-493f-9713-108e8c21469a",
+    "collection:623d1e69-d0f3-493f-9713-108e8c21469a",
+    "founder-free-credits:623d1e69-d0f3-493f-9713-108e8c21469a",
+    "sport-sandbox:623d1e69-d0f3-493f-9713-108e8c21469a",
+    "test-wallet:623d1e69-d0f3-493f-9713-108e8c21469a",
+    "weekly-core:623d1e69-d0f3-493f-9713-108e8c21469a"
+  ],
+  "productionWrites": 0
+}

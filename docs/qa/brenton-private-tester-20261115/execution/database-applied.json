@@ -1,0 +1,59 @@
+{
+  "at": "2026-11-15T11:40:19.410Z",
+  "sourceCommit": "12ccfd5879ae83f1bd62210ee16a3feb6907d9ef",
+  "packageSha256": "8ef86e1a34d7c19811ba4331eec84a2c6ca88ef1b2b907e2e1748d322d2e8c4e",
+  "migration": {
+    "file": "supabase/migrations/20261115092124_named_private_tester_exception.sql",
+    "sha256": "2ac2200e3ac1f3e2d8d39c5d23361c7dc7eeab8d2b5ad319fa339e4fdf5ad966"
+  },
+  "committed": true,
+  "backup": {
+    "authenticated": true,
+    "capturedAt": "2026-11-15T11:08:21.539Z",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "bytes": 135723956,
+    "plaintextSha256": "0f1ce97419822324db3a76b0eb1f96cc48ae1266203ee773f3a47bf58309c3a7",
+    "tableCount": 569,
+    "plaintextWritten": false
+  },
+  "drift": {
+    "cronRowsAdded": 8,
+    "weeklyZeroIssuanceRowsAdded": 4,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true,
+    "nflPendingReviewRowsAdded": 0,
+    "exactObservedActivityTablesReconciled": 0
+  },
+  "invariants": {
+    "definitions": 6540,
+    "issued": 890,
+    "baseline": 888,
+    "approved": 0,
+    "commercial_cards": 0,
+    "commercial_accounts": 0,
+    "commercial_packs": 0,
+    "commercial_receipts": 0,
+    "commercial_controls_on": 0,
+    "active_rounds": 0,
+    "active_public_flags": 0,
+    "deletion_schedules_on": 0,
+    "registration": false,
+    "beta_issued": 2,
+    "private_pack_members": 4,
+    "private_packs": true,
+    "founder_grants": true,
+    "custodyRecords": 908,
+    "custodyDigest": "7e8e3c84c34e6e91720c7cdfd421186c0b447a17d12bbfd1713ca7d7e59f6714",
+    "permissions": {
+      "rls": true,
+      "rows": 0,
+      "rawAccess": false,
+      "clientExecute": false,
+      "runtimeFunctions": 2
+    }
+  },
+  "existingRowsUnchanged": true,
+  "creditsIssued": 0,
+  "cardsIssued": 0,
+  "lockThroughCommitMilliseconds": 10601
+}
