@@ -1,0 +1,40 @@
+15 November 2026 — deployment AUTHORIZED, awaiting Vercel authentication.
+
+Implementation source: a42004fa87db16ddb0818b2c479bca6a38ae0645
+Package SHA-256: 106249bc5851632ae2d0dcc26cbf91c45d89405a9cab507528c2b6f4aecdaeaf
+User authority: "push to production when done" for this correction only.
+
+Completed: frozen 478 NFL / 545 AFL / 337 NRL season memberships; independent
+rights restrictions; no roster renewal; unchanged commercial definitions/caps.
+20 NFL identities held for first pool admission, with precise source records.
+Local four-card, paid nine-card, concurrency, rights and browser tests passed.
+Application build, TypeScript and lint passed. Fresh encrypted backup and restored
+exact Git package passed, with all 558 protected tables unchanged and full rollback.
+Production read-only preflight passed, including 6,540 dormant definitions,
+888 limited issued copies, 906 custody records and closed financial/launch gates.
+
+Not performed: Production migrations/adoption, app staging/promotion, member pack
+opening, source collection, SMS, payment, Play publication or gate activation.
+Vercel's saved CLI token returned HTTP 403 Not authorized. A device login is
+pending in the current session; founder has been asked once to complete it.
+The Vercel connector can inspect the project, but its creation tool does not expose
+the full controls needed to preserve deployment-specific runtime and skip live
+domain assignment. Do not substitute an unverified API deployment.
+
+Resume after login, without asking for deployment approval again:
+1. node scripts/season-catalogue-release.mjs prepare
+2. node scripts/season-catalogue-release.mjs stage
+3. Wait for READY, then node scripts/season-catalogue-release.mjs verify-staging
+4. Refresh expired preflight/backup as needed, preserving prior evidence. Backup
+   <=1 hour, preflight <=10 minutes. Operator private JSON files use exclusive
+   creation; archive old evidence before creating a new preflight, never bypass it.
+5. node --import tsx scripts/season-catalogue-production.ts apply
+6. node scripts/season-catalogue-release.mjs promote
+7. node scripts/season-catalogue-release.mjs verify-live
+8. Commit/push execution evidence and report the actual live source. Invite founder
+   to open an existing earned weekly pack; do not mint on their behalf.
+
+Current encrypted archive is private-data/commercial-restore-20261115; captured
+2026-11-15T01:46:04.741Z, with matching authenticated offline restore. Refresh if
+too old. Prior exact package rehearsal is fresh-package-rehearsal.json.
+All public/commercial gates remain closed. Public launch remains NO-GO.
