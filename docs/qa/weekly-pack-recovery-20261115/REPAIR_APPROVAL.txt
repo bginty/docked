@@ -1,0 +1,117 @@
+DOCKED — EXACT WEEKLY PACK REPAIR APPROVAL REQUEST
+
+Status: READY FOR REVIEW; NOT APPROVED, NOT DEPLOYED.
+Source commit: ba5154ec2993d5e4cff86aaab1dd4b0322d7993d
+Package SHA-256: 20d306ddf46c5ffa04a7939826e5bc76ff4184cd1fd38de1ad6c632860700334
+Package file: docs/qa/weekly-pack-recovery-20261115/repair-manifest.json
+Production base: 260fe3399f1eacf03915c227216a1bab10d7b4d9
+
+Approve this exact package for execution within 24 hours, including the bounded
+roster-only source review ending 22 November 2026 at 11am AEDT?
+
+It restores the existing NFL roster refresh dependency for free invited-beta
+weekly packs, separates it from the still-expired statistics/scoring review, and
+fixes misleading pack errors. It includes application-only protected staging,
+promotion after checks, one existing authenticated roster refresh, and read-only
+postchecks. No SQL migrations or permissions/environment changes are included.
+
+This permits existing invited members to open already-earned four-Core free
+weekly packs after genuine eligibility is restored. The operator will not mint,
+open packs, alter balances/ownership or import/activate commercial inventory.
+All public/commercial gates stay closed; NBA remains hidden, Practice competitions
+disabled, SMS OFF and v31 unpublished. This is not commercial launch approval.
+
+Approval is required by the founder's existing exact-package deployment and
+source-eligibility instructions. Prior deployments approved different bytes;
+expired source review is not silently renewed by a bug report.
+
+Verification: 15 platform tests, six browser checks, real isolated PostgreSQL
+rollback/concurrency/recovery, lint, TypeScript and local webpack build passed.
+355 existing players project eligible from fresh public-source research; three
+unavailable official pages remain excluded. This is not hosted opening acceptance.
+Fresh normal Vercel build is mandatory; local standalone artifact is not deployable
+because of shared dependency junction tracing. Source/build details: HANDOVER.txt.
+
+Application/config file SHA-256 (Git blobs):
+config/nfl-roster-permit.json
+  c32dc0c4a901a124e8db5c2ac7e385dd193e3629caf833c4a38e8810b7f7c7fd
+src/app/api/weekly-core/route.ts
+  1bc7af57fcfd12b1a949768caf0e8b8fb57051c72da188e20b46d143ce34a139
+src/components/pack-opening.tsx
+  28a4776612acc279838e0cdcd82c92fbae3b1f01eea4c54e56978fcc6b28c029
+src/components/weekly-core-panel.tsx
+  52725acb72acf14295fb6910e18186169ed2ddebc5a207f94bad810f22020ea4
+src/core/pack-opening-error.ts
+  f3035819814b5e564bc15f23b12eb34176300dd2e55cec64ae6f2d2179bd758f
+src/server/nfl-collection-diagnostics.ts
+  ba2136bf8fe92061f729f8451bd407a2359430f4532a89d9ab95ce8c967feb31
+src/server/nfl-collection-permit.ts
+  674033edaad2c6bf98eae8fbe3d59a6cf70235895be83c4dd4e1b05c114890b6
+src/server/nfl-collection-worker.ts
+  96da47668787db7451c3668885db56e63dc4f00387a702a907b52358cd65225d
+src/server/nflverse-bundle.ts
+  c0c3a7ab5c41b0611ef30cb4aa8a66bf0ecace599c3ad50d803688330a6c6245
+
+Exact scope, preflight, tables, recovery and exclusions follow:
+
+PROPOSED — no approval or Production execution recorded for this package.
+
+Validity: execution within 24 hours of explicit founder approval, and before the
+roster-only review expires at 2026-11-22T00:00:00Z (22 Nov, 11am AEDT).
+
+Authorise only the frozen application source plus bounded roster-only review:
+1. Verify source commit, Git-blob SHA-256 hashes and package manifest unchanged.
+2. Fresh authenticated encrypted backup <=1 hour old, verified isolated recovery,
+   and Production preflight <=10 minutes old. Reconcile expected operational
+   scheduler activity without weakening drift checks; stop on unexplained drift.
+3. Preserve EVERY current Production environment setting, role, RLS rule, existing
+   migrations and all public/commercial controls. No environment write is included.
+4. Build the exact source normally on Vercel. Protected staging and existing
+   closed-gate / ownership / financial readback must pass before promotion.
+   Never upload the local standalone build from the shared node_modules worktree.
+5. Promote this application-only candidate; no SQL migration, grants or Auth change.
+6. Perform ONE authenticated existing collector invocation:
+   POST https://docked.com.au/api/scoring/collect?task=rosters
+   Use the existing x-docked-worker secret privately. No token in chat/command logs.
+   No weekly, pbp or reconcile invocation is authorised by this repair. Existing
+   scheduler definitions are unchanged; roster-only renewal also permits their
+   existing roster runs until 22 November. Other source reviews remain expired.
+7. Refresh uses genuine provider timestamps/hashes and official known-identity
+   checks. It may update the roster cache/lease, append a raw roster revision and
+   worker audit, update existing NFL status/team/provenance, and append official
+   observations. It must not overwrite original evidence or register identities.
+   Roster refresh does not purge source bodies or enable any deletion schedule.
+8. Verify >=4 genuinely eligible Core players, recent evidence for both sources,
+   unchanged closed gates, limited inventory/custody/financial counts and permissions.
+   Unsupported, ambiguous or unavailable players remain excluded. Never backdate
+   a check or mark stale source current. Stop if the eligible pool stays below four.
+9. Operator does NOT call open_weekly_core or mint cards. Once refreshed, existing
+   invited members may open their already-earned four-Core free weekly packs under
+   the unchanged server rules. No paid/commercial issuance is authorised.
+
+Unchanged controls: public registration, Phone/SMS, live payments, trading, prizes,
+withdrawals, commercial sales/issuance, operational deletion schedules OFF; NBA
+hidden; six competitions disabled and Practice-only; v31 remains unpublished.
+Preserve 6,540 dormant definitions, 888 limited issued copies and 906 custody records
+as the last accepted baseline, subject to fresh reconciliation. Existing legitimate
+Core openings after repair must not be confused with commercial/limited issuance.
+
+Permissions/tables: no permission changes. Existing restricted docked_nfl_worker
+access only; no table DDL. Permitted writes limited to sports_feed.nfl_worker_runs,
+sports_feed.postgame_cache (roster resource only), new sports_feed.raw_revisions
+roster provenance, sports_feed.nfl_players existing-source fields, and append-only
+nfl_roster.observations through existing reviewed functions. No financial,
+ownership, pack receipt, commercial inventory or authentication writes by operator.
+
+Recovery: app-only rollback to verified current deployment
+dpl_Foja51Pk9DV5WtPtsa61MRdZ7JUV / 260fe3399f1eacf03915c227216a1bab10d7b4d9,
+only after confirming old app compatibility with the unchanged database schema.
+Do not restore the whole database over new customer activity, delete observations,
+reverse cards or reset entitlements. Fresh legitimate source observations and any
+subsequent authorised member openings remain preserved. App rollback stops the new
+roster review but does not undo source freshness already recorded (72-hour expiry).
+Unexpected writes require a separate reviewed correction, never an automatic repair.
+
+Expected downtime: no planned database downtime; Vercel alias cutover only.
+No Android binary update. Hosted opening acceptance remains pending; this approval
+is not commercial launch approval or acceptance of commercial source-material rights.

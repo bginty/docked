@@ -1,0 +1,54 @@
+{
+  "sourceCommit": "ba5154ec2993d5e4cff86aaab1dd4b0322d7993d",
+  "productionBase": "260fe3399f1eacf03915c227216a1bab10d7b4d9",
+  "sourceTree": "1969b01eb1a21dff0ccf5ef16dd9e8213cfa5050",
+  "executionApproval": "Required; valid 24h after explicit founder acceptance, before source-review expiry",
+  "scopeFile": "docs/qa/weekly-pack-recovery-20261115/REPAIR_SCOPE.txt",
+  "scopeSha256": "7b34615f78f96799e029610046bc6fc08d519fc82bd6600fb86f5b662b07dd5a",
+  "rosterOnlyReviewExpiresAt": "2026-11-22T00:00:00.000Z",
+  "unchangedPostgamePermitSha256": "3f78b4334b409f2610c71b55d0422d5c278d661da09b3c6ec7cb03c388d66f57",
+  "migrations": [],
+  "permissionChanges": [],
+  "environmentChanges": [],
+  "files": [
+    {
+      "path": "config/nfl-roster-permit.json",
+      "sha256": "c32dc0c4a901a124e8db5c2ac7e385dd193e3629caf833c4a38e8810b7f7c7fd"
+    },
+    {
+      "path": "src/app/api/weekly-core/route.ts",
+      "sha256": "1bc7af57fcfd12b1a949768caf0e8b8fb57051c72da188e20b46d143ce34a139"
+    },
+    {
+      "path": "src/components/pack-opening.tsx",
+      "sha256": "28a4776612acc279838e0cdcd82c92fbae3b1f01eea4c54e56978fcc6b28c029"
+    },
+    {
+      "path": "src/components/weekly-core-panel.tsx",
+      "sha256": "52725acb72acf14295fb6910e18186169ed2ddebc5a207f94bad810f22020ea4"
+    },
+    {
+      "path": "src/core/pack-opening-error.ts",
+      "sha256": "f3035819814b5e564bc15f23b12eb34176300dd2e55cec64ae6f2d2179bd758f"
+    },
+    {
+      "path": "src/server/nfl-collection-diagnostics.ts",
+      "sha256": "ba2136bf8fe92061f729f8451bd407a2359430f4532a89d9ab95ce8c967feb31"
+    },
+    {
+      "path": "src/server/nfl-collection-permit.ts",
+      "sha256": "674033edaad2c6bf98eae8fbe3d59a6cf70235895be83c4dd4e1b05c114890b6"
+    },
+    {
+      "path": "src/server/nfl-collection-worker.ts",
+      "sha256": "96da47668787db7451c3668885db56e63dc4f00387a702a907b52358cd65225d"
+    },
+    {
+      "path": "src/server/nflverse-bundle.ts",
+      "sha256": "c0c3a7ab5c41b0611ef30cb4aa8a66bf0ecace599c3ad50d803688330a6c6245"
+    }
+  ],
+  "sourceReviewSha256": "962c0b07b3ba2a8e555bbff4261c9b37434070ce8daec84d2ac62ba7f5c92abd",
+  "verificationSha256": "19e6080f48e3efc6aea0ef5e6b478a76e2035cec7bf339392e207cabb48ed2c8",
+  "encoding": "UTF-8 LF; file checksums are exact Git blob bytes"
+}
