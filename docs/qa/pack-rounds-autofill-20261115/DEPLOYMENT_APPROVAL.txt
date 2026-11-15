@@ -1,0 +1,35 @@
+PACK RECOVERY, SEASON NAVIGATION AND AUTO-FILL — EXACT REVIEW PACKAGE
+Not deployed. This is separate from the completed Brenton-only deployment.
+
+Source: 6882ad745186f5937bc54a53aa786e26363dfa54
+Package SHA-256: 921ae76d61ea68cd51587435efc0998c11e9d8b0ab885aec702dcc0f18c87058
+Manifest: deployment-package.json (1,002 application files; 32 reviewed files)
+Baseline Production: 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef
+Baseline deployment: dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy
+
+ONE NEW MIGRATION ONLY
+20261115113306_batch_private_pack_issuance_validation.sql
+SHA-256: ed62d00159492c6151ebf0543a5f34c6ee4a215fe9e655bbf9c6b64fcf7c49ed
+Changes only credits_sandbox.guard_economy_state() and credits_sandbox.project_fixture_inventory(). Existing validation, triggers, ownership, scarcity, source predicates, RLS and ACLs remain. No data rewrite, new permission, balance change, grant, purchase or card issuance by deployment. Installation uses the existing wallet advisory lock; three-second lock acquisition limit and sixty-second statement timeout. Expect a brief wallet-write wait; abort if busy rather than cancel customer work. No planned site outage.
+
+APPLICATION SCOPE
+Recover already-committed pack requests by their original member/request fingerprint; batch permission checks; retain a bounded thirty-second pack request timeout. Reveal already-allocated approved season packs without a fresh live-roster dependency. New issuance still validates source rights and lifetime supply.
+Display all eighteen regular-season weeks and keep historical Practice records in a separate archive. The retained 8 November snapshot is explicitly labelled; collection permission is not renewed and current fixtures are not claimed as reverified. Unavailable entries/scoring remain unavailable. Both lineup modes gain authenticated draft-only empty-position auto-fill, preserving manual/locked choices and applying the selected round's salary/position/ownership rules.
+
+VERIFICATION AND LIMITS
+19 platform tests; disposable PostgreSQL full-chain/concurrency scenarios; mobile lost-response/reload/reveal and both lineup modes passed. Final migration rehearsed on an isolated restored Production database with exactly nine cards and full transaction rollback. Purchase/open persistence fell from approximately 27 seconds to 8–12 seconds in that environment; not a hosted or Android SLA.
+Local compilation, TypeScript and 70-page generation passed. The local dependency junction omitted 27 framework files from standalone tracing; that artifact is not deployable. A clean protected Vercel build is mandatory. Actual Android v31 acceptance and current fixture-source permission/revalidation remain pending.
+
+CONTROLLED EXECUTION
+Verify this exact manifest with `node scripts/pack-rounds-package.mjs verify`. Use DEPLOYMENT_RUNBOOK.txt: fresh authenticated encrypted backup <=1 hour old, isolated restore, preflight <=10 minutes old, exact drift reconciliation, migration/ACL checks, preserved 97-setting runtime, protected staging and independent postflight. Never reapply previous migrations or inventory imports.
+Preserve all 888 legacy copies plus later legitimate issuance, every custody row, balances, journal history and Brenton's approved exception. Founder-issued credits/private packs retain their current approved admission scope. No automatic grants or purchases.
+Promotion requires clean hosted checks and genuine Android read-only/saved-request acceptance. The NFL source gate must be resolved, or the founder must explicitly accept only the clearly labelled historical schedule display. This package cannot authorise current scoring or manufacture source rights.
+
+RECOVERY
+Conditional app-only rollback to the verified Brenton baseline. If needed, transactionally restore the two captured original function definitions under the same lock, preserving permissions and verifying protected data. Never roll back financial state, delete issued cards, reuse serials or reset lifetime supply. New application/SQL bytes require another exact review.
+
+APPROVAL REQUEST
+Approve this exact package for 24 hours, with promotion conditional on the stated checks. Separately state whether the clearly labelled historical schedule display is acceptable pending authorised fixture refresh, or whether promotion should wait for current schedule evidence. No payment, SMS or new-purchase test is included.
+Your instruction in the pack-fix request requires separate exact-package approval before new Production application bytes or migrations. The earlier Brenton approval does not cover this package.
+
+Public registration, bought credits, live payments, trading, SMS, Play publication, NBA, prizes, withdrawals and scored competitions remain disabled. Public launch remains NO-GO.
