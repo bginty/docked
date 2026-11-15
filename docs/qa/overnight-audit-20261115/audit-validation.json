@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-15T14:06:28.142Z",
+  "reviewedSource": "12ccfd5879ae83f1bd62210ee16a3feb6907d9ef",
+  "typecheck": {
+    "command": "npx tsc --noEmit --incremental false",
+    "exitCode": 0
+  },
+  "lint": {
+    "command": "npx eslint scripts/audit --max-warnings=0",
+    "exitCode": 0
+  },
+  "productPathDiffEmpty": true,
+  "stagedPathsRestricted": true,
+  "secretPatternScanMatches": 0,
+  "reportRender": [
+    {
+      "width": 390,
+      "overflow": false,
+      "sections": 12,
+      "recommendations": 12
+    },
+    {
+      "width": 1280,
+      "overflow": false,
+      "sections": 12,
+      "recommendations": 12
+    }
+  ]
+}

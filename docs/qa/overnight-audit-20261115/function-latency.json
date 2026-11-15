@@ -1,0 +1,4674 @@
+{
+  "query": {
+    "metric": "vercel.function_invocation.function_duration_ms",
+    "aggregation": "p95",
+    "groupBy": [
+      "route",
+      "function_start_type"
+    ],
+    "filter": "environment eq 'production'",
+    "startTime": "2026-11-14T12:59:55.336Z",
+    "endTime": "2026-11-15T12:59:55.336Z",
+    "granularity": {
+      "hours": 1
+    },
+    "orderBy": "count",
+    "orderDirection": "desc"
+  },
+  "summary": [
+    {
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 137,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 10772,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2146,
+      "function_start_type": "cold"
+    },
+    {
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 16580,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": 459,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": 46,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 98,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": 53,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": 51,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": 42,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": 571,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": 22220,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": 236,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": 28,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": 84,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": 65,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": 20781,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 94,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 1041,
+      "function_start_type": "cold"
+    },
+    {
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 705,
+      "function_start_type": "cold"
+    },
+    {
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 15502,
+      "function_start_type": "cold"
+    },
+    {
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": 554,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 79,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1378,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 511,
+      "function_start_type": "cold"
+    },
+    {
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 62,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 923,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 108,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": 22,
+      "function_start_type": "hot"
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": 303,
+      "function_start_type": "hot"
+    }
+  ],
+  "data": [
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 121,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1894,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1240,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T12:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 131,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1935,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 705,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 109,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1955,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 160,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2125,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 726,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 106,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2014,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 146,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1771,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 698,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 118,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1881,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 142,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1908,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 751,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 109,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1778,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 159,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2146,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 761,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 114,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1919,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 122,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 15062,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1959,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 3119,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": 263,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 27,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": 285,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": 42,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": 652,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": 48,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": 26,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": 70,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": 25,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 524,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 59,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 731,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 114,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2224,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1378,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 511,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 144,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2002,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 70,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 740,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 116,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2047,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 167,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 305,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1956,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": 27,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": 16,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 94,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 678,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 980,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 722,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 108,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": 13,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": 303,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 142,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 10096,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2186,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 2096,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": 157,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": 74,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 29,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": 31,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": 67,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": 15,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": 359,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": 27,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": 84,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": 25,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": 509,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 19,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 867,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 659,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 19,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 492,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 72,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": 20,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": 243,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 135,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2024,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 140,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1908,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": 55,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 896,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 114,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1895,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 138,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 289,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2066,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 15210,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": 778,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": 46,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 1761,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": 53,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": 51,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": 51,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": 571,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": 770,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": 236,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": 28,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": 20,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": 65,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": 498,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 29,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 1026,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 705,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 928,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": 554,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 509,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 62,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 923,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 70,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": 22,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": 287,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 115,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1983,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 467,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 141,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 21143,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1871,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 21974,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": 93,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 41,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": 30,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": 28,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": 22220,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": 20781,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 726,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 15502,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 452,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 150,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 285,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 11612,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 2214,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": 366,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": 27,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": 30,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": 26,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": 12,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": 360,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": 146,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 70,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 1041,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 655,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 929,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": 24,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 79,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 459,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 35,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 77,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": 17,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": 291,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 144,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 49,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2065,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/weekly-core",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/fantasy/test-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/notifications",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/dashboard",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/admin/workspace/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/fantasy/prizes",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/fantasy/results",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/fantasy/scoring/how-it-works",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/app-session",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 521,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 816,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1315,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "cold"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 57,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 362,
+      "function_start_type": "prewarmed"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "function_start_type": "hot"
+    }
+  ],
+  "orderBy": "count",
+  "orderDirection": "desc"
+}

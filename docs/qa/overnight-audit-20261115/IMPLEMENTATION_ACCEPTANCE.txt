@@ -1,0 +1,81 @@
+IMPLEMENTATION SPECIFICATION — NOT YET AUTHORISED
+Bind future changes to a fresh exact source/package; do not reuse an old approval.
+
+Batch 1 acceptance, highest priority
+1. Record the starting deployed commit and full closed-gate runtime. Preserve all
+   already applied migrations, the stable catalogue, Brenton's exception and the
+   two legitimate later beta cards. Do not rerun the dormant inventory import.
+2. Reuse/review 6882ad74's trigger optimisation, saved-receipt fast path and reveal
+   correction. Review exact predicates and output parity; never replace source
+   permission or ownership checks with cached client truth.
+3. Rehearse against a fresh restored snapshot with networking/cron disabled.
+   Measure the same member/product workloads before/after with documented host
+   conditions. Separate lock wait, SQL execution, data transfer, decoding, view
+   assembly and reveal effects. Keep originals for audit; roll all writes back.
+4. Exercise Standard/Premium 1/3/9 private-beta offers, four-card Weekly Core and
+   nine-card commercial acceptance separately. No commercial activation inferred
+   from success with free credits. Confirm exact per-offer count, product version,
+   price, configuration hash and permanent serial/cap accounting.
+5. Fail/interrupt before commit, after debit/issuance commit and during receipt
+   delivery. Repeat the original request concurrently (at least 20 clients) and
+   after browser refresh/background/restart. Assert exactly one debit, entitlement,
+   card set, ownership event and result; a different payload with the same key
+   fails. Pending state must not invite a new purchase or imply a refund occurred.
+6. Revalidate current identity, active session, admission, owner MFA, caller scope,
+   request fingerprint and membership before recovery. Revoked accounts cannot
+   retrieve another user's receipt. Receipt reveal never remints or increments
+   counters, and cannot be blocked solely by routine observation age.
+7. New issuance still fails atomically on exhausted rarity, unapproved identity,
+   source rights expiry/revocation and ineligible pool. Test >72h roster age,
+   injury/transfer and provider outage with retained approved membership.
+8. Purchase/recovery UI deadline includes body transfer. Preserve request across
+   loss; bounded recovery reads only. No automatic new debit or SMS resend.
+9. Phone form: delayed headers/body and never-ending response must reach a useful
+   retry state within the agreed deadline. Keep typed number private, clear OTP
+   appropriately, respect server 429/resend deadline. Distinguish request unknown
+   from code rejected. Never accept browser state as phone verification evidence.
+10. Use one reviewed supported Node major for local and clean hosted builds.
+    Do not promote the incomplete node_modules-junction artifact. Keep the hosted
+    target guard, narrow grants and all gates. No native artifact modification.
+11. Capture measured API Server-Timing in protected staging using authorised
+    synthetic/Preview accounts. Use lower p95 targets as acceptance objectives,
+    not an assertion that the database benchmark already meets them. No real
+    payment or SMS without the separate bounded session approval.
+12. Freeze exact changed files, migration checksums, dependencies, runtime delta,
+    backup/drift rules, invariant snapshots, safe rollback/forward recovery and
+    staged/Production checks. Request deployment approval only after verification.
+
+Next independent batch: Play/lineup contracts
+- Response contract is member+sport+round scoped; current draft first, optional
+  history fetched when needed. No full unrelated aggregate sent to browser.
+- Shared roster parsing preserves genuine provenance/expiry semantics for current
+  presentation and keeps the stable catalogue separate from fresh observations.
+- “Round” in customer wording. All 18 regular-season rounds visible; selected
+  unavailable round cannot enter/score. Preserve Practice truth, historical links,
+  TBD kickoff times and exact retained snapshot timestamp. New source collection
+  needs permission; never fabricate current evidence.
+- Fill empty positions in both modes at initial creation or any later unlocked
+  point. Keep chosen eligible cards, server-trusted locked snapshots, cap, position/
+  FLEX constraints and unique canonical players. Deterministic selection without
+  invented performance rankings; explain shortages. Stale response cannot overwrite
+  a changed draft. Saving and entry stay explicit and separately validated.
+
+Mobile and UX acceptance after those changes
+- Baseline and candidate: same device/browser, cache/CPU/network profile, fixture
+  seed and permitted source data. Report at least 5 independent lab samples and
+  all errors; obtain actual installed v31 measurements for the release decision.
+- First meaningful member content, LCP, layout shift, input response, API count,
+  bytes and memory sampled on repeat navigation; do not label a lab event as INP.
+- Inspect card detail; background/foreground, network recovery and ownership
+  change. Preserve safe position for unchanged owner; clear on revocation/account
+  switch. Coalesce events without removing authorisation.
+- Nine-card complete/skip/replay, every rarity, failed asset, reduced motion,
+  audio/haptics preferences, keyboard/Android Back, Share My Pull, app process
+  restart. Each card must remain accessible without animation completion.
+- Price/card count/per-card odds on review; unique primary action for pending
+  purchase. No misleading balance/refund/success message. Keep A$49/A$99 offers.
+- Fixed-price marketplace uses reviewed price/revision, locking and refund
+  provenance; two-party acceptance separate from swaps/counteroffers. No live
+  listing, transfer or customer balance change in unapproved test windows.
+
+No finding authorises a Production change. Public launch stays NO-GO.

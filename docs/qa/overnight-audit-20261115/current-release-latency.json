@@ -1,0 +1,3589 @@
+{
+  "query": {
+    "metric": "vercel.function_invocation.function_duration_ms",
+    "aggregation": "p95",
+    "groupBy": [
+      "route",
+      "request_method"
+    ],
+    "filter": "(deployment_id eq 'dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy') and (environment eq 'production')",
+    "startTime": "2026-11-14T13:03:45.007Z",
+    "endTime": "2026-11-15T13:03:45.007Z",
+    "granularity": {
+      "hours": 1
+    },
+    "orderBy": "count",
+    "orderDirection": "desc"
+  },
+  "summary": [
+    {
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 634,
+      "request_method": "GET"
+    },
+    {
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 816,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 1041,
+      "request_method": "GET"
+    },
+    {
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": 683,
+      "request_method": "GET"
+    },
+    {
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": 18,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": 505,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": 27,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": 545,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2065,
+      "request_method": "POST"
+    },
+    {
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": 177,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": 294,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 157,
+      "request_method": "GET"
+    },
+    {
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 77,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": 24,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": 8,
+      "request_method": "POST"
+    },
+    {
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 70,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 17,
+      "request_method": "POST"
+    },
+    {
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": 17,
+      "request_method": "POST"
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": 77,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": 291,
+      "request_method": "GET"
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 193,
+      "request_method": "GET"
+    },
+    {
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": 681,
+      "request_method": "GET"
+    },
+    {
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": 78,
+      "request_method": "GET"
+    }
+  ],
+  "data": [
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T13:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T14:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T15:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T16:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T17:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T18:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T19:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T20:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T21:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T22:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-14T23:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T00:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T01:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T02:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T03:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T04:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T05:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T06:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T07:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T08:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T09:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T10:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 655,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 929,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 1041,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": 683,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": 421,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": 27,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": 545,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": 157,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 77,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": 24,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": 8,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 70,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": 17,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": 17,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": 77,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": 291,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": 193,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": 681,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T11:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": 78,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 521,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 816,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 362,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": 505,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 2065,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T12:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/app/login",
+      "vercel_function_invocation_function_duration_ms_p95": 50,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/fantasy/[tab]",
+      "vercel_function_invocation_function_duration_ms_p95": 349,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/store/google/scheduled",
+      "vercel_function_invocation_function_duration_ms_p95": 90,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/app/signup",
+      "vercel_function_invocation_function_duration_ms_p95": 18,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/app/forgot-password",
+      "vercel_function_invocation_function_duration_ms_p95": 18,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/analytics",
+      "vercel_function_invocation_function_duration_ms_p95": 501,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/fantasy/scoring-history",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/public-gameplay",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/scoring/collect",
+      "vercel_function_invocation_function_duration_ms_p95": 1777,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/[section]",
+      "vercel_function_invocation_function_duration_ms_p95": 177,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/sports-beta",
+      "vercel_function_invocation_function_duration_ms_p95": 294,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/beta-release",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/admin/founder-credits",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/admin/incidents",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/auth/phone",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "POST"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/mobile/capabilities",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/store/google/commercial",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/api/workspace-wallet",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/app/invitation-setup",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    },
+    {
+      "timestamp": "2026-11-15T13:00:00.000Z",
+      "route": "/preview/pack-opening",
+      "vercel_function_invocation_function_duration_ms_p95": null,
+      "request_method": "GET"
+    }
+  ],
+  "orderBy": "count",
+  "orderDirection": "desc"
+}

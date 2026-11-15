@@ -1,0 +1,42 @@
+{
+  "baseline": "12ccfd5879ae83f1bd62210ee16a3feb6907d9ef",
+  "environment": "Loopback HTTP fixtures, real React components; synthetic members and transport. Failed assertions require triage before being labelled product defects.",
+  "results": [
+    {
+      "name": "collection",
+      "source": "scripts/owned-collection-browser.ts",
+      "started": "2026-11-15T13:08:04.773Z",
+      "finished": "2026-11-15T13:08:32.893Z",
+      "exitCode": 1,
+      "productChanges": false,
+      "productionWrites": 0
+    },
+    {
+      "name": "member-surfaces",
+      "source": "scripts/member-surfaces-browser.ts",
+      "started": "2026-11-15T13:08:32.906Z",
+      "finished": "2026-11-15T13:11:53.887Z",
+      "exitCode": 1,
+      "productChanges": false,
+      "productionWrites": 0
+    },
+    {
+      "name": "weekly-core",
+      "source": "scripts/weekly-core-browser.ts",
+      "started": "2026-11-15T13:11:53.897Z",
+      "finished": "2026-11-15T13:12:19.993Z",
+      "exitCode": 1,
+      "productChanges": false,
+      "productionWrites": 0
+    },
+    {
+      "name": "social-admin",
+      "source": "scripts/prelaunch-experience-browser.ts",
+      "started": "2026-11-15T13:12:20.001Z",
+      "finished": "2026-11-15T13:13:04.159Z",
+      "exitCode": 1,
+      "productChanges": false,
+      "productionWrites": 0
+    }
+  ]
+}

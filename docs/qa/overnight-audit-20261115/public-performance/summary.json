@@ -1,0 +1,98 @@
+[
+  {
+    "profile": "android-simulated",
+    "route": "/",
+    "n": 3,
+    "lcpMedianMs": 2976,
+    "ttfbMedianMs": 313.30000001192093,
+    "clsMax": 0.0002934158277151261,
+    "jsDecodedBytes": 595459,
+    "cssDecodedBytes": 337733,
+    "horizontalOverflow": false,
+    "finalPath": "/"
+  },
+  {
+    "profile": "android-simulated",
+    "route": "/fantasy/cards",
+    "n": 3,
+    "lcpMedianMs": 3056,
+    "ttfbMedianMs": 243.90000000596046,
+    "clsMax": 0.11986968742313604,
+    "jsDecodedBytes": 873370,
+    "cssDecodedBytes": 337733,
+    "horizontalOverflow": false,
+    "finalPath": "/fantasy/cards"
+  },
+  {
+    "profile": "android-simulated",
+    "route": "/login",
+    "n": 3,
+    "lcpMedianMs": 3288,
+    "ttfbMedianMs": 450.5,
+    "clsMax": 0.059100336539145815,
+    "jsDecodedBytes": 608157,
+    "cssDecodedBytes": 337733,
+    "horizontalOverflow": false,
+    "finalPath": "/app/login"
+  },
+  {
+    "profile": "android-simulated",
+    "route": "/privacy",
+    "n": 3,
+    "lcpMedianMs": 2920,
+    "ttfbMedianMs": 246.7999999821186,
+    "clsMax": 0.03470819252719402,
+    "jsDecodedBytes": 594354,
+    "cssDecodedBytes": 337733,
+    "horizontalOverflow": false,
+    "finalPath": "/privacy"
+  },
+  {
+    "profile": "desktop",
+    "route": "/",
+    "n": 3,
+    "lcpMedianMs": 1360,
+    "ttfbMedianMs": 109.40000000596046,
+    "clsMax": 0.012134245863340193,
+    "jsDecodedBytes": 881197,
+    "cssDecodedBytes": 337733,
+    "horizontalOverflow": false,
+    "finalPath": "/"
+  },
+  {
+    "profile": "desktop",
+    "route": "/fantasy/cards",
+    "n": 3,
+    "lcpMedianMs": 892,
+    "ttfbMedianMs": 106.2000000178814,
+    "clsMax": 0.0008981086708717712,
+    "jsDecodedBytes": 873370,
+    "cssDecodedBytes": 337733,
+    "horizontalOverflow": false,
+    "finalPath": "/fantasy/cards"
+  },
+  {
+    "profile": "desktop",
+    "route": "/login",
+    "n": 3,
+    "lcpMedianMs": 1760,
+    "ttfbMedianMs": 387.59999999403954,
+    "clsMax": 0.02400257276801907,
+    "jsDecodedBytes": 608157,
+    "cssDecodedBytes": 337733,
+    "horizontalOverflow": false,
+    "finalPath": "/app/login"
+  },
+  {
+    "profile": "desktop",
+    "route": "/privacy",
+    "n": 3,
+    "lcpMedianMs": 776,
+    "ttfbMedianMs": 155.90000000596046,
+    "clsMax": 0.0040257869600105025,
+    "jsDecodedBytes": 594354,
+    "cssDecodedBytes": 337733,
+    "horizontalOverflow": false,
+    "finalPath": "/privacy"
+  }
+]

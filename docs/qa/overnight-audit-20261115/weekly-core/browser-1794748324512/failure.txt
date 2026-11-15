@@ -1,0 +1,10 @@
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByText('1 pack ready to open', { exact: true })
+Expected: visible
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toBeVisible" getByText('1 pack ready to open', { exact: true }) with timeout 5000ms
+  - waiting for getByText('1 pack ready to open', { exact: true })

@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-15 12:57:52 UTC",
+  "findings": [
+    {
+      "name": "rls_enabled_no_policy",
+      "title": "RLS Enabled No Policy",
+      "level": "INFO",
+      "count": 234,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "title": "Leaked Password Protection Disabled",
+      "level": "WARN",
+      "count": 1,
+      "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+    }
+  ],
+  "interpretation": "RLS without policies on deliberately private schemas is deny-by-default, not proof of exposure; grants and exposed schemas require independent inspection. Password breach protection warning is a proposed configuration review, not an authorised change."
+}

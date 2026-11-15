@@ -1,0 +1,49 @@
+DOCKED AUDIT — PROVENANCE AND CHANGE BOUNDARY
+
+Authority: founder's overnight application audit request pasted in
+6c730970-3b82-4860-8d1b-f078d06d2672/Pasted text.txt.
+Permitted work: read-only inspection, isolated diagnostics, review documentation.
+Product implementation and Production changes expressly await subsequent approval.
+
+Audit branch: codex/overnight-app-audit-20261115.
+Reviewed deployed application: 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef.
+Audit worktree was based on the deployed source to avoid testing an undeployed fix.
+Only scripts/audit and docs/qa/overnight-audit-20261115 are part of this commit.
+The user's original working tree was not cleaned, reset or edited.
+
+Production identity: authenticated Vercel metadata and public beta-release endpoint.
+Database: authorised read-only Supabase queries; no customer data mutation.
+Restored tests: isolated docked-commercial-restore-20261115m, no published network
+ports, cron disabled; guarded SELECT statements followed by rollback. No new
+migration, financial operation, issuance or permissions change was applied live.
+
+Public measurements: anonymous GET-only contexts, no founder session/cookies.
+Browser components: local intercepted synthetic transport and real source/CSS.
+Computer Use stopped when the tool could not verify the active URL; no alternate
+access to the founder browser or authenticated session was attempted.
+No attached physical Android device; no hardware acceptance claimed.
+
+Historical copies in prior-evidence are byte-for-byte files from
+codex/pack-rounds-autofill-20261115 (documentation commit
+7902a67a7fe862444b16a472557d635419b082e7), describing source
+6882ad745186f5937bc54a53aa786e26363dfa54. Their tests are not counted as fresh audit
+runs. Source and application changes in that candidate remain undeployed.
+
+Preserved policies: private free-credit beta only as already authorised; public
+registration, SMS, credit purchases, commercial sales/issuance, marketplace
+transfers, prizes, withdrawals and Play publication remain closed. NBA stays
+hidden. Public six competitions remain disabled Practice. No source permit was
+renewed; no rarity, price, identity, card, balance, ownership or consent changed.
+
+Validation: repository tsc --noEmit --incremental false; diagnostic ESLint;
+report rendering at 390/1280px; JSON parse and
+artifact hashing; targeted secret-pattern review; git product-path parity and
+whitespace checks. These are checks of audit artifacts, not a new product build.
+Private logs/traces and credentials remain outside this commit.
+
+ARTIFACT_MANIFEST.json records captured-worktree and Git-normalised SHA-256 hashes
+and sizes for every evidence file and diagnostic script, excluding the manifest
+itself. Git may normalise Windows text line endings; use repositorySha256 for
+the content returned by git show COMMIT:path. It is an audit integrity
+index, not a deployment approval package. REPORT.html is generated solely from
+MORNING_REPORT.txt and TEST_RESULTS.txt; it loads no external scripts or assets.

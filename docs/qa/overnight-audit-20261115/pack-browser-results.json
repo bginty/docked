@@ -1,0 +1,1171 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "-c",
+      "scripts/audit/playwright.config.ts"
+    ],
+    "configFile": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\scripts\\audit\\playwright.config.ts",
+    "rootDir": "C:/Users/61412/.codex/worktrees/overnight-app-audit-20261115/Docked.com.au/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 5,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/61412/.codex/worktrees/overnight-app-audit-20261115/Docked.com.au/private-data/overnight-audit-20261115/pack-traces",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/61412/.codex/worktrees/overnight-app-audit-20261115/Docked.com.au/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "pack-opening.test.ts",
+          "nine-card-reveal.test.ts",
+          "pack-cinema-v2.test.ts",
+          "purchase-recovery.test.ts"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      ["list", null],
+      [
+        "json",
+        {
+          "outputFile": "docs/qa/overnight-audit-20261115/pack-browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "nine-card-reveal.test.ts",
+      "file": "nine-card-reveal.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "confirmed nine-card reveal, resume, replay and accessibility 360",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 23932,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:33:18.119Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "76806bdfc26f15443c69-8d7bfc73cb288b1e6de0",
+          "file": "nine-card-reveal.test.ts",
+          "line": 41,
+          "column": 7
+        },
+        {
+          "title": "confirmed nine-card reveal, resume, replay and accessibility 412",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14758,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:33:43.562Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "76806bdfc26f15443c69-cc6e5d613605bcc9743b",
+          "file": "nine-card-reveal.test.ts",
+          "line": 41,
+          "column": 7
+        },
+        {
+          "title": "confirmed nine-card reveal, resume, replay and accessibility 1366",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15438,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:33:58.386Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "76806bdfc26f15443c69-c2b1e701e40ca557df07",
+          "file": "nine-card-reveal.test.ts",
+          "line": 41,
+          "column": 7
+        },
+        {
+          "title": "single card, reduced motion, keyboard opening and duplicate taps",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2862,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:34:13.876Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "76806bdfc26f15443c69-cd12dfdb1db3690f4319",
+          "file": "nine-card-reveal.test.ts",
+          "line": 166,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "pack-cinema-v2.test.ts",
+      "file": "pack-cinema-v2.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "V3 afl: all six tiers use the confirmed card, preserve identity until turn, one issuance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 26240,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:34:16.856Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-59e3bfa2bd260e56654f",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 28,
+          "column": 7
+        },
+        {
+          "title": "V3 nfl: all six tiers use the confirmed card, preserve identity until turn, one issuance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 24538,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:34:43.155Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-69fd9b3e861aa55e6ebc",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 28,
+          "column": 7
+        },
+        {
+          "title": "V3 nrl: all six tiers use the confirmed card, preserve identity until turn, one issuance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 25631,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:35:07.803Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-e1d8f3df4638233c3360",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 28,
+          "column": 7
+        },
+        {
+          "title": "V3 is the ordinary receipt default; original V1 remains a design-only comparison",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7862,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:35:33.561Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-c654466cb31c8c047050",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 86,
+          "column": 5
+        },
+        {
+          "title": "V3 rapid inputs, skip, Reveal All, resume and replay do not reissue nine cards",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5599,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:35:41.587Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-bc4f814446a727e752f6",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 103,
+          "column": 5
+        },
+        {
+          "title": "V3 reduced motion has no animation, no Canvas loop; reveal and share stay accessible at 320px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7537,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:35:47.403Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-0eecdd5896f1c98a8103",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 144,
+          "column": 5
+        },
+        {
+          "title": "V3 tolerates unavailable Canvas and backgrounding without losing the receipt",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4156,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:35:55.059Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-c13dba71a81cc7dd8258",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 180,
+          "column": 5
+        },
+        {
+          "title": "V3 Share My Pull still exports the awarded Icon at 1080 × 1920",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 36726,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:35:59.330Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-e8e5ca464ca40272d690",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 206,
+          "column": 5
+        },
+        {
+          "title": "V3 economy quality keeps the card and caps the Canvas resolution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8658,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:36:36.181Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-c4fcd9981729aea57483",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 234,
+          "column": 7
+        },
+        {
+          "title": "V3 balanced quality keeps the card and caps the Canvas resolution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7360,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:36:44.940Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-69f41698c489678a9353",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 234,
+          "column": 7
+        },
+        {
+          "title": "V3 original layered audio renders six distinct scores without clipping",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3133,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "AUDIO_V3 [{\"tier\":\"CORE\",\"duration\":1.52,\"peak\":0.25565916299819946,\"energy\":32.12500822442593,\"rms\":0.021891752778722347},{\"tier\":\"RARE\",\"duration\":2.12,\"peak\":0.3168807625770569,\"energy\":47.76442831897605,\"rms\":0.02260294700976036},{\"tier\":\"ELITE\",\"duration\":2.8,\"peak\":0.24235773086547852,\"energy\":63.16100312175309,\"rms\":0.022616541773431757},{\"tier\":\"ULTRA_RARE\",\"duration\":3.6,\"peak\":0.23457053303718567,\"energy\":72.95779714726152,\"rms\":0.02143706432921871},{\"tier\":\"LEGENDARY\",\"duration\":4.6000000000000005,\"peak\":0.22526076436042786,\"energy\":88.99904328231162,\"rms\":0.020945679721035514},{\"tier\":\"ICON\",\"duration\":5.450000000000001,\"peak\":0.21269181370735168,\"energy\":95.66525638217665,\"rms\":0.019950765960196567}]\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:36:52.400Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-068f506e0507a25e3677",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 266,
+          "column": 5
+        },
+        {
+          "title": "V3 audio follows visual phases, reuses one context per pack, and stops on mute/close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12255,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:36:55.640Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-ad921a9803bdd3aa9b50",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 321,
+          "column": 5
+        },
+        {
+          "title": "V3 complete nine-card sequence keeps order, best pull and a single issuance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 32413,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:37:08.026Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-8df19f997f0de1d1a188",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 374,
+          "column": 5
+        },
+        {
+          "title": "nfl summary and existing card details share the actual card without another opening",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 9254,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\u001b[22m\n\u001b[2m    13 × locator resolved to <button disabled type=\"button\" class=\"pack-control secondary\">Save Image</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\u001b[22m\n\u001b[2m    13 × locator resolved to <button disabled type=\"button\" class=\"pack-control secondary\">Save Image</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n\n    at C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts:424:7",
+                    "location": {
+                      "file": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts",
+                      "column": 7,
+                      "line": 424
+                    },
+                    "snippet": "  422 |     await expect(\n  423 |       share.getByRole(\"button\", { name: \"Save Image\" }),\n> 424 |     ).toBeEnabled();\n      |       ^\n  425 |     await expect(share.getByRole(\"img\")).toHaveAttribute(\n  426 |       \"alt\",\n  427 |       new RegExp(card.name),"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts",
+                        "column": 7,
+                        "line": 424
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\u001b[22m\n\u001b[2m    13 × locator resolved to <button disabled type=\"button\" class=\"pack-control secondary\">Save Image</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n\n\n  422 |     await expect(\n  423 |       share.getByRole(\"button\", { name: \"Save Image\" }),\n> 424 |     ).toBeEnabled();\n      |       ^\n  425 |     await expect(share.getByRole(\"img\")).toHaveAttribute(\n  426 |       \"alt\",\n  427 |       new RegExp(card.name),\n    at C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts:424:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:37:40.540Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\private-data\\overnight-audit-20261115\\pack-traces\\pack-cinema-v2-nfl-summary-6330a-ard-without-another-opening\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\private-data\\overnight-audit-20261115\\pack-traces\\pack-cinema-v2-nfl-summary-6330a-ard-without-another-opening\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts",
+                    "column": 7,
+                    "line": 424
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-6ca853e22670864a1c5a",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 409,
+          "column": 7
+        },
+        {
+          "title": "afl summary and existing card details share the actual card without another opening",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 19593,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:38:01.825Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-48b7a4bb56831f1b1cd6",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 409,
+          "column": 7
+        },
+        {
+          "title": "nrl summary and existing card details share the actual card without another opening",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8393,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:38:22.448Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-a3d12785f0e2c7c27b7f",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 409,
+          "column": 7
+        },
+        {
+          "title": "share preview fills the viewport without the desktop sheet translation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 10776,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\u001b[22m\n\u001b[2m    13 × locator resolved to <button disabled type=\"button\" class=\"pack-control secondary\">Save Image</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\u001b[22m\n\u001b[2m    13 × locator resolved to <button disabled type=\"button\" class=\"pack-control secondary\">Save Image</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n\n    at C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts:475:7",
+                    "location": {
+                      "file": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts",
+                      "column": 7,
+                      "line": 475
+                    },
+                    "snippet": "  473 |     await expect(\n  474 |       share.getByRole(\"button\", { name: \"Save Image\" }),\n> 475 |     ).toBeEnabled();\n      |       ^\n  476 |     const box = await share.boundingBox();\n  477 |     expect(box?.x).toBeCloseTo(0, 0);\n  478 |     expect(box?.y).toBeCloseTo(0, 0);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts",
+                        "column": 7,
+                        "line": 475
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\u001b[22m\n\u001b[2m    13 × locator resolved to <button disabled type=\"button\" class=\"pack-control secondary\">Save Image</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n\n\n  473 |     await expect(\n  474 |       share.getByRole(\"button\", { name: \"Save Image\" }),\n> 475 |     ).toBeEnabled();\n      |       ^\n  476 |     const box = await share.boundingBox();\n  477 |     expect(box?.x).toBeCloseTo(0, 0);\n  478 |     expect(box?.y).toBeCloseTo(0, 0);\n    at C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts:475:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:38:30.982Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\private-data\\overnight-audit-20261115\\pack-traces\\pack-cinema-v2-share-previ-7ad79-e-desktop-sheet-translation\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\private-data\\overnight-audit-20261115\\pack-traces\\pack-cinema-v2-share-previ-7ad79-e-desktop-sheet-translation\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts",
+                    "column": 7,
+                    "line": 475
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-80ca6736110b83d64df6",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 457,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "pack-opening.test.ts",
+      "file": "pack-opening.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "lost receipt response, saved progress, replay and accessibility at 360",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 35668,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:38:55.932Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-1a85a9a07fee77d8fc49",
+          "file": "pack-opening.test.ts",
+          "line": 15,
+          "column": 7
+        },
+        {
+          "title": "lost receipt response, saved progress, replay and accessibility at 412",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 19014,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:39:32.700Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-bf338fdc517d5c24c284",
+          "file": "pack-opening.test.ts",
+          "line": 15,
+          "column": 7
+        },
+        {
+          "title": "lost receipt response, saved progress, replay and accessibility at 1366",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 24574,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:39:51.824Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-9112e75e2d8c78a0e051",
+          "file": "pack-opening.test.ts",
+          "line": 15,
+          "column": 7
+        },
+        {
+          "title": "reduced motion, keyboard opening and duplicate input",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8770,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:40:16.574Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-6818090942a0a59fc17e",
+          "file": "pack-opening.test.ts",
+          "line": 115,
+          "column": 5
+        },
+        {
+          "title": "an existing NBA receipt keeps its original read-only reveal",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4482,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:40:25.486Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-be1283022c73c77bf956",
+          "file": "pack-opening.test.ts",
+          "line": 164,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "purchase-recovery.test.ts",
+      "file": "purchase-recovery.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "lost purchase response recovers once through dialog",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14226,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:40:31.124Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5e747224289cc0d7a445-d2888c72eacfb8f12ba7",
+          "file": "purchase-recovery.test.ts",
+          "line": 9,
+          "column": 7
+        },
+        {
+          "title": "lost purchase response recovers once through refresh",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15436,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:40:45.607Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5e747224289cc0d7a445-17b046929b7f767130a6",
+          "file": "purchase-recovery.test.ts",
+          "line": 9,
+          "column": 7
+        },
+        {
+          "title": "lost purchase response recovers once through timeout",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 27587,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:41:01.233Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5e747224289cc0d7a445-5bf7b01f962f68d4ffcc",
+          "file": "purchase-recovery.test.ts",
+          "line": 9,
+          "column": 7
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-15T13:32:54.786Z",
+    "duration": 528262.089,
+    "expected": 27,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

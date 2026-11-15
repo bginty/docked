@@ -1,0 +1,67 @@
+{
+  "at": "2026-11-15T12:45:34.623980+00:00",
+  "engineeringChecksPassed": true,
+  "productionDeploymentAuthorised": false,
+  "platformTests": {
+    "passed": 19,
+    "failed": 0,
+    "includes": [
+      "atomic nine-card delivery and scarcity",
+      "idempotent retries",
+      "stale-provider reveal",
+      "empty, partial, carried and locked lineups",
+      "salary/FLEX completion",
+      "18-week navigation and historical Practice preservation"
+    ]
+  },
+  "postgres": {
+    "passed": true,
+    "evidence": "postgres-regression.json",
+    "scope": "Disposable PostgreSQL full migration chain and concurrency scenarios. Final migration also rehearsed against the restored Production snapshot; see restored-performance.json."
+  },
+  "restoredDatabase": {
+    "passed": true,
+    "evidence": "restored-performance.json",
+    "network": "none",
+    "allTransactionsRolledBack": true,
+    "newCardsPerPurchase": 9,
+    "productionWrites": 0
+  },
+  "mobileBrowser": {
+    "passed": true,
+    "fixtureTransport": true,
+    "physicalAndroid": false,
+    "evidence": [
+      "browser/acceptance.json",
+      "pack-recovery-browser/acceptance.json"
+    ],
+    "visualInspection": "390px screenshots reviewed; purchase fixture uses the actual application stylesheet order, no horizontal overflow; saved purchase reaches rendered card after reload."
+  },
+  "typecheck": {
+    "passed": true
+  },
+  "changedFileLint": {
+    "passed": true
+  },
+  "nextBuild": {
+    "exitCode": 0,
+    "compiled": true,
+    "typecheck": true,
+    "staticPages": 70,
+    "standaloneArtifactComplete": false,
+    "limitation": "27 traced framework files omitted because the local node_modules junction points outside the tracing root. This local standalone artifact must not be deployed. A clean protected hosted build is mandatory."
+  },
+  "remainingAcceptance": [
+    "Clean protected hosted build and runtime checks after separate exact-package approval",
+    "Real Android v31 load and saved-request recovery including restart",
+    "Valid permission for the actual schedule source and current fixture revalidation; retained 8 November snapshot is explicitly labelled"
+  ],
+  "legacyTestLimitation": "The older pack-shopping-browser script stopped at an obsolete combobox assertion before transaction scenarios. It is not reported as passing; the focused recovery browser exercises real components/core with isolated transport.",
+  "publicLaunch": "NO-GO",
+  "secretScan": {
+    "changedAndNewFiles": 33,
+    "localBrowserAssets": 248,
+    "knownRuntimeSecretsAbsent": true,
+    "hostedScanPending": true
+  }
+}

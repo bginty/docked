@@ -1,0 +1,166 @@
+{
+  "source": "12ccfd5879ae83f1bd62210ee16a3feb6907d9ef",
+  "environment": "Local isolated unminified fixture, headless Edge, normal CPU; host load uncontrolled; all requests intercepted",
+  "results": [
+    {
+      "rootStyles": true,
+      "simulateShareCancel": false,
+      "ready": false,
+      "readyMs": 4994,
+      "opens": 1,
+      "errors": [
+        "__name is not defined"
+      ],
+      "resources": [
+        {
+          "path": "/pack",
+          "status": 200
+        },
+        {
+          "path": "/brand/fonts/Sora-Variable.ttf",
+          "status": 200
+        },
+        {
+          "path": "/receipt",
+          "status": 200
+        },
+        {
+          "path": "/brand/docked/logos/docked-wordmark-compact-800w.webp",
+          "status": 200
+        },
+        {
+          "path": "/brand/fonts/Sora-Variable.ttf",
+          "status": 200
+        },
+        {
+          "path": "/open-pack",
+          "status": 200
+        },
+        {
+          "path": "/brand/docked/logos/docked-wordmark-compact-400w.webp",
+          "status": 200
+        }
+      ],
+      "widths": [
+        {
+          "width": 360,
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 360,
+            "height": 800
+          },
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 800
+          },
+          "overflow": false
+        },
+        {
+          "width": 1536,
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 1536,
+            "height": 800
+          },
+          "overflow": false
+        }
+      ],
+      "text": "Share your pull\n✕\n\nStory image · 1080 × 1920\n\nShare Image\nSave Image",
+      "shareEvents": [],
+      "images": [
+        {
+          "width": 1080,
+          "height": 1920
+        }
+      ]
+    },
+    {
+      "rootStyles": true,
+      "simulateShareCancel": true,
+      "ready": false,
+      "readyMs": 1424,
+      "opens": 1,
+      "errors": [
+        "__name is not defined"
+      ],
+      "resources": [
+        {
+          "path": "/pack",
+          "status": 200
+        },
+        {
+          "path": "/brand/fonts/Sora-Variable.ttf",
+          "status": 200
+        },
+        {
+          "path": "/receipt",
+          "status": 200
+        },
+        {
+          "path": "/brand/docked/logos/docked-wordmark-compact-800w.webp",
+          "status": 200
+        },
+        {
+          "path": "/brand/fonts/Sora-Variable.ttf",
+          "status": 200
+        },
+        {
+          "path": "/open-pack",
+          "status": 200
+        },
+        {
+          "path": "/brand/docked/logos/docked-wordmark-compact-400w.webp",
+          "status": 200
+        }
+      ],
+      "widths": [
+        {
+          "width": 360,
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 360,
+            "height": 800
+          },
+          "overflow": false
+        },
+        {
+          "width": 768,
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 768,
+            "height": 800
+          },
+          "overflow": false
+        },
+        {
+          "width": 1536,
+          "box": {
+            "x": 0,
+            "y": 0,
+            "width": 1536,
+            "height": 800
+          },
+          "overflow": false
+        }
+      ],
+      "text": "Share your pull\n✕\n\nStory image · 1080 × 1920\n\nShare Image\nSave Image",
+      "shareEvents": [],
+      "images": [
+        {
+          "width": 1080,
+          "height": 1920
+        }
+      ]
+    }
+  ]
+}

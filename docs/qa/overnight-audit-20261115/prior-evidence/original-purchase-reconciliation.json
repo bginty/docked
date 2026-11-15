@@ -1,0 +1,45 @@
+{
+  "at": "2026-11-15T11:10:24.116Z",
+  "productionWrites": 0,
+  "request": "9aa88640-713a-4661-87c0-c7e1036972f3",
+  "outcome": "committed",
+  "stateRevision": 324,
+  "product": {
+    "id": "premium-1-afl-founder-credits-v1",
+    "name": "Premium 1 Pack",
+    "sport": "afl",
+    "cards": 1,
+    "priceCredits": 700,
+    "configurationHash": "180eb63f12827e432ad74a92e8dee288b22ec76405afc30ee285782b2c035ab6"
+  },
+  "journals": 1,
+  "journalBalanced": true,
+  "debit": 700,
+  "currentWallet": {
+    "available": 4800,
+    "pending": 0,
+    "reserved": 0,
+    "withdrawable": 0,
+    "total": 4800,
+    "heldAvailable": 0,
+    "spendable": 4800,
+    "label": "Docked Credits · financial sandbox · no cash value",
+    "withdrawableIsSubset": true,
+    "restricted": 4800
+  },
+  "entitlementStatus": "OPENED",
+  "openedAt": 1794731618445,
+  "receiptAvailable": true,
+  "cards": [
+    {
+      "card": "079b21d6-5fdd-4714-963c-77dbf79e9d9d",
+      "serial": 2,
+      "owned": true,
+      "inCollection": true
+    }
+  ],
+  "storedRequestFingerprintSha256": "6cbc9e13f3eb897f684893ce5f99e2d25eda946bf638338160bf0564c0323f97",
+  "replacementIssued": false,
+  "refundIssued": false,
+  "physicalAndroidInspection": false
+}

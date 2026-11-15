@@ -1,0 +1,302 @@
+{
+  "at": "2026-11-15T13:05:00Z",
+  "source": "12ccfd5879ae83f1bd62210ee16a3feb6907d9ef",
+  "largestSourceFiles": [
+    {
+      "path": "src/core/credits-sandbox.ts",
+      "lines": 2038,
+      "bytes": 67686
+    },
+    {
+      "path": "src/app/play-cards.css",
+      "lines": 1599,
+      "bytes": 35350
+    },
+    {
+      "path": "src/app/owner-reference.css",
+      "lines": 1557,
+      "bytes": 31790
+    },
+    {
+      "path": "src/components/nfl-seven-play.tsx",
+      "lines": 1483,
+      "bytes": 48409
+    },
+    {
+      "path": "src/server/community-social.ts",
+      "lines": 1339,
+      "bytes": 63375
+    },
+    {
+      "path": "src/components/fantasy-screen.tsx",
+      "lines": 1301,
+      "bytes": 47616
+    },
+    {
+      "path": "src/app/mobile-app.css",
+      "lines": 1281,
+      "bytes": 30117
+    },
+    {
+      "path": "src/components/pack-opening.tsx",
+      "lines": 1191,
+      "bytes": 44394
+    },
+    {
+      "path": "src/app/mobile-cleanup.css",
+      "lines": 1178,
+      "bytes": 24043
+    },
+    {
+      "path": "src/app/social-hub.css",
+      "lines": 1134,
+      "bytes": 24679
+    },
+    {
+      "path": "src/app/globals.css",
+      "lines": 1126,
+      "bytes": 20501
+    },
+    {
+      "path": "src/components/withdrawals.tsx",
+      "lines": 1088,
+      "bytes": 42118
+    },
+    {
+      "path": "src/components/sport-sandbox.tsx",
+      "lines": 1051,
+      "bytes": 38348
+    },
+    {
+      "path": "src/app/community-app.css",
+      "lines": 1025,
+      "bytes": 21764
+    },
+    {
+      "path": "src/components/fantasy-play.tsx",
+      "lines": 1003,
+      "bytes": 39657
+    },
+    {
+      "path": "src/app/pack-shop.css",
+      "lines": 864,
+      "bytes": 20327
+    },
+    {
+      "path": "src/components/pack-shop.tsx",
+      "lines": 781,
+      "bytes": 28498
+    },
+    {
+      "path": "src/app/pack-opening.css",
+      "lines": 762,
+      "bytes": 15890
+    },
+    {
+      "path": "src/app/fantasy-play.css",
+      "lines": 749,
+      "bytes": 15026
+    },
+    {
+      "path": "src/core/redemption.ts",
+      "lines": 737,
+      "bytes": 23786
+    },
+    {
+      "path": "src/core/card-economy.ts",
+      "lines": 733,
+      "bytes": 25065
+    },
+    {
+      "path": "src/server/commercial-ledger.ts",
+      "lines": 725,
+      "bytes": 30821
+    },
+    {
+      "path": "src/components/app-auth-forms.tsx",
+      "lines": 720,
+      "bytes": 22204
+    },
+    {
+      "path": "src/components/credit-marketplace.tsx",
+      "lines": 709,
+      "bytes": 24634
+    },
+    {
+      "path": "src/app/pack-cinema-v2.css",
+      "lines": 655,
+      "bytes": 15584
+    },
+    {
+      "path": "src/components/social-interactions.tsx",
+      "lines": 648,
+      "bytes": 21037
+    },
+    {
+      "path": "src/app/collectible.css",
+      "lines": 647,
+      "bytes": 14985
+    },
+    {
+      "path": "src/app/fantasy.css",
+      "lines": 647,
+      "bytes": 12844
+    },
+    {
+      "path": "src/components/competition-results.tsx",
+      "lines": 642,
+      "bytes": 22213
+    },
+    {
+      "path": "src/core/scoring-engine.ts",
+      "lines": 609,
+      "bytes": 19628
+    }
+  ],
+  "largestPublicAssets": [
+    {
+      "path": "public/data/rosters/wikimedia-roster-beta-2026-10-23-v1.json",
+      "bytes": 1910258
+    },
+    {
+      "path": "public/social-card.svg",
+      "bytes": 1301117
+    },
+    {
+      "path": "public/data/rosters/jersey-evidence-2026-10-23.json",
+      "bytes": 586850
+    },
+    {
+      "path": "public/brand/docked/splash/docked-splash-logo-768w.png",
+      "bytes": 398621
+    },
+    {
+      "path": "public/icons/docked.svg",
+      "bytes": 343270
+    },
+    {
+      "path": "public/brand/docked/offline.html",
+      "bytes": 315248
+    },
+    {
+      "path": "public/offline.html",
+      "bytes": 315174
+    },
+    {
+      "path": "public/brand/docked/free-play-offline.html",
+      "bytes": 315133
+    },
+    {
+      "path": "public/brand/docked/social/docked-open-graph-1200x630.jpg",
+      "bytes": 287617
+    },
+    {
+      "path": "public/brand/docked/icons/docked-icon-512.png",
+      "bytes": 234604
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/starter-afl-4-800.webp",
+      "bytes": 231810
+    },
+    {
+      "path": "public/images/sports/nfl.webp",
+      "bytes": 210256
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v1/standard-afl-9-800.webp",
+      "bytes": 209302
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v1/premium-nrl-9-800.webp",
+      "bytes": 199990
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/standard-afl-9-800.webp",
+      "bytes": 196058
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/premium-nrl-9-800.webp",
+      "bytes": 187916
+    },
+    {
+      "path": "public/brand/docked/heroes/docked-hero-stadium-desktop-1600w.webp",
+      "bytes": 185866
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/standard-nrl-3-800.webp",
+      "bytes": 185414
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/standard-afl-3-800.webp",
+      "bytes": 184886
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/standard-nrl-9-800.webp",
+      "bytes": 183538
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/standard-nfl-3-800.webp",
+      "bytes": 181346
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/starter-nfl-4-800.webp",
+      "bytes": 181252
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/standard-afl-1-800.webp",
+      "bytes": 181036
+    },
+    {
+      "path": "public/images/sports/basketball.webp",
+      "bytes": 179274
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/premium-nrl-3-800.webp",
+      "bytes": 178348
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/premium-afl-9-800.webp",
+      "bytes": 177296
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/starter-nrl-4-800.webp",
+      "bytes": 176928
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/standard-nfl-1-800.webp",
+      "bytes": 176816
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/premium-nfl-9-800.webp",
+      "bytes": 175864
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/premium-nfl-1-800.webp",
+      "bytes": 175366
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/premium-afl-1-800.webp",
+      "bytes": 174956
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/premium-nfl-3-800.webp",
+      "bytes": 174106
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/premium-afl-3-800.webp",
+      "bytes": 173610
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/standard-nfl-9-800.webp",
+      "bytes": 172980
+    },
+    {
+      "path": "public/brand/docked/packs/foil-v2/standard-nrl-1-800.webp",
+      "bytes": 172192
+    }
+  ],
+  "sourceFileCount": 763,
+  "cssBytes": 468352,
+  "pageCount": 73,
+  "apiCount": 75
+}

@@ -1,0 +1,192 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "-c",
+      "scripts/audit/playwright.config.ts",
+      "-g",
+      "nfl summary|share preview fills"
+    ],
+    "configFile": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\scripts\\audit\\playwright.config.ts",
+    "rootDir": "C:/Users/61412/.codex/worktrees/overnight-app-audit-20261115/Docked.com.au/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 5,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/61412/.codex/worktrees/overnight-app-audit-20261115/Docked.com.au/private-data/overnight-audit-20261115/pack-traces",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/61412/.codex/worktrees/overnight-app-audit-20261115/Docked.com.au/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "pack-opening.test.ts",
+          "nine-card-reveal.test.ts",
+          "pack-cinema-v2.test.ts",
+          "purchase-recovery.test.ts"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      ["list", null],
+      [
+        "json",
+        {
+          "outputFile": "docs/qa/overnight-audit-20261115/pack-browser-repeat.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "pack-cinema-v2.test.ts",
+      "file": "pack-cinema-v2.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "nfl summary and existing card details share the actual card without another opening",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 20050,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:42:55.226Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-6ca853e22670864a1c5a",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 409,
+          "column": 7
+        },
+        {
+          "title": "share preview fills the viewport without the desktop sheet translation",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 16715,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\u001b[22m\n\u001b[2m    13 × locator resolved to <button disabled type=\"button\" class=\"pack-control secondary\">Save Image</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\u001b[22m\n\u001b[2m    13 × locator resolved to <button disabled type=\"button\" class=\"pack-control secondary\">Save Image</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n\n    at C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts:475:7",
+                    "location": {
+                      "file": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts",
+                      "column": 7,
+                      "line": 475
+                    },
+                    "snippet": "  473 |     await expect(\n  474 |       share.getByRole(\"button\", { name: \"Save Image\" }),\n> 475 |     ).toBeEnabled();\n      |       ^\n  476 |     const box = await share.boundingBox();\n  477 |     expect(box?.x).toBeCloseTo(0, 0);\n  478 |     expect(box?.y).toBeCloseTo(0, 0);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts",
+                        "column": 7,
+                        "line": 475
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeEnabled\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\nExpected: enabled\nReceived: disabled\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toBeEnabled\" getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' }) with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('dialog', { name: 'Share your pull' }).getByRole('button', { name: 'Save Image' })\u001b[22m\n\u001b[2m    13 × locator resolved to <button disabled type=\"button\" class=\"pack-control secondary\">Save Image</button>\u001b[22m\n\u001b[2m       - unexpected value \"disabled\"\u001b[22m\n\n\n  473 |     await expect(\n  474 |       share.getByRole(\"button\", { name: \"Save Image\" }),\n> 475 |     ).toBeEnabled();\n      |       ^\n  476 |     const box = await share.boundingBox();\n  477 |     expect(box?.x).toBeCloseTo(0, 0);\n  478 |     expect(box?.y).toBeCloseTo(0, 0);\n    at C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts:475:7"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T13:43:17.008Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\private-data\\overnight-audit-20261115\\pack-traces\\pack-cinema-v2-share-previ-7ad79-e-desktop-sheet-translation\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\private-data\\overnight-audit-20261115\\pack-traces\\pack-cinema-v2-share-previ-7ad79-e-desktop-sheet-translation\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\61412\\.codex\\worktrees\\overnight-app-audit-20261115\\Docked.com.au\\tests\\browser\\pack-cinema-v2.test.ts",
+                    "column": 7,
+                    "line": 475
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-80ca6736110b83d64df6",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 457,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-15T13:42:43.746Z",
+    "duration": 59376.75,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

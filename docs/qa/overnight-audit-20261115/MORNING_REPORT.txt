@@ -1,0 +1,646 @@
+DOCKED — INDEPENDENT APPLICATION AUDIT AND PROPOSED IMPROVEMENTS
+16 November 2026 AEDT. Audit evidence collected overnight 15–16 November.
+Decision: approve targeted implementation next; public launch remains NO-GO.
+This is a review, not a deployment package or authority to activate anything.
+
+Docked has working foundations, but its current member experience is not yet
+consistently fast or sufficiently proven for the first paying customer. The
+strongest evidence points to expensive wallet persistence, an oversized fantasy
+read path, avoidable work after recovery, and mobile rendering overhead. The
+branding and card presentation can be retained. A broad redesign is unnecessary.
+
+No product code, database schema, settings, balances, ownership or source rights
+were changed during this audit. No SMS, purchase, refund, grant, import or email
+test was performed. Only diagnostics and this review were prepared.
+
+A. WHAT IS ACTUALLY LIVE
+
+Production: 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef
+Deployment: dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy
+Both authenticated Vercel metadata and a fresh /api/beta-release readback agree.
+The public release endpoint still reports registration closed.
+
+The approved Brenton exception and private free-credit pack functionality are
+live. This audit did not provision him again, accept notices for him or issue
+credits. His remaining consent/grant workflow is separate from this review.
+
+Live inventory readback at 13:23 UTC, 16 November 00:23 AEDT:
+- 6,540 definitions; 0 commercially approved definitions.
+- 888 preserved legacy limited copies + 2 legitimate beta allocations = 890
+  lifetime-issued copies. The previous deployment verified 908 custody records;
+  that custody count was not re-derived in the final lightweight audit census.
+- 0 commercial cards and 0 commercial packs.
+- Commercial sales, issuance, transfers and gameplay controls all false.
+- No enabled public competitions or operational retention cleanup policy.
+- All 17 historical Google notifications done; restricted outbox not exposed to
+  anon/authenticated/service_role/commercial runtime roles in the reviewed check.
+
+The permanent season-catalogue correction is ALREADY live, from a42004fa.
+The pack-performance/rounds/auto-fill candidate is NOT live:
+  source 6882ad745186f5937bc54a53aa786e26363dfa54
+  documentation 7902a67a7fe862444b16a472557d635419b082e7
+  package 921ae76d61ea68cd51587435efc0998c11e9d8b0ab885aec702dcc0f18c87058
+  SQL 20261115113306_batch_private_pack_issuance_validation.sql
+  SHA-256 ed62d00159492c6151ebf0543a5f34c6ee4a215fe9e655bbf9c6b64fcf7c49ed
+Do not mistake its tests or screenshots for Production functionality. Do not
+deploy it unchanged: its proposed calendar wording needs the requested “Round”
+wording, and hosted acceptance and a clean build remain outstanding.
+
+The automatic Preview of that branch failed at the intentional reviewed-target
+build guard. It did not reach application compilation. This is a functioning
+deployment boundary, not evidence that the candidate cannot compile. Its earlier
+local build did compile/typecheck, but the external node_modules junction omitted
+27 framework files from standalone tracing. That artifact must not be promoted.
+
+B. APPLICATION HEALTH — PROVISIONAL SCORES
+
+Scale: 1 unusable/unproven, 5 materially functional with significant gaps,
+10 consistently measured and accepted in the intended customer environment.
+These are engineering judgements, not uptime or security certifications.
+
+Area                       Score   Evidence and limitation
+Performance                 4/10   Warm wallet p95 16.58s; fantasy 10.77s in the
+                                   recent mixed-release window; mobile lab LCP ~3s.
+Reliability                 6/10   Saved requests and financial guards work in
+                                   isolation; visible timeout/recovery friction.
+Mobile usability            6/10   Responsive collection/market/results fixtures;
+                                   real keyboard, lifecycle and v31 tests pending.
+Visual design               7/10   Coherent existing brand, foil packs and cards;
+                                   dense reviews and some avoidable presentation work.
+Pack-opening experience     4/10   Confirmed latency; pending receipt-reveal fix;
+                                   high-tier effects slow in throttled lab tests.
+Card collection             7/10   Pagination/filter/revocation checks pass across
+                                   three sports; focus closes card details.
+Fantasy gameplay            5/10   Rules/ownership guards exist; limited live NFL
+                                   rounds and established-team auto-fill rejection.
+Marketplace                 5/10   Fixed-price UI/core implementation; disabled
+                                   in Production; no completed two-party acceptance.
+Security                    7/10   Scoped roles, MFA, source/issuance guards; no
+                                   registry production-dependency advisories found.
+                                   Leaked-password protection is disabled; coverage
+                                   is a focused audit, not a penetration test.
+Commercial launch readiness 3/10   Genuine OTP/Android billing/refund, rights and
+                                   commercial activation acceptance remain incomplete.
+
+C. TEN BIGGEST PROBLEMS, IN CUSTOMER-IMPACT ORDER
+
+1. Pack confirmation can outlive the 15-second browser deadline. CONFIRMED.
+   The live beta wallet UPDATE averages 8.51s over 94 calls and reaches 16.56s;
+   the warm /api/test-wallet p95 is 16.58s over the recent mixed-release window.
+   The 4.18MB aggregate is validated/projected inside a globally ordered wallet
+   transaction. A timeout can appear after a successful commit. The screenshot's
+   700-credit purchase was reconciled earlier: exactly one Premium 1 AFL card,
+   not nine cards, with no missing asset or duplicate debit. Do not refund or
+   reissue it merely because the screen timed out.
+
+2. Play loads data that is too broad for the initial screen. CONFIRMED COST;
+   the exact gain from splitting it remains to be measured.
+   member_review_context averages 3.82s across 477 calls; production_read_state
+   averages 2.00s across 260 calls. The server runs these plus status/jersey and
+   member reads serially. Review context constructs all owned-card history from
+   the large aggregate even when the user only needs the current lineup. Its
+   wrappers also accumulate older data shapes. My Cards has its own paginated
+   reader; do not incorrectly attribute this complete Play path to every tab.
+
+3. A legitimate allocated beta pack can still encounter the old freshness
+   condition when revealing. CONFIRMED IN THE PENDING REPAIR'S ISOLATED TEST.
+   New issuance now uses the stable catalogue, but the old reveal path checks
+   live-roster eligibility again. The pending candidate removes that dependency
+   only for the registered founder-credit-season policy. Revealing a saved
+   receipt must never allocate another card. No additional Production opening
+   was performed to reproduce it during this audit.
+
+4. The NFL selector is a list of imported competitions, not a complete season
+   calendar. CONFIRMED by source and fresh read-only data.
+   Member rows include Round 6, Round 7 and synthetic Practice Round 1. That
+   explains the screenshot. The pending 18-round calendar is not live. Its
+   retained 272-game schedule was verified on 8 November; 24 later kickoff times
+   remain TBD. Displaying a full calendar must not invent current fixtures, open
+   entries, enable scores or conceal Practice restrictions.
+
+5. Auto-fill stops being useful once a team is established. CONFIRMED IN SOURCE.
+   recommendOwnedLineup explicitly rejects established teams and tells the user
+   to replace players manually. The pending solver addresses empty slots in both
+   Traditional and All-Star, preserving manual choices, locks, ownership,
+   position/FLEX eligibility, unique players and the salary cap. It is not live.
+
+6. High-tier reveal effects are too expensive on the simulated slower device.
+   LAB RESULT, not an Android-device FPS claim. CPU 4x tests measured Ultra Rare
+   14.5fps, Legendary 13.3fps and Icon 10.9fps, despite economy quality selection.
+   At normal CPU, those tiers were about 51/43/42fps. The idle baseline was 60fps.
+   Reduce canvas/effect work while keeping the card and reveal controls immediate.
+
+7. Every public route carries broad application styling and substantial JS.
+   CONFIRMED DOWNLOAD/SOURCE FINDING. Each tested route downloaded ~78KB encoded
+   CSS, 338KB decoded. Login downloaded ~189KB encoded JS, 608KB decoded; the
+   anonymous cards recovery route ~276KB/873KB. Root imports include owner,
+   marketplace, fantasy and cinema CSS on public/auth pages. Some observed JS is
+   prefetch traffic, not one initial bundle. Pack opening already uses lazy
+   imports and intent preloading; preserve those existing improvements.
+
+8. Returning to the app interrupts collection inspection. CONFIRMED UI REPRO.
+   Opening a card, then firing window focus closes the detail panel on all three
+   sports at desktop and mobile widths. The invalidation handler clears detail,
+   filters' cursor and cached validation before refreshing. Native resume also
+   triggers route refresh, session verification and component listeners. Keep
+   ownership/access revalidation, but preserve safe reading position and coalesce
+   redundant refreshes. Never retain another member's private cache after logout.
+
+9. Phone verification can remain disabled indefinitely on a stalled response.
+   CONFIRMED SOURCE + ISOLATED UI REPRO. The component uses raw fetch without an
+   abort deadline. At 17 seconds it still showed disabled “Please wait…” and no
+   alert. A finite provider error does recover correctly; code autofill and change
+   number work. This is a pre-SMS-test fix, not evidence that an SMS was sent.
+
+10. Acceptance evidence is fragmented and several historical fixtures are stale.
+    CONFIRMED TESTING GAP. Old tests expected hidden NBA, old pack classes, old
+    composer labels and the former Profile weekly-pack location. One incomplete
+    mock response crashed a fixture; supplying the current disabled API contract
+    resolved it without modifying the app. Missing physical v31 acceptance and
+    authenticated current-release timings remain material gaps. Tests must bind
+    to current contracts and record the source/environment they actually test.
+
+D. MEASURED PERFORMANCE — KEEP THESE ENVIRONMENTS SEPARATE
+
+Fresh anonymous Production browser: headless Edge on Windows; 3 independent
+contexts per route/profile; browser cache disabled. Simulated Android: 390x844,
+DPR 2, CPU 4x, 150ms network latency, 1.6Mbps down/750Kbps up. No login or forms
+submitted. Non-GET requests blocked. Backend cache/cold state and host load were
+not controlled. The laptop was not a dedicated performance appliance.
+
+Route                     Desktop median LCP   Mobile-sim LCP   Mobile TTFB
+Home                      1.360s                2.976s           0.313s
+Login                     1.760s                3.288s           0.451s
+Privacy                   0.776s                2.920s           0.247s
+Cards, unauthenticated    0.892s                3.056s           0.244s
+
+The last row is the “Please sign in again” screen, NOT the authenticated collection.
+No horizontal page overflow was found in these runs. The maximum short-window
+layout-shift sum was 0.120 on that anonymous recovery screen, 0.059 on login,
+0.035 on privacy and <0.001 on home in the mobile simulation. These are not
+whole-session field CLS percentiles. Event Timing samples do not establish INP.
+The raw loadedMs includes a deliberate 2.5s observation wait; use Navigation
+Timing loadEvent in performance-summary.json for page-load comparisons.
+
+Google's Core Web Vitals guidance targets LCP <=2.5s, INP <=200ms and CLS <=0.1
+at the 75th percentile. This small lab sample cannot be graded as a field pass:
+https://web.dev/articles/vitals
+
+Actual Vercel function telemetry, 14 Nov 12:59–15 Nov 12:59 UTC:
+- /api/test-wallet, warm: p95 16.580s.
+- /fantasy/[tab], warm: p95 10.772s.
+- /api/weekly-core, warm: p95 0.459s.
+- /api/scoring/collect, cold: p95 2.146s.
+These combine releases and methods in a small beta population. Cold scoring and
+warm wallet are different routes, so their difference is not cold-start overhead.
+Filtering to current deployment returns mainly anonymous/denial/deployment-check
+traffic; it is not evidence of fast authenticated journeys. Field LCP retrieval
+returned payment_required. No plan was upgraded and no RUM percentile is claimed.
+
+Actual Production PostgreSQL statistics since 31 October 23:53 UTC:
+Operation                         Calls   Mean       Maximum
+Wallet aggregate UPDATE              94   8.510s     16.562s
+Member review context               477   3.825s     14.678s
+Fantasy state reader                260   2.003s     13.020s
+Player status joined to jerseys     577   1.038s      3.245s
+The very long administrator COPY/export statements are BACKUPS, not customer
+API requests. They have been excluded from this ranked customer analysis.
+Point-in-time database connections were 15/60, only one active. That snapshot
+does not demonstrate saturation or justify increasing connection limits.
+
+Restored PostgreSQL profiling this audit: disconnected Docker, no ports, SELECT
+queries with genuine eligibility locks and rollback. Snapshot predates Brenton's
+migration. Fantasy reader 2.43–2.47s; jersey join ~2.97–2.98s. Review context hit
+the 60s local cap once and took 59.92s on the next run. This was materially slower
+than Production statistics and must not be presented as Production latency.
+Host contention, restored statistics/cache and wrapper work were not controlled.
+The jersey plan concretely scans retained raw JSON revisions and reconstructs
+roster data more than once. Selecting the current approved source by pointer and
+sharing its parsing deserves priority over blindly adding indexes to small tables.
+The wallet SELECT plan itself is very fast because EXPLAIN does not measure all
+JSON transfer/JavaScript decoding/validation; it does not refute the 4.18MB cost.
+
+Previously measured pending-candidate persistence, SAME restored snapshot:
+                      Before       After run 1    After run 2
+Nine-card purchase    27.24s        7.93s          12.15s
+Reveal persistence    26.66s        7.94s          11.61s
+Roughly 55–71% less persistence time in these runs, not a promised API/device gain.
+Each experiment verified nine allocations/projections and rolled everything back.
+No need to rerun that unchanged migration just to increase the test count.
+
+Ranked performance work, including clearly identified scaling hypotheses:
+1. Wallet trigger/projection cost — measured; reuse pending validation batching.
+2. All-card history in initial Play — measured query; split/defer scoped history.
+3. Layered fantasy state assembly — measured query; profile and trim contracts.
+4. Rebuilt status/jersey raw-source joins — measured plan; share bounded parsing.
+5. Cinema canvas/effects — measured lab; reduce draw work and test modest devices.
+6. Global CSS delivery — measured; move feature styles to appropriate boundaries.
+7. Broad JS/prefetch delivery — measured bytes; inspect import graph/unused code.
+8. Recovery before saved-result lookup — source + existing pending test; fast-path.
+9. One visibility query per listed card — confirmed source N+1; current user cost
+   not isolated. Batch with unchanged permissions; pending candidate already does.
+10. Repeated auth/refresh requests and max-1 serverless pool serialization — source
+    hypothesis for incremental latency. Measure first; do not weaken fresh user,
+    session, admission, revocation or MFA checks, or increase connections blindly.
+
+E. JOURNEYS, RELIABILITY AND VISUAL REVIEW
+
+Registration/account: public registration correctly remains closed. Public login
+layout was inspected; isolated shared login shows invalid-credential feedback.
+Auth/recovery/erasure, session, phone and MFA core checks were exercised. Real
+email verification, password-reset delivery, current authenticated Profile changes
+and deletion were NOT performed. No account data was changed. Existing hosted
+acceptances remain historical evidence, not fresh execution of those journeys.
+
+Collections: current components plus root CSS passed NFL/AFL/NRL at 412 and 1440
+pixels: 18-card pagination, rarity/search, details/flip, card/pack tabs, empty state,
+503 retry, transfer invalidation, cursor revision reset and 403 cache clearing.
+Synthetic pages use 72 cards and ~7–8KB collection responses. Their first-use times
+include an unminified fixture bundle and local host contention; do not use those
+10.6/4.3/3.2s mobile fixture times as Production collection latency. Caps, teams and
+jersey numbers in synthetic layout screenshots are not real catalogue assertions.
+
+Weekly Core: direct current-panel tests pass ready/failed-read/retry states for
+all three sports; zero automated axe violations in those fixture states. Each
+panel discloses four Core cards. Earlier Profile-based fixtures are obsolete.
+The founder's earlier actual NFL opening remains accepted; no repeat requested.
+
+Packs: the browser suite initially passed 27/29; one of the two sharing checks
+passed unchanged on repeat. Targeted instrumentation traced the remaining wait
+to the browser's Web Share promise remaining pending in headless Edge, AFTER the
+1080x1920 image was generated. Simulating chooser cancellation restored Save Image
+and displayed "Share cancelled" in 0.96s; no second opening occurred. Geometry
+was correct at 360/768/1536px with current root CSS. This is a browser-harness/OS
+acceptance gap, not evidence of broken viewport alignment or lost cards. Keep
+the original failures visible; do not relabel the original suite 29/29 passed.
+pack-browser-results.json and TEST_RESULTS.txt contain the exact outcomes. The
+confirmed financial screenshot remains a one-card offer. Public nine-card
+Standard/Premium acceptance must separately verify the chosen offer and all nine
+permanent identities, not infer it from that screenshot or a ten-card legacy demo.
+Reveals already save progress, preload on purchase intent, support skip/reduced
+motion and stop animation work on visibility changes. Keep those safeguards.
+Actual hardware audio, haptics, sharing and WebView process death remain unproven.
+
+Fantasy: current source explains the round and auto-fill defects. Local lineup,
+salary/ownership and mode rules passed selected core tests. Responsive Results
+and Prizes fixtures passed across NFL/AFL/NRL. Those fixtures contain empty test
+standings: they are not proof of live scoring or current statistics. Keep null/
+pending distinct from a genuine zero; keep all public competitions disabled
+Practice and preserve historical entries/locked snapshots.
+
+Marketplace: isolated Browse/My Listings/Activity, reviewed-price controls,
+identity review and mobile/desktop layout checks passed. No Production listing,
+buy, sale, cancellation, refund or transfer was performed. Commercial fixed-price
+commands are explicit; swaps/counteroffers are not accepted commercial paths.
+The runtime pause must cover the old beta route as well as commercial flags.
+
+Social/admin: updated harness uses current composer labels and actual root CSS.
+It passed dialog closing/scroll restoration, interrupted publication recovery,
+read denial and synthetic moderation/administrator cases. These are fake members
+and local APIs, not founder actions. Real follows, collection-sharing permissions,
+notification delivery and public social moderation capacity still need an
+authenticated hosted acceptance session. Existing founder incident acceptance,
+email receipt and real same-key vault recovery are completed; do not repeat them.
+
+Visual assessment: keep the dark Docked palette, foil pack family and card frames.
+The two-column mobile collection is readable; horizontal rarity chips need a clear
+scroll affordance. Price/card-count/odds should sit together before confirmation.
+The pending-review screenshot repeats the uncertainty explanation across several
+paragraphs; propose one prominent saved-state message and one recovery action.
+Keep “My Cards”, “Packs”, “Traditional”, “All-Star” and “Round” consistent. Do not
+remove Practice labels while a feature is actually restricted to Practice.
+Put technical source/debug detail behind an optional explanation, while keeping
+material stale-data and privacy disclosures visible. Avoid adding animation.
+
+First 60 seconds after eventual activation: the user needs verified sign-in,
+clear A$49/4,900 and A$99/9,900 credit offers, a selected pack's exact credit price,
+card count and per-card odds, a durable success receipt, View Cards, and a clear
+route to a valid lineup. The current closed beta cannot prove this public funnel.
+Do not open a registration-only launch to make the funnel appear accepted.
+
+F. PERMANENT CATALOGUE, SUPPLY AND COMMERCIAL READINESS
+
+The ba5154ec temporary roster approach has been superseded by the live season
+catalogue. Fresh memberships:
+                Weekly Core scope       Private free-credit pack scope
+NFL             478 players              401 players
+AFL             545 players              536 players
+NRL             337 players              273 players
+Twenty NFL first-admission cases were held; 498 database candidates were never
+blanket-approved. Weekly membership and limited-card membership are different
+rights scopes. They must not be merged merely to increase available inventory.
+
+The architecture correctly separates permanent identity, approved season/scoped
+membership, immutable issuance/custody, current team/participation observations,
+statistics and source permissions. Existing private scope rights have no fixed
+expiry in the current registry; that is not evidence of unlimited commercial
+rights. New players still require evidence/admission. Routine injuries, transfers,
+stale observations and outages must not erase memberships or earned entitlements.
+Fresh jersey/status presentation may become unavailable without invalidating
+the permanent card. Actual rights revocation must still block new issuance.
+
+Lifetime limits remain per canonical player across seasons: Core unlimited;
+Rare 5,000; Elite 2,500; Ultra Rare 400; Legendary 50; Icon 1. Existing cards and
+new beta allocations consume the same permanent counters. Never reset 890 to 888.
+
+A 22 November roster-collection renewal is NOT the enduring pack-opening fix.
+New authorised roster/schedule/statistical collection may still require a valid
+permit. The old schedule collector permit expired 10 November, and its licence
+reference and actual retained CSV repository do not match. No permit was renewed,
+no stale timestamp made fresh and no paid scoring rights inferred in this audit.
+
+Commercial inventory remains dormant. The most recent separate conservative
+commercial proposal was 6,055 eligible / 485 held; the active private limited
+scope is 6,050 definitions for 1,210 players. Neither is blanket approval to use
+the original 6,065 in paid packs. Revalidate the specific commercial source scope
+and current evidence before activation, preserving the frozen import and all
+ownership. Do not re-import the already completed dormant inventory.
+
+Current approved offer code: Standard 1/3/9 costs 100/300/700 credits; Premium
+1/3/9 costs 700/1,900/5,000 credits. Per-card Standard rarity weights are Rare 85%,
+Elite 12%, Ultra Rare 2.5%, Legendary 0.49%, Icon 0.01%. Premium is Ultra Rare 90%,
+Legendary 9.9%, Icon 0.1%. Core is excluded from those paid-size products. The
+display derives odds from the allocation configuration. Do not reinterpret these
+as the probability of at least one rarity in a nine-card pack, or silently
+renormalise odds when supply is exhausted. No prices or probabilities changed.
+
+Google merchant GST remains RESOLVED by founder attestation. The last verified
+Google state was v31/Data Safety READY TO PUBLISH, managed publishing ON; payout
+bank Primary, with no deposit action shown. That is not actual settlement proof.
+The last independently verified Twilio sender status remains IN REVIEW. Neither
+console was rechecked after Computer Use stopped. Do not claim fresh approval.
+
+The previous 16-scenario isolated PostgreSQL billing suite covered concurrent
+replay, balanced journals, partial/full refunds, holds, ownership provenance and
+emergency-stop completion of already-bound receipts. This unchanged suite was
+reviewed rather than rerun gratuitously. It does not substitute for installed-v31
+Google TEST purchases/refunds, a genuine Australian OTP, two-party marketplace
+acceptance, source-material rights, paid random-pack/resale assessment or the
+accountant's credit/refund/fee/GST treatment. A$49/A$99 remain unchanged.
+
+G. SECURITY, MAINTAINABILITY AND OBSERVABILITY
+
+Fresh dependency audit: 0 reported vulnerabilities in production dependencies
+from npm audit --omit=dev. This is registry coverage, not proof all dependencies
+are safe. Supabase reports leaked-password protection disabled. Evaluate enabling
+it with account/recovery regression and the existing plan entitlement; do not
+change Auth settings silently. Official documentation:
+https://supabase.com/docs/guides/auth/password-security
+
+234 RLS-with-no-policy informational findings are primarily private deny-default
+tables, not 234 exposed-data vulnerabilities. The table privilege review found
+no unprotected application relation in the checked anon/authenticated grants;
+extension/net/realtime internals require exposed-schema context before drawing
+an exposure conclusion. Restricted outbox readback passed. This was not a full
+storage-policy, credential-rotation or adversarial penetration exercise.
+
+Source inspection retains server-derived member identity, getUser validation,
+active session/revocation checks, founder/staff MFA, transactional idempotency,
+balanced ledgers and permanent scarcity enforcement. Read-only UI optimisations
+must not bypass them. Do not move financial/source truth into browser caches.
+
+The codebase has 763 source files, 73 page files and 75 API route files; source CSS
+totals about 468KB. Several modules exceed 1,000 lines, including the wallet core,
+NFL play and pack opening. Historical SQL wrappers and dual beta/commercial paths
+increase review cost. Refactor only touched seams with contract tests first; do
+not rewrite the entire ledger during launch preparation.
+
+Vercel build logs show engines >=22 selects Node 26 while local diagnostics use
+Node 22. Pin and verify one supported release during a reviewed implementation
+package to remove this reproducibility gap. This is not proof Node 26 caused the
+pack timeout. Vercel documents package engine selection here:
+https://vercel.com/docs/functions/runtimes/node-js/node-js-versions
+
+Purchase Server-Timing already records auth/rules/lock/persist/view stages in
+authenticated no-store responses without tokens or account payloads. Use it in
+the next approved staging session; do not add paid monitoring infrastructure just
+to obtain the missing trace. Nested timings overlap and must not be summed.
+
+H. PRIORITISED SPECIFICATIONS AND IMPLEMENTATION ROADMAP
+
+Each estimate includes focused engineering and local regression, not external
+waiting. Gains below are targets unless explicitly marked measured. Android
+impact for all proposed batches: web/backend changes; no native modification is
+identified. Physical v31 acceptance remains mandatory. Any later native defect
+would require a separate assessment, not an automatic v32 submission.
+
+P0-01 — Reliable paid-size pack completion and recovery (BEFORE LAUNCH)
+Screens: pack confirmation, pending purchase, unopened packs, reveal.
+Evidence/root: C1/C3; 15s deadline, expensive triggers and obsolete reveal predicate.
+Change: review/reuse pending batch validation and saved-result fast path; retain
+all source/supply/owner guards; reveal only the committed receipt. Add bounded
+status recovery using the original request, no automatic second purchase. A longer
+transport deadline alone is insufficient. Preserve Brenton and private beta.
+Benefit/target: no ambiguous lost assets, exactly one debit/entitlement; observed
+restored persistence reduction 55–71%, hosted p95 target <5s for confirmation and
+<2s for saved-result recovery, to be measured rather than promised.
+Effort: 8–12h including pending-code review, updated contract fixtures and clean
+staging preparation. Risk HIGH: deferred triggers, locks and financial state.
+Tests: current restored snapshot; 1/3/9 offers and both nine-card launch families;
+exhaustion, source expiry, replay, 20 concurrent duplicates, lost response before/
+after commit, app restart, all cards/counters/journals unchanged on rejection.
+Android: existing binary expected compatible; real v31 slow-network/restart test.
+
+P1-02 — Smaller Play reads and shared source parsing (BEFORE LAUNCH)
+Screens: Play, card context and pack catalogue reads.
+Evidence/root: C2 and database plans; all-card history, layered JSON, repeat parsing.
+Change: current-round/member/owned inventory response first; fetch history on
+inspection; reuse bounded immutable source parsing in a transaction; batch listed-
+card visibility using the same permission function. Add indexes only where the
+new EXPLAIN plan supports them. Avoid a whole-ledger rewrite.
+Benefit/target: Play content p95 <3s, each dominant read <500ms under a documented
+snapshot/role/workload. Absolute gains unmeasured; component query means are known.
+Effort: 10–16h. Risk MEDIUM/HIGH: view contracts and per-member boundaries.
+Tests: exact row/JSON parity, RLS/blocked user, history completeness, old/current
+rounds, NFL/AFL/NRL, no cross-account cache, query-plan/response-size comparison.
+Android: no binary change expected. Safe before launch in a separately reviewed
+package; do not run new migrations under the older approval.
+
+P1-03 — Full NFL Round navigation and fill-empty lineups (BEFORE LAUNCH)
+Screens: Traditional/All-Star lineup and Results selectors.
+Evidence/root: C4/C5; selector derives from imported rows; established-team guard.
+Change: reuse pending calendar/solver, change customer “Week” to “Round”, remove
+unnecessary season/technical labels, show unavailable rounds honestly, retain
+Practice archive and historical deep links. Fill only empty eligible positions
+at start or later; show unfilled reasons; apply to draft only, preserve chosen
+cards and locked snapshots. No auto-entry or scoring activation.
+Benefit/target: complete season navigation, one fill action instead of repeated
+player selection. No numeric latency claim. Effort: 4–7h beyond existing candidate.
+Risk MEDIUM: cap/FLEX/locks and old entry navigation. Tests: both modes, partial/
+carried/empty lineups, insufficient cards, duplicate players, exact cap, outdated
+response, locked games, TBD fixtures, archived Practice, all 18 regular rounds.
+Android: web only; verify controls/scroll on v31. Rights verification is separate
+before claiming the schedule is current; it must not block honest archive display.
+
+P1-04 — Bounded phone onboarding and safe resend UX (BEFORE OTP ACCEPTANCE)
+Screens: verify phone. Evidence/root: C9; unbounded fetch, combined resend/change.
+Change: finite timeout, recoverable error and preserved input; explicit Change
+number and Resend code states using server-authoritative rate limits. Never
+automatically send another SMS after an unknown result. Keep the exact privacy
+meaning and support/account controls available.
+Benefit/target: no disabled form without a way forward; bounded failure by the
+chosen <=20s UI budget. Effort: 2–4h. Risk MEDIUM: resend budgets/provider timing.
+Tests: stalled headers/body, offline, retry, wrong/expired code, duplicate number,
+429/countdown, same-member verification, screen reader and keyboard/autofill.
+Android: no binary change expected; genuine SMS remains separately authorised.
+
+P1-05 — Acceptance repair and reproducible build (BEFORE LAUNCH)
+Screens: all critical journeys. Evidence/root: C10, build tracing and Node drift.
+Change: retain this audit's contract-correct diagnostic adapters; consolidate
+critical tests against actual root CSS/current response shapes; pin reviewed Node;
+clean hosted build; bind reports to commit, environment and deployment. Capture
+existing Server-Timing and real v31 results after separate test authority.
+Benefit: prevent false confidence and fixture-only defects. Target: no skipped
+critical acceptance disguised as pass. Effort: 4–6h, shared across batches.
+Risk LOW/MEDIUM. Tests: artifact/source identity, clean dependency install/build,
+closed-gate denial checks and delivered client-secret scan. Do not weaken the
+reviewed-target build guard to make automatic Preview green.
+
+P1-06 — Restore reading position on resume (BEFORE LAUNCH IF REPRODUCED ON v31)
+Screens: My Cards, card details, Profile. Evidence/root: C8, real component focus
+repro and overlapping listeners. Change: coalesce resume/focus/network refresh;
+preserve detail and scroll while revalidating, disable sensitive actions until
+verified; close promptly if ownership/access is revoked. Always clear member-
+scoped data on logout/account change.
+Benefit/target: one verification per resume burst, no involuntary panel closure
+for unchanged ownership. Effort: 3–5h. Risk MEDIUM: stale data/privacy.
+Tests: focus/background/foreground, offline reconnect, transfer, 401/403, account
+switch, polling, nested modal/back; real v31. No native binary change expected.
+
+P1-07 — Device acceptance and commercial gate closure (REQUIRED, NOT A CODE FIX)
+Evidence/root: no genuine current installed-app OTP/payment/refund/market session.
+Change: execute separately approved bounded Preview sessions with the founder;
+verify actual Google provider evidence, wallet deltas, nine-card identities,
+refund/hold/recovery and a second eligible marketplace tester. Revalidate source
+rights, accounting and runtime policy, preserving A$49/A$99 and approved odds.
+Target: every required revenue journey observed and reconciled; no guessed gains.
+Effort: 6–10h operational/engineering time if no new defects; external waiting and
+professional review excluded. Risk HIGH if rushed. Test plans already exist in
+v31-payment-launch-checks-20261114/DEVICE_SESSION_ORDER.txt. No SMS/payment action
+is authorised by approval of this audit's implementation plan.
+
+P2-08 — Lighter public shell and feature styles (MEASURE BEFORE DEPLOYING)
+Screens: home/login/privacy and first member navigation.
+Evidence/root: C7; broad root CSS and import/prefetch footprint.
+Change: route/feature style boundaries, inspect production import graph, retain
+lazy cinema and stable image dimensions; avoid indiscriminate disabling prefetch.
+Benefit/target: 30–50% less irrelevant public CSS and mobile lab LCP <=2.5s on the
+same profile. Targets, not measured improvements. Effort: 5–8h. Risk MEDIUM:
+cascade/order regressions. Tests: all major screens, 320–1440px, 200% text, keyboard,
+foil assets, contrast, route navigation, clean production bundle comparison.
+Android: web only. Before launch if measured gain and visual parity; otherwise
+follow launch without delaying essential payment/asset acceptance.
+
+P2-09 — Cheaper reveal effects with immediate controls (BEFORE LAUNCH IF DEVICE FAILS)
+Screens: nine-card reveal, Legendary/Icon. Evidence/root: C6 lab frame pacing.
+Change: reduce per-frame draw work, bound particles/DPR, suspend hidden scenes,
+prefer CSS/static treatment where visually equivalent; keep reduced motion/skip
+and the confirmed card independent of effects. No extra suspense delay.
+Benefit/target: >=30fps under the stated slower-device profile, controls respond
+within 200ms in lab, no long blocked reveal. Effort: 4–7h. Risk MEDIUM visual.
+Tests: every rarity/three sports, nine cards, reduced motion, sound off, failed
+images, backgrounding, replay, Next/Back/Reveal All, no duplicate open. Native
+audio/haptics performance requires hardware; no binary change presumed.
+
+P2-10 — Confirmation and navigation wording polish (SAFE BEFORE LAUNCH)
+Screens: purchase review, recovery, pack grid, round labels, collection filters.
+Evidence/root: screenshots and mixed historical labels; too much repeated copy.
+Change: exact pack size/price/odds together, one saved-request status, clear View
+Cards/Continue reveal, consistent Round terminology and horizontal filter cue.
+Preserve legal/privacy material and Practice truth. No prices, odds or redesign.
+Benefit: fewer wrong-size purchases and recovery clicks; target a novice completing
+the chosen flow without explanation. Effort: 3–5h. Risk LOW/MEDIUM; review copy and
+screen-reader order, narrow viewports, modal focus, pending state and error states.
+Android: web only, no Play resubmission identified for these presentation changes.
+
+P2-11 — Password and query/refresh observability hardening (BEFORE PUBLIC AUTH)
+Evidence/root: advisor warning, unavailable field metrics, missing current member
+trace. Change: review leaked-password protection within existing plan, use current
+safe timing hooks; add only scoped timing/contract diagnostics necessary to prove
+the fixes, without logging secrets, numbers or financial payloads.
+Target: known bad passwords rejected and user/session failures distinguishable
+from service latency. Effort: 2–3h, partly shared with P1-05. Risk MEDIUM for Auth
+configuration. Tests: existing-account login/reset, provider outage and secret
+scan. No runtime/paid-plan setting change without the appropriate reviewed scope.
+
+P3-12 — Broader modularity and scale preparation (AFTER LAUNCH)
+Evidence/root: large components, wrappers and dual beta/commercial paths.
+Change: split touched modules, document contracts, retire obsolete fixtures only
+after replacements, load-test projected membership and decide whether additional
+read projections are needed. No speculative queue/cache service or full rewrite.
+Benefit: easier maintenance and measured capacity. No promised latency gain.
+Effort: 12–20h initial cleanup, capacity-dependent work separately estimated.
+Risk MEDIUM; contract, migration and cross-path regression. Web/backend only.
+
+Recommended batches, avoiding double-counting shared regression:
+1. Pack integrity/recovery + phone timeout + current acceptance/build discipline:
+   14–22h (P0-01, P1-04, P1-05). Reuse the pending work; do not restart it.
+2. Play read-path improvements + Round navigation/auto-fill: 14–23h (P1-02/03).
+3. Focus/resume correctness + targeted screen wording: 5–8h (P1-06/P2-10).
+4. Authorised real-device/commercial acceptance + Auth hardening: 8–13h
+   (P1-07/P2-11), only when external/founder prerequisites are available.
+Recommended core scope: 41–66 focused hours, plus external waiting and any newly
+discovered hosted/device defects. This is a quality-improvement programme, not
+a claim that the earlier 4–8h launch-operations estimate covered new performance
+and UX work. The first visible private-beta relief is Batch 1, not all 66 hours.
+Optional CSS/animation optimisation: another 9–15h, bring forward if real-device
+acceptance fails its performance targets. P3 is outside the pre-launch scope.
+
+I. APPROVAL TO REQUEST NEXT
+
+These are the improvements I recommend implementing first, in this order, and
+this is the exact scope I need you to approve:
+
+Approve Batch 1 IMPLEMENTATION ONLY: review/reuse the existing pack persistence,
+saved-request recovery and season-receipt reveal correction; fix the phone form's
+bounded failure/retry states; make the critical diagnostics match current API/UI
+contracts; pin and verify the reviewed build runtime. Preserve all source rights,
+caps, ownership, prices, odds, founder/Brenton controls and closed public gates.
+Estimated 14–22 engineering hours. No redesign or extra business features.
+
+Then review Batch 2 (Play reads, full Round navigation and fill-empty lineups) and
+Batch 3 (resume/copy polish) on their measured evidence. The completed pending
+calendar/solver should be reused with wording corrections, not rebuilt.
+
+Approval of implementation is NOT approval to deploy, run SMS/payment tests,
+issue/import cards, change balances, open registration, enable marketplace,
+publish v31 or alter source permissions. A new exact source/checksum, migrations
+if any, fresh backup/drift review and staged/Production acceptance plan must be
+presented for separate deployment approval after implementation is verified.
+
+KNOWN ACCESS AND EVIDENCE LIMITS
+
+Computer Use ended because its safety control could not verify the active
+browser URL. The founder's browser/session was not accessed through an alternate
+method. Authenticated Production visual journeys and fresh Google/Twilio console
+status therefore remain unverified this session. Read-only connectors, public
+GET diagnostics and independent isolated tests continued under the user's request.
+No physical Android device was attached to ADB. Browser simulation is not v31
+acceptance. Field metrics were unavailable under the current Vercel entitlement.
+No real-user load/stress test, heap soak or absolute claim of zero financial
+defects is made. Existing timer/listener cleanup was reviewed; no memory leak
+was diagnosed. Complete field and real-device acceptance remain separate.
+
+EVIDENCE INDEX
+
+final-public-release.json; live-catalogue-and-gates.json; live-nfl-rounds.json
+deployment-observations.json
+performance-summary.json; public-performance/measurements.json (24 runs)
+function-latency.json; current-release-latency.json; field-lcp.json
+initial-evidence.json; database-read-model.json; restored-read-profile.json
+cinema-performance/performance.json; architecture-inventory.json
+current-ui/collection/browser.json; current-ui/member/browser.json
+current-ui/social/; weekly-panel/results.json; account-ui/results.json
+focused-test-summary.json; dependency-audit.json; security-advisors.json
+pack-browser-results.json; pack-browser-repeat.json; share-image-profile/results.json
+TEST_RESULTS.txt; IMPLEMENTATION_ACCEPTANCE.txt; ARTIFACT_MANIFEST.json
+
+Historical evidence reviewed, not claimed as fresh tests:
+prior-evidence/ contains unchanged copies from pack-rounds-autofill-20261115 in
+the pending branch: REVIEW.txt, restored-performance.json,
+original-purchase-reconciliation.json and validation.json.
+../season-catalogue-20261115/HANDOVER.txt and member-acceptance.json.
+../v31-payment-launch-checks-20261114/HANDOVER.txt and billing-postgres.json.
+../v31-vault-custody-20261114/HANDOVER.txt (actual same-key recovery completed).
+
+Public launch remains NO-GO. A revenue-generating first launch remains the goal.

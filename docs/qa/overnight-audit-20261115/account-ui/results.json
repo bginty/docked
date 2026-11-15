@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-15T13:28:01.553Z",
+  "scope": "Unchanged real phone/shared login components; every request intercepted locally; not hosted Auth or SMS acceptance",
+  "phone": {
+    "busyAfter17s": true,
+    "alertsAfter17s": 0,
+    "finiteFailureRecovered": true,
+    "codeAutocomplete": true,
+    "changeNumber": true,
+    "requests": 2,
+    "realSms": 0
+  },
+  "login": {
+    "mockInvalidCredentialsVisible": true
+  },
+  "axe": []
+}

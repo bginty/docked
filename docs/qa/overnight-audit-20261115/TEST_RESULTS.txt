@@ -1,0 +1,158 @@
+AUDIT TEST RESULTS AND COVERAGE — 16 NOVEMBER 2026 AEDT
+Application under review: 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef.
+Diagnostics may differ; src, schema, configuration and native application do not.
+All fixture users, transport responses, cards and monetary transactions are
+synthetic. No hosted mutation or financial/provider acceptance is inferred.
+
+COMPLETED NOW
+
+1. Selected core/platform suite: 142 tests, 141 passed initially. The anonymous
+   community body-denial subprocess exceeded its existing 20-second startup cap.
+   Its unchanged eight-test file passed 8/8 in an isolated repeat. These are 142
+   unique cases, not 150. Initial failure is retained in focused-test-summary.json.
+   Includes invitation/verification/recovery/erasure guards, MFA, native lifecycle
+   listener teardown, phone provider errors and claim binding, lineup ownership/
+   cap rules, six offer sizes, eighteen sport/offer purchase-to-refund scenarios,
+   concurrent buyer/cancellation logic, receipt replay, fee accounting and gating.
+   In-memory/core concurrency checks are not fresh hosted PostgreSQL races.
+
+2. Existing pack browser suite: 29 tests, 27 passed, 2 failed. Both failures were
+   waiting five seconds for Save Image to become enabled. They did not demonstrate
+   duplicate issuance or missing cards. Unchanged targeted repeat: NFL summary/
+   details sharing passed; viewport sharing failed again at the same readiness
+   assertion BEFORE testing geometry. Original results remain in
+   pack-browser-results.json and pack-browser-repeat.json. Separate diagnostic
+   triage is in share-image-profile/results.json; see the report's interpretation.
+   Do not call this an original 29/29 pass or label it a confirmed viewport defect.
+   The transparent Web Share wrapper recorded a pending browser share operation
+   after the full-size image existed. The unchanged component remained busy while
+   awaiting that operation. A separate synthetic AbortError (chooser cancellation)
+   restored controls in 956ms and displayed Share cancelled. Geometry matched the
+   viewport at all three widths with current root CSS; no extra opening occurred.
+   This isolates a headless OS-share harness gap. It does not prove physical share
+   delivery. Instrumentation records no shared content and contacts no recipient.
+   Passing scenarios cover three-sport rarity reveals, nine-card order, skip,
+   replay/refresh/background recovery, rapid taps, reduced motion, canvas failure,
+   image dimensions, audio generation/context cleanup and saved-purchase retries.
+   Native audio, haptics, OS chooser and installed-app acceptance remain pending.
+
+3. Current collection components: passed 14 recorded observations/checks across
+   NFL/AFL/NRL at 412/1440px. Six confirm the unwanted close-on-focus behaviour;
+   recording that behaviour is not acceptance of it as good UX. Pagination,
+   filters, details, tabs, empty state, 503 recovery, transfer revision and denied
+   access clearing work in the synthetic transport. Cache reuse was observed.
+
+4. Member surfaces: 63 responsive layout combinations (7 widths x 3 sports x
+   Results/Prizes/Market), plus enlarged text, synthetic identity-review flow
+   and 21 foil-pack variants in the diagnostic. No genuine listing or buy occurred.
+   Widths: 320, 360, 375, 390, 430, 768, 1440. Current root CSS is used.
+
+5. Social/admin components: four widths (360/412/1024/1440); each checked five
+   dialog close paths, two retry paths, moderation and accessibility. Zero serious
+   axe violations in these tested states; this is not whole-app accessibility
+   certification. Synthetic publication retry preserves one submitted item.
+
+6. Weekly Core panel: three sports, ready/unopened and 503/retry states passed;
+   four-card wording visible; no axe findings in those states. No pack was opened
+   and no card issued by this diagnostic. Existing founder acceptance not repeated.
+
+7. Phone/login components: finite provider failure, OTP autocomplete, change
+   number and mocked invalid-login feedback work. The stalled phone response
+   reproduced disabled controls and no alert after 17 seconds. Two local mocked
+   phone requests, zero SMS. No axe findings in these tested states.
+
+8. Anonymous public browser: 24 GET-only runs, three per route/profile, with
+   recorded timing/resources/screenshots. No page script errors or horizontal
+   overflow found. Anonymous Cards is a sign-in recovery view, not member Cards.
+   Headless Edge simulation is not installed Android or real-user INP evidence.
+
+9. Reveal profiling: nine rarity/quality observations plus idle baseline; slower
+   CPU yielded poor high-tier frame pacing. Host load was not controlled. Do not
+   project the exact FPS onto the founder's phone without hardware acceptance.
+
+10. Read-only database/telemetry: Production query statistics, runtime latency,
+    privileges, gates and catalogue census captured. Restored SELECT profiling
+    used genuine guarded SQL then rollback; one 60s timeout retained. The first
+    READ ONLY transaction rejected SELECT FOR SHARE as expected; it was not a
+    permission defect. No production query was modified for the experiment.
+
+11. npm audit --omit=dev: zero reported production dependency advisories at the
+    time of the audit. Supabase advisor warning: leaked-password protection off.
+    INFO policies on private tables require exposed-schema/grant context and are
+    not, on their own, proof of unauthorised access. No full penetration test.
+
+12. Final repository type check (tsc --noEmit --incremental false) passed; audit
+    diagnostic ESLint passed with zero warnings. Product paths are unchanged from
+    the reviewed source. The generated report passed 390/1280px overflow checks.
+    This does not replace a clean hosted build of any later implementation.
+
+HISTORICAL EVIDENCE REUSED, NOT RERUN OR COUNTED ABOVE
+
+- Pending pack/round/auto-fill source 6882ad74: 19 platform tests, seven restored
+  PostgreSQL scenarios, two browser fixtures and before/after persistence runs.
+  Copies under prior-evidence/ preserve source evidence and exact checksums.
+- Existing billing PostgreSQL acceptance, source catalogue guards, operational
+  incident founder acceptance and actual same-key vault recovery. These remain
+  separate dated records. No founder action was impersonated or repeated.
+
+DIAGNOSTIC REPAIRS — APPLICATION SOURCE WAS NOT OVERRIDDEN
+
+The historical suite adapter initially failed on obsolete NBA assumptions,
+old foil classes, old social labels and the former Profile weekly-pack location.
+The collection stub also omitted packs/coupons arrays required by the current
+disabled-response contract. Corrected synthetic fixtures passed without changing
+production components. Initial logs/errors remain identifiable as harness issues.
+Current weekly and account diagnostics mount real components with intercepted
+transport. No source-permission, eligibility, RLS or authentication bypass was
+added to the application. Explicitly simulated fixture authentication is not
+reported as hosted security acceptance.
+
+Playwright's JSON reporter initially resolved its output under scripts/audit;
+the unchanged result files were moved into this evidence directory. Reporter path
+is now absolute to the working directory. This changes no test assertions.
+The exploratory share profiler first used an unscoped readiness locator and then
+hit the TSX __name helper in its browser injection. Those initial JSON files are
+retained and explicitly named initial-*; only the final results.json uses a
+correct scoped poll and error-free transparent string instrumentation. These
+diagnostic mistakes were not application defects or changes to original results.
+
+COVERAGE BOUNDARIES / WHAT STILL CANNOT BE CALLED PASSED
+
+New customer: public pages, rule tests and fixture failures inspected. Real
+registration, email verification, reset delivery, phone SMS, keyboard autofill,
+accepted notices and public onboarding need separately authorised hosted/device
+acceptance. Public registration stays closed.
+
+Existing member: session/native/recovery code tests and collection fixtures pass.
+Fresh authenticated Profile/settings/deletion visual journey unavailable this
+session. No account deleted; no password changed. Browser URL safety verification
+stopped Computer Use, and the founder session was not accessed by another method.
+
+Collector: cards/details/filter/history contracts and synthetic pack receipt
+journeys exercised. Genuine nine-card commercial issuance, physical share sheet
+and process-death recovery still require the bounded device session. Do not
+interpret the earlier single-card screenshot as nine-card acceptance.
+
+Fantasy player: ownership/cap/positions/modes and responsive results exercised;
+limited NFL calendar and established-team auto-fill remain live source defects.
+Empty fixture standings do not validate statistics. No current real scores,
+full-season fixture freshness or unlocked-entry activation was established.
+
+Marketplace: core fixed-price/review/cancellation/two-buyer cases and UI layout
+checked. Actual two-account hosted wallet/ownership/fees/refund session unperformed.
+Swaps/counteroffers in legacy tests are not commercial approval.
+
+Social/admin: local navigation, failed-response recovery, moderation and identity
+review checked. Real following, notifications, privacy-sharing and complete
+ingestion/billing owner UI not freshly accepted. Existing incident/vault evidence
+stands; fresh Google and Twilio console status unavailable this session.
+
+Infrastructure: no production load/stress test, heap soak, controlled cold/warm
+comparison or representative real-user percentile. Snapshot reads cannot prove
+capacity. Existing timer/listener cleanup was reviewed; no memory leak diagnosed.
+
+Reproducibility: run these diagnostics from this worktree with its declared
+dependencies. Read scripts before running: public-performance.ts performs bounded
+anonymous GETs; restored-read-profile.mjs requires the explicitly named isolated
+restore container. Other browser fixtures intercept their HTTP transport. Never
+redirect a fixture mutation to Production. No test enables a runtime gate.

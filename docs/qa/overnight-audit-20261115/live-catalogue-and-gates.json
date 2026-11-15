@@ -1,0 +1,125 @@
+{
+  "at": "2026-11-15T13:23:53.383Z",
+  "project": "pojoymtniryarxxunyvz",
+  "access": "read-only Supabase connector; no member impersonation",
+  "catalogue": [
+    {
+      "sport": "afl",
+      "season": "2026",
+      "scope": "free_beta_packs",
+      "members": 536
+    },
+    {
+      "sport": "afl",
+      "season": "2026",
+      "scope": "free_weekly",
+      "members": 545
+    },
+    {
+      "sport": "nfl",
+      "season": "2026",
+      "scope": "free_beta_packs",
+      "members": 401
+    },
+    {
+      "sport": "nfl",
+      "season": "2026",
+      "scope": "free_weekly",
+      "members": 478
+    },
+    {
+      "sport": "nrl",
+      "season": "2026",
+      "scope": "free_beta_packs",
+      "members": 273
+    },
+    {
+      "sport": "nrl",
+      "season": "2026",
+      "scope": "free_weekly",
+      "members": 337
+    }
+  ],
+  "rights": [
+    {
+      "id": "afl-2026-free-beta-packs-v1",
+      "sport": "afl",
+      "season": "2026",
+      "scope": "free_beta_packs",
+      "valid_from": "2026-01-01 00:00:00+00",
+      "valid_until": null
+    },
+    {
+      "id": "afl-2026-free-weekly",
+      "sport": "afl",
+      "season": "2026",
+      "scope": "free_weekly",
+      "valid_from": "2026-01-01 00:00:00+00",
+      "valid_until": null
+    },
+    {
+      "id": "nfl-2026-free-beta-packs-v1",
+      "sport": "nfl",
+      "season": "2026",
+      "scope": "free_beta_packs",
+      "valid_from": "2026-01-01 00:00:00+00",
+      "valid_until": null
+    },
+    {
+      "id": "nfl-2026-free-weekly",
+      "sport": "nfl",
+      "season": "2026",
+      "scope": "free_weekly",
+      "valid_from": "2026-01-01 00:00:00+00",
+      "valid_until": null
+    },
+    {
+      "id": "nrl-2026-free-beta-packs-v1",
+      "sport": "nrl",
+      "season": "2026",
+      "scope": "free_beta_packs",
+      "valid_from": "2026-01-01 00:00:00+00",
+      "valid_until": null
+    },
+    {
+      "id": "nrl-2026-free-weekly",
+      "sport": "nrl",
+      "season": "2026",
+      "scope": "free_weekly",
+      "valid_from": "2026-01-01 00:00:00+00",
+      "valid_until": null
+    }
+  ],
+  "final": [
+    {
+      "evidence": {
+        "at": "2026-11-15T13:23:10.406374+00:00",
+        "gates": {
+          "sales": false,
+          "gameplay": false,
+          "issuance": false,
+          "transfers": false
+        },
+        "counts": {
+          "betaIssued": 2,
+          "definitions": 6540,
+          "legacyIssued": 888,
+          "lifetimeIssued": 890,
+          "commercialCards": 0,
+          "commercialPacks": 0,
+          "retentionEnabled": 0,
+          "approvedDefinitions": 0,
+          "enabledCompetitions": 0
+        },
+        "notifications": [
+          {
+            "count": 17,
+            "state": "done"
+          }
+        ],
+        "outboxExposed": false
+      }
+    }
+  ],
+  "productionWrites": 0
+}

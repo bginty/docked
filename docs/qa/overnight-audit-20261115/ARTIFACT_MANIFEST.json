@@ -1,0 +1,1276 @@
+{
+  "created": "2026-11-15T14:00:12.671Z",
+  "reviewedSource": "12ccfd5879ae83f1bd62210ee16a3feb6907d9ef",
+  "productChanges": false,
+  "files": [
+    {
+      "path": "docs/qa/overnight-audit-20261115/account-ui/phone-390.png",
+      "bytes": 32367,
+      "sha256": "0403fdbc9c76f9f2f8a6010ff7ec4324494b9a5f9856defb18159910555bef61",
+      "repositoryBytes": 32367,
+      "repositorySha256": "0403fdbc9c76f9f2f8a6010ff7ec4324494b9a5f9856defb18159910555bef61"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/account-ui/phone-pending-17s.png",
+      "bytes": 31821,
+      "sha256": "05efa54cab5b4141c9f8fef920e19bcd60f08b80adf3838dc205f0317b34693d",
+      "repositoryBytes": 31821,
+      "repositorySha256": "05efa54cab5b4141c9f8fef920e19bcd60f08b80adf3838dc205f0317b34693d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/account-ui/results.json",
+      "bytes": 438,
+      "sha256": "01482bd683c95e11a0bd8dd422ace1183241024f93f9811373a219ef9f585410",
+      "repositoryBytes": 438,
+      "repositorySha256": "01482bd683c95e11a0bd8dd422ace1183241024f93f9811373a219ef9f585410"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/architecture-inventory.json",
+      "bytes": 7172,
+      "sha256": "2f1d9b8bffef1d3a4735f8786a47dd1b77bf1727013ecd67f85bdbeea8385292",
+      "repositoryBytes": 6870,
+      "repositorySha256": "f7ef99a9cd9754e7d5c80b7e1fdb3e9f3b65a402724150b9938ec2ed2d19d965"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/audit-validation.json",
+      "bytes": 632,
+      "sha256": "9936417b5a4d6eec9c3095e9b99259fff3cca08527b693e7cd44841c1a8eeb57",
+      "repositoryBytes": 632,
+      "repositorySha256": "9936417b5a4d6eec9c3095e9b99259fff3cca08527b693e7cd44841c1a8eeb57"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/cinema-performance/performance.json",
+      "bytes": 5039,
+      "sha256": "ac18f2a812e1324781661a1151d740c22a06db939be0a1c81d8d211430dab3a3",
+      "repositoryBytes": 5039,
+      "repositorySha256": "ac18f2a812e1324781661a1151d740c22a06db939be0a1c81d8d211430dab3a3"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-release-latency.json",
+      "bytes": 116314,
+      "sha256": "c366aa642e8d9904323e268ac9d02669cd51c84810cecdfb700228df3cd286e9",
+      "repositoryBytes": 116314,
+      "repositorySha256": "c366aa642e8d9904323e268ac9d02669cd51c84810cecdfb700228df3cd286e9"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/collection/afl-1440.png",
+      "bytes": 322581,
+      "sha256": "9a0d8dd1f66b6b0e131cdd1a3b5a81b69a5564561c669c95a731ca92e74f1519",
+      "repositoryBytes": 322581,
+      "repositorySha256": "9a0d8dd1f66b6b0e131cdd1a3b5a81b69a5564561c669c95a731ca92e74f1519"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/collection/afl-412.png",
+      "bytes": 154892,
+      "sha256": "52263b344842aa3fd2f9e63b27a65927cca3f1a9c7260f74bbbbb7f48264a4f4",
+      "repositoryBytes": 154892,
+      "repositorySha256": "52263b344842aa3fd2f9e63b27a65927cca3f1a9c7260f74bbbbb7f48264a4f4"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/collection/browser.json",
+      "bytes": 16875,
+      "sha256": "b3c96ad8988746c84bcbf58a64116aa86f66f74ea4d23652df2d2efe6c61208c",
+      "repositoryBytes": 16875,
+      "repositorySha256": "b3c96ad8988746c84bcbf58a64116aa86f66f74ea4d23652df2d2efe6c61208c"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/collection/initial-incomplete-fixture-errors.json",
+      "bytes": 62,
+      "sha256": "58174947a6869519b7b99480ffd49800853d8533b84003c898ca3aa4b4fefa26",
+      "repositoryBytes": 62,
+      "repositorySha256": "58174947a6869519b7b99480ffd49800853d8533b84003c898ca3aa4b4fefa26"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/collection/nfl-1440.png",
+      "bytes": 317427,
+      "sha256": "37a29793446c7c17c34b0e16957b362c1be9838b896e384a4650571929d3bf28",
+      "repositoryBytes": 317427,
+      "repositorySha256": "37a29793446c7c17c34b0e16957b362c1be9838b896e384a4650571929d3bf28"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/collection/nfl-412.png",
+      "bytes": 158522,
+      "sha256": "0ba378dc0fe3ff88b974ba315e809e1c2e42b24a0f1a7b22ac1de4080cca2e0d",
+      "repositoryBytes": 158522,
+      "repositorySha256": "0ba378dc0fe3ff88b974ba315e809e1c2e42b24a0f1a7b22ac1de4080cca2e0d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/collection/nrl-1440.png",
+      "bytes": 320134,
+      "sha256": "6569269413beca48bea84be678a71f97a388da3b91d658263af8841dd7880b99",
+      "repositoryBytes": 320134,
+      "repositorySha256": "6569269413beca48bea84be678a71f97a388da3b91d658263af8841dd7880b99"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/collection/nrl-412.png",
+      "bytes": 156102,
+      "sha256": "03315f15ba8efd36a6106869e279a3dd7878009569cf206aeee766b790089d9e",
+      "repositoryBytes": 156102,
+      "repositorySha256": "03315f15ba8efd36a6106869e279a3dd7878009569cf206aeee766b790089d9e"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/collection/partial-checks.json",
+      "bytes": 3172,
+      "sha256": "ad1cf35dee0dc9bca2bfcb2000e52a7f11ed8ca21c0adc5e772e041a24293fa3",
+      "repositoryBytes": 3172,
+      "repositorySha256": "ad1cf35dee0dc9bca2bfcb2000e52a7f11ed8ca21c0adc5e772e041a24293fa3"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/browser.json",
+      "bytes": 6857,
+      "sha256": "8509342918785c0fc309aa29027085cc55bdaf766fc905f1be56cab0f4515405",
+      "repositoryBytes": 6857,
+      "repositorySha256": "8509342918785c0fc309aa29027085cc55bdaf766fc905f1be56cab0f4515405"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/identity-documents-390.png",
+      "bytes": 292504,
+      "sha256": "41077c3c62559a2f427eddd9c72da3568fa97548333d5169c34bb6c6b3c3df8f",
+      "repositoryBytes": 292504,
+      "repositorySha256": "41077c3c62559a2f427eddd9c72da3568fa97548333d5169c34bb6c6b3c3df8f"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/identity-review-390.png",
+      "bytes": 284444,
+      "sha256": "7070c75e4a8baba3396fbe21fc7bda273af6dccf3948bcae74f22f26056f013e",
+      "repositoryBytes": 284444,
+      "repositorySha256": "7070c75e4a8baba3396fbe21fc7bda273af6dccf3948bcae74f22f26056f013e"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/identity-submitted-390.png",
+      "bytes": 123809,
+      "sha256": "1e9394338046e248008ef02d6991df184456cef3f2d5fdd109876e88be26212b",
+      "repositoryBytes": 123809,
+      "repositorySha256": "1e9394338046e248008ef02d6991df184456cef3f2d5fdd109876e88be26212b"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-activity-afl-390.png",
+      "bytes": 59480,
+      "sha256": "f3e97818037cf543a0d378620bf88c1500a2626b7c124144f805bae5a6699d92",
+      "repositoryBytes": 59480,
+      "repositorySha256": "f3e97818037cf543a0d378620bf88c1500a2626b7c124144f805bae5a6699d92"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-activity-nfl-390.png",
+      "bytes": 58606,
+      "sha256": "b6fda64fb35f04834691b13f71d7f9816ea745ccd4d5ff7f2f5bb9c2261fe373",
+      "repositoryBytes": 58606,
+      "repositorySha256": "b6fda64fb35f04834691b13f71d7f9816ea745ccd4d5ff7f2f5bb9c2261fe373"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-activity-nrl-390.png",
+      "bytes": 59559,
+      "sha256": "b554e0dda8eae7e91e99ddfd9af847bf9ff2d137710dcbd40e3e89c17baa2001",
+      "repositoryBytes": 59559,
+      "repositorySha256": "b554e0dda8eae7e91e99ddfd9af847bf9ff2d137710dcbd40e3e89c17baa2001"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-afl-1440.png",
+      "bytes": 165608,
+      "sha256": "df71f96cf017472f1f859d7b366ad90b41e1e6f8e52d2f86e5d21793924d312d",
+      "repositoryBytes": 165608,
+      "repositorySha256": "df71f96cf017472f1f859d7b366ad90b41e1e6f8e52d2f86e5d21793924d312d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-afl-390.png",
+      "bytes": 139264,
+      "sha256": "3f43c70344849647b8b8a2e6ebcd19684943e3e3a3b256b5db587f9b3b9ed238",
+      "repositoryBytes": 139264,
+      "repositorySha256": "3f43c70344849647b8b8a2e6ebcd19684943e3e3a3b256b5db587f9b3b9ed238"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-manage-afl-390.png",
+      "bytes": 81561,
+      "sha256": "05d889249ddf90a1a62ecf9b84077a07c72be397047d6b2cff044c1d6aa7aae2",
+      "repositoryBytes": 81561,
+      "repositorySha256": "05d889249ddf90a1a62ecf9b84077a07c72be397047d6b2cff044c1d6aa7aae2"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-manage-nfl-390.png",
+      "bytes": 79937,
+      "sha256": "f77df3b956f09b049a1403f44e2fb747912c27e5cc001f48683e9f673781bc95",
+      "repositoryBytes": 79937,
+      "repositorySha256": "f77df3b956f09b049a1403f44e2fb747912c27e5cc001f48683e9f673781bc95"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-manage-nrl-390.png",
+      "bytes": 81935,
+      "sha256": "a47ab4a3c22c291de4b30a6b1afc5c607c0cbec3eb9f4ba64a45afaa55dc7164",
+      "repositoryBytes": 81935,
+      "repositorySha256": "a47ab4a3c22c291de4b30a6b1afc5c607c0cbec3eb9f4ba64a45afaa55dc7164"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-nfl-1440.png",
+      "bytes": 167051,
+      "sha256": "9a5a41a81cec15a00d77a7e9640dedd8e4249cee8fccd349acf7c24c5b5d4c5b",
+      "repositoryBytes": 167051,
+      "repositorySha256": "9a5a41a81cec15a00d77a7e9640dedd8e4249cee8fccd349acf7c24c5b5d4c5b"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-nfl-390.png",
+      "bytes": 135150,
+      "sha256": "394f1cdaebd9bc045137a141433d815082f5b9d8feaee81d471b95a1a3a47e97",
+      "repositoryBytes": 135150,
+      "repositorySha256": "394f1cdaebd9bc045137a141433d815082f5b9d8feaee81d471b95a1a3a47e97"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-nrl-1440.png",
+      "bytes": 168284,
+      "sha256": "d72c07b2982c9dc53aaae7322e31b16a6f07162e06d4057f6a0a55ec4f6e9b14",
+      "repositoryBytes": 168284,
+      "repositorySha256": "d72c07b2982c9dc53aaae7322e31b16a6f07162e06d4057f6a0a55ec4f6e9b14"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-nrl-390.png",
+      "bytes": 139499,
+      "sha256": "aee8ac71b510dd3bda95bf703b0eb94f002a7ec8b8a22da6bd096d3601eef63e",
+      "repositoryBytes": 139499,
+      "repositorySha256": "aee8ac71b510dd3bda95bf703b0eb94f002a7ec8b8a22da6bd096d3601eef63e"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-review-afl-390.png",
+      "bytes": 144620,
+      "sha256": "1e596856c43f79a404c30c99a77a6783ff7e23da588bff80bd29dc732cfc00fd",
+      "repositoryBytes": 144620,
+      "repositorySha256": "1e596856c43f79a404c30c99a77a6783ff7e23da588bff80bd29dc732cfc00fd"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-review-nfl-390.png",
+      "bytes": 140480,
+      "sha256": "a373af5d7a9aef1c452735f9fa1e531fbf7ac69008e4b7a81030b9f16fb7106f",
+      "repositoryBytes": 140480,
+      "repositorySha256": "a373af5d7a9aef1c452735f9fa1e531fbf7ac69008e4b7a81030b9f16fb7106f"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/market-review-nrl-390.png",
+      "bytes": 162230,
+      "sha256": "ae9e4bf0fd2350e5a895416629563fb2d91962c0f4f24071d9d2f804c167778e",
+      "repositoryBytes": 162230,
+      "repositorySha256": "ae9e4bf0fd2350e5a895416629563fb2d91962c0f4f24071d9d2f804c167778e"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/pack-families-1440.png",
+      "bytes": 543882,
+      "sha256": "c898daa007712ef3757d78d020e0ae854b073b4761b69a539dd753ddc4e470f0",
+      "repositoryBytes": 543882,
+      "repositorySha256": "c898daa007712ef3757d78d020e0ae854b073b4761b69a539dd753ddc4e470f0"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/prizes-afl-1440.png",
+      "bytes": 324240,
+      "sha256": "bf9bcb06b3773b2fdfda1ca62cb51572053ca6d56ba1b5f711b834c199560954",
+      "repositoryBytes": 324240,
+      "repositorySha256": "bf9bcb06b3773b2fdfda1ca62cb51572053ca6d56ba1b5f711b834c199560954"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/prizes-afl-390.png",
+      "bytes": 244300,
+      "sha256": "229d01615a52f6a83e91bc939a9cf9667aa7167ac0a722594b2585114bd75d25",
+      "repositoryBytes": 244300,
+      "repositorySha256": "229d01615a52f6a83e91bc939a9cf9667aa7167ac0a722594b2585114bd75d25"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/prizes-nfl-1440.png",
+      "bytes": 190094,
+      "sha256": "1ba5626bfbf43cfcd86465a9ad9163ef43d845717cad9f0dce89ba8bfb3f4a80",
+      "repositoryBytes": 190094,
+      "repositorySha256": "1ba5626bfbf43cfcd86465a9ad9163ef43d845717cad9f0dce89ba8bfb3f4a80"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/prizes-nfl-390.png",
+      "bytes": 104665,
+      "sha256": "650c1989b402f56c9e7582bb0d7bdc3427738707802fbaf38e35e976ae30d91d",
+      "repositoryBytes": 104665,
+      "repositorySha256": "650c1989b402f56c9e7582bb0d7bdc3427738707802fbaf38e35e976ae30d91d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/prizes-nrl-1440.png",
+      "bytes": 324401,
+      "sha256": "f4dd1e17791e0463c3a7657d44218d03b128d56fd03d4900dbf9acacea12c1f4",
+      "repositoryBytes": 324401,
+      "repositorySha256": "f4dd1e17791e0463c3a7657d44218d03b128d56fd03d4900dbf9acacea12c1f4"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/prizes-nrl-390.png",
+      "bytes": 244863,
+      "sha256": "203f7cb5d3608f0130cb2e8ec6068bb68f8eb90f5673247649a693e72e7936c6",
+      "repositoryBytes": 244863,
+      "repositorySha256": "203f7cb5d3608f0130cb2e8ec6068bb68f8eb90f5673247649a693e72e7936c6"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/results-afl-1440.png",
+      "bytes": 168383,
+      "sha256": "8d6e1c65deb7160c8c906e0e34425f24f9b3292bf823ba21519edb9388ec719d",
+      "repositoryBytes": 168383,
+      "repositorySha256": "8d6e1c65deb7160c8c906e0e34425f24f9b3292bf823ba21519edb9388ec719d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/results-afl-390.png",
+      "bytes": 120371,
+      "sha256": "ed8d30f07bf21da829002bacbd7f21d1338dcf9f43c5825b739c2cf84b555932",
+      "repositoryBytes": 120371,
+      "repositorySha256": "ed8d30f07bf21da829002bacbd7f21d1338dcf9f43c5825b739c2cf84b555932"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/results-nfl-1440.png",
+      "bytes": 174003,
+      "sha256": "f1a62da3d7f3fbb700ed868f7a874cc6bdf695e6c357769462975dac6a1c885d",
+      "repositoryBytes": 174003,
+      "repositorySha256": "f1a62da3d7f3fbb700ed868f7a874cc6bdf695e6c357769462975dac6a1c885d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/results-nfl-390.png",
+      "bytes": 125364,
+      "sha256": "c5405c2dd4598f8d314f5719daa0d7433afb62a47d5df8aae0a46bf22854258c",
+      "repositoryBytes": 125364,
+      "repositorySha256": "c5405c2dd4598f8d314f5719daa0d7433afb62a47d5df8aae0a46bf22854258c"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/results-nrl-1440.png",
+      "bytes": 168383,
+      "sha256": "8d6e1c65deb7160c8c906e0e34425f24f9b3292bf823ba21519edb9388ec719d",
+      "repositoryBytes": 168383,
+      "repositorySha256": "8d6e1c65deb7160c8c906e0e34425f24f9b3292bf823ba21519edb9388ec719d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/member/results-nrl-390.png",
+      "bytes": 120371,
+      "sha256": "ed8d30f07bf21da829002bacbd7f21d1338dcf9f43c5825b739c2cf84b555932",
+      "repositoryBytes": 120371,
+      "repositorySha256": "ed8d30f07bf21da829002bacbd7f21d1338dcf9f43c5825b739c2cf84b555932"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/runs.json",
+      "bytes": 419,
+      "sha256": "7f6610e38dede89f546465d56a4ce4784cd409b0d2afc5b20bc554bfb34254e5",
+      "repositoryBytes": 419,
+      "repositorySha256": "7f6610e38dede89f546465d56a4ce4784cd409b0d2afc5b20bc554bfb34254e5"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749308515/post-preview-1440.png",
+      "bytes": 163809,
+      "sha256": "e38cf0692ca1ea4c5526803c12d70d80f24a18210d581913c36b4379a3e8f442",
+      "repositoryBytes": 163809,
+      "repositorySha256": "e38cf0692ca1ea4c5526803c12d70d80f24a18210d581913c36b4379a3e8f442"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/accessibility-1024.json",
+      "bytes": 1052,
+      "sha256": "5cba73aa9924b3e9ed971cefdac64a3857bee47a763ebd14090ed4e39e4d5ef4",
+      "repositoryBytes": 1052,
+      "repositorySha256": "5cba73aa9924b3e9ed971cefdac64a3857bee47a763ebd14090ed4e39e4d5ef4"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/accessibility-1440.json",
+      "bytes": 1052,
+      "sha256": "5cba73aa9924b3e9ed971cefdac64a3857bee47a763ebd14090ed4e39e4d5ef4",
+      "repositoryBytes": 1052,
+      "repositorySha256": "5cba73aa9924b3e9ed971cefdac64a3857bee47a763ebd14090ed4e39e4d5ef4"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/accessibility-360.json",
+      "bytes": 1052,
+      "sha256": "5cba73aa9924b3e9ed971cefdac64a3857bee47a763ebd14090ed4e39e4d5ef4",
+      "repositoryBytes": 1052,
+      "repositorySha256": "5cba73aa9924b3e9ed971cefdac64a3857bee47a763ebd14090ed4e39e4d5ef4"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/accessibility-412.json",
+      "bytes": 1052,
+      "sha256": "5cba73aa9924b3e9ed971cefdac64a3857bee47a763ebd14090ed4e39e4d5ef4",
+      "repositoryBytes": 1052,
+      "repositorySha256": "5cba73aa9924b3e9ed971cefdac64a3857bee47a763ebd14090ed4e39e4d5ef4"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/moderation-1024.png",
+      "bytes": 246438,
+      "sha256": "82bff02c907a383e7c747dfcd08b203097aa403e01b37b869d3f8b4a0e4f6a82",
+      "repositoryBytes": 246438,
+      "repositorySha256": "82bff02c907a383e7c747dfcd08b203097aa403e01b37b869d3f8b4a0e4f6a82"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/moderation-1440.png",
+      "bytes": 257983,
+      "sha256": "d55edb820d60d2a40e983e423dbdab83686446707ebc7e569e8cff22e1cbcefc",
+      "repositoryBytes": 257983,
+      "repositorySha256": "d55edb820d60d2a40e983e423dbdab83686446707ebc7e569e8cff22e1cbcefc"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/moderation-360.png",
+      "bytes": 192717,
+      "sha256": "74197402177b749e94d7b5eca51d46dadf12180adfcb1faa32ce288109874377",
+      "repositoryBytes": 192717,
+      "repositorySha256": "74197402177b749e94d7b5eca51d46dadf12180adfcb1faa32ce288109874377"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/moderation-412.png",
+      "bytes": 192828,
+      "sha256": "74abc5e04b1a0554766a5aa990e8cc93cb7f0f4c23607ac70b18dce1eb23a73c",
+      "repositoryBytes": 192828,
+      "repositorySha256": "74abc5e04b1a0554766a5aa990e8cc93cb7f0f4c23607ac70b18dce1eb23a73c"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/post-preview-1024.png",
+      "bytes": 152377,
+      "sha256": "c7c81a404aace7519ac4dfa1cd25342b1e38c1e299cf72ece97702bedbbea8fb",
+      "repositoryBytes": 152377,
+      "repositorySha256": "c7c81a404aace7519ac4dfa1cd25342b1e38c1e299cf72ece97702bedbbea8fb"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/post-preview-1440.png",
+      "bytes": 163809,
+      "sha256": "e38cf0692ca1ea4c5526803c12d70d80f24a18210d581913c36b4379a3e8f442",
+      "repositoryBytes": 163809,
+      "repositorySha256": "e38cf0692ca1ea4c5526803c12d70d80f24a18210d581913c36b4379a3e8f442"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/post-preview-360.png",
+      "bytes": 85625,
+      "sha256": "abaf6da7538777aedf889d67c65c16599771907272a3b0ad2ec01ace48e0d1ee",
+      "repositoryBytes": 85625,
+      "repositorySha256": "abaf6da7538777aedf889d67c65c16599771907272a3b0ad2ec01ace48e0d1ee"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/post-preview-412.png",
+      "bytes": 98965,
+      "sha256": "131d0c20576402e92b913500bddde64e7ec6bf76cb5bbdfa738cd9cc53341d0d",
+      "repositoryBytes": 98965,
+      "repositorySha256": "131d0c20576402e92b913500bddde64e7ec6bf76cb5bbdfa738cd9cc53341d0d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/results.json",
+      "bytes": 788,
+      "sha256": "2c12132d48a6f383911650b606fdd08de55d98ad180813558b0ab5d4789d1a40",
+      "repositoryBytes": 788,
+      "repositorySha256": "2c12132d48a6f383911650b606fdd08de55d98ad180813558b0ab5d4789d1a40"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/social-1024.png",
+      "bytes": 181368,
+      "sha256": "fa977c9184652c6f15dad7fd0c8083f4c460bbaf3f4e6aa9c037f67855ec632e",
+      "repositoryBytes": 181368,
+      "repositorySha256": "fa977c9184652c6f15dad7fd0c8083f4c460bbaf3f4e6aa9c037f67855ec632e"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/social-1440.png",
+      "bytes": 197458,
+      "sha256": "8e1f1b92f75f727d907688ae43872e7b409e064cf887788d6b03b2ec7ffa5b34",
+      "repositoryBytes": 197458,
+      "repositorySha256": "8e1f1b92f75f727d907688ae43872e7b409e064cf887788d6b03b2ec7ffa5b34"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/social-360.png",
+      "bytes": 139867,
+      "sha256": "4acba09c0e8011f579a56bb2cf1917e93bfa3853bb9119bcf7ddb53b8792b26b",
+      "repositoryBytes": 139867,
+      "repositorySha256": "4acba09c0e8011f579a56bb2cf1917e93bfa3853bb9119bcf7ddb53b8792b26b"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-1794749447760/social-412.png",
+      "bytes": 138975,
+      "sha256": "fc7d3f24a3daaf33a6b8631438c1445591738999daf1ff47942a112f8373365e",
+      "repositoryBytes": 138975,
+      "repositorySha256": "fc7d3f24a3daaf33a6b8631438c1445591738999daf1ff47942a112f8373365e"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/current-ui/social/experience-latest.json",
+      "bytes": 209,
+      "sha256": "4e809de5851253afc312e479dbc21f6d0a97dce053f37337d2ca9c42917bf7da",
+      "repositoryBytes": 209,
+      "repositorySha256": "4e809de5851253afc312e479dbc21f6d0a97dce053f37337d2ca9c42917bf7da"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/database-read-model.json",
+      "bytes": 5600,
+      "sha256": "ccfc068d44eea08b9967a31617ae70543a3114afb77266837bfde7a4bb9d4b87",
+      "repositoryBytes": 5600,
+      "repositorySha256": "ccfc068d44eea08b9967a31617ae70543a3114afb77266837bfde7a4bb9d4b87"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/dependency-audit.json",
+      "bytes": 445,
+      "sha256": "c73cf7ce1519e87d1a871f39bef77b1d544c0af2b966e932224236a0309a9ca7",
+      "repositoryBytes": 445,
+      "repositorySha256": "c73cf7ce1519e87d1a871f39bef77b1d544c0af2b966e932224236a0309a9ca7"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/deployment-observations.json",
+      "bytes": 2479,
+      "sha256": "7633efa0db388891401b074ad9930ea742a1737316d5b0645588e5f1f1bd7687",
+      "repositoryBytes": 2479,
+      "repositorySha256": "7633efa0db388891401b074ad9930ea742a1737316d5b0645588e5f1f1bd7687"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/field-lcp.json",
+      "bytes": 103,
+      "sha256": "9577458a2b051bf2d08c512879e8f83c9e8ad19e2c147e4b23b4297a9d4a2ea1",
+      "repositoryBytes": 103,
+      "repositorySha256": "9577458a2b051bf2d08c512879e8f83c9e8ad19e2c147e4b23b4297a9d4a2ea1"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/final-public-release.json",
+      "bytes": 421,
+      "sha256": "6460e8a6a1d6ce5a4fc3dc34f73205cca8db405e2e6dc04d5b507d618c34d662",
+      "repositoryBytes": 409,
+      "repositorySha256": "5aa98cdc001257b3872833dc3d06c2f0244b3372312e0519908382d6fb9281f5"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/focused-test-summary.json",
+      "bytes": 13193,
+      "sha256": "787d826d1a7d52644d9568d2e0a53f952ee318f4e22f7b4080c6685379226a2a",
+      "repositoryBytes": 13193,
+      "repositorySha256": "787d826d1a7d52644d9568d2e0a53f952ee318f4e22f7b4080c6685379226a2a"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/function-latency.json",
+      "bytes": 154909,
+      "sha256": "13520582e9d90286b7984a7dd6a6ff42dca80d9c300f66a724d789a21fa255ea",
+      "repositoryBytes": 154909,
+      "repositorySha256": "13520582e9d90286b7984a7dd6a6ff42dca80d9c300f66a724d789a21fa255ea"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/IMPLEMENTATION_ACCEPTANCE.txt",
+      "bytes": 5912,
+      "sha256": "b64f7a04a822671194b1ea0d6d5a7b5aeae474dbf6550f6280ba83f3cb872398",
+      "repositoryBytes": 5912,
+      "repositorySha256": "b64f7a04a822671194b1ea0d6d5a7b5aeae474dbf6550f6280ba83f3cb872398"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/initial-evidence.json",
+      "bytes": 12412,
+      "sha256": "558a997fc900b7d1f057e01019d78406e93e1e0af6d0d27c3b95a1f10d01bebd",
+      "repositoryBytes": 12412,
+      "repositorySha256": "558a997fc900b7d1f057e01019d78406e93e1e0af6d0d27c3b95a1f10d01bebd"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/journey-runner.json",
+      "bytes": 1326,
+      "sha256": "41f00d8c1304abb3d76a7ca062910a519bfe52cb925849ab70712c616511ee3d",
+      "repositoryBytes": 1326,
+      "repositorySha256": "41f00d8c1304abb3d76a7ca062910a519bfe52cb925849ab70712c616511ee3d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/live-catalogue-and-gates.json",
+      "bytes": 2814,
+      "sha256": "c812b24d5832509a55201fa30a5f62f342fffe4497f233dc358fcc77a6074cb2",
+      "repositoryBytes": 2814,
+      "repositorySha256": "c812b24d5832509a55201fa30a5f62f342fffe4497f233dc358fcc77a6074cb2"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/live-nfl-rounds.json",
+      "bytes": 2120,
+      "sha256": "75216c5c90e2e635d4162a5d5185de0fc4b59765bb8f38e4e9cf3700dac74a15",
+      "repositoryBytes": 2120,
+      "repositorySha256": "75216c5c90e2e635d4162a5d5185de0fc4b59765bb8f38e4e9cf3700dac74a15"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/identity-documents-390.png",
+      "bytes": 292370,
+      "sha256": "8aeb2780b69398552e55b4786dbf3529a982ffda5de27279c475f7e888e94a18",
+      "repositoryBytes": 292370,
+      "repositorySha256": "8aeb2780b69398552e55b4786dbf3529a982ffda5de27279c475f7e888e94a18"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/identity-review-390.png",
+      "bytes": 283806,
+      "sha256": "a465a518216ef256baea5a7d21edca53e8d44eb9f152cb11d7d71b4af33ef44e",
+      "repositoryBytes": 283806,
+      "repositorySha256": "a465a518216ef256baea5a7d21edca53e8d44eb9f152cb11d7d71b4af33ef44e"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/identity-submitted-390.png",
+      "bytes": 123083,
+      "sha256": "f38e24f877c0ec534caabb66de5cf4f5e38aa6db9e44e178dd090a570090d829",
+      "repositoryBytes": 123083,
+      "repositorySha256": "f38e24f877c0ec534caabb66de5cf4f5e38aa6db9e44e178dd090a570090d829"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-activity-afl-390.png",
+      "bytes": 59637,
+      "sha256": "f2b7105f5233ef7eaf2dfd6f61868fab9e59cc9269300daa1ad322bbd82ef680",
+      "repositoryBytes": 59637,
+      "repositorySha256": "f2b7105f5233ef7eaf2dfd6f61868fab9e59cc9269300daa1ad322bbd82ef680"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-activity-nfl-390.png",
+      "bytes": 58497,
+      "sha256": "9c5d2cbfdd71fda75bd3114e635016803f5a7471c8c1aaaaf55ace69ec26eff2",
+      "repositoryBytes": 58497,
+      "repositorySha256": "9c5d2cbfdd71fda75bd3114e635016803f5a7471c8c1aaaaf55ace69ec26eff2"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-activity-nrl-390.png",
+      "bytes": 59458,
+      "sha256": "c42144d6f61be97105f587feb5f02c4db2c9d1124507d1eb533bf042621fe435",
+      "repositoryBytes": 59458,
+      "repositorySha256": "c42144d6f61be97105f587feb5f02c4db2c9d1124507d1eb533bf042621fe435"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-afl-1440.png",
+      "bytes": 164645,
+      "sha256": "ed052628702ee8a1b4346113b516c4b27f309c31283e06d5ec94c9cf5e714821",
+      "repositoryBytes": 164645,
+      "repositorySha256": "ed052628702ee8a1b4346113b516c4b27f309c31283e06d5ec94c9cf5e714821"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-afl-390.png",
+      "bytes": 138553,
+      "sha256": "ba0151a022d4744dfa927bf42532d8e2e42bc20a6db337c4bd86298264efd015",
+      "repositoryBytes": 138553,
+      "repositorySha256": "ba0151a022d4744dfa927bf42532d8e2e42bc20a6db337c4bd86298264efd015"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-manage-afl-390.png",
+      "bytes": 81065,
+      "sha256": "407cd397e576082bb2a7a9c1af4e065da4557910c7b1a349bbb68d6054e15745",
+      "repositoryBytes": 81065,
+      "repositorySha256": "407cd397e576082bb2a7a9c1af4e065da4557910c7b1a349bbb68d6054e15745"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-manage-nfl-390.png",
+      "bytes": 80038,
+      "sha256": "bbd43ee2e1f07acd6f289c426b98a135aa7025af3b2ae3fdedee96615cf81960",
+      "repositoryBytes": 80038,
+      "repositorySha256": "bbd43ee2e1f07acd6f289c426b98a135aa7025af3b2ae3fdedee96615cf81960"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-manage-nrl-390.png",
+      "bytes": 81988,
+      "sha256": "e89ee9c259e4fa59ee23c541084f0e1d0d8f2596f2c4f40ec49b54763ce521bd",
+      "repositoryBytes": 81988,
+      "repositorySha256": "e89ee9c259e4fa59ee23c541084f0e1d0d8f2596f2c4f40ec49b54763ce521bd"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-nfl-1440.png",
+      "bytes": 189131,
+      "sha256": "015768da5014c9519dce27d3e0791df79730353bc9da4710d677dd3ddf0ae9fb",
+      "repositoryBytes": 189131,
+      "repositorySha256": "015768da5014c9519dce27d3e0791df79730353bc9da4710d677dd3ddf0ae9fb"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-nfl-390.png",
+      "bytes": 137246,
+      "sha256": "dec59603732239743855a1aa1862712e991c1637e24b9325176f81ca399e9f6d",
+      "repositoryBytes": 137246,
+      "repositorySha256": "dec59603732239743855a1aa1862712e991c1637e24b9325176f81ca399e9f6d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-nrl-1440.png",
+      "bytes": 190379,
+      "sha256": "64239712c7a435b8bcdc4e241cabdac22c17f45c31178ee143642d1f8b3a492d",
+      "repositoryBytes": 190379,
+      "repositorySha256": "64239712c7a435b8bcdc4e241cabdac22c17f45c31178ee143642d1f8b3a492d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-nrl-390.png",
+      "bytes": 142160,
+      "sha256": "382b6e901602fa3b80c95c398a24769c047c78762279b6d42f4330ae2fd35891",
+      "repositoryBytes": 142160,
+      "repositorySha256": "382b6e901602fa3b80c95c398a24769c047c78762279b6d42f4330ae2fd35891"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-review-afl-390.png",
+      "bytes": 144373,
+      "sha256": "e1b35bc68b25baec32ca4a5f9f2a9738cd0c035a3ea4ad6ab77f0fd9c2963ab1",
+      "repositoryBytes": 144373,
+      "repositorySha256": "e1b35bc68b25baec32ca4a5f9f2a9738cd0c035a3ea4ad6ab77f0fd9c2963ab1"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-review-nfl-390.png",
+      "bytes": 141134,
+      "sha256": "d6c0c15212f2e7d38af47e85915295decc076f0d2f465904444c6b490724c9f9",
+      "repositoryBytes": 141134,
+      "repositorySha256": "d6c0c15212f2e7d38af47e85915295decc076f0d2f465904444c6b490724c9f9"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/market-review-nrl-390.png",
+      "bytes": 148827,
+      "sha256": "6ab722fd533bde901aad2ec108eed1a7792a1a5272ccacdd6599d600c0d93472",
+      "repositoryBytes": 148827,
+      "repositorySha256": "6ab722fd533bde901aad2ec108eed1a7792a1a5272ccacdd6599d600c0d93472"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/prizes-afl-1440.png",
+      "bytes": 324240,
+      "sha256": "bf9bcb06b3773b2fdfda1ca62cb51572053ca6d56ba1b5f711b834c199560954",
+      "repositoryBytes": 324240,
+      "repositorySha256": "bf9bcb06b3773b2fdfda1ca62cb51572053ca6d56ba1b5f711b834c199560954"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/prizes-afl-390.png",
+      "bytes": 244300,
+      "sha256": "229d01615a52f6a83e91bc939a9cf9667aa7167ac0a722594b2585114bd75d25",
+      "repositoryBytes": 244300,
+      "repositorySha256": "229d01615a52f6a83e91bc939a9cf9667aa7167ac0a722594b2585114bd75d25"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/prizes-nfl-1440.png",
+      "bytes": 190094,
+      "sha256": "1ba5626bfbf43cfcd86465a9ad9163ef43d845717cad9f0dce89ba8bfb3f4a80",
+      "repositoryBytes": 190094,
+      "repositorySha256": "1ba5626bfbf43cfcd86465a9ad9163ef43d845717cad9f0dce89ba8bfb3f4a80"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/prizes-nfl-390.png",
+      "bytes": 104665,
+      "sha256": "650c1989b402f56c9e7582bb0d7bdc3427738707802fbaf38e35e976ae30d91d",
+      "repositoryBytes": 104665,
+      "repositorySha256": "650c1989b402f56c9e7582bb0d7bdc3427738707802fbaf38e35e976ae30d91d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/prizes-nrl-1440.png",
+      "bytes": 324401,
+      "sha256": "f4dd1e17791e0463c3a7657d44218d03b128d56fd03d4900dbf9acacea12c1f4",
+      "repositoryBytes": 324401,
+      "repositorySha256": "f4dd1e17791e0463c3a7657d44218d03b128d56fd03d4900dbf9acacea12c1f4"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/prizes-nrl-390.png",
+      "bytes": 244863,
+      "sha256": "203f7cb5d3608f0130cb2e8ec6068bb68f8eb90f5673247649a693e72e7936c6",
+      "repositoryBytes": 244863,
+      "repositorySha256": "203f7cb5d3608f0130cb2e8ec6068bb68f8eb90f5673247649a693e72e7936c6"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/results-afl-1440.png",
+      "bytes": 168383,
+      "sha256": "8d6e1c65deb7160c8c906e0e34425f24f9b3292bf823ba21519edb9388ec719d",
+      "repositoryBytes": 168383,
+      "repositorySha256": "8d6e1c65deb7160c8c906e0e34425f24f9b3292bf823ba21519edb9388ec719d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/results-afl-390.png",
+      "bytes": 120371,
+      "sha256": "ed8d30f07bf21da829002bacbd7f21d1338dcf9f43c5825b739c2cf84b555932",
+      "repositoryBytes": 120371,
+      "repositorySha256": "ed8d30f07bf21da829002bacbd7f21d1338dcf9f43c5825b739c2cf84b555932"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/results-nfl-1440.png",
+      "bytes": 174003,
+      "sha256": "f1a62da3d7f3fbb700ed868f7a874cc6bdf695e6c357769462975dac6a1c885d",
+      "repositoryBytes": 174003,
+      "repositorySha256": "f1a62da3d7f3fbb700ed868f7a874cc6bdf695e6c357769462975dac6a1c885d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/results-nfl-390.png",
+      "bytes": 125364,
+      "sha256": "c5405c2dd4598f8d314f5719daa0d7433afb62a47d5df8aae0a46bf22854258c",
+      "repositoryBytes": 125364,
+      "repositorySha256": "c5405c2dd4598f8d314f5719daa0d7433afb62a47d5df8aae0a46bf22854258c"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/results-nrl-1440.png",
+      "bytes": 168383,
+      "sha256": "8d6e1c65deb7160c8c906e0e34425f24f9b3292bf823ba21519edb9388ec719d",
+      "repositoryBytes": 168383,
+      "repositorySha256": "8d6e1c65deb7160c8c906e0e34425f24f9b3292bf823ba21519edb9388ec719d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/member-surfaces/results-nrl-390.png",
+      "bytes": 120371,
+      "sha256": "ed8d30f07bf21da829002bacbd7f21d1338dcf9f43c5825b739c2cf84b555932",
+      "repositoryBytes": 120371,
+      "repositorySha256": "ed8d30f07bf21da829002bacbd7f21d1338dcf9f43c5825b739c2cf84b555932"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/MORNING_REPORT.txt",
+      "bytes": 42881,
+      "sha256": "4433b878e72a41d79fb2f8bedf2cdf3b74cade3b8363e932d3a4e15fac76dd94",
+      "repositoryBytes": 42881,
+      "repositorySha256": "4433b878e72a41d79fb2f8bedf2cdf3b74cade3b8363e932d3a4e15fac76dd94"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser-repeat.json",
+      "bytes": 9648,
+      "sha256": "dd4ba6fb233003d38dc46449ebb40f928547d450a271b52fb3f93a410abd49b3",
+      "repositoryBytes": 9648,
+      "repositorySha256": "dd4ba6fb233003d38dc46449ebb40f928547d450a271b52fb3f93a410abd49b3"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser-results.json",
+      "bytes": 44772,
+      "sha256": "3b723d32dadc42f962d3c89c1bd57bfce40cb4fa918c1bedd1a7bcb524306646",
+      "repositoryBytes": 44772,
+      "repositorySha256": "3b723d32dadc42f962d3c89c1bd57bfce40cb4fa918c1bedd1a7bcb524306646"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/nine-card-regression/revealed-1366.png",
+      "bytes": 329670,
+      "sha256": "05e0756d67de056ac4fa06911e3a98ca1917bf4bc0a58ee3c13ccfcc96c494ad",
+      "repositoryBytes": 329670,
+      "repositorySha256": "05e0756d67de056ac4fa06911e3a98ca1917bf4bc0a58ee3c13ccfcc96c494ad"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/nine-card-regression/revealed-360.png",
+      "bytes": 171573,
+      "sha256": "efb1383d9c895ae37da9958a07afa8830862c773971b7054d009b487d840fd82",
+      "repositoryBytes": 171573,
+      "repositorySha256": "efb1383d9c895ae37da9958a07afa8830862c773971b7054d009b487d840fd82"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/nine-card-regression/revealed-412.png",
+      "bytes": 198125,
+      "sha256": "e027ce51a4cec96b4bb6b7521a861115fdecfe6f9a496f5f3522a93bc3c98856",
+      "repositoryBytes": 198125,
+      "repositorySha256": "e027ce51a4cec96b4bb6b7521a861115fdecfe6f9a496f5f3522a93bc3c98856"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/nine-card-regression/sealed-1366.png",
+      "bytes": 204481,
+      "sha256": "a2cbd0a713e2d0e6707f6afbf1da1e745f8530e668a7d0f927ef02b8a65a0650",
+      "repositoryBytes": 204481,
+      "repositorySha256": "a2cbd0a713e2d0e6707f6afbf1da1e745f8530e668a7d0f927ef02b8a65a0650"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/nine-card-regression/sealed-360.png",
+      "bytes": 113427,
+      "sha256": "b117397ddcfe0625f4e0a42ce610247b92bd6b827b8dec6dd52746459a3f85c1",
+      "repositoryBytes": 113427,
+      "repositorySha256": "b117397ddcfe0625f4e0a42ce610247b92bd6b827b8dec6dd52746459a3f85c1"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/nine-card-regression/sealed-412.png",
+      "bytes": 130282,
+      "sha256": "4b3abeeb37b4763ca7db40daac8ecc21ee5cacd23b9e1b113ff2674499ebc49c",
+      "repositoryBytes": 130282,
+      "repositorySha256": "4b3abeeb37b4763ca7db40daac8ecc21ee5cacd23b9e1b113ff2674499ebc49c"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/nine-card-regression/summary-1366.png",
+      "bytes": 107726,
+      "sha256": "381425f66140627b8ce7180764ca93e427ca2011cc3d8942ce5ec73a8d785d61",
+      "repositoryBytes": 107726,
+      "repositorySha256": "381425f66140627b8ce7180764ca93e427ca2011cc3d8942ce5ec73a8d785d61"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/nine-card-regression/summary-360.png",
+      "bytes": 65178,
+      "sha256": "b81c4e0848d09859caa1ab106341a6ed72281720de25d157cf48859bd3691f30",
+      "repositoryBytes": 65178,
+      "repositorySha256": "b81c4e0848d09859caa1ab106341a6ed72281720de25d157cf48859bd3691f30"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/nine-card-regression/summary-412.png",
+      "bytes": 77477,
+      "sha256": "1a297cb33b69aadc676b872432b145653956052e6676c2cbb1a28bd41cf3418c",
+      "repositoryBytes": 77477,
+      "repositorySha256": "1a297cb33b69aadc676b872432b145653956052e6676c2cbb1a28bd41cf3418c"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/reveal-regression/revealed-1366.png",
+      "bytes": 293743,
+      "sha256": "6c2a2d4b4c57ed7895e2176a2636a7656ebe6d4f2acec467fea5f52435a6219b",
+      "repositoryBytes": 293743,
+      "repositorySha256": "6c2a2d4b4c57ed7895e2176a2636a7656ebe6d4f2acec467fea5f52435a6219b"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/reveal-regression/revealed-360.png",
+      "bytes": 174563,
+      "sha256": "72343dfc018ba2c3a31d2f4f6335b1ca71b88c5229a1c4eefbda74fc052600a6",
+      "repositoryBytes": 174563,
+      "repositorySha256": "72343dfc018ba2c3a31d2f4f6335b1ca71b88c5229a1c4eefbda74fc052600a6"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/reveal-regression/revealed-412.png",
+      "bytes": 195586,
+      "sha256": "a6cb4bcffce3c20986ce69635773d4aa65df942b27052d24e203201ff818c0c9",
+      "repositoryBytes": 195586,
+      "repositorySha256": "a6cb4bcffce3c20986ce69635773d4aa65df942b27052d24e203201ff818c0c9"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/reveal-regression/sealed-1366.png",
+      "bytes": 173412,
+      "sha256": "e75d95809f7163bbca85ff0eb4ac359aae61e732a8eaf1b22c9b9de97f0e61ea",
+      "repositoryBytes": 173412,
+      "repositorySha256": "e75d95809f7163bbca85ff0eb4ac359aae61e732a8eaf1b22c9b9de97f0e61ea"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/reveal-regression/sealed-360.png",
+      "bytes": 96956,
+      "sha256": "11c20e9c9aad6ba4762ba56cca5049d56c73b8cae5b4e428b8fcc08e90676d34",
+      "repositoryBytes": 96956,
+      "repositorySha256": "11c20e9c9aad6ba4762ba56cca5049d56c73b8cae5b4e428b8fcc08e90676d34"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/reveal-regression/sealed-412.png",
+      "bytes": 104962,
+      "sha256": "de3c42b47e564db3d43caf1818ea646f3cb03e8314bfaffdfc63d70d8c817fdd",
+      "repositoryBytes": 104962,
+      "repositorySha256": "de3c42b47e564db3d43caf1818ea646f3cb03e8314bfaffdfc63d70d8c817fdd"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/reveal-regression/summary-1366.png",
+      "bytes": 81772,
+      "sha256": "f898f92d8dadee66410307c7ccc94547c2c1f12589272c0e187c0d2eae17eee2",
+      "repositoryBytes": 81772,
+      "repositorySha256": "f898f92d8dadee66410307c7ccc94547c2c1f12589272c0e187c0d2eae17eee2"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/reveal-regression/summary-360.png",
+      "bytes": 62122,
+      "sha256": "fce65d068d8d07191ad9a646d52a365a1101b32d9e7981cedbf490264d29aef4",
+      "repositoryBytes": 62122,
+      "repositorySha256": "fce65d068d8d07191ad9a646d52a365a1101b32d9e7981cedbf490264d29aef4"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/pack-browser/reveal-regression/summary-412.png",
+      "bytes": 62458,
+      "sha256": "cbc26c1118dec8d668837597cd6df45f196237193eba375a59bfdaa6a6ce6203",
+      "repositoryBytes": 62458,
+      "repositorySha256": "cbc26c1118dec8d668837597cd6df45f196237193eba375a59bfdaa6a6ce6203"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/performance-summary.json",
+      "bytes": 6197,
+      "sha256": "a61df0b893f6ac2d4e23cba88145896425ed291cbc08d05829e7d4bafeae1f20",
+      "repositoryBytes": 6197,
+      "repositorySha256": "a61df0b893f6ac2d4e23cba88145896425ed291cbc08d05829e7d4bafeae1f20"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/prior-evidence/original-purchase-reconciliation.json",
+      "bytes": 1215,
+      "sha256": "b973558ee088662b55317855ca7b2c9db2ad54db55981011cf80e9526e0c2714",
+      "repositoryBytes": 1215,
+      "repositorySha256": "b973558ee088662b55317855ca7b2c9db2ad54db55981011cf80e9526e0c2714"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/prior-evidence/restored-performance.json",
+      "bytes": 12225,
+      "sha256": "fe7dff0b458e6fc37c82e26390a38c914783203d57e82c8b04131007325f66bc",
+      "repositoryBytes": 12225,
+      "repositorySha256": "fe7dff0b458e6fc37c82e26390a38c914783203d57e82c8b04131007325f66bc"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/prior-evidence/REVIEW.txt",
+      "bytes": 7218,
+      "sha256": "276f48783fb8e34bd0b50b2fedfb4645a2d6685595c28be94b54db40f33b0a64",
+      "repositoryBytes": 7218,
+      "repositorySha256": "276f48783fb8e34bd0b50b2fedfb4645a2d6685595c28be94b54db40f33b0a64"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/prior-evidence/validation.json",
+      "bytes": 2658,
+      "sha256": "a0420a8dc4293bffbb520929bc863c31d9d09944f3c0410296e1cb382ee3516d",
+      "repositoryBytes": 2591,
+      "repositorySha256": "28c5eef290bfe1c23168ca5c99e6b40bee9a027781becd114cbc2a5c6b9ce2e4"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/PROVENANCE.txt",
+      "bytes": 3031,
+      "sha256": "9e9adafa77dcb84374ffccb86d06203ea2b75d6cf43b3f0e802e3b60e4605638",
+      "repositoryBytes": 3031,
+      "repositorySha256": "9e9adafa77dcb84374ffccb86d06203ea2b75d6cf43b3f0e802e3b60e4605638"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/public-performance/android-simulated-_.png",
+      "bytes": 640417,
+      "sha256": "94f8448c386ff8198db4d97af5aaee440594e0f7d1a0b905b8fb63b9163b6751",
+      "repositoryBytes": 640417,
+      "repositorySha256": "94f8448c386ff8198db4d97af5aaee440594e0f7d1a0b905b8fb63b9163b6751"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/public-performance/android-simulated-_fantasy_cards.png",
+      "bytes": 333991,
+      "sha256": "81c63dbd382823d43c55b5d902f8dc0b0de3f39325e3af213a9ffc0407cf2509",
+      "repositoryBytes": 333991,
+      "repositorySha256": "81c63dbd382823d43c55b5d902f8dc0b0de3f39325e3af213a9ffc0407cf2509"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/public-performance/android-simulated-_login.png",
+      "bytes": 73981,
+      "sha256": "28d3393a16657e2793823c0f025c7a762330864ee952aa288fe0b7460380bfc2",
+      "repositoryBytes": 73981,
+      "repositorySha256": "28d3393a16657e2793823c0f025c7a762330864ee952aa288fe0b7460380bfc2"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/public-performance/android-simulated-_privacy.png",
+      "bytes": 171426,
+      "sha256": "f6cd9a72543bebd4e75ecb5e8b09421683588676746bb3a19b323a80a67c8d58",
+      "repositoryBytes": 171426,
+      "repositorySha256": "f6cd9a72543bebd4e75ecb5e8b09421683588676746bb3a19b323a80a67c8d58"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/public-performance/desktop-_.png",
+      "bytes": 529319,
+      "sha256": "7602a181cffb236e6749d4fa3447c61d2b8ee7feedb3485f4f013f9c49180c5e",
+      "repositoryBytes": 529319,
+      "repositorySha256": "7602a181cffb236e6749d4fa3447c61d2b8ee7feedb3485f4f013f9c49180c5e"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/public-performance/desktop-_fantasy_cards.png",
+      "bytes": 350717,
+      "sha256": "3f13f486de48087af2741e73ac7e042ac4b312c68a6e774ff9d11967b7237d0d",
+      "repositoryBytes": 350717,
+      "repositorySha256": "3f13f486de48087af2741e73ac7e042ac4b312c68a6e774ff9d11967b7237d0d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/public-performance/desktop-_login.png",
+      "bytes": 36887,
+      "sha256": "f80491d830dc4b3410d5e01f3413591e413c738c5b52488df0bceccd3a0c0f5a",
+      "repositoryBytes": 36887,
+      "repositorySha256": "f80491d830dc4b3410d5e01f3413591e413c738c5b52488df0bceccd3a0c0f5a"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/public-performance/desktop-_privacy.png",
+      "bytes": 126560,
+      "sha256": "6117ea23a433f52c00a7eae073a9607cb7b98a0dfce06a218ebc2a59f89d2942",
+      "repositoryBytes": 126560,
+      "repositorySha256": "6117ea23a433f52c00a7eae073a9607cb7b98a0dfce06a218ebc2a59f89d2942"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/public-performance/measurements.json",
+      "bytes": 209886,
+      "sha256": "23bb48b068403ddc17c154fd13903937cde711f6680e5cabf4c308778e409c66",
+      "repositoryBytes": 209886,
+      "repositorySha256": "23bb48b068403ddc17c154fd13903937cde711f6680e5cabf4c308778e409c66"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/public-performance/summary.json",
+      "bytes": 2480,
+      "sha256": "58795ae027c675ebcadc5890279674e867711201ff730c8c1baefea058f78ef3",
+      "repositoryBytes": 2382,
+      "repositorySha256": "26000938e406fcb0929b680265af84aa84270b5c6f0ea422dc1b7b1944685154"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/report-preview-1280.png",
+      "bytes": 68139,
+      "sha256": "e7b68bafea8fc8197faaeb299ebf8d9703526622e4281e58c5bc72c2c7b74e4f",
+      "repositoryBytes": 68139,
+      "repositorySha256": "e7b68bafea8fc8197faaeb299ebf8d9703526622e4281e58c5bc72c2c7b74e4f"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/report-preview-390.png",
+      "bytes": 41753,
+      "sha256": "d702c510743989547f0ee1884d56f9ecfe185105e5e55a2057874bf442118cc9",
+      "repositoryBytes": 41753,
+      "repositorySha256": "d702c510743989547f0ee1884d56f9ecfe185105e5e55a2057874bf442118cc9"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/report-preview.png",
+      "bytes": 68139,
+      "sha256": "e7b68bafea8fc8197faaeb299ebf8d9703526622e4281e58c5bc72c2c7b74e4f",
+      "repositoryBytes": 68139,
+      "repositorySha256": "e7b68bafea8fc8197faaeb299ebf8d9703526622e4281e58c5bc72c2c7b74e4f"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/report-render-check.json",
+      "bytes": 195,
+      "sha256": "9d364420a734e07e5ed43cbbdbc825848031aa2f48fff2a9400616af7e865f25",
+      "repositoryBytes": 195,
+      "repositorySha256": "9d364420a734e07e5ed43cbbdbc825848031aa2f48fff2a9400616af7e865f25"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/REPORT.html",
+      "bytes": 58406,
+      "sha256": "4d7899d0acaf244266a38321a5882281458adeaee3c1ae640b77c3268472904d",
+      "repositoryBytes": 58406,
+      "repositorySha256": "4d7899d0acaf244266a38321a5882281458adeaee3c1ae640b77c3268472904d"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/restored-read-profile-initial.json",
+      "bytes": 142674,
+      "sha256": "29897b4881e430ef6045e02ab8b111b68053bf15947f8593041d58bd15f8391e",
+      "repositoryBytes": 142674,
+      "repositorySha256": "29897b4881e430ef6045e02ab8b111b68053bf15947f8593041d58bd15f8391e"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/restored-read-profile.json",
+      "bytes": 142636,
+      "sha256": "1cac29db35d2885df816667d413cd58387f2f645e0ce12d1825783b54ebb9fdc",
+      "repositoryBytes": 142636,
+      "repositorySha256": "1cac29db35d2885df816667d413cd58387f2f645e0ce12d1825783b54ebb9fdc"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/security-advisors.json",
+      "bytes": 866,
+      "sha256": "ad94b7fa01dafc57bda6c8f17f82ac6dc710e99de81b3cc761f8ccf766603564",
+      "repositoryBytes": 866,
+      "repositorySha256": "ad94b7fa01dafc57bda6c8f17f82ac6dc710e99de81b3cc761f8ccf766603564"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/share-image-profile/initial-instrumentation-error.json",
+      "bytes": 3648,
+      "sha256": "4dbee310766a9cc8516a2732d7525f711b9b73b67093c90faea7cd809e42abb8",
+      "repositoryBytes": 3648,
+      "repositorySha256": "4dbee310766a9cc8516a2732d7525f711b9b73b67093c90faea7cd809e42abb8"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/share-image-profile/initial-scoped-readiness.json",
+      "bytes": 3160,
+      "sha256": "3b3440f6c5ffde54d149cc99997241b3ef510bd872b05b634e268ec0243960ee",
+      "repositoryBytes": 3160,
+      "repositorySha256": "3b3440f6c5ffde54d149cc99997241b3ef510bd872b05b634e268ec0243960ee"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/share-image-profile/initial-unscoped-wait.json",
+      "bytes": 3159,
+      "sha256": "a8f809f8ac3c771a34e0a711ea9e436f750e1d7f26d158c5de464b926a1656c7",
+      "repositoryBytes": 3159,
+      "repositorySha256": "a8f809f8ac3c771a34e0a711ea9e436f750e1d7f26d158c5de464b926a1656c7"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/share-image-profile/results.json",
+      "bytes": 3909,
+      "sha256": "678fd5c0d2ae9471093a71cc4d6409d4960fc782f9640c660b36823a5fb21c7c",
+      "repositoryBytes": 3909,
+      "repositorySha256": "678fd5c0d2ae9471093a71cc4d6409d4960fc782f9640c660b36823a5fb21c7c"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/share-image-profile/share-cancelled.png",
+      "bytes": 459157,
+      "sha256": "22824ce1f0953efd36ac28c3b0467a8f9650cee77c090c686fee8519120a7372",
+      "repositoryBytes": 459157,
+      "repositorySha256": "22824ce1f0953efd36ac28c3b0467a8f9650cee77c090c686fee8519120a7372"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/share-image-profile/share-historic.png",
+      "bytes": 459051,
+      "sha256": "13e61114443536096f4c73a2807936f2a4a4f53470490d63affa7b17705fdb7a",
+      "repositoryBytes": 459051,
+      "repositorySha256": "13e61114443536096f4c73a2807936f2a4a4f53470490d63affa7b17705fdb7a"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/share-image-profile/share-real-headless.png",
+      "bytes": 459054,
+      "sha256": "700b4e3ab45026a66b1abc5b09ea78eaf87d02ca1f73e8dfb2832e1ed4b1dd72",
+      "repositoryBytes": 459054,
+      "repositorySha256": "700b4e3ab45026a66b1abc5b09ea78eaf87d02ca1f73e8dfb2832e1ed4b1dd72"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/share-image-profile/share-root.png",
+      "bytes": 459043,
+      "sha256": "0a00cbb7a2b9d839f1ff2532ee0ca4120a2773412ef894dde1881675d57b0005",
+      "repositoryBytes": 459043,
+      "repositorySha256": "0a00cbb7a2b9d839f1ff2532ee0ca4120a2773412ef894dde1881675d57b0005"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/TEST_RESULTS.txt",
+      "bytes": 10177,
+      "sha256": "49484f3d9d540931ea46b71539bedb837b1c5574a8a29221049ce83f4e16dfdd",
+      "repositoryBytes": 10177,
+      "repositorySha256": "49484f3d9d540931ea46b71539bedb837b1c5574a8a29221049ce83f4e16dfdd"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/weekly-core/browser-1794748324512/failure.txt",
+      "bytes": 341,
+      "sha256": "c772a23a2d2bce444def891986c2a8f6ed178c52c843ad0c1638ea5a14656cc6",
+      "repositoryBytes": 341,
+      "repositorySha256": "c772a23a2d2bce444def891986c2a8f6ed178c52c843ad0c1638ea5a14656cc6"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/weekly-panel/afl-ready.png",
+      "bytes": 88035,
+      "sha256": "44adf2aa66299b65b28a22f026009ba3da317d080e9e831aeef9230a09f9c6f7",
+      "repositoryBytes": 88035,
+      "repositorySha256": "44adf2aa66299b65b28a22f026009ba3da317d080e9e831aeef9230a09f9c6f7"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/weekly-panel/nfl-ready.png",
+      "bytes": 88148,
+      "sha256": "62563e4067f28f4a6f53183ee8442115f401f2fa494fcef53c0f4fb94c2ec21b",
+      "repositoryBytes": 88148,
+      "repositorySha256": "62563e4067f28f4a6f53183ee8442115f401f2fa494fcef53c0f4fb94c2ec21b"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/weekly-panel/nrl-ready.png",
+      "bytes": 88167,
+      "sha256": "6e15170b8921c6b5d091e0fbe8feb515f028c48623901b30f621a3a657e146fd",
+      "repositoryBytes": 88167,
+      "repositorySha256": "6e15170b8921c6b5d091e0fbe8feb515f028c48623901b30f621a3a657e146fd"
+    },
+    {
+      "path": "docs/qa/overnight-audit-20261115/weekly-panel/results.json",
+      "bytes": 652,
+      "sha256": "4be210fd5cf58bd4db38afdd4769e0dfaf7a610c2f54575af17d6e6f4fd19a0e",
+      "repositoryBytes": 652,
+      "repositorySha256": "4be210fd5cf58bd4db38afdd4769e0dfaf7a610c2f54575af17d6e6f4fd19a0e"
+    },
+    {
+      "path": "scripts/audit/account-ui.fixture.tsx",
+      "bytes": 462,
+      "sha256": "46d5c6fac1e54b868ccf9565d7f009147948c9a3b8c99e2ae535db51a3beb0dd",
+      "repositoryBytes": 462,
+      "repositorySha256": "46d5c6fac1e54b868ccf9565d7f009147948c9a3b8c99e2ae535db51a3beb0dd"
+    },
+    {
+      "path": "scripts/audit/account-ui.ts",
+      "bytes": 5149,
+      "sha256": "c14aa78642f355b1b4f2df3e192b06500077110e298d0ba15c07e4cebee5d111",
+      "repositoryBytes": 5149,
+      "repositorySha256": "c14aa78642f355b1b4f2df3e192b06500077110e298d0ba15c07e4cebee5d111"
+    },
+    {
+      "path": "scripts/audit/build-report.mjs",
+      "bytes": 4728,
+      "sha256": "365f6e686e49f3522e1068f8837828322dc8d5c10b0621e0445783bbe72ad631",
+      "repositoryBytes": 4728,
+      "repositorySha256": "365f6e686e49f3522e1068f8837828322dc8d5c10b0621e0445783bbe72ad631"
+    },
+    {
+      "path": "scripts/audit/current-ui-journeys.mjs",
+      "bytes": 5843,
+      "sha256": "4adafaa5a6ff6a98bed29e096e07c3c5db05b53ac7faf1cdac63b6054266e94d",
+      "repositoryBytes": 5843,
+      "repositorySha256": "4adafaa5a6ff6a98bed29e096e07c3c5db05b53ac7faf1cdac63b6054266e94d"
+    },
+    {
+      "path": "scripts/audit/isolated-journeys.mjs",
+      "bytes": 2621,
+      "sha256": "cf986ea41bab7970bda5e191ae283a531a7cf1683184a2c8b0f2aa56dc13e103",
+      "repositoryBytes": 2621,
+      "repositorySha256": "cf986ea41bab7970bda5e191ae283a531a7cf1683184a2c8b0f2aa56dc13e103"
+    },
+    {
+      "path": "scripts/audit/playwright.config.ts",
+      "bytes": 743,
+      "sha256": "c997f62cf0d4a16829e2fda3ce62879887717ee487050aebfaa3e2d07742f099",
+      "repositoryBytes": 743,
+      "repositorySha256": "c997f62cf0d4a16829e2fda3ce62879887717ee487050aebfaa3e2d07742f099"
+    },
+    {
+      "path": "scripts/audit/public-performance.ts",
+      "bytes": 8501,
+      "sha256": "b0fa7a49a4fcd42b2ec0ad0c3d7360e457340e7c5daeb01b192e72eb25f64104",
+      "repositoryBytes": 8501,
+      "repositorySha256": "b0fa7a49a4fcd42b2ec0ad0c3d7360e457340e7c5daeb01b192e72eb25f64104"
+    },
+    {
+      "path": "scripts/audit/restored-read-profile.mjs",
+      "bytes": 3882,
+      "sha256": "baeba68bffacc9cfb4e8addea80bebeef94675a105e74893b9ea64b7fdd77e30",
+      "repositoryBytes": 3882,
+      "repositorySha256": "baeba68bffacc9cfb4e8addea80bebeef94675a105e74893b9ea64b7fdd77e30"
+    },
+    {
+      "path": "scripts/audit/share-image-profile.ts",
+      "bytes": 5519,
+      "sha256": "1760cbb170b6f698a2c0aa96cfe2cf9c75c70f7b88bf38ccaa44bd6a8846e4c2",
+      "repositoryBytes": 5519,
+      "repositorySha256": "1760cbb170b6f698a2c0aa96cfe2cf9c75c70f7b88bf38ccaa44bd6a8846e4c2"
+    },
+    {
+      "path": "scripts/audit/summarize.mjs",
+      "bytes": 4395,
+      "sha256": "dd3f8554e71b76b28c2abfa69efdb3e6e1568eae00432ba3f088014cf0c90510",
+      "repositoryBytes": 4395,
+      "repositorySha256": "dd3f8554e71b76b28c2abfa69efdb3e6e1568eae00432ba3f088014cf0c90510"
+    },
+    {
+      "path": "scripts/audit/weekly-panel.fixture.tsx",
+      "bytes": 481,
+      "sha256": "380251050b12ed9fab7bacd075f592232760706eeeeda2019186eb33a3e4b6ba",
+      "repositoryBytes": 481,
+      "repositorySha256": "380251050b12ed9fab7bacd075f592232760706eeeeda2019186eb33a3e4b6ba"
+    },
+    {
+      "path": "scripts/audit/weekly-panel.ts",
+      "bytes": 5484,
+      "sha256": "30d20f889ce0c7e04d864341c115e507f1344da9d7d572a3f688449c14b170f2",
+      "repositoryBytes": 5484,
+      "repositorySha256": "30d20f889ce0c7e04d864341c115e507f1344da9d7d572a3f688449c14b170f2"
+    }
+  ],
+  "hashScope": "sha256/bytes: captured worktree; repositorySha256/repositoryBytes: Git-normalised blob content",
+  "updated": "2026-11-15T14:06:34.953Z"
+}

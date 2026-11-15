@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-15T13:28:19.359Z",
+  "pendingDeployment": "dpl_6V7RoXVVwBRfimJxvXim8FPrfKy4",
+  "previewBuildEvents": [
+    {
+      "date": 1794746901603,
+      "text": "Warning: Due to \"engines\": { \"node\": \">=22\" } in your `package.json` file, the Node.js Version defined in your Project Settings (\"22.x\") will not apply, Node.js Version \"26.x\" will be used instead. Learn More: https://vercel.link/node-version"
+    },
+    {
+      "date": 1794746901604,
+      "text": "Warning: Detected \"engines\": { \"node\": \">=22\" } in your `package.json` that will automatically upgrade when a new major Node.js Version is released. Learn More: https://vercel.link/node-version"
+    },
+    {
+      "date": 1794746958141,
+      "text": "Docked refuses a hosted build outside its reviewed deployment boundary."
+    },
+    {
+      "date": 1794746958153,
+      "text": "Error: [BUILD_UTILS_SPAWN_1] Command \"node scripts/guard-hosted-build.mjs && npm run build\" exited with 1"
+    }
+  ],
+  "interpretation": "Automatic branch Preview stopped at the intentional reviewed-target guard before application compilation. Not evidence of a TypeScript defect. engines >=22 selects Node 26 while local tests use Node 22.",
+  "runtimeLogs": {
+    "content": [
+      {
+        "type": "text",
+        "text": "## Runtime Logs\n\n**Project:** prj_l0rpVDPRuIRp9UcBUkudeyUK5yST\n**Time range:** 2026-11-15T07:18:26.743Z → 2026-11-15T13:18:26.743Z\n\n### 2026-11-15T13:05:02.630Z GET /fantasy/play [error/function]\ndep=dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy request=7xqs9-1794747902201-d5b81f00ccf5 domain=docked.com.au environment=production region=fra1 runtime=nodejs26.x stream=stderr\n    fantasy_screen_unavailable { kind: 'authentication', screen: 'play' }\n\n### 2026-11-15T10:59:32.372Z GET /fantasy/play [error/function]\ndep=dpl_F9SkmmpMoYZULiJSTRgSnnJAJ3V2 request=9tfqj-1794740354633-608251cfc134 domain=docked.com.au environment=production region=syd1 runtime=nodejs26.x stream=stderr\n    fantasy_screen_unavailable { kind: 'service', screen: 'play' }\n"
+      }
+    ],
+    "structuredContent": null,
+    "isError": false
+  },
+  "desktopInspection": {
+    "completed": false,
+    "reason": "Computer Use safety control could not verify the active browser URL. No alternate method accessed the founder browser/session."
+  },
+  "fieldMetrics": {
+    "available": false,
+    "reason": "Vercel Observability field LCP query returned payment_required; no subscription changed."
+  }
+}

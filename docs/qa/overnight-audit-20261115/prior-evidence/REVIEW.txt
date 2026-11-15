@@ -1,0 +1,41 @@
+PACK RECOVERY, NFL SEASON NAVIGATION AND LINEUP AUTO-FILL
+Prepared in isolation; not a Production deployment or launch approval.
+
+Production baseline is now 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef, deployment dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy. The separately approved Brenton exception is included in this branch's ancestry and must remain intact. Its migration and account provisioning must not run again.
+
+RECONCILIATION
+The screenshot's 6,200 to 5,500 transition was request 9aa88640-713a-4661-87c0-c7e1036972f3. Exactly one balanced 700-credit journal committed for Premium 1 AFL, not a nine-card offer. One Ultra Rare Stephen Coniglio card, serial 2/400, was allocated and remained owned; the saved open receipt followed. No replacement, refund, extra charge or balance correction was warranted. A separate later NFL Premium 1 purchase accounts for the next legitimate 700-credit change. See original-purchase-reconciliation.json; no physical Android inspection is claimed.
+
+PERFORMANCE AND RECOVERY
+Live read-only pg_stat_statements evidence showed one additional wallet UPDATE taking 14,142.57 ms, close to the browser's previous 15-second request budget. The aggregate is approximately 4.18 MB uncompressed. Restored EXPLAIN identified repeated definition/instance scans and rebuilding all fixture owners' inventories as the dominant storage work.
+
+The proposed migration counts lifetime allocations once, caches immutable JSON subdocuments within each trigger invocation, and rebuilds affected owner/sport projections. Missing projections and explicit no-op repair updates retain repair behavior. Every previous identity, ownership, serial, source, RLS, receipt and scarcity predicate is retained. Same transaction and existing advisory lock; no weaker caps or new permissions.
+
+Committed purchase/open retries retrieve the existing member-scoped fingerprint/result before running catalogue or settlement work. Authentication, admission and owner MFA remain mandatory; the response snapshot rechecks access. Marketplace visibility calls are batched under the same authenticated transaction and permission function. Pack mutations have a bounded 30-second transport budget with the original saved request; there is no automatic new purchase retry.
+
+One reproduced reveal defect was fixed: already-allocated founder season-pack receipts no longer require a fresh live-roster observation to reveal. This applies only to the registered founder-credit-season-v1 policy. New issuance still requires the approved season catalogue and valid source rights; reveal never remints.
+
+Restored performance measurements are the database persistence path, not complete Android/API latency. Cache state and underlying host load are not controlled. Do not interpret the first/second run as proven cold/warm device acceptance. The final measured report and migration digest are recorded separately. Hosted timings and a genuine Android v31 retry/restart session remain required after separately approved staging.
+
+Final restored measurements: purchase 27.24 seconds before, 7.93 and 12.15 seconds after; reveal persistence 26.66 seconds before, 7.94 and 11.61 seconds after. Each rehearsal allocated and projected exactly nine new cards, then rolled back every transaction with all protected fingerprints unchanged. These improvements do not establish a hosted latency SLA. Nineteen platform tests, seven database scenario groups and two focused mobile browser sessions passed. The local Next build compiled, typechecked and generated 70 static pages, but its external dependency junction left 27 framework files out of standalone tracing. Deploy only a separately verified clean hosted build, never that incomplete local artifact.
+
+NFL SEASON DISPLAY AND SOURCE LIMIT
+The selector now separates 18 regular-season weeks from imported competition rows. It defaults to the calendar's current week, links both modes consistently, preserves deep-linked historical entries, and keeps synthetic Practice records in a separate archive. An unavailable competition cannot gain an entry window or scoring permission merely because its schedule is displayed.
+
+The retained 272-game snapshot was verified on 8 November 2026. Its original hash and verification time are preserved. Twenty-four unresolved Week 16/17/18 kickoffs are represented as TBD rather than guessed timestamps; byes are derived from the complete team schedule. Fixtures use device-local time. Postseason is explicitly outside the regular-season competition scope. The interface clearly identifies the retained snapshot and links the current official schedule.
+
+The existing automated nflverse collection permit expired 10 November. No renewal, source fetch through that permit, timestamp fabrication, new round publication or scoring activation has been performed. Current fixture revalidation requires a valid source permission covering the actual schedule source. The license URL currently in the permit identifies nflverse-data, whereas the retained games CSV comes from nfldata; do not silently infer a blanket license or commercial scoring right. Founder/source-owner confirmation or a separately approved licensed schedule feed is required before claiming the season fixtures are current. This is a concrete remaining source gate, not a reason to delete the historical schedule or approved player catalogue.
+
+Source references:
+- Retained data: https://raw.githubusercontent.com/nflverse/nfldata/master/data/games.csv
+- Actual source repository: https://github.com/nflverse/nfldata
+- Existing permit's license reference: https://github.com/nflverse/nflverse-data/blob/main/LICENSE.md
+- Official season format and TBD timing: https://media.nfl.com/football-information/2026/news/2026-nfl-schedule-announced
+- Official week-by-week schedule: https://media.nfl.com/content/dam/communications/football-communications/2026/news/05%2014%2026%20-%202026%20NFL%20Schedule%20-%20By%20Week.pdf
+- Current Week 10 reference checked during research: https://www.nfl.com/schedules/2026/by-week/week-10
+
+AUTO-FILL
+Both modes can fill empty or partial drafts, including established and carried teams. Existing manual choices and trusted locked snapshots are preserved. The authenticated server uses actual owned eligible cards, the selected round's registered salary configuration, position/FLEX rules and canonical-player uniqueness. The exact multiple-choice solver avoids greedy salary/FLEX dead ends. Stable card ordering supplies deterministic choices without invented projections. Missing positions have reasons. Applying changes only the local draft; saving/entry remains a separate server-validated action, and a changed draft cannot accept an obsolete response.
+
+BOUNDARIES
+All implementation and transaction rehearsals are isolated. Registration, bought credits, payments, trading, SMS, Play publication, NBA, prizes, withdrawals and scored competition activation remain excluded. Preserve 888 legacy limited cards plus every legitimate later issuance; never restore the total to 888. The original timed-out purchase is not retried by this work. Brenton's accepted exception is preserved, but his own consent and founder MFA credit grant are separate from this package.
