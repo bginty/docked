@@ -11,20 +11,22 @@ export async function hiddenMarketCards(
 ) {
   // Legacy synthetic inventory has no canonical player/card instance. Keep its
   // receipts and balances, but never offer it as a public collectible.
-  const hidden: string[] = state.economy ? Object.keys(state.commerce.cards).filter((id)=>!state.economy!.instances[id]) : [];
+  const hidden: string[] = state.economy
+    ? Object.keys(state.commerce.cards).filter(
+        (id) => !state.economy!.instances[id],
+      )
+    : [];
   const listings = Object.values(state.listings)
     .map((l) => ({ card: l.card, member: state.commerce.cards[l.card]?.owner }))
     .filter((l) => l.member && l.member !== member);
-  for (const owner of new Set(listings.map((l) => l.member))) {
-    if (!owner) continue;
-    const cards = listings
-      .filter((l) => l.member === owner)
-      .map((l) => ({ id: l.card }));
-    for (const card of cards) {
-      const [v] =
-        await tx`select credits_sandbox.market_card_visible(${owner}::uuid,${card.id}) allowed`;
-      if (!v?.allowed) hidden.push(card.id);
-    }
+  // Evaluate the same permission function under the same authenticated
+  // transaction snapshot, with one database round trip instead of one per card.
+  const unique = [...new Map(listings.map((l) => [l.card, l])).values()];
+  if (unique.length) {
+    const checks = await tx`select x.card,
+      credits_sandbox.market_card_visible(x.member,x.card) allowed
+      from jsonb_to_recordset(${tx.json(unique)}) x(card text,member uuid)`;
+    for (const card of checks) if (!card.allowed) hidden.push(card.card);
   }
   return hidden;
 }

@@ -172,13 +172,34 @@ export async function memberTestSource(
     if (other && !peers.some((p) => p.id === other))
       throw Error("Counterparty not admitted");
     try {
-      result = await store.execute(
-        command.kind === "swap-window"
-          ? { id: who.user.id, role: "reviewer", aal: "aal2" }
-          : { id: who.user.id, role: "member" },
-        body.request,
-        command,
-      );
+      // A committed pack receipt remains recoverable when a provider is down or
+      // collection permission has since expired. Re-reading it does not issue
+      // anything and must not repeat the global settlement/catalogue work.
+      // Authentication/admission/MFA were checked above and are checked again
+      // in the response snapshot below. The lookup is scoped to this member.
+      const prior = ["buy-pack", "open-pack"].includes(command.kind)
+        ? (
+            await sql`select document #> array['requests',${`${who.user.id}:${body.request}`}] prior
+            from credits_sandbox.state where id`
+          )[0]?.prior
+        : null;
+      if (
+        prior &&
+        prior.fingerprint !==
+          JSON.stringify({ role: "member", c: creditsCommand.parse(command) })
+      )
+        throw new CreditsRejected(
+          "Idempotency conflict. Check the original purchase request.",
+        );
+      result = prior
+        ? prior.result
+        : await store.execute(
+            command.kind === "swap-window"
+              ? { id: who.user.id, role: "reviewer", aal: "aal2" }
+              : { id: who.user.id, role: "member" },
+            body.request,
+            command,
+          );
     } catch (error) {
       if (tradingCommandMode(command))
         await recordTradingFailure(sql, who, body.request, error);

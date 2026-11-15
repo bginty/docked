@@ -266,10 +266,92 @@ test("Server recommendation only considers owned eligible cards and leaves entri
     "All-Star setup must not consume Traditional setup",
   );
   data.seven!.established["nfl:SALARY_CAP"] = true;
+  const manual = [{ slot: "QB1", card: "0-0" }];
+  const repeat = recommendOwnedLineup(data, "week7", {}, now, manual);
+  assert.equal(
+    repeat.picks.length,
+    7,
+    "Established teams may fill empty positions",
+  );
+  assert.deepEqual(
+    repeat.picks.find((p) => p.slot === "QB1"),
+    manual[0],
+  );
+  assert.ok(repeat.cost <= nflSeven.salaryCap);
+  const allStar = structuredClone(data);
+  allStar.competitions[0].rules.mode = "OPEN";
+  assert.equal(
+    recommendOwnedLineup(allStar, "week7", {}, now, manual).picks.length,
+    7,
+  );
   assert.throws(
-    () => recommendOwnedLineup(data, "week7", ranks, now),
-    /established/,
-    "Server rejects repeat Auto Select, even after withdrawal",
+    () =>
+      recommendOwnedLineup(data, "week7", {}, now, [
+        { slot: "QB1", card: outsider.id },
+      ]),
+    /no longer eligible or owned/,
+  );
+  const withdrawn = structuredClone(data);
+  withdrawn.seven!.inventory = withdrawn.seven!.inventory.filter(
+    (c) => c.player_id !== "p1" && c.player_id !== "p2",
+  );
+  const partial = recommendOwnedLineup(withdrawn, "week7", {}, now, manual);
+  assert.ok(partial.missingReasons.length > 0);
+  assert.ok(partial.missingReasons.every((m) => m.reason.length > 0));
+  const closed = structuredClone(data);
+  closed.competitions[0].locks_at = new Date(now - 1).toISOString();
+  closed.competitions[0].rules.lock_policy = "round-wide-v1";
+  assert.throws(
+    () => recommendOwnedLineup(closed, "week7", {}, now, manual),
+    /locked/,
+  );
+  const carried = structuredClone(data);
+  carried.seven!.drafts = [
+    {
+      competition_id: "week7",
+      revision: 1,
+      updated_at: new Date(now).toISOString(),
+      selections: manual,
+    },
+  ];
+  assert.deepEqual(
+    recommendOwnedLineup(carried, "week7", {}, now).picks.find(
+      (p) => p.slot === "QB1",
+    ),
+    manual[0],
+  );
+  const rolling = structuredClone(data);
+  rolling.seven!.entries = [
+    {
+      competition_id: "week7",
+      revision: 1,
+      updated_at: new Date(now).toISOString(),
+      snapshot: [
+        {
+          ...inventory[0],
+          card_id: inventory[0].id,
+          slot: "QB1",
+          salary: 500000,
+          kickoff: new Date(now - 1000).toISOString(),
+        },
+      ],
+    },
+  ];
+  rolling.seven!.inventory = rolling.seven!.inventory.filter(
+    (c) => c.id !== inventory[0].id,
+  );
+  assert.equal(
+    recommendOwnedLineup(rolling, "week7", {}, now, []).picks.find(
+      (p) => p.slot === "QB1",
+    )?.card,
+    inventory[0].id,
+  );
+  assert.throws(
+    () =>
+      recommendOwnedLineup(rolling, "week7", {}, now, [
+        { slot: "QB1", card: inventory[1].id },
+      ]),
+    /locked/,
   );
   data.seven!.established = {};
   data.seven!.fixtures.week7[0].scheduledAt = new Date(

@@ -82,11 +82,17 @@ export function MemberTestWallet({
     );
     let response: Response | undefined;
     try {
-      const r = await boundedFetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ request, command }),
-      });
+      const r = await boundedFetch(
+        endpoint,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ request, command }),
+        },
+        command.kind === "buy-pack" || command.kind === "open-pack"
+          ? 30000
+          : 15000,
+      );
       response = r;
       const data = await r.json();
       if (!r.ok) {

@@ -54,3 +54,26 @@ tests/named-private-tester.playwright.config.ts text eol=lf
 tests/database/customer-invitation.test.ts text eol=lf
 docs/qa/brenton-private-tester-20261115/** text eol=lf
 docs/qa/brenton-private-tester-20261115/*.png -text
+
+# Pack recovery, season display and auto-fill review bytes.
+supabase/migrations/20261115113306_batch_private_pack_issuance_validation.sql text eol=lf
+config/nfl-season-2026.json text eol=lf
+scripts/pack-performance-restored.ts text eol=lf
+scripts/pack-rounds-lineup-browser.ts text eol=lf
+scripts/pack-recovery-browser.ts text eol=lf
+scripts/pack-timeout-reconciliation.ts text eol=lf
+scripts/pack-rounds-package.mjs text eol=lf
+src/components/nfl-season-navigation.tsx text eol=lf
+src/components/nfl-seven-play.tsx text eol=lf
+src/components/member-test-wallet.tsx text eol=lf
+src/app/api/fantasy/auto-select/route.ts text eol=lf
+src/core/credits-sandbox.ts text eol=lf
+src/core/owned-lineup-recommendation.ts text eol=lf
+src/core/nfl-season-navigation.ts text eol=lf
+src/server/market-visibility.ts text eol=lf
+src/server/member-test-wallet.ts text eol=lf
+tests/platform/card-economy.test.ts text eol=lf
+tests/platform/premium-ux.test.ts text eol=lf
+tests/platform/nfl-season-navigation.test.ts text eol=lf
+docs/qa/pack-rounds-autofill-20261115/** text eol=lf
+docs/qa/pack-rounds-autofill-20261115/**/*.png -text

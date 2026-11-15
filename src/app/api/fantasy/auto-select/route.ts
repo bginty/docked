@@ -1,15 +1,50 @@
 import { NextResponse } from "next/server";
 import { fantasyRequest } from "@/server/fantasy";
-import { publishedLineupRanks } from "@/server/nfl-player-history";
 import { memberAccessFailure } from "@/core/member-access-recovery";
 import { rateLimit } from "@/server/db";
 import { recommendOwnedLineup } from "@/core/owned-lineup-recommendation";
-import { hasEstablishedTeam } from "@/core/team-continuity";
+import { sameOrigin } from "@/server/auth";
+import { boundedCommunityBody } from "@/core/community-social";
+import { z } from "zod";
+const fillRequest = z
+  .object({
+    competition: z.string().uuid(),
+    picks: z
+      .array(
+        z
+          .object({
+            slot: z.string().min(1).max(30),
+            card: z.string().min(1).max(160),
+          })
+          .strict(),
+      )
+      .max(30),
+  })
+  .strict();
 export const runtime = "nodejs";
-export async function GET(request: Request) {
+async function recommend(request: Request, submittedDraft: boolean) {
   const headers = { "Cache-Control": "private, no-store" };
   try {
-    const id = new URL(request.url).searchParams.get("competition");
+    if (submittedDraft && !sameOrigin(request))
+      return NextResponse.json(
+        { error: "Origin denied" },
+        { status: 403, headers },
+      );
+    const input = submittedDraft
+      ? fillRequest.safeParse(
+          JSON.parse(
+            new TextDecoder().decode(await boundedCommunityBody(request, 8192)),
+          ),
+        )
+      : null;
+    if (input && !input.success)
+      return NextResponse.json(
+        { error: "Choose a round and valid draft selections." },
+        { status: 400, headers },
+      );
+    const id = input?.success
+      ? input.data.competition
+      : new URL(request.url).searchParams.get("competition");
     // Existing authenticated read enforces admission, MFA and per-account secrecy.
     const { state } = await fantasyRequest();
     if (!(await rateLimit(`auto-select:${state.user_id}`, 12, 60)))
@@ -28,41 +63,47 @@ export async function GET(request: Request) {
         { error: "This competition is unavailable for Auto Select." },
         { status: 409, headers },
       );
-    if (
-      hasEstablishedTeam(state, round.sport ?? "nfl", String(round.rules.mode))
-    )
+    const now = Date.now();
+    let recommendation;
+    try {
+      // Configured salaries and stable card IDs suffice; no provider or invented projections.
+      recommendation = recommendOwnedLineup(
+        state,
+        round.id,
+        {},
+        now,
+        input?.success ? input.data.picks : undefined,
+      );
+    } catch (error) {
       return NextResponse.json(
         {
           error:
-            "Your team is established. Replace individual players manually.",
+            error instanceof Error
+              ? error.message
+              : "The current draft cannot be filled.",
         },
         { status: 409, headers },
       );
-    const players = state.seven.inventory
-      .filter((c) => c.owner_id === state.user_id && c.sport === "nfl")
-      .map((c) => c.canonical_player_id ?? c.player_id);
-    const now = Date.now();
-    const history = await publishedLineupRanks(
-      players,
-      round.season,
-      round.round,
-      now,
-    );
+    }
     return NextResponse.json(
       {
         competition: round.id,
         member: state.user_id,
-        asOf: history.asOf,
-        recommendation: recommendOwnedLineup(
-          state,
-          round.id,
-          history.ranks,
-          now,
-        ),
+        asOf: new Date(now).toISOString(),
+        method: "owned-eligible-salary-stable-id-v1",
+        recommendation,
       },
       { headers },
     );
   } catch (error) {
+    if (
+      error instanceof SyntaxError ||
+      (error instanceof Error && error.message === "Request too large")
+    )
+      return NextResponse.json(
+        { error: "Choose a round and valid draft selections." },
+        { status: 400, headers },
+      );
     const kind = memberAccessFailure(error);
     return NextResponse.json(
       {
@@ -71,7 +112,7 @@ export async function GET(request: Request) {
             ? "Please sign in again."
             : kind === "mfa"
               ? "Please complete secure verification."
-              : "Verified player history is unavailable. Your lineup has not changed.",
+              : "Lineup eligibility could not be checked. Your draft has not changed.",
       },
       {
         status:
@@ -84,4 +125,11 @@ export async function GET(request: Request) {
       },
     );
   }
+}
+/** Older open tabs may still request the saved draft; neither endpoint saves or enters. */
+export function GET(request: Request) {
+  return recommend(request, false);
+}
+export function POST(request: Request) {
+  return recommend(request, true);
 }

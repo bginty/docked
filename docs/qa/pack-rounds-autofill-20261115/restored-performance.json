@@ -1,0 +1,442 @@
+{
+  "at": "2026-11-15T12:41:30.713Z",
+  "target": "docked-commercial-restore-20261115m",
+  "network": "none",
+  "productionWrites": 0,
+  "rollbackVerified": true,
+  "actualNineCardPurchaseAndReveal": true,
+  "cacheStateControlled": false,
+  "scope": "Database persistence path; not hosted API or Android latency",
+  "migrationSha256": "ed62d00159492c6151ebf0543a5f34c6ee4a215fe9e655bbf9c6b64fcf7c49ed",
+  "results": [
+    {
+      "phase": "before",
+      "roundTripMs": 59144,
+      "timings": [
+        {
+          "step": "purchase",
+          "triggers": [
+            {
+              "Time": 198.992,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "audit_listing_terms"
+            },
+            {
+              "Time": 813.592,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "commercial_no_parallel_mint"
+            },
+            {
+              "Time": 14094.996,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "lifetime_economy_guard"
+            },
+            {
+              "Time": 358.333,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "marketplace_guard"
+            },
+            {
+              "Time": 23.385,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "pack_coupon_guard"
+            },
+            {
+              "Time": 12.609,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "private_offer_integrity"
+            },
+            {
+              "Time": 10928.838,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "project_fixture_inventory"
+            },
+            {
+              "Time": 15.305,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "rarity_lineup_transfer"
+            },
+            {
+              "Time": 532.998,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "redemption_boundary"
+            },
+            {
+              "Time": 47.787,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "sale_receipt_outbox"
+            }
+          ],
+          "executionMs": 27238.892
+        },
+        {
+          "step": "open",
+          "triggers": [
+            {
+              "Time": 77.671,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "audit_listing_terms"
+            },
+            {
+              "Time": 268.974,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "commercial_no_parallel_mint"
+            },
+            {
+              "Time": 11665.265,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "lifetime_economy_guard"
+            },
+            {
+              "Time": 156.464,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "marketplace_guard"
+            },
+            {
+              "Time": 11.618,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "pack_coupon_guard"
+            },
+            {
+              "Time": 5.364,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "private_offer_integrity"
+            },
+            {
+              "Time": 14130.799,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "project_fixture_inventory"
+            },
+            {
+              "Time": 5.558,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "rarity_lineup_transfer"
+            },
+            {
+              "Time": 206.51,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "redemption_boundary"
+            },
+            {
+              "Time": 60.365,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "sale_receipt_outbox"
+            }
+          ],
+          "executionMs": 26657.6
+        }
+      ],
+      "check": {
+        "issued": 10,
+        "newOwnerCount": 9,
+        "projectedNewCards": 9
+      }
+    },
+    {
+      "phase": "after-first",
+      "roundTripMs": 22911,
+      "timings": [
+        {
+          "step": "purchase",
+          "triggers": [
+            {
+              "Time": 76.087,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "audit_listing_terms"
+            },
+            {
+              "Time": 610.591,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "commercial_no_parallel_mint"
+            },
+            {
+              "Time": 4881.715,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "lifetime_economy_guard"
+            },
+            {
+              "Time": 194.386,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "marketplace_guard"
+            },
+            {
+              "Time": 17.721,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "pack_coupon_guard"
+            },
+            {
+              "Time": 7.958,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "private_offer_integrity"
+            },
+            {
+              "Time": 1488.994,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "project_fixture_inventory"
+            },
+            {
+              "Time": 8.398,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "rarity_lineup_transfer"
+            },
+            {
+              "Time": 288.061,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "redemption_boundary"
+            },
+            {
+              "Time": 83.946,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "sale_receipt_outbox"
+            }
+          ],
+          "executionMs": 7926.326
+        },
+        {
+          "step": "open",
+          "triggers": [
+            {
+              "Time": 144.951,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "audit_listing_terms"
+            },
+            {
+              "Time": 132.863,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "commercial_no_parallel_mint"
+            },
+            {
+              "Time": 1953.622,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "lifetime_economy_guard"
+            },
+            {
+              "Time": 171.936,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "marketplace_guard"
+            },
+            {
+              "Time": 13.826,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "pack_coupon_guard"
+            },
+            {
+              "Time": 7.069,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "private_offer_integrity"
+            },
+            {
+              "Time": 4806.141,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "project_fixture_inventory"
+            },
+            {
+              "Time": 8.637,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "rarity_lineup_transfer"
+            },
+            {
+              "Time": 239.238,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "redemption_boundary"
+            },
+            {
+              "Time": 70.745,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "sale_receipt_outbox"
+            }
+          ],
+          "executionMs": 7942.748
+        }
+      ],
+      "check": {
+        "issued": 10,
+        "newOwnerCount": 9,
+        "projectedNewCards": 9
+      }
+    },
+    {
+      "phase": "after-repeat",
+      "roundTripMs": 28339,
+      "timings": [
+        {
+          "step": "purchase",
+          "triggers": [
+            {
+              "Time": 81.229,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "audit_listing_terms"
+            },
+            {
+              "Time": 601.726,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "commercial_no_parallel_mint"
+            },
+            {
+              "Time": 8420.824,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "lifetime_economy_guard"
+            },
+            {
+              "Time": 240.994,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "marketplace_guard"
+            },
+            {
+              "Time": 12.465,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "pack_coupon_guard"
+            },
+            {
+              "Time": 7.474,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "private_offer_integrity"
+            },
+            {
+              "Time": 2131.333,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "project_fixture_inventory"
+            },
+            {
+              "Time": 7.059,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "rarity_lineup_transfer"
+            },
+            {
+              "Time": 287.487,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "redemption_boundary"
+            },
+            {
+              "Time": 74.596,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "sale_receipt_outbox"
+            }
+          ],
+          "executionMs": 12150.616
+        },
+        {
+          "step": "open",
+          "triggers": [
+            {
+              "Time": 322.245,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "audit_listing_terms"
+            },
+            {
+              "Time": 286.245,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "commercial_no_parallel_mint"
+            },
+            {
+              "Time": 3893.291,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "lifetime_economy_guard"
+            },
+            {
+              "Time": 370.285,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "marketplace_guard"
+            },
+            {
+              "Time": 40.65,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "pack_coupon_guard"
+            },
+            {
+              "Time": 21.478,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "private_offer_integrity"
+            },
+            {
+              "Time": 5052.414,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "project_fixture_inventory"
+            },
+            {
+              "Time": 17.737,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "rarity_lineup_transfer"
+            },
+            {
+              "Time": 486.165,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "redemption_boundary"
+            },
+            {
+              "Time": 75.198,
+              "Calls": 1,
+              "Relation": "state",
+              "Trigger Name": "sale_receipt_outbox"
+            }
+          ],
+          "executionMs": 11610.11
+        }
+      ],
+      "check": {
+        "issued": 10,
+        "newOwnerCount": 9,
+        "projectedNewCards": 9
+      }
+    }
+  ]
+}

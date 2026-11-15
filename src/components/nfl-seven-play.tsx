@@ -51,9 +51,10 @@ import { CompetitionWeekSelector } from "./competition-week-selector";
 import { useGameDay } from "./use-game-day";
 import { GameDaySummary } from "./game-day-summary";
 import { GameDayPlayerScore } from "./game-day-player-score";
-import type { autoSelect } from "@/core/lineup-auto-select";
+import type { recommendOwnedLineup } from "@/core/owned-lineup-recommendation";
 import { boundedFetch } from "@/core/bounded-request";
-import { hasEstablishedTeam } from "@/core/team-continuity";
+import { nflSeasonSelection } from "@/core/nfl-season-navigation";
+import { NflSeasonNavigation } from "./nfl-season-navigation";
 
 function FantasyAmount({ value }: { value: number }) {
   const exact = value.toLocaleString("en-AU");
@@ -107,10 +108,11 @@ export function NflSevenPlay({
   const navigationQuery = useSearchParams();
   const gameDay = useGameDay();
   const [autoBusy, setAutoBusy] = useState(false);
+  const [practiceArchive, setPracticeArchive] = useState(false);
   const [recommendation, setRecommendation] = useState<null | {
     competition: string;
     original: string;
-    result: ReturnType<typeof autoSelect>;
+    result: ReturnType<typeof recommendOwnedLineup>;
     asOf: string | null;
   }>(null);
   const [chosen, setChosen] = useState(""),
@@ -167,26 +169,23 @@ export function NflSevenPlay({
     return () => clearInterval(timer);
   }, [data.seven?.server_time]);
 
-  const rounds = data.competitions
-
-    .filter((c) => c.rules.mode === mode && c.rules.lineup_version)
-
-    .sort((a, b) => Date.parse(a.locks_at) - Date.parse(b.locks_at));
-
-  const comp =
-    rounds.find((c) => c.id === chosen) ??
-    rounds.find(
-      (c) =>
-        c.season === navigationQuery.get("season") &&
-        String(c.round) === navigationQuery.get("week"),
-    ) ??
-    rounds.find((c) => Date.parse(c.locks_at) > now) ??
-    rounds.at(-1);
+  const season = nflSeasonSelection({
+    competitions: data.competitions,
+    mode,
+    chosen,
+    week: navigationQuery.get("week"),
+    now,
+  });
+  const archive =
+    practiceArchive || season.practice.some((c) => c.id === chosen);
+  const rounds = archive ? season.practice : season.rounds;
+  const comp = archive
+    ? (rounds.find((c) => c.id === chosen) ?? rounds.at(-1))
+    : season.competition;
 
   const publishedConfig =
     data.seven?.configurations[String(comp?.rules.lineup_version)];
   const cfg = publishedConfig ?? nflSeven;
-  const established = hasEstablishedTeam(data, comp?.sport ?? "nfl", mode);
   const rollover = data.seven?.rollovers?.find(
     (r) => r.competition_id === comp?.id,
   );
@@ -368,7 +367,7 @@ export function NflSevenPlay({
       !!comp &&
       !!publishedConfig &&
       !historical &&
-      (!closed || !!entry) &&
+      (!closed || (!!entry && comp.rules.lock_policy !== "round-wide-v1")) &&
       !comp.rules.disabled;
   const entryOpensLater = !!comp?.opens_at && Date.parse(comp.opens_at) > now;
 
@@ -391,21 +390,64 @@ export function NflSevenPlay({
       url.searchParams.set(k, v);
     window.history.pushState(null, "", url);
   }
+  function selectSeasonWeek(week: number) {
+    const target = season.rounds.find((c) => c.round === week);
+    setChosen(target?.id ?? "");
+    setPracticeArchive(false);
+    setRecommendation(null);
+    setProfile(null);
+    setSlot(null);
+    setNotice("");
+    const url = new URL(window.location.href);
+    url.searchParams.set("season", "2026");
+    url.searchParams.set("week", String(week));
+    url.searchParams.set("mode", mode);
+    url.searchParams.set("sport", "nfl");
+    if (target) url.searchParams.set("competition", target.id);
+    else url.searchParams.delete("competition");
+    window.history.pushState(null, "", url);
+  }
+  const seasonNavigation = (
+    <NflSeasonNavigation
+      week={season.week}
+      onSelect={selectSeasonWeek}
+      now={now}
+      disabled={busy}
+      archive={archive}
+      hasArchive={season.practice.length > 0}
+      competitionAvailable={!!season.competition}
+      onArchive={(value) => {
+        setChosen("");
+        setPracticeArchive(value);
+        setRecommendation(null);
+        setProfile(null);
+        setSlot(null);
+        const url = new URL(window.location.href);
+        url.searchParams.delete("competition");
+        window.history.pushState(null, "", url);
+      }}
+    />
+  );
   async function recommend() {
-    if (!comp || !editable || autoBusy || established) return;
+    if (!comp || !editable || autoBusy || picks.length >= cfg.slots.length)
+      return;
     setAutoBusy(true);
     setNotice("");
     try {
-      const response = await boundedFetch(
-        `/api/fantasy/auto-select?competition=${encodeURIComponent(comp.id)}`,
-        { cache: "no-store" },
-      );
+      const response = await boundedFetch("/api/fantasy/auto-select", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ competition: comp.id, picks }),
+        cache: "no-store",
+      });
       const body = await response.json();
       if (!response.ok)
         throw Error(body.error || "Auto Select is unavailable.");
       if (body.member !== data.user_id || body.competition !== comp.id)
         throw Error("Account or competition changed. Please retry.");
-      const result = body.recommendation as ReturnType<typeof autoSelect>;
+      const result = body.recommendation as ReturnType<
+        typeof recommendOwnedLineup
+      >;
       if (
         !result ||
         !Array.isArray(result.picks) ||
@@ -523,7 +565,7 @@ export function NflSevenPlay({
       <section className="fantasy-panel">
         <h2>{competitionName(mode)}</h2>
 
-        <p>No verified upcoming round is available yet.</p>
+        {seasonNavigation}
       </section>
     );
 
@@ -569,13 +611,16 @@ export function NflSevenPlay({
           {closed && !entry ? "Not entered" : draftState}
         </span>
       </header>
-      <CompetitionWeekSelector
-        rounds={rounds}
-        selected={comp.id}
-        onSelect={selectWeek}
-        now={now}
-        disabled={busy}
-      />
+      {seasonNavigation}
+      {archive && (
+        <CompetitionWeekSelector
+          rounds={rounds}
+          selected={comp.id}
+          onSelect={selectWeek}
+          now={now}
+          disabled={busy}
+        />
+      )}
       {!hasFutureCompetition(rounds, now) && (
         <p className="play-round-availability" role="status">
           No upcoming NFL competition has been published. Practice and existing
@@ -702,18 +747,23 @@ export function NflSevenPlay({
           )}
         </div>
       )}
-      {!established ? (
+      {picks.length < cfg.slots.length ? (
         <div className="lineup-auto-actions">
           <button
             className="play-support"
             disabled={busy || autoBusy || !editable}
             onClick={() => void recommend()}
           >
-            {autoBusy ? "Finding your lineup…" : "Auto Select"}
+            {autoBusy
+              ? "Filling empty positions…"
+              : picks.length
+                ? "Fill empty positions"
+                : "Auto-fill lineup"}
           </button>
           <small>
-            Build your first team from eligible cards. After your first
-            confirmed entry, make changes manually.
+            Fill empty draft positions from eligible cards you own. Your
+            existing selections stay in place; saving and entering are separate
+            actions.
           </small>
         </div>
       ) : null}
@@ -1131,17 +1181,16 @@ export function NflSevenPlay({
           </details>
         </aside>
       </div>
-      {!established && recommendation?.competition === comp.id && (
+      {recommendation?.competition === comp.id && (
         <FantasySheet
-          title="Review Auto Select"
+          title="Review auto-fill"
           onClose={() => setRecommendation(null)}
           historyEntry
         >
           <p>
-            Based on up to five verified final appearances before this round,
-            using Full-PPR game-log performance and the card multiplier. This is
-            a historical ranking, not a forecast or a change to this round’s
-            scoring.
+            Only empty positions are filled. Choices use eligible owned cards,
+            this round’s approved salary configuration and stable card order. No
+            player projections are used.
           </p>
           <ul>
             {cfg.slots.map((s) => {
@@ -1153,8 +1202,8 @@ export function NflSevenPlay({
                 <li key={s.id}>
                   <strong>{s.id}</strong>:{" "}
                   {card?.name ?? "Missing eligible card"}
-                  {card && recommendation.result.unranked.includes(card.id)
-                    ? " · Unranked (no verified history)"
+                  {picks.some((p) => p.slot === s.id)
+                    ? " · Existing selection, unchanged"
                     : ""}
                   {locks.has(s.id) ? " · Locked, unchanged" : ""}
                 </li>
@@ -1173,9 +1222,18 @@ export function NflSevenPlay({
               valid. <Link href="/fantasy/cards">View My Cards</Link>
             </p>
           )}
+          {!!recommendation.result.missingReasons?.length && (
+            <ul>
+              {recommendation.result.missingReasons.map((m) => (
+                <li key={m.slot}>
+                  {m.slot}: {m.reason}
+                </li>
+              ))}
+            </ul>
+          )}
           {recommendation.asOf && (
             <p>
-              History updated: <LocalDateTime value={recommendation.asOf} />
+              Eligibility checked: <LocalDateTime value={recommendation.asOf} />
             </p>
           )}
           <p>
@@ -1207,11 +1265,11 @@ export function NflSevenPlay({
               update({ ...draft, picks: safe, dirty: true });
               setRecommendation(null);
               setNotice(
-                "Auto Select applied to this round’s draft. Review and save when ready.",
+                "Empty positions filled in this round’s draft. Review and save when ready. Your submitted team is unchanged.",
               );
             }}
           >
-            Apply lineup
+            Apply to draft
           </button>
           <button
             className="button secondary"

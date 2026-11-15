@@ -1,5 +1,11 @@
 import { testCard } from "./member-test-wallet";
-import { couponManagement, manageCoupon, quoteCoupon, validateCouponBook, type CouponBook } from "./pack-coupons";
+import {
+  couponManagement,
+  manageCoupon,
+  quoteCoupon,
+  validateCouponBook,
+  type CouponBook,
+} from "./pack-coupons";
 import {
   allocateNine,
   validateCardEconomy,
@@ -89,16 +95,35 @@ type Withdrawal = {
 };
 export type CreditsState = {
   /** Written only by verified server-side TEST settlement, never a member command. */
-  storeTestDeposits?: Record<string, {
-    provider: "google" | "apple";
-    environment: "test";
-    member: string;
-    product: string;
-    productVersion: string;
-    credits: number;
-    verifiedAt: number;
-  }>;
-  roundRewards?: Record<string, { fingerprint: string; contextHash: string; recipient: string; competition: string; round: string; sport: string; place: number; schedule: string; reward: unknown; reference: string; status: "ISSUED"; at: number }>;
+  storeTestDeposits?: Record<
+    string,
+    {
+      provider: "google" | "apple";
+      environment: "test";
+      member: string;
+      product: string;
+      productVersion: string;
+      credits: number;
+      verifiedAt: number;
+    }
+  >;
+  roundRewards?: Record<
+    string,
+    {
+      fingerprint: string;
+      contextHash: string;
+      recipient: string;
+      competition: string;
+      round: string;
+      sport: string;
+      place: number;
+      schedule: string;
+      reward: unknown;
+      reference: string;
+      status: "ISSUED";
+      at: number;
+    }
+  >;
   packCoupons?: CouponBook;
   privateCardOffers?: Record<
     string,
@@ -240,7 +265,7 @@ const amount = z.number().int().positive().max(1_000_000_000);
 const reason = z.string().trim().min(12).max(600);
 const base = <T extends z.ZodRawShape>(shape: T) => z.object(shape).strict();
 export const creditsCommand = z.discriminatedUnion("kind", [
-  base({kind:z.literal("manage-coupon"), mutation:couponManagement}),
+  base({ kind: z.literal("manage-coupon"), mutation: couponManagement }),
   redemptionCommand,
   base({ kind: z.literal("credit-only-policy"), reason }),
   base({
@@ -277,7 +302,10 @@ export const creditsCommand = z.discriminatedUnion("kind", [
   base({
     kind: z.literal("buy-pack"),
     coupon: z.string().trim().min(3).max(32).optional(),
-    couponQuote: z.string().regex(/^[a-f0-9]{64}$/).optional(),
+    couponQuote: z
+      .string()
+      .regex(/^[a-f0-9]{64}$/)
+      .optional(),
     product: id,
     configuration: id.optional(),
     expectedPrice: z.number().int().min(0).max(1000000000).optional(),
@@ -506,13 +534,23 @@ export function wallet(s: CreditsState, member: string) {
 export function validateStoreTestProvenance(s: CreditsState) {
   for (const [key, proof] of Object.entries(s.storeTestDeposits ?? {})) {
     const d = s.deposits[key];
-    if (!d || !d.creditOnly || proof.environment !== "test" ||
+    if (
+      !d ||
+      !d.creditOnly ||
+      proof.environment !== "test" ||
       !["google", "apple"].includes(proof.provider) ||
       !new RegExp(`^${proof.provider}_[a-f0-9]{64}$`).test(key) ||
-      proof.member !== d.member || proof.credits !== d.amount ||
-      !proof.product || !proof.productVersion || !Number.isSafeInteger(proof.verifiedAt) ||
-      (d.lot && (!s.lots[d.lot] || s.lots[d.lot].redeemable ||
-        s.lots[d.lot].member !== proof.member || s.lots[d.lot].provenance !== `payment:${key}`)))
+      proof.member !== d.member ||
+      proof.credits !== d.amount ||
+      !proof.product ||
+      !proof.productVersion ||
+      !Number.isSafeInteger(proof.verifiedAt) ||
+      (d.lot &&
+        (!s.lots[d.lot] ||
+          s.lots[d.lot].redeemable ||
+          s.lots[d.lot].member !== proof.member ||
+          s.lots[d.lot].provenance !== `payment:${key}`))
+    )
       throw Error("Verified TEST funding provenance invariant");
   }
 }
@@ -887,14 +925,18 @@ export function executeCredits(
       throw Error(
         "Pack configuration changed. Refresh and review before confirming.",
       );
-    const coupon = c.coupon ? quoteCoupon(s,actor.id,c.coupon,product,now) : null;
-    if ((coupon && c.couponQuote !== coupon.fingerprint) || (!coupon && c.couponQuote))
-      throw Error("Coupon offer changed. Apply it again and review before confirming.");
-    const charge = coupon?.charge ?? product.priceCredits;
+    const coupon = c.coupon
+      ? quoteCoupon(s, actor.id, c.coupon, product, now)
+      : null;
     if (
-      c.expectedPrice !== undefined &&
-      c.expectedPrice !== charge
+      (coupon && c.couponQuote !== coupon.fingerprint) ||
+      (!coupon && c.couponQuote)
     )
+      throw Error(
+        "Coupon offer changed. Apply it again and review before confirming.",
+      );
+    const charge = coupon?.charge ?? product.priceCredits;
+    if (c.expectedPrice !== undefined && c.expectedPrice !== charge)
       throw Error("Pack price changed. Refresh and review before confirming.");
     const parts = select(actor.id, charge);
     const pack = allocateNine(s.economy, c.product, actor.id, request, now);
@@ -915,10 +957,7 @@ export function executeCredits(
     }
     const journal = post(
       "pack",
-      [
-        ...debit(parts),
-        { account: "system:pack-revenue", credits: charge },
-      ],
+      [...debit(parts), { account: "system:pack-revenue", credits: charge }],
       `${product.cards}-card TEST pack purchase; no deposit bonus`,
     );
     s.entitlements[request] = {
@@ -928,10 +967,19 @@ export function executeCredits(
       status: "SEALED",
       restricted: true,
     };
-    if(coupon) {
-      const redemption={purchase:request,member:actor.id,product:product.id,at:now,original:product.priceCredits,saving:coupon.saving,charge,coupon:structuredClone(s.packCoupons!.campaigns[coupon.code])};
-      s.packCoupons!.redemptions[request]=redemption;
-      pack.pricing=redemption;
+    if (coupon) {
+      const redemption = {
+        purchase: request,
+        member: actor.id,
+        product: product.id,
+        at: now,
+        original: product.priceCredits,
+        saving: coupon.saving,
+        charge,
+        coupon: structuredClone(s.packCoupons!.campaigns[coupon.code]),
+      };
+      s.packCoupons!.redemptions[request] = redemption;
+      pack.pricing = redemption;
     }
     result = {
       entitlement: request,
@@ -949,6 +997,10 @@ export function executeCredits(
     if (!e || e.status === "REVIEW") throw Error("Entitlement held for review");
     if (
       !pack.openedAt &&
+      // These reviewed offers allocate permanent cards at purchase, with source
+      // rights and lifetime supply checked atomically. Revealing that immutable
+      // allocation must not depend on a later live-roster refresh or outage.
+      pack.product.cataloguePolicy !== "founder-credit-season-v1" &&
       s.economy.rosterPolicy &&
       pack.cards.some((id) => {
         const instance = s.economy!.instances[id];
@@ -970,7 +1022,8 @@ export function executeCredits(
       cards: pack.cards.filter((id) => !s.economy?.retiredTestInstances?.[id]),
     };
   } else if (c.kind === "deposit" || c.kind === "buy-pack") {
-    if(c.kind === "buy-pack" && (c.coupon || c.couponQuote)) throw Error("Coupons require a current eligible pack product.");
+    if (c.kind === "buy-pack" && (c.coupon || c.couponQuote))
+      throw Error("Coupons require a current eligible pack product.");
     member();
     const p = s.policy.products.find((p) => p.id === c.product);
     if (!p) throw Error("Unknown product");
@@ -1128,7 +1181,11 @@ export function executeCredits(
             d.lot = lot(
               d.member,
               "purchased",
-              s.storeTestDeposits?.[c.deposit] ? false : d.creditOnly ? true : s.policy.purchasedWithdrawable,
+              s.storeTestDeposits?.[c.deposit]
+                ? false
+                : d.creditOnly
+                  ? true
+                  : s.policy.purchasedWithdrawable,
               `payment:${c.capture}`,
             );
             d.capture = c.capture;
