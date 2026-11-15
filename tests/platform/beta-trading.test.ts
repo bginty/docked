@@ -5,7 +5,45 @@ import {
   localTrading,
   reviewedBetaTrading,
   tradingCommandMode,
+  assertTradingWriteAvailable,
 } from "../../src/core/beta-trading";
+test("deployment pause blocks every trading mutation, including fixture sports, while free-credit packs and cancellation remain available", () => {
+  const env = {
+    DOCKED_TEST_MARKET_READ_ONLY: "true",
+    DOCKED_SPORTS_TEST_COMMERCE: "true",
+  };
+  for (const sport of ["nfl", "afl", "nrl"]) {
+    for (const kind of [
+      "list",
+      "replace-listing",
+      "reprice-listing",
+      "buy",
+      "review-buy",
+      "offer",
+      "accept",
+      "private-offer",
+      "private-accept",
+    ])
+      assert.throws(
+        () => assertTradingWriteAvailable({ kind, sport }, env),
+        /Trading is temporarily unavailable/,
+      );
+    for (const kind of [
+      "promotion",
+      "buy-pack",
+      "open-pack",
+      "cancel-listing",
+      "cancel-swap",
+      "reject",
+      "private-cancel",
+      "private-decline",
+      "expire-swap",
+    ])
+      assert.doesNotThrow(() =>
+        assertTradingWriteAvailable({ kind, sport }, env),
+      );
+  }
+});
 test("hosted trading needs its own explicit capability, never a funding flag or local flag", () => {
   assert.equal(
     reviewedBetaTrading({

@@ -36,7 +36,9 @@ export async function memberMarketplace(
   };
   context.hiddenCards = hidden;
   const fixtureEnabled =
-    isFixtureSport(query.sport) && fixtureSports.includes(query.sport);
+    process.env.DOCKED_TEST_MARKET_READ_ONLY !== "true" &&
+    isFixtureSport(query.sport) &&
+    fixtureSports.includes(query.sport);
   context.tradingEnabled = fixtureEnabled || trading.enabled;
   context.offersEnabled = false;
   const safeResult =

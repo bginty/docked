@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-15T06:14:11.544Z",
+  "passed": true,
+  "environment": "Disconnected restored Production, all synthetic decisions/rows rolled back",
+  "checks": [
+    "latest player restriction and reinstatement",
+    "global restriction remains binding despite player reinstatement",
+    "latest global reinstatement",
+    "expired source rights",
+    "future source rights",
+    "unchanged 1210-player pool after rollback"
+  ],
+  "productionWrites": 0
+}

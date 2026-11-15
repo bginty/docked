@@ -1,6 +1,7 @@
 import { randomInt, randomUUID } from "node:crypto";
 import { isRosterBetaPlayer, type RosterBetaEvidence } from "./roster-beta";
 import { paidPackOffers, paidPackWeights } from "./paid-pack-catalogue";
+import { founderCreditProducts } from "./founder-credit-packs";
 import {
   fixtureSports,
   isFixtureSport,
@@ -42,6 +43,8 @@ export type EconomyPlayer = {
   roster?: NflRosterEvidence;
 };
 export type NinePackProduct = {
+  /** Registered free-credit beta offer; never a commercial checkout permission. */
+  cataloguePolicy?: "founder-credit-season-v1";
   id: string;
   version: string;
   type: "STANDARD" | "PREMIUM";
@@ -86,6 +89,11 @@ export type EconomyPack = {
   draws: { rarity: Rarity; eligiblePlayers: number; poolHash: string }[];
 };
 export type CardEconomy = {
+  /** Server projection of separately approved rights and the permanent ledger. */
+  founderCatalogue?: {
+    enabled: boolean;
+    players: Record<string, { canonicalPlayer: string; team: string }>;
+  };
   /** Operator-owned configuration. Missing/disabled fails closed; never client input. */
   nbaTestAllocation?: { enabled: boolean; scope: "isolated-fixtures-v1" };
   fixtureTestAllocation?: Partial<
@@ -109,6 +117,9 @@ export type CardEconomy = {
 };
 export const definitionId = (player: string, rarity: string) =>
   `${player}:${rarity}`;
+const founderCreditProductDigests = new Map(
+  founderCreditProducts().map((p) => [p.id, digest(p)]),
+);
 export function drawPackRarity(
   p: Pick<NinePackProduct, "weights" | "guaranteedSlots">,
   slot: number,
@@ -184,7 +195,10 @@ export function initialCardEconomy(
   return economy;
 }
 export function validateProduct(p: NinePackProduct) {
-  if (isFixtureSport(p.sport)) {
+  if (p.cataloguePolicy !== undefined) {
+    if (founderCreditProductDigests.get(p.id) !== digest(p))
+      throw Error("Founder-credit pack terms are immutable");
+  } else if (isFixtureSport(p.sport)) {
     const offer = paidPackOffers.find(
       (x) => x.cards === p.cards && x.type === p.type,
     );
@@ -391,21 +405,9 @@ export function allocateNine(
   };
   for (let slot = 0; slot < p.cards; slot++) {
     const rarity = drawPackRarity(p, slot, pick);
-    const pool = Object.values(e.players)
+    const pool = eligibleCatalogue(e, p, now)
       .filter(
         (player) =>
-          player.sport === p.sport &&
-          (!isFixtureSport(player.sport) || matchesTestInventory(player, p)) &&
-          player.assetKind === "player" &&
-          (player.sport !== "nfl" ||
-            nflCardEligibility(
-              player,
-              now,
-              e.rosterPolicy === "official-nfl-roster-v1",
-            ).eligible) &&
-          (p.eligibleStatuses ?? ["active"]).includes(player.status) &&
-          catalogueObservationCurrent(player, p, now) &&
-          p.positions.includes(player.position) &&
           (p.duplicatePlayers === "allow" || !selected.has(player.id)) &&
           (e.definitions[definitionId(player.id, rarity)]?.issued ?? 0) <
             rarityRule(rarity).lifetimeCap!,
@@ -434,7 +436,10 @@ export function allocateNine(
       mintedAt: now,
       source: request,
       presentation: player.presentation,
-      printedTeam: player.currentTeam,
+      printedTeam:
+        p.cataloguePolicy === "founder-credit-season-v1"
+          ? e.founderCatalogue!.players[player.id].team
+          : player.currentTeam,
       rarityVersion: e.rarityVersion,
     };
     selected.add(player.id);
@@ -482,6 +487,20 @@ export function eligibleCatalogue(
   p: NinePackProduct,
   now: number,
 ) {
+  if (p.cataloguePolicy === "founder-credit-season-v1") {
+    if (!e.founderCatalogue?.enabled || p.sport === "basketball") return [];
+    return Object.values(e.players).filter(
+      (x) =>
+        x.sport === p.sport &&
+        x.assetKind === "player" &&
+        !x.synthetic &&
+        !!e.founderCatalogue!.players[x.id] &&
+        p.positions.includes(x.position) &&
+        (!isFixtureSport(x.sport) ||
+          (fixtureTestAllocationEnabled(e, x.sport) &&
+            matchesTestInventory(x, p))),
+    );
+  }
   return Object.values(e.players).filter(
     (x) =>
       x.sport === p.sport &&

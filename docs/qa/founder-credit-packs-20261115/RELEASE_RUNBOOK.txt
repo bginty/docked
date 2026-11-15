@@ -1,0 +1,96 @@
+EXACT PRIVATE-BETA DEPLOYMENT ORDER — NOT PUBLIC LAUNCH
+
+1. Verify the reviewed source tree and every package hash, including the ignored
+   frozen adoption plan/SQL, using SHA-256 over exact Git bytes where applicable.
+   Bind the separate deployment approval to this source/package and record expiry.
+   Do not regenerate the member/player plan silently. Admission or source drift
+   requires review. Current scope is four existing members, 1,210 players and
+   6,050 bindings, not all Weekly Core members or all 6,540 definitions.
+
+2. Confirm docked.com.au still targets the reviewed baseline a42004fa87db16ddb0818b2c479bca6a38ae0645.
+   Verify current Production settings against private-data/season-catalogue-20261115/
+   runtime-deployment.private.json. Preserve the 97-setting baseline except the
+   source-commit metadata and DOCKED_TEST_MARKET_READ_ONLY: false -> true. Apply
+   that same read-only setting to the Production project environment so a later
+   deployment cannot silently restore trading. No other setting may change.
+   In particular friends beta/staging remain true and commercial service/checkout
+   remain false. Verify registration, SMS, trading, prizes/withdrawals, six Practice
+   competitions, NBA visibility and Google publication controls are unchanged.
+
+3. Capture a new authenticated AES-256-GCM encrypted Production snapshot and verify
+   it by restoring with network NONE, zero published ports, cron OFF and pg_net's
+   worker disabled. Fresh backup <=1 hour and preflight <=10 minutes at application.
+   Use commercial-production-restore-drill.ts --prelaunch-readiness --restore-only
+   --keep-isolated-target, with a NEW DOCKED_RESTORE_RUN. --native-dump uses the
+   reviewed EDB PostgreSQL 17.12 client if Docker external capture stalls. Never
+   use an incomplete archive. Verify no new financial/card/ownership/source drift.
+
+4. Stage the exact app from a clean checkout with the existing protected production
+   recipe, without assigning the public alias. A clean Vercel build must pass.
+   Verify auth boundaries, closed credit purchases and registration, existing
+   wallet/Weekly Core/collection paths, security headers and browser asset scanning.
+   Verify DOCKED_TEST_MARKET_READ_ONLY=true in the staged runtime, and verify
+   NFL/AFL/NRL marketplace mutations are blocked while cancellation remains.
+   Do not create synthetic grants or purchases against Production as smoke tests.
+
+5. Apply ONLY 20261115043326_founder_credit_pack_lifetime_bridge.sql in a bounded
+   transaction through the verified Production operator. It is default OFF and
+   installs no adoption rows. Record its exact hash/version. Verify RLS, narrow
+   function grants, deferred accounting and unchanged existing rows. Never repeat
+   the original five migrations, two safeguards migrations, dormant inventory
+   import or deployed stable-season migrations.
+
+6. Promote the exact staged application only after checks pass. Verify the actual
+   Production deployment/commit and existing closed controls. Before adoption an
+   app-only rollback to a42004fa is possible after compatibility verification.
+
+7. Under advisory lock 71820342, apply the exact private adopt.private.sql once.
+   Its five scoped ANALYZE commands prepare first-request query plans inside the
+   same transaction. They change planner statistics only and must not be omitted.
+   Force deferred constraints before commit. Preserve all prior wallet fields
+   except the additive products and activeProductVersions configuration. Compare
+   existing ownership/custody/card/financial hashes. Confirm 888 baseline copies,
+   6,540 dormant definitions, 6,050 new bindings and zero new issued beta cards.
+   Preserve all source/member facts. Actual current snapshot counts, including
+   subsequently earned Weekly Core cards, govern preservation comparisons.
+
+8. Set local docked.beta_pack_approval to the exact recorded approval reference,
+   then execute activate-private-packs.sql in the same locked operator transaction.
+   Only beta_packs.control.enabled and grants_enabled become true. Verify the
+   existing commercial controls all remain false and no balance/card was changed.
+   Allow a brief pause in wallet mutations during the locked configuration change.
+   A 3–5-second lock timeout limits waiting to acquire locks; it does not limit
+   their holding time. Review the measured restored timings before scheduling.
+   No general maintenance outage is intended.
+
+9. Founder can visit /admin/workspace/rewards with existing MFA, select an admitted
+   member and issue a chosen free-credit amount. The user then purchases/opens a
+   pack normally. Verify one debit, exact 1/3/9 cards, immutable receipt, ownership,
+   lifetime counter and replay behavior using those authorised actual actions.
+   Codex must not choose a grant amount, recipient or consume supply merely to test.
+
+Application verification must include /api/admin/founder-credits: unauthenticated
+GET and invalid-origin POST return 403 with private/no-store and nosniff. Verify
+an ordinary admitted member cannot use the owner endpoint. With the founder's
+own MFA session, GET may list exactly the four frozen admitted recipients and
+remaining allocation; it must not issue a grant. Check /api/beta-release reports
+the exact source, closed registration and unchanged Android compatibility.
+Verify /api/store/google/commercial, phone enablement and public scoring remain
+closed, and inspect delivered JS/CSS/HTML for the exact server-secret values in
+memory without printing those values. Preserve the existing six Practice rounds.
+
+Approval covers no automatic credits or pack consumption. After the founder
+chooses and submits a real grant, verify that recorded request once. If a result
+is uncertain, retry that same saved request; do not generate another request.
+After a member chooses to buy/open a pack, verify its receipt and supply ledger
+read-only. Test results above do not substitute for those actual hosted actions.
+
+Emergency: execute pause-private-packs.sql. This is reversible containment, not a
+financial rollback. Preserve the compatible application and immutable allocations.
+After adoption, old application rollback is unsafe because old validators do not
+understand the new offer IDs. Recover forward under review. Reopening a paused
+programme requires a new current-state review; do not rerun adoption/activation.
+
+Public registration, bought credits, Google Play publishing, commercial payments,
+marketplace/trading, NBA, SMS, scored competitions, prizes, withdrawals, retention
+deletion and live-key changes remain outside this package.

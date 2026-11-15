@@ -1,0 +1,163 @@
+{
+  "at": "2026-11-15T04:35:57.070Z",
+  "productionWrites": 0,
+  "control": {
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false,
+    "gameplay_enabled": false
+  },
+  "legacyPlayers": 2479,
+  "permanentDefinitions": 6540,
+  "pool": 1210,
+  "bySport": {
+    "nfl": 401,
+    "afl": 536,
+    "nrl": 273
+  },
+  "held": 150,
+  "poolDigest": "eda09beda44ef9c80f2b63379916778be93250bf1bb2e59df7ba2cfe952af532",
+  "heldDigest": "35eb0f8ecf220cea19ab3ca17fee8341f0af4e4fce8f043f1fcc730d6b9efe87",
+  "activeProducts": [
+    {
+      "id": "premium-9-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "cards": 9,
+      "price": 5000,
+      "expiresAt": 1794268800000
+    },
+    {
+      "id": "premium-3-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "cards": 3,
+      "price": 1900,
+      "expiresAt": 1794268800000
+    },
+    {
+      "id": "premium-1-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "cards": 1,
+      "price": 700,
+      "expiresAt": 1794268800000
+    },
+    {
+      "id": "standard-9-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "cards": 9,
+      "price": 700,
+      "expiresAt": 1794268800000
+    },
+    {
+      "id": "standard-3-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "cards": 3,
+      "price": 300,
+      "expiresAt": 1794268800000
+    },
+    {
+      "id": "standard-1-nfl-paid-sizes-v4",
+      "sport": "nfl",
+      "cards": 1,
+      "price": 100,
+      "expiresAt": 1794268800000
+    },
+    {
+      "id": "premium-9-nba-real-roster-beta-v1",
+      "sport": "basketball",
+      "cards": 9,
+      "price": 5000,
+      "expiresAt": null
+    },
+    {
+      "id": "standard-9-nba-real-roster-beta-v1",
+      "sport": "basketball",
+      "cards": 9,
+      "price": 700,
+      "expiresAt": null
+    },
+    {
+      "id": "premium-9-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "cards": 9,
+      "price": 5000,
+      "expiresAt": null
+    },
+    {
+      "id": "standard-9-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "cards": 9,
+      "price": 700,
+      "expiresAt": null
+    },
+    {
+      "id": "premium-9-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "cards": 9,
+      "price": 5000,
+      "expiresAt": null
+    },
+    {
+      "id": "standard-9-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "cards": 9,
+      "price": 700,
+      "expiresAt": null
+    },
+    {
+      "id": "premium-3-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "cards": 3,
+      "price": 1900,
+      "expiresAt": null
+    },
+    {
+      "id": "premium-1-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "cards": 1,
+      "price": 700,
+      "expiresAt": null
+    },
+    {
+      "id": "standard-3-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "cards": 3,
+      "price": 300,
+      "expiresAt": null
+    },
+    {
+      "id": "standard-1-afl-real-roster-beta-v1",
+      "sport": "afl",
+      "cards": 1,
+      "price": 100,
+      "expiresAt": null
+    },
+    {
+      "id": "premium-3-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "cards": 3,
+      "price": 1900,
+      "expiresAt": null
+    },
+    {
+      "id": "premium-1-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "cards": 1,
+      "price": 700,
+      "expiresAt": null
+    },
+    {
+      "id": "standard-3-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "cards": 3,
+      "price": 300,
+      "expiresAt": null
+    },
+    {
+      "id": "standard-1-nrl-real-roster-beta-v1",
+      "sport": "nrl",
+      "cards": 1,
+      "price": 100,
+      "expiresAt": null
+    }
+  ]
+}

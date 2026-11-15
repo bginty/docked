@@ -1,0 +1,52 @@
+Private founder-credit packs — verification scope
+
+The final application passes a webpack Production build and standalone TypeScript
+checking. The shared node_modules junction causes local standalone tracing
+warnings; that artifact must not be uploaded. Require the normal clean Vercel
+source build before promotion. A concurrent earlier tsc/build attempt raced over
+.next generated files; standalone tsc subsequently passed after the build ended.
+
+28 final platform tests pass across card economy, beta wallet, real roster beta,
+paid-pack offers, trading controls and credit-sales restrictions. Earlier focused
+wallet/pack regression checks and the four-card Weekly Core PostgreSQL suite also
+passed. The new trading pause covers all nine marketplace mutation kinds across
+NFL/AFL/NRL; pack operations and cancellation remain available.
+
+The real Chrome isolated founder-form test passed lost-response/reload recovery,
+same-request retry, mandatory confirmation and confirmed issuance followed by a
+failed balance refresh. It used intercepted synthetic requests, not Production.
+
+postgres.json records the final full-chain PostgreSQL run: all 18 offers,
+10 concurrent identical founder grants, 16 concurrent last-Icon purchases, exact
+debits, no partial allocation, immutable supply accounting, source revocation,
+MFA/runtime restrictions and emergency pause with existing sealed-pack opening.
+The test created 90 synthetic cards and spent 34,500 synthetic credits only.
+Its Windows shutdown exceeded the 30-second wait after tests passed. A separate
+pg_ctl status returned 3 (no server running); the runner now checks that state
+before treating a late shutdown as a failure. No Production records were touched.
+
+rights-acceptance.json records rollback-only tests on the restored real pool:
+latest player/global decisions, global restriction despite player reinstatement,
+expired rights and future rights all fail closed. All synthetic rows/decisions
+were rolled back and the 1,210-player catalogue remained unchanged.
+
+restored-rehearsal.json is the authoritative final exact-migration/adoption result.
+It binds the new encrypted 05:40 UTC snapshot, verifies network NONE/zero ports,
+all protected rows/custody, exact additive configuration, schema rollback,
+four admitted members, 6,050 bindings and a nine-card purchase simulated with
+existing runtime permissions. Every simulated credit/card change rolls back.
+The earlier 15e result documents the preceding revision, not the final SQL hash.
+
+The 05:40 UTC AES-256-GCM backup authenticated and restored with all 561 protected
+tables matching. Native capture used the official EDB PostgreSQL 17.12 Windows
+client (downloaded through HTTPS from productsdl.enterprisedb.com's published
+Windows link). ZIP SHA-256:
+a2cd8a774389347b70be7748ac4a37ef43cb6ee539c5fc3e85ae264b15e4a04c
+pg_dump.exe SHA-256:
+64539be632194750c9846f3a22056ffd15500310d9aefae6a46fc5b48fdd9928
+The executable is pinned by the backup runner. TLS verify-full and the exported
+snapshot are preserved; credentials remain process-local and archives encrypted.
+
+These are isolated checks, not hosted founder purchase acceptance. No grant,
+pack purchase, new card, customer balance change, SMS, email, public registration,
+Play publication or Production deployment was performed by this preparation.

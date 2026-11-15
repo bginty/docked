@@ -6,6 +6,7 @@ import { adminRecord } from "@/server/admin-record";
 import type { AdminRecord } from "@/core/admin-record";
 import { AdminRecordDetail } from "@/components/admin-record-detail";
 import { BetaCreditRequestPanel } from "@/components/beta-credit-request-panel";
+import { FounderCreditPanel } from "@/components/founder-credit-panel";
 import {
   adminRoles,
   adminNavigation,
@@ -128,7 +129,10 @@ export default async function AdminWorkspacePage({
         {recordProblem && <p role="alert">{recordProblem}</p>}
         {record && <AdminRecordDetail record={record} />}
         {section === "rewards" && who.role === "owner" && (
-          <BetaCreditRequestPanel />
+          <>
+            <FounderCreditPanel />
+            <BetaCreditRequestPanel />
+          </>
         )}
         {workspace.category && (
           <section className="admin-workspace-panel">

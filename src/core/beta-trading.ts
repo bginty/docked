@@ -2,6 +2,35 @@
  * reviewed database policy and allowlist; an environment flag alone is insufficient. */
 export const betaTradingPolicy = "private-beta-trading-v1";
 export type TradingMode = "sale" | "swap" | "combined";
+/** The deployment-wide pause covers fixture sports too, but permits cancellation
+ * and pack operations. A funding flag never overrides this boundary. */
+export function assertTradingWriteAvailable(
+  command: unknown,
+  env: Record<string, string | undefined>,
+) {
+  if (env.DOCKED_TEST_MARKET_READ_ONLY !== "true") return;
+  const kind =
+    command && typeof command === "object" && "kind" in command
+      ? command.kind
+      : null;
+  if (
+    typeof kind === "string" &&
+    [
+      "list",
+      "replace-listing",
+      "reprice-listing",
+      "buy",
+      "review-buy",
+      "offer",
+      "accept",
+      "private-offer",
+      "private-accept",
+    ].includes(kind)
+  )
+    throw Error(
+      "Trading is temporarily unavailable. You can still cancel listings and offers.",
+    );
+}
 export function reviewedBetaTrading(env: Record<string, string | undefined>) {
   return (
     env.DOCKED_BETA_TRADING === betaTradingPolicy &&

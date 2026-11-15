@@ -60,6 +60,14 @@ function sourceDatabase() {
 }
 const root = process.cwd(),
   main = "C:/Users/61412/Documents/ChatGPT/Docked.com.au";
+const nativeDump = process.argv.includes("--native-dump");
+const nativeClient = root + "/tmp/postgres-client-17.12/bin/pg_dump.exe";
+if (nativeDump)
+  assert.equal(
+    createHash("sha256").update(readFileSync(nativeClient)).digest("hex"),
+    "64539be632194750c9846f3a22056ffd15500310d9aefae6a46fc5b48fdd9928",
+    "Verified EDB PostgreSQL 17.12 client required",
+  );
 const runId =
   process.env.DOCKED_RESTORE_RUN ??
   (prelaunchReadiness
@@ -394,6 +402,7 @@ async function mainRun() {
             PGPASSWORD: provision.databasePassword,
             PGDATABASE: "postgres",
             PGCONNECT_TIMEOUT: "20",
+            PGGSSENCMODE: "disable",
             PGSSLMODE: "verify-full",
             PGSSLROOTCERT: "/tmp/docked-restore-ca.crt",
           };
@@ -406,17 +415,31 @@ async function mainRun() {
             cipher = createCipheriv("aes-256-gcm", key, iv),
             hash = createHash("sha256");
           let bytes = 0;
-          const p = spawn("docker", ["exec", "-i", client, "sh", "-s"], {
-            windowsHide: true,
-            stdio: ["pipe", "pipe", "pipe"],
-          });
+          const p = nativeDump
+            ? spawn(
+                nativeClient,
+                ["-Fc", "--snapshot=" + snapshot, "--lock-wait-timeout=15000"],
+                {
+                  windowsHide: true,
+                  stdio: ["pipe", "pipe", "pipe"],
+                  env: {
+                    ...process.env,
+                    ...env,
+                    PGSSLROOTCERT: root + "/certs/supabase-prod-ca-2021.crt",
+                  },
+                },
+              )
+            : spawn("docker", ["exec", "-i", client, "sh", "-s"], {
+                windowsHide: true,
+                stdio: ["pipe", "pipe", "pipe"],
+              });
           let err = "";
           p.stderr.on("data", (b) => (err += b));
           const code = new Promise<number | null>((r, j) => {
             p.on("close", r);
             p.on("error", j);
           });
-          p.stdin.end(script);
+          p.stdin.end(nativeDump ? undefined : script);
           await pipeline(
             p.stdout,
             new Transform({

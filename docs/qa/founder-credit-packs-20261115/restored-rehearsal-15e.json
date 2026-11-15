@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-15T05:55:56.595Z",
+  "sourceBackup": "092c864afd1c2540d2469cb250c23b5303d6b05faae1f96fc957b16af7da03c0",
+  "reconstructedDeployedCatalogue": null,
+  "backupAt": "2026-11-15T03:39:40.369Z",
+  "network": "none",
+  "productionWrites": 0,
+  "protectedTables": 557,
+  "protectedRowsAndCustodyUnchanged": true,
+  "configurationDeltaExact": true,
+  "rollbackPassed": true,
+  "pool": {
+    "enabled": false,
+    "members": 4,
+    "players": 1210,
+    "products": 18,
+    "definitions": 6050
+  },
+  "rehearsal": {
+    "baseline": 888,
+    "lifetime": 897,
+    "newCards": 9,
+    "commercialCards": 0
+  },
+  "rehearsalWritesRolledBack": true,
+  "migrationSha256": "d5cb896a6ae32283454a006b0c91284ddd31776af5f792cda57f86265fe35a4b",
+  "adoptionSha256": "bd9da9dbd940849c743c815bfc02b5c7c415d92dd571b93516ded84d3dd7031b"
+}

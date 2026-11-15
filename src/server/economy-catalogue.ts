@@ -8,6 +8,43 @@ export async function refreshEconomyCatalogue(
   state: CreditsState,
 ) {
   if (!state.economy) return;
+  if (
+    Object.values(state.economy.products).some(
+      (p) => p.cataloguePolicy === "founder-credit-season-v1",
+    )
+  ) {
+    const [row] = await sql`select beta_packs.catalogue() value`;
+    const projection = row.value as {
+      enabled: boolean;
+      players: {
+        legacyPlayer: string;
+        canonicalPlayer: string;
+        team: string;
+        definitions: { rarity: string; issued: number }[];
+      }[];
+    };
+    state.economy.founderCatalogue = {
+      enabled: projection.enabled,
+      players: {},
+    };
+    for (const p of projection.players) {
+      if (
+        !state.economy.players[p.legacyPlayer] ||
+        p.definitions.length !== 5 ||
+        p.definitions.some(
+          (d) =>
+            d.issued !==
+            (state.economy!.definitions[`${p.legacyPlayer}:${d.rarity}`]
+              ?.issued ?? 0),
+        )
+      )
+        continue;
+      state.economy.founderCatalogue.players[p.legacyPlayer] = {
+        canonicalPlayer: p.canonicalPlayer,
+        team: p.team,
+      };
+    }
+  }
   const rows =
     await sql`select c.*,j.verified_jersey_number from credits_sandbox.current_player_status c left join credits_sandbox.current_player_jerseys j on j.id=c.id`;
   const current = new Map(rows.map((r) => [String(r.id), r]));

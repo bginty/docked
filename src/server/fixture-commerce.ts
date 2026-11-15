@@ -10,11 +10,13 @@ import {
 import { fixtureSports, type FixtureSport } from "@/core/fixture-sports";
 import { sportPrivateBetaEnabled } from "@/core/sports-private-beta";
 import { setSportBetaContext } from "./sports-private-beta";
+import { assertTradingWriteAvailable } from "@/core/beta-trading";
 export async function authorizeFixtureCommand(
   tx: Sql | TransactionSql,
   state: CreditsState,
   command: unknown,
 ) {
+  assertTradingWriteAvailable(command, process.env);
   const sport = fixtureCommandScope(state, command);
   if (!sport) return null;
   if (

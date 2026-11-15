@@ -1,0 +1,103 @@
+PRIVATE BETA STANDARD/PREMIUM PACKS — 15 NOVEMBER 2026
+
+Founder scope already confirmed: all currently invited beta members may spend
+freely issued Docked Credits on Standard and Premium packs. Buying credits,
+public registration, trading, payments and Play publication remain disabled.
+The read-only admission census found four admitted members. No credits or cards
+have been issued in Production by this work.
+
+Root cause
+The beta wallet still calls the historical allocator. Its NFL paid-size offers
+expired and the live roster filter required recent observations. More decisively,
+the dormant commercial inventory import deliberately closed all parallel limited
+issuance paths. Turning on a commercial flag would neither safely repair that
+route nor meet the requested private free-credit scope.
+
+Correction
+One new default-off migration binds each new beta allocation to the same permanent
+commercial_billing.definitions counter. legacy_issued remains the preserved 888
+baseline. The enforced equation is issued = legacy_issued + commercial cards +
+immutable beta_packs.issued entries. Both routes share caps and serial identity;
+private-beta issuance and commercial activation are mutually exclusive.
+
+The separately frozen adoption binds 1,210 established players / 6,050 definitions:
+401 NFL, 536 AFL, 273 NRL. It preserves the original source exclusions and ten
+additional conservative historical holds. Another 150 Weekly Core catalogue
+members are held out of this limited-card path. It changes no commercial definition
+approval, imports no additional inventory and creates no card or credit.
+
+The approved source memberships, evidence hashes, historical team and source
+conditions are retained. New free_beta_packs rights are separately scoped to
+private founder-funded packs. Both this scope and the original retained-source
+scope must remain valid. Explicit revocation/expiry stops new allocation; roster
+age, injury, transfer or provider absence alone does not erase an approved identity.
+No source freshness timestamp or original permanentIssuanceEligible field changes.
+No commercial player-rights clearance is inferred.
+
+Restored-data testing also found a pre-existing performance defect in the parallel
+inventory guard: it reserialized the entire multi-MB mirror row for every card.
+This migration caches exact JSON values once per invocation while retaining every
+predicate, immutable-record check, permission and serial restriction. The original
+configuration update exceeded 90 seconds and rolled back; the corrected version
+passes the rollback rehearsal. Final measured timings are recorded separately.
+
+The fresh restore additionally exposed an expensive catalogue read: scalar rights
+checks were repeated for every rarity binding. The catalogue now evaluates the
+same valid-from/expiry and latest global/player restrictions as sets, once per
+membership. It returned all 1,210 approved players in 583 ms in the isolated
+diagnostic; the unchanged issuance guard independently rechecks can_issue under
+the settlement lock. Final restored acceptance enforces a five-second SQL timeout
+for the catalogue read. No rights condition is removed.
+That fresh-first-read check also caught absent planner statistics on the newly
+populated relations. Adoption now ANALYZEs only the three new binding/offer/member
+tables and the two expanded season-catalogue relations before commit. This updates
+planner statistics only. With those statistics the isolated lookup took 223 ms;
+no application request must wait for automatic statistics maintenance.
+
+Eighteen new immutable offer versions preserve current size, price and odds.
+NFL retains QB/RB/WR/TE; AFL/NRL retain their existing supported positions.
+Standard: 1 / 3 / 9 cards cost 100 / 300 / 700 credits.
+Premium: 1 / 3 / 9 cards cost 700 / 1,900 / 5,000 credits.
+Standard per-card probabilities: Rare 85%, Elite 12%, Ultra Rare 2.5%, Legendary
+0.49%, Icon 0.01%. Premium: Ultra Rare 90%, Legendary 9.9%, Icon 0.1%.
+Duplicate players within a pack are denied. An unfulfillable draw fails the entire
+transaction; there is no silent rarity substitution or partial debit/delivery.
+Core remains free/unlimited. Existing cards, sealed packs and receipts remain.
+
+The founder rewards workspace gains an actual free-credit issuance form. The
+existing owner MFA session, sole-founder identity and frozen member admission
+are checked server-side and again in PostgreSQL. Grants are nonwithdrawable,
+recorded in the balanced credit journal and limited to the existing 100,000-credit
+campaign policy. Founder chooses recipient, amount and reason; no automatic grant.
+A saved request survives page reload; an uncertain response retries the same ID.
+A failed refresh after confirmed issuance cannot claim the grant failed.
+
+Security and recovery
+The authenticated restored snapshot showed older private-beta trading still
+approved (sale=true, paused=false, revision=5, three trading members); the runtime
+also had DOCKED_TEST_MARKET_READ_ONLY=false. Commercial flags alone did not close
+that older path. This package explicitly changes that one runtime setting to true,
+preserves the historical database controls/audits and enforces the deployment
+pause on the shared NFL/AFL/NRL command path, including the fixture-sport route.
+The marketplace view honours it too. Cancellation and pack operations remain
+available. No trade is performed as acceptance. The shared NBA-private-beta
+substrate remains unchanged for AFL/NRL; the customer NBA exclusion stays active.
+
+No API or runtime receives direct access to new private tables. Only narrow
+catalogue and founder-guard functions are granted to docked_beta_app. Tables use
+RLS; allocation, audit, identity and scope records are immutable. Commercial
+runtime grants do not expand. The new deferred supply check is SECURITY DEFINER
+with an empty search_path and revoked direct execution, so it can account for
+the private allocations without granting raw ledger access to application roles.
+
+Emergency pause disables new purchases and grants, preserving already earned
+pack openings and all supply consumption. After adoption, do not roll the app
+back to a42004fa: that app cannot validate the new offer versions. Keep the new
+compatible reader with private issuance paused and use reviewed forward recovery.
+Never erase beta issuance, decrement supply, or restore an old financial backup
+over subsequent legitimate user activity.
+
+Validation records are adjacent. Synthetic/runtime tests are not hosted founder
+acceptance. The Windows local build uses webpack because shared node_modules is
+a worktree junction; its standalone tracing warning is local-only. A clean Vercel
+build and hosted smoke verification remain mandatory before promotion.

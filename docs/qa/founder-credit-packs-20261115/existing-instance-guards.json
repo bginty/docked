@@ -1,0 +1,47 @@
+[
+  {
+    "relation": "credits_sandbox.card_instances",
+    "tgname": "commercial_no_parallel_inventory",
+    "definition": "CREATE OR REPLACE FUNCTION commercial_billing.prevent_parallel_inventory()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare state jsonb; item jsonb; items jsonb; player jsonb; pid text; cid text; sport_id text;\nbegin\n if not exists(select 1 from commercial_billing.definitions) then return new;end if;\n select document into state from credits_sandbox.state limit 1;\n if tg_table_schema='sports_feed' then items:=new.cards;\n else\n  if jsonb_typeof(new.document)is distinct from 'object' or new.document->>'playerId'is null then raise exception 'unrecorded inventory denied: trusted player identity required';end if;\n  items:=jsonb_build_array(new.document||jsonb_build_object('id',new.id::text));\n end if;\n for item in select value from jsonb_array_elements(items) loop\n  pid:=coalesce(item->>'player_id',item->>'playerId'); cid:=coalesce(item->>'id',item->>'card_id');\n  player:=state->'economy'->'players'->pid;\n  sport_id:=coalesce(to_jsonb(new)->>'sport',player->>'sport');\n  if coalesce(sport_id,'unknown')not in('basketball','nba') and item->>'rarity' in('RARE','ELITE','ULTRA_RARE','LEGENDARY','ICON')\n   and not coalesce(state->'economy'->'instances','{}'::jsonb)?coalesce(cid,'')\n   and not exists(select 1 from commercial_billing.cards c where c.id::text=cid)\n   and not exists(select 1 from jsonb_array_elements(coalesce(to_jsonb(old)->'cards','[]')) v where coalesce(v->>'id',v->>'card_id')=cid)\n  then raise exception 'Player rarity bound to permanent lifetime ledger; unrecorded inventory denied';end if;\n end loop;\n return new;\nend$function$\n"
+  },
+  {
+    "relation": "credits_sandbox.card_instances",
+    "tgname": "immutable",
+    "definition": "CREATE OR REPLACE FUNCTION credits_sandbox.immutable()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'pg_catalog'\nAS $function$begin raise exception 'Financial sandbox journal is immutable';end$function$\n"
+  },
+  {
+    "relation": "credits_sandbox.card_instances",
+    "tgname": "instance_guard",
+    "definition": "CREATE OR REPLACE FUNCTION credits_sandbox.check_instance()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO ''\nAS $function$\ndeclare d credits_sandbox.card_definitions;begin\n -- The aggregate row is locked by the transaction; the unique serial index also\n -- rejects competing direct inserts. No UPDATE privilege on immutable definitions.\n select * into d from credits_sandbox.card_definitions where id=new.definition;\n if new.serial>d.lifetime_cap or new.serial<>(select coalesce(max(serial),0)+1 from credits_sandbox.card_instances where definition=new.definition)\n or new.document->>'id' is distinct from new.id::text or new.document->>'definition' is distinct from d.id\n or new.document->>'playerId' is distinct from d.player_id or new.document->>'rarity' is distinct from d.rarity\n or (new.document->>'serial')::int is distinct from new.serial or (new.document->>'lifetimeCap')::int is distinct from d.lifetime_cap\n then raise exception 'Permanent serial/cap violation';end if;\n return new;\nend$function$\n"
+  },
+  {
+    "relation": "credits_sandbox.card_instances",
+    "tgname": "nfl_roster_mint_guard",
+    "definition": "CREATE OR REPLACE FUNCTION nfl_roster.guard_mint()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO ''\nAS $function$\ndeclare pid text; pos text; sport text; tier text; season text;begin\n if tg_table_schema='credits_sandbox' then\n  select p.id,p.identity->>'position',p.sport into pid,pos,sport from credits_sandbox.card_definitions d join credits_sandbox.permanent_players p on p.id=d.player_id where d.id=new.definition;\n else\n  select p.id::text,p.position,p.sport,e.tier,e.season into pid,pos,sport,tier,season from beta_fantasy.editions e join beta_fantasy.players p on p.id=e.player_id where e.id=new.edition_id;\n  if sport='nfl' and tier='CORE' and not new.tradeable then\n   if not season_catalogue.can_issue(sport,season,pid::uuid,'free_weekly') then raise exception 'Approved season catalogue and source-use rights required';end if;\n   return new;\n  end if;\n end if;\n if sport='nfl' and not nfl_roster.can_issue(pid,pos) then raise exception 'Official NFL roster eligibility required; no cards issued';end if;\n return new;\nend$function$\n"
+  },
+  {
+    "relation": "credits_sandbox.card_instances",
+    "tgname": "no_truncate",
+    "definition": "CREATE OR REPLACE FUNCTION credits_sandbox.immutable()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'pg_catalog'\nAS $function$begin raise exception 'Financial sandbox journal is immutable';end$function$\n"
+  },
+  {
+    "relation": "credits_sandbox.nba_fixture_instances",
+    "tgname": "commercial_no_parallel_inventory",
+    "definition": "CREATE OR REPLACE FUNCTION commercial_billing.prevent_parallel_inventory()\n RETURNS trigger\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare state jsonb; item jsonb; items jsonb; player jsonb; pid text; cid text; sport_id text;\nbegin\n if not exists(select 1 from commercial_billing.definitions) then return new;end if;\n select document into state from credits_sandbox.state limit 1;\n if tg_table_schema='sports_feed' then items:=new.cards;\n else\n  if jsonb_typeof(new.document)is distinct from 'object' or new.document->>'playerId'is null then raise exception 'unrecorded inventory denied: trusted player identity required';end if;\n  items:=jsonb_build_array(new.document||jsonb_build_object('id',new.id::text));\n end if;\n for item in select value from jsonb_array_elements(items) loop\n  pid:=coalesce(item->>'player_id',item->>'playerId'); cid:=coalesce(item->>'id',item->>'card_id');\n  player:=state->'economy'->'players'->pid;\n  sport_id:=coalesce(to_jsonb(new)->>'sport',player->>'sport');\n  if coalesce(sport_id,'unknown')not in('basketball','nba') and item->>'rarity' in('RARE','ELITE','ULTRA_RARE','LEGENDARY','ICON')\n   and not coalesce(state->'economy'->'instances','{}'::jsonb)?coalesce(cid,'')\n   and not exists(select 1 from commercial_billing.cards c where c.id::text=cid)\n   and not exists(select 1 from jsonb_array_elements(coalesce(to_jsonb(old)->'cards','[]')) v where coalesce(v->>'id',v->>'card_id')=cid)\n  then raise exception 'Player rarity bound to permanent lifetime ledger; unrecorded inventory denied';end if;\n end loop;\n return new;\nend$function$\n"
+  },
+  {
+    "relation": "credits_sandbox.nba_fixture_instances",
+    "tgname": "immutable",
+    "definition": "CREATE OR REPLACE FUNCTION credits_sandbox.immutable()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'pg_catalog'\nAS $function$begin raise exception 'Financial sandbox journal is immutable';end$function$\n"
+  },
+  {
+    "relation": "credits_sandbox.nba_fixture_instances",
+    "tgname": "instance_guard",
+    "definition": "CREATE OR REPLACE FUNCTION credits_sandbox.check_nba_fixture_instance()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO ''\nAS $function$\ndeclare d credits_sandbox.nba_fixture_definitions;begin\n select * into d from credits_sandbox.nba_fixture_definitions where id=new.definition;\n if d.id is null or new.serial>d.lifetime_cap\n  or new.serial<>(select coalesce(max(serial),0)+1 from credits_sandbox.nba_fixture_instances where definition=new.definition)\n  or new.document->>'id' is distinct from new.id::text\n  or new.document->>'definition' is distinct from d.id\n  or new.document->>'playerId' is distinct from d.player_id\n  or new.document->>'rarity' is distinct from d.rarity\n  or (new.document->>'serial')::int is distinct from new.serial\n  or (new.document->>'lifetimeCap')::int is distinct from d.lifetime_cap\n  or exists(select 1 from credits_sandbox.card_instances where id=new.id)\n then raise exception 'NBA fixture serial/cap violation';end if;\n return new;\nend$function$\n"
+  },
+  {
+    "relation": "credits_sandbox.nba_fixture_instances",
+    "tgname": "no_truncate",
+    "definition": "CREATE OR REPLACE FUNCTION credits_sandbox.immutable()\n RETURNS trigger\n LANGUAGE plpgsql\n SET search_path TO 'pg_catalog'\nAS $function$begin raise exception 'Financial sandbox journal is immutable';end$function$\n"
+  }
+]

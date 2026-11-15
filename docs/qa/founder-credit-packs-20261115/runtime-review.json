@@ -1,0 +1,23 @@
+{
+  "baselineCommit": "a42004fa87db16ddb0818b2c479bca6a38ae0645",
+  "baselineDeployment": "dpl_F9SkmmpMoYZULiJSTRgSnnJAJ3V2",
+  "baselineRecipeFileSha256": "f02063e0d31c553fc8bf10e816f622705ef17f87ae188cd619aac93def7d2dcd",
+  "baselineRecipeCanonicalSha256": "f02063e0d31c553fc8bf10e816f622705ef17f87ae188cd619aac93def7d2dcd",
+  "baselineKeys": 97,
+  "approvedProposedDifferences": {
+    "VERCEL_GIT_COMMIT_SHA": "exact reviewed source commit",
+    "DOCKED_TEST_MARKET_READ_ONLY": {
+      "before": "false",
+      "after": "true"
+    }
+  },
+  "historicalTradingControlsFromAuthenticatedRestore": {
+    "paused": false,
+    "sale": true,
+    "swap": false,
+    "combined": false,
+    "revision": 5,
+    "enabledMembers": 3
+  },
+  "productionWrites": 0
+}

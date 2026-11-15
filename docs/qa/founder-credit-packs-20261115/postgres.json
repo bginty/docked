@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "at": "2026-11-15T06:12:35.792Z",
+  "environment": "Disposable PostgreSQL; synthetic identities only",
+  "checks": [
+    "Full migration chain installs with private packs and grants OFF",
+    "Founder free grant: ten concurrent same-ID retries issue once; no withdrawal or cash backing",
+    "No direct API/service/runtime control writes; founder MFA required for grants",
+    "16 concurrent final-Icon purchases: exactly the remaining lifetime supply, no debit on exhaustion, counters cannot advance without an immutable card",
+    "18 Standard/Premium offers across NFL/AFL/NRL: 1/3/9 cards, exact debit, duplicate purchase/open retries, original printed team, stale/inactive/provider-absent source",
+    "Source rights revocation, uninvited access and simultaneous commercial activation fail closed with no wallet change",
+    "Emergency pause blocks new grants and purchases while earned sealed packs still open once, with no extra debit or issuance"
+  ],
+  "issued": 90,
+  "spent": 34500,
+  "productionWrites": 0
+}

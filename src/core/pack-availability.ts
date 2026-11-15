@@ -19,6 +19,13 @@ export function packAvailability(
     availabilityRetryable: retryable,
   });
   if (!e.enabled) return unavailable("Pack purchases are paused.");
+  if (
+    p.cataloguePolicy === "founder-credit-season-v1" &&
+    !e.founderCatalogue?.enabled
+  )
+    return unavailable(
+      "Free-credit pack purchases are paused. Your credits are unchanged.",
+    );
   if (isFixtureSport(p.sport) && !fixtureTestAllocationEnabled(e, p.sport))
     return unavailable(
       `${fixtureSports[p.sport].label} test packs have not been enabled.`,
@@ -32,6 +39,10 @@ export function packAvailability(
   const pool = eligibleCatalogue(e, p, now),
     needed = p.duplicatePlayers === "deny" ? p.cards : 1;
   if (pool.length < needed) {
+    if (p.cataloguePolicy === "founder-credit-season-v1")
+      return unavailable(
+        "The approved card pool cannot fulfil this pack. Your credits are unchanged.",
+      );
     const candidates = Object.values(e.players).filter(
       (x) => x.sport === p.sport && p.positions.includes(x.position),
     );

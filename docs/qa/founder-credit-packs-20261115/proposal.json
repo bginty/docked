@@ -1,0 +1,585 @@
+{
+  "planSha256": "b5a99b11fbcfeffc6180f5b41e2f7aa60528271194a709c281bd3586cca53855",
+  "adoptionSha256": "f82280fd5b382068df57649518f924c0edfd08279679ee0e75583612fe8504da",
+  "members": 4,
+  "players": 1210,
+  "definitions": 6050,
+  "heldPlayers": 150,
+  "products": [
+    {
+      "id": "premium-9-nfl-founder-credits-v1",
+      "version": "premium-9-nfl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "PREMIUM",
+      "name": "Premium 9 Pack",
+      "cards": 9,
+      "priceCredits": 5000,
+      "sport": "nfl",
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "weights": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "premium-3-nfl-founder-credits-v1",
+      "version": "premium-3-nfl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "PREMIUM",
+      "name": "Premium 3 Pack",
+      "cards": 3,
+      "priceCredits": 1900,
+      "sport": "nfl",
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "weights": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "premium-1-nfl-founder-credits-v1",
+      "version": "premium-1-nfl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "PREMIUM",
+      "name": "Premium 1 Pack",
+      "cards": 1,
+      "priceCredits": 700,
+      "sport": "nfl",
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "weights": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "standard-9-nfl-founder-credits-v1",
+      "version": "standard-9-nfl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "STANDARD",
+      "name": "Standard 9 Pack",
+      "cards": 9,
+      "priceCredits": 700,
+      "sport": "nfl",
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "weights": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "standard-3-nfl-founder-credits-v1",
+      "version": "standard-3-nfl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "STANDARD",
+      "name": "Standard 3 Pack",
+      "cards": 3,
+      "priceCredits": 300,
+      "sport": "nfl",
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "weights": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "standard-1-nfl-founder-credits-v1",
+      "version": "standard-1-nfl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "STANDARD",
+      "name": "Standard 1 Pack",
+      "cards": 1,
+      "priceCredits": 100,
+      "sport": "nfl",
+      "positions": [
+        "QB",
+        "RB",
+        "WR",
+        "TE"
+      ],
+      "weights": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "premium-9-afl-founder-credits-v1",
+      "version": "premium-9-afl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "PREMIUM",
+      "name": "Premium 9 Pack",
+      "cards": 9,
+      "priceCredits": 5000,
+      "sport": "afl",
+      "positions": [
+        "DEF",
+        "MID",
+        "FWD",
+        "RUC"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "premium-3-afl-founder-credits-v1",
+      "version": "premium-3-afl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "PREMIUM",
+      "name": "Premium 3 Pack",
+      "cards": 3,
+      "priceCredits": 1900,
+      "sport": "afl",
+      "positions": [
+        "DEF",
+        "MID",
+        "FWD",
+        "RUC"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "premium-1-afl-founder-credits-v1",
+      "version": "premium-1-afl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "PREMIUM",
+      "name": "Premium 1 Pack",
+      "cards": 1,
+      "priceCredits": 700,
+      "sport": "afl",
+      "positions": [
+        "DEF",
+        "MID",
+        "FWD",
+        "RUC"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "standard-9-afl-founder-credits-v1",
+      "version": "standard-9-afl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "STANDARD",
+      "name": "Standard 9 Pack",
+      "cards": 9,
+      "priceCredits": 700,
+      "sport": "afl",
+      "positions": [
+        "DEF",
+        "MID",
+        "FWD",
+        "RUC"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "standard-3-afl-founder-credits-v1",
+      "version": "standard-3-afl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "STANDARD",
+      "name": "Standard 3 Pack",
+      "cards": 3,
+      "priceCredits": 300,
+      "sport": "afl",
+      "positions": [
+        "DEF",
+        "MID",
+        "FWD",
+        "RUC"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "standard-1-afl-founder-credits-v1",
+      "version": "standard-1-afl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "STANDARD",
+      "name": "Standard 1 Pack",
+      "cards": 1,
+      "priceCredits": 100,
+      "sport": "afl",
+      "positions": [
+        "DEF",
+        "MID",
+        "FWD",
+        "RUC"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "premium-9-nrl-founder-credits-v1",
+      "version": "premium-9-nrl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "PREMIUM",
+      "name": "Premium 9 Pack",
+      "cards": 9,
+      "priceCredits": 5000,
+      "sport": "nrl",
+      "positions": [
+        "WFB",
+        "CTR",
+        "HLF",
+        "EDG",
+        "MID"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "premium-3-nrl-founder-credits-v1",
+      "version": "premium-3-nrl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "PREMIUM",
+      "name": "Premium 3 Pack",
+      "cards": 3,
+      "priceCredits": 1900,
+      "sport": "nrl",
+      "positions": [
+        "WFB",
+        "CTR",
+        "HLF",
+        "EDG",
+        "MID"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "premium-1-nrl-founder-credits-v1",
+      "version": "premium-1-nrl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "PREMIUM",
+      "name": "Premium 1 Pack",
+      "cards": 1,
+      "priceCredits": 700,
+      "sport": "nrl",
+      "positions": [
+        "WFB",
+        "CTR",
+        "HLF",
+        "EDG",
+        "MID"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 0,
+        "ELITE": 0,
+        "ULTRA_RARE": 9000,
+        "LEGENDARY": 990,
+        "ICON": 10
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "standard-9-nrl-founder-credits-v1",
+      "version": "standard-9-nrl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "STANDARD",
+      "name": "Standard 9 Pack",
+      "cards": 9,
+      "priceCredits": 700,
+      "sport": "nrl",
+      "positions": [
+        "WFB",
+        "CTR",
+        "HLF",
+        "EDG",
+        "MID"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "standard-3-nrl-founder-credits-v1",
+      "version": "standard-3-nrl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "STANDARD",
+      "name": "Standard 3 Pack",
+      "cards": 3,
+      "priceCredits": 300,
+      "sport": "nrl",
+      "positions": [
+        "WFB",
+        "CTR",
+        "HLF",
+        "EDG",
+        "MID"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    },
+    {
+      "id": "standard-1-nrl-founder-credits-v1",
+      "version": "standard-1-nrl-founder-credits-v1",
+      "cataloguePolicy": "founder-credit-season-v1",
+      "type": "STANDARD",
+      "name": "Standard 1 Pack",
+      "cards": 1,
+      "priceCredits": 100,
+      "sport": "nrl",
+      "positions": [
+        "WFB",
+        "CTR",
+        "HLF",
+        "EDG",
+        "MID"
+      ],
+      "inventoryScope": "real-roster-beta-v1",
+      "weights": {
+        "RARE": 8500,
+        "ELITE": 1200,
+        "ULTRA_RARE": 250,
+        "LEGENDARY": 49,
+        "ICON": 1
+      },
+      "guaranteedSlots": {},
+      "duplicatePlayers": "deny",
+      "status": "TEST_ONLY",
+      "effectiveAt": 1794700800000,
+      "expiresAt": null,
+      "freshnessHours": 72,
+      "exhaustion": "FAIL_ENTIRE_PACK"
+    }
+  ],
+  "originalLifetimeIssued": 888,
+  "newCardsDuringAdoption": 0,
+  "creditsGrantedDuringAdoption": 0,
+  "activation": {
+    "enabled": true,
+    "grants_enabled": true
+  },
+  "preserve": {
+    "commercialControls": false,
+    "registration": false,
+    "purchasedCredits": false,
+    "withdrawals": false,
+    "trading": false,
+    "nba": false
+  },
+  "privatePlanPath": "private-data/founder-credit-packs-20261115/adoption-plan.private.json",
+  "privateSQLPath": "private-data/founder-credit-packs-20261115/adopt.private.sql"
+}
