@@ -1,0 +1,76 @@
+{
+  "version": "docked-batch1-preview-application-continuation-v1",
+  "baseSource": "a9cec9465dee34eea21db37745e8edec29472c53",
+  "approvedDatabasePackageSha256": "9343b2234e9b024f2369cee9e6e25c5734805ee36f1fa84717dcf1d178b0bb4c",
+  "existingDatabaseAlreadyApplied": true,
+  "reapplySql": false,
+  "applicationChanges": [
+    {
+      "file": "src/core/local-marketplace-acceptance.mjs",
+      "beforeSha256": "29e8419848c4483aa5b06e54925934530611c65871126ac3d3eaa03ac53dcb71",
+      "sha256": "bb0536ae0af7833b61a90b36d22df725507e0196fa7311db190199c83ee895b4"
+    }
+  ],
+  "sourceBinding": "Explicit founder approval must name the exact Git commit containing this manifest; verify the sole application diff from baseSource and its Git-blob checksum.",
+  "target": {
+    "environment": "preview",
+    "projectId": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+    "teamId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "databaseProject": "bckkllmndoxzpzdqrevb"
+  },
+  "window": {
+    "starts": "2026-11-16T08:26:17.588Z",
+    "expires": "2026-11-17T08:26:17.588Z",
+    "extensionAllowed": false,
+    "maxTotalSyntheticPurchases": 24,
+    "plannedSyntheticPurchases": 20
+  },
+  "scope": {
+    "protectedApplicationOnly": true,
+    "newDatabaseChanges": false,
+    "existingFixtureAndPermissions": "preserve",
+    "existingSyntheticAccounts": 2,
+    "newAccounts": false,
+    "sms": false,
+    "publicRegistration": false,
+    "realMoney": false,
+    "commercialActivation": false,
+    "productionChanges": false,
+    "batch2": false
+  },
+  "evidence": [
+    {
+      "file": "docs/qa/batch1-beta-alignment-20261116/preview-application.json",
+      "sha256": "f546f7c2355040fc4b83aea07b5219b3b9ff626488ca6ca1121bc5a4cbd76ee9"
+    },
+    {
+      "file": "docs/qa/batch1-beta-alignment-20261116/corrected-runtime-audit.json",
+      "sha256": "83c725ef210e3d274771bdbde67a481b0e97e93160e817f508f759cdfe4f040d"
+    },
+    {
+      "file": "docs/qa/batch1-beta-alignment-20261116/corrected-state-after-apply.json",
+      "sha256": "4ad5e4d69320d94dc6fbe1612514d90c3ae252e503d548f295118ced593579e9"
+    },
+    {
+      "file": "docs/qa/batch1-beta-alignment-20261116/corrected-auth-acceptance.json",
+      "sha256": "7d3d2304929c65fa3912b1dc326b215cc2875fa0d3f79fbdcfa513973931d3f9"
+    },
+    {
+      "file": "docs/qa/batch1-beta-alignment-20261116/hosted-build-failure.json",
+      "sha256": "7aa2c3542982bb670178b8be14421a65e02dfca72813e52b056dbaafbb72c3e3"
+    },
+    {
+      "file": "docs/qa/batch1-beta-alignment-20261116/hosted-profile-build-correction.json",
+      "sha256": "c094a52d864ea9f6666813bfe491e7ee4b5664a5eacf8aedae7f43b196823b59"
+    }
+  ],
+  "tests": {
+    "guardRegressionTests": 12,
+    "failed": 0,
+    "changedFileLint": "pass",
+    "fullNextBuildWithHostedPreviewProfile": "pass; includes TypeScript",
+    "hostedHttp": "pending",
+    "physicalAndroid": "not run"
+  },
+  "recovery": "Abandon failed protected Preview deployment. Close original window, disable only disposable runtime, check dependencies and remove only the 12 approved namespaces/two roles. Preserve existing Preview data/roles/settings. No SQL reapplication or reset, no expiry extension, no Production action."
+}

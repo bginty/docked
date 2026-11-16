@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-16T08:25:20.887Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "readOnly": true,
+  "hostedWrites": 0,
+  "operator": {
+    "current_user": "postgres",
+    "version": "170011",
+    "rolsuper": false,
+    "rolbypassrls": true,
+    "rolcreaterole": true,
+    "rolcreatedb": true,
+    "schema_create": true,
+    "auth_usage": true,
+    "users_select": true,
+    "users_references": true,
+    "sessions_select": true,
+    "factors_select": true
+  },
+  "absence": {
+    "schemas": 0,
+    "roles": 0
+  }
+}

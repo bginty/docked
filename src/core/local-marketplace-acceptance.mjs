@@ -2,7 +2,11 @@
  * real Auth, admission, MFA, database roles and transaction guards still run. */
 /** @param {Record<string,string|undefined>} [env] */
 export function localMarketplaceAcceptance(env = process.env) {
-  if (!env.DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE) return false;
+  if (
+    !env.DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE ||
+    env.DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE === "false"
+  )
+    return false;
   const redemption = env.DOCKED_REDEMPTION_LOCAL === "true";
   const admin = env.DOCKED_ADMIN_LOCAL_ACCEPTANCE === "true";
   const fail = () => {

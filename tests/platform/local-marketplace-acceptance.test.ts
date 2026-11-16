@@ -71,6 +71,31 @@ test("local profile accepts only loopback development, real restricted-role targ
   ])
     assert.throws(() => localMarketplaceAcceptance({ ...local(), ...change }));
 });
+
+test("explicitly disabled local mode supports hosted CSP without allowing local eval", async () => {
+  const before = { ...process.env };
+  try {
+    Object.assign(process.env, {
+      DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE: "false",
+      NODE_ENV: "production",
+      VERCEL: "1",
+      VERCEL_ENV: "preview",
+    });
+    assert.equal(localMarketplaceAcceptance(), false);
+    assert(!JSON.stringify(await config.headers!()).includes("unsafe-eval"));
+    for (const invalid of ["true", "False", "0", "disabled"])
+      assert.throws(() =>
+        localMarketplaceAcceptance({
+          ...process.env,
+          DOCKED_LOCAL_MARKETPLACE_ACCEPTANCE: invalid,
+        }),
+      );
+  } finally {
+    for (const key of Object.keys(process.env))
+      if (!(key in before)) delete process.env[key];
+    Object.assign(process.env, before);
+  }
+});
 test("explicit local admin health acceptance retains every nondeployable target boundary", () => {
   const admin = {
     ...local(),

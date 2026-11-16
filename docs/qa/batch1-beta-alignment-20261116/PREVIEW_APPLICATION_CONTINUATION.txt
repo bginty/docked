@@ -1,0 +1,52 @@
+DOCKED — PREVIEW APPLICATION-ONLY CONTINUATION
+
+Package SHA-256: c5d9a5036e589ce3c6a79f3675aca506bf15a66f5818b8b6d35de86379ab07e3
+Manifest: preview-application-continuation.json
+Base source: a9cec9465dee34eea21db37745e8edec29472c53
+
+Requested authority: stage the corrected exact application commit, complete the
+original short protected HTTP session, then retire the disposable resources.
+Approval ends no later than 2026-11-17T08:26:17.588Z, the ORIGINAL database window.
+Maximum 24 total synthetic purchases; zero have occurred so far.
+
+The 9343b223... database package applied successfully once. Do NOT apply it again.
+145 tables, 540 fictional definitions, zero issued cards and two allowlisted
+accounts verified. All 438 original tables, other accounts, original functions
+and ACL/RLS preserved. Runtime has no original-table access, owner membership,
+BYPASSRLS or administrative powers. Genuine existing account MFA passed.
+
+The first Vercel build stopped before serving requests: next.config.ts calls the
+local-only acceptance validator, which previously treated the string false as
+an invalid attempt to enable local mode. The dedicated pack profile correctly
+requires that flag to be false. It cannot be made absent without breaking that
+profile, and enabling local mode on Vercel remains forbidden.
+
+Sole application correction: explicit false returns inactive, just as an absent
+local-mode flag does. Explicit true still requires every existing loopback-only
+restriction. Other nonempty values fail. CSP still excludes unsafe-eval on hosted
+builds. The Preview target guard and every auth, financial, supply and route guard
+are unchanged. Existing Production behaviour with absent or true flags is unchanged.
+
+Twelve guard tests and lint pass. A complete Node 22 Next build with the exact
+Preview environment profile passes compilation, TypeScript and page generation.
+That build is LOCAL evidence; hosted HTTP and Android acceptance remain pending.
+Application, SQL and deployment controls are otherwise unchanged from the base.
+
+Execution: verify exact commit/diff/manifest, current applied SQL/role/window
+state and approval. Preserve the failed deployment/preparation record, create
+a clean export of the approved new commit, stage once in the SAME protected
+Preview project and verify READY before the original HTTP harness. Do not create
+new services, reapply SQL, reset fixtures, extend the window or exceed 24 purchases.
+After evidence, stop the dedicated deployment, close the window, disable only
+the disposable runtime, check outside dependencies, remove only its resources
+and verify original Preview state. Preserve the existing synthetic accounts.
+
+This separate approval is required by the user's exact-source/package boundary.
+It does not authorise any Production deployment, migrations, customer purchases,
+SMS, registration, payments, trading, prizes, withdrawals or Google publication.
+NBA hidden; Practice only; public launch NO-GO. Batch 2 remains separate.
+
+After actual hosted acceptance passes, freeze the revised Production package
+and request its separate exact approval. Existing beta assets must be preserved;
+the latest read-only Production census is 891 limited cards / 909 custody records,
+not the older 890/908 reset target. Production application remains 12ccfd5879... .
