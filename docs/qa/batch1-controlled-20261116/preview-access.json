@@ -1,0 +1,66 @@
+{
+  "at": "2026-11-16T02:03:30.056Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "connected": true,
+  "tlsVerified": true,
+  "rows": [
+    {
+      "database": "postgres",
+      "version": "PostgreSQL 17.11 on aarch64-unknown-linux-gnu, compiled by gcc (GCC) 15.2.0, 64-bit",
+      "wallet": "credits_sandbox.state",
+      "season_catalogue": false
+    }
+  ],
+  "recentMigrations": [
+    {
+      "version": "20261109232000"
+    },
+    {
+      "version": "20261110010050"
+    },
+    {
+      "version": "20261113002000"
+    },
+    {
+      "version": "20261113003000"
+    }
+  ],
+  "predecessors": [
+    {
+      "signature": "beta_packs.capture(before_document jsonb, after_document jsonb)",
+      "present": false,
+      "matches": false
+    },
+    {
+      "signature": "commercial_billing.prevent_parallel_inventory()",
+      "present": false,
+      "matches": false
+    },
+    {
+      "signature": "credits_sandbox.guard_economy_state()",
+      "present": true,
+      "matches": false
+    },
+    {
+      "signature": "credits_sandbox.guard_redemption()",
+      "present": true,
+      "matches": true
+    },
+    {
+      "signature": "credits_sandbox.marketplace_guard()",
+      "present": true,
+      "matches": false
+    },
+    {
+      "signature": "credits_sandbox.project_fixture_inventory()",
+      "present": true,
+      "matches": false
+    },
+    {
+      "signature": "sports_feed.rarity_transfer_guard()",
+      "present": true,
+      "matches": true
+    }
+  ],
+  "productionWrites": 0
+}

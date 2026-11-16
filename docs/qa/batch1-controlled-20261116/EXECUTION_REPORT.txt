@@ -1,0 +1,142 @@
+DOCKED — BATCH 1 CONTROLLED DEPLOYMENT RESULT
+16 November 2026
+Status: ABORTED BEFORE PRODUCTION CHANGES. Public launch NO-GO.
+
+Founder approval was received for source
+084f0e3e86fdc64aec9a9a043ffc3a1c524706eb and package SHA-256
+f0e49290e7dff1f90306cbcd4a980588f57b13e2a20b2092790c342d6e5c40b5.
+All frozen Git source, reviewed files and migration hashes verify. The frozen
+manifest is intentionally unchanged; this session's authority is separately
+recorded in approval-record.json. No application bytes were changed.
+
+Why deployment stopped
+The approval requires protected hosted pack acceptance on an isolated database
+before Production migrations. The exact application's pack route requires friends
+mode, while friends mode requires the Production domain/Auth/database. Both
+isolated hosted Preview modes prohibit that flag. The local acceptance profile
+explicitly rejects Vercel. Eight guard checks prove the incompatibility.
+The earlier release preparation missed this required hosted-target support.
+
+The existing Preview database is reachable through the existing secure connection,
+but lacks season_catalogue, beta_packs.capture and prevent_parallel_inventory.
+Three other required function predecessors differ. It is not ready for the three
+approved migrations alone. No Preview schema, Auth or provider setting was changed.
+No Production credentials were copied to Preview and no guard was bypassed.
+
+Actual Production
+Source: 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef
+Vercel deployment: dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy
+URL: https://docked.com.au
+Region: syd1. Node major: 22.x. Existing deployment remains READY.
+New deployment created: none. Promotion: none. Rollback: not needed.
+Production migrations applied: ZERO; all three remain unapplied.
+Production/customer writes caused by this session: ZERO.
+No runtime, provider, scheduler, publication or activation setting was changed.
+
+Fresh backup and migration rehearsal
+Backup captured: 2026-11-16T02:02:57.343Z
+Archive SHA-256: 7b69fce6c17bb29aafd3f09907a8e69c05300654c0086a69c410dd2715c68a20
+Authenticated AES-256-GCM archive: 136,686,947 bytes.
+Isolated restore verified 568 protected tables with no network/published ports,
+cron disabled and outbound HTTP delivery disabled. No old migration was reapplied.
+The three exact approved migrations passed in the restored database under the
+reviewed transaction/timeout conditions. Only the seven reviewed function bodies
+changed; expected predecessor/output hashes and function security metadata match.
+All 568 table fingerprints were unchanged after complete rollback.
+This backup is evidence of this attempt, not permission to reuse an expired backup
+for a later release. A future deployment needs a new current backup/preflight.
+
+Financial, inventory, custody and permissions
+6,540 dormant definitions; 890 lifetime-issued limited copies, comprising 888
+legacy copies and two legitimate beta allocations. 908 custody records.
+Financial journal/lots/cases/full-wallet fingerprints match the approved baseline.
+Custody fingerprints match; no reset to 888, grant, purchase, mint or import.
+Schema fingerprint, role definitions and role memberships are unchanged.
+Public registration and commercial database controls remain closed. Six public
+competitions remain disabled Practice. NBA, live payments, marketplace trading,
+prizes, withdrawals, SMS and operational cleanup were not enabled. Play v31 and
+managed publishing were not touched. Existing invited free-credit beta is preserved.
+
+Explained backup differences; no blanket drift waiver
+The archive comparison independently verified:
+- Nine existing cron job definitions and prior execution rows unchanged.
+- 1,167 appended cron runs succeeded and match their existing job commands/users.
+- 570 appended Weekly Core scheduler rows completed with zero issuance/failures.
+- Mail scheduler changed only last_tick_at.
+- Six NFL rounds changed only last_checked/next_check; fixtures, snapshots, issues
+  and round identities are unchanged.
+- 22 appended NFL worker audit rows: 19 pending-review/reconcile and THREE failures
+  3694, 3695, 3696 (weekly, pbp, rosters), all SOURCE_REVIEW_EXPIRED.
+- Raw source revision 25 changed only body -> NULL and purged_at. Its retention
+  expiry was 2026-11-16 00:15:02.47233 UTC; purge occurred at 00:17:00.135535 UTC
+  under the unchanged existing source-body retention job. Source hash, rights
+  evidence and other row fields remain unchanged. No operational deletion schedule
+  was enabled by this session.
+- The pg_net response cache advanced; it is an unlogged transport cache excluded
+  from logical restore, not a durable incident/financial table.
+No failed worker record, source-body purge or future drift was automatically waived.
+These concrete baseline changes are available for the next reviewed release.
+
+NFL Weekly Core — separate conclusion
+The old 72-hour roster dependency for Weekly Core OPENING is resolved in the
+already-deployed season-catalogue SQL, not by Batch 1's purchased-card recovery.
+The fresh restore contains 961 roster evidence records, ZERO newer than 72 hours;
+the newest is 9 November. Yet 478 approved NFL season members remain eligible.
+Calling the real restricted-role opening function on an existing unopened pack
+returned exactly four unique, nontradeable Core cards. Same-request retry and a
+new request for the saved receipt returned the same cards. It passed both before
+and after the three Batch 1 migrations, with all test changes rolled back.
+AFL and NRL four-card opening/replay also passed before and after the candidate.
+The first AFL fixture attempt had no unopened founder pack; a targeted recheck
+used an existing admitted tester's unopened entitlement and passed. This was a
+fixture-selection issue, not an application failure; both records are retained.
+No live account was impersonated, no real pack was opened and no card was minted
+in Production. Auth claims in the isolated SQL tests were simulated.
+
+Source collection remains a separate issue: the existing NFL weekly/PBP/roster
+workers fail closed because source review expired. No permission was extended,
+timestamp falsified or restriction bypassed. That does not make established
+season-pool Weekly Core packs depend on live roster freshness again.
+
+Hosted performance / browser / Android
+Hosted p50/p95 confirmation: NOT MEASURED — hosted prerequisite unavailable.
+Hosted p50/p95 saved recovery: NOT MEASURED — same reason.
+Candidate protected browser and genuine installed Android acceptance: NOT RUN.
+No mobile-network or physical-device success is claimed. No Android build changed.
+Prior isolated Batch 1 timings/tests remain separate evidence: confirmation p95
+4.753s, recovery 0.329s; pooled nine-card confirmation p95 3.771s. Those exclude
+hosted Auth/Internet and durable commit and cannot satisfy the missing hosted gate.
+The prior 24-duplicate test proved one debit/one nine-card allocation and atomic
+fault rollback. It was not repeated against real customer balances.
+Phone timeout simulations previously passed without automatic SMS resend; no
+genuine provider/SMS acceptance was attempted here.
+
+Regressions and remaining work
+No Production regression was introduced because neither app nor database changed.
+Batch 1 performance fixes are NOT live, so existing purchase latency can persist.
+Fresh Weekly Core SQL checks found no NFL/AFL/NRL opening regression.
+Priority is the narrow isolated-hosted target/dependency correction and actual
+HTTP/Auth measurements, then a revised exact package and separate deployment
+approval. See RELEASE_UNBLOCK_RECOMMENDATION.txt (4–8 engineering hours estimated,
+subject to dependency findings and measured hosted performance).
+No Batch 2 product or Production work began. The separate recommendation prioritises
+Play latency and correct NFL Round coverage before fill-empty lineup improvements.
+Real SMS/Android, Google Billing/refund, commercial rights/compliance and final
+launch activation remain separate gates. No external review status was refreshed
+or represented as newly accepted during this deployment attempt.
+
+Evidence
+approval-record.json; hosted-target-proof.json; preview-access.json;
+production-readonly.json; backup-drift.json; archive-drift-details.json;
+fresh-restore-acceptance.json; weekly-afl-recheck.json; final-readback.json;
+final-custody.json; source-worker-diagnostics.json; restore-cleanup.json;
+../v31-prelaunch-execution-20261111/database/restore-20261116b/restore-only.json.
+
+Operator validation and cleanup
+All four new evidence/rehearsal operators passed focused ESLint and repository
+typecheck. The frozen-package verifier passed again after final formatting.
+No source, config, migration, dependency or hosting file was modified.
+The disposable network-disabled restore was stopped after acceptance; its tmpfs
+copy was discarded. The authenticated encrypted backup remains available.
+Other local databases/containers were left untouched. Only operator scripts and
+sanitised evidence are included in this session's documentation commit.

@@ -1,0 +1,90 @@
+{
+  "at": "2026-11-16T02:04:49.228Z",
+  "previousBackupAt": "2026-11-15T21:19:59.342Z",
+  "freshBackupAt": "2026-11-16T02:02:57.343Z",
+  "freshArchiveSha256": "7b69fce6c17bb29aafd3f09907a8e69c05300654c0086a69c410dd2715c68a20",
+  "schemaFingerprintUnchanged": true,
+  "roleDefinitionsUnchanged": true,
+  "roleMembershipsUnchanged": true,
+  "tableDifferences": [
+    {
+      "table": "\"cron\".\"job_run_details\"",
+      "previous": {
+        "hash": "2095fd51a222bc11f46c75bd73ae1bba",
+        "count": 187030
+      },
+      "fresh": {
+        "hash": "410e7566d95df8403701e3ac784b8182",
+        "count": 188197
+      }
+    },
+    {
+      "table": "\"net\".\"_http_response\"",
+      "previous": {
+        "hash": "b59fd58ca1273e58a1f3e041caeddc48",
+        "count": 24
+      },
+      "fresh": {
+        "hash": "0f7870a0f37c18deb512181453ab6694",
+        "count": 27
+      }
+    },
+    {
+      "table": "\"private\".\"docked_mail_scheduler\"",
+      "previous": {
+        "hash": "ecfa6ab69d55f77f1db20ca4e456d3f7",
+        "count": 1
+      },
+      "fresh": {
+        "hash": "b6996d6677c6cb3730c4e2ee03c6da80",
+        "count": 1
+      }
+    },
+    {
+      "table": "\"sports_feed\".\"nfl_rounds\"",
+      "previous": {
+        "hash": "3e7170b62a65717f7e1af4e37ca37b87",
+        "count": 8
+      },
+      "fresh": {
+        "hash": "0df8a0754c42010882d06b3c7cdd6968",
+        "count": 8
+      }
+    },
+    {
+      "table": "\"sports_feed\".\"nfl_worker_runs\"",
+      "previous": {
+        "hash": "d2dce804be82ade0a0680d3c00eba6a3",
+        "count": 3681
+      },
+      "fresh": {
+        "hash": "05e070eeb73e11eb6d31d49545ec2733",
+        "count": 3703
+      }
+    },
+    {
+      "table": "\"sports_feed\".\"raw_revisions\"",
+      "previous": {
+        "hash": "66437ee939cdad61742e42b56dc9dfcc",
+        "count": 112
+      },
+      "fresh": {
+        "hash": "aaa92ffb01a628ef08a8252afe5a8863",
+        "count": 112
+      }
+    },
+    {
+      "table": "\"sports_feed\".\"weekly_core_job_runs\"",
+      "previous": {
+        "hash": "b7b0a163b7f3a8400a6fa1c3187ef0e7",
+        "count": 73445
+      },
+      "fresh": {
+        "hash": "15c43bad31cbea80007cc329b03777c8",
+        "count": 74015
+      }
+    }
+  ],
+  "changesNotAutomaticallyApproved": true,
+  "productionWrites": 0
+}

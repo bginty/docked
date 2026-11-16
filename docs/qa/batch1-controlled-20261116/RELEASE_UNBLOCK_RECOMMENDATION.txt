@@ -1,0 +1,74 @@
+DOCKED — NARROW RELEASE PREREQUISITE AND SEPARATE BATCH 2
+16 November 2026. Recommendation only; no revised application/migration deployed.
+
+The current exact Batch 1 approval is recorded in approval-record.json. It requires
+successful protected hosted purchase acceptance on an isolated database BEFORE
+Production SQL. That prerequisite cannot be met by source 084f0e3e as it stands.
+Eight pure guard checks demonstrate the incompatibility (hosted-target-proof.json).
+This prerequisite was missed in the previous release preparation.
+
+Specific blocker
+- src/server/member-test-wallet.ts requires DOCKED_FRIENDS_BETA=true.
+- src/core/friends-release.mjs binds friends mode to the Production target/domain.
+- src/core/hosted-beta.mjs binds that mode to Production Auth and database identity.
+- src/core/private-preview.mjs and isolated-public-preview.mjs forbid friends mode.
+- The local test profile explicitly rejects Vercel; it cannot stand in for hosted
+  acceptance. Credential-free previews cannot exercise Auth or persistence.
+- Existing Preview bckkllmndoxzpzdqrevb is reachable with verified TLS through the
+  existing private connection, but it has no season_catalogue schema. Two required
+  function predecessors are absent and three differ. See preview-access.json.
+
+Next proposed implementation authority (no Production changes)
+Prepare a narrowly scoped isolated hosted acceptance mode for the actual private-
+beta pack route, plus the exact Preview dependency/fixture plan. Preserve all
+Production target checks and existing business rules. Do not reuse Production
+credentials, spoof host/project identity, disable deployment protection, copy
+customer Auth sessions to Preview, or substitute simulated Auth for measured Auth.
+
+Required design and acceptance
+1. Bind the additional mode to the existing exact Preview project, restricted DB
+   role, permitted Auth issuer, synthetic test-account allowlist, short expiry and
+   protected deployment. Make every public/commercial/provider control fail closed.
+2. Continue real Supabase getUser/session validation, member admission, MFA where
+   applicable, owner isolation, idempotency and every source/financial/supply guard.
+3. Inventory missing Preview predecessors before proposing any application. Review
+   their exact dependency order and preserve existing Preview OTP/account settings.
+   Prefer disposable isolated fixtures; do not blindly replay all migrations or
+   overwrite the existing Preview. No new paid infrastructure without authority.
+4. Use synthetic accounts and nonredeemable fixture credits/cards. Preserve the
+   representative catalogue/history workload; disclose all differences from the
+   Production-sized local restore. Send no SMS, email, purchase or payment event.
+5. Run the actual deployed application over HTTP with genuine Preview Auth: all
+   Standard/Premium 1/3/9 offers, especially nine cards, one-debit/one-allocation,
+   lost responses, saved receipts, supply exhaustion, denial and rollback tests.
+   Measure p50/p95, warm/cold behavior and controlled browser network throttling.
+   Simulated mobile throttling is not genuine physical Android acceptance.
+6. Verify cross-account, wrong-project, expired-window, Production-credential and
+   public-origin denials. Freeze a revised source/package only after acceptance.
+7. Obtain new exact-source deployment approval. The current approval cannot cover
+   changed application bytes. Capture another fresh deployment backup/preflight.
+
+Estimate: 4–8 engineering hours for the narrow target, reviewed dependency plan,
+fixtures and hosted acceptance, subject to Preview dependency findings. No new
+native Android artifact is proposed. Physical-device participation remains distinct.
+
+Batch 2 remains separate (review only)
+Prioritise measured launch-critical failures over optional enhancements:
+1. Complete the above release prerequisite and deploy Batch 1 only after its gates.
+2. Measure the first usable Play/lineup state and reduce excessive authenticated
+   reads without weakening current member/ownership checks.
+3. Correct NFL Round coverage/default selection using permitted verified schedule
+   evidence; preserve completed history and truthful disabled Practice labels.
+4. Add fill-empty functionality for Traditional and All-Star, preserving filled/
+   locked slots, current ownership, valid positions, player uniqueness and salary
+   constraints. Never auto-enter a competition or overwrite selected cards.
+
+NFL Weekly Core freshness is not being bundled into a new fix: fresh isolated
+opening already succeeds with zero observations newer than 72 hours. The existing
+season-catalogue implementation addresses that specific dependency. Any remaining
+UI/physical-device issue should be reproduced separately before changing it.
+
+The prior Batch 2 implementation estimate remains 12–18 hours, excluding the narrow
+release prerequisite above. No Batch 2 product code or Production work was started.
+NBA, scoring, prizes, withdrawals and all public/commercial launch controls remain
+outside this proposal. Public launch remains NO-GO.

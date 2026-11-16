@@ -1,0 +1,30 @@
+{
+  "source": "fresh isolated Production restore 20261116b",
+  "records": [
+    {
+      "id": 3694,
+      "task": "weekly",
+      "error": "SOURCE_OR_CONFIGURATION_UNAVAILABLE",
+      "stage": "worker",
+      "status": "failed",
+      "diagnostic": "SOURCE_REVIEW_EXPIRED"
+    },
+    {
+      "id": 3695,
+      "task": "pbp",
+      "error": "SOURCE_OR_CONFIGURATION_UNAVAILABLE",
+      "stage": "worker",
+      "status": "failed",
+      "diagnostic": "SOURCE_REVIEW_EXPIRED"
+    },
+    {
+      "id": 3696,
+      "task": "rosters",
+      "error": "SOURCE_OR_CONFIGURATION_UNAVAILABLE",
+      "stage": "worker",
+      "status": "failed",
+      "diagnostic": "SOURCE_REVIEW_EXPIRED"
+    }
+  ],
+  "productionWrites": 0
+}

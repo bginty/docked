@@ -1,0 +1,65 @@
+{
+  "at": "2026-11-16T02:12:14.808Z",
+  "sourceCommit": "084f0e3e86fdc64aec9a9a043ffc3a1c524706eb",
+  "backup": {
+    "at": "2026-11-16T02:05:58.352Z",
+    "backupAt": "2026-11-16T02:02:57.343Z",
+    "sourceProject": "pojoymtniryarxxunyvz",
+    "archiveSha256": "7b69fce6c17bb29aafd3f09907a8e69c05300654c0086a69c410dd2715c68a20",
+    "archiveBytes": 136686947,
+    "encryptedAtRest": "AES-256-GCM",
+    "restoreTarget": "docked-commercial-restore-20261116b",
+    "network": "none",
+    "loopbackOnlyDriver": true,
+    "publishedPorts": 0,
+    "restored": true,
+    "protectedTables": 568,
+    "protectedRecordsUnchanged": true,
+    "migrationsReapplied": false,
+    "productionWrites": 0,
+    "cronActive": false
+  },
+  "migrationRehearsalPassed": true,
+  "exactThreeMigrations": true,
+  "changedFunctions": 7,
+  "functionSecurityUnchanged": true,
+  "protectedTables": 7,
+  "allRowsUnchanged": true,
+  "transactionRolledBack": true,
+  "productionWrites": 0,
+  "weeklyMetadata": [
+    {
+      "newest": "2026-11-09T12:15:11.811+00:00",
+      "oldest": "2026-10-17T05:22:05.204+00:00",
+      "rosterFresh": 0,
+      "rosterTotal": 961
+    },
+    {
+      "view": " SELECT DISTINCT ON (player_id) player_id,\n    provider_id,\n    team,\n    \"position\",\n    status,\n    identity_verified,\n    source_url,\n    source_hash,\n    checked_at,\n    evidence\n   FROM nfl_roster.observations\n  ORDER BY player_id, checked_at DESC, source_hash;"
+    }
+  ],
+  "weekly": [
+    {
+      "cards": 4,
+      "phase": "baseline",
+      "sport": "afl",
+      "allCore": true,
+      "uniqueCards": 4,
+      "sameRequestReplay": true,
+      "newRequestSavedReceipt": true,
+      "passed": true
+    },
+    {
+      "cards": 4,
+      "phase": "candidate",
+      "sport": "afl",
+      "allCore": true,
+      "uniqueCards": 4,
+      "sameRequestReplay": true,
+      "newRequestSavedReceipt": true,
+      "passed": true
+    }
+  ],
+  "hostedAuth": false,
+  "physicalDevice": false
+}

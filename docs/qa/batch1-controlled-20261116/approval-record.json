@@ -1,0 +1,22 @@
+{
+  "sourceCommit": "084f0e3e86fdc64aec9a9a043ffc3a1c524706eb",
+  "packageSha256": "f0e49290e7dff1f90306cbcd4a980588f57b13e2a20b2092790c342d6e5c40b5",
+  "authority": "Explicit founder message: DOCKED — BATCH 1 CONTROLLED PRODUCTION APPROVAL",
+  "durationHours": 24,
+  "observedBy": "2026-11-16T01:51:40Z",
+  "conservativeOperatorCutoff": "2026-11-17T00:51:40Z",
+  "conditions": [
+    "Reviewed source and three migrations only",
+    "Fresh authenticated encrypted backup and isolated restore",
+    "Fresh drift, financial, custody and permissions checks",
+    "Exact application protected hosted acceptance against isolated database without live provider keys BEFORE Production migrations",
+    "Actual HTTP/Auth latency and mobile network measurements where supported",
+    "Atomic three-migration transaction only after every prerequisite passes",
+    "Protected Production stage and promotion after checks",
+    "Preserve all legitimate later assets and all launch controls",
+    "Abort on changed bytes, unexplained drift or failed acceptance"
+  ],
+  "approvalValidButExecutionBlocked": true,
+  "blockingCondition": "The exact application has no isolated hosted target for the private-beta pack route",
+  "productionWrites": 0
+}

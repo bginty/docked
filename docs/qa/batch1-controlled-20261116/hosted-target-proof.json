@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-16T01:58:53.636Z",
+  "sourceCommit": "084f0e3e86fdc64aec9a9a043ffc3a1c524706eb",
+  "guardProofPassed": true,
+  "hostedPackPrerequisiteSatisfied": false,
+  "checks": [
+    "Existing closed private Preview guard accepts its exact synthetic target",
+    "Private Preview rejects the friends flag required by the purchase handler",
+    "Ordinary closed private Preview does not authorise member admission",
+    "Friends guard accepts only its existing exact Production-bound synthetic target",
+    "Friends mode rejects a genuine Preview environment",
+    "Friends mode rejects isolated Preview Auth/database even in a Production-target build",
+    "Local acceptance profile cannot be deployed to Vercel",
+    "The exact pack handler requires friends mode; isolated public Preview explicitly forbids that flag"
+  ],
+  "networkRequests": 0,
+  "productionWrites": 0,
+  "realCredentialsUsed": false,
+  "conclusion": "The exact application lacks an isolated hosted target for its private-beta pack route. A scoped target/admission correction and separately reviewed source are required; no host spoofing, Production-key reuse or guard bypass is acceptable."
+}

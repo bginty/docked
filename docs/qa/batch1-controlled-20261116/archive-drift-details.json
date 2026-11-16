@@ -1,0 +1,268 @@
+{
+  "at": "2026-11-16T02:21:44.510Z",
+  "previousBackupAt": "2026-11-15T21:19:59.342Z",
+  "freshBackupAt": "2026-11-16T02:02:57.343Z",
+  "archivesGcmAuthenticated": true,
+  "rawSourceBodiesEmitted": false,
+  "productionWrites": 0,
+  "automaticDriftWaiver": false,
+  "tables": [
+    {
+      "table": "cron.job",
+      "previousCount": 9,
+      "currentCount": 9,
+      "removedIds": [],
+      "changed": [],
+      "addedCount": 0
+    },
+    {
+      "table": "cron.job_run_details",
+      "previousCount": 187030,
+      "currentCount": 188197,
+      "removedIds": [],
+      "changed": [],
+      "addedCount": 1167,
+      "newStatuses": {
+        "succeeded": 1167
+      },
+      "newCommandIdentityMismatches": 0
+    },
+    {
+      "table": "private.docked_mail_scheduler",
+      "previousCount": 1,
+      "currentCount": 1,
+      "removedIds": [],
+      "changed": [
+        {
+          "id": "t",
+          "fields": [
+            "last_tick_at"
+          ]
+        }
+      ],
+      "addedCount": 0
+    },
+    {
+      "table": "sports_feed.nfl_rounds",
+      "previousCount": 8,
+      "currentCount": 8,
+      "removedIds": [],
+      "changed": [
+        {
+          "id": "9286cca8-c7a3-487e-b687-f9614a2b87b5",
+          "fields": [
+            "last_checked",
+            "next_check"
+          ]
+        },
+        {
+          "id": "8841bf7d-5952-47c4-b926-40b04fdc5cba",
+          "fields": [
+            "last_checked",
+            "next_check"
+          ]
+        },
+        {
+          "id": "b828817d-0ba9-4edd-87a3-fe6dd23ad7a0",
+          "fields": [
+            "last_checked",
+            "next_check"
+          ]
+        },
+        {
+          "id": "315280d3-7413-4c2d-8a63-fef6d7e37003",
+          "fields": [
+            "last_checked",
+            "next_check"
+          ]
+        },
+        {
+          "id": "d3da95b4-a72a-4b40-87d9-09b562d92277",
+          "fields": [
+            "last_checked",
+            "next_check"
+          ]
+        },
+        {
+          "id": "70de1f8e-b789-4331-99aa-6afb0c31a8a2",
+          "fields": [
+            "last_checked",
+            "next_check"
+          ]
+        }
+      ],
+      "addedCount": 0
+    },
+    {
+      "table": "sports_feed.nfl_worker_runs",
+      "previousCount": 3681,
+      "currentCount": 3703,
+      "removedIds": [],
+      "changed": [],
+      "addedCount": 22,
+      "added": [
+        {
+          "id": "3682",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3683",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3684",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3685",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3686",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3687",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3688",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3689",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3690",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3691",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3692",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3693",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3694",
+          "status": "failed",
+          "task": "weekly"
+        },
+        {
+          "id": "3695",
+          "status": "failed",
+          "task": "pbp"
+        },
+        {
+          "id": "3696",
+          "status": "failed",
+          "task": "rosters"
+        },
+        {
+          "id": "3697",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3698",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3699",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3700",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3701",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3702",
+          "status": "pending-review",
+          "task": "reconcile"
+        },
+        {
+          "id": "3703",
+          "status": "pending-review",
+          "task": "reconcile"
+        }
+      ]
+    },
+    {
+      "table": "sports_feed.raw_revisions",
+      "previousCount": 112,
+      "currentCount": 112,
+      "removedIds": [],
+      "changed": [
+        {
+          "id": "25",
+          "fields": [
+            "body",
+            "purged_at"
+          ],
+          "before": {
+            "body": {
+              "isNull": false,
+              "sha256": "dfd43b0b3dac5e6d1c592785847e3e8892b46cd5ffbc7152f152803452746bd0"
+            },
+            "purged_at": {
+              "isNull": true,
+              "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+            }
+          },
+          "after": {
+            "body": {
+              "isNull": true,
+              "sha256": "74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+            },
+            "purged_at": {
+              "isNull": false,
+              "sha256": "4cc8fc16afc3817937373b13f06ed25595859aa7f6f289555d2caf184fbff534"
+            }
+          },
+          "expiryMetadata": {
+            "expires_at": "2026-11-16 00:15:02.47233+00",
+            "purged_at": "2026-11-16 00:17:00.135535+00"
+          }
+        }
+      ],
+      "addedCount": 0
+    },
+    {
+      "table": "sports_feed.weekly_core_job_runs",
+      "previousCount": 73445,
+      "currentCount": 74015,
+      "removedIds": [],
+      "changed": [],
+      "addedCount": 570,
+      "newOutcomes": {
+        "complete/0/0": 570
+      }
+    }
+  ]
+}
