@@ -1,0 +1,200 @@
+TAP version 13
+# Subtest: response headers do not end the body deadline and a timeout never repeats a mutation
+ok 1 - response headers do not end the body deadline and a timeout never repeats a mutation
+  ---
+  duration_ms: 34.3058
+  ...
+# Subtest: caller cancellation stops waiting even when a transport ignores abort
+ok 2 - caller cancellation stops waiting even when a transport ignores abort
+  ---
+  duration_ms: 1.281
+  ...
+# Subtest: successful body and response metadata survive the deadline wrapper
+ok 3 - successful body and response metadata survive the deadline wrapper
+  ---
+  duration_ms: 91.9704
+  ...
+# Subtest: phone throttling exposes only application guidance, never provider diagnostics
+ok 4 - phone throttling exposes only application guidance, never provider diagnostics
+  ---
+  duration_ms: 2.037
+  ...
+# Subtest: verified commercial receipt uses provider identity, exact AUD charge and account
+ok 5 - verified commercial receipt uses provider identity, exact AUD charge and account
+  ---
+  duration_ms: 97.7129
+  ...
+# Subtest: TEST receipts cannot cross commercial boundary in either direction
+ok 6 - TEST receipts cannot cross commercial boundary in either direction
+  ---
+  duration_ms: 7.6362
+  ...
+# Subtest: reject manipulated account
+ok 7 - reject manipulated account
+  ---
+  duration_ms: 1.8574
+  ...
+# Subtest: reject manipulated product
+ok 8 - reject manipulated product
+  ---
+  duration_ms: 1.394
+  ...
+# Subtest: reject manipulated region
+ok 9 - reject manipulated region
+  ---
+  duration_ms: 7.0595
+  ...
+# Subtest: reject manipulated quantity
+ok 10 - reject manipulated quantity
+  ---
+  duration_ms: 3.5674
+  ...
+# Subtest: reject manipulated option
+ok 11 - reject manipulated option
+  ---
+  duration_ms: 1.7253
+  ...
+# Subtest: reject manipulated orderToken
+ok 12 - reject manipulated orderToken
+  ---
+  duration_ms: 2.625
+  ...
+# Subtest: reject manipulated orderProduct
+ok 13 - reject manipulated orderProduct
+  ---
+  duration_ms: 2.767
+  ...
+# Subtest: reject manipulated currency
+ok 14 - reject manipulated currency
+  ---
+  duration_ms: 4.2027
+  ...
+# Subtest: pending without order remains pending and is not a verified charge
+ok 15 - pending without order remains pending and is not a verified charge
+  ---
+  duration_ms: 2.8533
+  ...
+# Subtest: partial refunds are held, full refund is cumulative without double counting
+ok 16 - partial refunds are held, full refund is cumulative without double counting
+  ---
+  duration_ms: 6.4136
+  ...
+# Subtest: amount drift records a charge needing review, never silently changes credit allocation
+ok 17 - amount drift records a charge needing review, never silently changes credit allocation
+  ---
+  duration_ms: 3.1098
+  ...
+# Subtest: provider outages do not leak tokens or invent successful purchases
+ok 18 - provider outages do not leak tokens or invent successful purchases
+  ---
+  duration_ms: 3.6858
+  ...
+# Subtest: integer money and unchanged sport-specific pack configuration
+ok 19 - integer money and unchanged sport-specific pack configuration
+  ---
+  duration_ms: 41.443
+  ...
+# Subtest: all sport/size variants require distinct supply for every positive-weight rarity
+ok 20 - all sport/size variants require distinct supply for every positive-weight rarity
+  ---
+  duration_ms: 39.8007
+  ...
+# Subtest: missing, fractional or invalid supply cannot satisfy a required rarity
+ok 21 - missing, fractional or invalid supply cannot satisfy a required rarity
+  ---
+  duration_ms: 0.8056
+  ...
+# Subtest: hosted boundary rejects unauthorised, browser and invalid-method requests before database/provider access
+ok 22 - hosted boundary rejects unauthorised, browser and invalid-method requests before database/provider access
+  ---
+  duration_ms: 9.9227
+  ...
+# Subtest: hosted configuration rejects customer roles, alternate hosts, members and invalid expiry
+ok 23 - hosted configuration rejects customer roles, alternate hosts, members and invalid expiry
+  ---
+  duration_ms: 0.9979
+  ...
+# Subtest: expired hosted session rejects even the correct credential
+ok 24 - expired hosted session rejects even the correct credential
+  ---
+  duration_ms: 1.2082
+  ...
+# Subtest: isolated member configuration requires the fixed synthetic subject and server HMAC binding
+ok 25 - isolated member configuration requires the fixed synthetic subject and server HMAC binding
+  ---
+  duration_ms: 2.9363
+  ...
+# Subtest: private phone acceptance admits only two existing accounts and keeps registration closed
+ok 26 - private phone acceptance admits only two existing accounts and keeps registration closed
+  ---
+  duration_ms: 37.1291
+  ...
+# Subtest: closed Google test window preserves isolated ledger reads without admitting checkout
+ok 27 - closed Google test window preserves isolated ledger reads without admitting checkout
+  ---
+  duration_ms: 4.0549
+  ...
+# Subtest: Google TEST admission cannot select Production, a different account, live checkout or an expired window
+ok 28 - Google TEST admission cannot select Production, a different account, live checkout or an expired window
+  ---
+  duration_ms: 5.1567
+  ...
+# Subtest: external Preview email uses exact expiring admission without granting transactions or invitations
+ok 29 - external Preview email uses exact expiring admission without granting transactions or invitations
+  ---
+  duration_ms: 11.3836
+  ...
+# Subtest: public acceptance is bound to existing protected Preview, with ordinary-customer mode and narrow Auth projections
+ok 30 - public acceptance is bound to existing protected Preview, with ordinary-customer mode and narrow Auth projections
+  ---
+  duration_ms: 1.6957
+  ...
+# Subtest: public acceptance rejects Production, cross-project credentials, privileged runtime and checkout
+ok 31 - public acceptance rejects Production, cross-project credentials, privileged runtime and checkout
+  ---
+  duration_ms: 1.9329
+  ...
+# Subtest: challenge uses user-session phone_change and fresh same-member provider confirmation
+ok 32 - challenge uses user-session phone_change and fresh same-member provider confirmation
+  ---
+  duration_ms: 12.8949
+  ...
+# Subtest: provider rejection, outage and expired/wrong code never expose raw provider data
+ok 33 - provider rejection, outage and expired/wrong code never expose raw provider data
+  ---
+  duration_ms: 3.2011
+  ...
+# Subtest: successful OTP response alone cannot prove identity, number or confirmed timestamp
+ok 34 - successful OTP response alone cannot prove identity, number or confirmed timestamp
+  ---
+  duration_ms: 1.671
+  ...
+# Subtest: invalid Australian number and resend cooldown retain actionable public guidance
+ok 35 - invalid Australian number and resend cooldown retain actionable public guidance
+  ---
+  duration_ms: 1.0275
+  ...
+# Subtest: phone API cannot expose raw diagnostics merely because they start with a public prefix
+ok 36 - phone API cannot expose raw diagnostics merely because they start with a public prefix
+  ---
+  duration_ms: 0.7184
+  ...
+# Subtest: phone evidence must come from confirmed Auth fields, never a typed number
+ok 37 - phone evidence must come from confirmed Auth fields, never a typed number
+  ---
+  duration_ms: 7.6708
+  ...
+# Subtest: SMS cannot send before public/OTP/policy configuration; beta unchanged
+ok 38 - SMS cannot send before public/OTP/policy configuration; beta unchanged
+  ---
+  duration_ms: 1.7395
+  ...
+1..38
+# tests 38
+# suites 0
+# pass 38
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 8101.8842

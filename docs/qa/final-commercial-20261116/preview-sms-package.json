@@ -1,0 +1,32 @@
+{
+  "scope": "bounded-preview-sms-only",
+  "sourceCommit": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "approved": false,
+  "files": [
+    {
+      "file": "docs/qa/final-commercial-20261116/PREVIEW_SMS_APPROVAL.txt",
+      "sha256": "a9855f77fa547794a7e9529630d2bbd6a15e30ffaf312c5b4d3ce7b5cabb598c"
+    },
+    {
+      "file": "docs/qa/final-commercial-20261116/phone-fixture-selection.json",
+      "sha256": "34bae764daafc64e0fac7f9a926a5f5a56b9587870c12b4b653cee8e512761a2"
+    },
+    {
+      "file": "docs/qa/final-commercial-20261116/preview-application-verified.json",
+      "sha256": "25c5d08636e45f72083e4803d8364f67ae7814cd39f75ac963cfab4f812ae37b"
+    },
+    {
+      "file": "docs/qa/final-commercial-20261116/preview-application-prepared.json",
+      "sha256": "41ebb121d596a68e04b5f5ce36da1bb38eb6e38a4b906bb9e9b7c2eb1f37429f"
+    },
+    {
+      "file": "docs/qa/final-commercial-20261116/auth-provider-readiness.json",
+      "sha256": "9bda96848123adfdebaa38f8c72ee38d82d1b9e7814b3b5d1044f9d9287451ed"
+    },
+    {
+      "file": "docs/qa/final-commercial-20261116/provider-console-observations.json",
+      "sha256": "3ab3b7ace26da932bdccdd12422832ed736ab2ad033cc0a3e3fa0931c0da22df"
+    }
+  ],
+  "productionAuthorised": false
+}

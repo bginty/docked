@@ -1,0 +1,117 @@
+DOCKED — COORDINATED AUSTRALIAN PAID LAUNCH, NOT AUTHORISED
+Prepared 16 November 2026. No command below was executed.
+
+Completed work must not be repeated
+Original five migrations/outbox, later commercial safeguards, dormant inventory
+import, seven historical TEST status corrections, stable season-catalogue fix,
+private free-credit beta, Brenton exception, founder incident/email acceptance
+and same-key vault acceptance remain preserved. Do not reset historical counts.
+Batch1 remains pending its exact approval: source76df44ba, package954e467e...
+and only its three reviewed SQL files. Batch2/round/autofill work stays separate.
+
+1. Complete independently scoped acceptance
+Deploy Batch1 only after its pending exact approval and fresh encrypted backup,
+restore/drift/security checks. Preserve all effective runtime values. Verify
+Production website and Play-installed v31 with the invited testers' own TEST
+credits, at most six tester-chosen nine-card packs initially. Record actual
+p50/p95, collection/reveal/background/reload/recovery. These consume legitimate
+lifetime supply; do not manufacture permanent cards for a benchmark.
+Complete the bounded Preview SMS session, then separately authorised installed-
+v31 phone and Google TEST sessions. The payment session uses isolated accounts,
+Google TEST instruments and synthetic inventory, including real provider refund
+evidence. Do not infer merchant settlement or Android results from local tests.
+
+2. Freeze the public candidate and evidence, while all public gates are shut
+Public mode needs the reviewed public-runtime manifest/least-privilege docked_app
+binding, consent/policy version and exact configuration; config/hosted-production
+is currently approved=false. It is not safe to flip only a storefront flag.
+Prepare a separate exact source/runtime package after the acceptance findings;
+no automatic substitution into Batch1. Preserve owner/admin and original beta
+data, restrict public customers through existing email/AU18+/verified-phone rules.
+Bind the accepted source/material/legal/accounting evidence, exact eligible-ID
+digest, unchanged prices/odds/caps, Google products, public SMS budget/limits and
+operator shutdown evidence. If rights alter eligibility, freeze the changed IDs
+and repeat capacity checks; never alter lifetime counters or remint cards.
+Public authentication configuration/credential entry and alert/reconciliation
+worker enablement require their exact approved settings, not test authority.
+Keep the already accepted founder-only incident path; enable its reviewed email
+monitoring without repeating the accepted test email. Deletion stays disabled.
+Complete ordinary-member support/recovery/deletion UX before signup opens.
+Include fixed-price marketplace only on explicit separate evidence/decision;
+otherwise its controls remain OFF while paid credits and paid packs are required.
+
+3. Request ONE final coordinated commercial-launch approval only when ready
+Name actual deployed/staged source IDs, exact SQL/runtime/policy/eligibility
+hashes, installed v31/signature, successful SMS/Google TEST/refund evidence,
+public SMS limit and monitoring, legal/accounting references and marketplace
+decision. List only reviewed Play submission3 changes. No final GO request while
+mandatory evidence remains absent. Any earlier authority is not this approval.
+
+4. Execute the approved launch in a staffed window
+a. Fresh <=1h encrypted backup, authenticated isolated restore, <=10min drift/
+   financial/custody/serial/permissions check. Preserve all later beta activity.
+   Verify emergency operator credentials and reconciliation access first.
+b. Protected public-mode application staging, existing Auth closed, commerce
+   closed. Deploy approved disclosures and consent references. Verify source,
+   backend/native contract, no Preview credentials or QA flags. Promote only on
+   the reviewed approval and successful read-only/auth acceptance.
+c. Close beta_packs.control enabled/grants_enabled under the coordinated scope
+   before enabling commerce: the existing DB interlock requires this. Preserve
+   every beta balance/card/receipt; TEST balances never convert to purchased
+   credits. Verify invited members retain login and their historic collection.
+d. Record exact commercial approvals and expiry; approve ONLY reviewed definition
+   IDs and the two products. Do not reimport, change snapshots/serials or edit
+   issued/legacy_issued. Keep sales/issuance/transfers OFF until checks pass.
+e. Enable the approved Production phone settings, bounded SMS monitoring, founder
+   operational email delivery and receipt/refund reconciliation. Activate Google
+   AU buy-au options at A$49/4900 and A$99/9900. Signup stays closed. Read back each
+   provider/configuration result. Do not silently widen regions or budgets.
+f. Open approved paid-pack issuance and sales together, then app checkout/surfaces;
+   only separately accepted marketplace may open transfers. Recheck all offers,
+   availability, pricing/odds and ordinary-member eligibility. A true-money test
+   requires named purchaser/product/AUD cap and separate authority; never infer
+   it from the SMS budget or Google TEST session.
+g. Once paid service is ready, open the three existing public registration controls
+   (Auth signup, database registration flag, application registration flag) under
+   final authority. Verify AU adult email/phone onboarding and native credit/pack
+   discovery with the specifically authorised tester. Do not offer a public
+   registration-only release or waive a failed commercial gate.
+h. Use Google managed publication to publish ONLY the reviewed v31/1.30 Australia
+   submission. Keep managed publishing ON for future updates. Verify actual store
+   availability/version and report propagation delay accurately. Publication is
+   not instantaneous or safely reversible for already installed copies.
+i. Observe first legitimate orders through Google verification, one wallet credit,
+   one pack debit, nine correct cards, serial/owner records, collection visibility,
+   consume/acknowledgement and reconciliation. Review at launch,+15m,+1h,+24h.
+   Genuine Google TEST results do not prove the first real payout; reconcile the
+   first actual earnings/fee/tax/payout report after sales, not before they exist.
+
+Emergency shutdown, ready before the first charge
+Stop new sales, issuance, transfers and registration as a single reviewed DB
+transaction, with bounded lock/statement timeouts. The prepared command is:
+
+BEGIN;
+SET LOCAL lock_timeout='3s';
+SET LOCAL statement_timeout='15s';
+UPDATE commercial_billing.control SET sales_enabled=false,issuance_enabled=false,
+ transfers_enabled=false,gameplay_enabled=false WHERE id;
+UPDATE private.feature_flags SET enabled=false,
+ reason='Founder-authorised emergency commercial launch stop',
+ updated_at=clock_timestamp() WHERE key='registration';
+COMMIT;
+
+Read back all gates. On timeout do not assume closure or kill an unknown settling
+transaction. Stop app checkout/registration and Google purchase availability;
+disable phone sends for SMS abuse. Preserve the backend service and verification,
+refund, acknowledgement and reconciliation workers needed to settle or remedy
+existing purchases. Never strand an accepted paid order by disabling recovery.
+Keep saved receipts/collection reads available when safe. Hold publication if
+still pending; for an already distributed app contain through server controls.
+
+Reversible: future signup/phone/store/commerce gates and product availability.
+Conditional: app rollback only to a tested compatible source using the current
+database and actual later activity. Do not roll back to f1b50b6f after paid use.
+Not reversible by deleting rows/restoring an old snapshot: sent messages, paid
+orders, immutable journals, issued lifetime supply, ownership transfers, consents
+or distributed Android builds. Use audited refund/forward recovery. No supply
+is released by refund, transfer, exclusion or an emergency shutdown.

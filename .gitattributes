@@ -76,3 +76,9 @@ scripts/batch1-hosted-release-package.mjs text eol=lf
 scripts/batch1-hosted-http.ts text eol=lf
 tests/platform/local-marketplace-acceptance.test.ts text eol=lf
 tests/platform/pack-hosted-acceptance.test.ts text eol=lf
+
+# Preserve the bounded SMS approval and mixed provider evidence byte-for-byte.
+docs/qa/final-commercial-20261116/** -text
+scripts/final-*.mjs text eol=lf
+scripts/final-*.ts text eol=lf
+scripts/lib/final-phone-preparation.mjs text eol=lf

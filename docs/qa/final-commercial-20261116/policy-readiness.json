@@ -1,0 +1,53 @@
+{
+  "at": "2026-11-16T10:09:17.795Z",
+  "method": "Public GET and local prepared-text comparison only",
+  "observations": [
+    {
+      "route": "/privacy",
+      "status": 200,
+      "htmlSha256": "1770a979427c8624d77f1475d53dfecb273b651214d3d635ac76f340b3c5ab4d",
+      "phonePrivacyVersion": true,
+      "twilioMention": true,
+      "phoneMention": true,
+      "overseasMention": true,
+      "commercialAvailabilityStillConditional": true
+    },
+    {
+      "route": "/refund-policy",
+      "status": 200,
+      "htmlSha256": "01885f8ddc5c2c80cc5adc6558fb8fc69679d960f12574193567e64ae043b2b6",
+      "phonePrivacyVersion": false,
+      "twilioMention": false,
+      "phoneMention": true,
+      "overseasMention": false,
+      "commercialAvailabilityStillConditional": true
+    },
+    {
+      "route": "/commercial-policy",
+      "status": 200,
+      "htmlSha256": "04c3dd1f607f431b4b64403a3c50b64514a87049e681efc974f82f2eaf366586",
+      "phonePrivacyVersion": false,
+      "twilioMention": false,
+      "phoneMention": true,
+      "overseasMention": false,
+      "commercialAvailabilityStillConditional": true
+    },
+    {
+      "route": "/account-deletion",
+      "status": 200,
+      "htmlSha256": "9206b64314ae61e38fa40badb86f3738d7297a0ffae602421e362a5f91ef3416",
+      "phonePrivacyVersion": false,
+      "twilioMention": false,
+      "phoneMention": true,
+      "overseasMention": false,
+      "commercialAvailabilityStillConditional": true
+    }
+  ],
+  "replacementsApplicable": true,
+  "policySourceSha256": "e24c097412dac3f663dc9dae433f4900e8f8636f9a806e9729114fe24405f61a",
+  "existingDraftSha256": "bd79641f80483cbb8245f826cd99bfe362df92b61fc0f48143dcdfb3ab0de884",
+  "phonePrivacyAlreadyApproved": true,
+  "commercialWordingApproved": false,
+  "productionWrites": 0,
+  "googleSubmissions": 0
+}

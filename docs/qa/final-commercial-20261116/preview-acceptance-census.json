@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-16T09:42:25.329Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "existingQaMembers": 2,
+  "unblockedExistingCandidates": 1,
+  "alreadyPhoneVerified": 0,
+  "holdAccountsExcluded": 1,
+  "control": {
+    "environment": "acceptance",
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false
+  },
+  "schema": {
+    "phone_guard_present": true,
+    "canonical_claim_registry_present": true,
+    "canonical_claim_trigger_present": true
+  },
+  "productionWrites": 0,
+  "previewWrites": 0,
+  "identitiesCreated": 0,
+  "holdsCleared": 0,
+  "phonesDisclosed": 0,
+  "decision": "Use an existing eligible candidate only after founder-controlled verification and exact bounded acceptance approval."
+}

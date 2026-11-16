@@ -1,0 +1,75 @@
+DOCKED — BOUNDED PREVIEW SMS ACCEPTANCE; APPROVAL REQUESTED, NOT EXECUTED
+16 November 2026. Does not authorise Production or Google checkout.
+
+Ready application source: 76df44ba1adef012c5ec2119563cbc05ff9e3c0b
+Closed protected rehearsal: dpl_ALHfo1ukhr3sg4VuCeS7RyvRPP7R
+https://docked-preview-21vthd4fi-briant-s-projects.vercel.app
+Existing Vercel Preview: prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR
+Existing Supabase Preview: bckkllmndoxzpzdqrevb
+No new database dependencies, accounts, service, sender or paid infrastructure.
+
+Requested permission: ONE attended session, up to two hours, starting only when
+the founder is available. Authority expires 24 hours after explicit approval.
+Use the two original ordinary QA identities bound by phone-fixture-selection.json
+and the ignored identities.prepared.private.json (SHA-256
+6163d6bb3693b643e02a6f989a20048d7f57654297c7d85a6afd60bde30f8935).
+Neither identity is an administrator. This phone test does not claim an MFA
+session: it verifies the ordinary-member enrolment path. Founder operational MFA
+acceptance is already complete. Preserve the 5,700-credit TEST recovery hold.
+
+Exact permitted configuration
+- Reuse this source and closed Preview runtime. Stage a new protected Preview
+  deployment differing only in DOCKED_ISOLATED_PHONE_TEST=true,
+  DOCKED_PUBLIC_PHONE_OTP=true, DOCKED_ISOLATED_PHONE_MEMBERS=the two bound UUIDs,
+  DOCKED_ISOLATED_PHONE_UNTIL=recorded UTC deadline <=2 hours from session start,
+  DOCKED_PUBLIC_PHONE_POLICY_REFERENCE=approved 2026-11-11-privacy-phone-v4.
+  Verify the expiry/allowlist/project guards before any send. Build time counts
+  within the window; do not extend it silently. Do not change shared project env.
+- Preview Auth PATCH is external_phone_enabled=true only. Existing settings
+  remain six digits, 300-second expiry, 60-second resend, six sends/hour,
+  disable_signup=true, no anonymous signup, no fixed test OTP, no auto-confirm.
+  Reuse saved Twilio credentials, existing DOCKED AU sender and Messaging Service.
+- Enabling the provider is project-wide at Supabase. The app restricts this
+  session to the two QA identities and Vercel protection remains ON. Supabase
+  project-wide rate limits remain enforced; do not describe the app allowlist
+  as a provider-level account allowlist. No existing Preview account is disabled.
+
+Bounded sends and participation
+Founder privately enters a controlled Australian mobile and each received code.
+No phone number or OTP enters chat, Git, logs or screenshots. No admin-confirm.
+At most SIX attempted sends in the whole window, TWENTY billed segments, or
+A$5 total including fees/tax/FX, whichever occurs first. All testing remains
+within the existing A$20 cumulative authority. Stop on first unexpected provider
+error, recipient, charge or state; expected invalid/expired-code rejection is a
+test result, not an instruction to resend. No automatic recharge or balance top-up.
+Current balance is US$20, not A$20. Balance is not additional spending authority.
+Check actual billing/messages after each requested send, and stop conservatively
+if cost cannot be bounded. No retry after timeout until saved status is checked.
+
+Verify actual delivery/authentication, successful enrolment, invalid/expired code,
+replay and same-account verified-result recovery, immediate resend denial, and
+canonical duplicate-number rejection on the other QA identity. Preserve all
+identity, consent, cards, lots, receipts and recovery holds except explicit phone
+enrolment/session/audit metadata from the test. No purchases or grants.
+Current application does NOT expose self-service phone-number replacement: an
+already verified member is directed to support. Test that denial and recovery
+instructions; do not claim an unsupported self-service change test passed.
+Support-led replacement needs a separately reviewed identity/revocation process.
+
+Close, including early failure or founder departure
+PATCH Preview external_phone_enabled=false; read it back. Keep signup closed.
+Remove the temporary phone-enabled deployment; retain the closed rehearsal.
+The app deadline independently rejects late requests, but is not a substitute
+for switching the provider OFF. Verify closure before ending the attended session.
+Reconcile provider messages/segments/cost with session attempts and preserve
+redacted evidence. Do not erase genuine verified QA phone evidence or history.
+Verify Production phone/signup and all commercial controls remain OFF.
+
+After Preview passes, a separate exact controlled Production-device package is
+needed: Production has no Twilio credentials saved and currently has 60-second
+OTP/5-second resend defaults. Do not silently enable those defaults. Installed
+v31 acceptance is still required and is not inferred from this Preview test.
+
+Approval is required because the founder explicitly reserves any provider
+enablement and live SMS to a separately authorised bounded test window.
+Suggested response: Approve this bounded Preview SMS session for 24 hours.

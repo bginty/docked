@@ -1,0 +1,67 @@
+{
+  "observedDateAustraliaSydney": "2026-11-16",
+  "evidenceType": "Live authenticated Chrome UI inspection using browser tools",
+  "twilio": {
+    "existingSender": "Docked",
+    "country": "AU",
+    "trafficStatus": "Active",
+    "existingService": "Docked private phone verification",
+    "serviceSender": "DOCKED",
+    "serviceSenderLocality": "AU",
+    "serviceSenderRestrictionsDisplayed": "-",
+    "previewAccountAndServiceMatchConsole": true,
+    "balance": 20,
+    "currency": "USD",
+    "estimatedNovemberSpend": 0,
+    "automaticRecharge": "not set up",
+    "managementReadbackUsableAsToken": false,
+    "privateDashboardRevealedTokenHasExpectedFormat": true,
+    "actualTokenApiAuthenticationVerified": false,
+    "prior401Conclusion": "Protected management representation was used, so prior 401 does not establish invalid saved credentials. Genuine authentication/delivery still needs acceptance.",
+    "credentialsPrintedOrChanged": false,
+    "smsAttempts": 0,
+    "smsGeoPermissions": {
+      "enabled": [
+        "AU (+61 including Cocos/Christmas Island)"
+      ],
+      "otherDestinationsEnabled": 0,
+      "changed": false
+    }
+  },
+  "googlePlay": {
+    "submission": 3,
+    "changes": 10,
+    "versionCode": 31,
+    "versionName": "1.30",
+    "status": "Ready to publish",
+    "managedPublishing": "ON",
+    "country": "Australia",
+    "targetAudience": "18 and older",
+    "privacyUrl": "https://docked.com.au/privacy",
+    "phoneDataSafetyInReadySubmission": true,
+    "phoneCollected": true,
+    "phoneShared": true,
+    "phoneEphemeral": false,
+    "phoneRequired": true,
+    "phoneCollectionPurposes": [
+      "app functionality",
+      "fraud prevention, security and compliance",
+      "account management"
+    ],
+    "phoneSharingPurposes": [
+      "app functionality",
+      "analytics",
+      "fraud prevention, security and compliance",
+      "account management"
+    ],
+    "changesMade": false,
+    "publicationPerformed": false
+  },
+  "founderAttestationsPreserved": {
+    "googleGstDeclaration": "ACCEPTED; no repeat confirmation required",
+    "payoutBank": "verified and Primary, per current founder instruction; no banking edits or repeat verification request"
+  },
+  "productionWrites": 0,
+  "previewWrites": 0,
+  "publicLaunch": "NO-GO"
+}

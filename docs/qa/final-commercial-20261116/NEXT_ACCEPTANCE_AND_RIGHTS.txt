@@ -1,0 +1,150 @@
+DOCKED — PRECISE REMAINING ACCEPTANCE, 16 NOVEMBER 2026
+This supersedes stale status in the 13/14 November handovers, not their evidence.
+No permission is inferred from this document. No Batch 2 work.
+
+Ready decisions
+1. Batch 1 Production: existing DEPLOYMENT_APPROVAL.txt in
+   ../batch1-hosted-release-20261116. Source 76df44ba1adef012c5ec2119563cbc05ff9e3c0b;
+   package 954e467e9e0a5a6e15db154eb03a055913823e067248470f556cf20f31092436.
+   The pending request has not been approved. Do not deploy under Preview consent.
+2. Preview SMS: PREVIEW_SMS_APPROVAL.txt and preview-sms-package.json. The concrete
+   request is now pending. Sender is ACTIVE; there is no Twilio sender-review wait.
+   Saved SID/service match; the private Dashboard token has the expected format.
+   No actual token-authentication or SMS-delivery result is claimed yet.
+
+Next founder physical action, AFTER SMS approval
+Open the new protected test deployment provided at session start; sign in with
+the selected original QA account using its private local credential file. The
+operator selects the unblocked account first. Open /app/verify-phone; enter the
+Australian mobile privately and request one code. Expect a DOCKED SMS, then enter
+it on that screen. Do not send any code/number in chat. The operator verifies the
+Auth confirmation and asset invariants before guiding the next negative test.
+Two original QA logins passed genuine hosted Auth again today, then signed out;
+their cards/receipts/lots were unchanged. No new accounts or passwords were made.
+
+Android Google TEST session — existing procedure retained, not yet frozen/open
+Use ../v31-payment-launch-checks-20261114/DEVICE_SESSION_ORDER.txt after SMS passes.
+Its six-checkout arithmetic remains correct for the existing zero-balance,
+unblocked QA account. Maximum A$0 real charge, <=2 hours, six TEST checkout
+attempts, six nine-card synthetic pack purchases (54 fictional cards), both AU
+buy-au products, then genuine unspent/spent refunds. Preserve all prior receipts
+and the other account's 5,700-credit recovery hold. Only the founder confirms
+checkout/refund on the physical device after seeing Google's TEST instrument.
+The old document's 888 Production count is historical: latest is 891/909 and
+none of those Production assets is used in isolated Google TEST acceptance.
+
+Before requesting this separate exact test approval, freeze the actual verified
+Preview-phone identity, Preview billing runtime and currently deployed Production
+source/runtime. The installed v31 is pinned to docked.com.au: it requires the
+already implemented expiring opt-in QA transport, not a debug replacement or a
+new app. Transport is a separately authorised Production CONFIGURATION deployment
+and must not be slipped into Batch 1. It forwards only Preview Auth cookies,
+preserves original Google notification acceptance and relays to the isolated
+queue. Production sessions/wallets are not forwarded. No active test transport
+exists now. The source already supports the flow; verify identity/expiry/OIDC,
+disallow wrong origins/admin requests and test cleanup before a physical purchase.
+Temporarily activate the existing two Google options ONLY under that session
+approval, then restore INACTIVE. Products/prices are currently correct and inactive.
+No USB-authorised Android device is connected; actual installed-v31 acceptance
+is unverified. Connect the existing Play-installed device when guided, without
+installing a debug APK. UI observation is an alternative if USB is unavailable.
+
+Production phone/public-auth preparation — separate exact configuration approval
+Production is Pro; no paid upgrade is needed for leaked-password protection.
+Current provider is OFF with no Twilio fields set, expiry60/resend5/rate30.
+Prepare existing credentials for secure entry into the exact Production project
+only when authorised. Proposed settings: six digits, expiry300, resend60,
+auto-confirm false, no fixed OTP, existing TOTP retained, signup remains closed
+during setup and device testing. Enable leaked-password protection (currently
+OFF) and password reauthentication only after isolated recovery UX acceptance.
+No mass password resets, identity migration or forced account creation.
+CAPTCHA is currently OFF. Public Auth abuse limits must be tested at the direct
+Supabase endpoint as well as the application; browser-only rate limits are not
+a provider perimeter. Do not claim bot protection is enabled or invent a key.
+Current application limits send3/account/hour, verify6/account/hour, 60-second
+resend and global30 sends/hour. Preview provider independently limits6/hour.
+Current verified-number change path is support-assisted, not self-service.
+Existing login/recovery must keep the verified phone and all assets. A support
+replacement must require fresh identity proof, canonical uniqueness, audited
+change and session/recovery checks; never clear a claim merely on a chat request.
+
+SMS operating proposal, NOT approved or activated
+Recommend a separately authorised first-seven-day A$50 operating envelope, with
+auto-recharge OFF and no additional funding in this approval. Existing US$20
+balance is a funding fact, not a currency-equivalent A$20 budget. Alert at A$10,
+A$25 and A$40; stop new sends at the lower of A$50 inclusive total or the agreed
+remaining prepaid reserve. Recheck FX/tax/carrier fees before authority. Keep AU
+only and a short one-segment OTP template. Retain per-account cooldowns and a
+provider-wide cap; review onboarding demand before raising global30/hour.
+Before public enablement, demonstrate provider-usage monitoring plus an attended
+shutdown operator or automated hard-stop path; a spend alert is NOT a hard cap.
+Public budget enforcement has not been accepted. No unlimited SMS authority.
+Twilio observed rate US$0.0515/outbound segment; 20 segments US$1.03 base before
+other applicable charges. SMS test window remains the smaller A$5/six-attempt cap.
+https://www.twilio.com/en-us/sms/pricing/au
+https://supabase.com/docs/guides/auth/password-security
+
+Commercial inventory and rights
+No further inventory import. All 6,540 rows remain dormant; 891 lifetime copies
+and 909 custody records passed read-only reconciliation. Current serial/counter
+checks and wallet invariants pass. Candidate capacity supports all18 offers.
+Preserved conservative proposal: 6,055 IDs / 485 held; digest
+56f073b52c56b8dbe4d9fa57a3e225a7e47c1744430bece2c9b7aa3dfbd5c0a0.
+This remains a proposal, not the earlier conditional 6,065 business approval and
+not a paid-sales licence. The two additional historical holds are five Nikko
+Remigio and five Jack Todd definitions. Their identities are not erased or
+reapproved here. A roster/team change is not itself a revocation of an approved
+season identity. Do not revive a rolling72-hour pack-opening dependency.
+Final commercial permission must state the retained-season/source rule and
+resolve those ten definitions consistently with the founder's stable catalogue
+direction. If that changes the exact IDs, freeze/reconcile the revised digest
+before final activation. The 13 November current-roster observation is historical,
+not freshly verified. Current recorded season grants cover free beta/free Weekly;
+no commercial grant or commercial approval evidence is installed.
+
+Specific founder/professional evidence still required
+- Commercial source/material rights: identify the actual relied-upon source
+  licences/terms and their retained factual-data, attribution and paid-card scope;
+  confirm original generic art use and any player/club/publicity/trademark issues.
+  Public visibility and free-beta approval do not establish paid-use permission.
+  Preserve already approved identities; do not ask the founder to research names.
+- Qualified Australian review of paid random packs, non-cash credits and (only
+  if included) fixed-price resale, consumer remedies and classification. The app
+  is18+ Australia; no prizes/withdrawals/real scoring. Play approval alone is not
+  that legal opinion. Do not assert the business is gambling or licensed without
+  analysis of the actual product and jurisdiction.
+- Accountant: document the GST tax point for purchased credits versus redemption,
+  treatment of Google fees/refunds, marketplace fee treatment if enabled, and the
+  buyer invoice/adjustment-note arrangement. Preserve GST ACCEPTED and payout bank
+  verified Primary. Neither needs repeating. TEST orders cannot prove cash tax
+  calculation or settlement; unknown provider tax remains unknown, not zero.
+  The existing 16 local native-Postgres billing scenarios already cover cumulative
+  refunds, fee/credit separation, holds and balanced ledgers; no reason to repeat
+  them merely because the bank attestation changed.
+https://www.ato.gov.au/law/view/document?docid=GST/GSTR20035/NAT/ATO/00001
+
+Policies and Play
+v31/1.30 and phone Data Safety are ready to publish in submission3 (10 changes).
+Managed publishing ON; AU only,18+. No further Google review currently pending.
+Phone is declared collected/shared, required and not ephemeral. Existing published
+privacy mentions Twilio and overseas processing. Do not request phone-policy
+approval again. COMMERCIAL_WORDING_PROPOSAL.txt reproduces the already prepared
+nine exact changes, and current source matches all nine original preconditions.
+Commercial wording/effective consent version still needs final approval and
+verified application deployment. Marketplace status must match its gate.
+Final enabled behaviour must still match Play declarations; do not submit an
+unrelated change. No native change or v32 requirement has been established.
+Google requires random-item odds close to purchase: existing catalogue and review
+UI contain the correct figures; actual installed-device visibility remains part
+of acceptance. A$49/4900 does not alone fund Premium9 costing5000: disclose this,
+never silently alter approved prices. Standard9 costs700; Premium9 costs5000.
+https://support.google.com/googleplay/android-developer/answer/18265346
+
+Marketplace decision is distinct
+Local transaction/race/fee/refund/blocking/emergency tests already exist. Genuine
+two-party hosted acceptance is NOT complete. Of the two original QA members,
+one is held, and the current Google TEST runtime admits one member. A second
+number alone does not make the held account eligible. Prepare separately reviewed
+admission for a second unblocked tester if marketplace inclusion is selected;
+never waive the preserved hold to pass. This gate does not remove the mandatory
+paid credits and paid packs from the first public release. Swaps/offers remain OFF.
