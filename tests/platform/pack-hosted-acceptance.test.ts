@@ -150,7 +150,7 @@ test("acceptance rewrites identifiers, never bound values or JSON", () => {
 });
 
 test("only pack surfaces and static assets are exposed", () => {
-  for (const path of ["/api/test-wallet", "/api/weekly-core"])
+  for (const path of ["/api/test-wallet"])
     assert.equal(packAcceptancePathAllowed(path, "POST"), true);
   for (const path of [
     "/api/auth",
@@ -158,9 +158,11 @@ test("only pack surfaces and static assets are exposed", () => {
     "/admin",
     "/fantasy/market",
     "/api/phone",
+    "/api/weekly-core",
+    "/api/fantasy/collection",
     "/app/signup",
   ])
     assert.equal(packAcceptancePathAllowed(path, "POST"), false);
-  assert.equal(packAcceptancePathAllowed("/fantasy/cards", "GET"), true);
+  assert.equal(packAcceptancePathAllowed("/fantasy/cards", "GET"), false);
   assert.equal(packAcceptancePathAllowed("/fantasy/cards", "POST"), false);
 });

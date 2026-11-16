@@ -1,0 +1,32 @@
+DOCKED — REDUCED HOSTED PREREQUISITE COMMANDS
+No Production actions. Do not infer approval from this runbook.
+
+1. Verify current manifest/operator/helper/payload bytes:
+   node node_modules/tsx/dist/cli.mjs scripts/batch1-preview-operator.ts --pack-only
+2. Read-only prerequisites and project protection:
+   node node_modules/tsx/dist/cli.mjs scripts/batch1-preview-operator-preflight.ts
+   node scripts/batch1-hosted-stage.mjs inspect --pack-only
+3. Only after explicit current exact-package approval, record its real timestamp
+   and hash in private-data/batch1-beta-alignment-20261116/preview-approval.json
+   with explicitFounderApproval=true. Apply exactly once:
+   node node_modules/tsx/dist/cli.mjs scripts/batch1-preview-operator.ts --pack-only --apply-approved
+   Inspect any partial operation before retrying. Never use a withdrawn hash.
+4. Refresh the two existing synthetic accounts' genuine Auth/MFA sessions:
+   node node_modules/tsx/dist/cli.mjs scripts/batch1-preview-auth.ts --synthetic-preview-only
+5. Commit verified source, then use only existing protected Preview:
+   node scripts/batch1-hosted-stage.mjs prepare --pack-only
+   node scripts/batch1-hosted-stage.mjs stage --pack-only
+   node scripts/batch1-hosted-stage.mjs verify --pack-only
+6. Actual HTTP: twenty unique purchases including all eighteen offers, duplicate
+   concurrency and interruption. Strict maximum twenty-four across the window.
+   node node_modules/tsx/dist/cli.mjs scripts/batch1-hosted-http.ts --pack-only --approved-synthetic-window
+   The read-only observer keeps the Preview operator credential local; the web
+   deployment contains only the restricted runtime credential and publishable key.
+   Partial requests are recorded before transmission. Reconcile rather than restart.
+7. Inspect all actual results, ledger/counter consistency, timing, denials and closed
+   gates. Record small-fixture limits. Do not claim hosted or native results early.
+   Retire only this temporary window/deployment and task-owned schemas/roles after
+   retaining evidence. Creator admin permits scoped cleanup; runtime cannot SET ROLE.
+8. Then freeze the revised Production application/three-migration package and request
+   its separate explicit approval. Perform fresh backup/restore/drift and protected
+   staging under that approval. Run PRODUCTION_BETA_ACCEPTANCE.txt after postflight.

@@ -10,8 +10,12 @@ import {
   packAcceptanceDisabledFlags,
   packAcceptanceTarget as target,
 } from "../src/core/pack-hosted-acceptance.mjs";
-const priv = path.resolve("private-data/batch1-hosted-20261116"),
-  docs = "docs/qa/batch1-hosted-20261116",
+assert(
+  process.argv.includes("--pack-only"),
+  "Use the reduced pack-only prerequisite",
+);
+const priv = path.resolve("private-data/batch1-beta-alignment-20261116"),
+  docs = "docs/qa/batch1-beta-alignment-20261116",
   source = path.join(priv, "hosted-source");
 const mode = process.argv[2];
 assert(["inspect", "prepare", "stage", "verify"].includes(mode));
@@ -169,7 +173,7 @@ async function main() {
         DOCKED_TEST_MARKET_READ_ONLY: "true",
         DOCKED_SPORTS_TEST_COMMERCE: "true",
         DOCKED_SPORTS_PRIVATE_BETA: "true",
-        DOCKED_WEEKLY_CORE_ENABLED: "true",
+        DOCKED_WEEKLY_CORE_ENABLED: "false",
         APP_ENV: "preview",
         SUPABASE_ENV: "preview",
         DOCKED_RELEASE_CHANNEL: "beta",

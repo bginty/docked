@@ -3,17 +3,24 @@ import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import {
+  acceptanceDocs,
+  acceptancePrivate,
+} from "./lib/batch1-acceptance-profile";
+import {
   packAcceptanceSchemas,
   packAcceptanceStatement,
 } from "../src/server/pack-acceptance-sql";
-const dir = "private-data/batch1-hosted-20261116",
-  out = "docs/qa/batch1-hosted-20261116";
+const dir = acceptancePrivate,
+  out = acceptanceDocs;
 const closure = JSON.parse(
   readFileSync(out + "/dependency-closure.json", "utf8"),
 );
 const selected = new Set(closure.objects);
 const tables = JSON.parse(
-  readFileSync(out + "/production-readonly.json", "utf8"),
+  readFileSync(
+    "docs/qa/batch1-hosted-20261116/production-readonly.json",
+    "utf8",
+  ),
 ).tables;
 const functions = JSON.parse(
   readFileSync(
@@ -67,7 +74,11 @@ for (const f of functions) {
 // Auth tables are read only through fixed-member filtered views. These expose no
 // other Preview accounts, sessions or MFA factors to the namespace owner/runtime.
 let sql = `create role ${owner} nologin nosuperuser nocreatedb nocreaterole noinherit nobypassrls;
-alter role ${role} nosuperuser nocreatedb nocreaterole noinherit nobypassrls connection limit 12;
+grant ${owner} to current_user with inherit true,set true;
+${names.map((s) => `grant usage,create on schema ${s} to ${owner};`).join("\n")}
+grant create on schema b1_acceptance to ${owner};
+do $attributes$ begin if not exists(select 1 from pg_roles where rolname='${role}' and not rolsuper and not rolcreatedb and not rolcreaterole and not rolinherit and not rolbypassrls) then raise exception 'Restricted runtime role attributes required';end if;end $attributes$;
+alter role ${role} connection limit 12;
 alter role ${role} set statement_timeout='25s'; alter role ${role} set idle_in_transaction_session_timeout='15s';
 create table b1_acceptance.window(id boolean primary key default true check(id), starts timestamptz not null, expires timestamptz not null, check(expires>starts and expires-starts<=interval '24 hours'));
 insert into b1_acceptance.window values(true,now(),now()+interval '24 hours');
@@ -88,8 +99,10 @@ sql += `do $do$ declare r record;begin
  execute format('alter %s %I.%I owner to ${owner}',case r.relkind when 'v' then 'view' when 'S' then 'sequence' else 'table' end,r.nspname,r.relname);end loop;
  for r in select p.oid::regprocedure signature from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname=any(array[${names.map((s) => `'${s}'`).join(",")}]) and p.prokind='f' loop execute format('alter function %s owner to ${owner}',r.signature);end loop;
 end $do$;
-${names.map((s) => `alter schema ${s} owner to ${owner}; grant usage on schema ${s} to ${role};`).join("\n")}
+${names.map((s) => `grant usage on schema ${s} to ${role};`).join("\n")}
 ${grants.join("\n")}
+-- Local operator reconciliation only; these grants never reach the web runtime.
+grant select on b1_credits_sandbox.state,b1_beta_packs.issued,b1_commercial_billing.definitions to current_user;
 `;
 sql += `create function b1_acceptance.require_session() returns trigger language plpgsql security definer set search_path='' as $guard$
 begin
@@ -106,7 +119,7 @@ end $guard$;
 revoke all on function b1_acceptance.require_session() from public,anon,authenticated,service_role;
 alter function b1_acceptance.require_session() owner to ${owner};
 create trigger acceptance_session before update on b1_credits_sandbox.state for each row execute function b1_acceptance.require_session();
-create trigger acceptance_session before insert on b1_beta_fantasy.cards for each row execute function b1_acceptance.require_session();
+${selected.has("beta_fantasy.cards") ? "create trigger acceptance_session before insert on b1_beta_fantasy.cards for each row execute function b1_acceptance.require_session();" : ""}
 create trigger acceptance_session before insert or update on b1_sports_feed.sport_sandbox_inventory for each row execute function b1_acceptance.require_session();
 `;
 writeFileSync(dir + "/namespace-permissions.sql", sql);

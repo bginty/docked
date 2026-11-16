@@ -1,6 +1,6 @@
 /** Generated fiction only; no Production rows, names, accounts or entitlement data. */
 import assert from "node:assert/strict";
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { initialMemberTestCredits } from "../src/core/member-test-wallet";
 import {
@@ -15,7 +15,9 @@ import {
   rarityRule,
 } from "../src/core/card-rarity";
 import { fixtureSports } from "../src/core/fixture-sports";
-const dir = "private-data/batch1-hosted-20261116";
+import { acceptancePrivate, packOnly } from "./lib/batch1-acceptance-profile";
+const dir = acceptancePrivate;
+mkdirSync(dir, { recursive: true });
 const hash = (v: string) => createHash("sha256").update(v).digest("hex");
 const uuid = (key: string) => {
   const h = hash("DOCKED_SYNTHETIC_BATCH1_" + key);
@@ -58,7 +60,7 @@ const players: EconomyPlayer[] = [],
   identities: any[] = [],
   definitions: any[] = [];
 for (const sport of ["nfl", "afl", "nrl"] as const)
-  for (let i = 0; i < 436; i++) {
+  for (let i = 0; i < (packOnly ? 36 : 436); i++) {
     const id = uuid(sport + i),
       q = "Q" + (99000000 + i),
       legacy =
@@ -128,7 +130,7 @@ for (const sport of ["nfl", "afl", "nrl"] as const)
   }
 // Match Production's player-map cardinality without adding eligible identities.
 // These fictional archive players are deliberately absent from season members.
-for (let i = players.length; i < 2479; i++)
+for (let i = players.length; i < (packOnly ? players.length : 2479); i++)
   players.push({
     id: "batch1-synthetic-archive-" + i,
     sport: "nfl",
@@ -154,7 +156,7 @@ state.economy.fixtureTestAllocation = {
   nrl: { enabled: true, scope: "isolated-fixtures-v1" },
 };
 for (const account of accounts)
-  for (let campaign = 0; campaign < 10; campaign++)
+  for (let campaign = 0; campaign < (packOnly ? 1 : 10); campaign++)
     state = executeCredits(
       state,
       { id: accounts[0].id, role: "reviewer", aal: "aal2" },
@@ -245,6 +247,20 @@ insert into b1_credits_sandbox.journal select j->>'id',j from b1_fixture,jsonb_a
 insert into b1_credits_sandbox.lines select j->>'id',(l.ordinality-1)::int,l.value->>'account',(l.value->>'credits')::bigint from b1_fixture,jsonb_array_elements(document->'state'->'journal')j cross join lateral jsonb_array_elements(j->'lines') with ordinality l;
 insert into b1_credits_sandbox.state select true,0,document->'state' from b1_fixture;
 `;
+if (packOnly) {
+  // Exclude reader-only fixtures, retaining issuance/security guard tables.
+  sql = sql
+    .split("\n")
+    .filter(
+      (line) =>
+        !/^insert into b1_(beta_private\.consent_events|beta_fantasy\.production_releases|sports_feed\.(weekly_core_control|weekly_sport_programmes|weekly_core_schedules|weekly_core_packs))\b/.test(
+          line,
+        ),
+    )
+    .join("\n");
+  // Both retained-source scopes are required by the unchanged catalogue guard,
+  // even though this hosted gate does not create/open Weekly Core entitlements.
+}
 writeFileSync(dir + "/fixtures.sql", sql);
 const localAuth =
   `-- LOCAL ONLY: simulated rows for SQL rehearsal. Hosted uses genuine Auth API accounts.\n` +

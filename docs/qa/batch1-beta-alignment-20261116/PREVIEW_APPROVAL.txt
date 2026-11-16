@@ -1,0 +1,55 @@
+DOCKED — MINIMUM HOSTED PACK PREREQUISITE
+
+Package SHA-256: 9b96284b5504fe2c12a027752af586e9d122d09270f3d4db658f34e0d80229d1
+Target: existing Supabase Preview bckkllmndoxzpzdqrevb.
+Application: existing protected docked-preview Vercel project.
+
+Separate approval requested for a 24-hour synthetic pack-only window.
+Replaces withdrawn 0a00bd9c..., 9fb07649... and f5f83aed... proposals. No Production deployment.
+
+Create 12 temporary namespaces containing 143 dependency tables and two access
+control tables. Keep the existing financial, ownership, source and supply guards.
+Nine collection/Weekly reader tables and their hosted routes are excluded.
+Two restricted roles: NOLOGIN owner; runtime with no privileged membership or
+BYPASSRLS; exactly the existing two synthetic accounts with genuine Auth/AAL2,
+filtered Auth views, maximum 24-hour expiry and protected deployment access.
+No existing Preview account, Phone setting or shared schema permission changes.
+Non-superuser setup is rehearsed: temporary object-owner CREATE/SET/INHERIT
+access ends before commit; creator administration remains only for scoped cleanup.
+The local operator retains SELECT on three synthetic reconciliation tables.
+These operator permissions never enter the web runtime.
+
+Small fictional fixture: 108 players, 540 definitions, zero starting limited
+cards and 100,000 nonredeemable synthetic credits per account. No customer rows.
+Source evidence is explicitly fictional, never a real source-rights assertion.
+20 planned unique purchases; hard operator allowance maximum 24 purchases
+(at most 216 synthetic cards). No automatic top-ups or provider transactions.
+HTTP: 18 offers, nine-card allocation, saved receipts, opening, duplicates,
+interruption, account/MFA denial and Auth/database timing. No load benchmark.
+Full UI, Android and real performance acceptance use the Production private beta
+AFTER its separately approved deployment and authorised tester participation.
+
+Rehearsed locally through actual pack handlers and all guard chains. Local Auth
+is simulated only in disconnected rehearsal; hosted Auth must be genuine.
+Existing Production-sized isolated evidence remains subject to fresh drift.
+Hosted results are still pending. No new paid infrastructure or new testing service.
+
+Apply once, atomically, after exact bytes, target, absence and permissions checks.
+On failure/interruption inspect actual state before retry; never duplicate setup.
+Recovery: stop the dedicated deployment, close its window/revoke its runtime
+LOGIN, terminate only its sessions and remove only its listed namespaces/roles
+once outside dependencies have been checked and non-secret evidence preserved.
+No public registration, SMS, paid credits, trading, prizes, withdrawals or Play
+publication. No Production data, customer cards, balances or runtime changes.
+
+Separate approval is required by your instruction for shared Preview changes.
+A later exact Production package will be requested only after hosted checks pass.
+
+private-data/batch1-beta-alignment-20261116/namespace-schema.sql
+  e2a40ff6d57ecb6adb64006d0cccb1cddee673f8f66cdafc6c73a81742f7a4f2
+private-data/batch1-beta-alignment-20261116/namespace-permissions.sql
+  4165bbb7abcc1f99ef0e5c85fe561c5f258f86dad73940689eddbb2e37271d81
+private-data/batch1-beta-alignment-20261116/fixtures.sql
+  2eb56d8b13ed2f5d2d46d18a4461fd00cc6cb409589c83050f92167f8ab1fabc
+Operator SHA-256: c49f9d5c7a20cd66345ea98faba940ba2f46c713ad2e871f4182089241502a90
+Helper hashes and frozen archive checksum: preview-package.json.

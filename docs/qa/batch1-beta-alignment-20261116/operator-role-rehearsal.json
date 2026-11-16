@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-16T07:10:52.288Z",
+  "localOnly": true,
+  "managedOperatorPrivileges": true,
+  "rows": [
+    {
+      "operatorSuperuser": "off"
+    },
+    {
+      "issued": 0,
+      "definitions": 540
+    },
+    {
+      "runtimeCanSetOwner": false,
+      "operatorCanSetOwner": false,
+      "ownerCanCreateSchema": false
+    }
+  ],
+  "transactionRolledBack": true,
+  "hostedWrites": 0,
+  "files": [
+    {
+      "name": "namespace-schema.sql",
+      "sha256": "e2a40ff6d57ecb6adb64006d0cccb1cddee673f8f66cdafc6c73a81742f7a4f2"
+    },
+    {
+      "name": "namespace-permissions.sql",
+      "sha256": "4165bbb7abcc1f99ef0e5c85fe561c5f258f86dad73940689eddbb2e37271d81"
+    },
+    {
+      "name": "fixtures.sql",
+      "sha256": "2eb56d8b13ed2f5d2d46d18a4461fd00cc6cb409589c83050f92167f8ab1fabc"
+    }
+  ]
+}

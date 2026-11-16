@@ -42,6 +42,7 @@ export const packAcceptanceDisabledFlags = Object.freeze([
   "PAID_PLANS_ENABLED",
   "PRO_ENTITLEMENTS_ENABLED",
   "DOCKED_BETA_TRADING",
+  "DOCKED_WEEKLY_CORE_ENABLED",
   "DOCKED_PRIVATE_OFFERS_LOCAL",
   "DOCKED_REDEMPTION_LOCAL",
   "AUTO_PUBLISH_DOCKED_EDGES",
@@ -156,23 +157,13 @@ export function packAcceptanceIdentity(env, user, now = Date.now()) {
     env.DOCKED_PACK_ACCEPTANCE_MEMBERS.split(",").includes(user.id)
   );
 }
-/** Only existing pack/collection surfaces and their static assets are exposed. */
+/** Hosted prerequisite is pack HTTP only. Full UI acceptance uses Production beta. */
 export function packAcceptancePathAllowed(path, method) {
   if (
     ["GET", "HEAD"].includes(method) &&
     (/^\/(?:_next|brand|images|fonts|cards)\//.test(path) ||
-      [
-        "/favicon.ico",
-        "/app/login",
-        "/app/mfa",
-        "/fantasy/cards",
-        "/fantasy/test-wallet",
-        "/api/fantasy/collection",
-      ].includes(path))
+      ["/favicon.ico", "/app/login", "/app/mfa"].includes(path))
   )
     return true;
-  return (
-    ["GET", "POST"].includes(method) &&
-    ["/api/test-wallet", "/api/weekly-core"].includes(path)
-  );
+  return ["GET", "POST"].includes(method) && path === "/api/test-wallet";
 }

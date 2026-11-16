@@ -40,7 +40,6 @@ import { AppShell } from "@/components/app-shell";
 import { FantasyScreen } from "@/components/fantasy-screen";
 
 import { packExperienceEnabled } from "@/core/pack-experience";
-import { assertPackHostedAcceptance } from "@/core/pack-hosted-acceptance.mjs";
 
 import { communityFeed, ownProfileIdentity } from "@/server/community-social";
 
@@ -142,11 +141,7 @@ export default async function FantasyPage({
       );
     }
   }
-  if (
-    !fantasyEnabled() &&
-    !publicCustomersEnabled() &&
-    !(tab === "cards" && assertPackHostedAcceptance(process.env))
-  )
+  if (!fantasyEnabled() && !publicCustomersEnabled())
     return (
       <div className="fantasy-gate">
         <StartupReady />
@@ -171,9 +166,7 @@ export default async function FantasyPage({
 
   if (
     tab === "cards" &&
-    (process.env.DOCKED_FRIENDS_BETA === "true" ||
-      assertPackHostedAcceptance(process.env) ||
-      commercialSurfaceEnabled())
+    (process.env.DOCKED_FRIENDS_BETA === "true" || commercialSurfaceEnabled())
   ) {
     try {
       const who = await requireIdentity();

@@ -1,0 +1,140 @@
+DOCKED — BATCH 1: ISOLATED SAFETY GATE, PRODUCTION BETA ACCEPTANCE
+16 November 2026. Supersedes the larger c7e0fb00 testing proposal.
+No Production deployment or shared Preview DDL performed under this review.
+
+1. DECISION
+The existing invite-only Production beta is the real website/Android acceptance
+environment. Preview is a short prerequisite for genuine hosted HTTP/Auth and safe
+failure testing. It is not a second product, permanent testing platform or a copy
+of all Production records. No new project, service or paid infrastructure is needed.
+
+The exact previous 154-table fixture is NOT necessary. The smaller rehearsed option
+has 143 dependency tables plus two access-control tables. A static dependency audit
+shows the state table and its unchanged triggers alone reach 137 tables; actual pack
+and Auth roots reach 143. Counts include financial/reservation/ownership guard
+dependencies even when those features are disabled. Example:
+beta_packs.capture -> commercial_billing.cards -> lineup_transfer_guard ->
+card_entry_reserved -> beta_fantasy.competitions -> prize-template dependencies.
+Those dependencies do not enable prizes or scoring. Removing those checks/stubbing
+functions to make the count look smaller would not be equivalent verification.
+
+145 is the smallest package actually rehearsed here, not a proof of the smallest
+possible SQL graph. Further splitting legacy guard functions or reusing mixed-age
+shared Preview objects would add a schema/security refactor to Batch 1. It is not
+the shortest safe route. All namespace changes are disposable and isolated from
+existing Preview accounts, Phone configuration and data.
+
+What was removed:
+- Nine collection/Weekly-reader tables and their hosted entrypoints.
+- Preview-only collection/Weekly application context changes from c7e0fb00.
+- Hosted UI clone, 900-card workload preconditioning and the large HTTP benchmark.
+- The request to create 2,479 fictional players/6,540 definitions for hosted tests.
+What remains:
+- 108 fictional players, 540 definitions, two existing synthetic Auth accounts.
+- 100,000 nonredeemable fixture credits per synthetic account, no top-ups.
+- Twenty planned unique purchases, maximum allowance 24; original guards intact.
+- Expiring restricted runtime/NOLOGIN owner, exact Preview target, MFA and allowlist.
+- Pack HTTP only; other app surfaces are not exposed by this acceptance mode.
+In the post-rehearsal fixture, 100 of the 145 tables are empty. No customer rows.
+Frozen payload reduced from 669,899 to 137,416 bytes (approximately 80% smaller).
+
+2. MINIMUM SAFE PRE-DEPLOYMENT GATE
+Already verified:
+- Existing Production-sized isolated migration/integrity/latency evidence retained.
+  All three original migration files are unchanged; seven output function hashes
+  were checked. The schema-only package contains the actual guards, not stubs.
+- Smaller fixture: all 18 Standard/Premium 1/3/9-card NFL/AFL/NRL offers, exact card
+  counts, one debit, saved receipts, opening and cross-account denial passed locally.
+- Eight duplicate requests: one debit and one nine-card allocation.
+- Naturally expired synthetic rights: new issuance denied, issued receipt/reveal
+  still works, no lost balance/card writes. Twelve MFA/isolation/expiry checks pass.
+- Genuine password/TOTP AAL2 previously verified on the existing synthetic accounts.
+- Build, TypeScript, lint and 18 affected platform checks passed. Managed-operator
+  setup also passed without superuser privileges in a transaction that rolled back.
+  Read-only hosted metadata confirmed the actual operator's required permissions.
+  Setup-only CREATE/SET/INHERIT access ends before commit; role-creator admin is
+  retained for scoped cleanup. Three synthetic reconciliation tables are readable
+  only by the local operator; no additional web-runtime grants were introduced.
+- Historical Weekly Core freshness, four-card entitlement/retry and collection
+  evidence is retained. Those reader functions are not being changed by this fix.
+
+Still mandatory before Production approval:
+- Genuine hosted HTTP against the restricted isolated role using real Preview Auth.
+- All 18 offers, one-debit/exact-allocation reconciliation, replay, opening, wrong
+  account/anonymous denial, concurrent same-request retry and interrupted response.
+- Verify deployment protection, role separation, expiry, real session/MFA checks,
+  no Production credentials, no provider keys, and all public/commercial gates off.
+- Record actual HTTP/Auth/database timing and cold/first-observed versus warm
+  evidence. Small-fixture timings are a connectivity/correctness signal, not proof
+  of customer-scale p95 improvement. Do not claim a cold start without evidence.
+- Any unexplained integrity failure blocks release. Do not relax guards to pass.
+
+After separate exact Production approval, mandatory fresh prerequisites remain:
+new encrypted backup <=60 minutes old, verified isolated restore, drift preflight
+<=10 minutes old, all current assets/runtime settings/ACL/RLS preserved, migration
+predecessor/output hashes, read-only protected Production-compatible staging and
+reviewed conditional recovery. Old card/custody counts are never reset targets.
+If data/dependencies have materially changed, rerun the affected isolated checks.
+
+3. TEST IN THE EXISTING PRODUCTION BETA AFTER DEPLOYMENT
+Use actual allowlisted testers and their existing approved TEST-credit balances.
+Their current accounts, access and private-beta controls continue unchanged.
+Cover Standard/Premium nine-card purchases across NFL/AFL/NRL, confirmations,
+receipt recovery, animations, collection/ownership, reconnect/reload, and v31.
+Test normal account/phone recovery UI without triggering unauthorised SMS.
+No invented sessions, fake Production identifiers, real-money purchase, new credit
+grant, unrelated customer's asset access, bulk mint or forced supply exhaustion.
+
+Use the existing test tools/browser and existing application Server-Timing/logs.
+Record authenticated HTTP latency separately from end-to-end mobile UI time.
+Report p50/p95 WITH sample counts, sport/offer, network, device and first/warm label.
+Keep error/recovery samples visible. Never treat a few purchases as a reliable
+load-capacity estimate. Use subsequent legitimate beta purchases for a larger
+distribution rather than creating permanent cards just to increase sample size.
+See PRODUCTION_BETA_ACCEPTANCE.txt for the bounded founder-guided first session.
+
+Keep destructive/adversarial tests isolated: source/rights mutation, forced supply
+exhaustion, schema/RLS changes, injected DB/provider faults, stress bursts, rollback
+rehearsal and concurrency beyond one user's intended purchase. In Production,
+reconnect/duplicate verification reuses that user's SAME saved request only.
+Do not replay all migration tests against live customers or reset live counters.
+
+4. FASTEST SAFE ROUTE
+A. Approve/apply the exact reduced temporary Preview package, once.
+B. Deploy the committed candidate to the existing protected Preview; run the short
+   genuine HTTP/Auth safety gate. No new hosted framework or load environment.
+C. Freeze the final application source and unchanged three-migration package;
+   compare it against the previous review and request separate Production approval.
+D. Under that approval, fresh backup/restore/drift, atomic migrations, protected
+   Production-target stage, read-only smoke, promotion and asset/runtime postflight.
+E. Founder-guided acceptance in the existing Production beta and installed v31;
+   measure the actual experience. Keep public/commercial launch controls closed.
+
+5. APPROVALS AND ACCESS
+Old Preview packages f5f83aed..., 9fb07649... and 0a00bd9c... are withdrawn. The last
+was corrected before execution because managed Postgres lacks superuser powers.
+The operator refuses
+the old large-profile invocation. PREVIEW_APPROVAL.txt contains the current exact
+24-hour package. It is separate because the founder requires approval for shared
+Preview changes. The original Production approval cannot cover modified source.
+
+Vercel authentication and existing protected project inspection now succeed; do not
+ask the founder to sign in again while this access remains valid. No credentials
+need to be shared in chat. No new card/business/credits/vault/email approval needed.
+
+No revised Production deployment approval is requested before hosted evidence
+exists. Founder/tester participation is needed later for their own authenticated
+device session and MFA, not another generic business-rule confirmation.
+
+6. REMAINING WORK AND LIMITS
+Estimate after Preview approval: 1–3 engineering hours for the smaller hosted gate,
+findings (if any) and exact Production package. Controlled deployment/verification
+typically adds 1–2 hours after its separate approval. Allow 30–60 minutes of tester
+participation for the initial real browser/Android session; sample accumulation may
+take longer. These are estimates, not a guaranteed release time.
+
+Production p50/p95 remains UNMEASURED for this candidate. Hosted gate also remains
+pending. No deployment readiness or real Android pass is claimed from local tests.
+Public launch stays NO-GO; registration, SMS, paid credits, sales, trading, prizes,
+withdrawals and Play publication remain excluded. NBA hidden; six competitions
+disabled Practice. Batch 2 has not started.

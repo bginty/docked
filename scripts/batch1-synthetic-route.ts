@@ -11,8 +11,13 @@ import {
   packAcceptanceTarget,
 } from "../src/core/pack-hosted-acceptance.mjs";
 import { wallet } from "../src/core/credits-sandbox";
+import {
+  acceptanceDocs,
+  acceptancePrivate,
+  packOnly,
+} from "./lib/batch1-acceptance-profile";
 const fixture = JSON.parse(
-  readFileSync("private-data/batch1-hosted-20261116/fixtures.json", "utf8"),
+  readFileSync(acceptancePrivate + "/fixtures.json", "utf8"),
 );
 const ref = packAcceptanceTarget.projectRef;
 Object.assign(
@@ -56,6 +61,10 @@ const auth = `import {ctx} from 'synthetic-context';export const requireIdentity
 const out = resolve("tmp/batch1/synthetic-route.cjs");
 mkdirSync(resolve("tmp/batch1"), { recursive: true });
 async function main() {
+  assert(
+    !(packOnly && process.argv.includes("--readers")),
+    "Pack-only hosted profile excludes readers; retain existing local reader evidence",
+  );
   await build({
     stdin: {
       contents:
@@ -222,7 +231,7 @@ async function main() {
         9,
       );
       writeFileSync(
-        "docs/qa/batch1-hosted-20261116/synthetic-adversarial-rehearsal.json",
+        acceptanceDocs + "/synthetic-adversarial-rehearsal.json",
         JSON.stringify(
           {
             at: new Date().toISOString(),
@@ -428,7 +437,7 @@ async function main() {
     );
     assert.equal(after.lifetime, after.allocations);
     writeFileSync(
-      "docs/qa/batch1-hosted-20261116/synthetic-route-rehearsal.json",
+      acceptanceDocs + "/synthetic-route-rehearsal.json",
       JSON.stringify(
         {
           at: new Date().toISOString(),

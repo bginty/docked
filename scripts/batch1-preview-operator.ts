@@ -3,14 +3,25 @@ import assert from "node:assert/strict";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { createHash, randomBytes } from "node:crypto";
 import postgres from "postgres";
-const dir = "docs/qa/batch1-hosted-20261116",
-  priv = "private-data/batch1-hosted-20261116";
+import {
+  acceptanceDocs,
+  acceptancePrivate,
+  packOnly,
+} from "./lib/batch1-acceptance-profile";
+assert(
+  packOnly,
+  "The larger Preview proposal is withdrawn; use reviewed --pack-only package",
+);
+const dir = acceptanceDocs,
+  priv = acceptancePrivate;
 const hash = (b: string | Buffer) =>
   createHash("sha256").update(b).digest("hex");
 const manifest = JSON.parse(
   readFileSync(dir + "/preview-package.json", "utf8"),
 );
 assert.equal(manifest.projectRef, "bckkllmndoxzpzdqrevb");
+for (const f of manifest.operatorDependencies)
+  assert.equal(hash(readFileSync(f.path)), f.sha256, f.path);
 const bytes = manifest.files.map((f: any) => {
   const b = readFileSync(f.path);
   assert.equal(hash(b), f.sha256, f.path);
@@ -122,7 +133,20 @@ async function main() {
       );
       const [counts] =
         await tx`select (select count(*)::int from b1_commercial_billing.definitions) definitions,(select count(*)::int from b1_beta_packs.issued) issued,(select count(*)::int from b1_acceptance.members) accounts`;
-      assert.deepEqual(counts, { definitions: 6540, issued: 0, accounts: 2 });
+      assert.deepEqual(counts, {
+        definitions: manifest.syntheticDefinitions,
+        issued: 0,
+        accounts: 2,
+      });
+      for (const schema of manifest.schemas) {
+        assert(/^b1_[a-z_]+$/.test(schema));
+        await tx.unsafe(
+          `revoke create on schema ${schema} from docked_pack_acceptance_owner`,
+        );
+      }
+      await tx.unsafe(
+        "grant docked_pack_acceptance_owner to current_user with inherit false,set false",
+      );
       return { counts, unchangedExistingSchemaAcl: true };
     });
     writeFileSync(

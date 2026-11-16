@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-16T06:42:57.781Z",
+  "sourceCommit": "084f0e3e86fdc64aec9a9a043ffc3a1c524706eb",
+  "threeOriginalMigrationsVerified": true,
+  "sevenFinalFunctionsVerified": true,
+  "schemas": [
+    "b1_beta_fantasy",
+    "b1_beta_packs",
+    "b1_beta_private",
+    "b1_beta_public",
+    "b1_commercial_billing",
+    "b1_credits_sandbox",
+    "b1_nfl_roster",
+    "b1_private",
+    "b1_public_gameplay",
+    "b1_season_catalogue",
+    "b1_sports_feed"
+  ],
+  "objects": 1208,
+  "tables": 143,
+  "functions": 180,
+  "sha256": "e2a40ff6d57ecb6adb64006d0cccb1cddee673f8f66cdafc6c73a81742f7a4f2",
+  "customerRowsCopied": 0,
+  "persistentPreviewChanges": 0,
+  "permissionsComplete": false,
+  "hostedAcceptance": false
+}

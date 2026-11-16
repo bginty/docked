@@ -7,8 +7,14 @@ import { randomUUID } from "node:crypto";
 import { createServerClient } from "@supabase/ssr";
 import postgres from "postgres";
 import { wallet } from "../src/core/credits-sandbox";
-const dir = "docs/qa/batch1-hosted-20261116",
-  priv = "private-data/batch1-hosted-20261116/http";
+import {
+  acceptanceDocs,
+  acceptancePrivate,
+  packOnly,
+} from "./lib/batch1-acceptance-profile";
+assert(packOnly, "Use reduced pack-only hosted prerequisite");
+const dir = acceptanceDocs,
+  priv = acceptancePrivate + "/http";
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";
 const authDir =
@@ -55,7 +61,7 @@ async function main() {
     "At least one hour must remain",
   );
   const fixture = JSON.parse(
-    readFileSync("private-data/batch1-hosted-20261116/fixtures.json", "utf8"),
+    readFileSync(acceptancePrivate + "/fixtures.json", "utf8"),
   );
   const auth = JSON.parse(
     readFileSync(
@@ -72,19 +78,30 @@ async function main() {
   assert.equal(auth.projectRef, "bckkllmndoxzpzdqrevb");
   assert.equal(connection.projectRef, auth.projectRef);
   mkdirSync(priv, { recursive: true });
-  const mode = process.argv.includes("--precondition")
-    ? "precondition"
-    : "measure";
+  assert(
+    !process.argv.includes("--precondition"),
+    "Large hosted workload removed; measure real Production beta after approved deployment",
+  );
+  const mode = "minimum-hosted";
   const operationFile = priv + "/" + mode + "-operation.json";
   assert(
     !existsSync(operationFile),
     "Existing run record: reconcile it before any rerun",
   );
-  // Read-only observer uses the same isolated role, never an operator credential.
-  const observer = postgres(database.href, {
+  // This local observer is read-only and restricted to exact Preview metadata.
+  // Operator credentials never enter the web deployment or an HTTP request.
+  const auditDatabase = new URL(connection.databaseUrl);
+  assert.equal(
+    decodeURIComponent(auditDatabase.username),
+    "postgres." + runtime.projectRef,
+  );
+  assert.equal(auditDatabase.hostname, database.hostname);
+  assert.equal(auditDatabase.port, "5432");
+  const observer = postgres(auditDatabase.href, {
     max: 1,
     prepare: false,
     connect_timeout: 20,
+    connection: { options: "-c default_transaction_read_only=on" },
     ssl: {
       rejectUnauthorized: true,
       ca: readFileSync("certs/supabase-prod-ca-2021.crt", "utf8"),
@@ -108,9 +125,9 @@ async function main() {
   }
   try {
     const initial = await snapshot();
-    const maximumNewPurchases = mode === "precondition" ? 100 : 80;
+    const maximumNewPurchases = 20;
     assert(
-      initial.packs + maximumNewPurchases <= 200,
+      initial.packs + maximumNewPurchases <= 24,
       "Approved total purchase budget exhausted",
     );
     const operation = {
@@ -276,88 +293,8 @@ async function main() {
       request: randomUUID(),
       command: { kind: "open-pack", entitlement: request },
     });
-    if (mode === "precondition") {
-      for (let i = 0; i < 100; i++) {
-        const r = await send(
-          i % 2,
-          purchaseBody(offers[i % 6]),
-          "workload-preconditioning",
-        );
-        assert.equal(r.row.status, 200);
-        assert.equal(r.response.packUpdate.pack.cardCount, 9);
-        if (i % 10 === 9)
-          console.log(JSON.stringify({ syntheticPreconditioned: i + 1 }));
-      }
-      const final = await snapshot();
-      assert.equal(final.cards - initial.cards, 900);
-      assert.equal(final.packs - initial.packs, 100);
-      assert.equal(final.lifetime, final.allocations);
-      operation.state = "completed";
-      persistOperation();
-      writeFileSync(
-        dir + "/hosted-workload.json",
-        JSON.stringify(
-          {
-            at: new Date().toISOString(),
-            actualHttp: true,
-            syntheticOnly: true,
-            cards: final.cards,
-            packs: final.packs,
-            documentBytes: Buffer.byteLength(JSON.stringify(final.document)),
-            physicalAndroid: false,
-          },
-          null,
-          2,
-        ) + "\n",
-      );
-      return;
-    }
-    assert(
-      initial.cards >= 900,
-      "Complete HTTP preconditioning before representative measurements",
-    );
     const bought: { account: number; body: any; product: any }[] = [];
-    // 60 measured nine-card purchases, 18 offer checks and two adversarial purchases.
-    // There are no Google, refund-provider, SMS or Production endpoints here.
-    for (let i = 0; i < 60; i++) {
-      const p = offers[i % 6],
-        account = (Math.floor(i / 6) + i) % 2,
-        body = purchaseBody(p),
-        request = body.request;
-      bought.push({ account, body, product: p });
-      const purchase = await send(
-        account,
-        body,
-        i === 0 ? "first-request-confirmation" : "warm-confirmation",
-      );
-      assert.equal(purchase.row.status, 200);
-      assert.equal(purchase.response.packUpdate.pack.cardCount, 9);
-      const recovery = await send(account, body, "saved-result-recovery");
-      assert.equal(recovery.row.status, 200);
-      assert.deepEqual(
-        recovery.response.packUpdate,
-        purchase.response.packUpdate,
-      );
-      const opened = await send(
-        account,
-        {
-          request: randomUUID(),
-          command: { kind: "open-pack", entitlement: request },
-        },
-        "opening",
-      );
-      assert.equal(opened.row.status, 200);
-      assert.equal(
-        new Set(
-          opened.response.packUpdate.pack.receipt.cards.map((c: any) => c.id),
-        ).size,
-        9,
-      );
-      if (i % 6 === 5)
-        console.log(
-          JSON.stringify({ completedPurchases: i + 1, syntheticOnly: true }),
-        );
-    }
+    // Eighteen actual offers plus two adversarial purchases, not a load benchmark.
     for (const [i, p] of fixture.products.entries()) {
       const account = i % 2,
         body = purchaseBody(p);
@@ -365,6 +302,18 @@ async function main() {
       const purchase = await send(account, body, "offer-confirmation");
       assert.equal(purchase.row.status, 200);
       assert.equal(purchase.response.packUpdate.pack.cardCount, p.cards);
+      Object.assign(purchase.row, {
+        sport: p.sport,
+        packType: p.type,
+        cardCount: p.cards,
+        firstObserved: i === 0,
+      });
+      const replay = await send(account, body, "saved-result-recovery");
+      assert.equal(replay.row.status, 200);
+      assert.deepEqual(
+        replay.response.packUpdate,
+        purchase.response.packUpdate,
+      );
       const opened = await send(
         account,
         openBody(body.request),
@@ -460,7 +409,7 @@ async function main() {
           physicalAndroid: false,
           coldStartProven: false,
           scope:
-            "60 nine-card samples, all 18 offers, 8 duplicate requests, deliberate interruption and account isolation; first request is not proof of cold start",
+            "Minimum hosted gate: all 18 offers, 8 duplicates, interruption/recovery and account isolation. Small fictional fixture, not Production-scale performance. First request is not proof of cold start",
           integrity: {
             oneDebitPerPurchase: true,
             exactCardCounts: true,

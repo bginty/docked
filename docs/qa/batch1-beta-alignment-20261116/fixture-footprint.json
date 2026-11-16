@@ -1,0 +1,590 @@
+{
+  "at": "2026-11-16T06:51:49.808Z",
+  "localOnly": true,
+  "tables": 145,
+  "populated": 45,
+  "empty": 100,
+  "customerRows": 0,
+  "counts": [
+    {
+      "table": "b1_acceptance.members",
+      "rows": 2
+    },
+    {
+      "table": "b1_acceptance.window",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_fantasy.competitions",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_fantasy.editions",
+      "rows": 36
+    },
+    {
+      "table": "b1_beta_fantasy.entries",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_fantasy.lineup_configurations",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_fantasy.lineup_publication_policy",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_fantasy.members",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_fantasy.players",
+      "rows": 36
+    },
+    {
+      "table": "b1_beta_fantasy.prize_schedules",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_fantasy.round_drafts",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_fantasy.scoring_rules",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_fantasy.settings",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_fantasy.slot_locks",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_fantasy.sports",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_fantasy.tiers",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_fantasy.weekly_prize_templates",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_packs.control",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_packs.definitions",
+      "rows": 540
+    },
+    {
+      "table": "b1_beta_packs.events",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_packs.issued",
+      "rows": 9
+    },
+    {
+      "table": "b1_beta_packs.members",
+      "rows": 2
+    },
+    {
+      "table": "b1_beta_packs.products",
+      "rows": 18
+    },
+    {
+      "table": "b1_beta_private.admission_control",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_private.admission_events",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.admissions",
+      "rows": 2
+    },
+    {
+      "table": "b1_beta_private.analytics_events",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.audit_events",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.bookmaker_eligibility",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.candidate_decisions",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.community_edge_personal_notes",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.community_edges",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.community_quote_evidence",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.community_verification_rules",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.competitions",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.delegated_admin_admissions",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.designated_administrators",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_private.events",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.feature_flags",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.football_edge_policy_approvals",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.football_model_attempts",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.football_model_implementations",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.football_model_versions",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.football_sporting_inputs",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.football_sporting_sources",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.football_training_manifests",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.friends_control",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_private.friends_roster",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_private.internal_qa_entities",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.job_runs",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.market_data_config",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.market_data_event_mappings",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.market_data_payloads",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.market_reference_methodologies",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.market_references",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.markets",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.named_tester_exception",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.odds_snapshots",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.official_docked_publications",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.official_record_boundary",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.outbox",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.owner_gameplay_control",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_private.preview_tester_access",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.privacy_cases",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.privacy_events",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.provider_poll_runs",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.provider_trial_failure_reviews",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.provider_trial_permits",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.provider_trial_requests",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.provider_trials",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.rate_limits",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_private.region_policies",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.roles",
+      "rows": 1
+    },
+    {
+      "table": "b1_beta_private.social_blocks",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_comments",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_communities",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_discussion_follows",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_follows",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_handle_history",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_media",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_mutes",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_notification_jobs",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_notification_preferences",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_notifications",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_post_media",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_posts",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_profiles",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_reactions",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_reports",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.social_saved",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.source_health",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.sports",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.strategy_versions",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.tip_publications",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_private.two_person_control",
+      "rows": 0
+    },
+    {
+      "table": "b1_beta_public.profiles",
+      "rows": 2
+    },
+    {
+      "table": "b1_commercial_billing.accounts",
+      "rows": 0
+    },
+    {
+      "table": "b1_commercial_billing.cards",
+      "rows": 0
+    },
+    {
+      "table": "b1_commercial_billing.control",
+      "rows": 1
+    },
+    {
+      "table": "b1_commercial_billing.definitions",
+      "rows": 540
+    },
+    {
+      "table": "b1_commercial_billing.packs",
+      "rows": 0
+    },
+    {
+      "table": "b1_credits_sandbox.access",
+      "rows": 2
+    },
+    {
+      "table": "b1_credits_sandbox.card_definitions",
+      "rows": 9
+    },
+    {
+      "table": "b1_credits_sandbox.card_instances",
+      "rows": 9
+    },
+    {
+      "table": "b1_credits_sandbox.history",
+      "rows": 2
+    },
+    {
+      "table": "b1_credits_sandbox.journal",
+      "rows": 3
+    },
+    {
+      "table": "b1_credits_sandbox.lines",
+      "rows": 6
+    },
+    {
+      "table": "b1_credits_sandbox.listing_terms_audit",
+      "rows": 0
+    },
+    {
+      "table": "b1_credits_sandbox.nba_fixture_definitions",
+      "rows": 0
+    },
+    {
+      "table": "b1_credits_sandbox.nba_fixture_instances",
+      "rows": 0
+    },
+    {
+      "table": "b1_credits_sandbox.nba_fixture_players",
+      "rows": 72
+    },
+    {
+      "table": "b1_credits_sandbox.pack_configuration",
+      "rows": 18
+    },
+    {
+      "table": "b1_credits_sandbox.pack_failures",
+      "rows": 1
+    },
+    {
+      "table": "b1_credits_sandbox.pack_receipts",
+      "rows": 1
+    },
+    {
+      "table": "b1_credits_sandbox.permanent_players",
+      "rows": 36
+    },
+    {
+      "table": "b1_credits_sandbox.rarity_configuration",
+      "rows": 1
+    },
+    {
+      "table": "b1_credits_sandbox.sale_notification_outbox",
+      "rows": 0
+    },
+    {
+      "table": "b1_credits_sandbox.sale_push_deliveries",
+      "rows": 0
+    },
+    {
+      "table": "b1_credits_sandbox.state",
+      "rows": 1
+    },
+    {
+      "table": "b1_credits_sandbox.web_push_subscriptions",
+      "rows": 0
+    },
+    {
+      "table": "b1_nfl_roster.control",
+      "rows": 0
+    },
+    {
+      "table": "b1_nfl_roster.observations",
+      "rows": 0
+    },
+    {
+      "table": "b1_nfl_roster.retired_test_cards",
+      "rows": 0
+    },
+    {
+      "table": "b1_private.feature_flags",
+      "rows": 0
+    },
+    {
+      "table": "b1_public_gameplay.rounds",
+      "rows": 0
+    },
+    {
+      "table": "b1_public_gameplay.sports",
+      "rows": 0
+    },
+    {
+      "table": "b1_season_catalogue.decisions",
+      "rows": 0
+    },
+    {
+      "table": "b1_season_catalogue.members",
+      "rows": 216
+    },
+    {
+      "table": "b1_season_catalogue.rights",
+      "rows": 6
+    },
+    {
+      "table": "b1_sports_feed.australian_prize_rules",
+      "rows": 0
+    },
+    {
+      "table": "b1_sports_feed.nba_beta_access",
+      "rows": 2
+    },
+    {
+      "table": "b1_sports_feed.nba_beta_control",
+      "rows": 1
+    },
+    {
+      "table": "b1_sports_feed.nfl_control",
+      "rows": 1
+    },
+    {
+      "table": "b1_sports_feed.nfl_rounds",
+      "rows": 0
+    },
+    {
+      "table": "b1_sports_feed.postgame_cache",
+      "rows": 0
+    },
+    {
+      "table": "b1_sports_feed.private_beta_sport_audit",
+      "rows": 2
+    },
+    {
+      "table": "b1_sports_feed.private_beta_sports",
+      "rows": 2
+    },
+    {
+      "table": "b1_sports_feed.raw_revisions",
+      "rows": 0
+    },
+    {
+      "table": "b1_sports_feed.sport_sandbox_access",
+      "rows": 2
+    },
+    {
+      "table": "b1_sports_feed.sport_sandbox_inventory",
+      "rows": 0
+    },
+    {
+      "table": "b1_sports_feed.streams",
+      "rows": 0
+    },
+    {
+      "table": "b1_sports_feed.weekly_core_control",
+      "rows": 0
+    },
+    {
+      "table": "b1_sports_feed.weekly_core_packs",
+      "rows": 0
+    },
+    {
+      "table": "b1_sports_feed.weekly_core_schedules",
+      "rows": 0
+    },
+    {
+      "table": "b1_sports_feed.weekly_sport_programmes",
+      "rows": 0
+    }
+  ]
+}

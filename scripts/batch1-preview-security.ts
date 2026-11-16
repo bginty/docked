@@ -2,8 +2,12 @@
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
 import { syntheticDatabase } from "./lib/batch1-preview-local";
+import {
+  acceptanceDocs,
+  acceptancePrivate,
+} from "./lib/batch1-acceptance-profile";
 const fixtures = JSON.parse(
-  readFileSync("private-data/batch1-hosted-20261116/fixtures.json", "utf8"),
+  readFileSync(acceptancePrivate + "/fixtures.json", "utf8"),
 );
 const sql = syntheticDatabase(true),
   operator = syntheticDatabase();
@@ -72,7 +76,7 @@ async function main() {
       before.hash,
     );
     writeFileSync(
-      "docs/qa/batch1-hosted-20261116/synthetic-security-rehearsal.json",
+      acceptanceDocs + "/synthetic-security-rehearsal.json",
       JSON.stringify(
         {
           at: new Date().toISOString(),

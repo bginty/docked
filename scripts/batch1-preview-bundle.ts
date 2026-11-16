@@ -4,12 +4,16 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
+  acceptanceDocs,
+  acceptancePrivate,
+} from "./lib/batch1-acceptance-profile";
+import {
   packAcceptanceSchemas,
   packAcceptanceStatement,
 } from "../src/server/pack-acceptance-sql";
 const target = "docked-batch1-synthetic-20261116",
-  dir = "docs/qa/batch1-hosted-20261116";
-const privateDir = "private-data/batch1-hosted-20261116";
+  dir = acceptanceDocs;
+const privateDir = acceptancePrivate;
 const hash = (v: string | Buffer) =>
   createHash("sha256").update(v).digest("hex");
 const config = JSON.parse(
@@ -102,7 +106,10 @@ const closure = JSON.parse(
 );
 assert.deepEqual(closure.schemas, [...packAcceptanceSchemas].sort());
 const selected = new Set<string>(closure.objects);
-const source = readFileSync(privateDir + "/schema-only.sql", "utf8");
+const source = readFileSync(
+  "private-data/batch1-hosted-20261116/schema-only.sql",
+  "utf8",
+);
 const blocks = source
   .split(/(?=--\n-- Name: )/)
   .map((text) => {

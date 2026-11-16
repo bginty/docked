@@ -3,8 +3,9 @@ import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { packAcceptanceSchemas } from "../src/server/pack-acceptance-sql";
+import { acceptancePrivate } from "./lib/batch1-acceptance-profile";
 const target = "docked-batch1-synthetic-20261116",
-  dir = "private-data/batch1-hosted-20261116";
+  dir = acceptancePrivate;
 const config = JSON.parse(
   execFileSync("docker", ["inspect", target], { windowsHide: true }).toString(),
 )[0];
@@ -38,7 +39,11 @@ for (const f of [
   }
   q += bytes + "\n";
 }
-q += "alter role docked_pack_acceptance login;commit;";
+q += scopes
+  .map((s) => `revoke create on schema ${s} from docked_pack_acceptance_owner;`)
+  .join("\n");
+q +=
+  "grant docked_pack_acceptance_owner to current_user with inherit false,set false;alter role docked_pack_acceptance login;commit;";
 try {
   execFileSync(
     "docker",

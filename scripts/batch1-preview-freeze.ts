@@ -3,8 +3,15 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { gzipSync } from "node:zlib";
 import { packAcceptanceSchemas } from "../src/server/pack-acceptance-sql";
-const dir = "docs/qa/batch1-hosted-20261116",
-  priv = "private-data/batch1-hosted-20261116";
+import {
+  acceptanceDocs,
+  acceptancePrivate,
+  packOnly,
+} from "./lib/batch1-acceptance-profile";
+if (!packOnly)
+  throw Error("Larger Preview proposal withdrawn; freeze only --pack-only");
+const dir = acceptanceDocs,
+  priv = acceptancePrivate;
 const hash = (b: string | Buffer) =>
   createHash("sha256").update(b).digest("hex");
 const files = [
@@ -22,24 +29,30 @@ const archive = gzipSync(
 );
 writeFileSync(dir + "/preview-payloads.json.gz", archive);
 const manifest = {
-  version: 2,
+  version: 3,
   projectRef: "bckkllmndoxzpzdqrevb",
   vercelProject: "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
   schemas: ["b1_acceptance", ...packAcceptanceSchemas.map((s) => "b1_" + s)],
   roles: ["docked_pack_acceptance", "docked_pack_acceptance_owner"],
   runtimeHours: 24,
   syntheticAccounts: 2,
-  syntheticPlayers: 2479,
-  syntheticDefinitions: 6540,
+  syntheticPlayers: 108,
+  syntheticDefinitions: 540,
   initialSyntheticLimitedCopies: 0,
-  syntheticCreditsPerAccount: 1000000,
-  maxTestPurchases: 200,
+  syntheticCreditsPerAccount: 100000,
+  maxTestPurchases: 24,
   files,
   payloadArchive: {
     path: dir + "/preview-payloads.json.gz",
     sha256: hash(archive),
   },
   operatorSha256: hash(readFileSync("scripts/batch1-preview-operator.ts")),
+  operatorDependencies: [
+    {
+      path: "scripts/lib/batch1-acceptance-profile.ts",
+      sha256: hash(readFileSync("scripts/lib/batch1-acceptance-profile.ts")),
+    },
+  ],
   productionChanges: false,
   existingPreviewAccountsChanged: false,
   providerSettingsChanged: false,
@@ -49,7 +62,14 @@ writeFileSync(
   JSON.stringify(manifest, null, 2) + "\n",
 );
 const digest = hash(readFileSync(dir + "/preview-package.json"));
-const report = `DOCKED — DISPOSABLE PREVIEW DEPENDENCY APPROVAL\n\nPackage SHA-256: ${digest}\nTarget only: existing Supabase Preview bckkllmndoxzpzdqrevb.\nApplication target: protected docked-preview Vercel project ${manifest.vercelProject}.\n\nCreate 12 disposable b1_* namespaces, 152 dependency tables plus 2 acceptance-control\ntables, copied schema-only functions/views/constraints, and two dedicated roles.\nThe dependency closure follows the real pack, admission, receipt and Weekly Core\nfunctions; it does not replay Production migration history or copy customer rows.\nThe three original Batch 1 SQL files remain byte-for-byte unchanged. Their seven\nfinal functions were checked before namespace conversion in disconnected rehearsal.\nThe named California tester constant is replaced with an uninvited synthetic sentinel.\n\nRuntime role: LOGIN, no superuser, no BYPASSRLS, no role/database creation,\nNOINHERIT, no privileged membership, 12 connections, password valid 24 hours.\nOwner role: NOLOGIN, no privileged membership; owns only disposable namespaces.\n104 existing runtime grants are reproduced only within the new namespaces.\nNo grants to anon/authenticated/service_role. No existing schema ACL changes.\nAuth access uses fixed-member filtered views for the two newly created synthetic\naccounts. Identical claim-reader helpers are copied to the namespace so no shared\nAuth schema grants are needed. Write guards require a real active AAL2 session,\nverified factor, correct server metadata and a valid 24-hour window.\nNo customer Auth accounts, sessions, passwords or provider credentials are copied.\nThe isolated collection/Weekly reader checks Preview mode and its genuine project\nreference, with Production context empty; all account/consent checks remain.\nCollection and four-card Weekly Core/retry checks passed for both accounts in all\nthree sports using stale fictional source snapshots.\n\nSynthetic fixtures: 2,479 fictional players (1,308 eligible synthetic identities),\n6,540 synthetic definitions, zero initial limited copies, 1,000,000 nonredeemable\nfixture credits per account across ten separately capped 100,000-credit campaigns.\nAll fixture source evidence is explicitly fictional, never a real rights approval.\nAt most 200 synthetic purchases (at most 1,800 test cards); no external payments.\n\nRehearsal: all 18 NFL/AFL/NRL Standard/Premium 1/3/9-card offers purchased,\nopened and retried through the restricted role. One debit, the exact card count and\nunchanged cross-account denial verified. Twelve isolation/MFA/expiry checks passed.\nGenuine Preview password and TOTP authentication already passed for both accounts.\nThese local pack results are NOT hosted latency or physical Android acceptance.\n\nApplication: atomic creation after hashes, absence and target checks. If any\nprerequisite fails, transaction rolls back. If response is interrupted, inspect\nthe recorded operation and schemas before retrying; do not duplicate it.\nRecovery: stop the dedicated deployment, close the window/revoke runtime LOGIN,\nterminate only its connections, remove only listed disposable schemas and roles\nafter confirming no outside ownership/dependency. No shared schema rollback.\nNo changes to existing Preview accounts/Phone settings, Production, real balances,\nreal cards, public gates, Play or managed publishing. No new paid infrastructure.\n\nThis separate approval is required by your instruction to obtain approval before\nchanging persistent shared Preview infrastructure. It does not authorise Production.\n\nExact SQL hashes:\n${files.map((f) => f.path + "\n  " + f.sha256).join("\n")}\nOperator: scripts/batch1-preview-operator.ts\n  ${manifest.operatorSha256}\nReadable SQL is in the listed local files. The identical frozen payload is retained\nin preview-payloads.json.gz, with its checksum in preview-package.json.\n`;
+const report =
+  "DOCKED — MINIMUM HOSTED PACK PREREQUISITE\n\nPackage SHA-256: PACKAGE_DIGEST\nTarget: existing Supabase Preview bckkllmndoxzpzdqrevb.\nApplication: existing protected docked-preview Vercel project.\n\nSeparate approval requested for a 24-hour synthetic pack-only window.\nReplaces withdrawn 0a00bd9c..., 9fb07649... and f5f83aed... proposals. No Production deployment.\n\nCreate 12 temporary namespaces containing 143 dependency tables and two access\ncontrol tables. Keep the existing financial, ownership, source and supply guards.\nNine collection/Weekly reader tables and their hosted routes are excluded.\nTwo restricted roles: NOLOGIN owner; runtime with no privileged membership or\nBYPASSRLS; exactly the existing two synthetic accounts with genuine Auth/AAL2,\nfiltered Auth views, maximum 24-hour expiry and protected deployment access.\nNo existing Preview account, Phone setting or shared schema permission changes.\nNon-superuser setup is rehearsed: temporary object-owner CREATE/SET/INHERIT\naccess ends before commit; creator administration remains only for scoped cleanup.\nThe local operator retains SELECT on three synthetic reconciliation tables.\nThese operator permissions never enter the web runtime.\n\nSmall fictional fixture: 108 players, 540 definitions, zero starting limited\ncards and 100,000 nonredeemable synthetic credits per account. No customer rows.\nSource evidence is explicitly fictional, never a real source-rights assertion.\n20 planned unique purchases; hard operator allowance maximum 24 purchases\n(at most 216 synthetic cards). No automatic top-ups or provider transactions.\nHTTP: 18 offers, nine-card allocation, saved receipts, opening, duplicates,\ninterruption, account/MFA denial and Auth/database timing. No load benchmark.\nFull UI, Android and real performance acceptance use the Production private beta\nAFTER its separately approved deployment and authorised tester participation.\n\nRehearsed locally through actual pack handlers and all guard chains. Local Auth\nis simulated only in disconnected rehearsal; hosted Auth must be genuine.\nExisting Production-sized isolated evidence remains subject to fresh drift.\nHosted results are still pending. No new paid infrastructure or new testing service.\n\nApply once, atomically, after exact bytes, target, absence and permissions checks.\nOn failure/interruption inspect actual state before retry; never duplicate setup.\nRecovery: stop the dedicated deployment, close its window/revoke its runtime\nLOGIN, terminate only its sessions and remove only its listed namespaces/roles\nonce outside dependencies have been checked and non-secret evidence preserved.\nNo public registration, SMS, paid credits, trading, prizes, withdrawals or Play\npublication. No Production data, customer cards, balances or runtime changes.\n\nSeparate approval is required by your instruction for shared Preview changes.\nA later exact Production package will be requested only after hosted checks pass.\n\nSQL_HASHES\nOperator SHA-256: OPERATOR_DIGEST\nHelper hashes and frozen archive checksum: preview-package.json.\n"
+    .replace("PACKAGE_DIGEST", digest)
+    .replace(
+      "SQL_HASHES",
+      files.map((f) => f.path + "\n  " + f.sha256).join("\n"),
+    )
+    .replace("OPERATOR_DIGEST", manifest.operatorSha256);
 writeFileSync(dir + "/PREVIEW_APPROVAL.txt", report);
 console.log(
   JSON.stringify({ packageSha256: digest, archiveBytes: archive.length }),
