@@ -1,0 +1,83 @@
+DOCKED — BATCH 1 PRODUCTION APPROVAL REQUEST
+Approval requested; not yet granted. Proposed validity: 24 hours from explicit approval.
+
+Exact tested application source:
+76df44ba1adef012c5ec2119563cbc05ff9e3c0b
+
+Exact package SHA-256 (production-package.json):
+954e467e9e0a5a6e15db154eb03a055913823e067248470f556cf20f31092436
+
+Evidence/review commit (not a substitute application source):
+abfa206201fbd12e08c6c32a34d8a49d6afec0b3
+
+Requested authority
+Deploy this application and only these THREE unchanged SQL migrations to the
+existing Production, after the mandatory fresh prerequisites below:
+1. 20261115113306_batch_private_pack_issuance_validation.sql
+   2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1
+2. 20261115211545_batch1_pack_guard_batching.sql
+   3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6
+3. 20261115235000_batch1_persistence_subdocuments.sql
+   83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e
+
+Seven function bodies change; no new grants, roles, RLS/policies, table shape,
+inventory import, source-rights override or bulk customer-data update. Preserve
+all existing invited free-credit beta access, cards, balances and entitlements.
+Observed 6,540 definitions/891 limited cards/909 custody records are not reset
+targets. Reconcile and preserve legitimate later activity.
+
+Mandatory conditions
+- Verify this exact source/tree, 1,004 application file hashes, SQL hashes and
+  the package-bound review/evidence. Abort changed bytes or expired approval.
+- New authenticated encrypted backup <=60 minutes old; verified isolated restore.
+- New preflight <=10 minutes old; financial, custody, lifetime, receipt, security,
+  permissions and dependency checks. Abort unexplained material drift.
+- Capture and preserve the complete effective Production runtime values privately.
+  Preview acceptance mode must be OFF/absent. No Preview resources or credentials.
+- Atomic three-file SQL transaction; 3-second lock timeout, 60-second statement
+  timeout; verify all resulting hashes/security/protected data before COMMIT.
+- Protected Production-target staging, exact source/build/read-only checks, then
+  promotion only after every required check passes. Independent full postflight.
+- Allow up to two minutes of private-beta write interruption in a quiet window.
+
+Recovery
+Transaction failure rolls back all three files and their ledger entries.
+Before promotion, abandon a failed staging deployment. After promotion, use only
+the documented conditional app-only rollback to the freshly verified compatible
+12ccfd5879ae83f1bd62210ee16a3feb6907d9ef / dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy,
+retaining SQL optimisations. Never restore an old financial snapshot over later
+activity. If unsafe, stop affected writes and prepare reviewed forward recovery.
+
+Evidence and remaining acceptance
+Actual protected Preview: all 18 offers, 20 unique purchases, 96 fictional cards,
+nine-card integrity, eight concurrent duplicate requests, committed receipt replay
+and cross-account denial passed. Confirmation/recovery p95: 1.986s/0.875s.
+Temporary resources are removed; 438 existing Preview tables and security verified.
+No claim of Production-scale speed, physical Android or live payment/refund/SMS
+acceptance. Network interruption occurred before transmission; actual committed
+receipt replays passed separately. Anonymous POST safely denies with an existing
+generic503 classification. Full limits are in HOSTED_ACCEPTANCE.txt.
+
+After postflight, guide existing authorised testers through the bounded website
+and installed-v31 acceptance using their own accounts and existing TEST credits.
+No automatic purchases or grants. At most six tester-chosen nine-card purchases
+for initial sport/offer coverage, then observe ordinary beta activity for timings.
+
+Excluded
+Public registration, phone/SMS delivery, purchased credits, real-money purchases,
+commercial activation, marketplace trading, prizes, withdrawals, real scoring,
+inventory import, live-key changes, deletion schedules and Google Play publication.
+Keep NBA hidden, six competitions disabled Practice and managed publishing ON.
+No Batch 2. Public launch remains NO-GO.
+
+Review these exact package-bound files before execution:
+DEPLOYMENT_REVIEW.txt, EXECUTION.txt, PRODUCTION_BETA_ACCEPTANCE.txt,
+HOSTED_ACCEPTANCE.txt, application-comparison.json and production-package.json.
+Local verification: node scripts/batch1-hosted-release-package.mjs verify
+
+Suggested founder response:
+"Approve this exact Batch 1 Production package for 24 hours."
+
+Why a separate approval is required: the founder's existing exact-package rule
+excludes Production from Preview authority and does not permit the earlier
+084f0e3e/f0e49290 package approval to authorise modified application bytes.

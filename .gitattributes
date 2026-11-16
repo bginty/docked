@@ -74,3 +74,5 @@ docs/qa/batch1-beta-alignment-20261116/*.gz -text
 docs/qa/batch1-hosted-release-20261116/** text eol=lf
 scripts/batch1-hosted-release-package.mjs text eol=lf
 scripts/batch1-hosted-http.ts text eol=lf
+tests/platform/local-marketplace-acceptance.test.ts text eol=lf
+tests/platform/pack-hosted-acceptance.test.ts text eol=lf
