@@ -1,0 +1,90 @@
+DOCKED — BATCH 1 EXACT DEPLOYMENT APPROVAL REQUEST
+Prepared 16 November 2026. NOT APPROVED; no deployment has occurred.
+
+Reviewed application source:
+084f0e3e86fdc64aec9a9a043ffc3a1c524706eb
+
+Package: docs/qa/batch1-pack-phone-20261116/production-package.json
+SHA-256:
+f0e49290e7dff1f90306cbcd4a980588f57b13e2a20b2092790c342d6e5c40b5
+
+Requested authority, valid for 24 hours from explicit founder acceptance:
+Deploy only this application and the following three migrations, in order, after
+fresh backup/restore, drift checks and protected hosted acceptance. Promote only
+after the reviewed checks pass. No branch-head substitution or changed bytes.
+
+1. 20261115113306_batch_private_pack_issuance_validation.sql
+   2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1
+2. 20261115211545_batch1_pack_guard_batching.sql
+   3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6
+3. 20261115235000_batch1_persistence_subdocuments.sql
+   83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e
+
+This improves private-beta pack persistence, scoped saved-receipt recovery and
+phone timeout handling. It preserves complete history, guards, existing prices,
+rarity probabilities, sizes, consent, founder/Brenton access and free-credit beta.
+Exactly seven existing function bodies change; no table shape, grant, owner,
+RLS/policy, security mode, search path or scheduler change is authorised.
+
+Mandatory execution conditions:
+- Exact source/tree/files/package verified; approval unexpired.
+- New authenticated encrypted backup <=60 minutes old, verified isolated restore.
+- Production preflight <=10 minutes old; complete runtime settings preserved.
+- Reconcile legitimate later activity, never reset cards/custody to this census.
+- Three SQL files in one transaction: lock_timeout 3s, statement_timeout 60s.
+  Verify predecessor hashes and resulting permissions/functions before commit.
+- Protected hosted testing on an isolated database with no live provider keys,
+  including actual HTTP/Auth latency, scoped receipt isolation and v31 compatibility.
+  A protected unaliased application stage precedes Production alias promotion.
+- Abort unexplained drift, failed acceptance, changed bytes or protected invariants.
+- Allow up to two minutes of private-beta write interruption; do not kill customer
+  transactions. Observed uncontended isolated DDL was approximately 0.1 seconds.
+
+Read-only post-deployment checks:
+Independently verify source/deployment, login/denial, catalogue and existing own
+receipt recovery, financial/custody/supply reconciliation, every runtime setting
+and closed public/commercial gates. No test purchase, grant or mint is included.
+
+Recovery:
+Pre-commit failure rolls back the SQL transaction. Before promotion abandon a
+failed candidate. Conditional application-only rollback may return to the freshly
+verified prior Production deployment (currently 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef)
+after compatibility verification, retaining the compatible SQL optimisations.
+If an asset invariant fails, stop affected writes and prepare reviewed forward
+recovery. Never restore an old financial snapshot over legitimate later activity.
+
+Explicit exclusions:
+No public registration, SMS, purchased credits, marketplace/trading activation,
+new grant, automatic purchase, inventory import, NBA, prizes, withdrawals, real
+scoring, deletion schedule, live-key changes or Google Play/policy publication.
+All six competitions remain disabled Practice. Existing invited free-credit beta
+continues under its already-approved controls. Public launch remains NO-GO.
+
+Acceptance already completed in isolation:
+36 matched cases: confirmation p95 36.448s -> 4.753s; saved recovery 3.776s -> 0.329s.
+Nine-card fixed supplement: 36 cases p95 3.754s; pooled with all original 12,
+48 cases p95 3.771s. Original subgroup p95 was 5.500s; no samples were removed.
+24 committed duplicate purchases and 24 opens: one debit, one nine-card set.
+24-way purchase stress latency was 6.424-9.067s, separately reported.
+Clean Node 22 build/typecheck/lint and affected integrity/browser checks passed.
+Phone stall recovery visible within 20 seconds; no automatic SMS resend.
+Timing uses isolated savepoints and excludes durable COMMIT, hosted Auth and
+mobile Internet. Hosted and genuine installed Android acceptance are NOT claimed.
+
+Production census at 2026-11-16T01:08:47.478Z:
+Source 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef; 6,540 definitions;
+890 lifetime limited copies (888 legacy + 2 beta), 908 custody records.
+Financial and custody fingerprints unchanged. Implementation Production writes: 0.
+
+Full conditions/recovery: DEPLOYMENT_REVIEW.txt
+Results and limitations: IMPLEMENTATION_REPORT.txt and acceptance-summary.json
+Exact source/file manifest: production-package.json
+Local verification command: node scripts/batch1-package.mjs verify
+
+Suggested explicit founder reply:
+"Approve the exact Batch 1 package f0e49290e7dff1f90306cbcd4a980588f57b13e2a20b2092790c342d6e5c40b5
+from source 084f0e3e86fdc64aec9a9a043ffc3a1c524706eb for 24 hours,
+subject to the reviewed backup, drift, hosted acceptance and closed-gate conditions."
+
+This separate approval is required because the founder authorised implementation
+only and explicitly prohibited Production deployments/migrations in this task.
