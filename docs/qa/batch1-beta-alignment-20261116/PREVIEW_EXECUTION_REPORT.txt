@@ -1,0 +1,79 @@
+DOCKED — REDUCED PREVIEW EXECUTION, 16 NOVEMBER 2026
+
+Result: the single authorised 9b96284b... apply transaction rolled back before
+commit. No protected application was deployed and no synthetic purchase ran.
+Production was not connected to or changed. Public launch remains NO-GO.
+
+Approved source: 8103d3bd7f91a984b2a2537c088c6db2b941a495
+Attempted package SHA-256:
+9b96284b5504fe2c12a027752af586e9d122d09270f3d4db658f34e0d80229d1
+One apply attempt started at 2026-11-16T08:01:11.846Z.
+Explicit approval, fresh preflight and Vercel inspection are retained in
+execution-approval.json, execution-preflight.json, execution-vercel-readiness.json.
+
+What stopped the transaction
+The operator's aggregate existing-schema fingerprint differed after loading the
+approved fixture. That fixture creates a temporary table. PostgreSQL can create
+pg_temp_N and pg_toast_temp_N on a backend's first temporary-table use; the old
+fingerprint counted their addition as an existing-schema permission change.
+The prior preparation missed this case. The guard failed closed; it was not bypassed.
+
+Evidence and limits
+- after-attempt-preflight.json: zero task namespaces and zero task roles remain.
+- preview-state-before.json / preview-state-after-apply.json: all 438 original
+  application table counts and row hashes match. Other Auth users, original
+  table ACL/RLS and original function definitions/permissions also match.
+  Only hashes/counts were retained; no customer row bodies were exported.
+- temp-namespace-diagnosis.json: disconnected PostgreSQL reproduces the old
+  fingerprint mismatch with only the current backend's two temporary namespaces
+  added and every pre-existing namespace unchanged.
+- The failed hosted attempt recorded aggregate fingerprints, not before/after
+  namespace lists. The detailed temporary-namespace trace is local evidence.
+- The failed private operation record remains prepared, not applied. No test
+  Auth refresh, provider call, additional account or SMS was performed this turn.
+
+Narrow correction
+scripts/lib/batch1-preview-schema.ts now compares every pre-existing namespace's
+OID, name, owner and ACL. It requires all twelve approved new namespaces and
+accepts only the server-identified current backend's temporary namespace pair
+with empty ACLs and matching owner. Unexpected additions, deletion, renaming,
+ownership or ACL changes still abort the transaction.
+
+The operator invokes that check inside its original atomic transaction. Existing
+target, exact-byte, approval-age, absence, role and fixture checks remain intact.
+The runtime security model, SQL payloads, fictional fixture, HTTP test limits and
+application are unchanged from 8103d3bd. No shared Preview change is authorised
+by merely editing this report or generating the new package.
+
+Verification
+- Four focused unit tests pass, including existing ACL/owner/deletion/rename
+  failures and rejection of another backend's or unreviewed new namespaces.
+- operator-role-rehearsal.json: the exact three SQL payloads pass in a local
+  non-superuser transaction; 540 definitions, zero issued cards; runtime cannot
+  assume owner, operator SET/INHERIT disabled, owner schema CREATE revoked.
+  The revised namespace check accepts the actual session temporary pair while
+  preserving all 65 pre-existing namespaces. Rehearsal rolled back.
+- Existing local pack/guard/function evidence remains valid because application
+  and SQL bytes are unchanged. No hosted latency or physical Android claim.
+- temp-namespace-correction.json additionally reproduces the new-session case
+  through the actual postgres.js driver and verifies the revised check passes.
+- Typecheck and lint for the changed files pass. Exact application/Android,
+  Preview SQL/archive and all three Production migration hashes are verified in
+  operator-correction-verification.json. No additional build was required for
+  an operator-only change with unchanged application and dependency bytes.
+
+Next execution condition
+The new exact operator/helper manifest requires fresh founder approval under
+the user's exact-package boundary. Old 9b96284b / 0a00bd9c approvals do not
+authorise modified operator bytes. After approval, run fresh absence and original
+state checks, preserve the failed operation record, and execute the corrected
+package once. Stop on any new discrepancy; never discard integrity checks.
+
+Hosted all-offer, duplicate/recovery/opening/isolation and timing acceptance,
+resource retirement and the revised Production approval package remain pending.
+No Production package is represented as ready before those tests pass.
+
+Technical references consulted (16 November 2026):
+https://www.postgresql.org/docs/17/functions-info.html
+https://www.postgresql.org/docs/17/catalog-pg-namespace.html
+https://supabase.com/changelog.md

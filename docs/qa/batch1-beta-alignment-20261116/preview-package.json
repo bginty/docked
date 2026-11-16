@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "projectRef": "bckkllmndoxzpzdqrevb",
   "vercelProject": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
   "schemas": [
@@ -45,8 +45,12 @@
     "path": "docs/qa/batch1-beta-alignment-20261116/preview-payloads.json.gz",
     "sha256": "fca0285c4db7abc448daa9b05e32628563de24d84925a38181a87be453f97f84"
   },
-  "operatorSha256": "c49f9d5c7a20cd66345ea98faba940ba2f46c713ad2e871f4182089241502a90",
+  "operatorSha256": "713ac87e99edf75a24da33be93e36d9e3dddefca04e712dcc1d12590adbca7b9",
   "operatorDependencies": [
+    {
+      "path": "scripts/lib/batch1-preview-schema.ts",
+      "sha256": "4610e6f24a12a1b98f642c4c71608a6cc6b9a6c845695dbd926eb35b83f7a47a"
+    },
     {
       "path": "scripts/lib/batch1-acceptance-profile.ts",
       "sha256": "94b1286502bbca2b1c00ce0e556703efdae80440baefa78ddacc520eda246e26"

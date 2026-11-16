@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-16T07:10:52.288Z",
+  "at": "2026-11-16T08:09:36.632Z",
   "localOnly": true,
   "managedOperatorPrivileges": true,
   "rows": [
@@ -8,6 +8,7 @@
     },
     {
       "issued": 0,
+      "tempOid": "123337",
       "definitions": 540
     },
     {
@@ -16,6 +17,14 @@
       "ownerCanCreateSchema": false
     }
   ],
+  "namespaceVerification": {
+    "existingNamespaces": 65,
+    "reviewedNamespaces": 12,
+    "sessionTemporaryNamespaces": [
+      "pg_temp_48",
+      "pg_toast_temp_48"
+    ]
+  },
   "transactionRolledBack": true,
   "hostedWrites": 0,
   "files": [

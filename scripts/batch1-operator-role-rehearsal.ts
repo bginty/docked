@@ -4,6 +4,7 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { packAcceptanceSchemas } from "../src/server/pack-acceptance-sql";
+import { verifyPreviewNamespaces } from "./lib/batch1-preview-schema";
 const target = "docked-batch1-synthetic-20261116",
   dir = "private-data/batch1-beta-alignment-20261116";
 const config = JSON.parse(
@@ -55,11 +56,17 @@ let text =
   "begin;" + schemas.map((s) => `drop schema ${s} cascade;`).join("\n");
 text +=
   "drop owned by docked_pack_acceptance_owner;drop role docked_pack_acceptance_owner;drop owned by docked_pack_acceptance;drop role docked_pack_acceptance;";
+const namespaceRows =
+  "(select jsonb_agg(jsonb_build_object('oid',oid,'nspname',nspname,'nspowner',nspowner,'acl',coalesce(nspacl::text,'')) order by oid) from pg_namespace)";
 text +=
-  "create role b1_operator_probe nologin nosuperuser createrole createdb bypassrls;grant create on database postgres to b1_operator_probe;grant usage on schema auth to b1_operator_probe;grant select,references on auth.users,auth.sessions,auth.mfa_factors to b1_operator_probe;set local role b1_operator_probe;select jsonb_build_object('operatorSuperuser',current_setting('is_superuser'));create role docked_pack_acceptance login nosuperuser nocreatedb nocreaterole noinherit nobypassrls;";
+  "create role b1_operator_probe nologin nosuperuser createrole createdb bypassrls;grant create on database postgres to b1_operator_probe;grant usage on schema auth to b1_operator_probe;grant select,references on auth.users,auth.sessions,auth.mfa_factors to b1_operator_probe;set local role b1_operator_probe;select jsonb_build_object('operatorSuperuser',current_setting('is_superuser'),'namespaces'," +
+  namespaceRows +
+  ");create role docked_pack_acceptance login nosuperuser nocreatedb nocreaterole noinherit nobypassrls;";
 text += files.map((f) => f.bytes).join("\n");
 text +=
-  "select jsonb_build_object('definitions',(select count(*) from b1_commercial_billing.definitions),'issued',(select count(*) from b1_beta_packs.issued));";
+  "select jsonb_build_object('definitions',(select count(*) from b1_commercial_billing.definitions),'issued',(select count(*) from b1_beta_packs.issued),'namespaces'," +
+  namespaceRows +
+  ",'tempOid',pg_my_temp_schema());";
 text += schemas
   .map((s) => `revoke create on schema ${s} from docked_pack_acceptance_owner;`)
   .join("\n");
@@ -72,7 +79,14 @@ try {
     .filter(Boolean)
     .map((s) => JSON.parse(s));
   assert.equal(rows[0].operatorSuperuser, "off");
-  assert.deepEqual(rows[1], { definitions: 540, issued: 0 });
+  assert.equal(rows[1].definitions, 540);
+  assert.equal(rows[1].issued, 0);
+  const namespaceVerification = verifyPreviewNamespaces(
+    rows[0].namespaces,
+    rows[1].namespaces,
+    schemas,
+    rows[1].tempOid,
+  );
   assert.deepEqual(rows[2], {
     operatorCanSetOwner: false,
     runtimeCanSetOwner: false,
@@ -90,7 +104,8 @@ try {
         at: new Date().toISOString(),
         localOnly: true,
         managedOperatorPrivileges: true,
-        rows,
+        rows: rows.map(({ namespaces: _namespaces, ...r }: any) => r),
+        namespaceVerification,
         transactionRolledBack: true,
         hostedWrites: 0,
         files: files.map((f) => ({

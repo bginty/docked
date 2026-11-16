@@ -1,11 +1,25 @@
 DOCKED — MINIMUM HOSTED PACK PREREQUISITE
 
-Package SHA-256: 9b96284b5504fe2c12a027752af586e9d122d09270f3d4db658f34e0d80229d1
+Package SHA-256: 9343b2234e9b024f2369cee9e6e25c5734805ee36f1fa84717dcf1d178b0bb4c
 Target: existing Supabase Preview bckkllmndoxzpzdqrevb.
 Application: existing protected docked-preview Vercel project.
 
 Separate approval requested for a 24-hour synthetic pack-only window.
-Replaces withdrawn 0a00bd9c..., 9fb07649... and f5f83aed... proposals. No Production deployment.
+Replaces attempted 9b96284b... from source 8103d3bd. Its only hosted apply
+rolled back atomically before commit; independent inspection verified no remaining
+test roles/namespaces and 438 existing tables, other accounts, ACL/RLS and
+functions unchanged. Earlier 0a00bd9c..., 9fb07649... and f5f83aed... remain withdrawn.
+
+Narrow operator correction only: preserve every pre-existing namespace by OID,
+name, owner and ACL. Permit the twelve reviewed additions plus only the current
+backend's temporary namespace pair identified by pg_my_temp_schema(), with
+empty ACLs and matching owner. Reject any other added or changed namespace.
+The approved fixture already creates a temporary table; the former aggregate
+fingerprint incorrectly treated its new PostgreSQL namespaces as an ACL change.
+Local non-superuser rehearsal and fail-closed unit cases verify the correction.
+Application, all three SQL payloads, fixture, runtime grants and purchase bounds
+are byte-identical to 8103d3bd. No Production deployment.
+See PREVIEW_EXECUTION_REPORT.txt for observed evidence and limitations.
 
 Create 12 temporary namespaces containing 143 dependency tables and two access
 control tables. Keep the existing financial, ownership, source and supply guards.
@@ -51,5 +65,5 @@ private-data/batch1-beta-alignment-20261116/namespace-permissions.sql
   4165bbb7abcc1f99ef0e5c85fe561c5f258f86dad73940689eddbb2e37271d81
 private-data/batch1-beta-alignment-20261116/fixtures.sql
   2eb56d8b13ed2f5d2d46d18a4461fd00cc6cb409589c83050f92167f8ab1fabc
-Operator SHA-256: c49f9d5c7a20cd66345ea98faba940ba2f46c713ad2e871f4182089241502a90
+Operator SHA-256: 713ac87e99edf75a24da33be93e36d9e3dddefca04e712dcc1d12590adbca7b9
 Helper hashes and frozen archive checksum: preview-package.json.

@@ -1,0 +1,359 @@
+{
+  "at": "2026-11-16T07:59:35.910Z",
+  "projectId": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+  "protected": true,
+  "nodeVersion": "22.x",
+  "customDomains": 1,
+  "environmentKeys": [
+    {
+      "key": "FANTASY_CARDS_PREVIEW",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_PRIVATE_OFFERS_LOCAL",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_REDEMPTION_LOCAL",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_PRIVATE_PREVIEW",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_BETA_STAGING",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "VERCEL_ORG_ID",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "VERCEL_PROJECT_ID",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "VERCEL_GIT_COMMIT_REF",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "VERCEL_GIT_COMMIT_SHA",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_RELEASE_CHANNEL",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_PREVIEW_OWNER_EMAIL",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_PREVIEW_OWNER_ID",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "BETA_ACCESS_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "BETA_TESTERS_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AUTH_EMAIL_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_AUTH_INVITES_READY",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "FANTASY_FREE_PLAY_PRODUCTION",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_CUSTOMER_ONBOARDING",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_OWNER_GAMEPLAY",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_FRIENDS_PACK_REVEAL",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_PACK_REVEAL_PREVIEW",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "VERCEL_PREVIEW_FEEDBACK_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_FRIENDS_BETA",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_HOSTED_REVIEW",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_HOSTED_PRODUCTION",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AUTO_PUBLISH_DOCKED_EDGES",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "EDGE_SCANNER_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "PROVIDER_TRIAL_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "MARKET_DATA_PROJECT_REF",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "MARKET_DATA_PROVIDER",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "ODDS_API",
+      "target": [
+        "preview"
+      ],
+      "branch": "codex/docked-value-platform"
+    },
+    {
+      "key": "MARKET_DATA_POLLING_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "SUPABASE_ENV",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DOCKED_HOSTED_PREVIEW",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "SITE_URL",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DATABASE_RUNTIME",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DATABASE_CONNECTION_MODE",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DATABASE_URL",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "NEXT_PUBLIC_SUPABASE_URL",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "ODDS_PROVIDER_STATUS",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "RESULTS_PROVIDER_STATUS",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "ODDS_MONTHLY_CREDIT_LIMIT",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DEMO_MODE",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "REGISTRATION_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "PUBLICATION_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "FORWARD_PAPER_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "SENDING_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "ADS_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "AFFILIATES_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "PAID_PLANS_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "PRO_ENTITLEMENTS_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "COMPETITIONS_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "PRIZES_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "DEALS_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "ODDS_POLLING_ENABLED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "LEGAL_ENTITY_VERIFIED",
+      "target": [
+        "preview"
+      ]
+    },
+    {
+      "key": "APP_ENV",
+      "target": [
+        "preview"
+      ]
+    }
+  ],
+  "mutations": 0
+}

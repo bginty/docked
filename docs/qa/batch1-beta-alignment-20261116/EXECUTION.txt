@@ -11,6 +11,12 @@ No Production actions. Do not infer approval from this runbook.
    with explicitFounderApproval=true. Apply exactly once:
    node node_modules/tsx/dist/cli.mjs scripts/batch1-preview-operator.ts --pack-only --apply-approved
    Inspect any partial operation before retrying. Never use a withdrawn hash.
+   The 9b96284b attempt on 2026-11-16 rolled back. Its prepared-only private
+   operation record must be retained as evidence, not overwritten. Before the
+   corrected attempt, independently reverify zero listed namespaces/roles and
+   unchanged existing Preview state, then archive that failed record and the
+   superseded approval within their current private directories. Record new
+   explicit approval for the corrected package. Do not reuse 9b96284b approval.
 4. Refresh the two existing synthetic accounts' genuine Auth/MFA sessions:
    node node_modules/tsx/dist/cli.mjs scripts/batch1-preview-auth.ts --synthetic-preview-only
 5. Commit verified source, then use only existing protected Preview:

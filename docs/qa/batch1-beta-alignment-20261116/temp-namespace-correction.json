@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-16T08:16:08.495Z",
+  "localOnly": true,
+  "oldHashChanged": true,
+  "existingSchemasUnchanged": true,
+  "added": [
+    {
+      "oid": 123346,
+      "nspname": "pg_temp_34",
+      "nspowner": 10,
+      "acl": ""
+    },
+    {
+      "oid": 123347,
+      "nspname": "pg_toast_temp_34",
+      "nspowner": 10,
+      "acl": ""
+    }
+  ],
+  "sessionTempSchema": 123346,
+  "namespaceVerification": {
+    "existingNamespaces": 77,
+    "reviewedNamespaces": 0,
+    "sessionTemporaryNamespaces": [
+      "pg_temp_34",
+      "pg_toast_temp_34"
+    ]
+  }
+}

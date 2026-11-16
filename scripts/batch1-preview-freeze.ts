@@ -29,7 +29,7 @@ const archive = gzipSync(
 );
 writeFileSync(dir + "/preview-payloads.json.gz", archive);
 const manifest = {
-  version: 3,
+  version: 4,
   projectRef: "bckkllmndoxzpzdqrevb",
   vercelProject: "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
   schemas: ["b1_acceptance", ...packAcceptanceSchemas.map((s) => "b1_" + s)],
@@ -49,6 +49,10 @@ const manifest = {
   operatorSha256: hash(readFileSync("scripts/batch1-preview-operator.ts")),
   operatorDependencies: [
     {
+      path: "scripts/lib/batch1-preview-schema.ts",
+      sha256: hash(readFileSync("scripts/lib/batch1-preview-schema.ts")),
+    },
+    {
       path: "scripts/lib/batch1-acceptance-profile.ts",
       sha256: hash(readFileSync("scripts/lib/batch1-acceptance-profile.ts")),
     },
@@ -64,6 +68,10 @@ writeFileSync(
 const digest = hash(readFileSync(dir + "/preview-package.json"));
 const report =
   "DOCKED — MINIMUM HOSTED PACK PREREQUISITE\n\nPackage SHA-256: PACKAGE_DIGEST\nTarget: existing Supabase Preview bckkllmndoxzpzdqrevb.\nApplication: existing protected docked-preview Vercel project.\n\nSeparate approval requested for a 24-hour synthetic pack-only window.\nReplaces withdrawn 0a00bd9c..., 9fb07649... and f5f83aed... proposals. No Production deployment.\n\nCreate 12 temporary namespaces containing 143 dependency tables and two access\ncontrol tables. Keep the existing financial, ownership, source and supply guards.\nNine collection/Weekly reader tables and their hosted routes are excluded.\nTwo restricted roles: NOLOGIN owner; runtime with no privileged membership or\nBYPASSRLS; exactly the existing two synthetic accounts with genuine Auth/AAL2,\nfiltered Auth views, maximum 24-hour expiry and protected deployment access.\nNo existing Preview account, Phone setting or shared schema permission changes.\nNon-superuser setup is rehearsed: temporary object-owner CREATE/SET/INHERIT\naccess ends before commit; creator administration remains only for scoped cleanup.\nThe local operator retains SELECT on three synthetic reconciliation tables.\nThese operator permissions never enter the web runtime.\n\nSmall fictional fixture: 108 players, 540 definitions, zero starting limited\ncards and 100,000 nonredeemable synthetic credits per account. No customer rows.\nSource evidence is explicitly fictional, never a real source-rights assertion.\n20 planned unique purchases; hard operator allowance maximum 24 purchases\n(at most 216 synthetic cards). No automatic top-ups or provider transactions.\nHTTP: 18 offers, nine-card allocation, saved receipts, opening, duplicates,\ninterruption, account/MFA denial and Auth/database timing. No load benchmark.\nFull UI, Android and real performance acceptance use the Production private beta\nAFTER its separately approved deployment and authorised tester participation.\n\nRehearsed locally through actual pack handlers and all guard chains. Local Auth\nis simulated only in disconnected rehearsal; hosted Auth must be genuine.\nExisting Production-sized isolated evidence remains subject to fresh drift.\nHosted results are still pending. No new paid infrastructure or new testing service.\n\nApply once, atomically, after exact bytes, target, absence and permissions checks.\nOn failure/interruption inspect actual state before retry; never duplicate setup.\nRecovery: stop the dedicated deployment, close its window/revoke its runtime\nLOGIN, terminate only its sessions and remove only its listed namespaces/roles\nonce outside dependencies have been checked and non-secret evidence preserved.\nNo public registration, SMS, paid credits, trading, prizes, withdrawals or Play\npublication. No Production data, customer cards, balances or runtime changes.\n\nSeparate approval is required by your instruction for shared Preview changes.\nA later exact Production package will be requested only after hosted checks pass.\n\nSQL_HASHES\nOperator SHA-256: OPERATOR_DIGEST\nHelper hashes and frozen archive checksum: preview-package.json.\n"
+    .replace(
+      "Replaces withdrawn 0a00bd9c..., 9fb07649... and f5f83aed... proposals. No Production deployment.",
+      "Replaces attempted 9b96284b... from source 8103d3bd. Its only hosted apply\nrolled back atomically before commit; independent inspection verified no remaining\ntest roles/namespaces and 438 existing tables, other accounts, ACL/RLS and\nfunctions unchanged. Earlier 0a00bd9c..., 9fb07649... and f5f83aed... remain withdrawn.\n\nNarrow operator correction only: preserve every pre-existing namespace by OID,\nname, owner and ACL. Permit the twelve reviewed additions plus only the current\nbackend's temporary namespace pair identified by pg_my_temp_schema(), with\nempty ACLs and matching owner. Reject any other added or changed namespace.\nThe approved fixture already creates a temporary table; the former aggregate\nfingerprint incorrectly treated its new PostgreSQL namespaces as an ACL change.\nLocal non-superuser rehearsal and fail-closed unit cases verify the correction.\nApplication, all three SQL payloads, fixture, runtime grants and purchase bounds\nare byte-identical to 8103d3bd. No Production deployment.\nSee PREVIEW_EXECUTION_REPORT.txt for observed evidence and limitations.",
+    )
     .replace("PACKAGE_DIGEST", digest)
     .replace(
       "SQL_HASHES",

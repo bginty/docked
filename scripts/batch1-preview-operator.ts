@@ -4,6 +4,10 @@ import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { createHash, randomBytes } from "node:crypto";
 import postgres from "postgres";
 import {
+  verifyPreviewNamespaces,
+  type PreviewNamespace,
+} from "./lib/batch1-preview-schema";
+import {
   acceptanceDocs,
   acceptancePrivate,
   packOnly,
@@ -117,19 +121,23 @@ async function main() {
         0,
         "Role exists: inspect first",
       );
-      const [before] =
-        await tx`select md5(string_agg(oid::text||coalesce(nspacl::text,''),',' order by oid)) value from pg_namespace`;
+      const before = await tx<
+        PreviewNamespace[]
+      >`select oid,nspname,nspowner,coalesce(nspacl::text,'') acl from pg_namespace order by oid`;
       await tx.unsafe(
         `create role docked_pack_acceptance login nosuperuser nocreatedb nocreaterole noinherit nobypassrls password '${password}' valid until '${expiry.toISOString()}'`,
       );
       for (const b of bytes) await tx.unsafe(b);
       await tx`update b1_acceptance.window set starts=${start},expires=${expiry} where id`;
-      const [after] =
-        await tx`select md5(string_agg(oid::text||coalesce(nspacl::text,''),',' order by oid)) value from pg_namespace where nspname<>all(${manifest.schemas})`;
-      assert.equal(
-        before.value,
-        after.value,
-        "Existing schema permissions changed",
+      const after = await tx<
+        PreviewNamespace[]
+      >`select oid,nspname,nspowner,coalesce(nspacl::text,'') acl from pg_namespace order by oid`;
+      const [temporary] = await tx`select pg_my_temp_schema() oid`;
+      const namespaceVerification = verifyPreviewNamespaces(
+        before,
+        after,
+        manifest.schemas,
+        Number(temporary.oid),
       );
       const [counts] =
         await tx`select (select count(*)::int from b1_commercial_billing.definitions) definitions,(select count(*)::int from b1_beta_packs.issued) issued,(select count(*)::int from b1_acceptance.members) accounts`;
@@ -147,7 +155,11 @@ async function main() {
       await tx.unsafe(
         "grant docked_pack_acceptance_owner to current_user with inherit false,set false",
       );
-      return { counts, unchangedExistingSchemaAcl: true };
+      return {
+        counts,
+        unchangedExistingSchemaAcl: true,
+        namespaceVerification,
+      };
     });
     writeFileSync(
       secretFile,

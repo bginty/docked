@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-16T08:16:42.120Z",
+  "previousSource": "8103d3bd7f91a984b2a2537c088c6db2b941a495",
+  "previousPackageSha256": "9b96284b5504fe2c12a027752af586e9d122d09270f3d4db658f34e0d80229d1",
+  "packageSha256": "9343b2234e9b024f2369cee9e6e25c5734805ee36f1fa84717dcf1d178b0bb4c",
+  "applicationAndroidAndProductionSqlUnchanged": true,
+  "previewPayloadsAndFixtureUnchanged": true,
+  "permissionsAndBoundsUnchanged": true,
+  "migrations": {
+    "20261115113306_batch_private_pack_issuance_validation.sql": "2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1",
+    "20261115211545_batch1_pack_guard_batching.sql": "3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6",
+    "20261115235000_batch1_persistence_subdocuments.sql": "83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e"
+  },
+  "verifiedTests": {
+    "namespaceTests": 4,
+    "namespaceTestsFailed": 0,
+    "nonSuperuserPayloadRehearsal": "pass; transaction rolled back",
+    "actualPostgresDriverTemporarySchemaReproduction": "pass",
+    "typecheck": "pass",
+    "changedFileLint": "pass"
+  },
+  "hostedAcceptancePending": true,
+  "productionDeploymentAuthorised": false
+}
