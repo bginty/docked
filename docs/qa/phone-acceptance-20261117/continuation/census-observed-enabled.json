@@ -1,0 +1,389 @@
+{
+  "at": "2026-11-16T21:08:50.139Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "mode": "observed-enabled",
+  "assets": [
+    {
+      "table": "beta_fantasy.admin_events",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.cards",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.competitions",
+      "rows": 51,
+      "digest": "15f30c0d16ee10b92c9d187bf4b07b43"
+    },
+    {
+      "table": "beta_fantasy.daily_claims",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.editions",
+      "rows": 180,
+      "digest": "414a8e625024c4b193b92c0f35a101a5"
+    },
+    {
+      "table": "beta_fantasy.entries",
+      "rows": 24,
+      "digest": "a2b430e768e221fecc431b2d61a60072"
+    },
+    {
+      "table": "beta_fantasy.entry_revisions",
+      "rows": 24,
+      "digest": "eb9da9edd5c8d5709fc8c2452fcb5329"
+    },
+    {
+      "table": "beta_fantasy.journals",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.ledger",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.lineup_configurations",
+      "rows": 9,
+      "digest": "4d89b92470ae185775d3ea2677658119"
+    },
+    {
+      "table": "beta_fantasy.lineup_publication_policy",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.listings",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.members",
+      "rows": 5,
+      "digest": "12319274049be0ba8c4428cf84bec949"
+    },
+    {
+      "table": "beta_fantasy.ownership_events",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.pack_definitions",
+      "rows": 5,
+      "digest": "cfc7d4f096805f7c30d4cb9044365948"
+    },
+    {
+      "table": "beta_fantasy.pack_items",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.packs",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.players",
+      "rows": 466,
+      "digest": "9a961ccbd0188b3f5758c7fd011cf314"
+    },
+    {
+      "table": "beta_fantasy.prize_schedules",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.production_catalog",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.production_definitions",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.production_policy",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.production_releases",
+      "rows": 1,
+      "digest": "2eb8636f2a1a6cc24a9af1574b10adae"
+    },
+    {
+      "table": "beta_fantasy.production_rounds",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.replacements",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.requests",
+      "rows": 51,
+      "digest": "06beb35f5de299f074356643de74962a"
+    },
+    {
+      "table": "beta_fantasy.results",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.round_controls",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.round_drafts",
+      "rows": 24,
+      "digest": "fbb6d6abf0dcf41a8bc928b565a5d9c6"
+    },
+    {
+      "table": "beta_fantasy.round_inputs",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.round_scores",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.sales",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.scoring_rules",
+      "rows": 8,
+      "digest": "d2c2136ff8f276378139f40843f3a552"
+    },
+    {
+      "table": "beta_fantasy.settings",
+      "rows": 1,
+      "digest": "3cc9d905a880b83830f627175a9a832e"
+    },
+    {
+      "table": "beta_fantasy.slot_locks",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.sports",
+      "rows": 5,
+      "digest": "abc07715453ed209ff0c3b279d39494c"
+    },
+    {
+      "table": "beta_fantasy.starter_claims",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.status_events",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.swap_ledger",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.swap_policy",
+      "rows": 1,
+      "digest": "5a13b7cd1717c93f373c636731b8abef"
+    },
+    {
+      "table": "beta_fantasy.swap_policy_events",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.swap_requests",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.swap_reserve_packs",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.swaps",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.team_names",
+      "rows": 3,
+      "digest": "12c32cf34dd8653d8138eeb38b2c2035"
+    },
+    {
+      "table": "beta_fantasy.team_rollovers",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.tiers",
+      "rows": 5,
+      "digest": "e727d4ae0c395b458242d015853707c2"
+    },
+    {
+      "table": "beta_fantasy.trade_items",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.trades",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "beta_fantasy.weekly_prize_templates",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "commercial_billing.accounts",
+      "rows": 2,
+      "digest": "8e74b31994df84f11faedfaf6b0b15ba"
+    },
+    {
+      "table": "commercial_billing.audit",
+      "rows": 10,
+      "digest": "b5b225c9d82294036602e4722b3ddbf7"
+    },
+    {
+      "table": "commercial_billing.cards",
+      "rows": 18,
+      "digest": "5d28370bea001fce8b81bcbed4dcf825"
+    },
+    {
+      "table": "commercial_billing.control",
+      "rows": 1,
+      "digest": "6dbe6f4d2c7ab9885f35f5acbe405c56"
+    },
+    {
+      "table": "commercial_billing.definitions",
+      "rows": 180,
+      "digest": "f7506196e9538c29f13e1e5f4e27de22"
+    },
+    {
+      "table": "commercial_billing.jobs",
+      "rows": 13,
+      "digest": "9eeef010fbdb5e9b7a2d93cbf3feb36a"
+    },
+    {
+      "table": "commercial_billing.journals",
+      "rows": 14,
+      "digest": "07e1e0659f0687a8e34ad0faab6378cc"
+    },
+    {
+      "table": "commercial_billing.lines",
+      "rows": 28,
+      "digest": "5bcd80d0c595e2a25d4733cd3651b778"
+    },
+    {
+      "table": "commercial_billing.listings",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "commercial_billing.lots",
+      "rows": 3,
+      "digest": "304a567a94828cd12aa035fb72064c24"
+    },
+    {
+      "table": "commercial_billing.ownership_events",
+      "rows": 18,
+      "digest": "bf0a99cfab361ab730a1bf0a0ae1afe7"
+    },
+    {
+      "table": "commercial_billing.packs",
+      "rows": 2,
+      "digest": "43c7c94a75908af253cf2c8e6f042d0b"
+    },
+    {
+      "table": "commercial_billing.products",
+      "rows": 2,
+      "digest": "47178d2096a2ef6db7307c6cbef8b7df"
+    },
+    {
+      "table": "commercial_billing.receipt_events",
+      "rows": 6,
+      "digest": "a755352068d86b059ebe9189c9006c71"
+    },
+    {
+      "table": "commercial_billing.receipts",
+      "rows": 3,
+      "digest": "047bb15b9b876c532abc0f82080518bb"
+    },
+    {
+      "table": "commercial_billing.recovery_cases",
+      "rows": 1,
+      "digest": "4f8243e674ba652141fcf9826cbec8e7"
+    },
+    {
+      "table": "commercial_billing.support_events",
+      "rows": 0,
+      "digest": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "table": "private.roles",
+      "rows": 1,
+      "digest": "1a5cff1b66072bf27ce58c13ff7b23aa"
+    },
+    {
+      "table": "public.profiles",
+      "rows": 9,
+      "digest": "5cbd81a3c068a4e2c0d51cd1cebb50c5"
+    }
+  ],
+  "members": [
+    {
+      "identitySha256": "21ac5f5267e46bf075a0ab06cb86f5e00e2303741e36828d9714fcc0b4d2d4f5",
+      "email_verified": true,
+      "active": true,
+      "phone_verified": false,
+      "phone_change_sent_at": null,
+      "phone_confirmed_at": null,
+      "roles": 0,
+      "balance": 0,
+      "hold": 5700
+    },
+    {
+      "identitySha256": "e2415491fe17fbcd919f5ba5d2140580cad923ae7cb08956384644087179755a",
+      "email_verified": true,
+      "active": true,
+      "phone_verified": false,
+      "phone_change_sent_at": null,
+      "phone_confirmed_at": null,
+      "roles": 0,
+      "balance": 0,
+      "hold": 0
+    }
+  ],
+  "control": {
+    "environment": "acceptance",
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false,
+    "gameplay_enabled": false
+  },
+  "claims": 0,
+  "canonicalTrigger": true,
+  "productionAccess": false,
+  "databaseWrites": 0,
+  "phonesOrCredentialsEmitted": false,
+  "previousAssetsUnchanged": true
+}

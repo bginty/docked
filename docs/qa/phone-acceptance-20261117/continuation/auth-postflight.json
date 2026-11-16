@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-16T21:16:03.4987278Z",
+  "projects": [
+    {
+      "environment": "production",
+      "phoneEnabled": false,
+      "signupDisabled": true,
+      "readOnly": true
+    },
+    {
+      "environment": "isolated-preview",
+      "phoneEnabled": false,
+      "signupDisabled": true,
+      "readOnly": true
+    }
+  ],
+  "productionWrites": 0,
+  "credentialsEmitted": false
+}

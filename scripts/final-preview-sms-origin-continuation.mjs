@@ -120,6 +120,7 @@ async function main() {
       .join(",");
     const env = {
       ...read(privateDir + "/preview-runtime.private.json"),
+      VERCEL_GIT_COMMIT_SHA: sourceCommit,
       DOCKED_ISOLATED_PHONE_TEST: "true",
       DOCKED_PUBLIC_PHONE_OTP: "true",
       DOCKED_ISOLATED_PHONE_MEMBERS: members,

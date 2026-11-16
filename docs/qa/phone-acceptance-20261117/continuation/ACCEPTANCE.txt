@@ -1,0 +1,86 @@
+DOCKED — GENUINE PREVIEW SMS ACCEPTANCE, 17 NOVEMBER 2026
+
+Result: genuine Australian physical-handset receipt and hosted verification PASS.
+This is a protected browser/Preview test, not installed-Android or Production
+phone acceptance. Public launch remains NO-GO.
+
+Exact approved source: fe1572e1781e9d2806d5af45c5d5569b669d5d93
+Approved package: feecc1bb671f9919b97b4c14bfd4c35764c304d8b62559ea100f1801aa2c0e75
+Deployment: dpl_C1K3vZ5Bs7u4rfQXiMLiJVbwGwwp, protected Preview, now removed.
+Original approval and evidence hashes were independently reverified unchanged.
+
+Completed
+- Normal hosted build reached READY. All five HTTP preflight checks passed:
+  login and privacy GETs 200; commercial route 403; wrong-origin phone POST 403;
+  correct-origin anonymous phone POST denied 400. No forged Production origin.
+- Founder privately signed into the existing unblocked synthetic identity and
+  reached Verify your phone. The original Origin denied defect is resolved.
+- Existing saved Twilio account credentials/service/sender successfully sent one
+  message. No credential replacement, new account, sender or service was needed.
+- Founder confirmed "Text received". Twilio Console independently showed
+  Outbound API / Delivered / one segment at 08:09:18 Sydney. No phone number,
+  message body, OTP or credential was read into the report.
+- Authoritative Supabase phone_change_sent_at: 2026-11-16T21:09:18.387Z;
+  phone_confirmed_at: 2026-11-16T21:09:30.118Z. These are Auth event timestamps,
+  not an HTTP latency benchmark or measured carrier-delivery time.
+- private.public_phone_verified returned true. Exactly one canonical claim
+  matched this Auth identity and its number, with one public_phone_verified
+  audit event recording phoneStoredHere=false. No number was exported.
+- The resend button was observed disabled during the first 60-second cooldown.
+- After provider shutdown, navigating back to /app/verify-phone retained the
+  saved verified state and redirected to /fantasy/play without another SMS.
+- All 69 protected Preview financial, fantasy, profile and role table digests
+  match the preflight. Both original accounts and their permissions remain;
+  balances remain zero and the other account's 5,700-credit hold is untouched.
+
+Closure and spending
+- One send attempt / one delivered segment observed. No automatic retry/resend,
+  recharge, purchase, grant or Production mutation occurred.
+- Twilio message details still reported Cost N/A at the final observation.
+  Final provider charge is therefore NOT reconciled. Do not treat this as a
+  zero-cost message or claim a measured AUD total. Further sends stopped.
+- Preview provider enabled at 21:07:43Z and independently read OFF after the
+  operator disabled it at 21:10:46Z. OFF-only watchdog independently confirmed
+  closure at 21:10:56Z. Signup stayed OFF; unrelated settings changed: zero.
+- Temporary deployment removal independently returned 404. Existing closed
+  Preview, its accounts, actual verification history and provider configuration
+  were preserved. No phone record was cleared to manufacture a repeat test.
+- At 21:16:03Z independent Auth reads confirmed Production and Preview Phone
+  OFF and signup OFF. Production release remains 76df44ba1adef012c5ec2119563cbc05ff9e3c0b.
+- The provider operator/watchdog's smsAttempts/smsSent=0 fields describe those
+  scripts (neither sends messages); the attended browser session total is ONE.
+
+Acceptance limits and follow-up
+- This session did not exercise hosted invalid/expired codes, replay of the
+  raw OTP, duplicate-number verification between two accounts, brute-force
+  exhaustion, or an interrupted verification POST. Existing local security
+  tests are separate evidence and do not replace these hosted results.
+- Actual confirmation completed before any negative-code exercise. No further
+  send was attempted while provider cost remained N/A. This window is closed;
+  do not silently reopen it or reset the verified synthetic identity.
+- Saved verification reload passed; this is not proof of raw OTP replay denial.
+- The isolated synthetic account's fantasy screen displayed wallet/competition
+  unavailable after redirect. This phone fixture is not gameplay acceptance;
+  no Production gameplay regression was established or claimed fixed.
+- Production retains its existing OFF configuration, no Twilio credentials and
+  old OTP defaults. Production phone configuration/attended activation needs a
+  separate reviewed package; Preview success does not authorise copying secrets
+  or enabling public phone delivery.
+- Final SMS charge reconciliation, remaining hosted negative paths and installed
+  Android phone acceptance remain pending. Android Google TEST purchase/refund,
+  commercial rights and final launch authority remain distinct launch gates.
+
+Operator note
+The first local invocation stopped before mutation because PowerShell 7 converted
+JSON timestamps into DateTime and reparsing the locale-formatted string failed.
+Read-only diagnosis and OFF readback preceded running the unchanged operator in
+Windows PowerShell 5.1, which verified the exact UTC deadline and every guard.
+No application/operator/package bytes, expiry or security condition was relaxed.
+The staging recipe explicitly supplied the approved source as Git commit metadata.
+
+Evidence
+hosted-preflight.json; browser-login.json; provider-enable.json;
+provider-disable.json; verification-integrity.json; census-before.json;
+census-observed-first-send.json; census-after.json; closure.json;
+auth-postflight.json; production-before.json; production-after.json;
+twilio-delivery.json; operator-runtime-note.txt.

@@ -1,0 +1,50 @@
+{
+  "at": "2026-11-16T21:03:41.977Z",
+  "passed": true,
+  "sourceCommit": "fe1572e1781e9d2806d5af45c5d5569b669d5d93",
+  "deployment": "dpl_C1K3vZ5Bs7u4rfQXiMLiJVbwGwwp",
+  "checks": [
+    {
+      "route": "/app/login?next=/app/verify-phone",
+      "status": 200,
+      "expected": 200,
+      "seconds": 1.512202,
+      "anonymous": true,
+      "wrongOrigin": false
+    },
+    {
+      "route": "/privacy",
+      "status": 200,
+      "expected": 200,
+      "seconds": 1.083963,
+      "anonymous": true,
+      "wrongOrigin": false
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "status": 403,
+      "expected": 403,
+      "seconds": 1.907981,
+      "anonymous": true,
+      "wrongOrigin": false
+    },
+    {
+      "route": "/api/auth/phone",
+      "status": 403,
+      "expected": 403,
+      "seconds": 0.45028,
+      "anonymous": true,
+      "wrongOrigin": true
+    },
+    {
+      "route": "/api/auth/phone",
+      "status": 400,
+      "expected": 400,
+      "seconds": 0.208252,
+      "anonymous": true,
+      "wrongOrigin": false
+    }
+  ],
+  "productionChanged": false,
+  "smsAttempts": 0
+}

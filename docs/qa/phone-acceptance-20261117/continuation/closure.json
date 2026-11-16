@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-16T21:14:53.619Z",
+  "deployment": "dpl_C1K3vZ5Bs7u4rfQXiMLiJVbwGwwp",
+  "removed": true,
+  "independentGetStatus": 404,
+  "providerClosure": {
+    "at": "2026-11-16T21:10:56.378Z",
+    "planSha256": "44ad7ec3979870347d76434284b58956d2c4710fb2005619145461557aacc1c2",
+    "armed": true,
+    "reason": "manual-stop",
+    "closureVerified": true,
+    "safetyFailure": false,
+    "enabledProvider": false,
+    "smsSent": 0,
+    "signupChanged": false
+  },
+  "scope": "only this approved disposable Preview deployment; existing Preview preserved",
+  "productionChanged": false
+}
