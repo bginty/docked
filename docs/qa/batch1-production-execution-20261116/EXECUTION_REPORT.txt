@@ -1,0 +1,87 @@
+DOCKED — BATCH 1 APPROVED EXECUTION: PRE-WRITE VERIFICATION HOLD
+16 November 2026. Public launch remains NO-GO.
+
+Authority
+Founder approved application 76df44ba1adef012c5ec2119563cbc05ff9e3c0b and
+package 954e467e9e0a5a6e15db154eb03a055913823e067248470f556cf20f31092436
+for24 hours. Treat17 November10:27:20UTC as the conservative latest expiry.
+This approval is recorded; it is not being requested again.
+
+Actual execution result
+ZERO Production migrations, deployments, promotions, purchases, grants, SMS,
+inventory changes or permission changes in this session. No customer reset.
+Actual Production remains12ccfd5879ae83f1bd62210ee16a3feb6907d9ef,
+Vercel dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy, independently resolved through
+Vercel and docked.com.au/api/beta-release. All public/commercial gates closed.
+The existing invited free-credit beta remains available under its prior controls.
+
+Completed verification
+- Exact approved package, source tree,1004 exported application files and all
+  three migration hashes match. The prepared source export uses the existing
+  Production project, Node22.x and the approved application only.
+- Fresh AES-256-GCM encrypted backup137,393,817 bytes, completed10:43:59UTC;
+  isolated restore passed10:46:51UTC. All568 protected tables matched. Network
+  disabled, zero published ports, cron OFF, HTTP worker disabled. Original key
+  reused; no key transfer, rotation or access change. Backup archive SHA-256:
+  61413d9757bd1859782af6a795e1cd29c2b3de5de86301dbe014d34fb88e2971.
+  Snapshot acquisition began before download completion; use10:32UTC as a
+  conservative freshness floor. Obtain a new backup if this is >60minutes old.
+- Current6,540 definitions,891 lifetime limited copies and909 custody records.
+  Full wallet/journal/provenance, custody, schema/functions, table ACL/RLS,
+  policies, roles/membership, Weekly entitlements and season catalogue match
+  the reviewed08:50UTC evidence. These are observations, never reset targets.
+- Zero lifetime-counter mismatches, duplicate later serials or unbalanced
+  commercial journals. All three migration versions are absent in Production.
+- Fresh restore rehearsal passed10:49:23UTC: exactly seven expected functions
+  change, their security metadata remains unchanged, all568 protected tables
+  remain unchanged. Every test transaction rolled back; no permanent test mint.
+- NFL/AFL/NRL Weekly Core each opened four unique Core cards and recovered the
+  saved receipt before and after candidate SQL. NFL has ZERO observations fresher
+  than72hours. Its existing season-catalogue freshness correction remains effective;
+  no timestamp/source permission renewal was used. Physical Android not tested.
+- Full fresh-backup comparison identified only three scheduler bookkeeping tables
+  changing during capture. Independent reconciliation verified190,317 prior cron
+  rows and75,053 prior Weekly-job rows unchanged;73 later cron runs succeeded with
+  unchanged commands;37 later Weekly runs completed with0issued/0failures; mail
+  scheduler changed only last_tick_at. No automatic broad drift waiver.
+
+Exact remaining pre-write verification gap
+The reviewed package requires full effective secret-value capture. Vercel's saved
+Secret values are write-only.97 explicit application values were verified against
+the exact historical deployment recipe;7 inherited readable values were freshly
+captured. Five inherited secrets cannot be read back. Their exact binding metadata
+is unchanged and predates the live release. No values were exposed or replaced.
+RUNTIME_PRESERVATION_ADDENDUM.txt requests permission to verify and preserve these
+five by their unchanged IDs/targets/timestamps, retaining every other prerequisite.
+Addendum SHA-256 d11dc58f8ae13f542b4ad03499ea46a9f9afeb635c95bab526b263b3b4c8ee0e.
+Approval requested once and pending at report preparation. No Production write
+may proceed under the original full-readback condition while this gap remains.
+
+Node investigation resolved without source changes
+The old source uses engines.node >=22. Its build log warns about automatic major
+upgrades and Vercel reports26.x. The already approved Batch1 candidate pins22.x,
+and the current project setting is22.x. Require actual staging Node22; no Node26
+waiver is proposed. Original and candidate source hashes are unchanged.
+
+Resume after the narrow verification amendment is approved
+Revalidate the original approval window, all exact bytes and provider secret
+references. Refresh backup/preflight as required. Preserve all legitimate intervening
+activity. Complete the reviewed atomic three-migration transaction, protected
+Production-target staging and genuine authorised read-only smoke acceptance before
+promotion. Independently resolve Production and repeat postflight. Conditional
+app-only rollback remains the reviewed prior deployment when compatibility is proven.
+No Production-write operator has been executed or prepared with a forged approval.
+
+Acceptance not claimed
+Production confirmation/recovery p50/p95 are NOT measured. Small isolated hosted
+evidence remains confirmation .740/1.986s, recovery .490/.875s, opening .583/1.236s;
+it is not a Production or physical Android result. The existing tester-controlled
+maximum-six-purchase website/installed-v31 session follows deployment/postflight.
+No automatic purchases or benchmarking with permanent cards.
+
+Nine-card safeguards, duplicate/recovery and account-isolation hosted prerequisites
+remain covered by the unchanged approved package; this session does not repeat
+synthetic purchases. SMS, genuine Android Google TEST payment/refund, commercial
+rights and final publication/activation are still separate launch gates. No Batch2.
+Google Play, managed publishing, Twilio Phone and existing account configuration
+were not changed. Source collection expiry is not silently renewed.

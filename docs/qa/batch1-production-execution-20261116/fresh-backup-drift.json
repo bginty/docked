@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-16T10:48:42.738Z",
+  "backupCompletedAt": "2026-11-16T10:43:59.011Z",
+  "readOnlyAt": "2026-11-16T10:43:32.340Z",
+  "protectedTables": 568,
+  "changes": [
+    {
+      "table": "cron.job_run_details",
+      "before": {
+        "hash": "0a0858f48da1a7f6d792ca21c3a3b98c",
+        "count": 190317
+      },
+      "after": {
+        "count": 190357,
+        "hash": "5036f8560b5d4534b4fd920fec31164a"
+      }
+    },
+    {
+      "table": "private.docked_mail_scheduler",
+      "before": {
+        "hash": "55f285d03614146c18b2cfe5a80793f8",
+        "count": 1
+      },
+      "after": {
+        "count": 1,
+        "hash": "306bf8e45e07e064076c13bfa04da7d5"
+      }
+    },
+    {
+      "table": "sports_feed.weekly_core_job_runs",
+      "before": {
+        "hash": "680e79a39dd652ae0e47828076cc92b1",
+        "count": 75053
+      },
+      "after": {
+        "count": 75073,
+        "hash": "3f1c2edae601a20011a4145244a6852e"
+      }
+    }
+  ],
+  "productionWrites": 0
+}

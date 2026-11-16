@@ -1,0 +1,63 @@
+DOCKED — FIVE WRITE-ONLY VERCEL SECRETS: EXACT VERIFICATION ADDENDUM
+
+Application remains 76df44ba1adef012c5ec2119563cbc05ff9e3c0b.
+Original approved package remains
+954e467e9e0a5a6e15db154eb03a055913823e067248470f556cf20f31092436.
+No application, migration, credential, permission or feature-flag changes.
+
+Reason for separate decision
+DEPLOYMENT_REVIEW.txt requires a fresh complete effective runtime map and preservation
+of every secret value. Vercel Secret values are write-only after saving. The original
+97 explicit deployment values have been verified against the immutable prior release
+recipe; seven inherited readable values were freshly captured through authenticated
+Vercel APIs. Five inherited secret VALUES cannot be read back. Earlier release reports
+explicitly recorded hostedSecretValuesReadBack:false; this check is not pre-claimed.
+
+Exactly five inherited secret bindings
+POSTGRES_URL
+POSTGRES_PRISMA_URL
+POSTGRES_URL_NON_POOLING
+POSTGRES_PASSWORD
+SUPABASE_JWT_SECRET
+
+Requested amendment to the runtime verification method ONLY
+Preserve these five existing Production project bindings by reference. Compare their
+exact IDs, keys, type, target, creation/update timestamps and integration/project
+binding before staging, before promotion and after promotion. All existing timestamps
+predate the currently deployed application. Never overwrite, delete, recreate,
+rotate, convert or place an empty/masked placeholder over any of these secrets.
+Abort if any reference or timestamp changes, any inherited binding disappears,
+or a new unreviewed Production environment binding appears.
+
+Frozen private binding metadata SHA-256:
+fc81fbdc28dff4114d25694a1d1b436715716ba28f70aac0ae907da7d6501b70
+Captured 104-value private map SHA-256 (JSON serialization):
+0b618df5fb1f03847f044832ebe263ed3a8a89feb58c0c300a1f4c67f27132b0
+Original 97-override recipe SHA-256:
+f0261e9f4ff84c625f9d076489cf466cd065abc58fd2361a32984eb878dc96a6
+
+The next deployment must reuse those five unchanged inherited bindings and the
+verified existing explicit values. Only reviewed source/deployment identity changes.
+This is evidence of unchanged provider-managed bindings, NOT independent secret-value
+readback. Do not describe it as such. No secret values are printed or committed.
+Vercel's dynamically managed platform variables are not copied as application config.
+
+Node version investigation
+The old 12ccfd58 source declares engines.node >=22; its build log explicitly warned
+about automatic major upgrades and the live deployment reports 26.x. The already
+approved Batch 1 source declares 22.x, .nvmrc 22; the existing project setting is22.x.
+Require staged deployment/runtime Node22 before promotion. No Node26 waiver is asked.
+
+Everything else in the approved review remains mandatory: NEW authenticated encrypted
+backup <=60 minutes, verified network-disabled restore, preflight <=10 minutes,
+all protected assets/security/drift checks, exact three migrations atomically,
+protected Production-target staging, genuine authorised read-only smoke acceptance,
+conditional compatible app-only rollback, postflight and all closed launch gates.
+No Production write has been made while preparing this addendum.
+
+Approval duration: until the original exact-package approval expires; this addendum
+does not extend it or authorise different application/SQL bytes.
+
+Provider reference checked 16 November 2026:
+https://vercel.com/docs/environment-variables/sensitive-environment-variables
+Secret values are write-only; existing Sensitive values remain Secret values.

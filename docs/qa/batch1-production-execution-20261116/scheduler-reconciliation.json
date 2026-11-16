@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-16T10:51:03.114Z",
+  "freshBackup": "restore-20261116c",
+  "previousRowsUnchanged": [
+    {
+      "table": "cron.job_run_details",
+      "rows": 190317,
+      "maximum": "190392"
+    },
+    {
+      "table": "sports_feed.weekly_core_job_runs",
+      "rows": 75053,
+      "maximum": "2026-11-16 10:32:00.175099+00"
+    }
+  ],
+  "newCron": [
+    {
+      "status": "succeeded",
+      "rows": 73,
+      "command_mismatches": 0
+    }
+  ],
+  "weekly": [
+    {
+      "status": "complete",
+      "issued": 0,
+      "failures": 0,
+      "rows": 37
+    }
+  ],
+  "mailOnlyLastTickAdvanced": true,
+  "productionWrites": 0
+}

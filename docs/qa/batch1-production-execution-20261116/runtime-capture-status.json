@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-16T10:38:41.010Z",
+  "deployment": "dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy",
+  "source": "12ccfd5879ae83f1bd62210ee16a3feb6907d9ef",
+  "liveNode": "26.x",
+  "projectNode": "22.x",
+  "protection": {
+    "deploymentType": "all_except_custom_domains"
+  },
+  "originalOverridesVerified": 97,
+  "readableInheritedCaptured": 7,
+  "hiddenInheritedSecrets": [
+    "POSTGRES_URL",
+    "POSTGRES_PRISMA_URL",
+    "POSTGRES_URL_NON_POOLING",
+    "POSTGRES_PASSWORD",
+    "SUPABASE_JWT_SECRET"
+  ],
+  "secretReferencesSha256": "fc81fbdc28dff4114d25694a1d1b436715716ba28f70aac0ae907da7d6501b70",
+  "capturedValueMapSha256": "0b618df5fb1f03847f044832ebe263ed3a8a89feb58c0c300a1f4c67f27132b0",
+  "metadataPredatesCurrentDeployment": true,
+  "closedGates": true,
+  "fullEffectiveSecretValueReadback": false,
+  "originalOverrideRecipeSha256": "f0261e9f4ff84c625f9d076489cf466cd065abc58fd2361a32984eb878dc96a6",
+  "productionWrites": 0
+}

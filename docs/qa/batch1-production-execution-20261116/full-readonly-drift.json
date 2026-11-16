@@ -1,0 +1,2576 @@
+{
+  "at": "2026-11-16T10:43:32.340Z",
+  "previousBackupAt": "2026-11-16T02:02:57.343Z",
+  "productionWrites": 0,
+  "sums": {
+    "auth.audit_log_entries": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.custom_oauth_providers": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.flow_state": {
+      "count": 4,
+      "hash": "571dbb69a6cf58f1cfa32a6d9dcf26c0"
+    },
+    "auth.identities": {
+      "count": 6,
+      "hash": "d212582635b0311526dcf7cbded9f281"
+    },
+    "auth.instances": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.mfa_amr_claims": {
+      "count": 214,
+      "hash": "b84962e23b5c7b002ffa0d24264f9de3"
+    },
+    "auth.mfa_challenges": {
+      "count": 77,
+      "hash": "dbc4c5aef4b7c0c56df91eaa1a9d247c"
+    },
+    "auth.mfa_factors": {
+      "count": 2,
+      "hash": "36d97d3f827f0e38b4f3bac7455bdb2e"
+    },
+    "auth.mfa_recovery_code_sets": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.mfa_recovery_codes": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.oauth_authorizations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.oauth_client_states": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.oauth_clients": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.oauth_consents": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.one_time_tokens": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.refresh_tokens": {
+      "count": 586,
+      "hash": "f523e01e530fe8c96eb896101569389c"
+    },
+    "auth.saml_providers": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.saml_relay_states": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.schema_migrations": {
+      "count": 82,
+      "hash": "7def01dcf385b28a0b3a2a5f01825c29"
+    },
+    "auth.scim_tokens": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.scim_users": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.sessions": {
+      "count": 142,
+      "hash": "89818fa933f9d22a779d74601f341412"
+    },
+    "auth.sso_domains": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.sso_providers": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.users": {
+      "count": 6,
+      "hash": "8cfeb74112c8624d70c648ffbb48e05d"
+    },
+    "auth.webauthn_challenges": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "auth.webauthn_credentials": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.admin_events": {
+      "count": 4,
+      "hash": "6c9ccd9956c27346b0c75fb873cf0ade"
+    },
+    "beta_fantasy.cards": {
+      "count": 67,
+      "hash": "0e9a40bf353819f53ffb1edf8b0a0ca2"
+    },
+    "beta_fantasy.competitions": {
+      "count": 65,
+      "hash": "f814c350eaa8313aa2b30c55a63c9cc0"
+    },
+    "beta_fantasy.daily_claims": {
+      "count": 1,
+      "hash": "fd95c404e07e6fbd2269d862354db3b5"
+    },
+    "beta_fantasy.editions": {
+      "count": 678,
+      "hash": "4b4c67d6a5df1da3bbb524ecbacea79c"
+    },
+    "beta_fantasy.entries": {
+      "count": 19,
+      "hash": "62b1631bf19b133781f17a00f056527c"
+    },
+    "beta_fantasy.entry_revisions": {
+      "count": 56,
+      "hash": "33488ba07769bcab7fcc7df60572bbb6"
+    },
+    "beta_fantasy.journals": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.ledger": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.lineup_configurations": {
+      "count": 7,
+      "hash": "79a100cff5484d5e3b0528066c8f682c"
+    },
+    "beta_fantasy.lineup_publication_policy": {
+      "count": 2,
+      "hash": "b4c3494f0799321cdc27ec514394fc0d"
+    },
+    "beta_fantasy.listings": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.members": {
+      "count": 5,
+      "hash": "b963e11668ec2639d9ec9a4b01144359"
+    },
+    "beta_fantasy.ownership_events": {
+      "count": 67,
+      "hash": "4089378a91f4ace82d7d162ba6c22388"
+    },
+    "beta_fantasy.pack_definitions": {
+      "count": 7,
+      "hash": "c4dad7d30dc45d36b4876f4af99cf408"
+    },
+    "beta_fantasy.pack_items": {
+      "count": 11,
+      "hash": "3799b85f85c01bf8b37059591335479e"
+    },
+    "beta_fantasy.packs": {
+      "count": 1,
+      "hash": "79a2a7b163723a34efdfdacbaeaff280"
+    },
+    "beta_fantasy.players": {
+      "count": 534,
+      "hash": "3a20c778089688b8a82a2fe4e4796074"
+    },
+    "beta_fantasy.prize_schedules": {
+      "count": 4,
+      "hash": "27aadb9596e7f59e2e219acac3ae06e7"
+    },
+    "beta_fantasy.production_catalog": {
+      "count": 1,
+      "hash": "113ad0c3cd0dacb42a9253f7c8be893a"
+    },
+    "beta_fantasy.production_definitions": {
+      "count": 2,
+      "hash": "3a91b0f6589dba623994251b3f1dff0d"
+    },
+    "beta_fantasy.production_policy": {
+      "count": 1,
+      "hash": "21233ddcc6234fd067bb52e456aca3be"
+    },
+    "beta_fantasy.production_releases": {
+      "count": 1,
+      "hash": "089ed444085b3b9074d9afe8f2f95d29"
+    },
+    "beta_fantasy.production_rounds": {
+      "count": 12,
+      "hash": "724f198fdcbfd52a98eef067485d4fb0"
+    },
+    "beta_fantasy.replacements": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.requests": {
+      "count": 194,
+      "hash": "e3a707c805825c959c4b90b551babcdd"
+    },
+    "beta_fantasy.results": {
+      "count": 1,
+      "hash": "43e1177a655929f54569b347ceb9c266"
+    },
+    "beta_fantasy.round_controls": {
+      "count": 6,
+      "hash": "a1a6b38b949c5973ff20e1f86382bfd5"
+    },
+    "beta_fantasy.round_drafts": {
+      "count": 37,
+      "hash": "e7fb4cf60ad380ee7ea27dc0777dffdb"
+    },
+    "beta_fantasy.round_inputs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.round_scores": {
+      "count": 36,
+      "hash": "2a2530bbf2334df7a43a93502aaab497"
+    },
+    "beta_fantasy.sales": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.scoring_rules": {
+      "count": 10,
+      "hash": "a1f287a2c1c840aa4a4ceb37ffb80467"
+    },
+    "beta_fantasy.settings": {
+      "count": 1,
+      "hash": "beed6a638d8de25693d229b154bb67cd"
+    },
+    "beta_fantasy.slot_locks": {
+      "count": 101,
+      "hash": "b2dbee94dff3e44ca900df6135506ca2"
+    },
+    "beta_fantasy.sports": {
+      "count": 5,
+      "hash": "abc07715453ed209ff0c3b279d39494c"
+    },
+    "beta_fantasy.starter_claims": {
+      "count": 1,
+      "hash": "afa30cc3b44353bf1de5b1a57bb843d0"
+    },
+    "beta_fantasy.status_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.swap_ledger": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.swap_policy": {
+      "count": 1,
+      "hash": "6e6128a70c9dd3e8b595b2f387f4f05f"
+    },
+    "beta_fantasy.swap_policy_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.swap_requests": {
+      "count": 7,
+      "hash": "d9feb685be92db35544c1549883ab4ba"
+    },
+    "beta_fantasy.swap_reserve_packs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.swaps": {
+      "count": 6,
+      "hash": "9e3e230658e50e835d9365c58b7f633c"
+    },
+    "beta_fantasy.team_names": {
+      "count": 5,
+      "hash": "771d3fba6498628a8a01f74711697ee8"
+    },
+    "beta_fantasy.team_rollovers": {
+      "count": 27,
+      "hash": "2d3fec639203a2e2f8a3c20124342850"
+    },
+    "beta_fantasy.tiers": {
+      "count": 5,
+      "hash": "e727d4ae0c395b458242d015853707c2"
+    },
+    "beta_fantasy.trade_items": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.trades": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_fantasy.weekly_prize_templates": {
+      "count": 2,
+      "hash": "95801bc355dfece0e0b085eadc07d3ad"
+    },
+    "beta_packs.control": {
+      "count": 1,
+      "hash": "e21e0043aa94b984e98c3844cc196adb"
+    },
+    "beta_packs.definitions": {
+      "count": 6050,
+      "hash": "f61971d8cb54d4388cba577e7e6bd298"
+    },
+    "beta_packs.events": {
+      "count": 5,
+      "hash": "6b3559559152c8e2159c7023ae1a5444"
+    },
+    "beta_packs.issued": {
+      "count": 3,
+      "hash": "fa80fdcc3c26a0d77c131b90cd0b97e7"
+    },
+    "beta_packs.members": {
+      "count": 5,
+      "hash": "4a9d828202cdb2d9490c58d9871eeaf0"
+    },
+    "beta_packs.products": {
+      "count": 18,
+      "hash": "d22afd57e4f14ca305576edf814bf834"
+    },
+    "beta_private.admission_control": {
+      "count": 1,
+      "hash": "4e0c577c618bc0dd2fe3d5e71eef3c70"
+    },
+    "beta_private.admission_events": {
+      "count": 21,
+      "hash": "894f26a1b977bbac1fde90516f9b5f9c"
+    },
+    "beta_private.admissions": {
+      "count": 6,
+      "hash": "0b95557af40ee078317128f330570402"
+    },
+    "beta_private.analytics_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.announcement_drafts": {
+      "count": 3,
+      "hash": "5479f6e098ad484547b883e68b1177a7"
+    },
+    "beta_private.announcement_events": {
+      "count": 6,
+      "hash": "f58f6a1821c4f0ba2e0bbc6bd7859d09"
+    },
+    "beta_private.app_onboarding": {
+      "count": 6,
+      "hash": "372c8f3b510ca8ec46260259e5d2ce1d"
+    },
+    "beta_private.article_revisions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.articles": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.audit_events": {
+      "count": 288,
+      "hash": "2e1322ce9af442a4caf778f92527890a"
+    },
+    "beta_private.availability_observations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.bookmaker_eligibility": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.candidate_decisions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.closing_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.commercial_approvals": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.community_competitions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.community_corrections": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.community_deals": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.community_edge_personal_notes": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.community_edge_status": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.community_edges": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.community_quote_evidence": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.community_recognition_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.community_result_sources": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.community_settlements": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.community_verification_rules": {
+      "count": 2,
+      "hash": "56948868fe51e7f2c4671f6c0621c062"
+    },
+    "beta_private.competition_prizes": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.competition_qualifications": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.competition_rankings": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.competition_rules": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.competitions": {
+      "count": 1,
+      "hash": "4e975f87b4eccf4b7a018b2e94f2404b"
+    },
+    "beta_private.consent_events": {
+      "count": 54,
+      "hash": "ccd9a1ffb96388c97bd566a7d4a0d4b7"
+    },
+    "beta_private.correction_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.credit_request_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.credit_requests": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.customer_invitations": {
+      "count": 5,
+      "hash": "d312504bc83bd51ef16cdc0c323c52b1"
+    },
+    "beta_private.delegated_admin_admissions": {
+      "count": 1,
+      "hash": "4839ac6ba2703c12d1c60aa5dbc0a2ef"
+    },
+    "beta_private.delivery_attempts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.designated_administrators": {
+      "count": 1,
+      "hash": "4eaa24930fb3eec95a85c9be8c0aa517"
+    },
+    "beta_private.events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.feature_flags": {
+      "count": 11,
+      "hash": "d42580f446f03f593bd8fe8f67d466c9"
+    },
+    "beta_private.football_edge_policy_approvals": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.football_model_attempts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.football_model_implementations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.football_model_outcomes": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.football_model_transitions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.football_model_versions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.football_sporting_inputs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.football_sporting_sources": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.football_training_manifests": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.friends_control": {
+      "count": 1,
+      "hash": "b33451b0758d92984709eb9f27da05f4"
+    },
+    "beta_private.friends_roster": {
+      "count": 5,
+      "hash": "cd40cd91b6fc329caba42833b555ba55"
+    },
+    "beta_private.internal_qa_entities": {
+      "count": 3,
+      "hash": "22f303c754576def242a1dedf9c160d2"
+    },
+    "beta_private.job_runs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.launch_record": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.leaderboard_notification_jobs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.leaderboard_rule_versions": {
+      "count": 1,
+      "hash": "bf746cd7d4976e2438b51bca5c457f85"
+    },
+    "beta_private.leaderboard_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.market_data_config": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.market_data_event_mappings": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.market_data_fixture_observations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.market_data_payloads": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.market_reference_methodologies": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.market_reference_movements": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.market_references": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.markets": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.member_subscriptions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.membership_plans": {
+      "count": 2,
+      "hash": "70b261b756e486bb856a10c47e8050bd"
+    },
+    "beta_private.moderation_case_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.moderation_cases": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.moderation_retention": {
+      "count": 1,
+      "hash": "4d771df259445de026e177894fa69913"
+    },
+    "beta_private.moderation_retention_events": {
+      "count": 1,
+      "hash": "38f1962c3866b10856eeebd3f9eb4378"
+    },
+    "beta_private.named_tester_exception": {
+      "count": 1,
+      "hash": "c2b7a8ed48e588f24ca5595440137c6a"
+    },
+    "beta_private.odds_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.official_docked_publications": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.official_record_boundary": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.operational_alerts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.outbox": {
+      "count": 1,
+      "hash": "0f826f44fbc0ddb61134f64fc876f184"
+    },
+    "beta_private.owner_gameplay_control": {
+      "count": 1,
+      "hash": "f5add8682e73c9a6f62df7c4fe0e05cb"
+    },
+    "beta_private.plan_entitlements": {
+      "count": 13,
+      "hash": "fd78701bfd40b2aadfc8c087ff3cff7f"
+    },
+    "beta_private.plan_prices": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.preview_beta_invitations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.preview_fixture_edges": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.preview_market_sessions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.preview_tester_access": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.privacy_cases": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.privacy_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.prize_award_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.provider_poll_runs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.provider_trial_diagnostics": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.provider_trial_failure_reviews": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.provider_trial_permits": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.provider_trial_requests": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.provider_trials": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.rate_limits": {
+      "count": 130,
+      "hash": "2d5c96d629c4191f6ccf9a36aedd1cd9"
+    },
+    "beta_private.region_policies": {
+      "count": 1,
+      "hash": "48ff75b6fa1bb95b83b914b3ed6aafe3"
+    },
+    "beta_private.research_content": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_content_reviews": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_dataset_payloads": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_dataset_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_fact_payloads": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_facts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_feature_versions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_fetch_requests": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_match_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_policies": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_recalculations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_schedules": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_source_health": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.research_source_versions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.roles": {
+      "count": 2,
+      "hash": "9bde22e6cb721c7b605c11824759a86f"
+    },
+    "beta_private.scanner_candidates": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.scanner_reviews": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.scanner_run_markets": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.scanner_runs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.scanner_schedules": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.schedules": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.selections": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.service_health_observations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.settlement_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.social_blocks": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.social_collection_settings": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.social_comments": {
+      "count": 4,
+      "hash": "1bad1b288336890faa3489a579b3928d"
+    },
+    "beta_private.social_communities": {
+      "count": 1,
+      "hash": "89e7e41f414406550a0e56e4b5708147"
+    },
+    "beta_private.social_community_members": {
+      "count": 1,
+      "hash": "3135f3e1e4b407490c320164406194c0"
+    },
+    "beta_private.social_discussion_follows": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.social_follows": {
+      "count": 4,
+      "hash": "7a2b70cc371e6d348344c0c4372c2e5c"
+    },
+    "beta_private.social_handle_history": {
+      "count": 5,
+      "hash": "13a4cf55f069ea97551aeefb5d37a08e"
+    },
+    "beta_private.social_media": {
+      "count": 1,
+      "hash": "564264c1882c17e9336d2c49890b1fd4"
+    },
+    "beta_private.social_moderation_events": {
+      "count": 1,
+      "hash": "704b9c852212120e04f6561c1e48c8ad"
+    },
+    "beta_private.social_mutes": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.social_notification_jobs": {
+      "count": 14,
+      "hash": "fba293a9d0da6ffc1fe2da7ce6523350"
+    },
+    "beta_private.social_notification_preferences": {
+      "count": 1,
+      "hash": "2c9d1a0a724116b347fb006408b23aaa"
+    },
+    "beta_private.social_notifications": {
+      "count": 5,
+      "hash": "98b94d6335ca6d2a036eb9169c10c1af"
+    },
+    "beta_private.social_post_media": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.social_posts": {
+      "count": 14,
+      "hash": "d9f95ffeafbadbac7c44fa6aaf1fde62"
+    },
+    "beta_private.social_profiles": {
+      "count": 6,
+      "hash": "37093f25b93959c143fae7c21a2e2b9f"
+    },
+    "beta_private.social_reactions": {
+      "count": 6,
+      "hash": "8fc39ec36c9bd0a2d49881659ac0f28b"
+    },
+    "beta_private.social_reports": {
+      "count": 1,
+      "hash": "49f94a800e8f433c8015befc33d9dc75"
+    },
+    "beta_private.social_saved": {
+      "count": 2,
+      "hash": "5e4a309c9e3b6a6b54fadfa2d44d1060"
+    },
+    "beta_private.social_sport_review": {
+      "count": 2,
+      "hash": "c6fe65eb5a9dd1f43e8c21be9bf2a9d4"
+    },
+    "beta_private.source_health": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.sponsor_campaigns": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.sports": {
+      "count": 4,
+      "hash": "1ccf0c6649d1de1eea2e3ea18bfa0b49"
+    },
+    "beta_private.strategy_transitions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.strategy_versions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.subscription_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.tip_publications": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.tip_status_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.two_person_control": {
+      "count": 1,
+      "hash": "a60bb770d9656f18d77d301a683c8d63"
+    },
+    "beta_private.unsubscribe_tokens": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.validation_runs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_private.webhook_receipts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_public.notification_preferences": {
+      "count": 6,
+      "hash": "901ee4fb711885ce2ea6048980a843ae"
+    },
+    "beta_public.personal_entries": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "beta_public.profiles": {
+      "count": 6,
+      "hash": "a0c74b152912ede61772888889a82acf"
+    },
+    "beta_public.saved_tips": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "billing_retention.archives": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "billing_retention.audit": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "billing_retention.holds": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "billing_retention.policy": {
+      "count": 1,
+      "hash": "583334928af80fbc911a260b30f5f66a"
+    },
+    "billing_retention.tombstones": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.accounts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.audit": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.cards": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.control": {
+      "count": 1,
+      "hash": "e1220b898c4a91fbd5eda948efdd47d1"
+    },
+    "commercial_billing.definitions": {
+      "count": 6540,
+      "hash": "8834698a7203946d8a71b9ea152e916c"
+    },
+    "commercial_billing.jobs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.journals": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.lines": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.listings": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.lots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.ownership_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.packs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.products": {
+      "count": 2,
+      "hash": "d074d2ed64ebfa954c6cbd7a89d6c7ee"
+    },
+    "commercial_billing.receipt_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.receipts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.recovery_cases": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "commercial_billing.support_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "credits_sandbox.access": {
+      "count": 6,
+      "hash": "3b46c7bc2305b853b3d6f40bf8d5a93f"
+    },
+    "credits_sandbox.card_definitions": {
+      "count": 404,
+      "hash": "313a7b195776a78a3a672c303c582a17"
+    },
+    "credits_sandbox.card_instances": {
+      "count": 501,
+      "hash": "914ddf553f77716d60052cd48f183d37"
+    },
+    "credits_sandbox.history": {
+      "count": 321,
+      "hash": "b439d374827c8018fca1662d873a5829"
+    },
+    "credits_sandbox.journal": {
+      "count": 152,
+      "hash": "0dc8a4d2422169cca79565d92911674e"
+    },
+    "credits_sandbox.lines": {
+      "count": 328,
+      "hash": "3e8572f3c0f3c11197754ef394b584b4"
+    },
+    "credits_sandbox.listing_terms_audit": {
+      "count": 14,
+      "hash": "b6050cfa691fa1fad2e7eeb45a65c6aa"
+    },
+    "credits_sandbox.nba_fixture_definitions": {
+      "count": 351,
+      "hash": "b6e2b385cd9e1cb6e5e5e9fdd4aac851"
+    },
+    "credits_sandbox.nba_fixture_instances": {
+      "count": 408,
+      "hash": "1ae279359c540327ef780c20c00f9279"
+    },
+    "credits_sandbox.nba_fixture_players": {
+      "count": 1493,
+      "hash": "cfba6d9579ea8ee99fc3fc100b0cd2c6"
+    },
+    "credits_sandbox.pack_configuration": {
+      "count": 49,
+      "hash": "e6c7f681e97ceca10b77fc8a03f69b8e"
+    },
+    "credits_sandbox.pack_failures": {
+      "count": 5,
+      "hash": "34b934a48295e638793c36ff99408ec4"
+    },
+    "credits_sandbox.pack_receipts": {
+      "count": 115,
+      "hash": "2d17a44a6a8d1bd3258fac7045496874"
+    },
+    "credits_sandbox.permanent_players": {
+      "count": 986,
+      "hash": "a9ffd0b2c5d6cae5d4162e2714ac1ecd"
+    },
+    "credits_sandbox.rarity_configuration": {
+      "count": 1,
+      "hash": "3cbd6d34d99a5a894b79706373184b30"
+    },
+    "credits_sandbox.redemption_staff": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "credits_sandbox.sale_notification_outbox": {
+      "count": 4,
+      "hash": "4df8a6dd495f1a4e91e2f3cd879e85de"
+    },
+    "credits_sandbox.sale_push_deliveries": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "credits_sandbox.state": {
+      "count": 1,
+      "hash": "30fae400c8ccc1fbbaab662815bb4f66"
+    },
+    "credits_sandbox.store_events": {
+      "count": 8,
+      "hash": "f8de9593a892121fbae5783235254a39"
+    },
+    "credits_sandbox.store_notifications": {
+      "count": 17,
+      "hash": "2def79b01f5d2123f5b45c1e4b3fe0ae"
+    },
+    "credits_sandbox.store_outbox": {
+      "count": 4,
+      "hash": "ce60f136a9563306c3cb0fd3561291c9"
+    },
+    "credits_sandbox.store_receipts": {
+      "count": 4,
+      "hash": "50aed60fa70e1c3a6e3c122fca1cc3c1"
+    },
+    "credits_sandbox.store_test_admissions": {
+      "count": 1,
+      "hash": "7581b0ba663e26435e7480874a476776"
+    },
+    "credits_sandbox.trading_audit": {
+      "count": 6,
+      "hash": "5d967a211ab8d27ff06180c8d93ebe2d"
+    },
+    "credits_sandbox.trading_control": {
+      "count": 1,
+      "hash": "ae1896ecb304063a6d1eba892bb72aea"
+    },
+    "credits_sandbox.trading_members": {
+      "count": 3,
+      "hash": "3df2cab5210f7d531eb3039c5f42ab35"
+    },
+    "credits_sandbox.web_push_subscriptions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "cron.job": {
+      "count": 9,
+      "hash": "3a28cd5be439194810fa98d7d231671f"
+    },
+    "cron.job_run_details": {
+      "count": 190357,
+      "hash": "5036f8560b5d4534b4fd920fec31164a"
+    },
+    "fantasy.admin_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.cards": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.competitions": {
+      "count": 3,
+      "hash": "29f768d9f2f1b3f80d113097ab9942b6"
+    },
+    "fantasy.daily_claims": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.editions": {
+      "count": 180,
+      "hash": "ce269b076dc7c7a379f678eb602d5fdc"
+    },
+    "fantasy.entries": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.journals": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.ledger": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.listings": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.members": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.ownership_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.pack_definitions": {
+      "count": 5,
+      "hash": "19d51aff11da0958549d6f1d832f601b"
+    },
+    "fantasy.pack_items": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.packs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.players": {
+      "count": 36,
+      "hash": "4fbefc25fcd5f8b248e4d93ac7c0eea4"
+    },
+    "fantasy.production_catalog": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.production_definitions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.production_policy": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.production_releases": {
+      "count": 1,
+      "hash": "a46924d801b3c0604f344622182ad1cd"
+    },
+    "fantasy.production_rounds": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.replacements": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.requests": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.results": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.round_inputs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.round_scores": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.sales": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.scoring_rules": {
+      "count": 1,
+      "hash": "e02eaf81fbeb36a481e9c25acd2d5470"
+    },
+    "fantasy.settings": {
+      "count": 1,
+      "hash": "3cc9d905a880b83830f627175a9a832e"
+    },
+    "fantasy.sports": {
+      "count": 1,
+      "hash": "ab9235d9a59a0e53093e7ab194686d49"
+    },
+    "fantasy.starter_claims": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.status_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.tiers": {
+      "count": 5,
+      "hash": "e727d4ae0c395b458242d015853707c2"
+    },
+    "fantasy.trade_items": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "fantasy.trades": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "nfl_history.aliases": {
+      "count": 425,
+      "hash": "20b08493c68674a2868bb1ee2882c411"
+    },
+    "nfl_history.audit": {
+      "count": 386,
+      "hash": "82d34fb7ca9487f630baaf5933c784ad"
+    },
+    "nfl_history.consumer": {
+      "count": 1,
+      "hash": "60cafedac7a5eb95e2003e1f7c8f88ad"
+    },
+    "nfl_history.games": {
+      "count": 272,
+      "hash": "15e9be7becb1270266fa5d6b9057c305"
+    },
+    "nfl_history.generations": {
+      "count": 1,
+      "hash": "1c2cfa3062d6dddb9b86c1c0591657c0"
+    },
+    "nfl_history.host_binding": {
+      "count": 1,
+      "hash": "ce7edc687488fa1a89523815db52f26e"
+    },
+    "nfl_history.mappings": {
+      "count": 433,
+      "hash": "d481628495675d3064ededf07efc7dad"
+    },
+    "nfl_history.outbox": {
+      "count": 38517,
+      "hash": "83b4502bd1e83408948b2f98a9806083"
+    },
+    "nfl_history.players": {
+      "count": 1774,
+      "hash": "fbb49700785bd5e66f06d82447eb0bce"
+    },
+    "nfl_history.records": {
+      "count": 9384,
+      "hash": "7c83187eeb086ed78031887c2e0eaa52"
+    },
+    "nfl_roster.cleanup_runs": {
+      "count": 1,
+      "hash": "d84e8f9ed44f74fff7233c92101e5939"
+    },
+    "nfl_roster.control": {
+      "count": 1,
+      "hash": "523be82b0f6662813e1450f627e545e2"
+    },
+    "nfl_roster.observations": {
+      "count": 30816,
+      "hash": "5dddaa75a04581a3326284bc9ad6d163"
+    },
+    "nfl_roster.retired_test_cards": {
+      "count": 8,
+      "hash": "1abec52de3c3469de53e76f996f109a7"
+    },
+    "operations.events": {
+      "count": 3,
+      "hash": "3a2d997f276ee214b12c0b44546e63eb"
+    },
+    "operations.incidents": {
+      "count": 1,
+      "hash": "5fa1e4ef4adff46fa97f069122596394"
+    },
+    "operations.preservation": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "operations.retention_policy": {
+      "count": 1,
+      "hash": "317bc862588e96b55bef29695cd2493d"
+    },
+    "operations.retention_receipts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.analytics_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.app_onboarding": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.article_revisions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.articles": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.audit_events": {
+      "count": 1,
+      "hash": "aa6dde05d8e27a1ae532d1afcf7bf4d3"
+    },
+    "private.availability_observations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.bookmaker_eligibility": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.candidate_decisions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.closing_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.commercial_approvals": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.community_competitions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.community_corrections": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.community_deals": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.community_edge_personal_notes": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.community_edge_status": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.community_edges": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.community_quote_evidence": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.community_recognition_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.community_result_sources": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.community_settlements": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.community_verification_rules": {
+      "count": 2,
+      "hash": "bd74b39a26261ac06825f58bcd488702"
+    },
+    "private.competition_prizes": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.competition_qualifications": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.competition_rankings": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.competition_rules": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.competitions": {
+      "count": 1,
+      "hash": "4e975f87b4eccf4b7a018b2e94f2404b"
+    },
+    "private.consent_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.correction_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.delivery_attempts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.docked_auth_mail_events": {
+      "count": 24,
+      "hash": "9cb0f787d169377755e987d77f6bee40"
+    },
+    "private.docked_auth_mail_outbox": {
+      "count": 8,
+      "hash": "c384a04f980ca4e03dadc09da5c0be7f"
+    },
+    "private.docked_mail_scheduler": {
+      "count": 1,
+      "hash": "306bf8e45e07e064076c13bfa04da7d5"
+    },
+    "private.events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.feature_flags": {
+      "count": 12,
+      "hash": "80558100f24f3859b06bc5b011d46e39"
+    },
+    "private.football_edge_policy_approvals": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.football_model_attempts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.football_model_implementations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.football_model_outcomes": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.football_model_transitions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.football_model_versions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.football_sporting_inputs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.football_sporting_sources": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.football_training_manifests": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.job_runs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.launch_record": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.leaderboard_notification_jobs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.leaderboard_rule_versions": {
+      "count": 1,
+      "hash": "8098ad61da582f3d7caa2611c33870e7"
+    },
+    "private.leaderboard_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.market_data_config": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.market_data_event_mappings": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.market_data_fixture_observations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.market_data_payloads": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.market_reference_methodologies": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.market_reference_movements": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.market_references": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.markets": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.member_subscriptions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.membership_plans": {
+      "count": 2,
+      "hash": "70b261b756e486bb856a10c47e8050bd"
+    },
+    "private.odds_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.official_docked_publications": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.official_record_boundary": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.operational_alerts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.outbox": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.plan_entitlements": {
+      "count": 13,
+      "hash": "fd78701bfd40b2aadfc8c087ff3cff7f"
+    },
+    "private.plan_prices": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.preview_beta_invitations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.preview_fixture_edges": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.preview_market_sessions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.preview_tester_access": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.prize_award_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.provider_poll_runs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.provider_trial_diagnostics": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.provider_trial_failure_reviews": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.provider_trial_permits": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.provider_trial_requests": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.provider_trials": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.rate_limits": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.region_policies": {
+      "count": 8,
+      "hash": "9f52a40f6fb22c824a9a1e032053d088"
+    },
+    "private.research_content": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_content_reviews": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_dataset_payloads": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_dataset_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_fact_payloads": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_facts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_feature_versions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_fetch_requests": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_match_snapshots": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_policies": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_recalculations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_schedules": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_source_health": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.research_source_versions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.roles": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.scanner_candidates": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.scanner_reviews": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.scanner_run_markets": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.scanner_runs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.scanner_schedules": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.schedules": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.selections": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.settlement_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_blocks": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_collection_settings": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_comments": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_communities": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_community_members": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_discussion_follows": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_follows": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_handle_history": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_media": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_moderation_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_mutes": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_notification_jobs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_notification_preferences": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_notifications": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_post_media": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_posts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_profiles": {
+      "count": 1,
+      "hash": "ca513a4f9078de2d1c2e7b8844358451"
+    },
+    "private.social_reactions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_reports": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_saved": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.social_sport_review": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.source_health": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.sponsor_campaigns": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.sports": {
+      "count": 1,
+      "hash": "b05f96eaf2ac3f66846b37a3c6463792"
+    },
+    "private.strategy_transitions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.strategy_versions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.subscription_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.tip_publications": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.tip_status_events": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.unsubscribe_tokens": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.validation_runs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.verified_phone_claims": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "private.webhook_receipts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "public.notification_preferences": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "public.personal_entries": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "public.profiles": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "public.saved_tips": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "public_gameplay.policy": {
+      "count": 1,
+      "hash": "bb23f8c0d06d9ab0424d2831d1cee4ff"
+    },
+    "public_gameplay.rounds": {
+      "count": 6,
+      "hash": "b14fefd4338a425319fde445a42ad6f5"
+    },
+    "public_gameplay.sports": {
+      "count": 3,
+      "hash": "068ae27b33eade21e3bf0f3371767b69"
+    },
+    "realtime.messages": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "realtime.schema_migrations": {
+      "count": 96,
+      "hash": "667e108cb20cdc415d1975ac179aeaaa"
+    },
+    "realtime.subscription": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "scoring_beta.journal": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "scoring_beta.rules": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "scoring_beta.streams": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "season_catalogue.decisions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "season_catalogue.members": {
+      "count": 2570,
+      "hash": "f8b11fd0a4777c0ab25fc7c93912f13e"
+    },
+    "season_catalogue.rights": {
+      "count": 6,
+      "hash": "bd18d3c6766db5f1b0a8853aa07d7030"
+    },
+    "sports_feed.activation_decisions": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.activation_packages": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.australian_prize_rules": {
+      "count": 4,
+      "hash": "cdfa0bdffcde307e516a837d850b7d82"
+    },
+    "sports_feed.budget": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.bundle_evidence": {
+      "count": 1183,
+      "hash": "a2a2b3c0afb63b519e6316da522a88da"
+    },
+    "sports_feed.canonical_mappings": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.completion_observations": {
+      "count": 2934,
+      "hash": "8b4a349919b2ef0895b97348d84f4e20"
+    },
+    "sports_feed.completions": {
+      "count": 130,
+      "hash": "44d6689219b4900164d554d7f2c0d1ab"
+    },
+    "sports_feed.delivery_checkpoints": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.delivery_recalculations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.delivery_receipts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.delivery_records": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.free_core_programmes": {
+      "count": 3,
+      "hash": "ab0516658064d284f28fc93e7dcf8f9b"
+    },
+    "sports_feed.free_core_roster": {
+      "count": 386,
+      "hash": "0de74dc17f193a05f3f518c84422d138"
+    },
+    "sports_feed.free_core_roster_beta": {
+      "count": 882,
+      "hash": "63c41a820325ad948fcaffa86e1f2179"
+    },
+    "sports_feed.jobs": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.journal": {
+      "count": 155,
+      "hash": "360dbf698b908e9e27d6c701c7aa233b"
+    },
+    "sports_feed.nba_beta_access": {
+      "count": 6,
+      "hash": "ea372b20ee0287a763fd65493ffd1197"
+    },
+    "sports_feed.nba_beta_control": {
+      "count": 1,
+      "hash": "2e5f7b0f8500cffe8056f1bd8af1b1aa"
+    },
+    "sports_feed.nfl_allocations": {
+      "count": 4,
+      "hash": "e4defc31e9eb222cdc4a8b373680a552"
+    },
+    "sports_feed.nfl_control": {
+      "count": 1,
+      "hash": "523be82b0f6662813e1450f627e545e2"
+    },
+    "sports_feed.nfl_players": {
+      "count": 498,
+      "hash": "7a20a25b14d59c95cc93d79a57ce5f12"
+    },
+    "sports_feed.nfl_rounds": {
+      "count": 8,
+      "hash": "e392602a04032f787994b63b74dff64b"
+    },
+    "sports_feed.nfl_starter_entitlements": {
+      "count": 4,
+      "hash": "dc2850d42698442957779dd4a92cb499"
+    },
+    "sports_feed.nfl_worker_runs": {
+      "count": 3738,
+      "hash": "e16bfc30152abe0b26723d3b7bb0568c"
+    },
+    "sports_feed.owner_retry_requests": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.player_aliases": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.player_identities": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.postgame_cache": {
+      "count": 3,
+      "hash": "ae066897b737ad1e7bfb6482c6154a04"
+    },
+    "sports_feed.postgame_mapping": {
+      "count": 85,
+      "hash": "1f5098700b8fed360f8fd008e24b16b4"
+    },
+    "sports_feed.private_beta_sport_audit": {
+      "count": 4,
+      "hash": "28be3e5c6074d18e9b876d742141b1ca"
+    },
+    "sports_feed.private_beta_sports": {
+      "count": 2,
+      "hash": "e40a905060f3b3367e9a251c636fbea4"
+    },
+    "sports_feed.raw_revisions": {
+      "count": 112,
+      "hash": "aaa92ffb01a628ef08a8252afe5a8863"
+    },
+    "sports_feed.roster_observations": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.sport_rounds": {
+      "count": 44,
+      "hash": "c7919624b97cd4ade5944da0b4d5b06b"
+    },
+    "sports_feed.sport_sandbox_access": {
+      "count": 6,
+      "hash": "a6f873e8524fbd73bfa20a056832a3c6"
+    },
+    "sports_feed.sport_sandbox_inventory": {
+      "count": 14,
+      "hash": "a025d985c43612e208536e6a7dcdf56c"
+    },
+    "sports_feed.stream_members": {
+      "count": 11,
+      "hash": "f419640d908c266bbaa48470885bed12"
+    },
+    "sports_feed.streams": {
+      "count": 9,
+      "hash": "44eab44eff1a86afadbfb62668ede744"
+    },
+    "sports_feed.weekly_core_control": {
+      "count": 1,
+      "hash": "293b415c98d4b9432f5654c7c2e8f9ba"
+    },
+    "sports_feed.weekly_core_job_failures": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "sports_feed.weekly_core_job_runs": {
+      "count": 75073,
+      "hash": "3f1c2edae601a20011a4145244a6852e"
+    },
+    "sports_feed.weekly_core_packs": {
+      "count": 54,
+      "hash": "8ec50ffc9135af0ef0457ce36ede5209"
+    },
+    "sports_feed.weekly_core_schedules": {
+      "count": 18,
+      "hash": "232b38fda871ba03fc4e2449c2881024"
+    },
+    "sports_feed.weekly_sport_programmes": {
+      "count": 2,
+      "hash": "9349fc51a66f65d5c312d38f2ee1b48c"
+    },
+    "storage.bucket_lifecycle_states": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "storage.buckets": {
+      "count": 1,
+      "hash": "51c59b8f4cefb0df67d149381be8baaa"
+    },
+    "storage.buckets_analytics": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "storage.buckets_vectors": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "storage.lifecycle_abandoned_artifacts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "storage.migrations": {
+      "count": 80,
+      "hash": "e601e6ed26dc5b17ccf1686244a428a9"
+    },
+    "storage.objects": {
+      "count": 10,
+      "hash": "a0eb20aa99651156ef8734f884ad60d9"
+    },
+    "storage.s3_multipart_uploads": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "storage.s3_multipart_uploads_parts": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "storage.vector_indexes": {
+      "count": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "store_billing_acceptance.control": {
+      "count": 1,
+      "hash": "c8ed3a23785ffb33be206cdf026db356"
+    },
+    "store_billing_acceptance.history": {
+      "count": 6,
+      "hash": "05332c520a09fef51efd1461230884a7"
+    },
+    "store_billing_acceptance.journal": {
+      "count": 9,
+      "hash": "52ab97df3d13cb5ad21c3421a9eac8d2"
+    },
+    "store_billing_acceptance.lines": {
+      "count": 18,
+      "hash": "6572c6c2411dfe7a07256994f3f1c68c"
+    },
+    "store_billing_acceptance.state": {
+      "count": 1,
+      "hash": "adbc677380426da701a5ec3a8089f4d8"
+    },
+    "store_billing_acceptance.store_events": {
+      "count": 7,
+      "hash": "373d16f06850c121c03e2cb7362887c0"
+    },
+    "store_billing_acceptance.store_outbox": {
+      "count": 3,
+      "hash": "dd8cb67be12eb5e50fe578f7b63a0774"
+    },
+    "store_billing_acceptance.store_receipts": {
+      "count": 3,
+      "hash": "3d2fe17398187b565636c189ee1dd6c1"
+    },
+    "store_member_acceptance.control": {
+      "count": 1,
+      "hash": "c8ed3a23785ffb33be206cdf026db356"
+    },
+    "store_member_acceptance.history": {
+      "count": 10,
+      "hash": "5303bec3daf45282f864f82a2844b2b9"
+    },
+    "store_member_acceptance.journal": {
+      "count": 9,
+      "hash": "e1ab97bb60ae04823336fd34a1709adf"
+    },
+    "store_member_acceptance.lines": {
+      "count": 18,
+      "hash": "92524210da5dd3f17a7f996fd5095f35"
+    },
+    "store_member_acceptance.state": {
+      "count": 1,
+      "hash": "d32554ba2fc62589663b4e2abd1116da"
+    },
+    "store_member_acceptance.store_events": {
+      "count": 5,
+      "hash": "1c566fb53cc94beaa1ca03339664fe49"
+    },
+    "store_member_acceptance.store_outbox": {
+      "count": 2,
+      "hash": "0eb64975eef777afa687e87cb7ea9fd1"
+    },
+    "store_member_acceptance.store_receipts": {
+      "count": 2,
+      "hash": "7d8b1e5e89c8aa6a5cc31b35d778b32e"
+    },
+    "supabase_migrations.schema_migrations": {
+      "count": 146,
+      "hash": "d8de176915af681b7b6d85cb5789cef5"
+    },
+    "vault.secrets": {
+      "count": 4,
+      "hash": "45a81f0f39093487291a82678f4d6f4f"
+    }
+  },
+  "schema": {
+    "fingerprint": "e2cb7d46e0e564972db929a074d35bdb",
+    "objects": 10340
+  },
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_later_serials": 0,
+    "unbalanced_commercial_journals": 0
+  },
+  "custodyRecords": 909,
+  "custodyDigest": "575f2b8ee45cc16189d16443cb8dd59d17b4b5648ab71ba495e2da26db4d0100",
+  "operationsSincePreviousBackup": [
+    {
+      "status": "pending-review",
+      "task": "reconcile",
+      "records": 34,
+      "first_id": "3705",
+      "last_id": "3738"
+    }
+  ],
+  "changes": [
+    {
+      "table": "auth.refresh_tokens",
+      "previous": {
+        "hash": "d9b92c2805509c73fff761c4ba75861b",
+        "count": 585
+      },
+      "current": {
+        "count": 586,
+        "hash": "f523e01e530fe8c96eb896101569389c"
+      }
+    },
+    {
+      "table": "auth.sessions",
+      "previous": {
+        "hash": "66d40ad53cbc3ebfef74ce0b098a2bfa",
+        "count": 142
+      },
+      "current": {
+        "count": 142,
+        "hash": "89818fa933f9d22a779d74601f341412"
+      }
+    },
+    {
+      "table": "auth.users",
+      "previous": {
+        "hash": "24c9e909ec06964f1d5d25560e788baa",
+        "count": 6
+      },
+      "current": {
+        "count": 6,
+        "hash": "8cfeb74112c8624d70c648ffbb48e05d"
+      }
+    },
+    {
+      "table": "beta_fantasy.cards",
+      "previous": {
+        "hash": "87c65750c57ec8b055ed24b8d0316a35",
+        "count": 63
+      },
+      "current": {
+        "count": 67,
+        "hash": "0e9a40bf353819f53ffb1edf8b0a0ca2"
+      }
+    },
+    {
+      "table": "beta_fantasy.editions",
+      "previous": {
+        "hash": "3dd713d2b58c81505b7a382336f05777",
+        "count": 678
+      },
+      "current": {
+        "count": 678,
+        "hash": "4b4c67d6a5df1da3bbb524ecbacea79c"
+      }
+    },
+    {
+      "table": "beta_fantasy.ownership_events",
+      "previous": {
+        "hash": "23c9b9520492995966fe9322f87f2d28",
+        "count": 63
+      },
+      "current": {
+        "count": 67,
+        "hash": "4089378a91f4ace82d7d162ba6c22388"
+      }
+    },
+    {
+      "table": "beta_fantasy.requests",
+      "previous": {
+        "hash": "bceca65138907cd89f5fb4108ff96e8b",
+        "count": 193
+      },
+      "current": {
+        "count": 194,
+        "hash": "e3a707c805825c959c4b90b551babcdd"
+      }
+    },
+    {
+      "table": "beta_packs.events",
+      "previous": {
+        "hash": "c993d3fa2a78c7ccfc6e8f7a35c38408",
+        "count": 4
+      },
+      "current": {
+        "count": 5,
+        "hash": "6b3559559152c8e2159c7023ae1a5444"
+      }
+    },
+    {
+      "table": "beta_packs.issued",
+      "previous": {
+        "hash": "4c2c0aad8a0d6fc20be2e2641ce20a1f",
+        "count": 2
+      },
+      "current": {
+        "count": 3,
+        "hash": "fa80fdcc3c26a0d77c131b90cd0b97e7"
+      }
+    },
+    {
+      "table": "beta_private.rate_limits",
+      "previous": {
+        "hash": "6f575d2c82ad7add64fe39ec0d051277",
+        "count": 130
+      },
+      "current": {
+        "count": 130,
+        "hash": "2d5c96d629c4191f6ccf9a36aedd1cd9"
+      }
+    },
+    {
+      "table": "commercial_billing.definitions",
+      "previous": {
+        "hash": "5046e41d5fdcc869ce73587111942bc9",
+        "count": 6540
+      },
+      "current": {
+        "count": 6540,
+        "hash": "8834698a7203946d8a71b9ea152e916c"
+      }
+    },
+    {
+      "table": "credits_sandbox.card_definitions",
+      "previous": {
+        "hash": "c46cc14bd43cfdd65e4e172e08e1f766",
+        "count": 403
+      },
+      "current": {
+        "count": 404,
+        "hash": "313a7b195776a78a3a672c303c582a17"
+      }
+    },
+    {
+      "table": "credits_sandbox.card_instances",
+      "previous": {
+        "hash": "daaf4d1852e8b95cd7fe8ce00602b8e9",
+        "count": 500
+      },
+      "current": {
+        "count": 501,
+        "hash": "914ddf553f77716d60052cd48f183d37"
+      }
+    },
+    {
+      "table": "credits_sandbox.history",
+      "previous": {
+        "hash": "695ecb74d95937edab7cc94516ddee48",
+        "count": 320
+      },
+      "current": {
+        "count": 321,
+        "hash": "b439d374827c8018fca1662d873a5829"
+      }
+    },
+    {
+      "table": "credits_sandbox.journal",
+      "previous": {
+        "hash": "6de2157aef9dccafb50d47393821bcd2",
+        "count": 151
+      },
+      "current": {
+        "count": 152,
+        "hash": "0dc8a4d2422169cca79565d92911674e"
+      }
+    },
+    {
+      "table": "credits_sandbox.lines",
+      "previous": {
+        "hash": "aa4e7e698cf88377053ff26a201097b2",
+        "count": 326
+      },
+      "current": {
+        "count": 328,
+        "hash": "3e8572f3c0f3c11197754ef394b584b4"
+      }
+    },
+    {
+      "table": "credits_sandbox.pack_receipts",
+      "previous": {
+        "hash": "4dca0ced06ea56547632aef7af4dd0dd",
+        "count": 114
+      },
+      "current": {
+        "count": 115,
+        "hash": "2d17a44a6a8d1bd3258fac7045496874"
+      }
+    },
+    {
+      "table": "credits_sandbox.state",
+      "previous": {
+        "hash": "363464b5ead991c725fb8dc1babd7be8",
+        "count": 1
+      },
+      "current": {
+        "count": 1,
+        "hash": "30fae400c8ccc1fbbaab662815bb4f66"
+      }
+    },
+    {
+      "table": "cron.job_run_details",
+      "previous": {
+        "hash": "410e7566d95df8403701e3ac784b8182",
+        "count": 188197
+      },
+      "current": {
+        "count": 190357,
+        "hash": "5036f8560b5d4534b4fd920fec31164a"
+      }
+    },
+    {
+      "table": "private.docked_mail_scheduler",
+      "previous": {
+        "hash": "b6996d6677c6cb3730c4e2ee03c6da80",
+        "count": 1
+      },
+      "current": {
+        "count": 1,
+        "hash": "306bf8e45e07e064076c13bfa04da7d5"
+      }
+    },
+    {
+      "table": "sports_feed.nfl_rounds",
+      "previous": {
+        "hash": "0df8a0754c42010882d06b3c7cdd6968",
+        "count": 8
+      },
+      "current": {
+        "count": 8,
+        "hash": "e392602a04032f787994b63b74dff64b"
+      }
+    },
+    {
+      "table": "sports_feed.nfl_worker_runs",
+      "previous": {
+        "hash": "05e070eeb73e11eb6d31d49545ec2733",
+        "count": 3703
+      },
+      "current": {
+        "count": 3738,
+        "hash": "e16bfc30152abe0b26723d3b7bb0568c"
+      }
+    },
+    {
+      "table": "sports_feed.weekly_core_job_runs",
+      "previous": {
+        "hash": "15c43bad31cbea80007cc329b03777c8",
+        "count": 74015
+      },
+      "current": {
+        "count": 75073,
+        "hash": "3f1c2edae601a20011a4145244a6852e"
+      }
+    },
+    {
+      "table": "sports_feed.weekly_core_packs",
+      "previous": {
+        "hash": "53f8ee8e2c3dfa44eefb53a7e588e122",
+        "count": 51
+      },
+      "current": {
+        "count": 54,
+        "hash": "8ec50ffc9135af0ef0457ce36ede5209"
+      }
+    },
+    {
+      "table": "sports_feed.weekly_core_schedules",
+      "previous": {
+        "hash": "b58cbcd7bcc09841b654e06b74cf10c1",
+        "count": 18
+      },
+      "current": {
+        "count": 18,
+        "hash": "232b38fda871ba03fc4e2449c2881024"
+      }
+    }
+  ]
+}

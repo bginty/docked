@@ -82,3 +82,10 @@ docs/qa/final-commercial-20261116/** -text
 scripts/final-*.mjs text eol=lf
 scripts/final-*.ts text eol=lf
 scripts/lib/final-phone-preparation.mjs text eol=lf
+
+# Preserve Batch 1 execution evidence and the exact runtime review amendment.
+docs/qa/batch1-production-execution-20261116/** text eol=lf
+docs/qa/v31-prelaunch-execution-20261111/database/restore-20261116c/** text eol=lf
+scripts/batch1-production-*.ts text eol=lf
+scripts/batch1-production-*.mjs text eol=lf
+scripts/batch1-backup-progress.ts text eol=lf
