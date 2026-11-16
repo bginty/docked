@@ -1,0 +1,156 @@
+DOCKED — FINAL PAID-RELEASE EVIDENCE REVIEW, 17 NOVEMBER 2026
+Status: NO-GO. Engineering preparation, not a Production approval package.
+
+Accepted decisions — do not ask again
+- Founder directs standard GST on paid credits, no charge/GST on free grants,
+  and refund adjustments against the original taxable sale. A$49 / A$99 remain
+  GST-inclusive. This is founder accounting direction, not accountant advice.
+- Founder attests existing legal advice permits player names, colours and cities
+  without separate clearance. Record this scope as the material-use basis for
+  paid packs; do not keep a generic player-name licence request open. No official
+  logos/photos, proprietary statistics, new source collection or endorsement is
+  inferred. Keep existing provenance and applicable open-source attribution.
+- Public SMS budget: A$50 TOTAL for the first seven days, separate from testing.
+  No automatic top-up or automatic renewal. Approval of budget is not sending
+  authority. Existing Preview credentials and genuine acceptance remain valid.
+
+Actual Production observation
+Application 76df44ba1adef012c5ec2119563cbc05ff9e3c0b;
+Vercel dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh. Read-only 17 November census:
+6,540 definitions; 918 lifetime-issued limited copies; 936 custody records.
+888 historical copies plus 30 later beta allocations. These are observation
+counts, never reset targets. All supply/custody/journal invariants pass; zero
+commercial cards or approved-for-sale definitions. All four commercial controls
+OFF; registration and deletion schedules OFF; six disabled Practice competitions.
+No Production, Preview, Google or Twilio setting was changed in this review.
+
+Completed billing evidence is retained
+GET-only Google order verification and the CURRENT deployed verifier revalidated
+all THREE genuine historical TEST orders. A$49, A$99, A$49: all REFUNDED/REVOKED,
+correct bindings, zero remaining credit and zero unfinished receipt jobs, balanced
+journals. The original A$99 pre-consumption-fix order remains unconsumed; this is
+not hidden. Its 5,700-credit recovery exposure remains intact. The later A$49
+order verifies the deployed acknowledgement fix and is consumed.
+Historical actual-device evidence includes Standard/Premium nine-card delivery,
+unspent and partially-spent refunds, automatic acknowledgement, real notification
+reconciliation and duplicate suppression. No new purchase/refund was made today.
+
+The Google verifier, billing product model, native DockedBillingPlugin, pack
+catalogue and odds are byte-identical to the post-fix November evidence. Android
+v31 changes version metadata and adds image sharing; native billing dependencies
+are unchanged. Later ledger changes add locked supply checks, repeatable-read
+reporting, monitoring, phone admission and optional marketplace handling. Existing
+real Postgres financial/concurrency evidence covers those server safeguards.
+See billing-source-comparison.json and historical-google-revalidated.json.
+
+Retire the blanket six-checkout/54-new-card requirement. Do not repeat both
+products, every sport, both pack families and refunds merely because v31 is newer.
+The 16 financial Postgres scenarios, real hosted 18-offer pack acceptance and
+founder's actual v31 AFL/NFL nine-card purchases/reload are distinct valid evidence.
+No physical Android latency is inferred from hosted synthetic timings.
+
+Google, merchant and GST
+Authenticated Play Console on 17 November: v31 / 1.30 and Data Safety in Changes
+ready to publish; managed publishing ON; Publish 10 changes left untouched.
+The live Tax rates page showed Digital app sales (2 products), Australia GST,
+Seller configurable, Custom rate 10%. This supersedes the earlier No-tax concern;
+no setting was changed. Subsequent authenticated API readback confirms both AU
+buy-au options INACTIVE at exactly A$49 and A$99, multi-quantity OFF. No v32 or
+fresh review is indicated by this work. Existing accepted merchant GST and payout
+verification are retained. The first actual settlement can only be reconciled
+after an actual sale; absence of a first payout is not a pre-launch test failure.
+
+Accounting implementation direction
+For a fully taxable GST-inclusive sale: A$49 contains A$4.45 GST; A$99 A$9.00.
+Do not deduct GST from the customer's 4,900/9,900 credits. Do not charge it again
+when those credits purchase packs. TEST orders and free grants are not paid sales.
+Refund reporting must follow actual reimbursement/Google evidence and the original
+tax amount; do not blindly create GST credits for requests, holds or pending refunds.
+Keep Google fees/fee GST separate from customer gross sales and refund adjustments.
+This records the founder's chosen treatment, not a new conclusion about voucher law.
+Sources: https://support.google.com/googleplay/android-developer/answer/138000
+https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/completing-your-bas-for-gst/making-adjustments-on-your-activity-statements/when-to-make-adjustments
+
+Inventory and material decision
+The original 6,065 approved IDs remain the paid proposal; 475 remain excluded.
+ID digest: 1956d1715dcd2ef494dad469f8b272951853d5d76773fe9ae39f5537996e6830.
+The ten later holds were based only on roster departure/transfer for Nikko Remigio
+and Jack Todd. Both have established season membership; that hold conflicts with
+the founder's enduring season rule and is not a new identity decision. No silent
+freshness timestamp renewal occurs. 6,060 definitions also match the free Weekly
+catalogue; Jared Wayne's five were already in the separately approved paid set
+and do not require addition to the free Weekly pool. Do not use Weekly membership
+as a newly invented veto on the prior paid approval. The 6,065 set contains the
+capacity-verified 6,055 set; all 18 offers retain enough distinct eligible players.
+No reimport, remint or lifetime-counter reset. Activation must bind this exact
+subset and the founder-attested material scope to the existing commercial rights
+and control rows, while preserving all source conditions and explicit restrictions.
+Sources for retained dataset conditions: https://creativecommons.org/licenses/by/4.0/
+https://creativecommons.org/licenses/by-sa/4.0/
+
+New independent preparation completed
+- Signed Auth SMS budget hook plus INACTIVE migration. Concurrent reservation,
+  single-segment AU-only sending, durable duplicate suppression, 60-second/member
+  cooldown, 3/hour/member, 30/hour global, absolute window expiry. Reserve A$1 per
+  attempted message, maximum 50 attempts for the A$50 window. Failures/timeouts
+  never automatically resend or release ambiguous expenditure. No OTP/phone is
+  stored in its tables. Public/anonymous/customer roles cannot call its functions.
+  Activation requires a fresh all-in AU price/FX/tax bound <= A$1 per attempt.
+  The amount is a conservative reservation, NOT a claim that an SMS costs A$1.
+- Eight hook tests and nine isolated real-Postgres scenario groups passed,
+  including 20 simultaneous duplicates and 20 distinct requests racing the cap.
+  A delayed reservation cannot start a provider send after the hook deadline.
+  Typecheck, scoped lint and complete local production Webpack build passed.
+  No actual hook send, hosted hook acceptance or Production deployment is claimed.
+- Account-transition SQL prepared; seven isolated Postgres preservation/abort
+  checks pass. It copies existing profile/roles/consent/opt-outs verbatim, preserves
+  disabled states and US country, and rejects changed source or populated targets.
+  It does not fabricate new Terms acceptance, enable US commerce or move assets.
+  The account copy and inactive SMS migration also passed against the authenticated
+  16 November Production backup: six profiles, two roles, 54 original consent rows
+  and six preferences copied inside the rehearsal, then rolled back. All 568
+  protected tables match before/after. Runtime permissions passed; no SMS window
+  was created. This is a component rehearsal, NOT full public-mode acceptance,
+  a fresh deployment backup, or an executable approved release.
+- Exact paid-packs-only commercial wording prepared. Marketplace remains OFF;
+  prices, nine-card guarantee, probabilities, caps and consumer safeguards retained.
+  Existing phone privacy and Data Safety content unchanged. Nothing published.
+
+The remaining mandatory gaps are now specific
+1. Finish and rehearse the public-runtime integration. All SIX existing profiles
+   and BOTH staff roles currently exist only in beta schemas; public equivalents
+   are empty. Current public manifest is approved=false and the runtime uses the
+   beta role. A flag-only switch would interrupt access. The account-copy proposal
+   addresses part of this, but legacy pack recovery also needs its public-mode
+   path verified: three sealed entitlements exist, with 9/1/1 already allocated
+   cards, two with current beta access. They must not vanish or be reissued.
+2. Deploy the separately reviewed closed-registration phone/runtime candidate,
+   install the budget guard and configure the existing Twilio account/service
+   privately. Preview's actual SMS pass is accepted. One controlled installed-v31
+   Production verification closes the new project/hook integration gap; do not
+   repeat the whole Preview programme. Price GET returned HTTP401 with values
+   read from saved Preview config; this does NOT invalidate the genuine send or
+   justify new services/credential rotation. Secure usable Production credential
+   entry/readback and final per-message cost remain necessary.
+3. Freeze, approve and execute the final coordinated paid-launch package only
+   after the above pass. Include dormant inventory approval flags, exact notices,
+   existing Google products and public signup gates. Marketplace is deferred.
+
+Minimum attended acceptance
+Existing founder authenticator; private Production phone enrolment on installed
+v31; one send/verify/reload through the final bounded path. Verify product discovery
+and A$49/A$99 display, existing receipts, unchanged account binding and preserved
+collection/legacy packs. Request a new Google TEST checkout/refund ONLY if a
+specific changed admission/runtime path cannot be covered by those checks or
+fails. No automatic repeat of the historical six-checkout programme.
+
+Next authority
+No final GO request is issued: the full public-runtime/legacy recovery candidate
+and restored rehearsal are not complete. Do not approve this evidence manifest
+as a deployment. The next engineering deliverable must be ONE exact closed-gate
+runtime/phone package, then one final coordinated paid-launch GO after acceptance.
+No repeated GST, identity, vault, email, Preview setup or historic billing decisions.
+Remaining estimate: 4–8 engineering hours for transition/recovery integration,
+restored rehearsal and release packaging, plus approximately 15–30 minutes of
+founder device participation and normal staging/deployment time. Findings can
+change this estimate. Google review and optional marketplace work are not blockers.

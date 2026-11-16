@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-16T22:23:41.780Z",
+  "environment": "disposable local Postgres17 database",
+  "migration": "supabase/migrations/20261116215032_public_sms_budget_guard.sql",
+  "passed": [
+    "Migration inactive, no window/provider/settings mutations",
+    "20 concurrent identical requests reserve once",
+    "20 concurrent distinct requests cannot exceed budget",
+    "Ambiguous failure never replenishes or resends",
+    "Accepted replay and per-account cooldown",
+    "Disabled, expired, not-yet-active and non-allowlisted calls denied",
+    "Anonymous/unverified/banned/missing users denied",
+    "No customer/service-role hook access; runtime cannot edit budgets or attempts directly",
+    "Global 30/hour bound enforced inside database lock"
+  ],
+  "concurrentDuplicateRequests": 20,
+  "concurrentDistinctRequests": 20,
+  "productionWrites": 0,
+  "smsSent": 0
+}

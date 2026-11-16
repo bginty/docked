@@ -1,0 +1,64 @@
+{
+  "at": "2026-11-16T21:39:50.707Z",
+  "currentSource": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "cases": [
+    {
+      "caseNumber": 1,
+      "receiptDigest": "fb76b98b7860ebb94db4312eec34bb3033e8c63857b1c347bf082fb016ce84e6",
+      "product": "docked_credits_4900_v1",
+      "grossCents": 4900,
+      "refundedCents": 4900,
+      "providerState": "REFUNDED",
+      "currentVerifierState": "REVOKED",
+      "consumed": true,
+      "bindingVerified": true,
+      "accounting": {
+        "remaining": 0,
+        "unfinished_jobs": 0,
+        "unbalanced": 0,
+        "recovery_exposure": 0
+      }
+    },
+    {
+      "caseNumber": 2,
+      "receiptDigest": "9419414a2d116f185fd97115d76bd327966e2c5ddb9c967e99f3d2f333c54a41",
+      "product": "docked_credits_9900_v1",
+      "grossCents": 9900,
+      "refundedCents": 9900,
+      "providerState": "REFUNDED",
+      "currentVerifierState": "REVOKED",
+      "consumed": false,
+      "bindingVerified": true,
+      "accounting": {
+        "remaining": 0,
+        "unfinished_jobs": 0,
+        "unbalanced": 0,
+        "recovery_exposure": 5700
+      }
+    },
+    {
+      "caseNumber": 3,
+      "receiptDigest": "17bab9222b16387d0a6aab3ad1789c8e34495db5e485b460e57f2012d2f4059f",
+      "product": "docked_credits_4900_v1",
+      "grossCents": 4900,
+      "refundedCents": 4900,
+      "providerState": "REFUNDED",
+      "currentVerifierState": "REVOKED",
+      "consumed": true,
+      "bindingVerified": true,
+      "accounting": {
+        "remaining": 0,
+        "unfinished_jobs": 0,
+        "unbalanced": 0,
+        "recovery_exposure": 0
+      }
+    }
+  ],
+  "actualHistoricalGoogleTestsAccepted": true,
+  "newPurchases": 0,
+  "newRefunds": 0,
+  "databaseWrites": 0,
+  "providerBusinessMutations": 0,
+  "productionAccess": false,
+  "note": "Fresh provider GETs through the deployed verifier. Retains earlier device/consume/notification evidence; does not manufacture a new checkout or Production settlement."
+}

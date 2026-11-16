@@ -1,0 +1,494 @@
+{
+  "at": "2026-11-16T22:16:28.029Z",
+  "productionWrites": 0,
+  "profiles": {
+    "beta_profiles": 6,
+    "public_profiles": 0,
+    "same_auth_id_in_both": 0,
+    "missing_public_profile": 6,
+    "beta_roles": 2,
+    "public_roles": 0
+  },
+  "policies": [
+    {
+      "country": "AU",
+      "approved": true,
+      "preview_community_only": false,
+      "total": 8,
+      "current": 8
+    }
+  ],
+  "gates": [
+    {
+      "key": "registration",
+      "enabled": false
+    }
+  ],
+  "roles": [
+    {
+      "rolname": "docked_app",
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreaterole": false,
+      "rolcreatedb": false
+    },
+    {
+      "rolname": "docked_beta_app",
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreaterole": false,
+      "rolcreatedb": false
+    },
+    {
+      "rolname": "docked_commercial_app",
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreaterole": false,
+      "rolcreatedb": false
+    }
+  ],
+  "privileges": [
+    {
+      "public_profile_read": true,
+      "auth_read": true,
+      "session_read": true,
+      "beta_profile_read": false,
+      "legacy_collection_read": false
+    }
+  ],
+  "schemas": [
+    {
+      "table_schema": "beta_private",
+      "table_name": "consent_events",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": "gen_random_uuid()"
+    },
+    {
+      "table_schema": "beta_private",
+      "table_name": "consent_events",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_private",
+      "table_name": "consent_events",
+      "column_name": "purpose",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_private",
+      "table_name": "consent_events",
+      "column_name": "granted",
+      "data_type": "boolean",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_private",
+      "table_name": "consent_events",
+      "column_name": "version",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_private",
+      "table_name": "consent_events",
+      "column_name": "actor",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_private",
+      "table_name": "consent_events",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_schema": "beta_private",
+      "table_name": "roles",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_private",
+      "table_name": "roles",
+      "column_name": "role",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_private",
+      "table_name": "roles",
+      "column_name": "assigned_by",
+      "data_type": "uuid",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_private",
+      "table_name": "roles",
+      "column_name": "assigned_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "country",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "state",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "age_attested",
+      "data_type": "boolean",
+      "is_nullable": "NO",
+      "column_default": "false"
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "accepted_version",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "timezone",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": "'Australia/Melbourne'::text"
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "odds_format",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": "'decimal'::text"
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "sports",
+      "data_type": "ARRAY",
+      "is_nullable": "NO",
+      "column_default": "'{}'::text[]"
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "leagues",
+      "data_type": "ARRAY",
+      "is_nullable": "NO",
+      "column_default": "'{}'::text[]"
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "bookmakers",
+      "data_type": "ARRAY",
+      "is_nullable": "NO",
+      "column_default": "'{}'::text[]"
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "disabled_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "beta_public",
+      "table_name": "profiles",
+      "column_name": "onboarding_completed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "private",
+      "table_name": "consent_events",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": "gen_random_uuid()"
+    },
+    {
+      "table_schema": "private",
+      "table_name": "consent_events",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "private",
+      "table_name": "consent_events",
+      "column_name": "purpose",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "private",
+      "table_name": "consent_events",
+      "column_name": "granted",
+      "data_type": "boolean",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "private",
+      "table_name": "consent_events",
+      "column_name": "version",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "private",
+      "table_name": "consent_events",
+      "column_name": "actor",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "private",
+      "table_name": "consent_events",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_schema": "private",
+      "table_name": "roles",
+      "column_name": "user_id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "private",
+      "table_name": "roles",
+      "column_name": "role",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "private",
+      "table_name": "roles",
+      "column_name": "assigned_by",
+      "data_type": "uuid",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "private",
+      "table_name": "roles",
+      "column_name": "assigned_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "id",
+      "data_type": "uuid",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "country",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "state",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "age_attested",
+      "data_type": "boolean",
+      "is_nullable": "NO",
+      "column_default": "false"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "accepted_version",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": null
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "timezone",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": "'Australia/Melbourne'::text"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "odds_format",
+      "data_type": "text",
+      "is_nullable": "NO",
+      "column_default": "'decimal'::text"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "sports",
+      "data_type": "ARRAY",
+      "is_nullable": "NO",
+      "column_default": "'{}'::text[]"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "leagues",
+      "data_type": "ARRAY",
+      "is_nullable": "NO",
+      "column_default": "'{}'::text[]"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "bookmakers",
+      "data_type": "ARRAY",
+      "is_nullable": "NO",
+      "column_default": "'{}'::text[]"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "created_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "NO",
+      "column_default": "now()"
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "disabled_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    },
+    {
+      "table_schema": "public",
+      "table_name": "profiles",
+      "column_name": "onboarding_completed_at",
+      "data_type": "timestamp with time zone",
+      "is_nullable": "YES",
+      "column_default": null
+    }
+  ],
+  "roleKinds": [
+    {
+      "role": "owner",
+      "count": 1
+    },
+    {
+      "role": "admin",
+      "count": 1
+    }
+  ],
+  "collectionProjection": {
+    "definition": "CREATE OR REPLACE FUNCTION commercial_billing.preserved_collection_rows(u uuid, sport_id text)\n RETURNS TABLE(id text, rarity text, serial bigint, snapshot jsonb, acquired_at timestamp with time zone, preserved jsonb)\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\n with ledger as materialized(select document->'commerce'->'cards' commerce,\n   document->'cards' cards,document->'economy'->'instances' instances,\n   document->'economy'->'players' players,document->'entitlements' entitlements\n   from credits_sandbox.state where id and u is not null and sport_id in('nfl','afl','nrl')),\n beta_owned as materialized(\n  select c.key id,c.value commerce,l.instances->c.key instance,\n    l.cards->c.key card,l.players->(l.instances->c.key->>'playerId') player\n  from ledger l cross join lateral jsonb_each(l.commerce)c\n  where c.value->>'owner'=u::text and c.value->>'sport'=sport_id and l.cards ? c.key\n   and (l.instances->c.key->>'source' is null\n    or l.entitlements->(l.instances->c.key->>'source')->>'status'='OPENED')\n ), beta_rows as (\n  select b.id,coalesce(b.instance->>'rarity',b.commerce->>'tier') rarity,\n   coalesce((b.instance->>'serial')::bigint,0) serial,\n   jsonb_build_object('name',coalesce(b.player->>'name','Test Player '||split_part(b.id,'-',4)),\n    'team',coalesce(b.player->>'currentTeam','Docked Test Squad'),'position',coalesce(b.player->>'position','')) snapshot,\n   (select to_timestamp(max((h->>'at')::numeric)/1000) from jsonb_array_elements(b.card->'history')h where h->>'to'=u::text) acquired_at,\n   jsonb_build_object('id',b.id,'inventory','beta','commerce',b.commerce-'owner'-'reserved','instance',b.instance,'player',b.player) preserved\n  from beta_owned b\n ), legacy_rows as (\n  select c.id::text id,e.tier rarity,c.serial::bigint serial,\n   jsonb_build_object('name',p.name,'team',coalesce(np.current_team,p.team),'position',p.position) snapshot,\n   coalesce((select max(o.created_at) from beta_fantasy.ownership_events o where o.card_id=c.id and o.to_user=u),c.created_at) acquired_at,\n   jsonb_build_object('id',c.id,'inventory','collectible','card',jsonb_build_object(\n    'id',c.id,'player_id',p.id,'canonical_player_id',cp.id,'name',p.name,'sport',p.sport,\n    'team',coalesce(np.current_team,p.team),'position',p.position,'tier',e.tier,'serial',c.serial,\n    'max_supply',case when e.tier='CORE' and cp.id is not null then 0 else e.max_supply end,\n    'season',e.season,'edition_id',e.id,'kind',e.kind,'colour',p.colour,'shirt',p.shirt,'status',p.status,'tradeable',false)) preserved\n  from beta_fantasy.cards c join beta_fantasy.editions e on e.id=c.edition_id\n  join beta_fantasy.players p on p.id=e.player_id\n  left join sports_feed.nfl_players np on np.player_id=p.id and p.sport='nfl'\n  left join credits_sandbox.permanent_players cp on cp.provider='nflverse' and cp.provider_id=np.provider_id and cp.sport='nfl'\n  where u is not null and sport_id in('nfl','afl','nrl') and c.owner_id=u and p.sport=sport_id\n   and not exists(select 1 from beta_fantasy.pack_items pi join beta_fantasy.packs pa on pa.id=pi.pack_id where pi.card_id=c.id and pa.opened_at is null)\n   -- Current custody always wins over an obsolete owner in the older ledger.\n   and not exists(select 1 from ledger l where l.commerce ? c.id::text)\n )\n select * from beta_rows union all select * from legacy_rows\n$function$\n"
+  },
+  "pendingLegacyPacks": [
+    {
+      "status": "OPENED",
+      "total": 119
+    },
+    {
+      "status": "SEALED",
+      "total": 3
+    }
+  ],
+  "sealedLegacyDetail": [
+    {
+      "kind": null,
+      "product": null,
+      "active_profile": true,
+      "beta_access": false,
+      "allocated_cards": 9,
+      "receipt_present": false
+    },
+    {
+      "kind": null,
+      "product": null,
+      "active_profile": true,
+      "beta_access": true,
+      "allocated_cards": 1,
+      "receipt_present": false
+    },
+    {
+      "kind": null,
+      "product": null,
+      "active_profile": true,
+      "beta_access": true,
+      "allocated_cards": 1,
+      "receipt_present": false
+    }
+  ]
+}

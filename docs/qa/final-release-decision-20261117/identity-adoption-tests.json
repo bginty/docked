@@ -1,0 +1,14 @@
+{
+  "at": "2026-11-16T22:15:35.889Z",
+  "environment": "local synthetic Postgres; not a restored Production rehearsal",
+  "passed": [
+    "Source drift aborts atomically",
+    "Registration-open state aborts",
+    "Issuance-open state aborts",
+    "Six exact profiles, same owner/admin, original refused consent and opt-outs preserved",
+    "US country and disabled account remain unchanged",
+    "Source and financial/card/entitlement sentinel unchanged",
+    "Repeat cannot overwrite, duplicate consent or replay audit"
+  ],
+  "productionWrites": 0
+}

@@ -1,0 +1,224 @@
+{
+  "at": "2026-11-16T21:39:56.914Z",
+  "historicalAcknowledgementFix": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f",
+  "current": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "summaries": [
+    {
+      "file": "src/server/google-commercial-verifier.ts",
+      "oldSha256": "a868823917cf6508650fc7630d2be74c4e45ab0d77578d4fe9b6ab5171d5a6d8",
+      "currentSha256": "a868823917cf6508650fc7630d2be74c4e45ab0d77578d4fe9b6ab5171d5a6d8",
+      "identical": true,
+      "methods": [
+        {
+          "name": "request",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "verify",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "consume",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        }
+      ]
+    },
+    {
+      "file": "src/core/commercial-billing.ts",
+      "oldSha256": "ecd8db3a12a9e782dc74e4b885b233c9294ec9052424579bc4278f7ddea8e430",
+      "currentSha256": "ecd8db3a12a9e782dc74e4b885b233c9294ec9052424579bc4278f7ddea8e430",
+      "identical": true,
+      "methods": []
+    },
+    {
+      "file": "src/core/paid-pack-catalogue.ts",
+      "oldSha256": "84b86c30baaebd533deb671183ca6ba724339aef88198af419e0bc1e5d33a041",
+      "currentSha256": "84b86c30baaebd533deb671183ca6ba724339aef88198af419e0bc1e5d33a041",
+      "identical": true,
+      "methods": []
+    },
+    {
+      "file": "src/core/pack-odds.ts",
+      "oldSha256": "da099ec22079a3558e3250698306d2ebdd27b0fe7be55707aa0aebd5c9d030e5",
+      "currentSha256": "da099ec22079a3558e3250698306d2ebdd27b0fe7be55707aa0aebd5c9d030e5",
+      "identical": true,
+      "methods": []
+    },
+    {
+      "file": "src/server/commercial-ledger.ts",
+      "oldSha256": "f6f7aaf7d29a58767625f01d4f44b29bcbcf378275e2e7b961e8c1a793c13279",
+      "currentSha256": "2f7c9f532a7bb3b23afa14e66003d5bda9fb21d218d923720fa63b7a7320add4",
+      "identical": false,
+      "methods": [
+        {
+          "name": "encrypt",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "decrypt",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "control",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "accounts",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "journal",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "audit",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "noHold",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "checkout",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "accept",
+          "bodyUnchanged": false,
+          "existedBefore": true
+        },
+        {
+          "name": "reference",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "wallet",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "spend",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "buyPack",
+          "bodyUnchanged": false,
+          "existedBefore": true
+        },
+        {
+          "name": "openPack",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "list",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "buyListing",
+          "bodyUnchanged": false,
+          "existedBefore": true
+        },
+        {
+          "name": "settleListing",
+          "bodyUnchanged": false,
+          "existedBefore": false
+        },
+        {
+          "name": "resolveRecovery",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "financialReport",
+          "bodyUnchanged": false,
+          "existedBefore": true
+        }
+      ]
+    },
+    {
+      "file": "src/server/commercial-reconciliation.ts",
+      "oldSha256": "c3e11e26d87730dec6438b26c3878cb1c5940b53f9ff2120a7ded70213b878a7",
+      "currentSha256": "f445422ed57c714fdfab0b3db95d7c387fde126d5b5f197c4fdfaed74cabcf03",
+      "identical": false,
+      "methods": [
+        {
+          "name": "enqueue",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "schedule",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "runOne",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "acknowledgeReceipt",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        },
+        {
+          "name": "process",
+          "bodyUnchanged": false,
+          "existedBefore": true
+        },
+        {
+          "name": "run",
+          "bodyUnchanged": false,
+          "existedBefore": true
+        },
+        {
+          "name": "health",
+          "bodyUnchanged": true,
+          "existedBefore": true
+        }
+      ]
+    },
+    {
+      "file": "src/server/member-commercial.ts",
+      "oldSha256": "29ab55dd44b9dd8d5cf1b2949bf1b780888a6fb906e6bd65144590a8e33c15e3",
+      "currentSha256": "740beb7fb80845a2be481efe973be782f53f3a83bd42c8f22e550ab1de26157b",
+      "identical": false,
+      "methods": []
+    },
+    {
+      "file": "src/server/commercial-runtime.ts",
+      "oldSha256": "ff79484fa7501a3af01b93902a8b8e2ee3630e09a360df2cfe4fec6e66569607",
+      "currentSha256": "013d715fe42a0910c975bb09cee1ebb71edc6ed8a30a1ea9d3e9b36479c29923",
+      "identical": false,
+      "methods": []
+    },
+    {
+      "file": "src/app/api/store/google/commercial/route.ts",
+      "oldSha256": "4f17b6a67fbf9083094425cf0a0a068d239cad5543d163dd2c3517eebdeb8083",
+      "currentSha256": "a0ebe21660b6c3975d2fd562f01ba3c9e6f310b6ac697dd75b633120c6f4a817",
+      "identical": false,
+      "methods": []
+    },
+    {
+      "file": "android/app/src/main/java/au/com/docked/app/DockedBillingPlugin.java",
+      "oldSha256": "7b8061def285b0d7eafbae7152d96cea406ed9f546c8d029b48121786ae57eed",
+      "currentSha256": "7b8061def285b0d7eafbae7152d96cea406ed9f546c8d029b48121786ae57eed",
+      "identical": true
+    }
+  ]
+}

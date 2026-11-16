@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-16T22:42:54.733Z",
+  "scope": "Account adoption and inactive SMS migration only; not complete public-runtime acceptance",
+  "sourceBackupAt": "2026-11-16T10:43:59.011Z",
+  "restoreProof": "61413d9757bd1859782af6a795e1cd29c2b3de5de86301dbe014d34fb88e2971",
+  "target": "docked-commercial-restore-20261117a",
+  "network": "none",
+  "allChangesRolledBack": true,
+  "protectedTablesUnchanged": 568,
+  "adoptionSha256": "6c41ad39b5394a289c5c3d7375a9e1d518704e75b4d6fc61ac641505351c9349",
+  "smsSqlSha256": "c8d7ce71f1d2986ae4fcf17070cc882976b9b228471a57e76683dc6179bb0ff6",
+  "adoption": {
+    "roles": 2,
+    "consents": 54,
+    "profiles": 6,
+    "notificationPreferences": 6
+  },
+  "sms": {
+    "windows": 0,
+    "attempts": 0,
+    "authCannotReserve": true,
+    "runtimeCanReserve": true,
+    "runtimeCannotUpdateWindow": true
+  },
+  "productionWrites": 0,
+  "smsSent": 0
+}

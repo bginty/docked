@@ -1,0 +1,55 @@
+NARROW PUBLIC-RUNTIME CHANGE — ENGINEERING SCOPE, NOT DEPLOYMENT AUTHORITY
+
+Do not solve this by a flag-only promotion, by copying customer balances into
+commercial lots, or by automatically opening the three existing sealed packs.
+
+Confirmed code paths
+- db.ts switches all mapped beta SQL to public schemas when BETA_STAGING becomes
+  false. Six profile records and two existing staff roles need exact preservation.
+- memberCommercial requires public profiles/current consent/verified AU phone;
+  its pack list and opening use only commercial_billing.packs.
+- preserved_collection_rows already projects OPENED historical owned cards,
+  without minting or converting them to commercial resale inventory.
+- member-test-wallet rejects a non-beta runtime. Its historical OPENED receipts
+  and the three SEALED entitlements therefore need a retained legacy route.
+- All three sealed entitlements have already allocated economy card IDs (9/1/1).
+  Two have currently enabled private-beta access. Do not grant the third member
+  new access merely because their existing entitlement must be retained.
+
+Smallest proposed implementation
+1. Copy profile/roles/consent/preferences using the prepared exact-source SQL.
+   Rehearse real triggers/FKs/RLS; never fabricate new notice acceptance. Account
+   recovery, password/MFA and original Auth UUIDs stay on the existing project.
+2. Retain one explicit legacy-history/opening adapter using the existing reviewed
+   CreditsSandboxStore and its database guards. Only GET own historical packs and
+   POST open an existing owned entitlement are in scope. No buy/grant/transfer/
+   coupon/withdrawal command, catalogue refresh or new allocation is accepted.
+3. Authenticate through the current public session, require existing private-beta
+   admission and staff MFA, bind request/session claims and recheck admission in
+   the locked transaction. Preserve revoked access and REVIEW holds. US legacy
+   access is separate from AU commercial eligibility; it grants no US paid sales.
+4. Use the existing restricted beta runtime credential only if its narrowly scoped
+   reuse is included in the exact package. Do not grant the public database role
+   broad legacy-wallet writes or place a privileged credential in the browser.
+5. Reuse the original durable request IDs and receipt projection. Opening changes
+   only the legitimate original receipt/status/audit fields through existing
+   guards. Before/after proofs must show zero journal/debit/new instance/ownership
+   or lifetime-counter changes. No overlay pretending unopened packs are opened.
+6. Add an on-demand historical-packs entry alongside the commercial pack surface;
+   keep original paid/free provenance visible, collection cards non-tradeable,
+   and test balances distinct from paid credit balances. Never advertise old test
+   credits as purchased or cash-redeemable value.
+
+Required narrow acceptance
+Real restored member-owned 1-card and 9-card entitlements; other-account/revoked/
+unauthenticated/MFA-denied paths; REVIEW remains held; stale source/provider outage
+does not remint; original request and new-request receipt retry; concurrent duplicate
+opening; public new-purchase/legacy free-credit boundary; existing US tester retained
+legacy access without AU phone/paid-eligibility exception; receipts/collection agree.
+Existing NFL Weekly Core entitlement projection must also remain accessible. Its
+resolved season-catalogue eligibility does not need redesign or roster refresh.
+
+This adapter is NOT yet implemented or included in an approved release. The tested
+account-copy and SMS proposals are partial preparation, not evidence that the full
+public transition is complete. No founder decision is needed to preserve already
+owned cards; complete and freeze this engineering work before requesting approval.
