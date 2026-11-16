@@ -5,6 +5,7 @@ import {
 import { assertDeploymentEnvironment } from "@/core/deployment-environment";
 import { reviewOrigin } from "@/core/hosted-review.mjs";
 import { betaOrigin } from "@/core/hosted-beta.mjs";
+import { assertIsolatedPublicPreview } from "@/core/isolated-public-preview.mjs";
 export function sameApplicationOrigin(
   origin: string | null,
   env: Record<string, string | undefined> = process.env,
@@ -20,6 +21,16 @@ export function sameApplicationOrigin(
 }
 export function config(env: Record<string, string | undefined> = process.env) {
   assertDeploymentEnvironment(env);
+  let isolatedPhoneOrigin: string | undefined;
+  if (
+    env.DOCKED_ISOLATED_PUBLIC === "true" &&
+    env.DOCKED_ISOLATED_PHONE_TEST === "true"
+  ) {
+    // Only the platform-supplied URL of the fully validated, expiring Preview.
+    // Never infer an origin from request Host, forwarded headers or a wildcard.
+    assertIsolatedPublicPreview(env);
+    isolatedPhoneOrigin = new URL(`https://${env.VERCEL_URL}`).origin;
+  }
   if (env.AUTO_PUBLISH_DOCKED_EDGES === "true")
     throw new Error(
       "Automatic Docked publication is not implemented or approved",
@@ -74,11 +85,12 @@ export function config(env: Record<string, string | undefined> = process.env) {
     reviewOnly: env.DOCKED_HOSTED_REVIEW === "true",
     environment: env.APP_ENV ?? "preview",
     siteUrl:
-      env.DOCKED_BETA_STAGING === "true"
+      isolatedPhoneOrigin ??
+      (env.DOCKED_BETA_STAGING === "true"
         ? betaOrigin(env)
         : env.DOCKED_HOSTED_REVIEW === "true"
           ? reviewOrigin(env)
-          : (env.SITE_URL ?? "http://localhost:3000"),
+          : (env.SITE_URL ?? "http://localhost:3000")),
     database: !!env.DATABASE_URL,
     auth:
       !!env.NEXT_PUBLIC_SUPABASE_URL &&
