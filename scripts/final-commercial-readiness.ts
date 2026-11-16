@@ -12,6 +12,11 @@ import {
 import { hasRequiredPackSupply } from "../src/core/commercial-pack-supply";
 import { packOdds } from "../src/core/pack-odds";
 const root = process.cwd();
+const evidenceArg = process.argv.find((arg) => arg.startsWith("--evidence="));
+const evidencePath =
+  evidenceArg?.slice("--evidence=".length) ??
+  "docs/qa/final-commercial-20261116/commercial-readiness.json";
+assert(/^docs\/qa\/[a-zA-Z0-9_/-]+\.json$/.test(evidencePath));
 process.chdir("C:/Users/61412/Documents/ChatGPT/Docked.com.au");
 const sql = ownerDatabase();
 process.chdir(root);
@@ -205,7 +210,7 @@ async function main() {
       return r.json();
     });
     writeFileSync(
-      "docs/qa/final-commercial-20261116/commercial-readiness.json",
+      evidencePath,
       JSON.stringify({ ...result, release }, null, 2) + "\n",
       { flag: "wx" },
     );

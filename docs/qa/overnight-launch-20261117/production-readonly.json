@@ -1,0 +1,115 @@
+{
+  "at": "2026-11-16T12:19:42.734Z",
+  "schema": {
+    "fingerprint": "138ac70b6c67d4d4b53452867387f5d7",
+    "objects": 10340
+  },
+  "migrations": [
+    {
+      "file": "supabase/migrations/20261115113306_batch_private_pack_issuance_validation.sql",
+      "sha256": "2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1",
+      "ledgerMatches": true
+    },
+    {
+      "file": "supabase/migrations/20261115211545_batch1_pack_guard_batching.sql",
+      "sha256": "3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6",
+      "ledgerMatches": true
+    },
+    {
+      "file": "supabase/migrations/20261115235000_batch1_persistence_subdocuments.sql",
+      "sha256": "83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e",
+      "ledgerMatches": true
+    }
+  ],
+  "roleMembershipsUnchanged": true,
+  "protectedTablesCompared": 568,
+  "changedTables": [
+    {
+      "table": "auth.refresh_tokens",
+      "beforeCount": 588,
+      "afterCount": 590
+    },
+    {
+      "table": "auth.sessions",
+      "beforeCount": 142,
+      "afterCount": 142
+    },
+    {
+      "table": "auth.users",
+      "beforeCount": 6,
+      "afterCount": 6
+    },
+    {
+      "table": "beta_private.rate_limits",
+      "beforeCount": 130,
+      "afterCount": 130
+    },
+    {
+      "table": "cron.job_run_details",
+      "beforeCount": 190651,
+      "afterCount": 190757
+    },
+    {
+      "table": "private.docked_mail_scheduler",
+      "beforeCount": 1,
+      "afterCount": 1
+    },
+    {
+      "table": "sports_feed.nfl_rounds",
+      "beforeCount": 8,
+      "afterCount": 8
+    },
+    {
+      "table": "sports_feed.nfl_worker_runs",
+      "beforeCount": 3743,
+      "afterCount": 3748
+    },
+    {
+      "table": "sports_feed.raw_revisions",
+      "beforeCount": 112,
+      "afterCount": 112
+    },
+    {
+      "table": "sports_feed.weekly_core_job_runs",
+      "beforeCount": 75217,
+      "afterCount": 75267
+    }
+  ],
+  "assetChangedTables": [],
+  "betaReview": {
+    "beforeAt": "2026-11-16T11:59:40.316Z",
+    "beforeRevision": "326",
+    "currentRevision": "326",
+    "fullWalletUnchanged": true,
+    "submittedPurchaseObserved": false
+  },
+  "securityDigest": "d8bb32c50db33f49d8586b14ddde26f9feaf454d2809521d73e0f5645d3dcc20",
+  "release": {
+    "channel": "beta",
+    "origin": "https://docked.com.au",
+    "hostingProvider": "vercel",
+    "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "commit": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+    "deploymentId": "dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "publicRegistration": false,
+    "invitedAuthentication": true
+  },
+  "deployment": {
+    "id": "dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh",
+    "readyState": "READY",
+    "nodeVersion": "22.x",
+    "source": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b"
+  },
+  "runtimeBindings": {
+    "count": 18,
+    "metadataUnchanged": true,
+    "secretValuesRead": false,
+    "limitation": "Write-only values not independently read back; immutable deployment and binding identities preserved."
+  },
+  "productionWrites": 0,
+  "previewWrites": 0,
+  "smsAttempts": 0,
+  "purchases": 0
+}

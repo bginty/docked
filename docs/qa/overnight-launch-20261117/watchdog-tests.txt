@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: phone window rejects wrong project/org, stale start, excess time/budget and signup
+ok 1 - phone window rejects wrong project/org, stale start, excess time/budget and signup
+  ---
+  duration_ms: 152.453
+  ...
+# Subtest: expiry disables and verifies only the exact provider flag
+ok 2 - expiry disables and verifies only the exact provider flag
+  ---
+  duration_ms: 4.03
+  ...
+# Subtest: manual stop closes early without sending or enabling
+ok 3 - manual stop closes early without sending or enabling
+  ---
+  duration_ms: 0.535
+  ...
+# Subtest: unsafe signup drift closes Phone but never changes signup or credentials
+ok 4 - unsafe signup drift closes Phone but never changes signup or credentials
+  ---
+  duration_ms: 15.7422
+  ...
+# Subtest: wrong remote project prevents every mutation
+ok 5 - wrong remote project prevents every mutation
+  ---
+  duration_ms: 42.0986
+  ...
+# Subtest: failed provider shutdown is retried then reported unverified
+ok 6 - failed provider shutdown is retried then reported unverified
+  ---
+  duration_ms: 1.9446
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1708.0458

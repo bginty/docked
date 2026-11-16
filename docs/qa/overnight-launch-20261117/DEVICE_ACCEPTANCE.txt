@@ -1,0 +1,130 @@
+DOCKED — DEVICE SESSION PREPARATION, 16–17 NOVEMBER 2026
+Prepared, not executed. This document does not activate a provider, product,
+transport or purchase. Batch 1 is deployed; do not repeat it or its migrations.
+
+Verified native artifact
+Google's generated, signed docked.fantasy APK is version31 /1.30, SHA-256
+d91bec7e23f456d02a91f8dceda0c17b2ad4c28256bdd7a11abc9b6534dff472.
+Signing certificate:64f84ee6333ce0fe7ae308a381b09bbfaac02ae6ea5acd4768919ce0bcdd28f1.
+BuildConfig contains docked_credits_4900_v1 and docked_credits_9900_v1 in the
+commercial product list; the member-test list is empty. MainActivity registers
+DockedBilling. The actual dex calls setObfuscatedAccountId. HTTPS origin is
+https://docked.com.au/app; debug WebView/mixed content/cleartext are disabled.
+This establishes native capability, not physical checkout or refund success.
+No v32 requirement is established. Do not replace the installed Play build.
+
+1. Resume the already approved attended Preview SMS session
+Preserve the original package e7a570ecbfce5a82438117d2e0174649e0e55ea399f5f3b8c46d2e338413b41e
+and source76df44ba1adef012c5ec2119563cbc05ff9e3c0b. The founder explicitly reports
+approval in the overnight instruction. Do not ask for that decision again unless
+its exact bytes/scope or valid authority actually changes. No completion evidence
+exists: both original QA identities remain phone-unconfirmed, no canonical claim.
+No window was started while the founder slept.
+Closed Preview:dpl_ALHfo1ukhr3sg4VuCeS7RyvRPP7R;
+https://docked-preview-21vthd4fi-briant-s-projects.vercel.app.
+Existing Supabase Preview:bckkllmndoxzpzdqrevb. Credentials are already saved.
+Start with the original unblocked identity whose UUID SHA-256 is
+e2415491fe17fbcd919f5ba5d2140580cad923ae7cb08956384644087179755a.
+Its current balance0, cards0, prior receipt1 fully refunded, holds0. Never use or
+clear the other identity's5,700-credit hold to make payment acceptance pass.
+Founder first signs into the existing Twilio Console privately. Verify actual
+account authentication, existing DOCKED AU sender and Messaging Service, AU-only
+destinations, current balance/usage and no recharge. Do not infer valid credentials
+from Supabase's masked Management API representation or that old401 alone.
+Then stage only the original approved phone runtime, start the bounded attended
+window, open /app/verify-phone, and privately enter the controlled AU mobile/code.
+Six attempted sends,20segments,A$5 including fees/FX, cumulative A$20 maximum;
+whichever limit occurs first. No automatic resend after timeout. Record genuine
+provider acceptance/delivery plus physical receipt, canonical verification,
+immediate-resend denial, invalid/expired/replayed-code handling, duplicate-number
+denial and verified-state recovery. Do not disclose any mobile, token or OTP.
+Finish by disabling Phone and independently reading it back. No purchases here.
+
+OFF-only watchdog prepared and locally tested; NOT ARMED
+scripts/phone-window-shutdown.mjs and scripts/lib/phone-window-shutdown.mjs
+contain no enable/send action. They accept only the exact two known projects,
+require an attended<=2h plan, verify its organization, require signupOFF,
+six-digit/300s OTP,>=60s resend and<=6SMS/hour. Closure PATCH contains only
+external_phone_enabled=false. Expiry, a private STOP marker or failed safety
+check causes closure and readback; three failed closure attempts report failure.
+Six isolated tests passed. No live PATCH, credential read or hosted watchdog test
+was performed. This is a local watchdog, not a provider-enforced expiry: laptop
+sleep, process termination or loss of network can prevent closure. Keep it awake
+and supervised, retain the independent app deadline, and verify OFF before ending.
+Attempt/segment/spend limits still require the attended session's usage checks;
+the watchdog does not measure Twilio charges or impose an account-wide spend cap.
+Prepare a fresh ignored private-data/<session>/phone-window.json with schemaVersion1,
+projectRef,organizationId,sourceCommit,memberSetSha256,startsAt,until,
+maximumAttempts6,maximumSegments20,maximumAud5,cumulativeMaximumAud20,
+attendedtrue,signupEnabledfalse. Validate with --check (no network).
+Before --watch, record the existing applicable exact approval and its expiry in
+phone-window-authority.private.json, bound to the SHA-256 of those plan bytes.
+Never manufacture approval. Start a hidden independent process; wait for its
+phone-window-armed.json before enabling the separately approved Phone window.
+Create STOP for early closure; inspect phone-window-result.json and live readback.
+Do not arm an unattended window or reuse a completed session directory.
+
+2. Installed-v31 Google TEST/OTP transport — distinct Production approval needed
+The approved binary pins docked.com.au. Existing isolated-v30-transport.ts can
+opt the single device into the protected Preview using Preview-only Auth cookies,
+a private short-lived entry key and provider-validated protection token. It does
+not forward Production customer cookies or copy Production assets into Preview.
+Source76df44ba is already deployed, but enabling its transport is a separate
+Production runtime deployment, NOT covered by the completed Batch1 permission.
+Freeze after Preview OTP passes: unchanged source76df44ba; actual new protected
+Preview deployment ID; selected genuine verified UUID/email bindings kept private;
+transport/Preview UTC deadline<=2h; protection-token expiry after that deadline;
+private key binding; exact baseline and restore configuration; existing receipt
+set; two Google product snapshots; approved TEST-only fixture control diff.
+Production changes are restricted to five existing transport settings, with
+REGISTRATION_ENABLED,DOCKED_PUBLIC_PHONE_OTP,DOCKED_COMMERCIAL_CHECKOUT,
+DOCKED_COMMERCIAL_SURFACES,DOCKED_RETENTION_APPLY,PRIZES_ENABLED and
+COMPETITIONS_ENABLED all false. Preserve every other runtime binding and asset.
+Verify fresh backup/drift before the separately approved configuration deployment.
+Preview admits exactly the original unblocked account and acceptance ledger,
+not real purchase receipts; Google buy-au options are temporarily active only
+for the approved TEST session and restored INACTIVE afterwards. No new fixture
+inserts or resets: current180fictionaldefinitions/18existingcards remain intact.
+All15sport/rarity pools have12initial available players; recheck before each pack.
+Do not use old v30-transport-prepare.mjs unedited: its historical source/targets
+and closed-session state are different. Freeze a current operator/runtime recipe
+and its exact hash before requesting this separate approval. No final executable
+device approval package has been claimed while these live bindings remain absent.
+
+Device sequence and exact limits
+Use the existing DEVICE_SESSION_ORDER.txt from v31-payment-launch-checks-20261114:
+six TEST checkouts maximum: cancel49,decline49,slow-decline49,slow-approve99,
+approve99; six packs (Standard9+Premium9 perNFL/AFL/NRL); approve49 unspent.
+Only the Play licence tester's explicit TEST instrument; A$0 real charges.
+Two99receipts fund19,800credits; six packs debit17,100 and allocate54synthetic
+cards, leaving2,700. Then49adds4,900 ->7,600. Genuine unspent49refund ->2,700;
+refund first99 ->9,900exposure; second99 removes2,700 and adds7,200exposure.
+Expected end0credits/17,100new exposure, all54cards preserved. Check actual FIFO
+lot provenance; stop rather than force these figures if the baseline differs.
+Cancel/pending/decline grant zero. Replaying the same token/request must not
+repeat credit/debit/allocation. Test background/foreground, interrupted response,
+app restart, saved receipt, reveal-all/back/next and My Cards on the real device.
+Founder personally confirms purchase/refund actions. Record only NEW receipt keys
+since the opening baseline; bind each to genuine Google TEST evidence privately.
+Never use the legacy v30-billing-operator.ts refund-by-product shortcut: two99
+receipts plus old history invalidate its exactly-one-per-product assumption.
+Use the exact new Google order in Play Console order management, with per-order
+evidence/confirmation; preserve old receipts and their refund/recovery evidence.
+Close products, Preview controls, transport and Phone; read all gates back.
+TEST orders prove neither checkout tax calculation nor real bank settlement.
+
+3. Actual Production Auth phone acceptance — separate from Preview transport
+Production:pojoymtniryarxxunyvz. SignupOFF/PhoneOFF, no Twilio credentials saved.
+Current60s expiry/5s resend/30per-hour defaults must not be enabled unchanged.
+Proposed test settings: six digits,300s expiry,60s resend,6/hour, no fixed OTP,
+no auto-confirm; signup remainsOFF. Founder privately enters existing credentials.
+Reuse the same account/service/sender; no token rotation or new provider account.
+Bind ONE named existing Production tester and preserve all cards/balances/consents.
+The current phone route requires public-customer mode and excludes beta mode.
+Therefore this is NOT achievable by toggling Phone on in the deployed beta.
+The separately reviewed closed public-runtime candidate must support that exact
+admission first, with the watchdog, app expiry and existing MFA/auth safeguards.
+Do not waive AU-phone enforcement or represent Preview OTP as Production acceptance.
+No public signup, credit purchase, card issuance, trading or Play publication is
+included. Secure credential entry, actual device availability and the exact
+runtime-package approval are still required before this stage can run.

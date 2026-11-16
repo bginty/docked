@@ -1,0 +1,171 @@
+{
+  "at": "2026-11-16T12:43:05.069Z",
+  "fixture": {
+    "projectRef": "bckkllmndoxzpzdqrevb",
+    "memberSha256": "e2415491fe17fbcd919f5ba5d2140580cad923ae7cb08956384644087179755a",
+    "phoneConfirmed": false,
+    "openingBalance": 0,
+    "openHolds": 0,
+    "existingCards": 0,
+    "existingReceipts": 1,
+    "priorReceiptSetSha256": "b811f2323a2a787bb150b0cd0d80702965e31bbab24e006998c80a69a34bc06f",
+    "priorReceiptStates": [
+      {
+        "product": "docked_credits_4900_v1",
+        "state": "REVOKED",
+        "fullyRefunded": true
+      }
+    ],
+    "capacity": [
+      {
+        "sport": "afl",
+        "rarity": "ELITE",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "29999",
+        "fictional_only": true
+      },
+      {
+        "sport": "afl",
+        "rarity": "ICON",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "12",
+        "fictional_only": true
+      },
+      {
+        "sport": "afl",
+        "rarity": "LEGENDARY",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "599",
+        "fictional_only": true
+      },
+      {
+        "sport": "afl",
+        "rarity": "RARE",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "59993",
+        "fictional_only": true
+      },
+      {
+        "sport": "afl",
+        "rarity": "ULTRA_RARE",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "4791",
+        "fictional_only": true
+      },
+      {
+        "sport": "nfl",
+        "rarity": "ELITE",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "30000",
+        "fictional_only": true
+      },
+      {
+        "sport": "nfl",
+        "rarity": "ICON",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "12",
+        "fictional_only": true
+      },
+      {
+        "sport": "nfl",
+        "rarity": "LEGENDARY",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "600",
+        "fictional_only": true
+      },
+      {
+        "sport": "nfl",
+        "rarity": "RARE",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "60000",
+        "fictional_only": true
+      },
+      {
+        "sport": "nfl",
+        "rarity": "ULTRA_RARE",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "4800",
+        "fictional_only": true
+      },
+      {
+        "sport": "nrl",
+        "rarity": "ELITE",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "30000",
+        "fictional_only": true
+      },
+      {
+        "sport": "nrl",
+        "rarity": "ICON",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "12",
+        "fictional_only": true
+      },
+      {
+        "sport": "nrl",
+        "rarity": "LEGENDARY",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "600",
+        "fictional_only": true
+      },
+      {
+        "sport": "nrl",
+        "rarity": "RARE",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "60000",
+        "fictional_only": true
+      },
+      {
+        "sport": "nrl",
+        "rarity": "ULTRA_RARE",
+        "definitions": 12,
+        "available_players": 12,
+        "remaining_copies": "4800",
+        "fictional_only": true
+      }
+    ],
+    "eachNineCardOfferHasInitialSupply": true,
+    "caveat": "Initial capacity is not a promise after random issuance. Recheck before each purchase; preserve a sold-out failure without debit, never reseed supply."
+  },
+  "workers": {
+    "recentWindowHours": 2,
+    "recent": [
+      {
+        "status": "failed",
+        "records": 3
+      },
+      {
+        "status": "pending-review",
+        "records": 8
+      }
+    ],
+    "errors": [],
+    "sourceRetention": {
+      "total": 112,
+      "purged": 28,
+      "recent_purges": 3,
+      "early_purges": 0
+    },
+    "collectionFailureIsSeparateFromIssuedCardReveal": true,
+    "operationalDriftFullyClassified": false
+  },
+  "productionWrites": 0,
+  "previewWrites": 0,
+  "sms": 0,
+  "purchases": 0,
+  "approvalOrActivation": false
+}

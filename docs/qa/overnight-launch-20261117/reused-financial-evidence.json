@@ -1,0 +1,57 @@
+{
+  "at": "2026-11-16T12:55:18.546161+00:00",
+  "source": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "financialAndPackSource": [
+    {
+      "file": "src/server/commercial-ledger.ts",
+      "sourceBlobSha256": "2f7c9f532a7bb3b23afa14e66003d5bda9fb21d218d923720fa63b7a7320add4",
+      "unchangedFromDeployedSource": true
+    },
+    {
+      "file": "src/server/commercial-reconciliation.ts",
+      "sourceBlobSha256": "f445422ed57c714fdfab0b3db95d7c387fde126d5b5f197c4fdfaed74cabcf03",
+      "unchangedFromDeployedSource": true
+    },
+    {
+      "file": "src/server/commercial-market-ledger.ts",
+      "sourceBlobSha256": "622d221808a21b06e975fc53f5f1547c532b6012fcb151e11483c06fcefb397f",
+      "unchangedFromDeployedSource": true
+    },
+    {
+      "file": "src/server/google-commercial-verifier.ts",
+      "sourceBlobSha256": "a868823917cf6508650fc7630d2be74c4e45ab0d77578d4fe9b6ab5171d5a6d8",
+      "unchangedFromDeployedSource": true
+    },
+    {
+      "file": "src/core/commercial-billing.ts",
+      "sourceBlobSha256": "ecd8db3a12a9e782dc74e4b885b233c9294ec9052424579bc4278f7ddea8e430",
+      "unchangedFromDeployedSource": true
+    },
+    {
+      "file": "src/core/paid-pack-catalogue.ts",
+      "sourceBlobSha256": "84b86c30baaebd533deb671183ca6ba724339aef88198af419e0bc1e5d33a041",
+      "unchangedFromDeployedSource": true
+    },
+    {
+      "file": "src/core/pack-odds.ts",
+      "sourceBlobSha256": "da099ec22079a3558e3250698306d2ebdd27b0fe7be55707aa0aebd5c9d030e5",
+      "unchangedFromDeployedSource": true
+    }
+  ],
+  "reusedEvidence": [
+    {
+      "file": "docs/qa/v31-payment-launch-checks-20261114/billing-postgres.json",
+      "scope": "16 isolated PostgreSQL billing/refund/market/security scenarios; preserved, not rerun as genuine Google TEST"
+    },
+    {
+      "file": "docs/qa/batch1-hosted-release-20261116/hosted-acceptance-summary.json",
+      "scope": "Real isolated hosted HTTP/Auth,18offers20syntheticpurchases96cards; no actual Google refund"
+    },
+    {
+      "file": "docs/qa/batch1-production-execution-20261116/FINAL_DEPLOYMENT_REPORT.txt",
+      "scope": "Completed approved deployment and hosted read-only receipt/reveal verification"
+    }
+  ],
+  "newPaymentTest": false,
+  "androidDeviceAccepted": false
+}

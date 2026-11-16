@@ -1,0 +1,299 @@
+{
+  "at": "2026-11-16T12:23:51.510Z",
+  "source": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "deployment": "dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh",
+  "browser": "Authenticated founder Chrome desktop session",
+  "scope": "Read-only full saved pack-list loading; not confirmation or POST request recovery; not physical Android",
+  "metric": "Network timing receiveHeadersEnd milliseconds, not full render duration",
+  "initialObservation": {
+    "packListHeadersMs": 4626.536,
+    "walletSummaryHeadersMs": 3485.195,
+    "coldStartProven": false,
+    "fullEventBufferTruncated": true
+  },
+  "samples": [
+    {
+      "sample": 1,
+      "at": "2026-11-16T12:22:55.737Z",
+      "truncated": false,
+      "hasMore": false,
+      "api": [
+        {
+          "path": "/api/sports-beta",
+          "status": 200,
+          "headersMs": 351.049,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=summary",
+          "status": 200,
+          "headersMs": 814.324,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=packs",
+          "status": 200,
+          "headersMs": 1540.863,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        }
+      ],
+      "writes": []
+    },
+    {
+      "sample": 2,
+      "at": "2026-11-16T12:22:58.822Z",
+      "truncated": false,
+      "hasMore": false,
+      "api": [
+        {
+          "path": "/api/weekly-core?sport=afl",
+          "status": 200,
+          "headersMs": 224.626,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/sports-beta",
+          "status": 200,
+          "headersMs": 280.798,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=summary",
+          "status": 200,
+          "headersMs": 601.766,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=packs",
+          "status": 200,
+          "headersMs": 1479.975,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        }
+      ],
+      "writes": []
+    },
+    {
+      "sample": 3,
+      "at": "2026-11-16T12:23:02.175Z",
+      "truncated": false,
+      "hasMore": false,
+      "api": [
+        {
+          "path": "/api/sports-beta",
+          "status": 200,
+          "headersMs": 223.323,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=summary",
+          "status": 200,
+          "headersMs": 410.526,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=packs",
+          "status": 200,
+          "headersMs": 1328.995,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        }
+      ],
+      "writes": []
+    },
+    {
+      "sample": 4,
+      "at": "2026-11-16T12:23:05.278Z",
+      "truncated": false,
+      "hasMore": false,
+      "api": [
+        {
+          "path": "/api/sports-beta",
+          "status": 200,
+          "headersMs": 160.169,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=summary",
+          "status": 200,
+          "headersMs": 473.366,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=packs",
+          "status": 200,
+          "headersMs": 1327.38,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        }
+      ],
+      "writes": []
+    },
+    {
+      "sample": 5,
+      "at": "2026-11-16T12:23:20.404Z",
+      "truncated": false,
+      "hasMore": false,
+      "api": [
+        {
+          "path": "/api/sports-beta",
+          "status": 200,
+          "headersMs": 248.169,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=summary",
+          "status": 200,
+          "headersMs": 386.169,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=packs",
+          "status": 200,
+          "headersMs": 1418.199,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        }
+      ],
+      "writes": []
+    },
+    {
+      "sample": 6,
+      "at": "2026-11-16T12:23:23.544Z",
+      "truncated": false,
+      "hasMore": false,
+      "api": [
+        {
+          "path": "/api/weekly-core?sport=afl",
+          "status": 200,
+          "headersMs": 152.324,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/sports-beta",
+          "status": 200,
+          "headersMs": 185.953,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=summary",
+          "status": 200,
+          "headersMs": 434.897,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=packs",
+          "status": 200,
+          "headersMs": 1480.071,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/weekly-core?sport=afl",
+          "status": 200,
+          "headersMs": 195.925,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        }
+      ],
+      "writes": []
+    },
+    {
+      "sample": 7,
+      "at": "2026-11-16T12:23:26.637Z",
+      "truncated": false,
+      "hasMore": false,
+      "api": [
+        {
+          "path": "/api/sports-beta",
+          "status": 200,
+          "headersMs": 176.001,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=summary",
+          "status": 200,
+          "headersMs": 411.507,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=packs",
+          "status": 200,
+          "headersMs": 1397.137,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        }
+      ],
+      "writes": []
+    },
+    {
+      "sample": 8,
+      "at": "2026-11-16T12:23:29.412Z",
+      "truncated": false,
+      "hasMore": false,
+      "api": [
+        {
+          "path": "/api/weekly-core?sport=afl",
+          "status": 200,
+          "headersMs": 198.257,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/sports-beta",
+          "status": 200,
+          "headersMs": 188.368,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=summary",
+          "status": 200,
+          "headersMs": 421.261,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/test-wallet?view=packs",
+          "status": 200,
+          "headersMs": 1232.637,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        },
+        {
+          "path": "/api/weekly-core?sport=afl",
+          "status": 200,
+          "headersMs": 160.09,
+          "fromServiceWorker": false,
+          "fromDiskCache": false
+        }
+      ],
+      "writes": []
+    }
+  ],
+  "packList": {
+    "n": 8,
+    "p50Ms": 1397.137,
+    "p95Ms": 1540.863,
+    "method": "nearest rank",
+    "newPurchases": 0,
+    "noFinancialPostsObserved": true
+  }
+}

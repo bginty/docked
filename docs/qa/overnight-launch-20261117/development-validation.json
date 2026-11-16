@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-16T13:00:52.746457+00:00",
+  "scope": "Development-only credit-package wording, read-only evidence operators and OFF-only attended-phone watchdog",
+  "tests": {
+    "command": "node --import tsx --test tests/platform/phone-window-shutdown.test.ts",
+    "passed": 6,
+    "failed": 0,
+    "evidence": "watchdog-tests.txt",
+    "liveProviderCalls": 0
+  },
+  "typecheck": "Passed npm run typecheck after new scripts/tests were included",
+  "lint": "Passed targeted ESLint after correcting one test prefer-const warning",
+  "productionDeployment": false,
+  "watchdogArmed": false,
+  "fullApplicationBuild": "Not rerun for the presentation-only wording; existing deployed financial/native source unchanged",
+  "physicalDeviceAcceptance": false
+}

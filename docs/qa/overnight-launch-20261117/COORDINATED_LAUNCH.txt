@@ -1,0 +1,100 @@
+DOCKED — COORDINATED PAID AUSTRALIAN LAUNCH, NOT AUTHORISED
+Supersedes the stale pending-Batch1 status in earlier preparation documents.
+Batch1 is already deployed:76df44ba1adef012c5ec2119563cbc05ff9e3c0b,
+dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh. Do not redeploy or reapply its three migrations.
+
+Acceptance before a final launch request
+Complete the attended Preview SMS test, existing Play-v31 device TEST/OTP session,
+six-pack54fictional-card and actual provider-refund sequence in DEVICE_ACCEPTANCE.txt.
+Complete the remaining private Production-beta website/device session with the
+tester's own approved credits; at most six tester-chosen nine-card packs under
+the existing bounded arrangement, not bulk permanent issuance for a benchmark.
+Preserve every legitimate subsequent beta card, receipt, balance and entitlement.
+Production purchase/recovery p50/p95 remain unmeasured until these actual actions;
+eight read-only pack-list timings are not a substitute.
+Resolve COMMERCIAL_DECISIONS.txt: paid-use rights/finalIDs, AUcheckouttax,
+commercial wording/effective consent and publicSMSbudget/stop acceptance.
+
+Freeze the exact public-runtime candidate, separate from completed Batch1
+Current config/hosted-production.json approved=false. Current beta runtime and
+the AU public-customer runtime are intentionally different. Prepare the approved
+manifest, restricted docked_app connection, commercial runtime binding, policy
+versions and fully enumerated environment diff. No flag-only shortcut.
+Add only accepted commercial wording and the prepared credit-package warning;
+do not include Batch2, a native rebuild, new inventory or unrelated redesign.
+Verify existing AU members' phone enrolment and historic collection/receipt
+access. Explicitly verify the existing Brenton US private-test exception: current
+public phone/commerce routes require AU verification and do not automatically
+inherit that beta exception. Do not silently grant US commercial eligibility,
+erase his assets or promise continued beta purchasing after beta grants close.
+Resolve his retained private access/collection path in the reviewed transition.
+Admin MFA/emergency controls and account export/erasure remain independently
+accessible through their existing account-identity/role checks.
+Freeze actual source, all files/config hashes, exact permissions, consent/rights
+references, inventory IDs, Google products/tax settings, installed-v31 proof,
+attended results, shutdown commands, operator credentials and forward recovery.
+Only then request ONE final exact coordinated launch approval. A document with
+unfilled rights, budgets or runtime bindings is not an executable approved release.
+
+Execution under that future approval, staffed throughout
+1. Fresh<=1h encrypted Production backup and authenticated isolated restore;
+   <=10min preflight/financial/custody/permissions/runtime comparison. Accept
+   legitimate newer activity; investigate material drift. Never restore old counts.
+2. Protected public-candidate staging with signup/Phone/commerce all closed.
+   Verify actual ordinary-user access, own collection, roles, expiry and provider
+   failure paths. Promote only under that separately approved exact source/runtime.
+3. Close beta pack/grant writes using the existing commercial interlock, preserve
+   historic test balances/cards/receipts. Do not turn test credits into paid value.
+4. Record qualified commercial approvals and exact eligibleIDs; approve existing
+   definitions/products without reimporting, minting or resetting lifetime counters.
+5. Complete the bounded Production Auth device test with signupOFF and named
+   existing tester; secure existing Twilio credentials, hardened limits and expiry
+   watchdog. Verify actual receipt/verification, then close the test and read back.
+6. Apply the accepted AU tax configuration and preserve inclusiveA$49/A$99.
+   Enable reviewed founder-only email monitoring and durable Google receipt,
+   acknowledgement and refund reconciliation; deletion remainsOFF. Verify their
+   operational paths, reusing the accepted incident/email evidence without resends.
+7. Enable the approved public phone policy/budget monitoring, Google AU buy-au
+   availability, paid-pack sales/issuance and application checkout together while
+   signup stays closed. Read each control back. No unapproved real-money test.
+   Marketplace transfers remainOFF unless separately accepted and included.
+8. After paid service is ready, open the approved AUregistration controls
+   (Auth signup, database flag, app flag) together. Verify one authorised complete
+   onboarding path and supported NFL/AFL/NRL offers, prices/odds/capacity.
+9. PlayConsole >Publishing overview: review submission3's10existingchanges,
+   v31/1.30 Australia and phoneDataSafety; use Publish changes only under final
+   explicit authority. Leave managed publishingON. Verify actual availability;
+   propagation is not instantaneous and a distributed binary cannot be recalled.
+10. Monitor first genuine customer credit receipt, one fulfilment/consume job,
+    one pack debit,nineuniquepermanentcards,serials/ownership/reveal/collection,
+    refund jobs and support alerts at launch,+15m,+1h,+24h. Reconcile real provider
+    fees/tax/earnings/payout when those genuine reports exist. TEST is not settlement.
+
+Emergency stop — future authorisation must include these exact operations
+BEGIN;
+SET LOCAL lock_timeout='3s';
+SET LOCAL statement_timeout='15s';
+UPDATE commercial_billing.control SET sales_enabled=false,issuance_enabled=false,
+ transfers_enabled=false,gameplay_enabled=false WHERE id;
+UPDATE private.feature_flags SET enabled=false,
+ reason='Founder-authorised emergency commercial launch stop',
+ updated_at=clock_timestamp() WHERE key='registration';
+COMMIT;
+Read back immediately. On timeout do not claim closure or kill unknown settlements.
+Close app checkout/signup and Google product availability; disable Phone on SMS
+abuse. Keep receipt verification, acknowledgement, refunds and reconciliation
+running to settle/remedy already accepted orders. Keep safe own-record recovery
+available. Do not delete journals, cards, consents or restore yesterday's database.
+Future-sale/signup/provider switches are reversible. Application rollback is
+conditional on actual database and later customer activity; oldf1b50b6f is not a
+safe blanket rollback. Issued lifetime supply, sent SMS, actual orders/transfers
+and distributed builds require audited forward recovery, never counter reset.
+
+Estimate and release boundary
+Allow roughly6–10engineeringhours for current session/operator bindings, closed
+public-runtime transition, phone operating controls and final hosted acceptance,
+excluding legal/rights/accounting decisions, provider waiting and publication
+propagation. This is a planning range, not a booked launch promise. Unexpected
+device/production failures or the US tester transition can increase it. No new
+Batch1engineering or new Android build has been identified as necessary.
+No final launch package or GO exists yet. All public/commercial gates stay closed.

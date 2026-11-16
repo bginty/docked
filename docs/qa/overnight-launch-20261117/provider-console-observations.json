@@ -1,0 +1,50 @@
+{
+  "at": "2026-11-16T12:30:30.907Z",
+  "evidenceType": "Authenticated Chrome read-only inspection",
+  "google": {
+    "submission": 3,
+    "changes": 10,
+    "versionCode": 31,
+    "versionName": "1.30",
+    "state": "Ready to publish",
+    "managedPublishing": "ON",
+    "territory": "AU",
+    "targetAudience": "18+",
+    "phoneDataSafety": "Ready submission unchanged",
+    "australianRating": "Mature",
+    "descriptors": [
+      "Chance-Based In-Game Purchases",
+      "Online Interactivity and Chat",
+      "In-Game Purchases (Includes Random Items)"
+    ],
+    "licenseTesterList": "Existing owner beta list selected; 3 accounts; founder address independently present",
+    "licenseResponse": "RESPOND_NORMALLY",
+    "tax": {
+      "category": "Digital app sales",
+      "products": 2,
+      "region": "Australia",
+      "type": "GST",
+      "responsibility": "Seller configurable",
+      "option": "No tax",
+      "rate": "—",
+      "gstRegistrationAccepted": true,
+      "registrationEvidenceType": "Preserved founder attestation; no repeated request",
+      "taxRateChanged": false
+    }
+  },
+  "twilio": {
+    "currentSession": "Login required",
+    "sender": "ACTIVE per prior authenticated evidence and founder instruction; not reverified this session",
+    "actualSavedTokenAuthentication": "Not proven",
+    "genuineSmsDelivery": "Not proven",
+    "newSmsAttempts": 0
+  },
+  "beta": {
+    "unsubmittedPurchaseReviewClosed": true,
+    "balanceDisplayed": 4100,
+    "newPurchases": 0,
+    "browserErrorsObserved": 0
+  },
+  "publication": false,
+  "providerChanges": 0
+}

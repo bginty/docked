@@ -283,6 +283,13 @@ function GoogleCredits({
           ? "Authorised license testing only. Continue only when Google shows a test payment method and confirms you will not be charged."
           : "Google Play confirms the price before you pay. Docked Credits are usable within Docked and cannot be withdrawn."}
       </p>
+      {mode === "commercial" && (
+        <p>
+          Standard 9 costs 700 credits; Premium 9 costs 5,000 credits. The
+          4,900-credit package alone does not cover a Premium 9 pack. Check your
+          available balance before choosing a credit package.
+        </p>
+      )}
       {items.map((item) => (
         <button
           className="primary"

@@ -1,0 +1,53 @@
+DOCKED — MORNING HANDOVER, 17 NOVEMBER 2026
+Public launch remains NO-GO. The first public release must include paid credits and paid packs.
+
+A. Completed
+Fresh Production release, migration, financial, custody, permissions and runtime checks; authenticated private-beta saved-pack reads; Play publication, rating, product and tax inspection; actual Google-signed v31 APK inspection; Preview account and inventory readiness.
+Added the explicit 4,900-versus-5,000-credit purchase warning in development. Prepared an OFF-only phone expiry/manual-stop watchdog: six isolated safety/failure tests passed. Neither change is deployed or armed. Preserved existing financial, refund and hosted pack evidence without representing it as new Google TEST or Android acceptance.
+
+B. Production state
+Source: 76df44ba1adef012c5ec2119563cbc05ff9e3c0b
+Vercel: dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh
+Batch 1 completed at 22:54 Sydney on 16 November. All three migrations are installed and their stored SQL hashes match. Do not repeat them.
+Fresh census: 6,540 dormant definitions, 891 lifetime-issued limited cards, 909 custody records. No asset-table changes since postflight; no duplicate serials, lifetime mismatches or unbalanced journals. All 18 Production environment bindings retain their identity/target/update metadata. Five write-only values use the approved metadata verification method, not value readback.
+Auth, scheduler and source-retention tables advanced. That observation is not blanket drift permission. NFL collection workers still have a separate review dependency; the resolved Weekly Core freshness issue was not reopened.
+Eight authenticated saved-pack-list reads: response-header p50 1.397 seconds, p95 1.541 seconds, all HTTP 200. Initial separate observation 4.627 seconds; cold start was not proven. These are reads of 37 saved receipts, NOT purchase-confirmation or saved-request POST recovery measurements. Earlier isolated hosted confirmation p95 1.986 seconds and recovery p95 0.875 seconds remain separate.
+The unsubmitted founder purchase review was closed safely. Wallet remained 4,100 TEST credits, revision 326. No grants, purchases or permanent card benchmarks were performed.
+
+C. Twilio
+DOCKED sender ACTIVE per prior authenticated evidence and founder confirmation. This session's Console requires login; actual saved-token authentication was not newly proven.
+Preview credentials are present, Phone OFF. Production Phone OFF, credentials absent. Both original QA accounts remain phone-unconfirmed. Genuine SMS acceptance is pending; the previously approved session was not started while the founder was unavailable.
+
+D. Google Play
+v31 / 1.30 and phone Data Safety: submission 3, ten changes READY TO PUBLISH. Managed publishing ON; Australia only, audience 18+. Australian rating Mature includes chance-based purchases/random items.
+The actual signed APK contains both approved commercial credit products and account-bound billing. No reason for v32 was established. Physical Android acceptance remains outstanding.
+Products remain INACTIVE: A$49 / 4,900 credits and A$99 / 9,900 credits. No bonus or multi-quantity.
+NEW separate finding: Australian digital-product GST setting is Seller configurable / No tax. The merchant GST declaration ACCEPTED and Primary payout bank remain resolved; do not repeat those confirmations.
+
+E. Payments and inventory
+The selected original Preview account has zero balance, no hold, one fully refunded historical receipt and no cards. Existing 180 fictional definitions have initial capacity for all six nine-card device offers. Preserve the 18 previous fictional cards and the other account's 5,700-credit recovery hold.
+Actual Google TEST checkout, consume, refund, background recovery and Android outcomes remain pending.
+The preserved conservative inventory proposal is 6,055 eligible definitions / 485 held. Exact IDs/digest unchanged; zero approved for sale. Ten extra holds concern the retained-season paid-use scope for Nikko Remigio and Jack Todd, not new identity research. Recorded season rights cover free beta/free Weekly only.
+
+F. Remaining mandatory gates
+1. Genuine attended OTP and installed-v31 purchase/refund/pack/collection recovery acceptance.
+2. Commercial source/material rights and final eligible IDs; qualified consumer/legal and GST/voucher treatment; correct Australian checkout-tax configuration.
+3. Commercial wording/consent, public SMS operating budget and shutdown acceptance, exact closed public-runtime transition and final launch authority.
+4. Marketplace: a separately eligible second tester and two-party hosted acceptance. Keep it OFF until accepted; paid credits and paid packs remain mandatory for launch.
+
+G. Founder actions, one at a time when back
+1. Sign into the existing Twilio Console privately. Then enter the controlled AU mobile/code in the existing Preview /app/verify-phone session. Do not repeat credential setup or approval unless actually necessary.
+2. Have the Play-installed v31 device on the existing licence-test account. After OTP passes, review the distinct bounded TEST transport/payment package: at most two hours, six TEST checkouts, six nine-card packs / 54 fictional cards, A$0 real charge. Personally confirm the device purchases and exact new-order Google TEST refunds.
+3. Play Console > Manage account > Play apps settings > Tax rates: review the separate Australian No tax setting with the accountant. Confirm credit/voucher tax treatment and approve the exact correction while preserving A$49/A$99. Do not repeat the GST registration declaration.
+4. Supply commercial source/material rights and qualified legal review; approve the final retained-season ID set, existing commercial wording and public SMS operating budget. See COMMERCIAL_DECISIONS.txt for the exact questions.
+5. Review the frozen public-runtime/activation package after these gates pass. Final launch authority is separate from TEST acceptance and the completed Batch 1 approval.
+
+H. GO / NO-GO
+Existing invited beta: available; fresh Production read-only checks passed.
+Public registration: NO-GO. Paid credits: NO-GO. Paid packs: NO-GO.
+Marketplace: NO-GO. Public Play publication: NO-GO.
+Play's Ready to publish status is not commercial launch acceptance. NBA remains hidden; six competitions disabled Practice. Public signup, SMS, real commerce, trading, prizes, withdrawals and deletion schedules remain OFF. Existing private-beta/free-credit authority is unchanged.
+
+I. Earliest safe path
+Complete the prepared attended sessions, exact rights/tax/budget decisions and closed public-runtime transition; then request one final coordinated paid-launch approval and execute COORDINATED_LAUNCH.txt.
+Allow roughly 6–10 engineering hours, excluding external/professional waiting and store propagation. Device findings may extend this. A 17 November paid launch is conditional, not a supportable promise yet. No registration-only public launch is proposed.

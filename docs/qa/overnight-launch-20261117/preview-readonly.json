@@ -1,0 +1,57 @@
+{
+  "at": "2026-11-16T12:25:15.721Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "control": {
+    "environment": "acceptance",
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false,
+    "gameplay_enabled": false
+  },
+  "counts": {
+    "definitions": 180,
+    "cards": 18,
+    "packs": 2,
+    "receipts": 3,
+    "recovery_exposure": 5700,
+    "verified_phone_claims": 0
+  },
+  "guards": {
+    "verified_guard": true,
+    "canonical_claim_trigger": true,
+    "disposable_batch_namespaces": 0
+  },
+  "members": [
+    {
+      "email_confirmed": true,
+      "enabled": true,
+      "australian_adult": true,
+      "phone_verified": false,
+      "phone_change_sent_at": null,
+      "phone_confirmed_at": null,
+      "recovery_hold": true,
+      "balance": 0,
+      "receipts": 2,
+      "identitySha256": "21ac5f5267e46bf075a0ab06cb86f5e00e2303741e36828d9714fcc0b4d2d4f5"
+    },
+    {
+      "email_confirmed": true,
+      "enabled": true,
+      "australian_adult": true,
+      "phone_verified": false,
+      "phone_change_sent_at": null,
+      "phone_confirmed_at": null,
+      "recovery_hold": false,
+      "balance": 0,
+      "receipts": 1,
+      "identitySha256": "e2415491fe17fbcd919f5ba5d2140580cad923ae7cb08956384644087179755a"
+    }
+  ],
+  "genuinelyVerifiedUnblockedAccounts": 0,
+  "smsAcceptance": "No genuine QA phone confirmation recorded; attended acceptance outstanding",
+  "productionWrites": 0,
+  "previewWrites": 0,
+  "authRequests": 0,
+  "smsAttempts": 0,
+  "phonesOrCredentialsDisclosed": false
+}

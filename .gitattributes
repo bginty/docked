@@ -89,3 +89,10 @@ docs/qa/v31-prelaunch-execution-20261111/database/restore-20261116c/** text eol=
 scripts/batch1-production-*.ts text eol=lf
 scripts/batch1-production-*.mjs text eol=lf
 scripts/batch1-backup-progress.ts text eol=lf
+
+# Keep overnight provider observations and reviewed watchdog evidence byte-stable.
+docs/qa/overnight-launch-20261117/** -text
+scripts/overnight-*.ts text eol=lf
+scripts/phone-window-shutdown.mjs text eol=lf
+scripts/lib/phone-window-shutdown.mjs text eol=lf
+tests/platform/phone-window-shutdown.test.ts text eol=lf

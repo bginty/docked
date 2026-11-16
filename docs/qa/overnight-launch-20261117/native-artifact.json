@@ -1,0 +1,71 @@
+{
+  "at": "2026-11-16T12:36:52.864419+00:00",
+  "apkSha256": "d91bec7e23f456d02a91f8dceda0c17b2ad4c28256bdd7a11abc9b6534dff472",
+  "apkBytes": 10280821,
+  "source": "Google Android Publisher generated APK version 31",
+  "capacitorConfig": {
+    "appId": "docked.fantasy",
+    "appName": "Docked",
+    "webDir": "mobile/generated/store-internal",
+    "loggingBehavior": "none",
+    "backgroundColor": "#0B0F1A",
+    "zoomEnabled": true,
+    "ios": {
+      "path": "ios",
+      "scheme": "App",
+      "contentInset": "automatic",
+      "webContentsDebuggingEnabled": false
+    },
+    "android": {
+      "path": "android",
+      "allowMixedContent": false,
+      "useLegacyBridge": false,
+      "webContentsDebuggingEnabled": false
+    },
+    "server": {
+      "androidScheme": "https",
+      "errorPath": "offline.html",
+      "url": "https://docked.com.au/app",
+      "cleartext": false
+    },
+    "plugins": {
+      "CapacitorHttp": {
+        "enabled": false
+      },
+      "CapacitorCookies": {
+        "enabled": false
+      },
+      "SystemBars": {
+        "insetsHandling": "css",
+        "style": "DARK",
+        "hidden": false
+      },
+      "SplashScreen": {
+        "launchShowDuration": 0,
+        "launchAutoHide": true,
+        "launchFadeOutDuration": 150,
+        "backgroundColor": "#0B0F1A",
+        "showSpinner": false
+      }
+    }
+  },
+  "inspectedClassSections": 9,
+  "rawDexEvidence": "tmp/play-generated/v31-inspection/billing-classes.txt",
+  "installedDeviceTest": false,
+  "package": "docked.fantasy",
+  "versionCode": 31,
+  "versionName": "1.30",
+  "signingSha256": "64f84ee6333ce0fe7ae308a381b09bbfaac02ae6ea5acd4768919ce0bcdd28f1",
+  "signatureVerified": true,
+  "signatureTool": "Android SDK 36.0.0 apksigner (two unrecognised additional-attribute warnings; verification exit 0)",
+  "billingPermissionPresent": true,
+  "commercialProducts": [
+    "docked_credits_4900_v1",
+    "docked_credits_9900_v1"
+  ],
+  "memberTestProducts": [],
+  "billingPluginRegisteredByMainActivity": true,
+  "purchaseUsesObfuscatedAccountBinding": true,
+  "newNativeBuildReasonEstablished": false,
+  "limitation": "Artifact inspection proves configured capability, not device checkout, OTP, background recovery, refund or settlement acceptance."
+}
