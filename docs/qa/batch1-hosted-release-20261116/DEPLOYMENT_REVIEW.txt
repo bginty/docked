@@ -1,0 +1,131 @@
+DOCKED — REVISED BATCH 1 CONTROLLED PRODUCTION REVIEW
+Preparation only. Separate exact Production approval remains mandatory.
+
+Scope
+Deploy the exact application source identified in production-package.json and
+only the three unchanged Batch 1 migrations below. Preserve the existing invited
+free-credit beta, including founder/Brenton access and every later legitimate
+purchase, card, balance, custody record and pack entitlement. No Batch 2 work.
+
+The existing Production application is 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef,
+deployment dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy. A current read-only census records
+6,540 definitions, 891 lifetime limited cards and 909 custody records. These are
+observations, NEVER totals to restore/reset. A newer legitimate census supersedes
+them after reconciliation. The seven function predecessors and all schema,
+function, role and permission metadata match the previous reviewed baseline.
+
+Application changes against the earlier 084f0e3e Batch 1 package
+Retain its scoped pack persistence/recovery and bounded phone timeout handling.
+Add a strictly separate, expiring, allowlisted pack-only hosted acceptance target
+for the existing protected Preview. It requires the exact Preview project, team,
+database, restricted role, synthetic metadata and genuine AAL2. Production or
+privileged/provider credentials fail this mode. Its routes exclude public UI,
+registration, phone, payments, marketplace and administration. Production must
+retain this mode OFF/absent; no Preview schemas, roles, accounts, credentials or
+environment values are deployed to Production.
+The local-only acceptance validator now treats explicit false as inactive, just
+as an absent flag; true still requires every loopback-only restriction. Hosted
+CSP does not gain unsafe-eval. This corrects the observed hosted build failure.
+The exact file comparison is frozen in application-comparison.json.
+
+Database order and SHA-256
+1. 20261115113306_batch_private_pack_issuance_validation.sql
+   2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1
+2. 20261115211545_batch1_pack_guard_batching.sql
+   3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6
+3. 20261115235000_batch1_persistence_subdocuments.sql
+   83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e
+
+Only seven function bodies change:
+beta_packs.capture(jsonb,jsonb), commercial_billing.prevent_parallel_inventory(),
+credits_sandbox.guard_economy_state(), credits_sandbox.guard_redemption(),
+credits_sandbox.marketplace_guard(), credits_sandbox.project_fixture_inventory(),
+sports_feed.rarity_transfer_guard(). Exact predecessor/output hashes are in the
+manifest. No table shape, grant, owner, RLS/policy, SECURITY DEFINER/search_path,
+source permission, scheduler definition, inventory import or bulk data update.
+The three files replace guarded function bodies; they create no Preview objects.
+
+Acceptance split
+The reduced protected Preview is the pre-deployment HTTP/Auth/integrity gate,
+using only a small fictional fixture. The existing restored Production rehearsal
+checks the full dependency graph, migration atomicity, rollback, ownership,
+scarcity, refunds/financial restrictions and Weekly Core behaviour. Neither
+replaces the actual website/installed-v31 acceptance in the existing Production
+private beta after the separately approved deployment. No artificial permanent
+card generation for benchmarking. No public registration-only launch proposal.
+
+Mandatory execution prerequisites after separate approval
+- Verify exact source commit/tree, complete application file manifest, package
+  and all three SQL hashes. The approval is valid for 24 hours only. Do not
+  substitute a moving branch head or change approved application/SQL bytes.
+- Independently read docked.com.au's actual deployment and complete effective
+  runtime map. Preserve every setting and secret value, not merely selected flags.
+  Hash private snapshots without disclosing credentials. Reconcile discrepancies.
+  DOCKED_PACK_ACCEPTANCE must be absent/false in Production; reject its activation.
+- Capture a NEW authenticated encrypted Production backup no more than 60 minutes
+  old, using existing recovery custody. Verify an isolated restore with no network,
+  HTTP delivery or jobs. Do not reuse the earlier backup as a current rollback point.
+- Obtain a Production preflight no more than 10 minutes old. Verify the seven
+  predecessor hashes, unapplied migration versions, full ACL/RLS/role membership,
+  runtime-role restrictions, financial ledger/provenance, ownership/custody,
+  serial uniqueness, lifetime counters, receipts and unopened Core entitlements.
+- Reconcile all legitimate later activity against that fresh snapshot. Existing
+  scheduler telemetry is not permission for unreviewed business writes, failed
+  jobs, source-body purges or changed job definitions. Unexplained material drift
+  stops execution. Do not falsify timestamps or renew source rights implicitly.
+- Rehearse affected checks on the fresh isolated restore if dependencies/data
+  changed. Existing unchanged tests need not be rerun merely to increase counts.
+- Record and verify the existing prior deployment as the conditional app rollback
+  target. Verify its compatibility with retained Batch 1 SQL before authorising use.
+
+Atomic database application
+Use one operator transaction with ON_ERROR_STOP, lock_timeout='3s' and
+statement_timeout='60s'. Read each of the THREE frozen files in the listed order;
+do not execute any other migration or repeat an already recorded version. If the
+runner records migration ledger rows, they belong in this same transaction.
+Verify all seven resulting function hashes and unchanged owner/ACL/RLS/security
+metadata before COMMIT, along with the protected financial/inventory/custody
+fingerprints. Any failure ROLLBACKs the whole transaction. Never kill customer
+transactions to make the lock check pass.
+
+Application staging and promotion
+Export only the frozen application files from the approved Git commit into a
+separate release directory. Verify every exported file digest. Link that export
+to the EXISTING Production Vercel project prj_l0rpVDPRuIRp9UcBUkudeyUK5yST,
+team team_tf6xweKKyVCj9bTppUKttJ4l, Node 22, region syd1. Keep existing runtime
+values, including all private-beta restrictions; do not substitute Preview keys.
+Stage with the existing authenticated Vercel CLI using the Production target
+and --skip-domain; retain deployment protection. Bind its metadata to the frozen
+source. Verify READY, exact project/source/environment and no Production alias
+change before any promotion. Inspect build/runtime errors and perform read-only
+protected smoke checks (identity, auth denial, catalogue and authorised existing
+receipt recovery). Do not buy packs or grant credits as a deployment smoke test.
+Promote that exact verified deployment only when every prerequisite passes.
+
+Postflight
+Resolve docked.com.au independently to the expected source/deployment. Repeat
+financial, custody, lifetime, receipt, permissions and full runtime comparisons,
+allowing only independently explained legitimate activity. Verify existing tester
+login/access, provider-off/registration-closed controls, no-store responses and
+saved-result recovery. Verify no SMS, email, grant, purchase, import, deletion or
+commercial issuance was caused by deployment. Check runtime errors.
+Then begin the separately bounded, tester-controlled website/Android session in
+PRODUCTION_BETA_ACCEPTANCE.txt with their own MFA and approved TEST credits.
+
+Downtime and recovery
+Allow up to two minutes of private-beta write interruption in a quiet window;
+no zero-downtime guarantee. The prior uncontended isolated DDL was about 0.1s.
+Pre-commit failure rolls back all SQL/ledger rows. Before promotion, abandon a
+failed staged application. After promotion, conditional app-only rollback goes
+only to the freshly verified compatible prior deployment, retaining the SQL
+optimisations. Do not automatically reinstall stale functions. If assets diverge,
+stop affected writes, retain evidence and prepare reviewed forward recovery.
+Never restore an old financial snapshot over legitimate later customer activity.
+
+Closed launch controls
+No public registration, phone delivery/SMS, purchased credits, real payments,
+commercial issuance activation, marketplace trading, prizes, withdrawals, real
+scoring, deletion schedules, live-key changes, source-rights bypass or inventory
+imports. NBA hidden; six competitions disabled Practice. Google Play v31 stays
+unpublished and managed publishing ON. Existing authorised free-credit beta
+continues under its established controls. Public launch remains NO-GO.

@@ -1,0 +1,2965 @@
+{
+  "sourceCommit": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "priorReviewed": {
+    "base": "084f0e3e86fdc64aec9a9a043ffc3a1c524706eb",
+    "allChangedFiles": [
+      {
+        "status": "M",
+        "paths": [
+          ".gitattributes"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/EXECUTION.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/PREVIEW_APPLICATION_CONTINUATION.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/PREVIEW_APPROVAL.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/PREVIEW_EXECUTION_REPORT.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/PRODUCTION_BETA_ACCEPTANCE.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/TESTING_DECISION.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/after-attempt-preflight.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/attempted-preview-package.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-auth-acceptance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-execution-approval.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-preexisting-state.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-preflight.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-runtime-audit.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-state-after-apply.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-vercel-readiness.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/current-production-readonly.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/dependency-audit.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/dependency-closure.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/execution-approval.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/execution-preflight.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/execution-vercel-readiness.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/fixture-footprint.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/hosted-build-failure.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/hosted-deployment.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/hosted-operator-preflight.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/hosted-prepared.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/hosted-profile-build-correction.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/operator-correction-verification.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/operator-role-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-application-continuation.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-application.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-bundle-preparation.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-package.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-payloads.json.gz"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-permissions.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-state-after-apply.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-state-before.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/synthetic-adversarial-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/synthetic-route-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/synthetic-security-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/temp-namespace-correction.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/temp-namespace-diagnosis.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/vercel-readiness.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/EXECUTION_REPORT.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/RELEASE_UNBLOCK_RECOMMENDATION.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/approval-record.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/archive-drift-details.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/backup-drift.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/final-custody.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/final-readback.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/fresh-restore-acceptance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/hosted-target-proof.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/operator-validation.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/preview-access.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/production-readonly.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/restore-cleanup.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/source-worker-diagnostics.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/weekly-afl-recheck.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/weekly-failure.private-review.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/HOSTED_EXECUTION.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/PREVIEW_APPROVAL.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/READINESS.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/auth-acceptance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/dependency-closure.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-bundle-preparation.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-dependencies.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-package.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-payloads.json.gz"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-permissions.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-public-privileges.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/production-readonly.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/synthetic-adversarial-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/synthetic-reader-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/synthetic-route-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/synthetic-security-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/DEPLOYMENT_APPROVAL.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/production-package.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/v31-prelaunch-execution-20261111/database/restore-20261116b/restore-only.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-acceptance-schema.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-archive-drift.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-controlled-readonly.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-controlled-restore.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-current-readonly.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-dependency-audit.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-hosted-http.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-hosted-stage.mjs"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-hosted-target-proof.mjs"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-operator-role-rehearsal.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-auth.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-bundle.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-freeze.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-inspect.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-operator-preflight.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-operator.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-permissions.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-public-audit.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-rehearse.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-security.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-synthetic-fixtures.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-synthetic-route.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "scripts/guard-hosted-build.mjs"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/lib/batch1-acceptance-profile.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/lib/batch1-preview-local.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/lib/batch1-preview-schema.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/deployment-environment.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/hosted-beta.mjs"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/local-marketplace-acceptance.mjs"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/pack-experience.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/core/pack-hosted-acceptance.mjs"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/sports-private-beta.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/proxy.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/auth.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/beta-sql.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/db.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/member-test-wallet.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/server/pack-acceptance-sql.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "tests/platform/batch1-preview-schema.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/platform/hosted-production.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/platform/local-marketplace-acceptance.test.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "tests/platform/pack-hosted-acceptance.test.ts"
+        ]
+      }
+    ],
+    "applicationChanges": [
+      {
+        "status": "M",
+        "paths": [
+          "scripts/guard-hosted-build.mjs"
+        ],
+        "sha256": "537054d03617110f01312571915bdecf185286457987366c156371739c17c946"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/deployment-environment.ts"
+        ],
+        "sha256": "52ec979f1c5e08ec70898be7a305d7ccca6ec95a5197eb340084c888082001b3"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/hosted-beta.mjs"
+        ],
+        "sha256": "e5e8a4a9253a9d9b6ffa37ee3fc8f9f618cf9cd7dab22e8697af937b274e8077"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/local-marketplace-acceptance.mjs"
+        ],
+        "sha256": "bb0536ae0af7833b61a90b36d22df725507e0196fa7311db190199c83ee895b4"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/pack-experience.ts"
+        ],
+        "sha256": "cc8019b407c17c9b53272b050a3f8f00b93f07b0f4512d84025412eb4f2d7f66"
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/core/pack-hosted-acceptance.mjs"
+        ],
+        "sha256": "bb0d4fc306731876e0d4bb48cdea9c9eb8857fe4acdb4e7def63773cf0e8bce5"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/sports-private-beta.ts"
+        ],
+        "sha256": "c76cc67a4fba5a0401745811627d02e262848b2740002db644dcd23cfe4ec584"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/proxy.ts"
+        ],
+        "sha256": "5363af42a6ecd6ccfe9cee6ee1a71fa94c63642bfec42cc38b1c91ffdddf6b0e"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/auth.ts"
+        ],
+        "sha256": "6a06012120a6647615d9b1fd6d42ec7a9094dd6097ae3e0681e4993267c1d366"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/beta-sql.ts"
+        ],
+        "sha256": "b96a1c9f6e65e9ae9e1295fea4c0184baa4572460473fdcf3d42e93625462248"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/db.ts"
+        ],
+        "sha256": "33c81ad6b0119cb0baf2fba2277cc881265ea8507afbee17227cda5d21f26445"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/member-test-wallet.ts"
+        ],
+        "sha256": "5642e1cfb41679327288bb96422076c99059a032e78f25ebc6ae65a63b784de9"
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/server/pack-acceptance-sql.ts"
+        ],
+        "sha256": "010de02152797b7a56490f3d5d02bb9d79959c9856c80d8155c11947524311e8"
+      }
+    ],
+    "nativeChanges": []
+  },
+  "currentProduction": {
+    "base": "12ccfd5879ae83f1bd62210ee16a3feb6907d9ef",
+    "allChangedFiles": [
+      {
+        "status": "M",
+        "paths": [
+          ".gitattributes"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          ".nvmrc"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/EXECUTION.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/PREVIEW_APPLICATION_CONTINUATION.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/PREVIEW_APPROVAL.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/PREVIEW_EXECUTION_REPORT.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/PRODUCTION_BETA_ACCEPTANCE.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/TESTING_DECISION.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/after-attempt-preflight.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/attempted-preview-package.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-auth-acceptance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-execution-approval.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-preexisting-state.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-preflight.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-runtime-audit.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-state-after-apply.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/corrected-vercel-readiness.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/current-production-readonly.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/dependency-audit.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/dependency-closure.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/execution-approval.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/execution-preflight.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/execution-vercel-readiness.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/fixture-footprint.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/hosted-build-failure.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/hosted-deployment.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/hosted-operator-preflight.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/hosted-prepared.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/hosted-profile-build-correction.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/operator-correction-verification.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/operator-role-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-application-continuation.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-application.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-bundle-preparation.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-package.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-payloads.json.gz"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-permissions.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-state-after-apply.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/preview-state-before.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/synthetic-adversarial-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/synthetic-route-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/synthetic-security-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/temp-namespace-correction.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/temp-namespace-diagnosis.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-beta-alignment-20261116/vercel-readiness.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/EXECUTION_REPORT.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/RELEASE_UNBLOCK_RECOMMENDATION.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/approval-record.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/archive-drift-details.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/backup-drift.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/final-custody.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/final-readback.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/fresh-restore-acceptance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/hosted-target-proof.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/operator-validation.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/preview-access.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/production-readonly.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/restore-cleanup.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/source-worker-diagnostics.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/weekly-afl-recheck.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-controlled-20261116/weekly-failure.private-review.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/HOSTED_EXECUTION.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/PREVIEW_APPROVAL.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/READINESS.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/auth-acceptance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/dependency-closure.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-bundle-preparation.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-dependencies.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-package.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-payloads.json.gz"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-permissions.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/preview-public-privileges.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/production-readonly.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/synthetic-adversarial-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/synthetic-reader-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/synthetic-route-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-hosted-20261116/synthetic-security-rehearsal.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/BATCH_2_RECOMMENDATION.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/DEPLOYMENT_APPROVAL.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/DEPLOYMENT_REVIEW.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/IMPLEMENTATION_REPORT.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/REPRODUCING_ACCEPTANCE.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/acceptance-summary.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-baseline-progress.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-baseline.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-baseline.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-candidate-nine-card-progress.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-candidate-nine-card.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-candidate-progress.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-candidate.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-candidate.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-iteration1.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-iteration2.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-iteration3.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-iteration4.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/benchmark-nine-card.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser-results.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser-tests.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/after-1366.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/after-320-text-200.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/after-320.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/after-390.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/after-768.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/after-bottom-1366.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/after-bottom-320.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/after-bottom-390.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/after-bottom-768.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/docked-afl-legendary-pull.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/docked-afl-ultra-rare-pull.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/share-legendary.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/pack-review-sharing/share-ultra_rare.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/reveal-regression/revealed-1366.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/reveal-regression/revealed-360.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/reveal-regression/revealed-412.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/reveal-regression/sealed-1366.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/reveal-regression/sealed-360.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/reveal-regression/sealed-412.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/reveal-regression/summary-1366.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/reveal-regression/summary-360.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/browser/reveal-regression/summary-412.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/build-final.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/build-smoke.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/build-smoke.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/build.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/client-boundary.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/database-final-migrations.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/database-final-repair.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/database-repaired-tests.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/database-schema.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/database-schema.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/database-tests-initial.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/database-tests.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/document-patch.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/document-patch.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/financial-guard.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/financial-guard.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/lint-final.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/lint.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/native-collection-test.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/native-commercial-tests.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/nested-plans.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/nfl-migration-test.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/operational-final.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/pack-core-final.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/pack-recovery-browser/afl/acceptance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/pack-recovery-browser/afl/pending-390.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/pack-recovery-browser/afl/recovered-390.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/pack-recovery-browser/nfl/acceptance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/pack-recovery-browser/nfl/pending-390.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/pack-recovery-browser/nfl/recovered-390.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/pack-recovery-browser/nrl/acceptance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/pack-recovery-browser/nrl/pending-390.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/pack-recovery-browser/nrl/recovered-390.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/performance-summary.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/phone-browser.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/phone-browser/acceptance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/phone-browser/recovery-390.png"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/platform-tests.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/postgres-acceptance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/postgres-acceptance.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/presentation-benchmark.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/presentation.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/production-baseline.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/production-final-readback.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/production-final-readback.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/production-package.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/profile-binary-cache.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/profile-document-patch.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/profile-latest.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/profile-third.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/projection-plan.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/reservation-guard.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/reservation-guard.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/restore-benchmark.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/restored-performance.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/route-smoke.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/sql-performance.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/typecheck-final.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/batch1-pack-phone-20261116/typecheck.log"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/DEPLOYMENT_APPROVAL.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/deployment-package.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/MEMBER_ACCEPTANCE_AND_CREDIT_GRANT_20261116.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/MEMBER_ACCEPTANCE_AND_CREDIT_GRANT_20261116.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/RESULT.txt"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/activity-reconciliation.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/application-prepared.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/database-applied.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/database-preflight.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/deployment-promoted.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/deployment-submitted.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/postflight-database.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/production-verification.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/promotion-database.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/promotion-preflight.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/runtime-verified.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/stage-database.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/stage-preflight.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/staging-database.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/brenton-private-tester-20261115/execution/staging-verification.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/v31-prelaunch-execution-20261111/database/restore-20261116a/restore-only.json"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "docs/qa/v31-prelaunch-execution-20261111/database/restore-20261116b/restore-only.json"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "package-lock.json"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "package.json"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "playwright.config.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-acceptance-schema.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-archive-drift.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-build-smoke.mjs"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-controlled-readonly.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-controlled-restore.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-current-readonly.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-database-package.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-db-probe.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-dependency-audit.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-document-patch.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-financial-guard.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-hosted-http.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-hosted-stage.mjs"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-hosted-target-proof.mjs"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-operator-role-rehearsal.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-package.mjs"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-performance-summary.mjs"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-phone-browser.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-postgres-acceptance.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-presentation-benchmark.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-auth.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-bundle.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-freeze.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-inspect.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-operator-preflight.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-operator.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-permissions.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-public-audit.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-rehearse.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-preview-security.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-production-baseline.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-reservation-guard.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-route-benchmark.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-route-smoke.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-synthetic-fixtures.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/batch1-synthetic-route.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "scripts/commercial-production-restore-drill.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "scripts/guard-hosted-build.mjs"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/lib/batch1-acceptance-profile.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/lib/batch1-isolated-db.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/lib/batch1-preview-local.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/lib/batch1-preview-schema.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/lib/batch1-route-fixture.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/pack-performance-restored.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "scripts/pack-recovery-browser.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/app/api/auth/phone/route.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/app/api/test-wallet/route.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/components/member-test-wallet.tsx"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/components/public-phone-verification.tsx"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/bounded-request.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/card-economy.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/credits-sandbox.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/deployment-environment.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/hosted-beta.mjs"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/local-marketplace-acceptance.mjs"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/pack-experience.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/core/pack-hosted-acceptance.mjs"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/phone-challenge.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/purchase-performance.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/sports-private-beta.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/proxy.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/auth.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/beta-sql.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/server/credits-document-patch.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/credits-sandbox-store.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/db.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/economy-catalogue.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/market-visibility.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/server/member-pack-receipt.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/member-test-wallet.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/server/pack-acceptance-sql.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/public-phone.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/purchase-timing.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/rate-limit-query.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "supabase/migrations/20261115113306_batch_private_pack_issuance_validation.sql"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "supabase/migrations/20261115211545_batch1_pack_guard_batching.sql"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "supabase/migrations/20261115235000_batch1_persistence_subdocuments.sql"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/browser/pack-cinema-v2.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/browser/pack-review-sharing.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/card-player-history.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/commercial-social.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/community-ledger.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/community-social.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/fantasy-cards.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/fantasy-production.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/marketplace.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/member-platform-updates.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/member-read-isolation.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/nfl-calendar-draft.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/nfl-history.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/nfl-member.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/nfl-seven.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/owned-collection.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/owner-command-centre.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/owner-reference-reporting.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/phase2-security.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/phase3-benefits.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/premium-member-release.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/preview-beta-auth.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/preview-community.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/production-signup.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/social-sport-migration.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/team-continuity.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/database/weekly-core.test.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "tests/fixtures/phone-recovery.tsx"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "tests/platform/batch1-preview-schema.test.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "tests/platform/batch1-request-recovery.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/platform/card-economy.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/platform/hosted-production.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "tests/platform/local-marketplace-acceptance.test.ts"
+        ]
+      },
+      {
+        "status": "A",
+        "paths": [
+          "tests/platform/pack-hosted-acceptance.test.ts"
+        ]
+      },
+      {
+        "status": "M",
+        "paths": [
+          "vercel.json"
+        ]
+      }
+    ],
+    "applicationChanges": [
+      {
+        "status": "M",
+        "paths": [
+          "package-lock.json"
+        ],
+        "sha256": "7a55ea0350dac249029d959b95756a68887188909c329944d649fbbe566e723c"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "package.json"
+        ],
+        "sha256": "44edccf168a65aedb6f5a31fb0b9c2d94dca81551ade1e16b611b5783ece85a1"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "scripts/guard-hosted-build.mjs"
+        ],
+        "sha256": "537054d03617110f01312571915bdecf185286457987366c156371739c17c946"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/app/api/auth/phone/route.ts"
+        ],
+        "sha256": "29aeec2d6bac6870b33b80ea85492eee64f34afca786eb795b65a9c4d0bcef7b"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/app/api/test-wallet/route.ts"
+        ],
+        "sha256": "216e9a3822275a93fa2a058d048e53e869940847ec1774547917fea5037c7e30"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/components/member-test-wallet.tsx"
+        ],
+        "sha256": "9199d3411d338296ae45f2e46cb19937b7534535ff9a75ffb194e52bbdafe009"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/components/public-phone-verification.tsx"
+        ],
+        "sha256": "d7465c08ff9bbbbfaaa9dc2b86722165daa0afeff435ddae3175f12c2dd95614"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/bounded-request.ts"
+        ],
+        "sha256": "1bbf6faa3c2796f4dd341b0a97ee43227728726771fb52d92c92b33e205c7717"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/card-economy.ts"
+        ],
+        "sha256": "c72155e326ecc6f3c6f391f382752a698d42438cfccd2dcb4611f05faffdc627"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/credits-sandbox.ts"
+        ],
+        "sha256": "77b688d4d0f99278d68f0ededd61cf51942778d3273befc0a64806cc5b5a10f5"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/deployment-environment.ts"
+        ],
+        "sha256": "52ec979f1c5e08ec70898be7a305d7ccca6ec95a5197eb340084c888082001b3"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/hosted-beta.mjs"
+        ],
+        "sha256": "e5e8a4a9253a9d9b6ffa37ee3fc8f9f618cf9cd7dab22e8697af937b274e8077"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/local-marketplace-acceptance.mjs"
+        ],
+        "sha256": "bb0536ae0af7833b61a90b36d22df725507e0196fa7311db190199c83ee895b4"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/pack-experience.ts"
+        ],
+        "sha256": "cc8019b407c17c9b53272b050a3f8f00b93f07b0f4512d84025412eb4f2d7f66"
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/core/pack-hosted-acceptance.mjs"
+        ],
+        "sha256": "bb0d4fc306731876e0d4bb48cdea9c9eb8857fe4acdb4e7def63773cf0e8bce5"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/phone-challenge.ts"
+        ],
+        "sha256": "d819b6c8ee84b25dfff8de9c4d3aa177041c70e0b637da5d2cbe4f1ad2b2ac8d"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/purchase-performance.ts"
+        ],
+        "sha256": "314bf021a7aa8ed6aa7f89e1ceeae754166da04b6ea4fd9060dc413385af9649"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/core/sports-private-beta.ts"
+        ],
+        "sha256": "c76cc67a4fba5a0401745811627d02e262848b2740002db644dcd23cfe4ec584"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/proxy.ts"
+        ],
+        "sha256": "5363af42a6ecd6ccfe9cee6ee1a71fa94c63642bfec42cc38b1c91ffdddf6b0e"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/auth.ts"
+        ],
+        "sha256": "6a06012120a6647615d9b1fd6d42ec7a9094dd6097ae3e0681e4993267c1d366"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/beta-sql.ts"
+        ],
+        "sha256": "b96a1c9f6e65e9ae9e1295fea4c0184baa4572460473fdcf3d42e93625462248"
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/server/credits-document-patch.ts"
+        ],
+        "sha256": "40042ba2e2753b6d9e4905f0f886faf317a42066a4aa499883a36ec4fee07396"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/credits-sandbox-store.ts"
+        ],
+        "sha256": "5cbe01a7c9e9b38cf399d1c4df5f9517698fe826cafb1a67ff2705a629cdbd30"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/db.ts"
+        ],
+        "sha256": "33c81ad6b0119cb0baf2fba2277cc881265ea8507afbee17227cda5d21f26445"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/economy-catalogue.ts"
+        ],
+        "sha256": "c5d8ae2a8411393d3624c0de10fe48650434a625852135d58842f035a52d2d32"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/market-visibility.ts"
+        ],
+        "sha256": "e22f47a3afd5a9a48e78dd9d429e559e01602b67ec1d7abf13e4611422ba2952"
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/server/member-pack-receipt.ts"
+        ],
+        "sha256": "da534b377a98fa6bc23acf7822faca7fa9724c31045302134fa4de9fd8b76cad"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/member-test-wallet.ts"
+        ],
+        "sha256": "5642e1cfb41679327288bb96422076c99059a032e78f25ebc6ae65a63b784de9"
+      },
+      {
+        "status": "A",
+        "paths": [
+          "src/server/pack-acceptance-sql.ts"
+        ],
+        "sha256": "010de02152797b7a56490f3d5d02bb9d79959c9856c80d8155c11947524311e8"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/public-phone.ts"
+        ],
+        "sha256": "e41d8cbd9931fd33092525eea5ccf61c1d8b38b105f59af11bede0e26b92da74"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/purchase-timing.ts"
+        ],
+        "sha256": "ea1ea4b87f2e365c5d9f926c13611589298335c01a14de3028216db607e41cf1"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "src/server/rate-limit-query.ts"
+        ],
+        "sha256": "15f8f74e89b6a8912e4cb55ed27de4f372d2298165557a96c17eadfd4372793a"
+      },
+      {
+        "status": "M",
+        "paths": [
+          "vercel.json"
+        ],
+        "sha256": "79d74d848323275bff93b87c3432aa2a4227f87f1ef15135e5a37e07466ce147"
+      }
+    ],
+    "nativeChanges": []
+  },
+  "productionMigrationsUnchanged": true,
+  "previewSqlIncludedInProduction": false
+}

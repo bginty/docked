@@ -1,0 +1,258 @@
+{
+  "at": "2026-11-16T09:24:05.255Z",
+  "sourceCommit": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "deployment": {
+    "at": "2026-11-16T08:43:56.103Z",
+    "id": "dpl_GvnAZByHkwpngA5E7Gn72Pkdsq2M",
+    "url": "https://docked-preview-nbqcay62r-briant-s-projects.vercel.app",
+    "projectId": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+    "target": "preview",
+    "protected": true,
+    "sourceCommit": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+    "readyState": "READY",
+    "productionChanged": false,
+    "verifiedAt": "2026-11-16T08:45:28.825Z"
+  },
+  "minimumHostedSafetyGatePassed": true,
+  "actualHostedHttp": true,
+  "genuinePreviewAuthMfa": true,
+  "syntheticAccounts": 2,
+  "offers": 18,
+  "uniquePurchases": 20,
+  "syntheticCards": 96,
+  "maximumApprovedPurchases": 24,
+  "integrity": {
+    "oneDebitPerPurchase": true,
+    "exactCardCounts": true,
+    "allocationEqualsLifetime": true,
+    "actualRefundProviderTest": false,
+    "browserReloadOrThrottleTest": false,
+    "oneAllocationPerPurchase": true,
+    "lifetimeEqualsAllocations": true,
+    "crossAccountDenials": 18,
+    "concurrentSameRequestCount": 8
+  },
+  "measurements": {
+    "offer-confirmation": {
+      "n": 18,
+      "p50Ms": 739.5749999999999,
+      "p95Ms": 1985.905
+    },
+    "saved-result-recovery": {
+      "n": 18,
+      "p50Ms": 489.623,
+      "p95Ms": 875.173
+    },
+    "offer-opening": {
+      "n": 18,
+      "p50Ms": 583.385,
+      "p95Ms": 1236.002
+    },
+    "cross-account-denial": {
+      "n": 18,
+      "p50Ms": 476.055,
+      "p95Ms": 1603.66
+    },
+    "concurrent-duplicate": {
+      "n": 8,
+      "p50Ms": 488.482,
+      "p95Ms": 830.951
+    },
+    "deliberate-interruption": {
+      "n": 1,
+      "p50Ms": 51.117000000000004,
+      "p95Ms": 51.117000000000004
+    },
+    "interrupted-result-recovery": {
+      "n": 1,
+      "p50Ms": 840.917,
+      "p95Ms": 840.917
+    },
+    "anonymous-denial": {
+      "n": 1,
+      "p50Ms": 195.101,
+      "p95Ms": 195.101
+    }
+  },
+  "nineCardConfirmation": {
+    "n": 6,
+    "p50Ms": 963.8489999999999,
+    "p95Ms": 1985.905
+  },
+  "subsequentConfirmation": {
+    "n": 17,
+    "p50Ms": 739.5749999999999,
+    "p95Ms": 1031.136
+  },
+  "firstObservedConfirmationMs": 1985.905,
+  "serverTimingMs": {
+    "offer-confirmation": {
+      "wallet": {
+        "n": 18,
+        "p50Ms": 434,
+        "p95Ms": 912
+      },
+      "purchase_auth": {
+        "n": 18,
+        "p50Ms": 94.7,
+        "p95Ms": 376.1
+      },
+      "purchase_lock": {
+        "n": 18,
+        "p50Ms": 5.7,
+        "p95Ms": 6.8
+      },
+      "purchase_state": {
+        "n": 18,
+        "p50Ms": 9.5,
+        "p95Ms": 12.3
+      },
+      "purchase_rules": {
+        "n": 18,
+        "p50Ms": 71,
+        "p95Ms": 153.3
+      },
+      "purchase_issue": {
+        "n": 18,
+        "p50Ms": 14.6,
+        "p95Ms": 29.2
+      },
+      "purchase_persist": {
+        "n": 18,
+        "p50Ms": 130.2,
+        "p95Ms": 298.5
+      },
+      "purchase_transaction": {
+        "n": 18,
+        "p50Ms": 278.3,
+        "p95Ms": 500.6
+      },
+      "purchase_view": {
+        "n": 18,
+        "p50Ms": 39.8,
+        "p95Ms": 42.9
+      },
+      "purchase_total": {
+        "n": 18,
+        "p50Ms": 434.5,
+        "p95Ms": 913.7
+      }
+    },
+    "saved-result-recovery": {
+      "wallet": {
+        "n": 18,
+        "p50Ms": 166,
+        "p95Ms": 445
+      },
+      "purchase_auth": {
+        "n": 18,
+        "p50Ms": 94.9,
+        "p95Ms": 261.1
+      },
+      "purchase_view": {
+        "n": 18,
+        "p50Ms": 39.8,
+        "p95Ms": 94.6
+      },
+      "purchase_total": {
+        "n": 18,
+        "p50Ms": 166.5,
+        "p95Ms": 445.1
+      }
+    },
+    "offer-opening": {
+      "wallet": {
+        "n": 18,
+        "p50Ms": 314,
+        "p95Ms": 864
+      },
+      "purchase_auth": {
+        "n": 18,
+        "p50Ms": 85.5,
+        "p95Ms": 148.2
+      },
+      "purchase_lock": {
+        "n": 18,
+        "p50Ms": 5.7,
+        "p95Ms": 9.6
+      },
+      "purchase_state": {
+        "n": 18,
+        "p50Ms": 10.4,
+        "p95Ms": 14.5
+      },
+      "purchase_rules": {
+        "n": 18,
+        "p50Ms": 40.8,
+        "p95Ms": 95.3
+      },
+      "purchase_issue": {
+        "n": 18,
+        "p50Ms": 7.5,
+        "p95Ms": 14.4
+      },
+      "purchase_persist": {
+        "n": 18,
+        "p50Ms": 62.4,
+        "p95Ms": 489.2
+      },
+      "purchase_transaction": {
+        "n": 18,
+        "p50Ms": 154.3,
+        "p95Ms": 652.3
+      },
+      "purchase_view": {
+        "n": 18,
+        "p50Ms": 39,
+        "p95Ms": 43.4
+      },
+      "purchase_total": {
+        "n": 18,
+        "p50Ms": 315.9,
+        "p95Ms": 864.5
+      }
+    }
+  },
+  "serverTimingSpansOverlapDoNotSum": true,
+  "percentileMethod": "Nearest rank; samples are small and p95 can equal maximum",
+  "comparison": {
+    "priorIsolatedConfirmationP95Ms": 4753,
+    "priorIsolatedRecoveryP95Ms": 329,
+    "priorIsolatedNineCardP95Ms": 3771,
+    "likeForLike": false,
+    "assessment": "Hosted confirmation remains below prior 5s target and recovery below 2s. Recovery is slower than isolated baseline; Auth/network and different small fixture prevent causal attribution. Production performance is still unverified."
+  },
+  "fixture": {
+    "players": 108,
+    "definitions": 540,
+    "dependencyTables": 143,
+    "controlTables": 2,
+    "initialBytes": 105964,
+    "finalBytes": 276152
+  },
+  "limitations": {
+    "coldStartProven": false,
+    "physicalAndroid": false,
+    "browserThrottleOrReload": false,
+    "renderOrAnimationTiming": false,
+    "actualGooglePurchaseOrRefund": false,
+    "committedResponseLossOverNetwork": false,
+    "interruption": "51ms cutoff transmitted zero bytes. Retry succeeded; distinct already-committed receipt replays and isolated discarded-response/restart tests passed.",
+    "anonymousPost": "Denied before mutation with generic HTTP503/outcome unknown, not403. Existing Production catch classification is unchanged; no data returned. Authenticated cross-account requests return400 and preserve state.",
+    "runtimeSettings": "Complete effective Production runtime map still requires fresh capture before separately approved deployment."
+  },
+  "cleanup": {
+    "windowClosed": true,
+    "runtimeLoginDisabled": true,
+    "schemasRemoved": 12,
+    "rolesRemoved": 2,
+    "taskDeploymentsRemoved": 2,
+    "existingTablesVerified": 438,
+    "otherAccountsUnchanged": true,
+    "existingFunctionsPermissionsUnchanged": true,
+    "phoneSettingsChanged": false
+  },
+  "productionWrites": 0,
+  "publicLaunch": "NO-GO",
+  "productionApprovalRequired": true
+}

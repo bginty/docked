@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-16T08:59:03.591Z",
+  "actualState": {
+    "packs": 0,
+    "cards": 0,
+    "allocations": 0
+  },
+  "previousRequests": 1,
+  "retryUsesSameRequest": true,
+  "authenticatedApplicationSourceChanged": false,
+  "transportCorrection": "Vercel CLI 59.11.2 curl forwards custom global flags to native curl; use existing local VERCEL_TOKEN environment and linked Preview working directory. Do not expose credentials or change protection.",
+  "readOnlyProbe": {
+    "status": 403,
+    "message": "Test wallet requires your invited account."
+  },
+  "driverSha256": "0f6b1eabd49a9c498d8ee2686a835d3db2360b2079df4aa63114128aab94c1a9"
+}

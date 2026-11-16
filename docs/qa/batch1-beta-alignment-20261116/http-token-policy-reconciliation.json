@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-16T08:51:34.497Z",
+  "priorAttempt": "2026-11-16T08:45:49.166Z",
+  "recordedPurchaseRequests": 0,
+  "actualState": {
+    "packs": 0,
+    "cards": 0,
+    "allocations": 0
+  },
+  "stop": "Harness required 30-minute tokens but actual genuine Supabase AAL2 policy is 15 minutes; stopped before any HTTP send",
+  "correction": "Keep actual JWT policy; verify token issuer/sub/AAL2/metadata and expiry before requests; refresh only through genuine Auth when necessary; all purchase limits and server guards unchanged",
+  "authPolicyChanged": false,
+  "applicationDeploymentChanged": false,
+  "sqlChanged": false,
+  "lint": "pass",
+  "typecheck": "pass",
+  "driverSha256": "7b61947864ddb7d32f811260631f285928f37c3e18fffa7521e96493e1e4b05b"
+}

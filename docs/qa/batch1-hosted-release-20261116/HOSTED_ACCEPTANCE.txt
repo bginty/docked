@@ -1,0 +1,113 @@
+DOCKED — BATCH 1 HOSTED ACCEPTANCE AND RELEASE HANDOVER
+16 November 2026. Production writes performed by this work: ZERO.
+
+Result
+The minimum protected Preview HTTP/Auth safety gate passed. The exact tested
+application is 76df44ba1adef012c5ec2119563cbc05ff9e3c0b. Its successful deployment
+was dpl_GvnAZByHkwpngA5E7Gn72Pkdsq2M. The temporary deployment has now been removed
+as approved; its actual measurements and verification evidence are retained.
+Production deployment requires a NEW exact-package approval.
+
+Correction and execution
+The purchasing path previously required Production identity and Preview lacked
+its dependency graph. The reviewed isolated mode preserves genuine Preview
+Auth/MFA, admission, rights, scarcity, transaction and idempotency guards. It
+routes only the temporary fictional fixture using the restricted runtime role.
+The corrected SQL/operator package applied atomically once. No Production data
+or credentials were used. Twelve namespaces held 143 dependency tables plus two
+controls, 108 fictional players and 540 definitions. These were temporary, not
+a new persistent test platform.
+
+The first hosted build exposed one application defect: an explicit false flag
+was rejected by the local-only validator. The separately approved application
+correction treats false as inactive; true retains every local-only restriction.
+Targeted guard tests, lint, typecheck/full build and the hosted build passed.
+
+The test driver also needed to respect the actual 15-minute Auth token policy
+and Vercel CLI curl's argument forwarding. These were local driver corrections;
+neither project Auth policy nor application security was relaxed. Genuine token
+refresh occurred twice. The initially prepared request was proven unsent and
+its original identifier reused. All earlier failures and reconciliation records
+remain available. No blind purchase restart occurred.
+
+Actual HTTP acceptance
+- All eighteen NFL/AFL/NRL Standard/Premium 1/3/9-card offers passed.
+- Twenty unique purchases issued exactly 96 synthetic cards, below the 24 cap.
+- Every purchase had one debit and one allocation; allocation and lifetime
+  counter totals agreed. All six nine-card offers returned nine unique cards.
+- Eighteen committed saved receipts recovered the same result. All eighteen
+  packs opened with correct unique counts. Eight simultaneous requests for one
+  purchase returned one result, with one debit and one nine-card allocation.
+- Eighteen wrong-account opening requests were denied without any state change.
+- Anonymous POST was denied before mutation, but returned generic 503/unknown
+  rather than 403. The catch classification is identical to current Production;
+  no account or receipt data was returned. This is an existing error-messaging
+  limitation, not evidence that anonymous purchases were allowed.
+
+Timing (actual native HTTP duration, not CLI startup/orchestration)
+                           n     p50 seconds     p95 seconds
+Purchase confirmation     18          0.740           1.986
+Saved-result recovery     18          0.490           0.875
+Opening/reveal API        18          0.583           1.236
+Concurrent same request    8          0.488           0.831
+Exact nine-card subset, first/subsequent requests and overlapping Auth/database
+Server-Timing spans are in hosted-acceptance-summary.json. Never sum nested spans.
+The fixture grew from 105,964 to 276,152 bytes; it is smaller than Production.
+Nearest-rank p95 on these small samples may be the maximum, not capacity evidence.
+
+Compared with isolated confirmation/recovery/nine-card p95 of 4.753/0.329/3.771s,
+hosted confirmation remains within the prior 5-second target and recovery within
+the 2-second target. Hosted recovery is slower than isolated recovery. Different
+data sizes, genuine Auth and network conditions prevent attributing that difference
+to an application regression or claiming a Production speedup. Actual Production
+timing remains a post-deployment beta acceptance requirement.
+
+Limits that remain explicit
+The intentional 51ms network interruption transmitted ZERO request bytes. Its
+retry succeeded, but this does not demonstrate a committed-response loss over
+the network. Already-committed receipt replay passed hosted; discarded-response
+and handler-restart recovery passed in the existing isolated database tests.
+Cold-start proof, browser throttling/reload, rendered reveal animation and physical
+Android v31 acceptance were not completed in this reduced Preview scope. They
+belong to the bounded existing Production beta session after approved deployment.
+No actual Google purchase/refund, SMS delivery or public/commercial activation.
+
+Existing regression evidence retained
+The unchanged three SQL migrations were rehearsed against a verified encrypted
+restore with 568 protected tables unchanged. Seven function bodies change; owners,
+ACL/RLS, policies and security settings remain unchanged. Existing tests cover
+duplicate purchases/opening, rollback of partial persistence, source-rights
+withdrawal, preserved issued-card reveal and permanent scarcity. The NFL Weekly
+Core 72-hour dependency is already resolved: four unique Core cards opened with
+zero fresh roster observations before/after these SQL files. AFL passed its
+separate corrected isolated recheck; NRL passed. No new freshness bypass was made.
+These are isolated results, not a claim of actual Android acceptance or renewed
+source-collection rights. Provider billing/refund acceptance remains separate.
+
+Retirement verified
+The original window was closed early, runtime login disabled, both task deployments
+removed and independently observed absent, then all twelve schemas/two roles
+removed. All 438 existing Preview tables, other Auth users, original functions,
+ACLs and RLS flags matched the pre-test snapshot. The two existing synthetic Auth
+accounts remain; their authorised sign-in/session metadata naturally advanced.
+Phone configuration and project settings were not modified. No new paid platform.
+
+Production and next step
+Actual read-only source: 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef.
+Vercel deployment: dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy.
+Latest observed assets: 6,540 definitions, 891 limited lifetime cards, 909 custody
+records. Preserve all later legitimate activity; these are not reset targets.
+All seven predecessor function hashes and schema/permission metadata matched.
+Ledger hash chain/zero-sum, lot balances and card-economy validation passed read-only.
+None of the three Batch 1 migrations has been applied to Production.
+Full effective runtime values require fresh capture under deployment approval.
+
+Next founder decision: the exact separate Production application/three-migration
+package in DEPLOYMENT_APPROVAL.txt. After approval, allow about 2-4 engineering
+hours for fresh backup/restore/drift, protected Production staging, promotion and
+postflight if no new issue appears; allow 30-60 minutes of founder/tester time for
+the initial website/installed-v31 session. These estimates exclude external waits.
+Real SMS, Android Google Billing/refund, merchant payout readiness and commercial
+rights remain separate public revenue-launch gates; no new external status check
+was performed in this narrow hosted session. Prior GST acceptance remains recorded.
+No Batch 2 work. Public launch remains NO-GO.

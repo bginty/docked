@@ -1,0 +1,47 @@
+DOCKED — REVISED BATCH 1 EXECUTION BOUNDARY
+Preparation only. No Production approval is recorded in this package.
+
+Local verification (no network or database access):
+  node scripts/batch1-hosted-release-package.mjs verify
+This binds application source 76df44ba1adef012c5ec2119563cbc05ff9e3c0b,
+the three unchanged SQL files, review, evidence and recovery instructions.
+The evidence commit is separate from the tested application source. Never deploy
+the moving branch head simply because it contains the later report commit.
+
+After explicit exact-package Production approval, execute DEPLOYMENT_REVIEW.txt
+in order. Capture a new encrypted backup and verify an isolated restore; capture
+the full effective runtime settings privately; generate a fresh read-only drift,
+permissions, financial, inventory and custody preflight. Abort on unexplained
+differences or changed approved bytes. None of these later checks is pre-claimed.
+
+Rehearse the three SQL files on the fresh isolated restore as needed. Apply only
+those files in one ON_ERROR_STOP transaction with 3-second lock and 60-second
+statement timeouts. Verify the seven post-function hashes and unchanged security/
+protected data before commit. Do not invoke a runner pinned to an older package,
+old Production source or old customer census. Do not rerun earlier migrations.
+
+Export and digest-check the manifest's sourceFiles from its exact sourceCommit.
+Use the existing authenticated Vercel CLI and existing Production project/team:
+  vercel deploy --prod --skip-domain
+Pass the reviewed source metadata and complete preserved Production runtime in
+the existing secure release process. Do not put credentials into command logs,
+Git or reports. Keep the deployment protected while verifying READY, source,
+target, read-only authenticated smoke checks and unchanged domain assignment.
+Only after all checks pass:
+  vercel promote <the-independently-verified-staged-deployment-url>
+Do not substitute a URL from historical evidence. Independently resolve the
+Production domain and repeat all postflight checks before tester participation.
+
+If a staged deployment fails, abandon it without promotion. If post-promotion
+recovery is necessary and compatibility has been verified, use:
+  vercel rollback <the-freshly-verified-prior-deployment-url>
+Retain the compatible SQL optimisations. The known prior deployment is
+dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy, source 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef;
+verify both again before relying on them. If unsafe, stop affected writes and
+prepare reviewed forward recovery. Never overwrite later activity from a backup.
+
+No Preview schema, role, fixture, credential, profile or testing window belongs
+in Production. The Preview application mode must remain OFF/absent. Existing
+invite-only free-credit beta continues; no automated grants or purchases.
+PRODUCTION_BETA_ACCEPTANCE.txt governs the subsequent tester-controlled session.
+All public/commercial launch gates remain closed. No Batch 2 authority.

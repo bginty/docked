@@ -1,0 +1,2208 @@
+{
+  "at": "2026-11-16T09:21:00.442Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "readOnly": true,
+  "customerBodiesCopied": 0,
+  "tables": [
+    {
+      "relation": "beta_fantasy.admin_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.cards",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.competitions",
+      "rows": 51,
+      "hash": "902699e0bf4a7ba8e1ddec6170eb1eb2"
+    },
+    {
+      "relation": "beta_fantasy.daily_claims",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.editions",
+      "rows": 180,
+      "hash": "629343e34946c0f5271319d4aedbaae0"
+    },
+    {
+      "relation": "beta_fantasy.entries",
+      "rows": 24,
+      "hash": "070f5808e73005ca3239d878f42d74d0"
+    },
+    {
+      "relation": "beta_fantasy.entry_revisions",
+      "rows": 24,
+      "hash": "67227c84c6ee33d0011ba1987e328ab8"
+    },
+    {
+      "relation": "beta_fantasy.journals",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.ledger",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.lineup_configurations",
+      "rows": 9,
+      "hash": "cb40eff768e61cdff4f4932afddcdaa9"
+    },
+    {
+      "relation": "beta_fantasy.lineup_publication_policy",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.listings",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.members",
+      "rows": 5,
+      "hash": "347d1d49b0ea30dce3446d836a4fdc2a"
+    },
+    {
+      "relation": "beta_fantasy.ownership_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.pack_definitions",
+      "rows": 5,
+      "hash": "bcf7eb007ffe58556a8ca95901e323a0"
+    },
+    {
+      "relation": "beta_fantasy.pack_items",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.packs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.players",
+      "rows": 466,
+      "hash": "164ce7714b20acd9e059c31b6e88cd68"
+    },
+    {
+      "relation": "beta_fantasy.prize_schedules",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.production_catalog",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.production_definitions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.production_policy",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.production_releases",
+      "rows": 1,
+      "hash": "2eb8636f2a1a6cc24a9af1574b10adae"
+    },
+    {
+      "relation": "beta_fantasy.production_rounds",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.replacements",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.requests",
+      "rows": 51,
+      "hash": "8d9c40977474c90036dc7d70b0ccb4c9"
+    },
+    {
+      "relation": "beta_fantasy.results",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.round_controls",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.round_drafts",
+      "rows": 24,
+      "hash": "0cab9f38b0ec1209f0d944d15f69b780"
+    },
+    {
+      "relation": "beta_fantasy.round_inputs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.round_scores",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.sales",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.scoring_rules",
+      "rows": 8,
+      "hash": "5e25cc31a68b5a04ac3ea61c7e5025e4"
+    },
+    {
+      "relation": "beta_fantasy.settings",
+      "rows": 1,
+      "hash": "3cc9d905a880b83830f627175a9a832e"
+    },
+    {
+      "relation": "beta_fantasy.slot_locks",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.sports",
+      "rows": 5,
+      "hash": "5cdc3aee99412595e6d041ca4d00a511"
+    },
+    {
+      "relation": "beta_fantasy.starter_claims",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.status_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.swap_ledger",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.swap_policy",
+      "rows": 1,
+      "hash": "5a13b7cd1717c93f373c636731b8abef"
+    },
+    {
+      "relation": "beta_fantasy.swap_policy_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.swap_requests",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.swap_reserve_packs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.swaps",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.team_names",
+      "rows": 3,
+      "hash": "e31c8e2595eeb9ec32421e4d3ba2c09f"
+    },
+    {
+      "relation": "beta_fantasy.team_rollovers",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.tiers",
+      "rows": 5,
+      "hash": "31c94e3de62eba6457bc25e59cc4b938"
+    },
+    {
+      "relation": "beta_fantasy.trade_items",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.trades",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_fantasy.weekly_prize_templates",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.admission_control",
+      "rows": 1,
+      "hash": "3aaa89b66409ae00e058a55fde470519"
+    },
+    {
+      "relation": "beta_private.admission_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.admissions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.analytics_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.announcement_drafts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.announcement_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.app_onboarding",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.article_revisions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.articles",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.audit_events",
+      "rows": 59,
+      "hash": "5b9fb4489fb4d4a66510e8fab45347ee"
+    },
+    {
+      "relation": "beta_private.availability_observations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.bookmaker_eligibility",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.candidate_decisions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.closing_snapshots",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.commercial_approvals",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.community_competitions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.community_corrections",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.community_deals",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.community_edge_personal_notes",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.community_edge_status",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.community_edges",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.community_quote_evidence",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.community_recognition_snapshots",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.community_result_sources",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.community_settlements",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.community_verification_rules",
+      "rows": 2,
+      "hash": "f34d331c9052cad5e465bd2889c2f736"
+    },
+    {
+      "relation": "beta_private.competition_prizes",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.competition_qualifications",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.competition_rankings",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.competition_rules",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.competitions",
+      "rows": 1,
+      "hash": "4e975f87b4eccf4b7a018b2e94f2404b"
+    },
+    {
+      "relation": "beta_private.consent_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.correction_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.credit_request_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.credit_requests",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.customer_invitations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.delegated_admin_admissions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.delivery_attempts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.designated_administrators",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.feature_flags",
+      "rows": 11,
+      "hash": "0d00fc6486ad8dee7e6e776719bd0b03"
+    },
+    {
+      "relation": "beta_private.football_edge_policy_approvals",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.football_model_attempts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.football_model_implementations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.football_model_outcomes",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.football_model_transitions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.football_model_versions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.football_sporting_inputs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.football_sporting_sources",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.football_training_manifests",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.friends_control",
+      "rows": 1,
+      "hash": "0150f77ab6008e182d5807a23a1b2000"
+    },
+    {
+      "relation": "beta_private.friends_roster",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.internal_qa_entities",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.job_runs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.launch_record",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.leaderboard_notification_jobs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.leaderboard_rule_versions",
+      "rows": 1,
+      "hash": "c44e4e830df71998cb90bdd13fd95aa4"
+    },
+    {
+      "relation": "beta_private.leaderboard_snapshots",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.market_data_config",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.market_data_event_mappings",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.market_data_fixture_observations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.market_data_payloads",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.market_reference_methodologies",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.market_reference_movements",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.market_references",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.markets",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.member_subscriptions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.membership_plans",
+      "rows": 2,
+      "hash": "d4788904b7e387fbcddbd71f73027e63"
+    },
+    {
+      "relation": "beta_private.moderation_case_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.moderation_cases",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.moderation_retention",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.moderation_retention_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.odds_snapshots",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.official_docked_publications",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.official_record_boundary",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.operational_alerts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.outbox",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.owner_gameplay_control",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.plan_entitlements",
+      "rows": 13,
+      "hash": "3aa71fd57b6419ec5ee054ebc8d1a766"
+    },
+    {
+      "relation": "beta_private.plan_prices",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.preview_beta_invitations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.preview_fixture_edges",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.preview_market_sessions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.preview_tester_access",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.privacy_cases",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.privacy_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.prize_award_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.provider_poll_runs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.provider_trial_diagnostics",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.provider_trial_failure_reviews",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.provider_trial_permits",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.provider_trial_requests",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.provider_trials",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.rate_limits",
+      "rows": 3,
+      "hash": "a46ac075f34352d03184983f9a0e4e87"
+    },
+    {
+      "relation": "beta_private.region_policies",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_content",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_content_reviews",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_dataset_payloads",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_dataset_snapshots",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_fact_payloads",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_facts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_feature_versions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_fetch_requests",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_match_snapshots",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_policies",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_recalculations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_schedules",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_source_health",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.research_source_versions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.roles",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.scanner_candidates",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.scanner_reviews",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.scanner_run_markets",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.scanner_runs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.scanner_schedules",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.schedules",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.selections",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.service_health_observations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.settlement_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_blocks",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_collection_settings",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_comments",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_communities",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_community_members",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_discussion_follows",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_follows",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_handle_history",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_media",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_moderation_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_mutes",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_notification_jobs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_notification_preferences",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_notifications",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_post_media",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_posts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_profiles",
+      "rows": 1,
+      "hash": "117db1b8b4a99fd8cdd5930086b20428"
+    },
+    {
+      "relation": "beta_private.social_reactions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_reports",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_saved",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.social_sport_review",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.source_health",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.sponsor_campaigns",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.sports",
+      "rows": 4,
+      "hash": "db53bdf4441b13c821488b8a813a2ca8"
+    },
+    {
+      "relation": "beta_private.strategy_transitions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.strategy_versions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.subscription_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.tip_publications",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.tip_status_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.two_person_control",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.unsubscribe_tokens",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.validation_runs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_private.webhook_receipts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_public.notification_preferences",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_public.personal_entries",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_public.profiles",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "beta_public.saved_tips",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "commercial_billing.accounts",
+      "rows": 2,
+      "hash": "5e67bc0ae672b75579ae8dbbd9daf6a4"
+    },
+    {
+      "relation": "commercial_billing.audit",
+      "rows": 10,
+      "hash": "455975a834f68ab071d2de7b48f5ce50"
+    },
+    {
+      "relation": "commercial_billing.cards",
+      "rows": 18,
+      "hash": "d198e954381d1d7305009f33411eb4ae"
+    },
+    {
+      "relation": "commercial_billing.control",
+      "rows": 1,
+      "hash": "6dbe6f4d2c7ab9885f35f5acbe405c56"
+    },
+    {
+      "relation": "commercial_billing.definitions",
+      "rows": 180,
+      "hash": "93ab33a960418e6f82b39a395ccaa14d"
+    },
+    {
+      "relation": "commercial_billing.jobs",
+      "rows": 13,
+      "hash": "826a07f9ce1145b2fd78385d9ebb76fe"
+    },
+    {
+      "relation": "commercial_billing.journals",
+      "rows": 14,
+      "hash": "8daaabbec0ffc5ef0779aa5ca30ba784"
+    },
+    {
+      "relation": "commercial_billing.lines",
+      "rows": 28,
+      "hash": "e29cc48643957c53121077a36813d2f3"
+    },
+    {
+      "relation": "commercial_billing.listings",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "commercial_billing.lots",
+      "rows": 3,
+      "hash": "a4e8b290ac9bdde8e669c09e28c60e9c"
+    },
+    {
+      "relation": "commercial_billing.ownership_events",
+      "rows": 18,
+      "hash": "1fa2169cf1319e553d12c07886f5122f"
+    },
+    {
+      "relation": "commercial_billing.packs",
+      "rows": 2,
+      "hash": "8cf1aa3de8cb000d760999d5bfed5892"
+    },
+    {
+      "relation": "commercial_billing.products",
+      "rows": 2,
+      "hash": "4fbc94e7469039144cbbf03d9da84981"
+    },
+    {
+      "relation": "commercial_billing.receipt_events",
+      "rows": 6,
+      "hash": "36334e5e23e77e9457899acdad14a95b"
+    },
+    {
+      "relation": "commercial_billing.receipts",
+      "rows": 3,
+      "hash": "30dd0dcf70538f58f3438eb7e80d5a78"
+    },
+    {
+      "relation": "commercial_billing.recovery_cases",
+      "rows": 1,
+      "hash": "4f8243e674ba652141fcf9826cbec8e7"
+    },
+    {
+      "relation": "commercial_billing.support_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.access",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.card_definitions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.card_instances",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.history",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.journal",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.lines",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.listing_terms_audit",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.nba_fixture_definitions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.nba_fixture_instances",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.nba_fixture_players",
+      "rows": 882,
+      "hash": "f46f2615e1d8b714810aef1117132564"
+    },
+    {
+      "relation": "credits_sandbox.pack_configuration",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.pack_failures",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.pack_receipts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.permanent_players",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.rarity_configuration",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.redemption_staff",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.sale_notification_outbox",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.sale_push_deliveries",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.state",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.store_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.store_notifications",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.store_outbox",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.store_receipts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.store_test_admissions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.trading_audit",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.trading_control",
+      "rows": 1,
+      "hash": "9aa26c6fd302a1612379515d7b1c866c"
+    },
+    {
+      "relation": "credits_sandbox.trading_members",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "credits_sandbox.web_push_subscriptions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "nfl_roster.cleanup_runs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "nfl_roster.control",
+      "rows": 1,
+      "hash": "0f90dd9e9d3073cdd287753360072f0b"
+    },
+    {
+      "relation": "nfl_roster.observations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "nfl_roster.retired_test_cards",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.analytics_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.app_onboarding",
+      "rows": 9,
+      "hash": "5b12dea0189ce012f8561adc02cbfc39"
+    },
+    {
+      "relation": "private.article_revisions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.articles",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.audit_events",
+      "rows": 378,
+      "hash": "acd5687e1b940078516fa76acb4015e3"
+    },
+    {
+      "relation": "private.availability_observations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.bookmaker_eligibility",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.candidate_decisions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.closing_snapshots",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.commercial_approvals",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.community_competitions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.community_corrections",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.community_deals",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.community_edge_personal_notes",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.community_edge_status",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.community_edges",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.community_quote_evidence",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.community_recognition_snapshots",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.community_result_sources",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.community_settlements",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.community_verification_rules",
+      "rows": 2,
+      "hash": "2aa9b15db899fdf1884fc0e32596d82e"
+    },
+    {
+      "relation": "private.competition_prizes",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.competition_qualifications",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.competition_rankings",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.competition_rules",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.competitions",
+      "rows": 4,
+      "hash": "6f6c6d0e55dbbfe3c27b958250bde189"
+    },
+    {
+      "relation": "private.consent_events",
+      "rows": 146,
+      "hash": "50277af8e62a8e2a1e4e8d2a24498033"
+    },
+    {
+      "relation": "private.correction_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.delivery_attempts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.events",
+      "rows": 27,
+      "hash": "5476823c5d0129849df572bc19ea4d92"
+    },
+    {
+      "relation": "private.feature_flags",
+      "rows": 11,
+      "hash": "d640f70401de2119beccb4618964d21a"
+    },
+    {
+      "relation": "private.football_edge_policy_approvals",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.football_model_attempts",
+      "rows": 6,
+      "hash": "546fd64cce1fc5ae261586459bfd5788"
+    },
+    {
+      "relation": "private.football_model_implementations",
+      "rows": 1,
+      "hash": "c7a287751839df9139519b0bf373efb3"
+    },
+    {
+      "relation": "private.football_model_outcomes",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.football_model_transitions",
+      "rows": 2,
+      "hash": "7ff8e3f7a230c83365fcbe80177ccfdd"
+    },
+    {
+      "relation": "private.football_model_versions",
+      "rows": 1,
+      "hash": "1df81bda100eb2399431dececa5c7261"
+    },
+    {
+      "relation": "private.football_sporting_inputs",
+      "rows": 6,
+      "hash": "0ac38d4b7934d6a14c1b029b5fb751ea"
+    },
+    {
+      "relation": "private.football_sporting_sources",
+      "rows": 2,
+      "hash": "38cea7c3a5e36c9aa10200e47a75fdab"
+    },
+    {
+      "relation": "private.football_training_manifests",
+      "rows": 1,
+      "hash": "39cdad7fafa05f51eab307692a9c0f0c"
+    },
+    {
+      "relation": "private.job_runs",
+      "rows": 31,
+      "hash": "6d4447db8acb4d27358a41d1754779b9"
+    },
+    {
+      "relation": "private.launch_record",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.leaderboard_notification_jobs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.leaderboard_rule_versions",
+      "rows": 1,
+      "hash": "8e0f6f77702e5777cf48b868ad4101fb"
+    },
+    {
+      "relation": "private.leaderboard_snapshots",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.market_data_config",
+      "rows": 1,
+      "hash": "2b895b34e0465e17e0f06bcb18942ce5"
+    },
+    {
+      "relation": "private.market_data_event_mappings",
+      "rows": 27,
+      "hash": "9332db979a448caf8c11ba03ec458608"
+    },
+    {
+      "relation": "private.market_data_fixture_observations",
+      "rows": 27,
+      "hash": "df6c97d98e63f10dce4aa53d1977dcdb"
+    },
+    {
+      "relation": "private.market_data_payloads",
+      "rows": 7,
+      "hash": "3f495da56ffaa977ee675f2fa7513d6e"
+    },
+    {
+      "relation": "private.market_reference_methodologies",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.market_reference_movements",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.market_references",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.markets",
+      "rows": 11,
+      "hash": "78246928330791c9714d0d6c9adfded3"
+    },
+    {
+      "relation": "private.member_subscriptions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.membership_plans",
+      "rows": 2,
+      "hash": "d4788904b7e387fbcddbd71f73027e63"
+    },
+    {
+      "relation": "private.odds_snapshots",
+      "rows": 110,
+      "hash": "220aa42c46eb548a225c6aad12fbf16e"
+    },
+    {
+      "relation": "private.official_docked_publications",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.official_record_boundary",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.operational_alerts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.outbox",
+      "rows": 11,
+      "hash": "f2a23d6636207ebe173f8b9a03b62e5e"
+    },
+    {
+      "relation": "private.plan_entitlements",
+      "rows": 13,
+      "hash": "3aa71fd57b6419ec5ee054ebc8d1a766"
+    },
+    {
+      "relation": "private.plan_prices",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.preview_beta_invitations",
+      "rows": 5,
+      "hash": "253a79c6129753680162d74c9e3061cc"
+    },
+    {
+      "relation": "private.preview_fixture_edges",
+      "rows": 5,
+      "hash": "db17d527b7101e64961bd6800bc1976a"
+    },
+    {
+      "relation": "private.preview_market_sessions",
+      "rows": 5,
+      "hash": "10fd3d2312e6504ac1e69b2228fef949"
+    },
+    {
+      "relation": "private.preview_tester_access",
+      "rows": 8,
+      "hash": "554d0b0988406e819f6aaba9b6625430"
+    },
+    {
+      "relation": "private.prize_award_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.provider_poll_runs",
+      "rows": 10,
+      "hash": "1482bdec478889d9b22fd115f9bdf710"
+    },
+    {
+      "relation": "private.provider_trial_diagnostics",
+      "rows": 5,
+      "hash": "c3dbef774fa5ce290776a0230401c396"
+    },
+    {
+      "relation": "private.provider_trial_failure_reviews",
+      "rows": 1,
+      "hash": "9f0863ea7d6ce09ee70d6b3b05c3671f"
+    },
+    {
+      "relation": "private.provider_trial_permits",
+      "rows": 9,
+      "hash": "a56301283d062ac6fe1413f39f6ee833"
+    },
+    {
+      "relation": "private.provider_trial_requests",
+      "rows": 9,
+      "hash": "5c1508642d3e615818feeda01fcc7b35"
+    },
+    {
+      "relation": "private.provider_trials",
+      "rows": 1,
+      "hash": "bed4cbba59f95f9a7701efbf9b49e14f"
+    },
+    {
+      "relation": "private.rate_limits",
+      "rows": 183,
+      "hash": "bc2934bab723d3953775158078cd7b48"
+    },
+    {
+      "relation": "private.region_policies",
+      "rows": 5,
+      "hash": "df165a71cf34f1f7b1c1f33acb72daa5"
+    },
+    {
+      "relation": "private.research_content",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_content_reviews",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_dataset_payloads",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_dataset_snapshots",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_fact_payloads",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_facts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_feature_versions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_fetch_requests",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_match_snapshots",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_policies",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_recalculations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_schedules",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_source_health",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.research_source_versions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.roles",
+      "rows": 1,
+      "hash": "1a5cff1b66072bf27ce58c13ff7b23aa"
+    },
+    {
+      "relation": "private.scanner_candidates",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.scanner_reviews",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.scanner_run_markets",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.scanner_runs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.scanner_schedules",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.schedules",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.selections",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.settlement_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.social_blocks",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.social_collection_settings",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.social_comments",
+      "rows": 8,
+      "hash": "6885c5b436a6f0ae1dd2e781f3d09f9c"
+    },
+    {
+      "relation": "private.social_communities",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.social_community_members",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.social_discussion_follows",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.social_follows",
+      "rows": 3,
+      "hash": "6ef187d4965f40323f2f435ed87748b4"
+    },
+    {
+      "relation": "private.social_handle_history",
+      "rows": 33,
+      "hash": "1af9ba4dfbffcead1859ef9b2fc0c4ff"
+    },
+    {
+      "relation": "private.social_media",
+      "rows": 2,
+      "hash": "31466913e25f781e803a012305c217b2"
+    },
+    {
+      "relation": "private.social_moderation_events",
+      "rows": 1,
+      "hash": "e94b9064819f8b16e2e3bc899db95e69"
+    },
+    {
+      "relation": "private.social_mutes",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.social_notification_jobs",
+      "rows": 25,
+      "hash": "1e2f4c06c337e38a9d03e1eb8cc6a096"
+    },
+    {
+      "relation": "private.social_notification_preferences",
+      "rows": 9,
+      "hash": "ce7b8cefb2b4714e898e362c82de7dcc"
+    },
+    {
+      "relation": "private.social_notifications",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.social_post_media",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.social_posts",
+      "rows": 25,
+      "hash": "22fa54eebe96954aa6aaba1bae7dd539"
+    },
+    {
+      "relation": "private.social_profiles",
+      "rows": 34,
+      "hash": "b8e98153865b0c335a0a743ddcc44d48"
+    },
+    {
+      "relation": "private.social_reactions",
+      "rows": 3,
+      "hash": "1fdca0b5e4e8032abae8238af6034c2b"
+    },
+    {
+      "relation": "private.social_reports",
+      "rows": 3,
+      "hash": "59af19b820c61fe9a090137b65e24d01"
+    },
+    {
+      "relation": "private.social_saved",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.social_sport_review",
+      "rows": 10,
+      "hash": "051dd9ea582abfb444aa0cf8aba2b985"
+    },
+    {
+      "relation": "private.source_health",
+      "rows": 1,
+      "hash": "5ce50d1034dd2a1f36cc6fb941113924"
+    },
+    {
+      "relation": "private.sponsor_campaigns",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.sports",
+      "rows": 3,
+      "hash": "478b83e855af3c5f720291019c3d9b8f"
+    },
+    {
+      "relation": "private.strategy_transitions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.strategy_versions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.subscription_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.tip_publications",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.tip_status_events",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.unsubscribe_tokens",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.validation_runs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.verified_phone_claims",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.webhook_receipts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "public.notification_preferences",
+      "rows": 9,
+      "hash": "b0e7c91fc5137b8c2b3d0cb3cc12a844"
+    },
+    {
+      "relation": "public.personal_entries",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "public.profiles",
+      "rows": 9,
+      "hash": "07d5ae66538270e4cfe1ecdda44694a6"
+    },
+    {
+      "relation": "public.saved_tips",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "public_gameplay.policy",
+      "rows": 1,
+      "hash": "00744454d5c4b99f45dcee9ffc0bbd5f"
+    },
+    {
+      "relation": "public_gameplay.rounds",
+      "rows": 18,
+      "hash": "7157a91b6bab74a55ff70fe2ea84089d"
+    },
+    {
+      "relation": "public_gameplay.sports",
+      "rows": 3,
+      "hash": "82e63d24812869a9a0cb0743d72f3119"
+    },
+    {
+      "relation": "sports_feed.activation_decisions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.activation_packages",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.australian_prize_rules",
+      "rows": 4,
+      "hash": "41f2252aa27d5795c62ef64973855ef7"
+    },
+    {
+      "relation": "sports_feed.budget",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.bundle_evidence",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.canonical_mappings",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.completion_observations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.completions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.delivery_checkpoints",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.delivery_recalculations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.delivery_receipts",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.delivery_records",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.free_core_programmes",
+      "rows": 3,
+      "hash": "41437989b454ad519e0c77d25a33881c"
+    },
+    {
+      "relation": "sports_feed.free_core_roster",
+      "rows": 430,
+      "hash": "4d1dfab2bae53cc9bff022aa4d3223ae"
+    },
+    {
+      "relation": "sports_feed.free_core_roster_beta",
+      "rows": 882,
+      "hash": "a36ef5780723a96ae96e2c8fd6456d43"
+    },
+    {
+      "relation": "sports_feed.jobs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.journal",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.nba_beta_access",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.nba_beta_control",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.nfl_allocations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.nfl_control",
+      "rows": 1,
+      "hash": "0f90dd9e9d3073cdd287753360072f0b"
+    },
+    {
+      "relation": "sports_feed.nfl_players",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.nfl_rounds",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.nfl_starter_entitlements",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.nfl_worker_runs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.owner_retry_requests",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.player_aliases",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.player_identities",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.postgame_cache",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.postgame_mapping",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.private_beta_sport_audit",
+      "rows": 2,
+      "hash": "260374422718d8d2c4f16b5c077c1ea9"
+    },
+    {
+      "relation": "sports_feed.private_beta_sports",
+      "rows": 2,
+      "hash": "69081d724f6e4a9a7213dd561c64f296"
+    },
+    {
+      "relation": "sports_feed.raw_revisions",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.roster_observations",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.sport_rounds",
+      "rows": 30,
+      "hash": "a37a6e97ce56b36e0f7649eed2aa2141"
+    },
+    {
+      "relation": "sports_feed.sport_sandbox_access",
+      "rows": 2,
+      "hash": "db6232946a739cc39b8b49be6e3bb2b8"
+    },
+    {
+      "relation": "sports_feed.sport_sandbox_inventory",
+      "rows": 5,
+      "hash": "d6d793d20b8e89c2a03660ac190c6318"
+    },
+    {
+      "relation": "sports_feed.stream_members",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.streams",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.weekly_core_control",
+      "rows": 1,
+      "hash": "de1449a9ed249e1dadf92825bf924fc8"
+    },
+    {
+      "relation": "sports_feed.weekly_core_job_failures",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.weekly_core_job_runs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.weekly_core_packs",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.weekly_core_schedules",
+      "rows": 0,
+      "hash": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "sports_feed.weekly_sport_programmes",
+      "rows": 2,
+      "hash": "59c476eef699061733aa9c216ccc4d2d"
+    }
+  ],
+  "otherAuthUsers": {
+    "rows": 13,
+    "hash": "0d033ac896e15f2a132bec56d471ef0a"
+  },
+  "existingAcl": {
+    "hash": "25c6b234bb56ae7585b32df8e7c194e2"
+  },
+  "existingFunctions": {
+    "hash": "8d63582964778f7790e5d167160a0d68"
+  }
+}

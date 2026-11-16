@@ -1,0 +1,44 @@
+{
+  "at": "2026-11-16T08:49:17.829Z",
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "readOnly": true,
+  "counts": {
+    "tables": 145,
+    "definitions": 540,
+    "issued": 0,
+    "members": 2
+  },
+  "roles": [
+    {
+      "rolname": "docked_pack_acceptance",
+      "rolsuper": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false,
+      "rolinherit": false,
+      "rolbypassrls": false,
+      "rolcanlogin": true
+    },
+    {
+      "rolname": "docked_pack_acceptance_owner",
+      "rolsuper": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false,
+      "rolinherit": false,
+      "rolbypassrls": false,
+      "rolcanlogin": false
+    }
+  ],
+  "membership": {
+    "runtimeownermembership": false,
+    "operatorcansetowner": false,
+    "ownercancreateschema": false
+  },
+  "originalTablesAccessible": 0,
+  "sharedApiRolesWithTableAccess": 0,
+  "actualRuntimeConnection": {
+    "current_user": "docked_pack_acceptance",
+    "session_user": "docked_pack_acceptance",
+    "readonly": "off"
+  },
+  "hostedWrites": 0
+}

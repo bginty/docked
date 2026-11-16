@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { randomUUID } from "node:crypto";
+import { resolve } from "node:path";
 import { createServerClient } from "@supabase/ssr";
 import postgres from "postgres";
 import { wallet } from "../src/core/credits-sandbox";
@@ -14,11 +15,15 @@ import {
 } from "./lib/batch1-acceptance-profile";
 assert(packOnly, "Use reduced pack-only hosted prerequisite");
 const dir = acceptanceDocs,
-  priv = acceptancePrivate + "/http";
+  priv = resolve(acceptancePrivate + "/http");
 const cli =
   "C:/Users/61412/AppData/Local/npm-cache/_npx/67eb4586ca667318/node_modules/vercel/dist/index.js";
 const authDir =
   "C:/Users/61412/Documents/ChatGPT/Docked.com.au/private-data/vercel-cli";
+const vercelToken = JSON.parse(
+  readFileSync(authDir + "/auth.json", "utf8"),
+).token;
+assert(typeof vercelToken === "string" && vercelToken.length > 16);
 const marker = "\nDOCKED_CURL_METRICS:";
 const percentile = (xs: number[], q: number) =>
   [...xs].sort((a, b) => a - b)[Math.ceil(xs.length * q) - 1];
@@ -125,6 +130,17 @@ async function main() {
   }
   try {
     const initial = await snapshot();
+    const retryPath = priv + "/reconciled-first-request.json";
+    const retryFirst = existsSync(retryPath)
+      ? JSON.parse(readFileSync(retryPath, "utf8"))
+      : null;
+    if (retryFirst) {
+      assert.equal(initial.packs, 0);
+      assert.equal(initial.cards, 0);
+      assert.equal(retryFirst.product, fixture.products[0].id);
+      assert(/^[a-f0-9-]{36}$/.test(retryFirst.request));
+      assert(Date.now() - Date.parse(retryFirst.verifiedAt) < 600000);
+    }
     const maximumNewPurchases = 20;
     assert(
       initial.packs + maximumNewPurchases <= 24,
@@ -143,12 +159,22 @@ async function main() {
     persistOperation();
     function newPurchaseRequest() {
       assert(operation.requests.length < maximumNewPurchases);
-      const id = randomUUID();
+      const id =
+        operation.requests.length === 0 && retryFirst
+          ? retryFirst.request
+          : randomUUID();
       operation.requests.push(id);
       persistOperation(); // Persist before HTTP, including interrupted requests.
       return id;
     }
-    const sessions: { id: string; cookie: string }[] = [];
+    const sessions: {
+      id: string;
+      cookie: string;
+      expiresAt: number;
+      refresh: () => Promise<void>;
+      refreshing?: Promise<void>;
+    }[] = [];
+    let genuineSessionRefreshes = 0;
     for (const account of auth.accounts) {
       const jar = new Map<string, string>();
       const client = createServerClient(
@@ -168,9 +194,11 @@ async function main() {
         Buffer.from(session.access_token.split(".")[1], "base64url").toString(),
       );
       assert.equal(claims.aal, "aal2");
+      assert.equal(claims.iss, connection.supabaseUrl + "/auth/v1");
+      assert.equal(claims.sub, account.id);
       assert(
-        claims.exp * 1000 - Date.now() > 1800000,
-        "Refresh synthetic MFA before measurement",
+        claims.exp * 1000 > Date.now() + 180000,
+        "Fresh genuine MFA required",
       );
       const verified = await client.auth.getUser();
       assert.equal(verified.data.user?.id, account.id);
@@ -178,10 +206,38 @@ async function main() {
         verified.data.user?.app_metadata.docked_acceptance,
         "batch1-hosted-20261116",
       );
-      sessions.push({
+      const active = {
         id: account.id,
         cookie: [...jar].map(([k, v]) => k + "=" + v).join("; "),
-      });
+        expiresAt: claims.exp * 1000,
+        refresh: async () => {
+          const renewed = await client.auth.refreshSession();
+          assert(
+            !renewed.error && renewed.data.session,
+            "Genuine Auth refresh failed",
+          );
+          const next = JSON.parse(
+            Buffer.from(
+              renewed.data.session.access_token.split(".")[1],
+              "base64url",
+            ).toString(),
+          );
+          assert.equal(next.aal, "aal2");
+          assert.equal(next.iss, connection.supabaseUrl + "/auth/v1");
+          assert.equal(next.sub, account.id);
+          assert(next.exp * 1000 > Date.now() + 180000);
+          const user = await client.auth.getUser();
+          assert.equal(user.data.user?.id, account.id);
+          assert.equal(
+            user.data.user?.app_metadata.docked_acceptance,
+            "batch1-hosted-20261116",
+          );
+          active.cookie = [...jar].map(([k, v]) => k + "=" + v).join("; ");
+          active.expiresAt = next.exp * 1000;
+          genuineSessionRefreshes++;
+        },
+      };
+      sessions.push(active);
     }
     const records: any[] = [];
     let serial = 0;
@@ -199,6 +255,18 @@ async function main() {
       if (delay > 0 && !options.unpaced)
         await new Promise((r) => setTimeout(r, delay));
       sent[account] = Date.now();
+      // Honour the actual 15-minute Auth policy; never change or forge token expiry.
+      // Refresh only through genuine Supabase Auth and retain all AAL2/identity checks.
+      if (!options.anonymous) {
+        const session = sessions[account];
+        if (session.expiresAt - Date.now() < 180000 + maxSeconds * 1000) {
+          session.refreshing ??= session.refresh().finally(() => {
+            session.refreshing = undefined;
+          });
+          await session.refreshing;
+        }
+        assert(session.expiresAt > Date.now() + maxSeconds * 1000 + 60000);
+      }
       const config = [
         'request = "POST"',
         `header = ${JSON.stringify("Origin: " + origin.origin)}`,
@@ -222,10 +290,6 @@ async function main() {
             cli,
             "curl",
             origin.origin + "/api/test-wallet?view=packs&result=receipt",
-            "--global-config",
-            authDir,
-            "--scope",
-            "team_tf6xweKKyVCj9bTppUKttJ4l",
             "--",
             "--silent",
             "--show-error",
@@ -234,11 +298,21 @@ async function main() {
             "--write-out",
             marker + "%{json}",
           ],
-          { windowsHide: true, maxBuffer: 8e6, timeout: 60000 },
+          {
+            cwd: resolve(acceptancePrivate + "/hosted-source"),
+            env: { ...process.env, VERCEL_TOKEN: vercelToken },
+            windowsHide: true,
+            maxBuffer: 8e6,
+            timeout: 60000,
+          },
         );
         stdout = r.stdout;
       } catch (e: any) {
         stdout = String(e.stdout ?? "");
+        writeFileSync(
+          file + ".transport.private.log",
+          stdout + "\n" + String(e.stderr ?? ""),
+        );
         if (maxSeconds >= 1)
           throw Error(
             "Protected HTTP command failed; private synthetic response retained",
@@ -406,6 +480,11 @@ async function main() {
           deployment: deployed,
           actualHttp: true,
           genuinePreviewAuth: true,
+          authSessionPolicy: {
+            projectPolicyChanged: false,
+            perRequestExpiryVerified: true,
+            genuineSessionRefreshes,
+          },
           physicalAndroid: false,
           coldStartProven: false,
           scope:

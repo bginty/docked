@@ -1,0 +1,67 @@
+DOCKED — BOUNDED REAL BETA ACCEPTANCE AFTER SEPARATE DEPLOYMENT APPROVAL
+Preparation only. This file does not authorise deployment or start purchases.
+
+Prerequisites
+1. Exact source/package approved, deployed and independently resolved at docked.com.au.
+2. Read-only postflight passes: current assets, ownership/custody, balances, runtime
+   settings and permissions reconciled. Preserve all later legitimate activity.
+3. Allowlisted founder/tester signs in with their OWN account and completes required
+   MFA privately. No new account, impersonation, permission bypass or SMS resend.
+4. Existing approved TEST-credit balance covers the chosen purchases. No new grants,
+   top-ups, live Google purchases, refunds or balance adjustment in this session.
+
+Initial session: tester-controlled, up to six new purchases
+- One Standard and one Premium nine-card purchase for each NFL/AFL/NRL.
+- Tester sees the actual price/contents and chooses each confirmation themselves.
+- Each successful purchase permanently creates nine cards and consumes lifetime
+  supply: at most 54 additional cards for this initial session. These are legitimate
+  beta assets, not temporary records to delete afterward. Stop once coverage is met.
+- Do not buy merely to inflate performance sample counts. Further ordinary beta
+  activity can add observations without an automated load/purchase loop.
+
+For each intended purchase
+- Privately capture the existing request/receipt reference, own balance before and
+  after, product/version, sport, card count, HTTP/Server-Timing and network/device.
+- Verify exactly one debit at the displayed price, one nine-card allocation,
+  uniqueness/serial/cap reconciliation and immediate receipt availability.
+- Open/reveal and verify cards appear in that tester's collection and remain owned
+  after reload. Opening/animation timing is distinct from issuance confirmation.
+- Recheck the saved result using the SAME request. Confirm no second debit/card set.
+- One selected purchase may use an interrupted connection/reload; restore network
+  and recover the same request. Never submit a new purchase ID to resolve uncertainty.
+- If result remains unknown, stop new purchases and reconcile the saved request
+  read-only before continuing. Do not delete/recreate receipts or manually refund.
+
+Device and access coverage
+- Actual website/browser and installed Android v31. Record version/device/network.
+- Mobile throttling is a browser simulation, not a physical Android result.
+- Read an existing receipt from the logged-in owner's account. Validate wrong-user
+  denial with two participating authorised accounts; no unauthorised asset access.
+- Confirm NFL/AFL/NRL cards/entitlements and existing collections remain visible.
+- Confirm existing phone timeout recovery offers status/recovery without automatic
+  SMS resend. Do not click send/resend or enable any Phone provider.
+- Registration closed, purchased credits/payment/trading/prizes/withdrawals off,
+  NBA hidden and six competitions disabled Practice; Google Play untouched.
+
+Performance reporting
+Record client start/end, actual HTTP duration, Auth/database timing and first/warm
+label. Server-Timing spans overlap; do not sum them. Report every failure and retry.
+Compute empirical confirmation/recovery/open p50/p95 with counts and offer/sport/
+network breakdown. Six confirmations give an initial smoke sample only; p95 at
+that size is effectively the slowest observation, not reliable capacity evidence.
+Compare with isolated 4.753s confirmation p95, 0.329s recovery p95 and 3.771s
+nine-card p95, explicitly distinguishing different Auth/network/workload conditions.
+Preserve observations from subsequent legitimate beta activity for robust trends.
+
+Stop and recovery
+Any duplicate debit/card, ownership mismatch, missing allocation, wrong-account
+access, incorrect price or uncontrolled issuance stops further test writes.
+Preserve request/audit evidence. Use the approved emergency pack-write stop only
+if required; do not disable login unnecessarily. Conditional app rollback is only
+to the freshly verified previous application when compatible with retained SQL.
+No blanket database restore over legitimate later transactions. Forward corrections
+or financial adjustments require reviewed separate authority.
+
+Final acceptance states must be separate: database/integrity gate, hosted prerequisite,
+Production website, physical Android, SMS, live Google Billing/refund, commercial
+rights and final public launch. A beta pass does not enable public/commercial gates.

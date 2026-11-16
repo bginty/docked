@@ -1,0 +1,1231 @@
+{
+  "at": "2026-11-16T09:13:08.350Z",
+  "deployment": {
+    "at": "2026-11-16T08:43:56.103Z",
+    "id": "dpl_GvnAZByHkwpngA5E7Gn72Pkdsq2M",
+    "url": "https://docked-preview-nbqcay62r-briant-s-projects.vercel.app",
+    "projectId": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+    "target": "preview",
+    "protected": true,
+    "sourceCommit": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+    "readyState": "READY",
+    "productionChanged": false,
+    "verifiedAt": "2026-11-16T08:45:28.825Z"
+  },
+  "actualHttp": true,
+  "genuinePreviewAuth": true,
+  "authSessionPolicy": {
+    "projectPolicyChanged": false,
+    "perRequestExpiryVerified": true,
+    "genuineSessionRefreshes": 2
+  },
+  "physicalAndroid": false,
+  "coldStartProven": false,
+  "scope": "Minimum hosted gate: all 18 offers, 8 duplicates, interruption/recovery and account isolation. Small fictional fixture, not Production-scale performance. First request is not proof of cold start",
+  "integrity": {
+    "oneDebitPerPurchase": true,
+    "exactCardCounts": true,
+    "allocationEqualsLifetime": true,
+    "actualRefundProviderTest": false,
+    "browserReloadOrThrottleTest": false
+  },
+  "workload": {
+    "initialCards": 0,
+    "finalCards": 96,
+    "initialDocumentBytes": 105964,
+    "finalDocumentBytes": 276152
+  },
+  "records": [
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 1985.905,
+      "ttfbMs": 1983.784,
+      "cliAndHttpMs": 13002,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=912, purchase_auth;dur=376.1, purchase_lock;dur=6.8, purchase_state;dur=7.4, purchase_rules;dur=115.4, purchase_issue;dur=19.5, purchase_persist;dur=237.6, purchase_transaction;dur=430.0, purchase_view;dur=42.9, purchase_total;dur=913.7"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247,
+      "sport": "nfl",
+      "packType": "PREMIUM",
+      "cardCount": 9,
+      "firstObserved": true
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 825.933,
+      "ttfbMs": 824.238,
+      "cliAndHttpMs": 9676,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=175, purchase_auth;dur=107.0, purchase_view;dur=38.3, purchase_total;dur=175.8"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 983.188,
+      "ttfbMs": 974.702,
+      "cliAndHttpMs": 14240,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=323, purchase_auth;dur=127.5, purchase_lock;dur=5.7, purchase_state;dur=8.4, purchase_rules;dur=24.1, purchase_issue;dur=5.7, purchase_persist;dur=47.4, purchase_transaction;dur=121.1, purchase_view;dur=42.2, purchase_total;dur=323.6"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 16865
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-tester",
+      "status": 400,
+      "httpMs": 1603.66,
+      "ttfbMs": 1601.768,
+      "cliAndHttpMs": 27042,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=191.6, purchase_lock;dur=6.3, purchase_state;dur=7.3, purchase_rules;dur=22.8, purchase_issue;dur=3.2, purchase_transaction;dur=69.2, purchase_total;dur=292.6"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 864.053,
+      "ttfbMs": 862.289,
+      "cliAndHttpMs": 27607,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=433, purchase_auth;dur=207.2, purchase_lock;dur=4.1, purchase_state;dur=7.5, purchase_rules;dur=49.5, purchase_issue;dur=10.7, purchase_persist;dur=72.9, purchase_transaction;dur=170.2, purchase_view;dur=31.2, purchase_total;dur=433.8"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1013,
+      "sport": "nfl",
+      "packType": "PREMIUM",
+      "cardCount": 3,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 533.961,
+      "ttfbMs": 530.926,
+      "cliAndHttpMs": 18319,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=149, purchase_auth;dur=89.8, purchase_view;dur=33.3, purchase_total;dur=150.1"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1013
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 1056.922,
+      "ttfbMs": 1054.902,
+      "cliAndHttpMs": 18789,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=307, purchase_auth;dur=129.2, purchase_lock;dur=4.6, purchase_state;dur=8.3, purchase_rules;dur=22.0, purchase_issue;dur=11.6, purchase_persist;dur=47.1, purchase_transaction;dur=118.2, purchase_view;dur=33.2, purchase_total;dur=307.7"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 6221
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-owner",
+      "status": 400,
+      "httpMs": 642.161,
+      "ttfbMs": 640.683,
+      "cliAndHttpMs": 19721,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=190.0, purchase_lock;dur=5.6, purchase_state;dur=8.1, purchase_rules;dur=23.2, purchase_issue;dur=4.7, purchase_transaction;dur=69.5, purchase_total;dur=291.1"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 611.0980000000001,
+      "ttfbMs": 609.514,
+      "cliAndHttpMs": 14813,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=345, purchase_auth;dur=89.1, purchase_lock;dur=5.5, purchase_state;dur=8.8, purchase_rules;dur=52.9, purchase_issue;dur=16.8, purchase_persist;dur=74.2, purchase_transaction;dur=188.6, purchase_view;dur=37.5, purchase_total;dur=346.1"
+      ],
+      "requestBytes": 259,
+      "responseBytes": 932,
+      "sport": "nfl",
+      "packType": "PREMIUM",
+      "cardCount": 1,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 585.288,
+      "ttfbMs": 582.938,
+      "cliAndHttpMs": 12375,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=167, purchase_auth;dur=94.9, purchase_view;dur=41.4, purchase_total;dur=167.9"
+      ],
+      "requestBytes": 259,
+      "responseBytes": 932
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 608.7280000000001,
+      "ttfbMs": 606.939,
+      "cliAndHttpMs": 10562,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=335, purchase_auth;dur=148.2, purchase_lock;dur=6.2, purchase_state;dur=9.4, purchase_rules;dur=23.3, purchase_issue;dur=4.8, purchase_persist;dur=46.3, purchase_transaction;dur=119.0, purchase_view;dur=39.4, purchase_total;dur=335.5"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 2660
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-tester",
+      "status": 400,
+      "httpMs": 741.265,
+      "ttfbMs": 740.136,
+      "cliAndHttpMs": 10216,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=211.4, purchase_lock;dur=8.8, purchase_state;dur=10.2, purchase_rules;dur=26.5, purchase_issue;dur=3.4, purchase_transaction;dur=93.1, purchase_total;dur=373.6"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 995.422,
+      "ttfbMs": 993.5540000000001,
+      "cliAndHttpMs": 9875,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=723, purchase_auth;dur=148.6, purchase_lock;dur=6.1, purchase_state;dur=8.6, purchase_rules;dur=133.1, purchase_issue;dur=12.3, purchase_persist;dur=298.5, purchase_transaction;dur=500.6, purchase_view;dur=39.2, purchase_total;dur=724.1"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1248,
+      "sport": "nfl",
+      "packType": "STANDARD",
+      "cardCount": 9,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 519.019,
+      "ttfbMs": 517.544,
+      "cliAndHttpMs": 9075,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=170, purchase_auth;dur=97.7, purchase_view;dur=41.3, purchase_total;dur=170.1"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1248
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 612.99,
+      "ttfbMs": 601.483,
+      "cliAndHttpMs": 9096,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=314, purchase_auth;dur=96.3, purchase_lock;dur=5.7, purchase_state;dur=8.9, purchase_rules;dur=24.4, purchase_issue;dur=7.6, purchase_persist;dur=62.7, purchase_transaction;dur=146.9, purchase_view;dur=40.7, purchase_total;dur=315.9"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 16618
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-owner",
+      "status": 400,
+      "httpMs": 447.337,
+      "ttfbMs": 445.778,
+      "cliAndHttpMs": 10500,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=86.5, purchase_lock;dur=5.8, purchase_state;dur=9.5, purchase_rules;dur=24.1, purchase_issue;dur=4.0, purchase_transaction;dur=71.9, purchase_total;dur=190.1"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 596.026,
+      "ttfbMs": 594.423,
+      "cliAndHttpMs": 6988,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=340, purchase_auth;dur=83.0, purchase_lock;dur=6.1, purchase_state;dur=9.5, purchase_rules;dur=55.5, purchase_issue;dur=11.8, purchase_persist;dur=75.1, purchase_transaction;dur=188.0, purchase_view;dur=39.3, purchase_total;dur=340.8"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1014,
+      "sport": "nfl",
+      "packType": "STANDARD",
+      "cardCount": 3,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 402.46,
+      "ttfbMs": 401.298,
+      "cliAndHttpMs": 8108,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=155, purchase_auth;dur=85.6, purchase_view;dur=40.1, purchase_total;dur=155.5"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1014
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 562.816,
+      "ttfbMs": 561.352,
+      "cliAndHttpMs": 10861,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=266, purchase_auth;dur=78.7, purchase_lock;dur=5.6, purchase_state;dur=9.2, purchase_rules;dur=23.6, purchase_issue;dur=5.7, purchase_persist;dur=43.8, purchase_transaction;dur=116.9, purchase_view;dur=40.8, purchase_total;dur=266.2"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 6142
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-tester",
+      "status": 400,
+      "httpMs": 489.088,
+      "ttfbMs": 488.093,
+      "cliAndHttpMs": 11064,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=122.1, purchase_lock;dur=5.7, purchase_state;dur=9.2, purchase_rules;dur=24.2, purchase_issue;dur=3.7, purchase_transaction;dur=71.6, purchase_total;dur=223.3"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 595.262,
+      "ttfbMs": 593.912,
+      "cliAndHttpMs": 6226,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=369, purchase_auth;dur=107.7, purchase_lock;dur=5.7, purchase_state;dur=8.8, purchase_rules;dur=54.8, purchase_issue;dur=11.0, purchase_persist;dur=77.4, purchase_transaction;dur=190.5, purchase_view;dur=40.4, purchase_total;dur=369.4"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 936,
+      "sport": "nfl",
+      "packType": "STANDARD",
+      "cardCount": 1,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 565.994,
+      "ttfbMs": 564.999,
+      "cliAndHttpMs": 9067,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=204, purchase_auth;dur=122.6, purchase_view;dur=45.7, purchase_total;dur=204.4"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 936
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 586.175,
+      "ttfbMs": 584.566,
+      "cliAndHttpMs": 8670,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=340, purchase_auth;dur=85.1, purchase_lock;dur=6.5, purchase_state;dur=9.6, purchase_rules;dur=24.7, purchase_issue;dur=5.2, purchase_persist;dur=108.2, purchase_transaction;dur=184.4, purchase_view;dur=40.6, purchase_total;dur=340.0"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 2633
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-owner",
+      "status": 400,
+      "httpMs": 504.398,
+      "ttfbMs": 502.692,
+      "cliAndHttpMs": 10221,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=95.7, purchase_lock;dur=5.3, purchase_state;dur=10.6, purchase_rules;dur=24.3, purchase_issue;dur=4.0, purchase_transaction;dur=71.4, purchase_total;dur=197.1"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 888.008,
+      "ttfbMs": 881.178,
+      "cliAndHttpMs": 8799,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=606, purchase_auth;dur=94.7, purchase_lock;dur=5.7, purchase_state;dur=9.2, purchase_rules;dur=153.3, purchase_issue;dur=24.5, purchase_persist;dur=212.7, purchase_transaction;dur=442.2, purchase_view;dur=40.8, purchase_total;dur=606.7"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247,
+      "sport": "afl",
+      "packType": "PREMIUM",
+      "cardCount": 9,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 426.21999999999997,
+      "ttfbMs": 425.126,
+      "cliAndHttpMs": 8564,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=158, purchase_auth;dur=89.2, purchase_view;dur=39.5, purchase_total;dur=158.7"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 571.228,
+      "ttfbMs": 550.5989999999999,
+      "cliAndHttpMs": 9376,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=323, purchase_auth;dur=103.5, purchase_lock;dur=6.0, purchase_state;dur=9.7, purchase_rules;dur=40.7, purchase_issue;dur=6.8, purchase_persist;dur=58.1, purchase_transaction;dur=150.9, purchase_view;dur=39.0, purchase_total;dur=323.1"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 17693
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-tester",
+      "status": 400,
+      "httpMs": 494.034,
+      "ttfbMs": 493.068,
+      "cliAndHttpMs": 9207,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=106.9, purchase_lock;dur=5.4, purchase_state;dur=10.4, purchase_rules;dur=42.0, purchase_issue;dur=4.1, purchase_transaction;dur=88.9, purchase_total;dur=226.2"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 629.075,
+      "ttfbMs": 628.1020000000001,
+      "cliAndHttpMs": 9760,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=382, purchase_auth;dur=83.2, purchase_lock;dur=6.0, purchase_state;dur=9.8, purchase_rules;dur=71.0, purchase_issue;dur=12.5, purchase_persist;dur=99.0, purchase_transaction;dur=230.3, purchase_view;dur=39.8, purchase_total;dur=383.0"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1013,
+      "sport": "afl",
+      "packType": "PREMIUM",
+      "cardCount": 3,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 637.876,
+      "ttfbMs": 636.243,
+      "cliAndHttpMs": 11807,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=146, purchase_auth;dur=76.4, purchase_view;dur=39.6, purchase_total;dur=146.8"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1013
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 583.385,
+      "ttfbMs": 581.84,
+      "cliAndHttpMs": 13037,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=303, purchase_auth;dur=85.9, purchase_lock;dur=6.0, purchase_state;dur=10.4, purchase_rules;dur=42.7, purchase_issue;dur=5.7, purchase_persist;dur=53.8, purchase_transaction;dur=150.0, purchase_view;dur=38.4, purchase_total;dur=303.3"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 6488
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-owner",
+      "status": 400,
+      "httpMs": 476.055,
+      "ttfbMs": 474.934,
+      "cliAndHttpMs": 9671,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=77.8, purchase_lock;dur=7.3, purchase_state;dur=9.4, purchase_rules;dur=40.2, purchase_issue;dur=6.3, purchase_transaction;dur=90.8, purchase_total;dur=223.6"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 706.219,
+      "ttfbMs": 704.588,
+      "cliAndHttpMs": 9135,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=430, purchase_auth;dur=130.6, purchase_lock;dur=5.7, purchase_state;dur=9.9, purchase_rules;dur=70.0, purchase_issue;dur=16.0, purchase_persist;dur=83.7, purchase_transaction;dur=215.1, purchase_view;dur=38.3, purchase_total;dur=430.4"
+      ],
+      "requestBytes": 259,
+      "responseBytes": 932,
+      "sport": "afl",
+      "packType": "PREMIUM",
+      "cardCount": 1,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 521.089,
+      "ttfbMs": 518.492,
+      "cliAndHttpMs": 11099,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=211, purchase_auth;dur=137.4, purchase_view;dur=42.1, purchase_total;dur=211.1"
+      ],
+      "requestBytes": 259,
+      "responseBytes": 932
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 581.8489999999999,
+      "ttfbMs": 580.582,
+      "cliAndHttpMs": 9444,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=359, purchase_auth;dur=107.4, purchase_lock;dur=5.7, purchase_state;dur=10.5, purchase_rules;dur=43.0, purchase_issue;dur=11.3, purchase_persist;dur=84.4, purchase_transaction;dur=185.0, purchase_view;dur=37.1, purchase_total;dur=359.2"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 2750
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-tester",
+      "status": 400,
+      "httpMs": 466.19500000000005,
+      "ttfbMs": 465.097,
+      "cliAndHttpMs": 13868,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=85.7, purchase_lock;dur=5.4, purchase_state;dur=9.2, purchase_rules;dur=38.7, purchase_issue;dur=4.1, purchase_transaction;dur=84.5, purchase_total;dur=198.1"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 691.6949999999999,
+      "ttfbMs": 690.778,
+      "cliAndHttpMs": 9655,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=447, purchase_auth;dur=89.5, purchase_lock;dur=5.5, purchase_state;dur=9.4, purchase_rules;dur=72.6, purchase_issue;dur=14.6, purchase_persist;dur=154.6, purchase_transaction;dur=286.9, purchase_view;dur=40.6, purchase_total;dur=447.5"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1248,
+      "sport": "afl",
+      "packType": "STANDARD",
+      "cardCount": 9,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 381.817,
+      "ttfbMs": 380.55899999999997,
+      "cliAndHttpMs": 10472,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=143, purchase_auth;dur=75.1, purchase_view;dur=39.3, purchase_total;dur=143.9"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1248
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 556.9300000000001,
+      "ttfbMs": 552.48,
+      "cliAndHttpMs": 10254,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=308, purchase_auth;dur=82.6, purchase_lock;dur=5.5, purchase_state;dur=10.3, purchase_rules;dur=41.1, purchase_issue;dur=7.5, purchase_persist;dur=59.0, purchase_transaction;dur=154.3, purchase_view;dur=41.9, purchase_total;dur=308.5"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 17455
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-owner",
+      "status": 400,
+      "httpMs": 441.683,
+      "ttfbMs": 439.88500000000005,
+      "cliAndHttpMs": 8451,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=75.6, purchase_lock;dur=5.5, purchase_state;dur=10.2, purchase_rules;dur=40.9, purchase_issue;dur=4.5, purchase_transaction;dur=88.8, purchase_total;dur=193.9"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 694.7410000000001,
+      "ttfbMs": 693.351,
+      "cliAndHttpMs": 11795,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=434, purchase_auth;dur=87.0, purchase_lock;dur=5.2, purchase_state;dur=9.5, purchase_rules;dur=68.5, purchase_issue;dur=14.3, purchase_persist;dur=151.3, purchase_transaction;dur=278.3, purchase_view;dur=40.2, purchase_total;dur=434.5"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1014,
+      "sport": "afl",
+      "packType": "STANDARD",
+      "cardCount": 3,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 875.173,
+      "ttfbMs": 872.604,
+      "cliAndHttpMs": 8408,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=171, purchase_auth;dur=102.4, purchase_view;dur=39.9, purchase_total;dur=171.6"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1014
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 546.207,
+      "ttfbMs": 544.5719999999999,
+      "cliAndHttpMs": 13418,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=293, purchase_auth;dur=73.0, purchase_lock;dur=5.8, purchase_state;dur=12.8, purchase_rules;dur=41.1, purchase_issue;dur=7.3, purchase_persist;dur=57.6, purchase_transaction;dur=153.9, purchase_view;dur=37.5, purchase_total;dur=293.7"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 6394
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-tester",
+      "status": 400,
+      "httpMs": 523.1909999999999,
+      "ttfbMs": 522.331,
+      "cliAndHttpMs": 7570,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=84.2, purchase_lock;dur=5.8, purchase_state;dur=10.6, purchase_rules;dur=41.5, purchase_issue;dur=4.4, purchase_transaction;dur=92.1, purchase_total;dur=206.2"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 799.592,
+      "ttfbMs": 791.999,
+      "cliAndHttpMs": 8819,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=430, purchase_auth;dur=74.5, purchase_lock;dur=5.6, purchase_state;dur=10.5, purchase_rules;dur=81.7, purchase_issue;dur=14.2, purchase_persist;dur=130.2, purchase_transaction;dur=284.9, purchase_view;dur=40.3, purchase_total;dur=430.5"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 936,
+      "sport": "afl",
+      "packType": "STANDARD",
+      "cardCount": 1,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 410.388,
+      "ttfbMs": 409.566,
+      "cliAndHttpMs": 9352,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=166, purchase_auth;dur=96.2, purchase_view;dur=39.8, purchase_total;dur=166.5"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 936
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 530.7030000000001,
+      "ttfbMs": 529.7539999999999,
+      "cliAndHttpMs": 10678,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=298, purchase_auth;dur=74.2, purchase_lock;dur=6.3, purchase_state;dur=10.7, purchase_rules;dur=40.9, purchase_issue;dur=7.2, purchase_persist;dur=62.4, purchase_transaction;dur=157.2, purchase_view;dur=38.5, purchase_total;dur=298.3"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 2723
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-owner",
+      "status": 400,
+      "httpMs": 450.065,
+      "ttfbMs": 447.63,
+      "cliAndHttpMs": 6643,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=74.5, purchase_lock;dur=5.5, purchase_state;dur=10.3, purchase_rules;dur=40.3, purchase_issue;dur=4.6, purchase_transaction;dur=89.3, purchase_total;dur=192.6"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 963.8489999999999,
+      "ttfbMs": 962.939,
+      "cliAndHttpMs": 8327,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=492, purchase_auth;dur=102.9, purchase_lock;dur=5.3, purchase_state;dur=10.0, purchase_rules;dur=69.3, purchase_issue;dur=14.4, purchase_persist;dur=194.3, purchase_transaction;dur=323.7, purchase_view;dur=37.7, purchase_total;dur=492.9"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247,
+      "sport": "nrl",
+      "packType": "PREMIUM",
+      "cardCount": 9,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 407.81800000000004,
+      "ttfbMs": 406.282,
+      "cliAndHttpMs": 7304,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=179, purchase_auth;dur=113.4, purchase_view;dur=38.5, purchase_total;dur=179.9"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 548.585,
+      "ttfbMs": 545.874,
+      "cliAndHttpMs": 6964,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=306, purchase_auth;dur=78.8, purchase_lock;dur=5.8, purchase_state;dur=10.5, purchase_rules;dur=39.1, purchase_issue;dur=10.1, purchase_persist;dur=63.2, purchase_transaction;dur=159.7, purchase_view;dur=38.9, purchase_total;dur=306.4"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 17702
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-tester",
+      "status": 400,
+      "httpMs": 444.044,
+      "ttfbMs": 442.261,
+      "cliAndHttpMs": 9742,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=81.6, purchase_lock;dur=5.4, purchase_state;dur=10.9, purchase_rules;dur=44.7, purchase_issue;dur=5.7, purchase_transaction;dur=96.4, purchase_total;dur=207.8"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 723.445,
+      "ttfbMs": 721.94,
+      "cliAndHttpMs": 9521,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=391, purchase_auth;dur=82.4, purchase_lock;dur=5.5, purchase_state;dur=10.2, purchase_rules;dur=70.8, purchase_issue;dur=14.9, purchase_persist;dur=108.9, purchase_transaction;dur=240.4, purchase_view;dur=38.8, purchase_total;dur=391.2"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1013,
+      "sport": "nrl",
+      "packType": "PREMIUM",
+      "cardCount": 3,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 382.926,
+      "ttfbMs": 381.367,
+      "cliAndHttpMs": 7557,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=147, purchase_auth;dur=78.9, purchase_view;dur=38.6, purchase_total;dur=147.5"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1013
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 584.832,
+      "ttfbMs": 582.7339999999999,
+      "cliAndHttpMs": 8888,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=311, purchase_auth;dur=81.0, purchase_lock;dur=5.6, purchase_state;dur=11.1, purchase_rules;dur=42.2, purchase_issue;dur=7.6, purchase_persist;dur=63.3, purchase_transaction;dur=161.1, purchase_view;dur=39.0, purchase_total;dur=311.0"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 6488
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-owner",
+      "status": 400,
+      "httpMs": 495.787,
+      "ttfbMs": 494.29200000000003,
+      "cliAndHttpMs": 8820,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=83.1, purchase_lock;dur=5.3, purchase_state;dur=11.0, purchase_rules;dur=79.5, purchase_issue;dur=6.6, purchase_transaction;dur=129.8, purchase_total;dur=243.6"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 739.5749999999999,
+      "ttfbMs": 737.939,
+      "cliAndHttpMs": 10212,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=467, purchase_auth;dur=130.0, purchase_lock;dur=5.5, purchase_state;dur=10.5, purchase_rules;dur=73.1, purchase_issue;dur=29.2, purchase_persist;dur=101.0, purchase_transaction;dur=250.1, purchase_view;dur=40.6, purchase_total;dur=467.6"
+      ],
+      "requestBytes": 259,
+      "responseBytes": 932,
+      "sport": "nrl",
+      "packType": "PREMIUM",
+      "cardCount": 1,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 489.623,
+      "ttfbMs": 488.497,
+      "cliAndHttpMs": 8848,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=177, purchase_auth;dur=110.4, purchase_view;dur=38.7, purchase_total;dur=177.1"
+      ],
+      "requestBytes": 259,
+      "responseBytes": 932
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 699.947,
+      "ttfbMs": 699.074,
+      "cliAndHttpMs": 9029,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=333, purchase_auth;dur=94.3, purchase_lock;dur=5.4, purchase_state;dur=10.8, purchase_rules;dur=40.8, purchase_issue;dur=11.7, purchase_persist;dur=72.0, purchase_transaction;dur=169.5, purchase_view;dur=40.1, purchase_total;dur=333.6"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 2741
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-tester",
+      "status": 400,
+      "httpMs": 462.137,
+      "ttfbMs": 460.675,
+      "cliAndHttpMs": 9112,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=94.2, purchase_lock;dur=5.4, purchase_state;dur=11.6, purchase_rules;dur=41.8, purchase_issue;dur=5.2, purchase_transaction;dur=94.2, purchase_total;dur=218.4"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 1031.136,
+      "ttfbMs": 972.071,
+      "cliAndHttpMs": 10816,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=460, purchase_auth;dur=80.8, purchase_lock;dur=6.1, purchase_state;dur=12.3, purchase_rules;dur=76.6, purchase_issue;dur=17.7, purchase_persist;dur=161.3, purchase_transaction;dur=308.4, purchase_view;dur=39.8, purchase_total;dur=460.6"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1248,
+      "sport": "nrl",
+      "packType": "STANDARD",
+      "cardCount": 9,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 827.922,
+      "ttfbMs": 823.6980000000001,
+      "cliAndHttpMs": 8899,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=445, purchase_auth;dur=261.1, purchase_view;dur=94.6, purchase_total;dur=445.1"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1248
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 1236.002,
+      "ttfbMs": 1232.1409999999998,
+      "cliAndHttpMs": 9106,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=864, purchase_auth;dur=126.1, purchase_lock;dur=9.6, purchase_state;dur=14.5, purchase_rules;dur=95.3, purchase_issue;dur=9.1, purchase_persist;dur=489.2, purchase_transaction;dur=652.3, purchase_view;dur=43.4, purchase_total;dur=864.5"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 17419
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-owner",
+      "status": 400,
+      "httpMs": 457.364,
+      "ttfbMs": 456.454,
+      "cliAndHttpMs": 8249,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=77.7, purchase_lock;dur=5.5, purchase_state;dur=10.9, purchase_rules;dur=39.7, purchase_issue;dur=6.1, purchase_transaction;dur=93.0, purchase_total;dur=199.9"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 849.418,
+      "ttfbMs": 848.499,
+      "cliAndHttpMs": 8882,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=596, purchase_auth;dur=98.6, purchase_lock;dur=6.0, purchase_state;dur=11.0, purchase_rules;dur=130.0, purchase_issue;dur=24.1, purchase_persist;dur=218.6, purchase_transaction;dur=426.5, purchase_view;dur=40.4, purchase_total;dur=596.5"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1014,
+      "sport": "nrl",
+      "packType": "STANDARD",
+      "cardCount": 3,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 370.243,
+      "ttfbMs": 369.099,
+      "cliAndHttpMs": 8401,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=157, purchase_auth;dur=86.1, purchase_view;dur=40.7, purchase_total;dur=157.4"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1014
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 565.952,
+      "ttfbMs": 565.003,
+      "cliAndHttpMs": 8607,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=326, purchase_auth;dur=77.5, purchase_lock;dur=5.6, purchase_state;dur=11.3, purchase_rules;dur=41.3, purchase_issue;dur=8.9, purchase_persist;dur=78.6, purchase_transaction;dur=179.0, purchase_view;dur=39.0, purchase_total;dur=326.1"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 6397
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-tester",
+      "status": 400,
+      "httpMs": 458.425,
+      "ttfbMs": 456.869,
+      "cliAndHttpMs": 9446,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=73.3, purchase_lock;dur=5.9, purchase_state;dur=11.7, purchase_rules;dur=46.2, purchase_issue;dur=5.4, purchase_transaction;dur=98.3, purchase_total;dur=201.1"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "offer-confirmation",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 776.31,
+      "ttfbMs": 775.478,
+      "cliAndHttpMs": 9194,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=478, purchase_auth;dur=127.7, purchase_lock;dur=5.7, purchase_state;dur=11.8, purchase_rules;dur=76.5, purchase_issue;dur=15.9, purchase_persist;dur=141.0, purchase_transaction;dur=281.4, purchase_view;dur=39.8, purchase_total;dur=478.7"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 936,
+      "sport": "nrl",
+      "packType": "STANDARD",
+      "cardCount": 1,
+      "firstObserved": false
+    },
+    {
+      "phase": "saved-result-recovery",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 410.597,
+      "ttfbMs": 409.119,
+      "cliAndHttpMs": 9052,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=159, purchase_auth;dur=85.5, purchase_view;dur=41.4, purchase_total;dur=159.3"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 936
+    },
+    {
+      "phase": "offer-opening",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 587.927,
+      "ttfbMs": 586.21,
+      "cliAndHttpMs": 8597,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=352, purchase_auth;dur=85.5, purchase_lock;dur=6.0, purchase_state;dur=11.5, purchase_rules;dur=43.3, purchase_issue;dur=14.4, purchase_persist;dur=86.7, purchase_transaction;dur=195.6, purchase_view;dur=40.7, purchase_total;dur=352.4"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 2720
+    },
+    {
+      "phase": "cross-account-denial",
+      "account": "synthetic-owner",
+      "status": 400,
+      "httpMs": 550.181,
+      "ttfbMs": 548.2289999999999,
+      "cliAndHttpMs": 8743,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=121.3, purchase_lock;dur=5.6, purchase_state;dur=11.7, purchase_rules;dur=40.0, purchase_issue;dur=5.4, purchase_transaction;dur=92.0, purchase_total;dur=242.4"
+      ],
+      "requestBytes": 134,
+      "responseBytes": 50
+    },
+    {
+      "phase": "concurrent-duplicate",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 830.951,
+      "ttfbMs": 829.266,
+      "cliAndHttpMs": 18442,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=459, purchase_auth;dur=81.0, purchase_lock;dur=5.7, purchase_state;dur=12.0, purchase_rules;dur=56.3, purchase_issue;dur=16.7, purchase_persist;dur=188.3, purchase_transaction;dur=310.2, purchase_view;dur=40.0, purchase_total;dur=459.2"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247
+    },
+    {
+      "phase": "concurrent-duplicate",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 379.85999999999996,
+      "ttfbMs": 378.397,
+      "cliAndHttpMs": 18810,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=133, purchase_auth;dur=69.5, purchase_view;dur=38.1, purchase_total;dur=133.8"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247
+    },
+    {
+      "phase": "concurrent-duplicate",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 557.334,
+      "ttfbMs": 555.981,
+      "cliAndHttpMs": 19322,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=133, purchase_auth;dur=66.7, purchase_view;dur=39.5, purchase_total;dur=133.3"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247
+    },
+    {
+      "phase": "concurrent-duplicate",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 508.857,
+      "ttfbMs": 507.296,
+      "cliAndHttpMs": 19320,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=127, purchase_auth;dur=61.4, purchase_view;dur=39.6, purchase_total;dur=127.5"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247
+    },
+    {
+      "phase": "concurrent-duplicate",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 458.945,
+      "ttfbMs": 457.552,
+      "cliAndHttpMs": 19513,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=141, purchase_auth;dur=70.9, purchase_view;dur=43.4, purchase_total;dur=141.8"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247
+    },
+    {
+      "phase": "concurrent-duplicate",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 471.762,
+      "ttfbMs": 470.205,
+      "cliAndHttpMs": 19267,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=126, purchase_auth;dur=57.5, purchase_view;dur=40.2, purchase_total;dur=126.0"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247
+    },
+    {
+      "phase": "concurrent-duplicate",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 488.482,
+      "ttfbMs": 486.752,
+      "cliAndHttpMs": 18695,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=162, purchase_auth;dur=94.5, purchase_view;dur=39.8, purchase_total;dur=162.1"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247
+    },
+    {
+      "phase": "concurrent-duplicate",
+      "account": "synthetic-owner",
+      "status": 200,
+      "httpMs": 531.566,
+      "ttfbMs": 530.1850000000001,
+      "cliAndHttpMs": 20008,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=150, purchase_auth;dur=76.7, purchase_view;dur=41.7, purchase_total;dur=150.6"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 1247
+    },
+    {
+      "phase": "deliberate-interruption",
+      "account": "synthetic-tester",
+      "status": 0,
+      "httpMs": 51.117000000000004,
+      "ttfbMs": 51.111,
+      "cliAndHttpMs": 11919,
+      "serverTiming": [],
+      "requestBytes": 0,
+      "responseBytes": 0
+    },
+    {
+      "phase": "interrupted-result-recovery",
+      "account": "synthetic-tester",
+      "status": 200,
+      "httpMs": 840.917,
+      "ttfbMs": 839.0849999999999,
+      "cliAndHttpMs": 8516,
+      "serverTiming": [
+        "Server-Timing: wallet;dur=548, purchase_auth;dur=205.2, purchase_lock;dur=5.6, purchase_state;dur=11.1, purchase_rules;dur=54.2, purchase_issue;dur=23.7, purchase_persist;dur=148.9, purchase_transaction;dur=276.1, purchase_view;dur=38.6, purchase_total;dur=548.0"
+      ],
+      "requestBytes": 261,
+      "responseBytes": 1248
+    },
+    {
+      "phase": "anonymous-denial",
+      "account": "synthetic-owner",
+      "status": 503,
+      "httpMs": 195.101,
+      "ttfbMs": 193.859,
+      "cliAndHttpMs": 7519,
+      "serverTiming": [
+        "Server-Timing: purchase_auth;dur=1.4, purchase_total;dur=3.3"
+      ],
+      "requestBytes": 260,
+      "responseBytes": 151
+    }
+  ],
+  "summary": {
+    "offer-confirmation": {
+      "n": 18,
+      "p50Ms": 739.5749999999999,
+      "p95Ms": 1985.905
+    },
+    "saved-result-recovery": {
+      "n": 18,
+      "p50Ms": 489.623,
+      "p95Ms": 875.173
+    },
+    "offer-opening": {
+      "n": 18,
+      "p50Ms": 583.385,
+      "p95Ms": 1236.002
+    },
+    "cross-account-denial": {
+      "n": 18,
+      "p50Ms": 476.055,
+      "p95Ms": 1603.66
+    },
+    "concurrent-duplicate": {
+      "n": 8,
+      "p50Ms": 488.482,
+      "p95Ms": 830.951
+    },
+    "deliberate-interruption": {
+      "n": 1,
+      "p50Ms": 51.117000000000004,
+      "p95Ms": 51.117000000000004
+    },
+    "interrupted-result-recovery": {
+      "n": 1,
+      "p50Ms": 840.917,
+      "p95Ms": 840.917
+    },
+    "anonymous-denial": {
+      "n": 1,
+      "p50Ms": 195.101,
+      "p95Ms": 195.101
+    }
+  }
+}
