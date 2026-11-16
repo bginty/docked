@@ -401,6 +401,7 @@ test("plain Node hosted build uses the same reviewed manifest and rejects incomp
       "scripts/guard-hosted-build.mjs",
       "src/core/hosted-production.mjs",
       "src/core/hosted-beta.mjs",
+      "src/core/pack-hosted-acceptance.mjs",
       "src/core/private-preview.mjs",
       "src/core/nfl-hosted-target.mjs",
       "config/nfl-hosted-testing.json",

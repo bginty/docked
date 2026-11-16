@@ -1,4 +1,5 @@
 import productionManifest from "../../config/hosted-production.json";
+import { assertPackHostedAcceptance } from "./pack-hosted-acceptance.mjs";
 import { assertHostedPreview } from "./hosted-preview";
 import { assertHostedProduction } from "./hosted-production.mjs";
 import { assertHostedReview } from "./hosted-review.mjs";
@@ -9,6 +10,9 @@ import { assertIsolatedPublicPreview } from "./isolated-public-preview.mjs";
 export function assertDeploymentEnvironment(
   env: Record<string, string | undefined> = process.env,
 ) {
+  // Evaluate this before every other mode so a Production setting cannot hide
+  // an accidentally enabled acceptance flag behind another successful guard.
+  if (assertPackHostedAcceptance(env)) return;
   for (const flag of [
     "ODDS_POLLING_ENABLED",
     "MARKET_DATA_POLLING_ENABLED",

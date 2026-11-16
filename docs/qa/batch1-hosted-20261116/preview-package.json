@@ -1,0 +1,52 @@
+{
+  "version": 2,
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "vercelProject": "prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR",
+  "schemas": [
+    "b1_acceptance",
+    "b1_beta_fantasy",
+    "b1_beta_packs",
+    "b1_beta_private",
+    "b1_beta_public",
+    "b1_commercial_billing",
+    "b1_credits_sandbox",
+    "b1_nfl_roster",
+    "b1_private",
+    "b1_public_gameplay",
+    "b1_season_catalogue",
+    "b1_sports_feed"
+  ],
+  "roles": [
+    "docked_pack_acceptance",
+    "docked_pack_acceptance_owner"
+  ],
+  "runtimeHours": 24,
+  "syntheticAccounts": 2,
+  "syntheticPlayers": 2479,
+  "syntheticDefinitions": 6540,
+  "initialSyntheticLimitedCopies": 0,
+  "syntheticCreditsPerAccount": 1000000,
+  "maxTestPurchases": 200,
+  "files": [
+    {
+      "path": "private-data/batch1-hosted-20261116/namespace-schema.sql",
+      "sha256": "42d734e2dc5ef5e34d95af1f18584961e11a09fc296d92bdbd9dce34da140254"
+    },
+    {
+      "path": "private-data/batch1-hosted-20261116/namespace-permissions.sql",
+      "sha256": "e18ddcb00701e4935ae094fa87395570f21bdd628b27f01aa098f27a3d5f0062"
+    },
+    {
+      "path": "private-data/batch1-hosted-20261116/fixtures.sql",
+      "sha256": "247dbf5a559c44bd18af781965ac646abd86bcd74450c4ff59d8522454b30a70"
+    }
+  ],
+  "payloadArchive": {
+    "path": "docs/qa/batch1-hosted-20261116/preview-payloads.json.gz",
+    "sha256": "a646121e386b608e7d7c92a3e90b682f586369e743e6ab40f69159eacf47cddd"
+  },
+  "operatorSha256": "975c48ee674e1bfd8ca1947504177d6e152fe61730243b53dc18ead100b7bdc0",
+  "productionChanges": false,
+  "existingPreviewAccountsChanged": false,
+  "providerSettingsChanged": false
+}

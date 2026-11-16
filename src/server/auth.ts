@@ -1,4 +1,8 @@
 import { authSessionsRelation } from "@/core/auth-relations";
+import {
+  assertPackHostedAcceptance,
+  packAcceptanceIdentity,
+} from "@/core/pack-hosted-acceptance.mjs";
 import { publicCustomersEnabled } from "@/core/public-customer";
 import { verifiedPhone, verifiedPhoneRequired } from "@/core/public-phone";
 import { cache } from "react";
@@ -60,6 +64,8 @@ export const identity = cache(async function identity() {
     throw new Error("Authentication service temporarily unavailable");
   }
   if (!user || !user.email_confirmed_at || user.is_anonymous) return null;
+  const packAcceptance = assertPackHostedAcceptance(process.env);
+  if (packAcceptance && !packAcceptanceIdentity(process.env, user)) return null;
   const sql = db();
   if (process.env.DOCKED_BETA_STAGING === "true") {
     if (process.env.BETA_ACCESS_ENABLED !== "true") return null;
@@ -86,6 +92,7 @@ export const identity = cache(async function identity() {
       : [];
   return {
     mfaRequired:
+      packAcceptance ||
       (process.env.DOCKED_OWNER_GAMEPLAY === "true" &&
         protection[0]?.required !== false) ||
       (publicCustomersEnabled() &&

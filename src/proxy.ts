@@ -1,10 +1,22 @@
 import { createServerClient } from "@supabase/ssr";
+import {
+  assertPackHostedAcceptance,
+  packAcceptancePathAllowed,
+} from "@/core/pack-hosted-acceptance.mjs";
 import { NextResponse, type NextRequest } from "next/server";
 import { authCookieOptions } from "@/core/auth-cookies";
 import { assertDeploymentEnvironment } from "@/core/deployment-environment";
 import { retiredProductPath } from "@/core/retired-product";
 import { isolatedV30Transport } from "@/server/isolated-v30-transport";
 export async function proxy(request: NextRequest) {
+  if (
+    assertPackHostedAcceptance(process.env) &&
+    !packAcceptancePathAllowed(request.nextUrl.pathname, request.method)
+  )
+    return new NextResponse(null, {
+      status: 404,
+      headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" },
+    });
   const isolated = await isolatedV30Transport(request, process.env);
   if (isolated) return isolated;
   if (

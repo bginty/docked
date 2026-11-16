@@ -1,4 +1,5 @@
 import "server-only";
+import { assertPackHostedAcceptance } from "@/core/pack-hosted-acceptance.mjs";
 import { memberReadIsolation } from "./member-read-isolation";
 import { z } from "zod";
 import { requireIdentity } from "./auth";
@@ -36,7 +37,8 @@ async function memberTestSession(
   receiptOnly = false,
 ) {
   if (
-    process.env.DOCKED_FRIENDS_BETA !== "true" ||
+    (process.env.DOCKED_FRIENDS_BETA !== "true" &&
+      !assertPackHostedAcceptance(process.env)) ||
     process.env.DOCKED_BETA_STAGING !== "true"
   )
     throw Error("Test wallet unavailable");

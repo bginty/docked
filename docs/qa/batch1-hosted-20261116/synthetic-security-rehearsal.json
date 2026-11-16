@@ -1,0 +1,24 @@
+{
+  "at": "2026-11-16T05:59:40.528Z",
+  "localOnly": true,
+  "identity": {
+    "current_user": "docked_pack_acceptance",
+    "session_user": "docked_pack_acceptance"
+  },
+  "checks": [
+    "denied: select * from auth.users",
+    "denied: select * from auth.sessions",
+    "denied: select * from credits_sandbox.state",
+    "denied: select * from commercial_billing.definitions",
+    "denied: select * from beta_public.profiles",
+    "denied: select * from b1_acceptance.auth_users",
+    "denied: select * from b1_acceptance.window",
+    "denied: set role postgres",
+    "denied: set role docked_pack_acceptance_owner",
+    "ordinary tester AAL1 denied",
+    "another-account session denied",
+    "expired window denies existing admission"
+  ],
+  "stateUnchanged": true,
+  "actualHostedAcceptance": false
+}

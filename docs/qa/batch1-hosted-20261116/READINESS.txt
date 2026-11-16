@@ -1,0 +1,135 @@
+DOCKED — BATCH 1 HOSTED PREREQUISITE CORRECTION
+16 November 2026. Production unchanged. Public launch NO-GO. Batch 2 not started.
+
+A. ROOT CAUSE AND CORRECTION
+The reviewed application allowed private credit packs only through friends mode,
+which is deliberately bound to Production. Preview also lacked season_catalogue,
+beta_packs and required function predecessors. Reusing either Production identity
+or a simulated login would not satisfy the mandatory hosted acceptance.
+
+An additional, fail-closed pack acceptance mode now binds to the existing actual
+Preview project, Auth issuer, restricted database role, branch and generated host.
+It requires two synthetic accounts with server-controlled metadata, genuine Auth
+sessions and AAL2, a maximum 24-hour window and protected deployment. Public and
+commercial/provider flags must be explicitly false. Only pack/collection routes
+and their assets are exposed. Production target checks remain intact.
+
+Static SQL identifiers route to disposable namespaces; this is not the security
+boundary. Restricted grants, a NOLOGIN owner, fixed-member Auth views and session
+write guards enforce database isolation. Preview collection/Weekly readers assert
+the genuine Preview context; Production context stays empty. No fake timestamps,
+Production domains, Production credentials or customer sessions are used.
+
+B. EXACT PREVIEW DEPENDENCIES
+See PREVIEW_APPROVAL.txt and preview-package.json.
+Current package SHA-256:
+9fb07649e1d1798a552b484022c648b5225321573281f764d7292d129f489eba
+This supersedes withdrawn f5f83aed214f36a17bf2839a41686cb550ec871ca0b03a56ec6979d72a42eba6.
+Do not execute the withdrawn package even if an old approval arrives.
+
+Twelve disposable namespaces, 152 dependency tables and two control tables,
+schema-only functions/constraints/views, two restricted roles. The closure follows
+actual admission, pack, collection, receipt and Weekly Core dependencies. It does
+not blindly replay Production migration history. Synthetic fixture: 2,479 fictional
+players, 1,308 eligible identities, 6,540 definitions, zero starting limited cards,
+two accounts and nonredeemable test credits. All source evidence is fictional.
+
+Created and verified only two NEW synthetic Preview Auth accounts. Genuine password
+and TOTP AAL2 passed. Existing accounts and Phone/provider settings were untouched.
+No persistent Preview schemas/roles/fixtures or hosted application were applied:
+the separate Preview approval remains pending. Existing Vercel CLI authentication
+also needs renewal; the first device sign-in window expired without completion.
+
+C. MEASUREMENT STATUS — DO NOT SUBSTITUTE LOCAL RESULTS
+Hosted confirmation p50/p95: NOT MEASURED.
+Hosted saved-result recovery p50/p95: NOT MEASURED.
+Hosted opening/reveal, Auth and DB latency: NOT MEASURED.
+Browser reload/throttling and provable platform cold starts: NOT MEASURED.
+Earlier isolated p95 reference values remain 4.753s confirmation, 0.329s recovery,
+and 3.771s nine-card confirmation. No improvement claim is made yet.
+
+Prepared HTTP harness uses genuine Preview sessions, protected Vercel requests and
+curl HTTP timing separately from CLI overhead. Server-Timing exposes Auth and DB
+spans; these overlap and must not be added together. A first request is not proof
+of a platform cold start. It preconditions 900 fictional cards over HTTP, then
+measures 60 nine-card purchases, all 18 offers, concurrent duplicates, deliberate
+client interruption, recovery and cross-account/anonymous denial. Persistent run
+records and a database count check bound the combined plan to 180 purchases out
+of the approved maximum 200. The remaining 20 are reserved for controlled browser
+checks. This harness is prepared and typechecked, not yet validated on a deployment.
+
+D. COMPLETED VERIFICATION
+- Genuine Preview Auth: both synthetic accounts password + TOTP, AAL2.
+- Disconnected PostgreSQL, real restricted runtime role, actual app pack handlers:
+  all 18 Standard/Premium 1/3/9-card NFL/AFL/NRL offers, exact cards, one debit,
+  saved receipt replay, opening and cross-account denial with no state change.
+- Eight simultaneous copies of one request: one debit and nine unique cards.
+- Naturally expired synthetic rights: new purchase denied without a state change;
+  saved receipt and already-issued nine cards still recovered/opened.
+- Both accounts, all three sports: collection and four-card Weekly Core opening
+  with identical retry. NFL uses stale source observations and approved fictional
+  season membership. The resolved 72-hour roster issue was not reintroduced.
+- Twelve database isolation/MFA/expiry denials, including original schema access,
+  privileged SET ROLE, ordinary tester AAL1 and another account's session.
+- 74 selected platform regressions and 10 final guard/reader tests passed.
+- Final application build, TypeScript check and full lint passed.
+- All three original migration checksums and seven final function hashes verified.
+
+Disconnected pack Auth is explicitly simulated only for prerequisite rehearsal.
+It does not replace genuine hosted application acceptance. No new Google purchase,
+provider refund, SMS or physical Android test was performed. Existing refund and
+payment-denial regressions do not prove Google settlement/refund acceptance.
+
+E. PRODUCTION PACKAGE STATUS
+No revised Production package is frozen or submitted for approval yet. Hosted
+acceptance must pass first. The previous exact application approval cannot cover
+these modified bytes. Migration files remain unchanged:
+20261115113306_batch_private_pack_issuance_validation.sql
+  2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1
+20261115211545_batch1_pack_guard_batching.sql
+  3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6
+20261115235000_batch1_persistence_subdocuments.sql
+  83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e
+
+Fresh read-only evidence at 05:41:59Z confirms Production source
+12ccfd5879ae83f1bd62210ee16a3feb6907d9ef,
+Vercel dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy, 6,540 definitions, 890 lifetime
+limited copies and 908 custody records. Wallet/journal/custody hashes remained
+unchanged during this work. Existing invited-beta controls remain as observed;
+public registration, phone delivery, purchased credits, live commercial payments,
+trading, prizes, withdrawals and cleanup remain off. NBA remains hidden and the
+six competitions remain disabled Practice. Do not reset any baseline on deployment.
+
+After hosted pass: freeze source, compare every application/config/operator change
+against 084f0e3e, produce new exact package, obtain explicit Production approval,
+then capture a NEW encrypted backup/restore and fresh drift/permissions/preflight.
+Rehearse only the three reviewed migrations, stage protected Production-target
+application, promote after all required checks, postflight financial/custody/runtime
+settings, and use only the reviewed conditional recovery. Current older backup is
+not a future deployment prerequisite. No automatic promotion is authorised here.
+
+F. DEVICE AND EXTERNAL ACCEPTANCE
+No authorised Android device is connected. Installed v31 pack/recovery, Google
+TEST credit purchase and refund acceptance remain unperformed. Android sources,
+dependency lockfile and native artifact were not changed. Browser throttling will
+be reported as simulation only. Genuine SMS still requires its separate approval
+and sender readiness, within the existing A$20 ceiling.
+
+Google Play Data Safety and Twilio status were not refreshed. Computer Use stopped
+after Chrome timeouts because it could not verify the browser URL. No alternate
+UI route was used to bypass that stop. Managed publishing and provider settings
+were not changed. Merchant GST founder acceptance remains recorded and is not
+being requested again. Commercial rights, merchant payout, payment/refund and
+marketplace acceptance remain distinct revenue-launch gates.
+
+G. NEXT ACTIONS AND ESTIMATE
+Required founder actions now: approve the current exact disposable Preview package
+and complete a renewed Vercel CLI sign-in when a fresh device link is presented.
+No secrets or MFA codes should be pasted into chat. These are prerequisite access
+steps, not a request to repeat completed business/card/vault/email approvals.
+
+Estimated remaining Batch 1 engineering after access: 3–6 hours for actual hosted
+measurement, browser coverage, any findings and the revised Production package.
+Physical-device and external provider waiting are excluded. Production deployment
+requires its later separate exact approval. No release performance acceptance or
+commercial launch readiness is claimed while the hosted gate is incomplete.

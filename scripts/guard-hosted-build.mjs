@@ -1,4 +1,5 @@
 import productionManifest from "../config/hosted-production.json" with { type: "json" };
+import { assertPackHostedAcceptance } from "../src/core/pack-hosted-acceptance.mjs";
 import { writeFileSync } from "node:fs";
 import { netlifyBuildCandidate } from "../src/core/hosting-identity.mjs";
 import { assertHostedReview } from "../src/core/hosted-review.mjs";
@@ -12,7 +13,11 @@ import {
 // Local builds use npm run build; hosted builds must select a reviewed target.
 // An accidental production target can never reuse the Preview configuration.
 try {
-  if (assertIsolatedPublicPreview(process.env)) {
+  if (assertPackHostedAcceptance(process.env)) {
+    console.log(
+      "Protected synthetic pack acceptance; existing Preview only, expiry and MFA enforced.",
+    );
+  } else if (assertIsolatedPublicPreview(process.env)) {
     console.log(
       "Protected existing Preview: isolated public-customer acceptance; live payments disabled.",
     );

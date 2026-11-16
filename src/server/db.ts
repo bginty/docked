@@ -1,4 +1,6 @@
 import "server-only";
+import { assertPackHostedAcceptance } from "@/core/pack-hosted-acceptance.mjs";
+import { packAcceptanceStatement } from "./pack-acceptance-sql";
 import postgres from "postgres";
 import { databaseConnectionOptions } from "./database-tls";
 import { databasePoolOptions } from "./database-pool";
@@ -14,8 +16,11 @@ export function db() {
       ...databasePoolOptions(),
       ...databaseConnectionOptions(process.env.DATABASE_URL),
     });
-    connection =
-      process.env.DOCKED_BETA_STAGING === "true" ? betaSql(raw) : raw;
+    connection = assertPackHostedAcceptance(process.env)
+      ? betaSql(raw, packAcceptanceStatement)
+      : process.env.DOCKED_BETA_STAGING === "true"
+        ? betaSql(raw)
+        : raw;
   }
   return connection;
 }

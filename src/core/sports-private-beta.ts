@@ -1,4 +1,5 @@
 import { nbaPrivateBetaEnabled } from "./nba-private-beta";
+import { assertPackHostedAcceptance } from "./pack-hosted-acceptance.mjs";
 import { isHiddenCustomerSport } from "./customer-sports";
 export const betaSports = ["basketball", "afl", "nrl"] as const;
 export type BetaSport = (typeof betaSports)[number];
@@ -10,6 +11,8 @@ export function sportPrivateBetaEnabled(
   env: Record<string, string | undefined> = process.env,
 ) {
   if (isHiddenCustomerSport(sport)) return false;
+  if (assertPackHostedAcceptance(env))
+    return sport === "afl" || sport === "nrl";
   if (!isBetaSport(sport) || !nbaPrivateBetaEnabled(env)) return false;
   return sport === "basketball" || env.DOCKED_SPORTS_PRIVATE_BETA === "true";
 }

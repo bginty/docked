@@ -1,0 +1,4539 @@
+{
+  "at": "2026-11-16T05:41:59.763Z",
+  "assets": {
+    "definitions": 6540,
+    "lifetime": 890,
+    "beta_allocations": 2,
+    "commercial_cards": 0,
+    "open_commercial_controls": 0,
+    "enabled_flags": 0,
+    "cleanup": 0,
+    "enabled_rounds": 0
+  },
+  "wallet": {
+    "bytes": 4185985,
+    "journal_entries": 151,
+    "events": 328,
+    "players": 2479,
+    "instances": 900,
+    "requests": 328,
+    "journal_hash": "169f3c885102f441209c4da749ead6e1",
+    "wallet_hash": "4484e67459ce3cbfa95f39910ea1938d"
+  },
+  "tables": [
+    {
+      "schema": "beta_fantasy",
+      "name": "admin_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "cards",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "competitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "daily_claims",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "editions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "entries",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "entry_revisions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "entry_revisions_id_seq",
+      "kind": "S",
+      "acl": null,
+      "rls": false
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "journals",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "ledger",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "lineup_configurations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "lineup_publication_policy",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "listings",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "members",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "ownership_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "pack_definitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "pack_items",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "packs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "players",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "prize_schedules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "production_catalog",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "production_definitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "production_policy",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "production_policy_version_seq",
+      "kind": "S",
+      "acl": [
+        "postgres=rwU/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "production_releases",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "production_releases_id_seq",
+      "kind": "S",
+      "acl": [
+        "postgres=rwU/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "production_rounds",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "replacements",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "requests",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "results",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "round_controls",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "round_drafts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "round_inputs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "round_scores",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "sales",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "scoring_rules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "settings",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "slot_locks",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_nfl_worker=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "sports",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "starter_claims",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "status_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "swap_ledger",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "swap_policy",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "swap_policy_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "swap_requests",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "swap_reserve_packs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "swaps",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "team_names",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "team_rollovers",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "tiers",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "trade_items",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "trades",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_fantasy",
+      "name": "weekly_prize_templates",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_packs",
+      "name": "control",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_packs",
+      "name": "definitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_packs",
+      "name": "events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_packs",
+      "name": "events_id_seq",
+      "kind": "S",
+      "acl": [
+        "postgres=rwU/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "beta_packs",
+      "name": "issued",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_packs",
+      "name": "members",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_packs",
+      "name": "products",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "admission_control",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "admission_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "admission_events_id_seq",
+      "kind": "S",
+      "acl": null,
+      "rls": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "admissions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "analytics_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "announcement_drafts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "announcement_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "app_onboarding",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "article_revisions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "articles",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "audit_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "availability_observations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "bookmaker_eligibility",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "candidate_decisions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "closing_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "commercial_approvals",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_competitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_corrections",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_deals",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_edge_personal_notes",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=rd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_edge_status",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_edges",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_quote_evidence",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_recognition_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_result_sources",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_settlements",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "community_verification_rules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "competition_prizes",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "competition_qualifications",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "competition_rankings",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "competition_rules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "competitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "consent_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "correction_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "credit_request_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "credit_requests",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "customer_invitations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "delegated_admin_admissions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "delivery_attempts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "designated_administrators",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "feature_flags",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_edge_policy_approvals",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_model_attempts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_model_implementations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_model_outcomes",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_model_transitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_model_versions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_sporting_inputs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_sporting_sources",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "football_training_manifests",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "friends_control",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "friends_roster",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "internal_qa_entities",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "job_runs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "launch_record",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "leaderboard_notification_jobs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "leaderboard_rule_versions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "leaderboard_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "market_data_config",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "market_data_event_mappings",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "market_data_fixture_observations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "market_data_payloads",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "market_reference_methodologies",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "market_reference_movements",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "market_references",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "markets",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "member_subscriptions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "membership_plans",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "moderation_case_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "moderation_cases",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "moderation_retention",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "moderation_retention_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "named_tester_exception",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "odds_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "official_docked_publications",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "official_record_boundary",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "operational_alerts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "outbox",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "owner_gameplay_control",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "plan_entitlements",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "plan_prices",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "preview_beta_invitations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "preview_fixture_edges",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "preview_market_sessions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "preview_tester_access",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "privacy_cases",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "privacy_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "privacy_events_id_seq",
+      "kind": "S",
+      "acl": null,
+      "rls": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "prize_award_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "provider_poll_runs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "provider_trial_diagnostics",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "provider_trial_failure_reviews",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "provider_trial_permits",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "provider_trial_requests",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "provider_trials",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "rate_limits",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "region_policies",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_content",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_content_reviews",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_dataset_payloads",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_dataset_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_fact_payloads",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_facts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_feature_versions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_fetch_requests",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_match_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_policies",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_recalculations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_schedules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_source_health",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_source_versions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "research_source_versions_revision_seq",
+      "kind": "S",
+      "acl": [
+        "postgres=rwU/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "roles",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "runtime_auth_sessions",
+      "kind": "v",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "runtime_auth_users",
+      "kind": "v",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "beta_private",
+      "name": "scanner_candidates",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "scanner_reviews",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "scanner_run_markets",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "scanner_runs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "scanner_schedules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "schedules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "selections",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "service_health_observations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "settlement_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_blocks",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_collection_settings",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_comments",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_communities",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_community_members",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_discussion_follows",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_follows",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_handle_history",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_media",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_moderation_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_mutes",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_notification_jobs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_notification_preferences",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_notifications",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_post_media",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_posts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_profiles",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_reactions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_reports",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_saved",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "social_sport_review",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "source_health",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "sponsor_campaigns",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "sports",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "strategy_transitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "strategy_versions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "subscription_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "tip_publications",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "tip_status_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "two_person_control",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "unsubscribe_tokens",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=rd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "validation_runs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_private",
+      "name": "webhook_receipts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_public",
+      "name": "notification_preferences",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_public",
+      "name": "personal_entries",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_public",
+      "name": "profiles",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "beta_public",
+      "name": "saved_tips",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "accounts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "audit",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "audit_id_seq",
+      "kind": "S",
+      "acl": [
+        "postgres=rwU/postgres",
+        "docked_commercial_app=rU/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "cards",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "control",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "definitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "jobs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=arw/postgres",
+        "docked_retention_worker=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "journals",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "lines",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "listings",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "lots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "ownership_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "packs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "products",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "receipt_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "receipt_events_id_seq",
+      "kind": "S",
+      "acl": [
+        "postgres=rwU/postgres",
+        "docked_commercial_app=rU/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "receipts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "recovery_cases",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "commercial_billing",
+      "name": "support_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_commercial_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "access",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "card_definitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "card_instances",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "current_player_jerseys",
+      "kind": "v",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "current_player_status",
+      "kind": "v",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "history",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "journal",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "lines",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "listing_terms_audit",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "listing_terms_audit_id_seq",
+      "kind": "S",
+      "acl": null,
+      "rls": false
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "nba_fixture_definitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "nba_fixture_instances",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "nba_fixture_players",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "pack_configuration",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "pack_failures",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "pack_receipts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "permanent_players",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "rarity_configuration",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "redemption_staff",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "sale_notification_outbox",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "sale_push_deliveries",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "state",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=rw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "store_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "store_notifications",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "store_outbox",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "store_receipts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "store_test_admissions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "trading_audit",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "trading_audit_id_seq",
+      "kind": "S",
+      "acl": null,
+      "rls": false
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "trading_control",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "trading_members",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "credits_sandbox",
+      "name": "web_push_subscriptions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "nfl_roster",
+      "name": "cleanup_runs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "nfl_roster",
+      "name": "control",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "nfl_roster",
+      "name": "current_evidence",
+      "kind": "v",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "nfl_roster",
+      "name": "observations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "nfl_roster",
+      "name": "retired_test_cards",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_beta_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "analytics_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "app_onboarding",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "article_revisions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "articles",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "audit_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "availability_observations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "bookmaker_eligibility",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "candidate_decisions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "closing_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "commercial_approvals",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "community_competitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "community_corrections",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "community_deals",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "community_edge_personal_notes",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=rd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "community_edge_status",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "community_edges",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "community_quote_evidence",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "community_recognition_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "community_result_sources",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "community_settlements",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "community_verification_rules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "competition_prizes",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "competition_qualifications",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "competition_rankings",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "competition_rules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "competitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "consent_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "correction_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "delivery_attempts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "docked_auth_mail_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "docked_auth_mail_events_sequence_seq",
+      "kind": "S",
+      "acl": null,
+      "rls": false
+    },
+    {
+      "schema": "private",
+      "name": "docked_auth_mail_outbox",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "docked_mail_scheduler",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "feature_flags",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "football_edge_policy_approvals",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "football_model_attempts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "football_model_implementations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "football_model_outcomes",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "football_model_transitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "football_model_versions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "football_sporting_inputs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "football_sporting_sources",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "football_training_manifests",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "job_runs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "launch_record",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "leaderboard_notification_jobs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "leaderboard_rule_versions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "leaderboard_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "market_data_config",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "market_data_event_mappings",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "market_data_fixture_observations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "market_data_payloads",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "market_reference_methodologies",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "market_reference_movements",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "market_references",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "markets",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "member_subscriptions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "membership_plans",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "odds_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "official_docked_publications",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "official_record_boundary",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "operational_alerts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "outbox",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "plan_entitlements",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "plan_prices",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "preview_beta_invitations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "preview_fixture_edges",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "preview_market_sessions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "preview_tester_access",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "prize_award_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "provider_poll_runs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "provider_trial_diagnostics",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "provider_trial_failure_reviews",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "provider_trial_permits",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "provider_trial_requests",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "provider_trials",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "rate_limits",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "region_policies",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_content",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_content_reviews",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_dataset_payloads",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_dataset_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_fact_payloads",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_facts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_feature_versions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_fetch_requests",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_match_snapshots",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_policies",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_recalculations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_schedules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_source_health",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_source_versions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "research_source_versions_revision_seq",
+      "kind": "S",
+      "acl": null,
+      "rls": false
+    },
+    {
+      "schema": "private",
+      "name": "roles",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "runtime_auth_sessions",
+      "kind": "v",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=rd/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "private",
+      "name": "runtime_auth_users",
+      "kind": "v",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "private",
+      "name": "scanner_candidates",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "scanner_reviews",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "scanner_run_markets",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "scanner_runs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "scanner_schedules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "schedules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "selections",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "settlement_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_blocks",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_collection_settings",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_comments",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_communities",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_community_members",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_discussion_follows",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_follows",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_handle_history",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_media",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_moderation_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_mutes",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_notification_jobs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_notification_preferences",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_notifications",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arwd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_post_media",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_posts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_profiles",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_reactions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_reports",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=arw/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_saved",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=ard/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "social_sport_review",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "source_health",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "sponsor_campaigns",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "sports",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "strategy_transitions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "strategy_versions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "subscription_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "tip_publications",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "tip_status_events",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "unsubscribe_tokens",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=rd/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "validation_runs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_app=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "verified_phone_claims",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "private",
+      "name": "webhook_receipts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "public_gameplay",
+      "name": "policy",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "public_gameplay",
+      "name": "rounds",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "public_gameplay",
+      "name": "sports",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "season_catalogue",
+      "name": "decisions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "season_catalogue",
+      "name": "decisions_id_seq",
+      "kind": "S",
+      "acl": [
+        "postgres=rwU/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "season_catalogue",
+      "name": "members",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "season_catalogue",
+      "name": "rights",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "activation_decisions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "activation_decisions_id_seq",
+      "kind": "S",
+      "acl": null,
+      "rls": false
+    },
+    {
+      "schema": "sports_feed",
+      "name": "activation_packages",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "australian_prize_rules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "budget",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "bundle_evidence",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_nfl_worker=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "canonical_mappings",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "completion_observations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_nfl_worker=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "completions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_nfl_worker=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "delivery_checkpoints",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "delivery_recalculations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "delivery_receipts",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "delivery_records",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "free_core_programmes",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "free_core_roster",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "free_core_roster_beta",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "jobs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "journal",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_nfl_worker=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "nba_beta_access",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "nba_beta_control",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "nfl_allocations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "nfl_control",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "nfl_players",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "nfl_rounds",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_nfl_worker=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "nfl_starter_entitlements",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "nfl_worker_runs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_nfl_worker=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "nfl_worker_runs_id_seq",
+      "kind": "S",
+      "acl": [
+        "postgres=rwU/postgres",
+        "docked_nfl_worker=U/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "sports_feed",
+      "name": "owner_retry_requests",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "owner_retry_requests_id_seq",
+      "kind": "S",
+      "acl": null,
+      "rls": false
+    },
+    {
+      "schema": "sports_feed",
+      "name": "player_aliases",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "player_identities",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "postgame_cache",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_nfl_worker=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "postgame_mapping",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_nfl_worker=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "private_beta_sport_audit",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "private_beta_sport_audit_id_seq",
+      "kind": "S",
+      "acl": null,
+      "rls": false
+    },
+    {
+      "schema": "sports_feed",
+      "name": "private_beta_sports",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "raw_revisions",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_nfl_worker=ar/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "raw_revisions_id_seq",
+      "kind": "S",
+      "acl": [
+        "postgres=rwU/postgres",
+        "docked_nfl_worker=U/postgres"
+      ],
+      "rls": false
+    },
+    {
+      "schema": "sports_feed",
+      "name": "roster_observations",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "roster_observations_id_seq",
+      "kind": "S",
+      "acl": null,
+      "rls": false
+    },
+    {
+      "schema": "sports_feed",
+      "name": "sport_rounds",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "sport_sandbox_access",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "sport_sandbox_inventory",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "stream_members",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "streams",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "docked_nfl_worker=r/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "weekly_core_control",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "weekly_core_job_failures",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "weekly_core_job_runs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "weekly_core_packs",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "weekly_core_schedules",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    },
+    {
+      "schema": "sports_feed",
+      "name": "weekly_sport_programmes",
+      "kind": "r",
+      "acl": [
+        "postgres=arwdDxtm/postgres"
+      ],
+      "rls": true
+    }
+  ],
+  "custodyRecords": 908,
+  "custodyDigest": "7e8e3c84c34e6e91720c7cdfd421186c0b447a17d12bbfd1713ca7d7e59f6714",
+  "release": {
+    "channel": "beta",
+    "origin": "https://docked.com.au",
+    "hostingProvider": "vercel",
+    "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+    "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+    "commit": "12ccfd5879ae83f1bd62210ee16a3feb6907d9ef",
+    "deploymentId": "dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "publicRegistration": false,
+    "invitedAuthentication": true
+  },
+  "productionWrites": 0,
+  "customerBodiesCopied": 0
+}

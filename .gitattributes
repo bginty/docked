@@ -62,3 +62,8 @@ supabase/migrations/20261115235000_batch1_persistence_subdocuments.sql text eol=
 docs/qa/batch1-pack-phone-20261116/** text eol=lf
 docs/qa/batch1-pack-phone-20261116/*.png -text
 docs/qa/batch1-pack-phone-20261116/**/*.png -text
+
+# Isolated Batch 1 approval bytes must survive Windows checkout unchanged.
+docs/qa/batch1-hosted-20261116/** text eol=lf
+docs/qa/batch1-hosted-20261116/*.gz -text
+scripts/batch1-preview-operator.ts text eol=lf

@@ -1,4 +1,5 @@
 import { assertHostedBeta } from "./hosted-beta.mjs";
+import { assertPackHostedAcceptance } from "./pack-hosted-acceptance.mjs";
 import { packRevealPreview } from "./pack-opening";
 
 /** Server-selected presentation flag. Admission and receipt ownership remain
@@ -7,6 +8,7 @@ import { packRevealPreview } from "./pack-opening";
 export function packExperienceEnabled(
   env: Record<string, string | undefined> = process.env,
 ) {
+  if (assertPackHostedAcceptance(env)) return true;
   if (packRevealPreview(env)) return true;
   return (
     env.DOCKED_FRIENDS_PACK_REVEAL === "true" &&

@@ -1,0 +1,64 @@
+DOCKED — DISPOSABLE PREVIEW DEPENDENCY APPROVAL
+
+Package SHA-256: 9fb07649e1d1798a552b484022c648b5225321573281f764d7292d129f489eba
+Target only: existing Supabase Preview bckkllmndoxzpzdqrevb.
+Application target: protected docked-preview Vercel project prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR.
+
+Create 12 disposable b1_* namespaces, 152 dependency tables plus 2 acceptance-control
+tables, copied schema-only functions/views/constraints, and two dedicated roles.
+The dependency closure follows the real pack, admission, receipt and Weekly Core
+functions; it does not replay Production migration history or copy customer rows.
+The three original Batch 1 SQL files remain byte-for-byte unchanged. Their seven
+final functions were checked before namespace conversion in disconnected rehearsal.
+The named California tester constant is replaced with an uninvited synthetic sentinel.
+
+Runtime role: LOGIN, no superuser, no BYPASSRLS, no role/database creation,
+NOINHERIT, no privileged membership, 12 connections, password valid 24 hours.
+Owner role: NOLOGIN, no privileged membership; owns only disposable namespaces.
+104 existing runtime grants are reproduced only within the new namespaces.
+No grants to anon/authenticated/service_role. No existing schema ACL changes.
+Auth access uses fixed-member filtered views for the two newly created synthetic
+accounts. Identical claim-reader helpers are copied to the namespace so no shared
+Auth schema grants are needed. Write guards require a real active AAL2 session,
+verified factor, correct server metadata and a valid 24-hour window.
+No customer Auth accounts, sessions, passwords or provider credentials are copied.
+The isolated collection/Weekly reader checks Preview mode and its genuine project
+reference, with Production context empty; all account/consent checks remain.
+Collection and four-card Weekly Core/retry checks passed for both accounts in all
+three sports using stale fictional source snapshots.
+
+Synthetic fixtures: 2,479 fictional players (1,308 eligible synthetic identities),
+6,540 synthetic definitions, zero initial limited copies, 1,000,000 nonredeemable
+fixture credits per account across ten separately capped 100,000-credit campaigns.
+All fixture source evidence is explicitly fictional, never a real rights approval.
+At most 200 synthetic purchases (at most 1,800 test cards); no external payments.
+
+Rehearsal: all 18 NFL/AFL/NRL Standard/Premium 1/3/9-card offers purchased,
+opened and retried through the restricted role. One debit, the exact card count and
+unchanged cross-account denial verified. Twelve isolation/MFA/expiry checks passed.
+Genuine Preview password and TOTP authentication already passed for both accounts.
+These local pack results are NOT hosted latency or physical Android acceptance.
+
+Application: atomic creation after hashes, absence and target checks. If any
+prerequisite fails, transaction rolls back. If response is interrupted, inspect
+the recorded operation and schemas before retrying; do not duplicate it.
+Recovery: stop the dedicated deployment, close the window/revoke runtime LOGIN,
+terminate only its connections, remove only listed disposable schemas and roles
+after confirming no outside ownership/dependency. No shared schema rollback.
+No changes to existing Preview accounts/Phone settings, Production, real balances,
+real cards, public gates, Play or managed publishing. No new paid infrastructure.
+
+This separate approval is required by your instruction to obtain approval before
+changing persistent shared Preview infrastructure. It does not authorise Production.
+
+Exact SQL hashes:
+private-data/batch1-hosted-20261116/namespace-schema.sql
+  42d734e2dc5ef5e34d95af1f18584961e11a09fc296d92bdbd9dce34da140254
+private-data/batch1-hosted-20261116/namespace-permissions.sql
+  e18ddcb00701e4935ae094fa87395570f21bdd628b27f01aa098f27a3d5f0062
+private-data/batch1-hosted-20261116/fixtures.sql
+  247dbf5a559c44bd18af781965ac646abd86bcd74450c4ff59d8522454b30a70
+Operator: scripts/batch1-preview-operator.ts
+  975c48ee674e1bfd8ca1947504177d6e152fe61730243b53dc18ead100b7bdc0
+Readable SQL is in the listed local files. The identical frozen payload is retained
+in preview-payloads.json.gz, with its checksum in preview-package.json.

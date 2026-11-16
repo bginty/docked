@@ -14,7 +14,7 @@ import {
   type CollectionPage,
 } from "@/core/owned-collection";
 import { nflSearchTeams } from "@/core/card-presentation";
-import production from "../../config/hosted-production.json";
+import { setPackReaderContext } from "./pack-reader-context";
 import { commercialSurfaceEnabled } from "../core/commercial-presentation";
 import { memberCommercial } from "./member-commercial";
 
@@ -59,7 +59,7 @@ export async function ownedCollection(input: unknown): Promise<CollectionPage> {
   }
   return await db().begin(async (tx) => {
     await setCommunityClaims(tx, who);
-    await tx`select set_config('docked.fantasy_production',${production.supabaseProjectRef!},true),set_config('docked.fantasy_channel',${process.env.DOCKED_RELEASE_CHANNEL ?? "stable"},true)`;
+    await setPackReaderContext(tx);
     if (query.sport !== "nfl") await setSportBetaContext(tx, query.sport);
     const filters = {
       ...query,

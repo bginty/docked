@@ -10,13 +10,28 @@ export function betaStatement(text: string) {
     (_, schema: string) => `beta_${schema}.`,
   );
 }
-export function betaSql<T extends Sql>(connection: T): T {
+export function betaSql<T extends Sql>(
+  connection: T,
+  namespace: (text: string) => string = (text) => text,
+): T {
+  const statement = (text: string) => namespace(betaStatement(text));
   const wrap = (sql: object): object =>
     new Proxy(sql, {
       apply(target, thisArg, args: unknown[]) {
         const first = args[0];
+        // postgres.js identifier helpers are distinct from bound values. The
+        // acceptance namespace must cover sql('credits_sandbox') as well as
+        // qualified static text, without ever rewriting a JSON/value parameter.
+        if (typeof first === "string" && args.length === 1) {
+          const mapped = namespace(first + ".").slice(0, -1);
+          return Reflect.apply(
+            target as (...a: unknown[]) => unknown,
+            thisArg,
+            [mapped],
+          );
+        }
         if (Array.isArray(first) && Object.hasOwn(first, "raw")) {
-          const strings = first.map(betaStatement);
+          const strings = first.map(statement);
           Object.defineProperty(strings, "raw", { value: strings.slice() });
           return Reflect.apply(
             target as (...a: unknown[]) => unknown,
@@ -34,7 +49,7 @@ export function betaSql<T extends Sql>(connection: T): T {
         const value = Reflect.get(target, key);
         if (key === "unsafe")
           return (text: string, ...args: unknown[]) =>
-            value.call(target, betaStatement(text), ...args);
+            value.call(target, statement(text), ...args);
         if (key === "file")
           return () => {
             throw Error(

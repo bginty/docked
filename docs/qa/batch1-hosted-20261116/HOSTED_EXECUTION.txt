@@ -1,0 +1,59 @@
+DOCKED — PENDING HOSTED ACCEPTANCE EXECUTION
+Run from this worktree. Do not execute past an unmet prerequisite.
+
+1. Verify current package bytes with:
+   node node_modules/tsx/dist/cli.mjs scripts/batch1-preview-operator.ts
+   Record only an actual founder approval for current 9fb07649... in ignored
+   private-data/batch1-hosted-20261116/preview-approval.json with exact packageSha256,
+   explicitFounderApproval=true and the real approval time. Do not infer approval.
+2. Renew Vercel CLI login into the existing private global-config directory. Inspect
+   docked-preview: exact project/team, SSO all, no custom domain, inherited keys.
+   Never print saved credentials, disable protection or alter persistent env vars.
+3. Apply the approved disposable SQL exactly once:
+   node node_modules/tsx/dist/cli.mjs scripts/batch1-preview-operator.ts --apply-approved
+   If failure/interruption occurs, inspect the private operation record and actual
+   schemas/roles before any retry. No blind reset or duplicate provisioning.
+   Recheck original Preview ACLs, absence of customer writes, provider settings,
+   restricted runtime identity, two-member Auth views and actual session guards.
+   The hosted postgres operator is not a superuser; an ownership/grant prerequisite
+   failure must stop atomically, not cause broader runtime permissions.
+4. Refresh only the two genuine synthetic Auth sessions:
+   node node_modules/tsx/dist/cli.mjs scripts/batch1-preview-auth.ts --synthetic-preview-only
+   Confirm AAL2, server metadata and allowlist. No fake/hand-signed JWTs.
+5. Commit verified application source first. Prepare, stage and verify only Preview:
+   node scripts/batch1-hosted-stage.mjs prepare
+   node scripts/batch1-hosted-stage.mjs stage
+   node scripts/batch1-hosted-stage.mjs verify
+   Per-deployment environment clears inherited credentials, uses only restricted
+   Preview DB credentials and publishable Auth key. A failed build is not a pass.
+6. Use HTTP to create representative fictional history, then refresh Auth if needed:
+   node node_modules/tsx/dist/cli.mjs scripts/batch1-hosted-http.ts --approved-synthetic-window --precondition
+   node node_modules/tsx/dist/cli.mjs scripts/batch1-hosted-http.ts --approved-synthetic-window
+   The harness refuses to repeat an existing run or exceed the 200-purchase total.
+   Reconcile partial runs against saved request IDs and the synthetic ledger. Never
+   remove a run record merely to restart. Logs/config files containing sessions
+   stay under ignored private-data, never Git or user-facing output.
+7. Inspect every HTTP result and Server-Timing stage, not just aggregate latency.
+   Split first-observed, warm, recovery, opening and each offer/sport/account.
+   Report sample counts. Compare independent hosted p95 with prior isolated values;
+   do not attribute network/Auth overhead to an application regression without data.
+   Require exact debit/card/allocation reconciliation and investigate regressions.
+8. Reserve at most 20 additional synthetic purchases for a protected browser session:
+   normal and throttled mobile network, page reload during pending confirmation,
+   restored saved purchase, receipt opening/reveal, logged-out and other-account
+   denial. Use real synthetic Auth cookies; preserve app security and protection.
+   Record throttle configuration, request IDs privately, response timing and UI.
+   Physical Android remains distinct. If browser access is unavailable, mark this
+   acceptance gap; do not substitute a local test and label it hosted/browser pass.
+9. Cold behavior: first HTTP request is only first-observed. Establish a real cold
+   invocation through deployment/function evidence before labelling a cold sample.
+   Do not keep redeploying or spend beyond approved infrastructure merely to obtain
+   a percentile. Report unproven cold start separately if evidence is unavailable.
+10. Recheck synthetic account and database permissions, rights denial, expiry,
+    lifetime counters and unrelated Preview state. Close the window/revoke the
+    dedicated login and stop the test deployment when done. Remove only this exact
+    namespace/role set after preserving non-secret results and checking dependencies.
+    Existing Preview Auth/Phone configuration and customer assets stay unchanged.
+11. Only after all required hosted checks pass, freeze the revised Production
+    source/package and ask for its separate exact approval. No Production changes,
+    Batch 2, native build, Google publication, SMS or commercial activation here.

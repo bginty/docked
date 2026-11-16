@@ -1,4 +1,5 @@
 import manifest from "../../config/hosted-beta.json" with { type: "json" };
+import { assertPackHostedAcceptance } from "./pack-hosted-acceptance.mjs";
 import friendsRelease from "../../config/friends-release.json" with { type: "json" };
 import { localMarketplaceAcceptance } from "./local-marketplace-acceptance.mjs";
 import {
@@ -11,6 +12,7 @@ import {
 } from "./friends-release.mjs";
 /** @param {Record<string,string|undefined>} env */
 export function betaOrigin(env) {
+  if (assertPackHostedAcceptance(env)) return `https://${env.VERCEL_URL}`;
   if (env.DOCKED_PRIVATE_PREVIEW) {
     if (assertPrivatePreview(env)) return privatePreviewOrigin(env);
   }
@@ -71,6 +73,7 @@ export function betaOwnerAuthenticationOnly(env) {
  * changes config/hosted-production.json. Credentials alone cannot enable access.
  * @param {Record<string,string|undefined>} env @param {Record<string,any>} [release] */
 export function assertHostedBeta(env, release = friendsRelease) {
+  if (assertPackHostedAcceptance(env)) return true;
   if (assertPrivatePreview(env)) return true;
   if (localMarketplaceAcceptance(env)) return true;
   if (

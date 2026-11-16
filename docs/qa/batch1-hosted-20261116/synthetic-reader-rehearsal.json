@@ -1,0 +1,49 @@
+{
+  "at": "2026-11-16T05:59:32.076Z",
+  "localOnly": true,
+  "productionContextUsed": false,
+  "checks": [
+    {
+      "sport": "nfl",
+      "account": "owner",
+      "collection": true,
+      "fourUniqueCoreCards": true,
+      "exactReplay": true
+    },
+    {
+      "sport": "afl",
+      "account": "owner",
+      "collection": true,
+      "fourUniqueCoreCards": true,
+      "exactReplay": true
+    },
+    {
+      "sport": "nrl",
+      "account": "owner",
+      "collection": true,
+      "fourUniqueCoreCards": true,
+      "exactReplay": true
+    },
+    {
+      "sport": "nfl",
+      "account": "tester",
+      "collection": true,
+      "fourUniqueCoreCards": true,
+      "exactReplay": true
+    },
+    {
+      "sport": "afl",
+      "account": "tester",
+      "collection": true,
+      "fourUniqueCoreCards": true,
+      "exactReplay": true
+    },
+    {
+      "sport": "nrl",
+      "account": "tester",
+      "collection": true,
+      "fourUniqueCoreCards": true,
+      "exactReplay": true
+    }
+  ]
+}
