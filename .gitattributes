@@ -54,3 +54,11 @@ tests/named-private-tester.playwright.config.ts text eol=lf
 tests/database/customer-invitation.test.ts text eol=lf
 docs/qa/brenton-private-tester-20261115/** text eol=lf
 docs/qa/brenton-private-tester-20261115/*.png -text
+
+# Batch 1 SQL literal anchors and approval checksums are byte-stable.
+supabase/migrations/20261115113306_batch_private_pack_issuance_validation.sql text eol=lf
+supabase/migrations/20261115211545_batch1_pack_guard_batching.sql text eol=lf
+supabase/migrations/20261115235000_batch1_persistence_subdocuments.sql text eol=lf
+docs/qa/batch1-pack-phone-20261116/** text eol=lf
+docs/qa/batch1-pack-phone-20261116/*.png -text
+docs/qa/batch1-pack-phone-20261116/**/*.png -text

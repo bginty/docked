@@ -403,16 +403,20 @@ export function allocateNine(
       throw Error("Invalid secure draw");
     return value;
   };
+  // Identity, source eligibility and this operation's server timestamp do not
+  // change between slots. Supply and duplicate-player exclusions DO change;
+  // apply those separately for every draw, preserving the exact ordered pool.
+  const catalogue = eligibleCatalogue(e, p, now).sort((a, b) =>
+    a.id.localeCompare(b.id),
+  );
   for (let slot = 0; slot < p.cards; slot++) {
     const rarity = drawPackRarity(p, slot, pick);
-    const pool = eligibleCatalogue(e, p, now)
-      .filter(
-        (player) =>
-          (p.duplicatePlayers === "allow" || !selected.has(player.id)) &&
-          (e.definitions[definitionId(player.id, rarity)]?.issued ?? 0) <
-            rarityRule(rarity).lifetimeCap!,
-      )
-      .sort((a, b) => a.id.localeCompare(b.id));
+    const pool = catalogue.filter(
+      (player) =>
+        (p.duplicatePlayers === "allow" || !selected.has(player.id)) &&
+        (e.definitions[definitionId(player.id, rarity)]?.issued ?? 0) <
+          rarityRule(rarity).lifetimeCap!,
+    );
     if (!pool.length)
       throw Error(
         "Selected rarity has insufficient eligible supply; no charge or cards issued",

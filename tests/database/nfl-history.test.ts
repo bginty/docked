@@ -66,7 +66,9 @@ test("history uses approved full PPR with fumbles once, preserves incomplete/zer
     0,
   );
 });
-test("live history target requires dedicated credentials, exact project and explicit activation", () => {
+test("live history target requires dedicated credentials, exact project, activation and unexpired review", (t) => {
+  const expiry = Date.parse(nflHistoryTarget.reviewExpiresAt);
+  t.mock.timers.enable({ apis: ["Date"], now: expiry - 1000 });
   const url = `postgres://docked_nfl_history_reader.${nflHistoryTarget.projectRef}:fixture@aws-0-ap-southeast-2.pooler.supabase.com:5432/postgres`;
   assert.equal(
     historyDatabaseTarget(url, "reader"),
@@ -99,6 +101,10 @@ test("live history target requires dedicated credentials, exact project and expl
     ),
     false,
   );
+  t.mock.timers.setTime(expiry);
+  assert.equal(historyReceiverEnabled(env, nflHistoryTarget.origin), false);
+  t.mock.timers.setTime(expiry + 1000);
+  assert.equal(historyReceiverEnabled(env, nflHistoryTarget.origin), false);
 });
 test("history roles isolate raw imports; real-only signatures, duplicate delivery and correction retain settlement sentinel", async () => {
   const pg = new PGlite();

@@ -13,6 +13,7 @@ import {
   testReceipt,
 } from "../../src/core/member-test-wallet";
 import { executeCredits, wallet } from "../../src/core/credits-sandbox";
+import { founderCreditProducts } from "../../src/core/founder-credit-packs";
 import {
   lockRarity,
   nflRarityRules,
@@ -68,14 +69,41 @@ test("six authoritative rarities total 7951 limited cards; Core is unlimited and
   );
   assert.equal(rarityConfiguration.rarities.CORE.lifetimeCap, null);
 });
-test('changed product consent, pause and client override cannot buy a new pack',()=>{
- const s=funded();
- const c={kind:'buy-pack',product:'standard-nine-test-v1',configuration:'stale',confirmed:true,policy:s.policy.version};
- assert.throws(()=>executeCredits(s,member,'stale',c,now),/configuration changed/);
- assert.throws(()=>executeCredits(s,member,'override',{...c,configuration:c.product,price:1},now));
- s.economy!.enabled=false;
- assert.throws(()=>executeCredits(s,member,'paused',{...c,configuration:c.product},now),/paused/);
- assert.equal(memberTestView(s,member.id,[],false,now).products.length,0);
+test("changed product consent, pause and client override cannot buy a new pack", () => {
+  const s = funded();
+  const c = {
+    kind: "buy-pack",
+    product: "standard-nine-test-v1",
+    configuration: "stale",
+    confirmed: true,
+    policy: s.policy.version,
+  };
+  assert.throws(
+    () => executeCredits(s, member, "stale", c, now),
+    /configuration changed/,
+  );
+  assert.throws(() =>
+    executeCredits(
+      s,
+      member,
+      "override",
+      { ...c, configuration: c.product, price: 1 },
+      now,
+    ),
+  );
+  s.economy!.enabled = false;
+  assert.throws(
+    () =>
+      executeCredits(
+        s,
+        member,
+        "paused",
+        { ...c, configuration: c.product },
+        now,
+      ),
+    /paused/,
+  );
+  assert.equal(memberTestView(s, member.id, [], false, now).products.length, 0);
 });
 test("both packs yield nine unique non-Core cards and allow a deterministic Icon", () => {
   for (const product of ["standard-nine-test-v1", "premium-nine-test-v1"]) {
@@ -209,6 +237,80 @@ test("wallet retries preserve nine awards and one debit; open/replay never remin
     ),
   );
 });
+test("permanent season pack reveal survives stale roster and provider outage without further issuance", () => {
+  const s = funded();
+  s.economy!.rosterPolicy = "official-nfl-roster-v1";
+  const product = founderCreditProducts().find(
+    (p) => p.sport === "nfl" && p.type === "STANDARD" && p.cards === 9,
+  )!;
+  s.economy!.products[product.id] = product;
+  const purchaseAt = product.effectiveAt + 1;
+  s.economy!.founderCatalogue = {
+    enabled: true,
+    players: Object.fromEntries(
+      Object.values(s.economy!.players).map((p) => [
+        p.id,
+        { canonicalPlayer: p.id, team: p.currentTeam },
+      ]),
+    ),
+  };
+  const purchased = executeCredits(
+    s,
+    member,
+    "season-purchase",
+    {
+      kind: "buy-pack",
+      product: product.id,
+      configuration: product.version,
+      confirmed: true,
+      policy: s.policy.version,
+    },
+    purchaseAt,
+  );
+  const state = purchased.state;
+  // No new purchase is allowed after rights/provider availability disappears.
+  state.economy!.founderCatalogue!.enabled = false;
+  for (const p of Object.values(state.economy!.players)) {
+    p.status = "inactive";
+    p.currentTeam = "TRANSFERRED";
+    p.roster = undefined;
+  }
+  const before = structuredClone(state);
+  const opened = executeCredits(
+    state,
+    member,
+    "season-open",
+    { kind: "open-pack", entitlement: "season-purchase" },
+    purchaseAt + 100 * 3600000,
+  );
+  assert.equal(opened.state.entitlements["season-purchase"].status, "OPENED");
+  assert.deepEqual(opened.state.economy!.instances, before.economy!.instances);
+  assert.deepEqual(
+    opened.state.economy!.definitions,
+    before.economy!.definitions,
+  );
+  assert.deepEqual(opened.state.journal, before.journal);
+  assert.equal(
+    testReceipt(opened.state, "season-purchase", member.id)!.cards.length,
+    9,
+  );
+  assert.throws(() =>
+    executeCredits(
+      state,
+      member,
+      "another-purchase",
+      {
+        kind: "buy-pack",
+        product: product.id,
+        configuration: product.version,
+        confirmed: true,
+        policy: s.policy.version,
+      },
+      purchaseAt + 100 * 3600000,
+    ),
+  );
+});
+
 test("new products reject insufficient balance and legacy purchases; old sealed entitlements still open", () => {
   let s = initialMemberTestCredits();
   s = executeCredits(

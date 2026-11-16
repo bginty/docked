@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-15T23:24:24.554Z",
+  "scope": "Isolated browser simulation; no Auth, Twilio, hosted or physical-device acceptance",
+  "checks": [
+    {
+      "stalled": "headers",
+      "elapsedMs": 19765,
+      "visibleRecoveryMs": 19518,
+      "requests": 1,
+      "typedNumberPreserved": true,
+      "automaticResends": 0
+    },
+    {
+      "stalled": "body",
+      "elapsedMs": 19930,
+      "visibleRecoveryMs": 19506,
+      "requests": 1,
+      "typedNumberPreserved": true,
+      "automaticResends": 0
+    },
+    {
+      "serverCountdown": "honoured",
+      "automaticResends": 0
+    },
+    {
+      "wrongCodeAndProviderOutage": "recoverable",
+      "typedCodePreserved": true,
+      "automaticRetries": 0
+    }
+  ]
+}

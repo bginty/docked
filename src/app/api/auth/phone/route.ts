@@ -2,7 +2,10 @@ import { NextResponse } from "next/server";
 import { sameOrigin } from "@/server/auth";
 import { publicPhoneCommand } from "@/server/public-phone";
 import { boundedCommunityBody } from "@/core/community-social";
-import { publicPhoneErrorMessage } from "@/core/phone-challenge";
+import {
+  publicPhoneErrorMessage,
+  PhoneThrottleError,
+} from "@/core/phone-challenge";
 export async function POST(request: Request) {
   const headers = { "Cache-Control": "no-store" };
   if (!sameOrigin(request))
@@ -22,8 +25,19 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error: publicPhoneErrorMessage(error),
+        ...(error instanceof PhoneThrottleError
+          ? { retryAfterSeconds: error.retryAfterSeconds }
+          : {}),
       },
-      { status: 400, headers },
+      {
+        status: error instanceof PhoneThrottleError ? 429 : 400,
+        headers: {
+          ...headers,
+          ...(error instanceof PhoneThrottleError
+            ? { "Retry-After": String(error.retryAfterSeconds) }
+            : {}),
+        },
+      },
     );
   }
 }

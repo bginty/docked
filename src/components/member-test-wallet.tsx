@@ -82,11 +82,20 @@ export function MemberTestWallet({
     );
     let response: Response | undefined;
     try {
-      const r = await boundedFetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ request, command }),
-      });
+      const r = await boundedFetch(
+        surface === "packs" &&
+          ["buy-pack", "open-pack"].includes(String(command.kind))
+          ? `${endpoint}&result=receipt`
+          : endpoint,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ request, command }),
+        },
+        command.kind === "buy-pack" || command.kind === "open-pack"
+          ? 30000
+          : 15000,
+      );
       response = r;
       const data = await r.json();
       if (!r.ok) {
@@ -97,11 +106,31 @@ export function MemberTestWallet({
         }
         throw Error(data.error);
       }
-      if (data.state?.member !== initial.member)
+      if ((data.packUpdate?.member ?? data.state?.member) !== initial.member)
         throw Error(
           "Your account session changed. Sign in again before continuing.",
         );
-      setS(data.state);
+      if (data.packUpdate) {
+        const update = data.packUpdate;
+        setS((previous) => ({
+          ...previous,
+          wallet: update.wallet,
+          packs: [
+            ...previous.packs.filter((p) => p.id !== update.pack.id),
+            update.pack,
+          ],
+          cards: [
+            ...previous.cards.filter(
+              (c) =>
+                !(
+                  update.reconciledCardIds ??
+                  update.cards.map((next: { id: string }) => next.id)
+                ).includes(c.id),
+            ),
+            ...update.cards,
+          ],
+        }));
+      } else setS(data.state);
       window.dispatchEvent(new Event("docked-app-resume"));
       if (
         command.kind === "buy-pack" &&

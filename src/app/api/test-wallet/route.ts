@@ -3,6 +3,7 @@ import { sameOrigin } from "@/server/auth";
 import {
   memberTestWallet,
   workspaceWalletSummary,
+  memberTestPackCommand,
 } from "@/server/member-test-wallet";
 import { memberAccessFailure } from "@/core/member-access-recovery";
 import { boundedCommunityBody } from "@/core/community-social";
@@ -88,12 +89,15 @@ async function command(req: Request) {
     const body = JSON.parse(
       new TextDecoder().decode(await boundedCommunityBody(req, 8192)),
     );
-    const data = await memberTestWallet(
-      body,
-      new URL(req.url).searchParams.get("view") === "packs"
-        ? "packs"
-        : "wallet",
-    );
+    const data =
+      new URL(req.url).searchParams.get("result") === "receipt"
+        ? await memberTestPackCommand(body)
+        : await memberTestWallet(
+            body,
+            new URL(req.url).searchParams.get("view") === "packs"
+              ? "packs"
+              : "wallet",
+          );
     const durationMs = Math.round(performance.now() - started);
     console.info("test_wallet_command", { outcome: "completed", durationMs });
     return NextResponse.json(data, {

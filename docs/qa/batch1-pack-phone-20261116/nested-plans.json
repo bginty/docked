@@ -1,0 +1,450 @@
+[
+  {
+    "duration": "151.448",
+    "queryKind": "\n -- Evaluate retained-source rights once as sets. Calling the scalar helper for\n -- every rarity re",
+    "Plan": {
+      "Node Type": "Seq Scan",
+      "Relation Name": "control",
+      "Actual Startup Time": 149.964,
+      "Actual Total Time": 149.99,
+      "Actual Rows": 1,
+      "Actual Loops": 1,
+      "Rows Removed by Filter": 0,
+      "Plans": [
+        {
+          "Node Type": "Unique",
+          "Actual Startup Time": 0.091,
+          "Actual Total Time": 0.093,
+          "Actual Rows": 0,
+          "Actual Loops": 1,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Actual Startup Time": 0.09,
+              "Actual Total Time": 0.092,
+              "Actual Rows": 0,
+              "Actual Loops": 1,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Relation Name": "decisions",
+                  "Actual Startup Time": 0.007,
+                  "Actual Total Time": 0.008,
+                  "Actual Rows": 0,
+                  "Actual Loops": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Node Type": "Hash Join",
+          "Actual Startup Time": 0.25,
+          "Actual Total Time": 14.176,
+          "Actual Rows": 2570,
+          "Actual Loops": 1,
+          "Rows Removed by Filter": 0,
+          "Plans": [
+            {
+              "Node Type": "Hash Join",
+              "Actual Startup Time": 0.207,
+              "Actual Total Time": 4.034,
+              "Actual Rows": 2570,
+              "Actual Loops": 1,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Relation Name": "members",
+                  "Actual Startup Time": 0.012,
+                  "Actual Total Time": 1.585,
+                  "Actual Rows": 2570,
+                  "Actual Loops": 1
+                },
+                {
+                  "Node Type": "Hash",
+                  "Actual Startup Time": 0.158,
+                  "Actual Total Time": 0.163,
+                  "Actual Rows": 6,
+                  "Actual Loops": 1,
+                  "Plans": [
+                    {
+                      "Node Type": "Hash Join",
+                      "Actual Startup Time": 0.136,
+                      "Actual Total Time": 0.146,
+                      "Actual Rows": 6,
+                      "Actual Loops": 1,
+                      "Rows Removed by Filter": 0,
+                      "Plans": [
+                        {
+                          "Node Type": "Seq Scan",
+                          "Relation Name": "rights",
+                          "Actual Startup Time": 0.006,
+                          "Actual Total Time": 0.01,
+                          "Actual Rows": 6,
+                          "Actual Loops": 1,
+                          "Rows Removed by Filter": 0
+                        },
+                        {
+                          "Node Type": "Hash",
+                          "Actual Startup Time": 0.092,
+                          "Actual Total Time": 0.094,
+                          "Actual Rows": 0,
+                          "Actual Loops": 1,
+                          "Plans": [
+                            {
+                              "Node Type": "CTE Scan",
+                              "Actual Startup Time": 0.091,
+                              "Actual Total Time": 0.092,
+                              "Actual Rows": 0,
+                              "Actual Loops": 1,
+                              "Rows Removed by Filter": 0
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Node Type": "Hash",
+              "Actual Startup Time": 0.001,
+              "Actual Total Time": 0.003,
+              "Actual Rows": 0,
+              "Actual Loops": 1,
+              "Plans": [
+                {
+                  "Node Type": "CTE Scan",
+                  "Actual Startup Time": 0.001,
+                  "Actual Total Time": 0.001,
+                  "Actual Rows": 0,
+                  "Actual Loops": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Node Type": "Seq Scan",
+          "Relation Name": "control",
+          "Actual Startup Time": 0.01,
+          "Actual Total Time": 0.011,
+          "Actual Rows": 0,
+          "Actual Loops": 1,
+          "Rows Removed by Filter": 1
+        },
+        {
+          "Node Type": "Aggregate",
+          "Actual Startup Time": 138.022,
+          "Actual Total Time": 138.032,
+          "Actual Rows": 1,
+          "Actual Loops": 1,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Actual Startup Time": 116.372,
+              "Actual Total Time": 116.669,
+              "Actual Rows": 1210,
+              "Actual Loops": 1,
+              "Plans": [
+                {
+                  "Node Type": "Subquery Scan",
+                  "Actual Startup Time": 71.162,
+                  "Actual Total Time": 113.48,
+                  "Actual Rows": 1210,
+                  "Actual Loops": 1,
+                  "Plans": [
+                    {
+                      "Node Type": "Aggregate",
+                      "Actual Startup Time": 71.159,
+                      "Actual Total Time": 112.647,
+                      "Actual Rows": 1210,
+                      "Actual Loops": 1,
+                      "Rows Removed by Filter": 0,
+                      "Plans": [
+                        {
+                          "Node Type": "Sort",
+                          "Actual Startup Time": 71.064,
+                          "Actual Total Time": 72.214,
+                          "Actual Rows": 6050,
+                          "Actual Loops": 1,
+                          "Plans": [
+                            {
+                              "Node Type": "Nested Loop",
+                              "Actual Startup Time": 21.77,
+                              "Actual Total Time": 60.71,
+                              "Actual Rows": 6050,
+                              "Actual Loops": 1,
+                              "Plans": [
+                                {
+                                  "Node Type": "Hash Join",
+                                  "Actual Startup Time": 21.719,
+                                  "Actual Total Time": 31.327,
+                                  "Actual Rows": 6050,
+                                  "Actual Loops": 1,
+                                  "Plans": [
+                                    {
+                                      "Node Type": "Seq Scan",
+                                      "Relation Name": "definitions",
+                                      "Actual Startup Time": 0.005,
+                                      "Actual Total Time": 1.576,
+                                      "Actual Rows": 6050,
+                                      "Actual Loops": 1
+                                    },
+                                    {
+                                      "Node Type": "Hash",
+                                      "Actual Startup Time": 21.677,
+                                      "Actual Total Time": 21.68,
+                                      "Actual Rows": 1210,
+                                      "Actual Loops": 1,
+                                      "Plans": [
+                                        {
+                                          "Node Type": "Hash Join",
+                                          "Actual Startup Time": 18.727,
+                                          "Actual Total Time": 20.551,
+                                          "Actual Rows": 1210,
+                                          "Actual Loops": 1,
+                                          "Plans": [
+                                            {
+                                              "Node Type": "CTE Scan",
+                                              "Actual Startup Time": 0.255,
+                                              "Actual Total Time": 0.926,
+                                              "Actual Rows": 1360,
+                                              "Actual Loops": 1,
+                                              "Rows Removed by Filter": 1210
+                                            },
+                                            {
+                                              "Node Type": "Hash",
+                                              "Actual Startup Time": 18.42,
+                                              "Actual Total Time": 18.421,
+                                              "Actual Rows": 1210,
+                                              "Actual Loops": 1,
+                                              "Plans": [
+                                                {
+                                                  "Node Type": "CTE Scan",
+                                                  "Actual Startup Time": 2.578,
+                                                  "Actual Total Time": 17.403,
+                                                  "Actual Rows": 1210,
+                                                  "Actual Loops": 1,
+                                                  "Rows Removed by Filter": 1360
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Node Type": "Index Scan",
+                                  "Index Name": "definitions_pkey",
+                                  "Relation Name": "definitions",
+                                  "Actual Startup Time": 0.004,
+                                  "Actual Total Time": 0.004,
+                                  "Actual Rows": 1,
+                                  "Actual Loops": 6050
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "duration": "176.833",
+    "queryKind": "select beta_packs.catalogue() value",
+    "Plan": {
+      "Node Type": "Result",
+      "Actual Startup Time": 168.683,
+      "Actual Total Time": 168.686,
+      "Actual Rows": 1,
+      "Actual Loops": 1
+    }
+  },
+  {
+    "duration": "166.458",
+    "queryKind": "insert into \"credits_sandbox\".history(revision,actor,request,document) values($1,$2,$3,$4)",
+    "Plan": {
+      "Node Type": "ModifyTable",
+      "Relation Name": "history",
+      "Actual Startup Time": 166.453,
+      "Actual Total Time": 166.454,
+      "Actual Rows": 0,
+      "Actual Loops": 1,
+      "Plans": [
+        {
+          "Node Type": "Result",
+          "Actual Startup Time": 0.004,
+          "Actual Total Time": 0.005,
+          "Actual Rows": 1,
+          "Actual Loops": 1
+        }
+      ]
+    }
+  },
+  {
+    "duration": "418.275",
+    "queryKind": "SELECT beta_packs.capture(old.document,new.document)",
+    "Plan": {
+      "Node Type": "Result",
+      "Actual Startup Time": 418.271,
+      "Actual Total Time": 418.272,
+      "Actual Rows": 1,
+      "Actual Loops": 1
+    }
+  },
+  {
+    "duration": "186.816",
+    "queryKind": "select coalesce(jsonb_object_agg(key,(value->>'sport' in ('basketball','afl','nrl') and\n  (value->'s",
+    "Plan": {
+      "Node Type": "Aggregate",
+      "Actual Startup Time": 186.789,
+      "Actual Total Time": 186.79,
+      "Actual Rows": 1,
+      "Actual Loops": 1,
+      "Plans": [
+        {
+          "Node Type": "Function Scan",
+          "Actual Startup Time": 6.327,
+          "Actual Total Time": 12.878,
+          "Actual Rows": 2479,
+          "Actual Loops": 1
+        }
+      ]
+    }
+  },
+  {
+    "duration": "127.822",
+    "queryKind": "insert into credits_sandbox.nba_fixture_definitions(id,player_id,rarity,rarity_version,lifetime_cap)",
+    "Plan": {
+      "Node Type": "ModifyTable",
+      "Relation Name": "nba_fixture_definitions",
+      "Actual Startup Time": 126.754,
+      "Actual Total Time": 126.757,
+      "Actual Rows": 0,
+      "Actual Loops": 1,
+      "Plans": [
+        {
+          "Node Type": "Hash Join",
+          "Actual Startup Time": 1.574,
+          "Actual Total Time": 1.688,
+          "Actual Rows": 8,
+          "Actual Loops": 1,
+          "Plans": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "nba_fixture_definitions",
+              "Actual Startup Time": 0.025,
+              "Actual Total Time": 0.083,
+              "Actual Rows": 351,
+              "Actual Loops": 1
+            },
+            {
+              "Node Type": "Hash",
+              "Actual Startup Time": 1.283,
+              "Actual Total Time": 1.284,
+              "Actual Rows": 359,
+              "Actual Loops": 1,
+              "Plans": [
+                {
+                  "Node Type": "Function Scan",
+                  "Actual Startup Time": 0.224,
+                  "Actual Total Time": 1.169,
+                  "Actual Rows": 359,
+                  "Actual Loops": 1,
+                  "Rows Removed by Filter": 403
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "duration": "2238.536",
+    "queryKind": "explain(analyze,format json) update credits_sandbox.state set revision=$1,document=(select document ",
+    "Plan": {
+      "Node Type": "ModifyTable",
+      "Relation Name": "state",
+      "Actual Startup Time": 1829.144,
+      "Actual Total Time": 1829.146,
+      "Actual Rows": 0,
+      "Actual Loops": 1,
+      "Plans": [
+        {
+          "Node Type": "Index Scan",
+          "Index Name": "history_pkey",
+          "Relation Name": "history",
+          "Actual Startup Time": 0.014,
+          "Actual Total Time": 0.016,
+          "Actual Rows": 1,
+          "Actual Loops": 1
+        },
+        {
+          "Node Type": "Seq Scan",
+          "Relation Name": "state",
+          "Actual Startup Time": 0.029,
+          "Actual Total Time": 0.032,
+          "Actual Rows": 1,
+          "Actual Loops": 1,
+          "Rows Removed by Filter": 0
+        }
+      ]
+    }
+  },
+  {
+    "duration": "130.706",
+    "queryKind": "SELECT beta_packs.capture(old.document,new.document)",
+    "Plan": {
+      "Node Type": "Result",
+      "Actual Startup Time": 130.703,
+      "Actual Total Time": 130.704,
+      "Actual Rows": 1,
+      "Actual Loops": 1
+    }
+  },
+  {
+    "duration": "639.911",
+    "queryKind": "explain(analyze,format json) update credits_sandbox.state set revision=$1,document=(select document ",
+    "Plan": {
+      "Node Type": "ModifyTable",
+      "Relation Name": "state",
+      "Actual Startup Time": 405.816,
+      "Actual Total Time": 405.817,
+      "Actual Rows": 0,
+      "Actual Loops": 1,
+      "Plans": [
+        {
+          "Node Type": "Index Scan",
+          "Index Name": "history_pkey",
+          "Relation Name": "history",
+          "Actual Startup Time": 0.014,
+          "Actual Total Time": 0.015,
+          "Actual Rows": 1,
+          "Actual Loops": 1
+        },
+        {
+          "Node Type": "Seq Scan",
+          "Relation Name": "state",
+          "Actual Startup Time": 0.031,
+          "Actual Total Time": 0.034,
+          "Actual Rows": 1,
+          "Actual Loops": 1,
+          "Rows Removed by Filter": 0
+        }
+      ]
+    }
+  }
+]

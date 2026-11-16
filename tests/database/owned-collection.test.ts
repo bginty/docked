@@ -174,6 +174,15 @@ test("owned collection reads ledgers only, paginates consistently, isolates spor
       "insert into beta_fantasy.editions(id,player_id,tier,season,kind,max_supply,status)values($1,$2,'CORE','2099','regular',10000,'launched')",
       [edition, player],
     );
+    // A new fixture card must satisfy the current season-membership guard.
+    // Never disable issuance guards merely to seed a collection projection.
+    await db.q(
+      "insert into season_catalogue.rights values('owned-fixture','nfl','2099','free_weekly','2000-01-01',null,'{}','Isolated synthetic collection fixture approval')",
+    );
+    await db.q(
+      "insert into season_catalogue.members values('nfl','2099',$1::uuid,'free_weekly','owned-fixture','synthetic',($1::uuid)::text,'{}',$2,'{}',repeat('a',64),'Isolated synthetic verified player fixture')",
+      [player, edition],
+    );
     await db.q(
       "insert into beta_fantasy.cards(id,edition_id,serial,owner_id,tradeable)values($1,$2,1,$3,false)",
       [card, edition, db.user],

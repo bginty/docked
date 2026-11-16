@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "at": "2026-11-15T23:16:29.133Z",
+  "sha256": "4f1bd9bc8cd0fc51099e73e6b2cd479a7dbb390b4891c2e1dde134423042105a",
+  "swapsSha256": "7dc16b282dc44436b4d0d5c05ef0bf5d40c61a1a1a565e0b373b5e7515b13ab2",
+  "projectionSha256": "81c4680e229845874861c47ecb359dc95230d5ad1a0f6f2b947faf5371e9f84c",
+  "scope": "Disposable PGlite; not hosted Auth",
+  "checks": [
+    "two isolated allocations idempotent",
+    "valid FLEX teams",
+    "cross-user/duplicate denial",
+    "supply counts",
+    "worker cannot read holdings/allocation identities or edit locked lineups",
+    "member cannot read raw feed"
+  ]
+}

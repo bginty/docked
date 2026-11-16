@@ -37,6 +37,32 @@ test("Commercial social: authoritative owned/opened cards, privacy, session and 
     }
     const definition = randomUUID(),
       cards = [randomUUID(), randomUUID(), randomUUID()];
+    // Seed complete synthetic purchases through the current guards, atomically.
+    // These controls exist only in the disposable test database.
+    await d.q(
+      "update commercial_billing.control set issuance_enabled=true,policy_version='commercial-closed-loop-2026-11-01-v1',approvals=$1",
+      [
+        {
+          ...Object.fromEntries(
+            [
+              "owner",
+              "legal",
+              "googlePlay",
+              "privacy",
+              "retention",
+              "refundRecovery",
+              "playerRights",
+              "supplyReconciliation",
+            ].map((k) => [k, "ISOLATED FIXTURE ONLY"]),
+          ),
+          validUntil: "2099-01-01T00:00:00Z",
+          withdrawals: false,
+          prizes: false,
+          paidEntry: false,
+          nba: false,
+        },
+      ],
+    );
     await d.q(
       "insert into commercial_billing.definitions(id,player_id,sport,rarity,lifetime_cap,approved,rights_reference,snapshot)values($1,$2,'afl','RARE',5000,true,'isolated synthetic fixture','{}')",
       [definition, randomUUID()],
@@ -44,15 +70,28 @@ test("Commercial social: authoritative owned/opened cards, privacy, session and 
     for (let i = 0; i < 3; i++) {
       const pack = randomUUID(),
         member = i === 2 ? d.other : d.user;
-      await d.q(
-        "insert into commercial_billing.packs(id,member_id,request,product,price,funding,draw_evidence,policy_version,opened_at)values($1,$2,$3,'{}',100,'[]','[]','isolated synthetic fixture',case when $4 then clock_timestamp() else null end)",
-        [pack, member, randomUUID(), i !== 1],
-      );
-      await d.q(
-        "insert into commercial_billing.cards(id,definition,serial,owner_id,pack,slot)values($1,$2,$3,$4,$5,0)",
-        [cards[i], definition, i + 1, member, pack],
-      );
+      await d.pg.exec("begin");
+      try {
+        await d.q(
+          `insert into commercial_billing.packs(id,member_id,request,product,price,funding,draw_evidence,policy_version)values($1,$2,$3,'{"sport":"afl","cards":1}',100,'[]','[{"rarity":"RARE"}]','isolated synthetic fixture')`,
+          [pack, member, randomUUID()],
+        );
+        await d.q(
+          "insert into commercial_billing.cards(id,definition,serial,owner_id,pack,slot)values($1,$2,$3,$4,$5,0)",
+          [cards[i], definition, i + 1, member, pack],
+        );
+        if (i !== 1)
+          await d.q(
+            "update commercial_billing.packs set opened_at=clock_timestamp() where id=$1",
+            [pack],
+          );
+        await d.pg.exec("commit");
+      } catch (error) {
+        await d.pg.exec("rollback");
+        throw error;
+      }
     }
+    await d.q("update commercial_billing.control set issuance_enabled=false");
     const view = async (target = d.user) =>
       (
         await d.q("select commercial_billing.social_inventory($1) cards", [

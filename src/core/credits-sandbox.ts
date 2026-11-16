@@ -949,6 +949,7 @@ export function executeCredits(
     if (!e || e.status === "REVIEW") throw Error("Entitlement held for review");
     if (
       !pack.openedAt &&
+      pack.product.cataloguePolicy !== "founder-credit-season-v1" &&
       s.economy.rosterPolicy &&
       pack.cards.some((id) => {
         const instance = s.economy!.instances[id];

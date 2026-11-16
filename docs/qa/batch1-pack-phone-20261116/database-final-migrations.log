@@ -1,0 +1,125 @@
+TAP version 13
+# Subtest: Commercial social: authoritative owned/opened cards, privacy, session and transfer locking
+ok 1 - Commercial social: authoritative owned/opened cards, privacy, session and transfer locking
+  ---
+  duration_ms: 27892.373
+  ...
+# Subtest: unfunded buyers cannot reserve pack inventory
+ok 2 - unfunded buyers cannot reserve pack inventory
+  ---
+  duration_ms: 27266.5703
+  ...
+# Subtest: fantasy tables use RLS; browsers and runtime cannot write or invoke helpers
+ok 3 - fantasy tables use RLS; browsers and runtime cannot write or invoke helpers
+  ---
+  duration_ms: 43.3251
+  ...
+# Subtest: fourth member, forged session, revoked member and disabled profile fail closed
+ok 4 - fourth member, forged session, revoked member and disabled profile fail closed
+  ---
+  duration_ms: 32.7282
+  ...
+# Subtest: three-user starter claim and opening are persistent, idempotent, non-tradeable and form legal teams
+ok 5 - three-user starter claim and opening are persistent, idempotent, non-tradeable and form legal teams
+  ---
+  duration_ms: 593.9968
+  ...
+# Subtest: scarcity, serials, provenance, credit ledger and rules cannot be rewritten
+ok 6 - scarcity, serials, provenance, credit ledger and rules cannot be rewritten
+  ---
+  duration_ms: 16.9408
+  ...
+# Subtest: market settlement credits 925 and fee 75; insufficient funds and double sale leave records intact
+ok 7 - market settlement credits 925 and fee 75; insufficient funds and double sale leave records intact
+  ---
+  duration_ms: 108.2568
+  ...
+# Subtest: stale trades roll back all ownership; valid multi-card trade is atomic
+ok 8 - stale trades roll back all ownership; valid multi-card trade is atomic
+  ---
+  duration_ms: 101.6231
+  ...
+# Subtest: invalid position and duplicate lineups fail; admin authorization is enforced
+ok 9 - invalid position and duplicate lineups fail; admin authorization is enforced
+  ---
+  duration_ms: 20.3348
+  ...
+# Subtest: empty configured formation is rejected and distinct serials cannot duplicate a player by default
+ok 10 - empty configured formation is rejected and distinct serials cannot duplicate a player by default
+  ---
+  duration_ms: 41.1469
+  ...
+# Subtest: rarity is absent from scoring; unavailable player has zero score, no bench
+ok 11 - rarity is absent from scoring; unavailable player has zero score, no bench
+  ---
+  duration_ms: 8.0892
+  ...
+# Subtest: three-user locked round publishes immutable results and championship points once
+ok 12 - three-user locked round publishes immutable results and championship points once
+  ---
+  duration_ms: 2732.7451
+  ...
+# Subtest: pack issuance failure rolls back debit, serial allocation and opening items
+ok 13 - pack issuance failure rolls back debit, serial allocation and opening items
+  ---
+  duration_ms: 62.0125
+  ...
+# Subtest: retirement preserves ownership, rejects new lineup and issues one replacement
+ok 14 - retirement preserves ownership, rejects new lineup and issues one replacement
+  ---
+  duration_ms: 35.0549
+  ...
+# Subtest: idempotency keys reject changed payloads and ledgers reconcile to zero
+ok 15 - idempotency keys reject changed payloads and ledgers reconcile to zero
+  ---
+  duration_ms: 10.6776
+  ...
+# Subtest: runtime read projection cannot reveal other users wallets or private provenance
+ok 16 - runtime read projection cannot reveal other users wallets or private provenance
+  ---
+  duration_ms: 32.2976
+  ...
+# Subtest: manual statistics and versioned scoring are permissioned and freeze after results
+ok 17 - manual statistics and versioned scoring are permissioned and freeze after results
+  ---
+  duration_ms: 957.0096
+  ...
+# Subtest: account erasure leaves pseudonymous ownership membership instead of blocking profile deletion
+ok 18 - account erasure leaves pseudonymous ownership membership instead of blocking profile deletion
+  ---
+  duration_ms: 23.6634
+  ...
+# Subtest: embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+ok 19 - embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+  ---
+  duration_ms: 43945.6157
+  ...
+# Subtest: integrated catalogue, future prize templates, authorised export and durable sale receipts
+ok 20 - integrated catalogue, future prize templates, authorised export and durable sale receipts
+  ---
+  duration_ms: 44801.8151
+  ...
+# Subtest: member snapshots support real admission row locks without weakening access
+ok 21 - member snapshots support real admission row locks without weakening access
+  ---
+  duration_ms: 30850.5543
+  ...
+# Subtest: owned collection reads ledgers only, paginates consistently, isolates sports/accounts and follows transfers
+ok 22 - owned collection reads ledgers only, paginates consistently, isolates sports/accounts and follows transfers
+  ---
+  duration_ms: 30213.3081
+  ...
+# Subtest: weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+ok 23 - weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+  ---
+  duration_ms: 19434.2643
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 138178.4154

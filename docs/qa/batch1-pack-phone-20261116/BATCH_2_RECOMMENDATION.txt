@@ -1,0 +1,53 @@
+DOCKED — BATCH 2 RECOMMENDATION (REVIEW ONLY)
+16 November 2026
+
+No Batch 2 product changes are included in Batch 1.
+Reviewed pending candidate: 6882ad745186f5937bc54a53aa786e26363dfa54.
+
+1. Faster Play loading
+Read the selected member, sport and Round first. Render the current draft and
+eligibility result before loading optional historical results. Scope reads and
+caches to authenticated membership, sport, Round, permissions and relevant
+revisions; never share a member's lineup cache across accounts. Instrument data
+load and first usable lineup separately. Preserve locks, owned-card eligibility,
+rights and disabled competition controls. Benchmark warm and cold mobile loads.
+
+2. Full NFL Round navigation
+Reuse the pending season schedule navigation after independently checking its
+source permission and fixture coverage. Its 8 November schedule snapshot still
+has 24 kickoffs marked TBD; do not invent times or entry deadlines. Show all 18
+regular-season Rounds chronologically, distinguish completed/current/future,
+retain historical drafts/results, and default to the appropriate current Round.
+An available schedule is not permission to enable scoring or entries. Keep the
+six disabled Practice competitions truthful and separate from season navigation.
+Use customer-facing "Round" throughout. Postseason inclusion needs an explicit
+product decision if not already covered by approved competition definitions.
+
+3. Fill empty positions in Traditional and All-Star
+Reuse the pending validated draft POST implementation. Fill a completely empty
+draft or only empty slots at any point before applicable locks. Preserve every
+existing selection and locked slot. Enforce ownership, eligible positions,
+canonical-player uniqueness, sport/Round rules and Traditional salary cap.
+All-Star uses its existing no-cap rules. Do not require published scoring ranks
+to select eligible cards. Prefer a deterministic allocation that can actually
+complete the remaining slots rather than a greedy choice that strands FLEX or
+salary capacity. If no valid completion exists, explain which slots remain.
+Auto-fill must not submit/enter a competition or replace filled positions.
+
+Required acceptance
+Both formats; empty and partial drafts; transferred/injured players under current
+eligibility rules; position scarcity/FLEX interactions; salary boundaries; duplicate
+players; ownership changes during requests; saved-draft reload; Round changes;
+locked lineups; no eligible card; 390px touch interaction; server-side denial of
+tampered drafts. Preserve all real assets and disabled activation controls.
+
+Dependencies and delivery
+Batch 1's shared bounded-request utility and timing conventions can be reused.
+No Batch 2 code is required for Batch 1 pack/phone correctness. Rebase selectively
+onto accepted Batch 1 after it is frozen; do not merge the entire pending branch.
+Prepare a separate exact deployment package if schema or runtime bytes change.
+Suggested implementation order: scoped Play reads, schedule navigation, fill-empty
+solver/UI, integrated mobile acceptance. Estimate 12–18 engineering hours plus
+founder acceptance and any external schedule/statistics permissions.
+
+Production deployment, real scoring and Practice removal remain outside approval.

@@ -1,0 +1,112 @@
+BATCH 1 ACCEPTANCE — ENVIRONMENTS AND COMMANDS
+
+No command below authorises Production changes. All purchase/issuance fixtures
+are synthetic or confined to a disconnected restored database. Never point an
+acceptance test at Production. Do not enable SMS, payments or registration.
+
+Build and platform
+Node 22.14.0/npm 10.9.2 used; .nvmrc and engines pin the 22.x major.
+`npm ci --no-audit --no-fund`
+`npm test`
+`npm run db:test`
+`npm run lint`
+`npm run typecheck`
+Build with the same non-secret canaries as .github/workflows/platform-checks.yml:
+APP_ENV=preview, SITE_URL=http://localhost:3000, SENDING_ENABLED=false,
+SUPABASE_SECRET_KEY=DOCKED_BUILD_CANARY_SUPABASE_20261002,
+EMAIL_API_KEY=DOCKED_BUILD_CANARY_EMAIL_20261002.
+`npm run build`
+`npm run check:client`
+`node scripts/batch1-build-smoke.mjs`
+The smoke runner launches only 127.0.0.1:3067 with a whitelisted credential-free
+environment, verifies the traced CA/modules, then stops its own server.
+
+Browser simulations
+Use installed Edge on this Windows laptop:
+EXTERNAL_PREVIEW=1, PLAYWRIGHT_CHROMIUM_CHANNEL=msedge,
+DOCKED_VISUAL_EVIDENCE=docs/qa/batch1-pack-phone-20261116/browser
+`npx playwright test tests/browser/pack-opening.test.ts tests/browser/pack-cinema-v2.test.ts tests/browser/pack-review-sharing.test.ts tests/browser/weekly-pack-recovery.test.ts`
+`npx tsx scripts/batch1-phone-browser.ts`
+`npx tsx scripts/pack-recovery-browser.ts` (repeat with --afl and --nrl)
+`npx tsx scripts/batch1-presentation-benchmark.ts`
+The browser transport is isolated; no hosted Auth, SMS or Google purchase is
+performed. Android sharing tests simulate the bridge; they are not installed-
+device acceptance. Reveal code/artwork/CSS are verified unchanged from 12ccfd58.
+
+Database fixtures
+The default suite uses PGlite for SQL contracts. Native marketplace and preserved-
+collection suites require separate fresh disposable PostgreSQL clusters because
+roles are cluster-wide and the migrations intentionally reject unknown existing
+runtime-role grants. Use only the fixture's accepted 127.0.0.1 database naming
+pattern with AUSTRALIAN_SALARY_TEST_DB. Native tests were run separately against
+fresh postgres:17.11 containers, never against the restored/customer database.
+Initial stale-fixture failures and their repaired reruns are retained in logs.
+No migration guard was weakened to make a fixture pass.
+
+Restored snapshot
+Authenticated archive SHA-256:
+86d4213d8ef4620e30173c03ab91d2bf883f8c8c4a5bb1208b98b090357203ba
+Backup captured 2026-11-15T21:19:59.342Z, AES-256-GCM at rest. Archive and key are
+private, ignored by Git and absent from this report. 568 protected tables match.
+Restore target has network=none, zero published ports, cron jobs disabled and
+pg_net pointed at a nonexistent worker database. Internal loopback is used only
+by PostgreSQL wire transport over `docker exec` stdin/stdout.
+
+IMPORTANT: /restore is tmpfs. Stopping this container erases its database. A
+restart is an empty cluster, not a restored snapshot. Restore the authenticated
+archive into a new target, verify all table fingerprints, and update the fixed
+test-only batch1Target reference before further tests. Never skip restoration
+checks or substitute a hosted DATABASE_URL.
+
+The final benchmark uses attempt-3, restored from the same authenticated archive:
+DOCKED_RESTORE_RUN=20261116a
+`npx tsx scripts/commercial-production-restore-drill.ts --prelaunch-readiness --restore-only --keep-isolated-target --restore-existing --attempt=3 --benchmark-loopback`
+Run ANALYZE in that isolated restored cluster before both benchmark phases.
+Production read-only inspection showed jit=off, work_mem=3500kB; both phases use
+those values. No other CPU-heavy checks run during the timing matrix.
+
+`npx tsx scripts/batch1-postgres-acceptance.ts`
+Creates a disposable clone and uses 24 real simultaneous database connections.
+The clone is removed after successful acceptance; the base restore is unchanged.
+The final run passed against attempt-3 with all three migrations; their exact
+hashes are recorded in postgres-acceptance.json. This is real committed database
+acceptance, unlike the rollback-only timing fixture below.
+`npx tsx scripts/batch1-database-package.ts`
+`npx tsx scripts/batch1-reservation-guard.ts`
+`npx tsx scripts/batch1-financial-guard.ts`
+`npx tsx scripts/batch1-document-patch.ts`
+`npx tsx scripts/batch1-route-benchmark.ts --candidate-only`
+`npx tsx scripts/batch1-route-benchmark.ts --baseline-only`
+`npx tsx scripts/batch1-route-benchmark.ts --candidate-only --nine-card-only`
+`npx tsx scripts/pack-performance-restored.ts`
+`node scripts/batch1-performance-summary.mjs`
+
+Each timing case rolls back to equal table data, prices, wallet and inventory.
+All 18 sport/family/size offers run for founder and Brenton (36 cases per phase).
+The founder gets 1,000 synthetic credits ONLY within the rollback fixture to
+cover the unchanged 5,000-credit offer; both phases use identical fixture funding.
+Brenton's logged-out snapshot needs a synthetic Auth session row inside the same
+rollback transaction; real SQL admission/MFA/consent checks remain active.
+Auth transport is simulated. Docker wire bytes, handler timings, response body
+read/parse and browser presentation are measured separately; none is represented
+as Internet, hosted-provider or physical Android latency.
+The equivalent-data timing fixture wraps each phase in an outer rollback and
+uses savepoints for application transactions. It measures handler/SQL execution,
+not durable COMMIT/fsync latency. Committed correctness is verified separately by
+the 24-connection acceptance above. Hosted latency must be measured before any
+promotion; local targets alone do not establish hosted performance.
+
+Read-only Production census
+`npx tsx scripts/batch1-production-baseline.ts --final`
+No writes; preserve the initial baseline alongside the final readback. Investigate
+all differences, including legitimate later beta allocations. Never reset to 888,
+890, 906 or 908 simply to match an old report.
+
+Freeze after acceptance
+Commit the verified implementation/evidence, then run:
+`node scripts/batch1-package.mjs prepare`
+`node scripts/batch1-package.mjs verify`
+These commands only generate/verify a local exact-byte review packet. They cannot
+deploy or connect to a database. Commit the resulting packet separately. The
+source commit in that packet remains the application candidate. The new branch's
+automatic Vercel deployment is disabled in vercel.json so a push cannot deploy it.

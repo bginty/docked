@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-16T00:33:20.444Z",
+  "node": "v22.14.0",
+  "passed": true,
+  "scope": "Local standalone production build, credential-free loopback; not Vercel or installed Android",
+  "caTraced": true,
+  "moduleResolution": true,
+  "checks": [
+    {
+      "path": "/privacy",
+      "status": 200
+    },
+    {
+      "path": "/commercial-policy",
+      "status": 200
+    },
+    {
+      "path": "/app/login",
+      "status": 200
+    },
+    {
+      "path": "/api/test-wallet cross-origin",
+      "status": 403
+    }
+  ],
+  "environmentContainsDatabaseOrProviderCredentials": false,
+  "productionWrites": 0,
+  "buildId": "ROedSwugO0qI0Y-h9-NET"
+}

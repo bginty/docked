@@ -13,6 +13,16 @@ export type PhoneChallenge =
   | { action: "send"; phone: string }
   | { action: "verify"; phone: string; token: string };
 
+export class PhoneThrottleError extends Error {
+  constructor(
+    message: string,
+    readonly retryAfterSeconds: number,
+  ) {
+    super(message);
+    this.name = "PhoneThrottleError";
+  }
+}
+
 const publicPhoneErrors = new Set([
   "Phone verification is not available yet.",
   "Phone verification is not available for this account.",

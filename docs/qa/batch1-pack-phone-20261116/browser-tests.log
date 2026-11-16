@@ -1,0 +1,43 @@
+
+Running 33 tests using 1 worker
+
+(node:34968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:34968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\browser\pack-cinema-v2.test.ts:40:7 › V3 afl: all six tiers use the confirmed card, preserve identity until turn, one issuance (29.6s)
+  ok  2 tests\browser\pack-cinema-v2.test.ts:40:7 › V3 nfl: all six tiers use the confirmed card, preserve identity until turn, one issuance (21.9s)
+  ok  3 tests\browser\pack-cinema-v2.test.ts:40:7 › V3 nrl: all six tiers use the confirmed card, preserve identity until turn, one issuance (22.3s)
+  ok  4 tests\browser\pack-cinema-v2.test.ts:98:5 › V3 is the ordinary receipt default; original V1 remains a design-only comparison (4.7s)
+  ok  5 tests\browser\pack-cinema-v2.test.ts:115:5 › V3 rapid inputs, skip, Reveal All, resume and replay do not reissue nine cards (5.6s)
+  ok  6 tests\browser\pack-cinema-v2.test.ts:156:5 › V3 reduced motion has no animation, no Canvas loop; reveal and share stay accessible at 320px (5.8s)
+  ok  7 tests\browser\pack-cinema-v2.test.ts:192:5 › V3 tolerates unavailable Canvas and backgrounding without losing the receipt (3.9s)
+  ok  8 tests\browser\pack-cinema-v2.test.ts:218:5 › V3 Share My Pull still exports the awarded Icon at 1080 × 1920 (6.6s)
+  ok  9 tests\browser\pack-cinema-v2.test.ts:246:7 › V3 economy quality keeps the card and caps the Canvas resolution (6.7s)
+  ok 10 tests\browser\pack-cinema-v2.test.ts:246:7 › V3 balanced quality keeps the card and caps the Canvas resolution (7.7s)
+AUDIO_V3 [{"tier":"CORE","duration":1.52,"peak":0.25565916299819946,"energy":32.125008211448126,"rms":0.02189175277430045},{"tier":"RARE","duration":2.12,"peak":0.3168807625770569,"energy":47.76442844972088,"rms":0.02260294704069571},{"tier":"ELITE","duration":2.8,"peak":0.24235773086547852,"energy":63.16100311573128,"rms":0.02261654177235362},{"tier":"ULTRA_RARE","duration":3.6,"peak":0.23457053303718567,"energy":72.95779707835774,"rms":0.02143706431909577},{"tier":"LEGENDARY","duration":4.6000000000000005,"peak":0.22526076436042786,"energy":88.9990432577519,"rms":0.020945679718145482},{"tier":"ICON","duration":5.450000000000001,"peak":0.21269181370735168,"energy":95.66525621026832,"rms":0.019950765942271027}]
+  ok 11 tests\browser\pack-cinema-v2.test.ts:278:5 › V3 original layered audio renders six distinct scores without clipping (2.2s)
+  ok 12 tests\browser\pack-cinema-v2.test.ts:333:5 › V3 audio follows visual phases, reuses one context per pack, and stops on mute/close (9.3s)
+  ok 13 tests\browser\pack-cinema-v2.test.ts:386:5 › V3 complete nine-card sequence keeps order, best pull and a single issuance (28.3s)
+  ok 14 tests\browser\pack-cinema-v2.test.ts:421:7 › nfl summary and existing card details share the actual card without another opening (6.9s)
+  ok 15 tests\browser\pack-cinema-v2.test.ts:421:7 › afl summary and existing card details share the actual card without another opening (5.4s)
+  ok 16 tests\browser\pack-cinema-v2.test.ts:421:7 › nrl summary and existing card details share the actual card without another opening (7.3s)
+  ok 17 tests\browser\pack-cinema-v2.test.ts:469:5 › share preview fills the viewport without the desktop sheet translation (6.1s)
+  ok 18 tests\browser\pack-opening.test.ts:15:7 › lost receipt response, saved progress, replay and accessibility at 360 (14.2s)
+  ok 19 tests\browser\pack-opening.test.ts:15:7 › lost receipt response, saved progress, replay and accessibility at 412 (13.2s)
+  ok 20 tests\browser\pack-opening.test.ts:15:7 › lost receipt response, saved progress, replay and accessibility at 1366 (13.9s)
+  ok 21 tests\browser\pack-opening.test.ts:115:5 › reduced motion, keyboard opening and duplicate input (3.9s)
+  ok 22 tests\browser\pack-opening.test.ts:164:5 › an existing NBA receipt keeps its original read-only reveal (2.6s)
+  ok 23 tests\browser\pack-review-sharing.test.ts:14:5 › large text keeps full player names and usable actions within narrow review cards (3.3s)
+  ok 24 tests\browser\pack-review-sharing.test.ts:70:5 › each card shares its own image directly; cancellation and detail sharing preserve the pack (10.1s)
+  ok 25 tests\browser\pack-review-sharing.test.ts:203:5 › expired web gesture keeps the selected image ready for a fresh Share tap (5.0s)
+  ok 26 tests\browser\pack-review-sharing.test.ts:239:5 › unsupported sharing offers the exact-card download without a selection step (4.8s)
+  ok 27 tests\browser\pack-review-sharing.test.ts:270:5 › v30 native bridge reports the missing image capability instead of pretending file sharing works (3.4s)
+  ok 28 tests\browser\pack-review-sharing.test.ts:308:5 › installed native image bridge prepares only the chosen PNG and opens the Android share sheet (3.2s)
+  ok 29 tests\browser\pack-review-sharing.test.ts:396:7 › nine-card review layout at 320 (3.5s)
+  ok 30 tests\browser\pack-review-sharing.test.ts:396:7 › nine-card review layout at 390 (3.6s)
+  ok 31 tests\browser\pack-review-sharing.test.ts:396:7 › nine-card review layout at 768 (3.1s)
+  ok 32 tests\browser\pack-review-sharing.test.ts:396:7 › nine-card review layout at 1366 (3.1s)
+  ok 33 tests\browser\weekly-pack-recovery.test.ts:13:5 › weekly source outage is explained; the saved pack opens once after recovery (6.1s)
+
+  33 passed (4.9m)

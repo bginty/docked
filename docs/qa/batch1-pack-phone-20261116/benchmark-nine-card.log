@@ -1,0 +1,145 @@
+test_wallet_command { outcome: 'completed', durationMs: 3623 }
+test_wallet_command { outcome: 'completed', durationMs: 115 }
+test_wallet_command { outcome: 'completed', durationMs: 1735 }
+{"phase":"candidate","case":1,"sport":"afl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":3636,"status":200},{"action":"saved-recovery","durationMs":117,"status":200},{"action":"reveal","durationMs":1738,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3522 }
+test_wallet_command { outcome: 'completed', durationMs: 119 }
+test_wallet_command { outcome: 'completed', durationMs: 2578 }
+{"phase":"candidate","case":2,"sport":"afl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":3525,"status":200},{"action":"saved-recovery","durationMs":123,"status":200},{"action":"reveal","durationMs":2580,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2082 }
+test_wallet_command { outcome: 'completed', durationMs: 135 }
+test_wallet_command { outcome: 'completed', durationMs: 1759 }
+{"phase":"candidate","case":3,"sport":"nfl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":2084,"status":200},{"action":"saved-recovery","durationMs":137,"status":200},{"action":"reveal","durationMs":1764,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3162 }
+test_wallet_command { outcome: 'completed', durationMs: 156 }
+test_wallet_command { outcome: 'completed', durationMs: 2447 }
+{"phase":"candidate","case":4,"sport":"nfl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":3165,"status":200},{"action":"saved-recovery","durationMs":157,"status":200},{"action":"reveal","durationMs":2449,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2474 }
+test_wallet_command { outcome: 'completed', durationMs: 121 }
+test_wallet_command { outcome: 'completed', durationMs: 2284 }
+{"phase":"candidate","case":5,"sport":"nrl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":2476,"status":200},{"action":"saved-recovery","durationMs":122,"status":200},{"action":"reveal","durationMs":2285,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3408 }
+test_wallet_command { outcome: 'completed', durationMs: 182 }
+test_wallet_command { outcome: 'completed', durationMs: 2097 }
+{"phase":"candidate","case":6,"sport":"nrl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":3410,"status":200},{"action":"saved-recovery","durationMs":184,"status":200},{"action":"reveal","durationMs":2099,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2255 }
+test_wallet_command { outcome: 'completed', durationMs: 125 }
+test_wallet_command { outcome: 'completed', durationMs: 2819 }
+{"phase":"candidate","case":7,"sport":"afl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":2256,"status":200},{"action":"saved-recovery","durationMs":126,"status":200},{"action":"reveal","durationMs":2821,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3180 }
+test_wallet_command { outcome: 'completed', durationMs: 127 }
+test_wallet_command { outcome: 'completed', durationMs: 1752 }
+{"phase":"candidate","case":8,"sport":"afl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":3181,"status":200},{"action":"saved-recovery","durationMs":128,"status":200},{"action":"reveal","durationMs":1754,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2619 }
+test_wallet_command { outcome: 'completed', durationMs: 178 }
+test_wallet_command { outcome: 'completed', durationMs: 2758 }
+{"phase":"candidate","case":9,"sport":"nfl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":2621,"status":200},{"action":"saved-recovery","durationMs":180,"status":200},{"action":"reveal","durationMs":2761,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2958 }
+test_wallet_command { outcome: 'completed', durationMs: 149 }
+test_wallet_command { outcome: 'completed', durationMs: 1722 }
+{"phase":"candidate","case":10,"sport":"nfl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":2959,"status":200},{"action":"saved-recovery","durationMs":150,"status":200},{"action":"reveal","durationMs":1723,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3701 }
+test_wallet_command { outcome: 'completed', durationMs: 102 }
+test_wallet_command { outcome: 'completed', durationMs: 2677 }
+{"phase":"candidate","case":11,"sport":"nrl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":3702,"status":200},{"action":"saved-recovery","durationMs":103,"status":200},{"action":"reveal","durationMs":2679,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2335 }
+test_wallet_command { outcome: 'completed', durationMs: 118 }
+test_wallet_command { outcome: 'completed', durationMs: 1876 }
+{"phase":"candidate","case":12,"sport":"nrl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":2337,"status":200},{"action":"saved-recovery","durationMs":120,"status":200},{"action":"reveal","durationMs":1879,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3179 }
+test_wallet_command { outcome: 'completed', durationMs: 252 }
+test_wallet_command { outcome: 'completed', durationMs: 2409 }
+{"phase":"candidate","case":13,"sport":"afl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":3181,"status":200},{"action":"saved-recovery","durationMs":253,"status":200},{"action":"reveal","durationMs":2410,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2186 }
+test_wallet_command { outcome: 'completed', durationMs: 100 }
+test_wallet_command { outcome: 'completed', durationMs: 2574 }
+{"phase":"candidate","case":14,"sport":"afl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":2186,"status":200},{"action":"saved-recovery","durationMs":101,"status":200},{"action":"reveal","durationMs":2576,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3456 }
+test_wallet_command { outcome: 'completed', durationMs: 142 }
+test_wallet_command { outcome: 'completed', durationMs: 1970 }
+{"phase":"candidate","case":15,"sport":"nfl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":3458,"status":200},{"action":"saved-recovery","durationMs":143,"status":200},{"action":"reveal","durationMs":1971,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2062 }
+test_wallet_command { outcome: 'completed', durationMs: 177 }
+test_wallet_command { outcome: 'completed', durationMs: 2996 }
+{"phase":"candidate","case":16,"sport":"nfl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":2063,"status":200},{"action":"saved-recovery","durationMs":179,"status":200},{"action":"reveal","durationMs":2997,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3055 }
+test_wallet_command { outcome: 'completed', durationMs: 109 }
+test_wallet_command { outcome: 'completed', durationMs: 1647 }
+{"phase":"candidate","case":17,"sport":"nrl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":3056,"status":200},{"action":"saved-recovery","durationMs":110,"status":200},{"action":"reveal","durationMs":1648,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2818 }
+test_wallet_command { outcome: 'completed', durationMs: 188 }
+test_wallet_command { outcome: 'completed', durationMs: 2280 }
+{"phase":"candidate","case":18,"sport":"nrl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":2819,"status":200},{"action":"saved-recovery","durationMs":189,"status":200},{"action":"reveal","durationMs":2281,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2998 }
+test_wallet_command { outcome: 'completed', durationMs: 113 }
+test_wallet_command { outcome: 'completed', durationMs: 2084 }
+{"phase":"candidate","case":19,"sport":"afl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":2999,"status":200},{"action":"saved-recovery","durationMs":114,"status":200},{"action":"reveal","durationMs":2085,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3753 }
+test_wallet_command { outcome: 'completed', durationMs: 147 }
+test_wallet_command { outcome: 'completed', durationMs: 3080 }
+{"phase":"candidate","case":20,"sport":"afl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":3754,"status":200},{"action":"saved-recovery","durationMs":148,"status":200},{"action":"reveal","durationMs":3082,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2184 }
+test_wallet_command { outcome: 'completed', durationMs: 124 }
+test_wallet_command { outcome: 'completed', durationMs: 2492 }
+{"phase":"candidate","case":21,"sport":"nfl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":2186,"status":200},{"action":"saved-recovery","durationMs":125,"status":200},{"action":"reveal","durationMs":2494,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3051 }
+test_wallet_command { outcome: 'completed', durationMs: 191 }
+test_wallet_command { outcome: 'completed', durationMs: 2032 }
+{"phase":"candidate","case":22,"sport":"nfl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":3052,"status":200},{"action":"saved-recovery","durationMs":192,"status":200},{"action":"reveal","durationMs":2033,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2319 }
+test_wallet_command { outcome: 'completed', durationMs: 113 }
+test_wallet_command { outcome: 'completed', durationMs: 2769 }
+{"phase":"candidate","case":23,"sport":"nrl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":2321,"status":200},{"action":"saved-recovery","durationMs":114,"status":200},{"action":"reveal","durationMs":2771,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3185 }
+test_wallet_command { outcome: 'completed', durationMs: 103 }
+test_wallet_command { outcome: 'completed', durationMs: 1814 }
+{"phase":"candidate","case":24,"sport":"nrl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":3186,"status":200},{"action":"saved-recovery","durationMs":103,"status":200},{"action":"reveal","durationMs":1816,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2969 }
+test_wallet_command { outcome: 'completed', durationMs: 239 }
+test_wallet_command { outcome: 'completed', durationMs: 2961 }
+{"phase":"candidate","case":25,"sport":"afl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":2971,"status":200},{"action":"saved-recovery","durationMs":240,"status":200},{"action":"reveal","durationMs":2963,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2971 }
+test_wallet_command { outcome: 'completed', durationMs: 143 }
+test_wallet_command { outcome: 'completed', durationMs: 1614 }
+{"phase":"candidate","case":26,"sport":"afl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":2973,"status":200},{"action":"saved-recovery","durationMs":144,"status":200},{"action":"reveal","durationMs":1616,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3319 }
+test_wallet_command { outcome: 'completed', durationMs: 100 }
+test_wallet_command { outcome: 'completed', durationMs: 2467 }
+{"phase":"candidate","case":27,"sport":"nfl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":3319,"status":200},{"action":"saved-recovery","durationMs":101,"status":200},{"action":"reveal","durationMs":2468,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2468 }
+test_wallet_command { outcome: 'completed', durationMs: 107 }
+test_wallet_command { outcome: 'completed', durationMs: 1837 }
+{"phase":"candidate","case":28,"sport":"nfl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":2469,"status":200},{"action":"saved-recovery","durationMs":108,"status":200},{"action":"reveal","durationMs":1839,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3662 }
+test_wallet_command { outcome: 'completed', durationMs: 239 }
+test_wallet_command { outcome: 'completed', durationMs: 2350 }
+{"phase":"candidate","case":29,"sport":"nrl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":3664,"status":200},{"action":"saved-recovery","durationMs":241,"status":200},{"action":"reveal","durationMs":2351,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2333 }
+test_wallet_command { outcome: 'completed', durationMs: 116 }
+test_wallet_command { outcome: 'completed', durationMs: 2644 }
+{"phase":"candidate","case":30,"sport":"nrl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":2334,"status":200},{"action":"saved-recovery","durationMs":117,"status":200},{"action":"reveal","durationMs":2646,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3767 }
+test_wallet_command { outcome: 'completed', durationMs: 185 }
+test_wallet_command { outcome: 'completed', durationMs: 2016 }
+{"phase":"candidate","case":31,"sport":"afl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":3768,"status":200},{"action":"saved-recovery","durationMs":186,"status":200},{"action":"reveal","durationMs":2018,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3104 }
+test_wallet_command { outcome: 'completed', durationMs: 224 }
+test_wallet_command { outcome: 'completed', durationMs: 2841 }
+{"phase":"candidate","case":32,"sport":"afl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":3106,"status":200},{"action":"saved-recovery","durationMs":226,"status":200},{"action":"reveal","durationMs":2843,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2397 }
+test_wallet_command { outcome: 'completed', durationMs: 127 }
+test_wallet_command { outcome: 'completed', durationMs: 1591 }
+{"phase":"candidate","case":33,"sport":"nfl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":2399,"status":200},{"action":"saved-recovery","durationMs":129,"status":200},{"action":"reveal","durationMs":1592,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3347 }
+test_wallet_command { outcome: 'completed', durationMs: 97 }
+test_wallet_command { outcome: 'completed', durationMs: 2482 }
+{"phase":"candidate","case":34,"sport":"nfl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":3348,"status":200},{"action":"saved-recovery","durationMs":97,"status":200},{"action":"reveal","durationMs":2485,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 2426 }
+test_wallet_command { outcome: 'completed', durationMs: 114 }
+test_wallet_command { outcome: 'completed', durationMs: 2062 }
+{"phase":"candidate","case":35,"sport":"nrl","type":"PREMIUM","cards":9,"outcomes":[{"action":"confirmation","durationMs":2428,"status":200},{"action":"saved-recovery","durationMs":115,"status":200},{"action":"reveal","durationMs":2064,"status":200}]}
+test_wallet_command { outcome: 'completed', durationMs: 3687 }
+test_wallet_command { outcome: 'completed', durationMs: 260 }
+test_wallet_command { outcome: 'completed', durationMs: 2679 }
+{"phase":"candidate","case":36,"sport":"nrl","type":"STANDARD","cards":9,"outcomes":[{"action":"confirmation","durationMs":3689,"status":200},{"action":"saved-recovery","durationMs":262,"status":200},{"action":"reveal","durationMs":2681,"status":200}]}
+{"phase":"candidate","summary":{"confirmation":{"n":36,"p50Ms":2999,"p95Ms":3754,"maxMs":3768},"saved-recovery":{"n":36,"p50Ms":128,"p95Ms":253,"maxMs":262},"reveal":{"n":36,"p50Ms":2285,"p95Ms":2997,"maxMs":3082}}}

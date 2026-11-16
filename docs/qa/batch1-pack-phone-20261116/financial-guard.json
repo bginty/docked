@@ -1,0 +1,168 @@
+{
+  "at": "2026-11-16T00:04:18.229Z",
+  "passed": true,
+  "scope": "Restored PostgreSQL financial trigger; synthetic temporary rows; all work rolled back",
+  "checks": [
+    {
+      "phase": "baseline",
+      "name": "unchanged",
+      "denied": false
+    },
+    {
+      "phase": "baseline",
+      "name": "ordinary credit balance mutation",
+      "denied": false
+    },
+    {
+      "phase": "baseline",
+      "name": "review status may advance",
+      "denied": false
+    },
+    {
+      "phase": "baseline",
+      "name": "cash eligibility cannot be introduced",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "historical funding classification cannot be removed",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "withdrawal member immutable",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "withdrawal amount immutable",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "withdrawal parts immutable",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "manual requestedAt immutable",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "manual policy immutable",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "manual destination immutable",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "manual rate immutable",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "manual audCents immutable",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "withdrawal cannot disappear",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "real documents remain excluded",
+      "denied": true
+    },
+    {
+      "phase": "baseline",
+      "name": "redemption cannot be activated outside dedicated QA",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "unchanged",
+      "denied": false
+    },
+    {
+      "phase": "candidate",
+      "name": "ordinary credit balance mutation",
+      "denied": false
+    },
+    {
+      "phase": "candidate",
+      "name": "review status may advance",
+      "denied": false
+    },
+    {
+      "phase": "candidate",
+      "name": "cash eligibility cannot be introduced",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "historical funding classification cannot be removed",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "withdrawal member immutable",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "withdrawal amount immutable",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "withdrawal parts immutable",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "manual requestedAt immutable",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "manual policy immutable",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "manual destination immutable",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "manual rate immutable",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "manual audCents immutable",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "withdrawal cannot disappear",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "real documents remain excluded",
+      "denied": true
+    },
+    {
+      "phase": "candidate",
+      "name": "redemption cannot be activated outside dedicated QA",
+      "denied": true
+    }
+  ],
+  "productionWrites": 0
+}

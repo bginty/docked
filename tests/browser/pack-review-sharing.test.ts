@@ -3,7 +3,9 @@ import { mkdir } from "node:fs/promises";
 import { previewPackReceipt } from "../../src/components/pack-opening-preview";
 import { mountPackFixture, packFixtureMarkup } from "../fixtures/pack-browser";
 
-const evidence = "docs/qa/scoring-pack-refinement-20261108/pack-review-sharing";
+const evidence = process.env.DOCKED_VISUAL_EVIDENCE
+  ? process.env.DOCKED_VISUAL_EVIDENCE + "/pack-review-sharing"
+  : "docs/qa/scoring-pack-refinement-20261108/pack-review-sharing";
 const before = process.env.DOCKED_REVIEW_BEFORE === "1";
 const receipt = previewPackReceipt("afl");
 receipt.cards[3].name = "Alexandria Montgomery-Wetherington";

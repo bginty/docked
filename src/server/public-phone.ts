@@ -2,14 +2,17 @@ import "server-only";
 import { z } from "zod";
 import { authClient } from "./auth";
 import { requireOnboardingIdentity } from "./onboarding-identity";
-import { db, rateLimit } from "./db";
+import { db, rateLimitStatus } from "./db";
 import {
   normalizedPhone,
   phoneDeliveryReady,
   verifiedPhone,
 } from "../core/public-phone";
 import { publicCustomersEnabled } from "../core/public-customer";
-import { executePhoneChallenge } from "../core/phone-challenge";
+import {
+  executePhoneChallenge,
+  PhoneThrottleError,
+} from "../core/phone-challenge";
 import { isolatedPhoneTestIdentity } from "../core/isolated-public-preview.mjs";
 
 const request = z.discriminatedUnion("action", [
@@ -34,29 +37,48 @@ export async function publicPhoneCommand(input: unknown) {
     throw Error("Phone verification is not available for this account.");
   const value = request.parse(input);
   const phone = normalizedPhone(value.phone);
-  if (verifiedPhone(who.user))
+  // A lost verification response may have already committed in Auth. Only the
+  // same authenticated account and verified number can recover that outcome.
+  if (verifiedPhone(who.user)) {
+    if (value.action === "verify" && normalizedPhone(who.user.phone!) === phone)
+      return { ok: true, verified: true };
     throw Error(
       "Your phone is already verified. Contact support to change it.",
     );
-  if (
-    value.action === "send" &&
-    !(await rateLimit(`phone:cooldown:${who.user.id}`, 1, 60))
-  )
-    throw Error("Please wait one minute before requesting another code.");
-  if (
-    !(await rateLimit(
-      `phone:${value.action}:${who.user.id}`,
-      value.action === "send" ? 3 : 6,
-      3600,
-    ))
-  )
-    throw Error("Too many attempts. Please try again later.");
+  }
+  let retryAfterSeconds = 0;
+  if (value.action === "send") {
+    const cooldown = await rateLimitStatus(
+      `phone:cooldown:${who.user.id}`,
+      1,
+      60,
+    );
+    retryAfterSeconds = cooldown.retryAfterSeconds;
+    if (!cooldown.allowed)
+      throw new PhoneThrottleError(
+        "Please wait one minute before requesting another code.",
+        retryAfterSeconds,
+      );
+  }
+  const attempts = await rateLimitStatus(
+    `phone:${value.action}:${who.user.id}`,
+    value.action === "send" ? 3 : 6,
+    3600,
+  );
+  if (!attempts.allowed)
+    throw new PhoneThrottleError(
+      "Too many attempts. Please try again later.",
+      attempts.retryAfterSeconds,
+    );
   // Account limits alone cannot bound SMS expenditure across malicious accounts.
-  if (
-    value.action === "send" &&
-    !(await rateLimit("public-phone-send:global", 30, 3600))
-  )
-    throw Error("Phone verification is busy. Please try again later.");
+  if (value.action === "send") {
+    const global = await rateLimitStatus("public-phone-send:global", 30, 3600);
+    if (!global.allowed)
+      throw new PhoneThrottleError(
+        "Phone verification is busy. Please try again later.",
+        global.retryAfterSeconds,
+      );
+  }
   const client = await authClient();
   if (!client) throw Error("Phone verification is unavailable.");
   const result = await executePhoneChallenge(
@@ -67,5 +89,8 @@ export async function publicPhoneCommand(input: unknown) {
   if (value.action === "verify") {
     await db()`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},'public_phone_verified',${who.user.id},'{"provider":"supabase-auth","phoneStoredHere":false}'::jsonb)`;
   }
-  return result;
+  return {
+    ...result,
+    ...(value.action === "send" ? { retryAfterSeconds } : {}),
+  };
 }

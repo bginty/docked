@@ -1,0 +1,126 @@
+DOCKED BATCH 1 — REVIEWED DEPLOYMENT DESIGN
+Implementation only. No Production deployment approval is recorded for this batch.
+
+Scope
+The candidate changes private-beta pack persistence/recovery and phone request
+timeout handling. It preserves the already approved free-credit beta and all
+current consent, identity, MFA, country-exception and supply rules. Pack-only
+history persistence transmits changed fields and reconstructs the full document
+from the exact locked pre-authorisation row. Intermediate settlements and other
+commands retain their existing full-state persistence. History remains complete;
+all state, ledger, ownership and issuance guards still run. It grants no
+credits, purchases no packs, opens no gates, creates no inventory and changes no
+Android files. Six public competitions remain disabled Practice; NBA stays hidden.
+
+Database package, in this exact order
+1. 20261115113306_batch_private_pack_issuance_validation.sql
+   SHA-256 2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1
+2. 20261115211545_batch1_pack_guard_batching.sql
+   SHA-256 3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6
+3. 20261115235000_batch1_persistence_subdocuments.sql
+   SHA-256 83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e
+
+All three files replace function bodies transactionally. They require the reviewed
+predecessor definitions; changed input hashes or missing rewrite anchors abort.
+The second and third files require the preceding files in this order. Do not repeat any previously deployed
+migration, catalogue adoption, inventory import, grant or warning correction.
+
+Exactly seven function bodies change:
+- credits_sandbox.guard_economy_state(): batch immutable registry validation,
+  cache JSON subdocuments and revalidate each affected member/sport once at the
+  end of the same statement. All rejected statements roll back atomically.
+- credits_sandbox.project_fixture_inventory(): cache the source document and
+  full-repair equality check; rebuild each affected member/sport projection.
+- commercial_billing.prevent_parallel_inventory(): reject the same forbidden
+  permanent rarities while avoiding repeated large-state extraction for Core
+  and display-only records that cannot satisfy the original rejection predicate.
+- sports_feed.rarity_transfer_guard(): cache old/new card ownership maps before
+  the reserved-lineup checks. Global serialization and reservation checks remain.
+- beta_packs.capture(): cache old/new instances, packs, definitions and owners.
+- credits_sandbox.marketplace_guard(): cache requests, listings, swaps and offers.
+- credits_sandbox.guard_redemption(): cache lots and withdrawals; preserve INSERT
+  semantics and every immutable financial, redemption and activation restriction.
+
+database-schema.json records all predecessor/output function hashes and the
+comparison of 791 functions, table ACL/RLS metadata and policies. No table shape,
+owner, grant, RLS policy, function security mode/search path or scheduler changes.
+The third file also materialises the same complete JSONB guard inputs through
+an empty binary JSON path instead of serialising to text and reparsing. SQL NULL,
+JSON null, scalar, array, object and the full restored document compare identically.
+No guard predicate or financial rule changes.
+No bulk data update. The normal guarded transaction still maintains the existing
+state/history/journal/lines, immutable identity/receipt registries, beta allocation
+ledger, commercial lifetime counters and sport inventory projections.
+
+Preflight after separate exact-package approval
+1. Verify the frozen source commit/tree and package/file hashes using
+   `node scripts/batch1-package.mjs verify`. Approval must identify those exact
+   bytes, be unexpired (24 hours), and explicitly include all three migrations/app.
+2. Independently re-read the current Production deployment and every runtime
+   setting; preserve the complete settings map. Abort unexplained differences.
+3. Capture a new authenticated encrypted Production backup <=60 minutes old.
+   Restore in isolation with jobs/HTTP disabled and verify protected tables.
+4. Capture a read-only repeatable-read census <=10 minutes before application.
+   Reconcile every later legitimate beta allocation and financial transaction;
+   890 cards/908 custody is the implementation baseline, not a reset target.
+   Preserve all 6,540 dormant definitions, serials, ownership, existing grants,
+   consent and all commercial/public gates. Verify migration predecessor hashes,
+   ACL/RLS, current runtime-role membership and queue/scheduler definitions.
+5. Run the candidate against that isolated restore, including receipt replay,
+   denial checks, idempotency, caps, and projection reconciliation. Any changed
+   dependency or materially changed data requires its affected checks again.
+
+Controlled hosted acceptance before promotion
+Use a protected isolated development environment with no Production database,
+payment provider or SMS capability. Verify database target and closed gates before
+starting it; do not copy Production keys into a preview. Repeat confirmation and
+receipt recovery measurements through actual HTTP/Auth, including cold/warm and
+mobile network behavior. Local timing is not a substitute for hosted acceptance.
+Verify the full response body, account isolation and Android v31 web contract.
+Capture and compare every runtime setting before/after; never log its secret value.
+
+Production execution, only under separate approval
+Run all three reviewed SQL files within ONE transaction, with ON_ERROR_STOP, a short
+lock timeout and a bounded statement timeout. Keep the migrations ledger in the
+same transaction if the approved runner records it. Verify all seven function
+hashes, ACL/RLS and the protected census before commit. The files perform no
+customer writes. Use a protected, unaliased Production-target application stage
+and preserve the current Production alias until its checks pass. Promote only
+the frozen source, never the moving branch head. Do not issue test purchases or
+grants against Production as part of a read-only smoke check.
+
+Maintenance and lock risk
+Observed isolated DDL was about 0.1 seconds total without contention. Replacing
+functions can wait on active transactions. Schedule a quiet private-beta window,
+allow up to two minutes of write interruption, use a 3-second lock timeout and
+abort/retry only after investigating contention. This is not a guaranteed zero-
+downtime change. Do not kill customer transactions or weaken guard locks.
+
+Post-promotion checks
+Independently resolve docked.com.au to the reviewed deployment/source. Check
+release/API identity, login/session denial, pack catalogue reads, existing saved
+receipt recovery for an authorised owner, no-store/cache headers, phone provider
+OFF and public registration/paid credits/trading/prizes/withdrawals/NBA OFF.
+Confirm the six public competition controls remain disabled Practice. Compare
+financial, inventory, custody and permission fingerprints, allowing only explained
+legitimate member activity. Verify no SMS, mail, new grant, import, deletion job or
+commercial issuance was caused by deployment. Actual founder/member purchases
+require their separate controlled acceptance instruction.
+
+Recovery
+- A pre-commit failure rolls back all function changes and migration-ledger rows.
+- Before alias promotion, abandon the failed protected application candidate.
+- After promotion, app-only rollback is allowed only to the freshly verified prior
+  Production application and only after confirming it remains compatible with the
+  unchanged schema/guard contracts. These SQL optimisations are compatible with
+  the old full-state API. Retain them unless separately reviewed forward recovery
+  is required. Never automatically reinstall stale trigger bodies.
+- If financial/ownership invariants fail, stop the affected writes and preserve
+  evidence. Prepare a reviewed forward correction. Never restore an old snapshot
+  over later legitimate balances, allocations, ownership or audit records.
+
+Excluded from this package
+Production tests that debit/mint; new grants; extra imports; changes to source
+rights/season membership; real SMS; public registration; paid-credit activation;
+trading; prizes/withdrawals/scoring; retention cleanup; live-key changes; policy
+or Google Play publication; Batch 2 Round/lineup features.

@@ -28,7 +28,7 @@
     "android:closed-test": "node scripts/android-debug.mjs --closed-test"
   },
   "engines": {
-    "node": ">=22"
+    "node": "22.x"
   },
   "dependencies": {
     "@apple/app-store-server-library": "3.1.0",

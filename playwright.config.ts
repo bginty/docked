@@ -6,6 +6,7 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:3000",
     headless: true,
+    channel: process.env.PLAYWRIGHT_CHROMIUM_CHANNEL || undefined,
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
   },

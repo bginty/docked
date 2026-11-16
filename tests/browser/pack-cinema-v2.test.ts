@@ -8,6 +8,18 @@ import { mountPackFixture, packFixtureMarkup } from "../fixtures/pack-browser";
 import type { PackReceipt } from "../../src/core/pack-opening";
 import { bundleCommunityFixture } from "../fixtures/bundle-community";
 
+// Layout/download tests exercise the browser fallback. An OS share chooser is
+// outside headless control; native success/cancellation has separate explicit
+// simulations in pack-review-sharing.test.ts and still needs physical QA.
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "canShare", {
+      configurable: true,
+      value: () => false,
+    });
+  });
+});
+
 async function mount(page: Page, receipt: PackReceipt, prototype = true) {
   let opens = 0;
   await page.route("**/*", async (route) => {

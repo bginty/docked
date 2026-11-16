@@ -16,6 +16,7 @@ const serverNames = new Set([
   "purchase_verify",
   "purchase_transaction",
   "purchase_lock",
+  "purchase_state",
   "purchase_rules",
   "purchase_issue",
   "purchase_persist",

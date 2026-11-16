@@ -6,6 +6,7 @@ import { isRosterBetaPlayer } from "../core/roster-beta";
 export async function refreshEconomyCatalogue(
   sql: Sql | TransactionSql,
   state: CreditsState,
+  purchaseProduct?: string,
 ) {
   if (!state.economy) return;
   if (
@@ -45,6 +46,15 @@ export async function refreshEconomyCatalogue(
       };
     }
   }
+  // A season-approved purchase uses the retained, permission-checked catalogue
+  // above. Live roster/jersey observations do not define that issuance pool.
+  // Non-season products and ordinary presentation reads retain their checks.
+  if (
+    purchaseProduct &&
+    state.economy.products[purchaseProduct]?.cataloguePolicy ===
+      "founder-credit-season-v1"
+  )
+    return;
   const rows =
     await sql`select c.*,j.verified_jersey_number from credits_sandbox.current_player_status c left join credits_sandbox.current_player_jerseys j on j.id=c.id`;
   const current = new Map(rows.map((r) => [String(r.id), r]));

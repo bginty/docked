@@ -1,0 +1,27 @@
+TAP version 13
+# (node:32868) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Commercial marketplace: native PostgreSQL races, reviewed terms, session/privacy gates, atomic receipts and emergency closure
+ok 1 - Commercial marketplace: native PostgreSQL races, reviewed terms, session/privacy gates, atomic receipts and emergency closure
+  ---
+  duration_ms: 8790.406
+  ...
+# Subtest: Commercial collection preserves historical custody beside paid cards, pagination, counts and permissions
+not ok 2 - Commercial collection preserves historical custody beside paid cards, pagination, counts and permissions
+  ---
+  duration_ms: 927.5374
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\commercial-preserved-collection.test.ts:15:1'
+  failureType: 'testCodeFailure'
+  error: 'Existing docked_app role requires independent review'
+  code: 'P0001'
+  name: 'PostgresError'
+  stack: |-
+    ErrorResponse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\postgres\cjs\src\connection.js:815:30)
+    handle (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\postgres\cjs\src\connection.js:489:6)
+    Socket.data (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\postgres\cjs\src\connection.js:324:9)
+    Socket.emit (node:events:518:28)
+    addChunk (node:internal/streams/readable:561:12)
+    readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    Readable.push (node:internal/streams/readable:392:5)
+    TCP.onStreamRead (node:internal/stream_base_commons:189:23)
+  ...

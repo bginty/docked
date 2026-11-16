@@ -1,0 +1,1067 @@
+TAP version 13
+# Subtest: card history SQL: admitted only, no ownership/entry leaks, current revisions and review holds
+ok 1 - card history SQL: admitted only, no ownership/entry leaks, current revisions and review holds
+  ---
+  duration_ms: 22592.2236
+  ...
+# Subtest: Commercial social: authoritative owned/opened cards, privacy, session and transfer locking
+ok 2 - Commercial social: authoritative owned/opened cards, privacy, session and transfer locking
+  ---
+  duration_ms: 22811.7359
+  ...
+# Subtest: community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+ok 3 - community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+  ---
+  duration_ms: 19188.1399
+  ...
+# Subtest: unknown provider classification, promotions and historical/demo records cannot be promoted
+ok 4 - unknown provider classification, promotions and historical/demo records cannot be promoted
+  ---
+  duration_ms: 137.1522
+  ...
+# Subtest: atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+ok 5 - atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+  ---
+  duration_ms: 110.594
+  ...
+# Subtest: newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+ok 6 - newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+  ---
+  duration_ms: 62.1187
+  ...
+# Subtest: latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+ok 7 - latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+  ---
+  duration_ms: 31.7341
+  ...
+# Subtest: canonical records survive social tombstone, private identity and blocking
+ok 8 - canonical records survive social tombstone, private identity and blocking
+  ---
+  duration_ms: 40.965
+  ...
+# Subtest: authorized results only, no silent correction, finite scores, append-only approval revocation
+ok 9 - authorized results only, no silent correction, finite scores, append-only approval revocation
+  ---
+  duration_ms: 98.9254
+  ...
+# Subtest: integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+ok 10 - integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+  ---
+  duration_ms: 151.9982
+  ...
+# Subtest: leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+ok 11 - leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+  ---
+  duration_ms: 50.684
+  ...
+# Subtest: staff queue query returns current content and bounded audit history without private credentials
+not ok 12 - staff queue query returns current content and bounded audit history without private credentials
+  ---
+  duration_ms: 18232.5783
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:17:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: dashboard queue categories filter outstanding reports before the 100-record limit
+not ok 13 - dashboard queue categories filter outstanding reports before the 100-record limit
+  ---
+  duration_ms: 155.9496
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:62:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+not ok 14 - NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+  ---
+  duration_ms: 0.2079
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:122:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+not ok 15 - NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+  ---
+  duration_ms: 0.1271
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:162:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: collection preferences default private, and runtime writes cannot target another profile
+not ok 16 - collection preferences default private, and runtime writes cannot target another profile
+  ---
+  duration_ms: 0.1618
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:196:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: community creation requires authoritative staff and MFA even through the database runtime role
+not ok 17 - community creation requires authoritative staff and MFA even through the database runtime role
+  ---
+  duration_ms: 0.3899
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:235:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: post card snapshot and player/community context cannot be silently rewritten
+not ok 18 - post card snapshot and player/community context cannot be silently rewritten
+  ---
+  duration_ms: 0.1179
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:247:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: followed player discussion replies create one private in-app notification
+not ok 19 - followed player discussion replies create one private in-app notification
+  ---
+  duration_ms: 0.1047
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:267:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+not ok 20 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 1.0388
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:293:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+not ok 21 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 0.5162
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:325:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+not ok 22 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 0.0884
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:350:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+not ok 23 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 0.0686
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:406:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+not ok 24 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 0.0611
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:452:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+not ok 25 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 0.0579
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:497:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+not ok 26 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 0.0579
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:546:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+not ok 27 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 0.1772
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:574:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+not ok 28 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 0.0895
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:614:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+not ok 29 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 0.0549
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:641:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+not ok 30 - collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+  ---
+  duration_ms: 0.0522
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:669:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: collection projections reject an expired session even when reading own cards
+not ok 31 - collection projections reject an expired session even when reading own cards
+  ---
+  duration_ms: 0.1016
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:721:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+not ok 32 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 0.0815
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:738:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: column a.banned_until does not exist'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: unfunded buyers cannot reserve pack inventory
+not ok 33 - unfunded buyers cannot reserve pack inventory
+  ---
+  duration_ms: 21754.4548
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:71:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: fantasy tables use RLS; browsers and runtime cannot write or invoke helpers
+not ok 34 - fantasy tables use RLS; browsers and runtime cannot write or invoke helpers
+  ---
+  duration_ms: 106.3804
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:102:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: fourth member, forged session, revoked member and disabled profile fail closed
+not ok 35 - fourth member, forged session, revoked member and disabled profile fail closed
+  ---
+  duration_ms: 0.2191
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:125:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: three-user starter claim and opening are persistent, idempotent, non-tradeable and form legal teams
+not ok 36 - three-user starter claim and opening are persistent, idempotent, non-tradeable and form legal teams
+  ---
+  duration_ms: 0.087
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:145:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: scarcity, serials, provenance, credit ledger and rules cannot be rewritten
+not ok 37 - scarcity, serials, provenance, credit ledger and rules cannot be rewritten
+  ---
+  duration_ms: 0.0984
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:173:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: market settlement credits 925 and fee 75; insufficient funds and double sale leave records intact
+not ok 38 - market settlement credits 925 and fee 75; insufficient funds and double sale leave records intact
+  ---
+  duration_ms: 0.2697
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:208:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: stale trades roll back all ownership; valid multi-card trade is atomic
+not ok 39 - stale trades roll back all ownership; valid multi-card trade is atomic
+  ---
+  duration_ms: 0.0853
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:258:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: invalid position and duplicate lineups fail; admin authorization is enforced
+not ok 40 - invalid position and duplicate lineups fail; admin authorization is enforced
+  ---
+  duration_ms: 0.0747
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:312:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: empty configured formation is rejected and distinct serials cannot duplicate a player by default
+not ok 41 - empty configured formation is rejected and distinct serials cannot duplicate a player by default
+  ---
+  duration_ms: 0.5133
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:334:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: rarity is absent from scoring; unavailable player has zero score, no bench
+not ok 42 - rarity is absent from scoring; unavailable player has zero score, no bench
+  ---
+  duration_ms: 0.4244
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:378:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: three-user locked round publishes immutable results and championship points once
+not ok 43 - three-user locked round publishes immutable results and championship points once
+  ---
+  duration_ms: 0.1252
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:410:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: pack issuance failure rolls back debit, serial allocation and opening items
+not ok 44 - pack issuance failure rolls back debit, serial allocation and opening items
+  ---
+  duration_ms: 0.0649
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:464:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: retirement preserves ownership, rejects new lineup and issues one replacement
+not ok 45 - retirement preserves ownership, rejects new lineup and issues one replacement
+  ---
+  duration_ms: 0.0578
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:506:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: idempotency keys reject changed payloads and ledgers reconcile to zero
+not ok 46 - idempotency keys reject changed payloads and ledgers reconcile to zero
+  ---
+  duration_ms: 0.0545
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:524:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: runtime read projection cannot reveal other users wallets or private provenance
+not ok 47 - runtime read projection cannot reveal other users wallets or private provenance
+  ---
+  duration_ms: 0.0561
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:536:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: manual statistics and versioned scoring are permissioned and freeze after results
+not ok 48 - manual statistics and versioned scoring are permissioned and freeze after results
+  ---
+  duration_ms: 0.1617
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:554:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: account erasure leaves pseudonymous ownership membership instead of blocking profile deletion
+not ok 49 - account erasure leaves pseudonymous ownership membership instead of blocking profile deletion
+  ---
+  duration_ms: 0.0629
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:615:1'
+  failureType: 'hookFailed'
+  error: 'column a.banned_until does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: production starter is permanent, atomic and duplicate-safe across fresh request IDs
+ok 50 - production starter is permanent, atomic and duplicate-safe across fresh request IDs
+  ---
+  duration_ms: 22068.3098
+  ...
+# Subtest: daily reward deduplicates fresh keys, snapshots policy and never credits wallet
+ok 51 - daily reward deduplicates fresh keys, snapshots policy and never credits wallet
+  ---
+  duration_ms: 75.7218
+  ...
+# Subtest: production denies all monetary/trade paths and original Preview entry even as MFA admin
+ok 52 - production denies all monetary/trade paths and original Preview entry even as MFA admin
+  ---
+  duration_ms: 85.7304
+  ...
+# Subtest: unverified, anonymous, stale consent, banned, disabled and expired sessions cannot enroll
+ok 53 - unverified, anonymous, stale consent, banned, disabled and expired sessions cannot enroll
+  ---
+  duration_ms: 76.9307
+  ...
+# Subtest: production supports more than three verified members and isolates their inventory/history
+ok 54 - production supports more than three verified members and isolates their inventory/history
+  ---
+  duration_ms: 376.1631
+  ...
+# Subtest: seventh claim allocates controlled card; claims and scarcity cannot be rewritten
+ok 55 - seventh claim allocates controlled card; claims and scarcity cannot be rewritten
+  ---
+  duration_ms: 82.0142
+  ...
+# Subtest: failed partial starter allocation rolls back membership, stock, cards and provenance
+ok 56 - failed partial starter allocation rolls back membership, stock, cards and provenance
+  ---
+  duration_ms: 115.7585
+  ...
+# Subtest: runtime role executes eligible commands; missing context and revoked membership deny
+ok 57 - runtime role executes eligible commands; missing context and revoked membership deny
+  ---
+  duration_ms: 39.6411
+  ...
+# Subtest: daily card limit and exhausted inventory award only points with stable receipts
+ok 58 - daily card limit and exhausted inventory award only points with stable receipts
+  ---
+  duration_ms: 96.0773
+  ...
+# Subtest: new MFA free rounds preserve fixed scoring and immutable prior results
+ok 59 - new MFA free rounds preserve fixed scoring and immutable prior results
+  ---
+  duration_ms: 254.9788
+  ...
+# Subtest: starter catalog rollover preserves old unopened packs, one lifetime claim and edition caps
+ok 60 - starter catalog rollover preserves old unopened packs, one lifetime claim and edition caps
+  ---
+  duration_ms: 127.3817
+  ...
+# Subtest: old daily request replay never consumes a new UTC period
+ok 61 - old daily request replay never consumes a new UTC period
+  ---
+  duration_ms: 40.5316
+  ...
+# Subtest: unexpected optional-card issuance failure rolls back points, receipt and stock
+ok 62 - unexpected optional-card issuance failure rolls back points, receipt and stock
+  ---
+  duration_ms: 73.5345
+  ...
+# Subtest: shared standings respect profile privacy, bilateral blocks and active membership without exposing auth identities
+ok 63 - shared standings respect profile privacy, bilateral blocks and active membership without exposing auth identities
+  ---
+  duration_ms: 300.9317
+  ...
+# Subtest: stable release excludes beta rounds and points without resetting permanent cards or permitting a second daily claim
+ok 64 - stable release excludes beta rounds and points without resetting permanent cards or permitting a second daily claim
+  ---
+  duration_ms: 130.1991
+  ...
+# Subtest: release history is immutable and runtime cannot invoke legacy bypasses or edit channel records
+ok 65 - release history is immutable and runtime cannot invoke legacy bypasses or edit channel records
+  ---
+  duration_ms: 59.4907
+  ...
+# Subtest: embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+ok 66 - embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+  ---
+  duration_ms: 19722.3319
+  ...
+# Subtest: integrated catalogue, future prize templates, authorised export and durable sale receipts
+ok 67 - integrated catalogue, future prize templates, authorised export and durable sale receipts
+  ---
+  duration_ms: 17542.2544
+  ...
+# Subtest: member snapshots support real admission row locks without weakening access
+ok 68 - member snapshots support real admission row locks without weakening access
+  ---
+  duration_ms: 16520.8816
+  ...
+# Subtest: calendar drafts stay unpublished and uncollected; retries preserve state and failures roll back
+ok 69 - calendar drafts stay unpublished and uncollected; retries preserve state and failures roll back
+  ---
+  duration_ms: 16514.0764
+  ...
+# (node:30052) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: history uses approved full PPR with fumbles once, preserves incomplete/zero/stale semantics
+ok 70 - history uses approved full PPR with fumbles once, preserves incomplete/zero/stale semantics
+  ---
+  duration_ms: 56.2731
+  ...
+# Subtest: live history target requires dedicated credentials, exact project, activation and unexpired review
+ok 71 - live history target requires dedicated credentials, exact project, activation and unexpired review
+  ---
+  duration_ms: 5.666
+  ...
+# Subtest: history roles isolate raw imports; real-only signatures, duplicate delivery and correction retain settlement sentinel
+ok 72 - history roles isolate raw imports; real-only signatures, duplicate delivery and correction retain settlement sentinel
+  ---
+  duration_ms: 7674.5454
+  ...
+# Subtest: exact NFL migration: isolated grants, free allocation, FLEX, ownership and preserved scarcity
+ok 73 - exact NFL migration: isolated grants, free allocation, FLEX, ownership and preserved scarcity
+  ---
+  duration_ms: 17931.6861
+  ...
+# Subtest: seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+ok 74 - seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+  ---
+  duration_ms: 25109.9092
+  ...
+# Subtest: owned collection reads ledgers only, paginates consistently, isolates sports/accounts and follows transfers
+not ok 75 - owned collection reads ledgers only, paginates consistently, isolates sports/accounts and follows transfers
+  ---
+  duration_ms: 14353.7738
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\owned-collection.test.ts:6:1'
+  failureType: 'testCodeFailure'
+  error: 'inconsistent types deduced for parameter $1'
+  code: '42P08'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: owner reporting: actual pack sources, date boundaries, private aggregates and MFA guard
+ok 76 - owner reporting: actual pack sources, date boundaries, private aggregates and MFA guard
+  ---
+  duration_ms: 14458.5262
+  ...
+# Subtest: owner reference SQL: independent registration totals, Sydney boundaries, role denial and redacted activity
+ok 77 - owner reference SQL: independent registration totals, Sydney boundaries, role denial and redacted activity
+  ---
+  duration_ms: 11941.7994
+  ...
+# Subtest: ordered migrations leave all new tables RLS protected and no public private-payload grants
+ok 78 - ordered migrations leave all new tables RLS protected and no public private-payload grants
+  ---
+  duration_ms: 15418.8305
+  ...
+# Subtest: anonymous denied; active members only see own rows and cannot forge another session
+ok 79 - anonymous denied; active members only see own rows and cannot forge another session
+  ---
+  duration_ms: 24.0738
+  ...
+# Subtest: staff metadata does not grant direct SQL mutation or provider payload access to authenticated role
+ok 80 - staff metadata does not grant direct SQL mutation or provider payload access to authenticated role
+  ---
+  duration_ms: 126.6832
+  ...
+# Subtest: disabled profile and revoked or expired session block every member Data API table
+ok 81 - disabled profile and revoked or expired session block every member Data API table
+  ---
+  duration_ms: 49.4716
+  ...
+# Subtest: strategy lifecycle disallows skipped states, unauthorised actors, fixture validation and unreviewed direct updates
+ok 82 - strategy lifecycle disallows skipped states, unauthorised actors, fixture validation and unreviewed direct updates
+  ---
+  duration_ms: 94.1425
+  ...
+# Subtest: paper publication is pre-event immutable and never creates public notification outbox
+ok 83 - paper publication is pre-event immutable and never creates public notification outbox
+  ---
+  duration_ms: 62.9644
+  ...
+# Subtest: mismatched candidate event and malformed EV fail closed
+ok 84 - mismatched candidate event and malformed EV fail closed
+  ---
+  duration_ms: 19.6493
+  ...
+# Subtest: correction cannot link settlements from different publications or rewrite original outcome
+ok 85 - correction cannot link settlements from different publications or rewrite original outcome
+  ---
+  duration_ms: 27.3221
+  ...
+# Subtest: account disable atomically revokes access, scrubs mutable personal records and queues idempotent erasure
+ok 86 - account disable atomically revokes access, scrubs mutable personal records and queues idempotent erasure
+  ---
+  duration_ms: 63.5286
+  ...
+# Subtest: candidate and observation evidence cannot be silently rewritten or removed
+ok 87 - candidate and observation evidence cannot be silently rewritten or removed
+  ---
+  duration_ms: 12.8408
+  ...
+# Subtest: Phase 2 backup restores session policies and immutable strategy/paper evidence
+ok 88 - Phase 2 backup restores session policies and immutable strategy/paper evidence
+  ---
+  duration_ms: 9293.4727
+  ...
+# Subtest: quota reservations survive external failure and preserve unknown balances
+ok 89 - quota reservations survive external failure and preserve unknown balances
+  ---
+  duration_ms: 21.994
+  ...
+# Subtest: policy renewal preserves that jurisdiction's historical publications while restrictions still fail closed
+ok 90 - policy renewal preserves that jurisdiction's historical publications while restrictions still fail closed
+  ---
+  duration_ms: 19.988
+  ...
+# Subtest: as-of reports retain the earlier loss when a later correction was unavailable at report cutoff
+ok 91 - as-of reports retain the earlier loss when a later correction was unavailable at report cutoff
+  ---
+  duration_ms: 5.6634
+  ...
+# Subtest: completion analytics cannot double count repeated or concurrent callbacks
+ok 92 - completion analytics cannot double count repeated or concurrent callbacks
+  ---
+  duration_ms: 9.2802
+  ...
+# Subtest: research sensitivity settings cannot freeze below the release floor or outside the release odds range
+ok 93 - research sensitivity settings cannot freeze below the release floor or outside the release odds range
+  ---
+  duration_ms: 49.6818
+  ...
+# Subtest: repeating signup for an unconfirmed existing profile cannot append or flip initial consent
+ok 94 - repeating signup for an unconfirmed existing profile cannot append or flip initial consent
+  ---
+  duration_ms: 18.7441
+  ...
+# Subtest: commercial tables have RLS, no direct API grants, no card or subscription activation
+ok 95 - commercial tables have RLS, no direct API grants, no card or subscription activation
+  ---
+  duration_ms: 16387.9937
+  ...
+# Subtest: competition drafts are audited, frozen append-only, and cannot produce rankings or awards
+ok 96 - competition drafts are audited, frozen append-only, and cannot produce rankings or awards
+  ---
+  duration_ms: 62.0632
+  ...
+# Subtest: deal drafts retain disclosure and audit and cannot become active through direct SQL
+ok 97 - deal drafts retain disclosure and audit and cannot become active through direct SQL
+  ---
+  duration_ms: 13.291
+  ...
+# Subtest: prize publication, overlap rejection, locked names, admin MFA and immutable audits
+ok 98 - prize publication, overlap rejection, locked names, admin MFA and immutable audits
+  ---
+  duration_ms: 15754.9302
+  ...
+# Subtest: capabilities require an explicit grant, legal acceptance and privacy; genuine features never unlock
+ok 99 - capabilities require an explicit grant, legal acceptance and privacy; genuine features never unlock
+  ---
+  duration_ms: 15236.1828
+  ...
+# Subtest: wrong project, no session, caller metadata and revoked grants cannot authorize
+ok 100 - wrong project, no session, caller metadata and revoked grants cannot authorize
+  ---
+  duration_ms: 28.4996
+  ...
+# Subtest: capability arrays cannot smuggle genuine permissions or mutate an existing grant
+ok 101 - capability arrays cannot smuggle genuine permissions or mutate an existing grant
+  ---
+  duration_ms: 18.2365
+  ...
+# Subtest: invitation reservation is one-use and identity-bound; redemption removes credential hashes
+ok 102 - invitation reservation is one-use and identity-bound; redemption removes credential hashes
+  ---
+  duration_ms: 46.2551
+  ...
+# Subtest: revoked invitation cannot reserve or reveal retained token/email hash
+ok 103 - revoked invitation cannot reserve or reveal retained token/email hash
+  ---
+  duration_ms: 24.8915
+  ...
+# Subtest: wall-clock expiry rejects reservation and capability inside an earlier transaction
+ok 104 - wall-clock expiry rejects reservation and capability inside an earlier transaction
+  ---
+  duration_ms: 111.4833
+  ...
+# Subtest: private tables are RLS-enabled with no browser read/write/function privilege
+ok 105 - private tables are RLS-enabled with no browser read/write/function privilege
+  ---
+  duration_ms: 41.1152
+  ...
+# Subtest: administrator operations require actual private role plus MFA, not metadata
+ok 106 - administrator operations require actual private role plus MFA, not metadata
+  ---
+  duration_ms: 29.4909
+  ...
+# Subtest: erasure clears personal onboarding/grants and invitation FK even outside preview context
+ok 107 - erasure clears personal onboarding/grants and invitation FK even outside preview context
+  ---
+  duration_ms: 128.2112
+  ...
+# Subtest: preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+ok 108 - preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+  ---
+  duration_ms: 14621.0329
+  ...
+# Subtest: preview grant fails closed without exact trusted hosted context or live same-user session
+ok 109 - preview grant fails closed without exact trusted hosted context or live same-user session
+  ---
+  duration_ms: 34.6372
+  ...
+# Subtest: tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+ok 110 - tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+  ---
+  duration_ms: 34.8993
+  ...
+# Subtest: expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+ok 111 - expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+  ---
+  duration_ms: 47.1076
+  ...
+# Subtest: ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+ok 112 - ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+  ---
+  duration_ms: 9.0455
+  ...
+# Subtest: preview marker and grant constraints prevent scope broadening or mutable enrollment
+ok 113 - preview marker and grant constraints prevent scope broadening or mutable enrollment
+  ---
+  duration_ms: 23.7468
+  ...
+# Subtest: browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+ok 114 - browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+  ---
+  duration_ms: 20.1117
+  ...
+# Subtest: hard deletion removes tester identity mapping while retaining minimal grant audit
+ok 115 - hard deletion removes tester identity mapping while retaining minimal grant audit
+  ---
+  duration_ms: 29.1454
+  ...
+# Subtest: session expiry uses wall clock even when transaction start remains before expiry
+ok 116 - session expiry uses wall clock even when transaction start remains before expiry
+  ---
+  duration_ms: 225.7606
+  ...
+# Subtest: new signup persists exact separate approved policy versions and optional consents remain false
+ok 117 - new signup persists exact separate approved policy versions and optional consents remain false
+  ---
+  duration_ms: 14555.7422
+  ...
+# Subtest: retrying signup cannot append consent or change an existing profile
+ok 118 - retrying signup cannot append consent or change an existing profile
+  ---
+  duration_ms: 17.0612
+  ...
+# Subtest: a concurrent taken handle preserves account and legal evidence for username onboarding
+ok 119 - a concurrent taken handle preserves account and legal evidence for username onboarding
+  ---
+  duration_ms: 48.6746
+  ...
+# Subtest: a historical handle race also preserves the new account without stealing the name
+ok 120 - a historical handle race also preserves the new account without stealing the name
+  ---
+  duration_ms: 117.3876
+  ...
+# Subtest: other integrity errors are not disguised as username collisions
+ok 121 - other integrity errors are not disguised as username collisions
+  ---
+  duration_ms: 54.184
+  ...
+# Subtest: historical sport classification uses card evidence, retains ambiguous posts and protects new posts
+ok 122 - historical sport classification uses card evidence, retains ambiguous posts and protects new posts
+  ---
+  duration_ms: 15819.2312
+  ...
+# Subtest: team continuity: first confirmation, private idempotent rollover, manual edits and mode separation
+ok 123 - team continuity: first confirmation, private idempotent rollover, manual edits and mode separation
+  ---
+  duration_ms: 15123.9434
+  ...
+# Subtest: weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+ok 124 - weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+  ---
+  duration_ms: 12975.2782
+  ...
+1..124
+# tests 124
+# suites 0
+# pass 85
+# fail 39
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 262079.5726

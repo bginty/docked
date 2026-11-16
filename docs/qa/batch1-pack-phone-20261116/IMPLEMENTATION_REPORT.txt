@@ -1,0 +1,145 @@
+DOCKED BATCH 1 — PACK PERSISTENCE, RECOVERY AND PHONE TIMEOUTS
+16 November 2026
+Implementation only. Production deployment and public launch remain unapproved.
+The source commit and exact reviewed bytes are recorded in production-package.json.
+
+Implemented
+- Selectively reused the pack work from 6882ad745186f5937bc54a53aa786e26363dfa54.
+  No Round navigation, Play loading or lineup product changes were merged.
+- Batched immutable issuance-registry validation, cached JSON inputs, avoided
+  repeated full-document decompression and rebuilt only affected sport/member
+  projections. Full repair remains available; all ownership/source/supply guards
+  and their transaction locks remain active.
+- Pack history now reconstructs the complete document from the locked database
+  input and changed fields. The input is captured before authorisation/catalogue
+  preparation can mutate it. No history is truncated; state reuses that exact
+  history row. Other commands and intermediate settlements retain full-state
+  persistence. An unexpected locked revision aborts the transaction.
+- New scoped receipts avoid loading the entire wallet/catalogue on recovery.
+  Requests remain account-bound and fingerprinted; in-flight retries recheck the
+  same request after the lock. Current admission/MFA/ownership still apply.
+- Reveal of allocated season cards no longer depends on refreshing live roster
+  names. New purchases still require current approved source rights. Existing
+  one-card receipts remain one-card receipts, not failed nine-card orders.
+- Catalogue eligibility/order is computed once per pack; every draw still checks
+  current lifetime supply and duplicate-player rules. Prices, rarity probabilities,
+  pack sizes, identities, serials and the approved season catalogue are unchanged.
+- Phone requests bound BOTH headers and full body transfer to 19.5 seconds,
+  reserving 0.5 seconds for UI recovery within the 20-second budget. Retry/Change
+  Number preserve appropriate input; server Retry-After controls throttling.
+  An uncertain response never automatically sends another SMS.
+- Node major is consistently 22.x. Critical old fixtures now include current Auth
+  columns and explicit isolated source/commerce approvals; expiry tests use a
+  controlled test clock instead of treating an expired permission as current.
+  No application or database guard was weakened to repair a fixture.
+
+Performance
+The final 36-case candidate matrix covers all Standard/Premium 1/3/9 offers for
+NFL/AFL/NRL, for both founder and Brenton, from equal restored starting data.
+Confirmation p50 3,108 ms; p95 4,753 ms; maximum 5,500 ms.
+Saved-result recovery p50 156 ms; p95 329 ms; maximum 533 ms.
+Reveal API p50 2,716 ms; p95 5,299 ms; maximum 7,297 ms.
+The first two targets pass in this isolated sequential product matrix. This does
+not establish a five-second target under arbitrary concurrency or on Android.
+Matched before/after p95 (36 cases per phase): confirmation 36,448 -> 4,753 ms;
+saved recovery 3,776 -> 329 ms. Before reveal succeeded in 24/36 cases (p95
+35,453 ms); all 12 NFL cases were rejected on stale roster evidence. After reveal
+succeeded in 36/36 (p95 5,299 ms).
+The initial 12 nine-card cases included a 5,500 ms result (subgroup p95 5,500).
+A predeclared 36-case supplement repeated every nine-card sport/family/account
+combination three times: confirmation p95 3,754 ms, maximum 3,768 ms. Retaining
+all original 12 cases gives 48 cases: confirmation p95 3,771 ms (maximum 5,500),
+saved recovery p95 241 ms and reveal p95 3,082 ms. No original sample was removed.
+Both the supplementary and combined nine-card targets pass.
+Confirmation-stage p95 persistence: 33,849.9 -> 3,094.2 ms; response view
+1,438.5 -> 237.6 ms. Candidate lock waiting p95 26.4 ms and state reading
+547.2 ms; the baseline's combined lock/read stage was 491.3 ms.
+Database sent bytes p95: 7,971,422 -> 203,265; received: 9,581,265 -> 4,695,209.
+API response bytes p95: 609,474 -> 1,248. Local body-read p95: 5.10 -> 0.41 ms;
+JSON parse: 10.19 -> 0.14 ms. These are not mobile Internet transfer measurements.
+Separate SQL profile of the same nine-card purchase: guarded state UPDATE
+19,906.766 -> 937.889 ms; reveal UPDATE 21,060.803 -> 807.758 ms. These two
+EXPLAIN samples isolate database execution; they are not p95 statistics.
+Full breakdown, matched workloads and sample counts: performance-summary.json.
+Earlier failed optimisation runs remain in benchmark-iteration1/2/3/4.json.
+
+Measurement limits
+Windows Node 22.14.0, restored PostgreSQL, jit=off/work_mem=3500kB, real handlers
+and restricted-role SQL, simulated authenticated sessions, Docker stdin transport.
+Each timing case uses an outer rollback/savepoints to preserve identical data;
+timing excludes durable COMMIT/fsync, hosted Auth and Internet latency. Separate
+committed PostgreSQL acceptance establishes transaction integrity. Protected hosted
+and genuine installed Android measurements remain required before promotion.
+Server stages overlap; baseline lock timing includes state reading. Do not sum
+stage p95s or present database wire bytes as mobile-network transfer time.
+Browser presentation is separately recorded in presentation-benchmark.json:
+receipt rendering 25.3–522.8 ms across six simulations; unchanged normal reveal
+animation approximately 985–3,817 ms/card and reduced-motion 9.8–57.7 ms/card.
+These animations/artwork/branding were preserved; human pauses are excluded.
+
+Verification
+- 842 platform checks passed in the full run; 15 focused pack/recovery checks
+  passed again after the final catalogue/persistence work.
+- All 247 distinct database checks passed across the full run, fixture repairs
+  and two separately run native PostgreSQL suites. The default suite's two native
+  opt-ins were initially skipped, then each passed on a fresh disposable cluster.
+  Initial stale-fixture failures and the native role-reuse setup failure are kept
+  in the logs. The final affected database subset passed 23/23 with all three SQL
+  files. This is not represented as one uninterrupted 247-test green run.
+- Final restored PostgreSQL acceptance: 24 simultaneous duplicate purchases yield
+  one debit, one entitlement and nine unique cards; 24 opening retries return the
+  same cards. Conflicting request bytes, another member's receipt, missing founder
+  MFA and revoked admission are denied. A third-card persistence fault rolls back
+  charge, entitlement, allocations and supply together.
+- Concurrent duplicate purchase durations were 6,424–9,067 ms. These measure
+  contention while the first purchase commits; they are separate from the steady
+  product matrix. Recovery after discarding the response and restarting the
+  handler took 231 ms, with no additional debit or issuance.
+- Source withdrawal blocks a new purchase atomically while an already allocated
+  pack remains revealable. Existing one-card receipts, immutable serials, deletion
+  denial, lifetime counters and parallel-inventory restrictions passed.
+- 169 JSON reconstruction cases plus the complete restored wallet compare equal
+  in PostgreSQL to independently serialized expected documents, including an
+  in-place authorisation change. No test rows are written by that oracle.
+- 32 before/after financial-guard cases and 20 reservation checks passed.
+- 33 browser checks passed; separate NFL/AFL/NRL interruption/reload/sold-out
+  recovery scenarios and four phone recovery scenarios passed. Phone recovery
+  became visible in foreground simulations after 19,518/19,506 ms for stalled headers/body, with one request
+  and zero automatic resends. Native-sharing checks simulate the Android bridge.
+- Clean Node 22 build passed; 109 browser assets passed credential-canary scanning.
+  Credential-free standalone smoke passed privacy/policy/login and cross-origin
+  mutation denial, CA tracing and module resolution. Final typecheck/lint passed.
+  Final build ID: ROedSwugO0qI0Y-h9-NET.
+
+Database and Production integrity
+Authenticated encrypted snapshot captured 2026-11-15T21:19:59.342Z; archive SHA-256
+86d4213d8ef4620e30173c03ab91d2bf883f8c8c4a5bb1208b98b090357203ba.
+The isolated restore has no network or published ports and no running jobs/HTTP
+delivery. All 568 protected table fingerprints remained unchanged by migrations.
+Seven of 791 function bodies change. Owners, ACLs, RLS, policies, security modes,
+search paths, table shapes and scheduler definitions remain unchanged.
+Fresh readback at 2026-11-16T01:08:47.478Z confirms Production remains
+12ccfd5879ae83f1bd62210ee16a3feb6907d9ef, deployment dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy.
+6,540 definitions; 890 lifetime limited copies (888 legacy + 2 legitimate beta);
+908 custody records; no commercial cards, active competitions or open public/
+commercial controls. Financial and custody fingerprints match the initial census.
+Brenton's existing grant/consent/access and all customer assets were preserved.
+Production writes during this implementation: ZERO.
+
+Deployment and remaining work
+Three migrations and their exact checksums, lock risks, preflight, protected staging,
+post-deployment checks and recovery are in DEPLOYMENT_REVIEW.txt and the frozen
+package. Expected quiet-window allowance: up to two minutes of write interruption;
+observed uncontended DDL was about 0.1 seconds. Fresh backup/restore and drift checks
+are mandatory at execution; this implementation snapshot is not a deployment backup.
+The push branch disables automatic Vercel deployment; the repository workflow
+also does not deploy this branch. The existing Sydney region is preserved. A separate exact-package
+Production approval is required; no such approval is recorded for Batch 1.
+Protected hosted latency/auth acceptance and physical Android v31 remain untested
+for these new bytes. No Android native file changed and no v32 need was identified.
+SMS/provider delivery, real Google Billing/refund acceptance and launch activation
+remain distinct gates. None was performed or enabled by this batch.
+Batch 2 is review-only: scoped Play loading, full NFL Round navigation and fill-empty
+Traditional/All-Star drafts. Recommendation and acceptance are in BATCH_2_RECOMMENDATION.txt;
+estimate 12–18 engineering hours, subject to schedule-source and product approval.
+Six public competitions remain disabled Practice. NBA stays hidden. Public launch NO-GO.

@@ -1,0 +1,2974 @@
+
+> docked-value-platform@1.0.0 db:test
+> tsx --test --test-concurrency=2 tests/database/*.test.ts
+
+TAP version 13
+# Subtest: NRL: persisted slots, modes, rollover and historical privacy use the shared command
+ok 1 - NRL: persisted slots, modes, rollover and historical privacy use the shared command
+  ---
+  duration_ms: 25732.7409
+  ...
+# Subtest: NBA: persisted slots, modes, rollover and historical privacy use the shared command
+ok 2 - NBA: persisted slots, modes, rollover and historical privacy use the shared command
+  ---
+  duration_ms: 14769.6968
+  ...
+# Subtest: NBA: persisted slots, modes, rollover and historical privacy use the shared command
+ok 3 - NBA: persisted slots, modes, rollover and historical privacy use the shared command
+  ---
+  duration_ms: 15722.7228
+  ...
+# Subtest: EPL: persisted slots, modes, rollover and historical privacy use the shared command
+ok 4 - EPL: persisted slots, modes, rollover and historical privacy use the shared command
+  ---
+  duration_ms: 15283.7886
+  ...
+# Subtest: announcement persistence: real SQL authorization, concurrency, independent review, replay and immutable audit
+ok 5 - announcement persistence: real SQL authorization, concurrency, independent review, replay and immutable audit
+  ---
+  duration_ms: 7920.8151
+  ...
+# Subtest: administrative details execute real projection with private-field, role, session and history boundaries
+ok 6 - administrative details execute real projection with private-field, role, session and history boundaries
+  ---
+  duration_ms: 10418.3056
+  ...
+# Subtest: admin search: actual migration, scoped grants, MFA/session denial, safe data and pagination
+ok 7 - admin search: actual migration, scoped grants, MFA/session denial, safe data and pagination
+  ---
+  duration_ms: 6306.8302
+  ...
+# Subtest: AFL 22: authoritative positions, independent modes/weeks, rollover, history and privacy
+ok 8 - AFL 22: authoritative positions, independent modes/weeks, rollover, history and privacy
+  ---
+  duration_ms: 18275.1071
+  ...
+# Subtest: publication is private until approved, authorised, immutable on replay and independent from draft edits
+ok 9 - publication is private until approved, authorised, immutable on replay and independent from draft edits
+  ---
+  duration_ms: 6156.5954
+  ...
+# Subtest: Future salary adoption preserves historical, confirmed and draft snapshots; new rounds inherit approved rules without activation
+ok 10 - Future salary adoption preserves historical, confirmed and draft snapshots; new rounds inherit approved rules without activation
+  ---
+  duration_ms: 36280.6163
+  ...
+# Subtest: future Australian rounds inherit inactive approved rewards; historical QA and NFL remain untouched
+ok 11 - future Australian rounds inherit inactive approved rewards; historical QA and NFL remain untouched
+  ---
+  duration_ms: 42962.3068
+  ...
+# Subtest: Approved salary versions install additively and only explicitly adopt empty future rounds
+ok 12 - Approved salary versions install additively and only explicitly adopt empty future rounds
+  ---
+  duration_ms: 47807.413
+  ...
+# Subtest: mail RPC and encrypted tables are unavailable to public/member/runtime roles
+ok 13 - mail RPC and encrypted tables are unavailable to public/member/runtime roles
+  ---
+  duration_ms: 7019.5634
+  ...
+# Subtest: duplicate enqueues reuse one receipt; conflicting content and partial batches roll back
+ok 14 - duplicate enqueues reuse one receipt; conflicting content and partial batches roll back
+  ---
+  duration_ms: 28.6635
+  ...
+# Subtest: worker fencing prevents a second claim and a stale worker dispatch
+ok 15 - worker fencing prevents a second claim and a stale worker dispatch
+  ---
+  duration_ms: 47.4145
+  ...
+# Subtest: lost dispatch acknowledgement becomes unknown and can never auto retry
+ok 16 - lost dispatch acknowledgement becomes unknown and can never auto retry
+  ---
+  duration_ms: 29.2377
+  ...
+# Subtest: only pre-dispatch failures can retry; attempts are bounded and accepted cannot be downgraded
+ok 17 - only pre-dispatch failures can retry; attempts are bounded and accepted cannot be downgraded
+  ---
+  duration_ms: 57.6165
+  ...
+# Subtest: expired queued links are erased without dispatch and modes cannot cross
+ok 18 - expired queued links are erased without dispatch and modes cannot cross
+  ---
+  duration_ms: 24.4835
+  ...
+# Subtest: live dispatch lease cannot return to pending for any retry reason
+ok 19 - live dispatch lease cannot return to pending for any retry reason
+  ---
+  duration_ms: 41.0881
+  ...
+# Subtest: credit requests persist auditable review only, with idempotency, owner MFA, immutable events and no ledger changes
+ok 20 - credit requests persist auditable review only, with idempotency, owner MFA, immutable events and no ledger changes
+  ---
+  duration_ms: 7836.2965
+  ...
+# Subtest: trading approval, restricted grants, member checks, MFA, emergency pause and idempotent audit
+ok 21 - trading approval, restricted grants, member checks, MFA, emergency pause and idempotent audit
+  ---
+  duration_ms: 10245.5802
+  ...
+# Subtest: database enforces permanent supply, serial immutability, nine-card receipts and private access
+ok 22 - database enforces permanent supply, serial immutability, nine-card receipts and private access
+  ---
+  duration_ms: 7571.1897
+  ...
+# Subtest: card history SQL: admitted only, no ownership/entry leaks, current revisions and review holds
+not ok 23 - card history SQL: admitted only, no ownership/entry leaks, current revisions and review holds
+  ---
+  duration_ms: 16776.3215
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\card-player-history.test.ts:7:1'
+  failureType: 'testCodeFailure'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: AFL: commercial owned inventory reuses saved lineup validation without changing other rounds
+ok 24 - AFL: commercial owned inventory reuses saved lineup validation without changing other rounds
+  ---
+  duration_ms: 14412.4689
+  ...
+# Subtest: NRL: commercial owned inventory reuses saved lineup validation without changing other rounds
+ok 25 - NRL: commercial owned inventory reuses saved lineup validation without changing other rounds
+  ---
+  duration_ms: 14277.9895
+  ...
+# Subtest: Commercial marketplace: native PostgreSQL races, reviewed terms, session/privacy gates, atomic receipts and emergency closure
+ok 26 - Commercial marketplace: native PostgreSQL races, reviewed terms, session/privacy gates, atomic receipts and emergency closure # SKIP
+  ---
+  duration_ms: 2.4578
+  ...
+# Subtest: Commercial collection preserves historical custody beside paid cards, pagination, counts and permissions
+ok 27 - Commercial collection preserves historical custody beside paid cards, pagination, counts and permissions # SKIP
+  ---
+  duration_ms: 3.0763
+  ...
+# Subtest: Commercial social: authoritative owned/opened cards, privacy, session and transfer locking
+not ok 28 - Commercial social: authoritative owned/opened cards, privacy, session and transfer locking
+  ---
+  duration_ms: 15679.5129
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\commercial-social.test.ts:7:1'
+  failureType: 'testCodeFailure'
+  error: 'A purchased pack must atomically contain every awarded card'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+not ok 29 - community private tables RLS deny anonymous/member reads and writes; reviewed definer boundary
+  ---
+  duration_ms: 15862.668
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-ledger.test.ts:176:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: unknown provider classification, promotions and historical/demo records cannot be promoted
+not ok 30 - unknown provider classification, promotions and historical/demo records cannot be promoted
+  ---
+  duration_ms: 84.0617
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-ledger.test.ts:210:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+not ok 31 - atomic submission locks exact quote, rejects inflated odds/cross-user, stamps server time and stays immutable
+  ---
+  duration_ms: 0.1251
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-ledger.test.ts:242:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+not ok 32 - newer price observation invalidates older confirmation; stale and cutoff quotes rejected
+  ---
+  duration_ms: 0.0733
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-ledger.test.ts:297:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+not ok 33 - latest policy and 21+ restriction cannot be bypassed with an older 18+ approval
+  ---
+  duration_ms: 0.1094
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-ledger.test.ts:324:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: canonical records survive social tombstone, private identity and blocking
+not ok 34 - canonical records survive social tombstone, private identity and blocking
+  ---
+  duration_ms: 0.2675
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-ledger.test.ts:347:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: authorized results only, no silent correction, finite scores, append-only approval revocation
+not ok 35 - authorized results only, no silent correction, finite scores, append-only approval revocation
+  ---
+  duration_ms: 0.0719
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-ledger.test.ts:390:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+not ok 36 - integrity status cannot be self-cleared; account deletion retains pseudonymous complete ledger
+  ---
+  duration_ms: 0.0692
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-ledger.test.ts:509:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+not ok 37 - leaderboard milestone queue requires a comparable prior immutable snapshot and remains private
+  ---
+  duration_ms: 0.4822
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-ledger.test.ts:563:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: staff queue query returns current content and bounded audit history without private credentials
+not ok 38 - staff queue query returns current content and bounded audit history without private credentials
+  ---
+  duration_ms: 15117.9419
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:17:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: dashboard queue categories filter outstanding reports before the 100-record limit
+not ok 39 - dashboard queue categories filter outstanding reports before the 100-record limit
+  ---
+  duration_ms: 161.9299
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:62:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+not ok 40 - NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+  ---
+  duration_ms: 0.5408
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:122:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+not ok 41 - NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+  ---
+  duration_ms: 0.2089
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:162:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: collection preferences default private, and runtime writes cannot target another profile
+not ok 42 - collection preferences default private, and runtime writes cannot target another profile
+  ---
+  duration_ms: 0.2091
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:196:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: community creation requires authoritative staff and MFA even through the database runtime role
+not ok 43 - community creation requires authoritative staff and MFA even through the database runtime role
+  ---
+  duration_ms: 4.4119
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:235:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: post card snapshot and player/community context cannot be silently rewritten
+not ok 44 - post card snapshot and player/community context cannot be silently rewritten
+  ---
+  duration_ms: 1.7435
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:247:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: followed player discussion replies create one private in-app notification
+not ok 45 - followed player discussion replies create one private in-app notification
+  ---
+  duration_ms: 0.2974
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:267:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+not ok 46 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 4.6346
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:293:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+not ok 47 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 3.6359
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:325:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+not ok 48 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 0.7543
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:350:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+not ok 49 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 0.1771
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:406:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+not ok 50 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 0.1509
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:452:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+not ok 51 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 0.1615
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:497:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+not ok 52 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 0.1545
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:546:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+not ok 53 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 0.3264
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:574:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+not ok 54 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 0.1547
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:614:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+not ok 55 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 0.1132
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:641:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+not ok 56 - collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+  ---
+  duration_ms: 0.1279
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:669:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: collection projections reject an expired session even when reading own cards
+not ok 57 - collection projections reject an expired session even when reading own cards
+  ---
+  duration_ms: 0.1057
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:721:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+not ok 58 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 0.9605
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\community-social.test.ts:738:1'
+  failureType: 'hookFailed'
+  error: 'Migration 20261109232000_public_practice_phone_guards.sql: error: Auth unique phone index required'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\community-social.test.ts:112:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: customer eligibility is not account creation: cap, binding, verification, consent and roles
+ok 59 - customer eligibility is not account creation: cap, binding, verification, consent and roles
+  ---
+  duration_ms: 20813.5754
+  ...
+# Subtest: named admin admission preserves MFA, revocation, roster and owner boundaries
+ok 60 - named admin admission preserves MFA, revocation, roster and owner boundaries
+  ---
+  duration_ms: 7383.9861
+  ...
+# Subtest: confirmed existing session creates its own profile only after separate current consents; retry preserves records
+ok 61 - confirmed existing session creates its own profile only after separate current consents; retry preserves records
+  ---
+  duration_ms: 6877.3548
+  ...
+# Subtest: another account's session cannot bootstrap a profile
+ok 62 - another account's session cannot bootstrap a profile
+  ---
+  duration_ms: 28.6399
+  ...
+# Subtest: expired, unconfirmed, anonymous and banned sessions remain denied
+ok 63 - expired, unconfirmed, anonymous and banned sessions remain denied
+  ---
+  duration_ms: 120.4077
+  ...
+# Subtest: staff and previously enrolled authenticators require AAL2 before profile creation
+ok 64 - staff and previously enrolled authenticators require AAL2 before profile creation
+  ---
+  duration_ms: 71.0419
+  ...
+# Subtest: missing, unapproved, expired and superseded regional policy cannot be replaced by beta assumptions
+ok 65 - missing, unapproved, expired and superseded regional policy cannot be replaced by beta assumptions
+  ---
+  duration_ms: 129.675
+  ...
+# Subtest: each consent must be explicit and region valid; disabled profile cannot be revived
+ok 66 - each consent must be explicit and region valid; disabled profile cannot be revived
+  ---
+  duration_ms: 108.2435
+  ...
+# Subtest: unfunded buyers cannot reserve pack inventory
+not ok 67 - unfunded buyers cannot reserve pack inventory
+  ---
+  duration_ms: 17028.8268
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:71:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: fantasy tables use RLS; browsers and runtime cannot write or invoke helpers
+not ok 68 - fantasy tables use RLS; browsers and runtime cannot write or invoke helpers
+  ---
+  duration_ms: 134.2719
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:102:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: fourth member, forged session, revoked member and disabled profile fail closed
+not ok 69 - fourth member, forged session, revoked member and disabled profile fail closed
+  ---
+  duration_ms: 0.3014
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:125:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: three-user starter claim and opening are persistent, idempotent, non-tradeable and form legal teams
+not ok 70 - three-user starter claim and opening are persistent, idempotent, non-tradeable and form legal teams
+  ---
+  duration_ms: 0.2071
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:145:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: scarcity, serials, provenance, credit ledger and rules cannot be rewritten
+not ok 71 - scarcity, serials, provenance, credit ledger and rules cannot be rewritten
+  ---
+  duration_ms: 0.1843
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:173:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: market settlement credits 925 and fee 75; insufficient funds and double sale leave records intact
+not ok 72 - market settlement credits 925 and fee 75; insufficient funds and double sale leave records intact
+  ---
+  duration_ms: 0.4019
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:208:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: stale trades roll back all ownership; valid multi-card trade is atomic
+not ok 73 - stale trades roll back all ownership; valid multi-card trade is atomic
+  ---
+  duration_ms: 0.2694
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:258:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: invalid position and duplicate lineups fail; admin authorization is enforced
+not ok 74 - invalid position and duplicate lineups fail; admin authorization is enforced
+  ---
+  duration_ms: 0.17
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:312:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: empty configured formation is rejected and distinct serials cannot duplicate a player by default
+not ok 75 - empty configured formation is rejected and distinct serials cannot duplicate a player by default
+  ---
+  duration_ms: 0.8279
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:334:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: rarity is absent from scoring; unavailable player has zero score, no bench
+not ok 76 - rarity is absent from scoring; unavailable player has zero score, no bench
+  ---
+  duration_ms: 0.5626
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:378:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: three-user locked round publishes immutable results and championship points once
+not ok 77 - three-user locked round publishes immutable results and championship points once
+  ---
+  duration_ms: 0.2011
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:410:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: pack issuance failure rolls back debit, serial allocation and opening items
+not ok 78 - pack issuance failure rolls back debit, serial allocation and opening items
+  ---
+  duration_ms: 0.1198
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:464:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: retirement preserves ownership, rejects new lineup and issues one replacement
+not ok 79 - retirement preserves ownership, rejects new lineup and issues one replacement
+  ---
+  duration_ms: 0.1102
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:506:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: idempotency keys reject changed payloads and ledgers reconcile to zero
+not ok 80 - idempotency keys reject changed payloads and ledgers reconcile to zero
+  ---
+  duration_ms: 0.1027
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:524:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: runtime read projection cannot reveal other users wallets or private provenance
+not ok 81 - runtime read projection cannot reveal other users wallets or private provenance
+  ---
+  duration_ms: 0.0979
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:536:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: manual statistics and versioned scoring are permissioned and freeze after results
+not ok 82 - manual statistics and versioned scoring are permissioned and freeze after results
+  ---
+  duration_ms: 0.2566
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:554:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: account erasure leaves pseudonymous ownership membership instead of blocking profile deletion
+not ok 83 - account erasure leaves pseudonymous ownership membership instead of blocking profile deletion
+  ---
+  duration_ms: 0.1065
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-cards.test.ts:615:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: bilateral consent, exact per-trade fees, idempotent receipt, immutable history
+ok 84 - bilateral consent, exact per-trade fees, idempotent receipt, immutable history
+  ---
+  duration_ms: 8235.1322
+  ...
+# Subtest: fee-window boundary demands fresh quote and fresh bilateral consent
+ok 85 - fee-window boundary demands fresh quote and fresh bilateral consent
+  ---
+  duration_ms: 136.7211
+  ...
+# Subtest: insufficient mock balance and payment failure roll back fees, transfers and second consent
+ok 86 - insufficient mock balance and payment failure roll back fees, transfers and second consent
+  ---
+  duration_ms: 144.3576
+  ...
+# Subtest: stale ownership, locked lineups, foreign accounts and policy changes fail closed
+ok 87 - stale ownership, locked lineups, foreign accounts and policy changes fail closed
+  ---
+  duration_ms: 123.2917
+  ...
+# Subtest: bundle charged once, sale transfers price atomically, cancellation is free
+ok 88 - bundle charged once, sale transfers price atomically, cancellation is free
+  ---
+  duration_ms: 115.9843
+  ...
+# Subtest: cancellation and rejection never charge; cancelled quotes cannot commit
+ok 89 - cancellation and rejection never charge; cancelled quotes cannot commit
+  ---
+  duration_ms: 88.4761
+  ...
+# Subtest: unconfigured live schedule blocks, policy revision invalidates consent
+ok 90 - unconfigured live schedule blocks, policy revision invalidates consent
+  ---
+  duration_ms: 110.6859
+  ...
+# Subtest: offer edits cannot substitute terms after consent; sale and decline rules
+ok 91 - offer edits cannot substitute terms after consent; sale and decline rules
+  ---
+  duration_ms: 144.9519
+  ...
+# Subtest: production starter is permanent, atomic and duplicate-safe across fresh request IDs
+not ok 92 - production starter is permanent, atomic and duplicate-safe across fresh request IDs
+  ---
+  duration_ms: 17122.3659
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:85:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: daily reward deduplicates fresh keys, snapshots policy and never credits wallet
+not ok 93 - daily reward deduplicates fresh keys, snapshots policy and never credits wallet
+  ---
+  duration_ms: 179.9663
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:120:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: production denies all monetary/trade paths and original Preview entry even as MFA admin
+not ok 94 - production denies all monetary/trade paths and original Preview entry even as MFA admin
+  ---
+  duration_ms: 0.3315
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:161:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: unverified, anonymous, stale consent, banned, disabled and expired sessions cannot enroll
+not ok 95 - unverified, anonymous, stale consent, banned, disabled and expired sessions cannot enroll
+  ---
+  duration_ms: 0.2795
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:219:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: production supports more than three verified members and isolates their inventory/history
+not ok 96 - production supports more than three verified members and isolates their inventory/history
+  ---
+  duration_ms: 0.2605
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:267:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: seventh claim allocates controlled card; claims and scarcity cannot be rewritten
+not ok 97 - seventh claim allocates controlled card; claims and scarcity cannot be rewritten
+  ---
+  duration_ms: 0.3363
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:295:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: failed partial starter allocation rolls back membership, stock, cards and provenance
+not ok 98 - failed partial starter allocation rolls back membership, stock, cards and provenance
+  ---
+  duration_ms: 0.2481
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:336:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: runtime role executes eligible commands; missing context and revoked membership deny
+not ok 99 - runtime role executes eligible commands; missing context and revoked membership deny
+  ---
+  duration_ms: 0.5864
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:364:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: daily card limit and exhausted inventory award only points with stable receipts
+not ok 100 - daily card limit and exhausted inventory award only points with stable receipts
+  ---
+  duration_ms: 2.1043
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:386:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: new MFA free rounds preserve fixed scoring and immutable prior results
+not ok 101 - new MFA free rounds preserve fixed scoring and immutable prior results
+  ---
+  duration_ms: 0.6735
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:430:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: starter catalog rollover preserves old unopened packs, one lifetime claim and edition caps
+not ok 102 - starter catalog rollover preserves old unopened packs, one lifetime claim and edition caps
+  ---
+  duration_ms: 0.2778
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:537:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: old daily request replay never consumes a new UTC period
+not ok 103 - old daily request replay never consumes a new UTC period
+  ---
+  duration_ms: 0.1782
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:586:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: unexpected optional-card issuance failure rolls back points, receipt and stock
+not ok 104 - unexpected optional-card issuance failure rolls back points, receipt and stock
+  ---
+  duration_ms: 0.135
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:607:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: shared standings respect profile privacy, bilateral blocks and active membership without exposing auth identities
+not ok 105 - shared standings respect profile privacy, bilateral blocks and active membership without exposing auth identities
+  ---
+  duration_ms: 0.1728
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:663:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: stable release excludes beta rounds and points without resetting permanent cards or permitting a second daily claim
+not ok 106 - stable release excludes beta rounds and points without resetting permanent cards or permitting a second daily claim
+  ---
+  duration_ms: 0.1553
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:737:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: release history is immutable and runtime cannot invoke legacy bypasses or edit channel records
+not ok 107 - release history is immutable and runtime cannot invoke legacy bypasses or edit channel records
+  ---
+  duration_ms: 0.4056
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\fantasy-production.test.ts:815:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: AFL: verified registry free-Core adapter preserves ownership and fails closed
+ok 108 - AFL: verified registry free-Core adapter preserves ownership and fails closed
+  ---
+  duration_ms: 19689.4858
+  ...
+# Subtest: NRL: verified registry free-Core adapter preserves ownership and fails closed
+ok 109 - NRL: verified registry free-Core adapter preserves ownership and fails closed
+  ---
+  duration_ms: 16977.4811
+  ...
+# Subtest: AFL: free Core is round eligibility, not collectible issuance
+ok 110 - AFL: free Core is round eligibility, not collectible issuance
+  ---
+  duration_ms: 20948.7628
+  ...
+# Subtest: NRL: free Core is round eligibility, not collectible issuance
+ok 111 - NRL: free Core is round eligibility, not collectible issuance
+  ---
+  duration_ms: 16699.8856
+  ...
+# Subtest: jersey projection rejects missing/conflicting/stale/wrong-team source facts and grants no raw access
+ok 112 - jersey projection rejects missing/conflicting/stale/wrong-team source facts and grants no raw access
+  ---
+  duration_ms: 6369.5401
+  ...
+# Subtest: embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+not ok 113 - embedded PGlite (serialized, not multi-connection): transaction races, immutable receipts, RLS, both-mode reservations and locked entitlement
+  ---
+  duration_ms: 19779.9835
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\marketplace.test.ts:17:1'
+  failureType: 'testCodeFailure'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: database coupon guards, QA privacy and idempotent unfinished-round retry
+ok 114 - database coupon guards, QA privacy and idempotent unfinished-round retry
+  ---
+  duration_ms: 8407.2303
+  ...
+# Subtest: integrated catalogue, future prize templates, authorised export and durable sale receipts
+not ok 115 - integrated catalogue, future prize templates, authorised export and durable sale receipts
+  ---
+  duration_ms: 16615.9058
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\member-platform-updates.test.ts:15:1'
+  failureType: 'testCodeFailure'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: member snapshots support real admission row locks without weakening access
+not ok 116 - member snapshots support real admission row locks without weakening access
+  ---
+  duration_ms: 14555.5627
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\member-read-isolation.test.ts:7:1'
+  failureType: 'testCodeFailure'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: member Google admission is empty by default, session-bound, revocable and cannot be self-granted
+ok 117 - member Google admission is empty by default, session-bound, revocable and cannot be self-granted
+  ---
+  duration_ms: 16921.4305
+  ...
+# Subtest: moderation case SQL: role/assignment authority, atomic metadata/audit, reversible holds and competing reports
+ok 118 - moderation case SQL: role/assignment authority, atomic metadata/audit, reversible holds and competing reports
+  ---
+  duration_ms: 5840.4725
+  ...
+# Subtest: retained evidence: role/MFA, immutable audit, parent holds, release after removal, erasure and exact retries
+ok 119 - retained evidence: role/MFA, immutable audit, parent holds, release after removal, erasure and exact retries
+  ---
+  duration_ms: 7040.3487
+  ...
+# Subtest: NBA synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 120 - NBA synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 19755.7283
+  ...
+# Subtest: AFL synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 121 - AFL synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 16971.3446
+  ...
+# Subtest: NRL synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 122 - NRL synthetic allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 15640.2778
+  ...
+# Subtest: NBA real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 123 - NBA real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 19061.3348
+  ...
+# Subtest: AFL real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 124 - AFL real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 37201.274
+  ...
+# Subtest: NRL real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+ok 125 - NRL real roster beta allocation, atomic lineup inventory and admission preserve permanent NFL inventory
+  ---
+  duration_ms: 38687.4466
+  ...
+# Subtest: NBA private beta allowlist preserves confirmation, session, member MFA, sport and inventory boundaries
+ok 126 - NBA private beta allowlist preserves confirmation, session, member MFA, sport and inventory boundaries
+  ---
+  duration_ms: 18419.4928
+  ...
+# Subtest: NBA V2 SQL snapshots, post-lock visibility and corrected contributions reconcile
+ok 127 - NBA V2 SQL snapshots, post-lock visibility and corrected contributions reconcile
+  ---
+  duration_ms: 16679.7308
+  ...
+# Subtest: NBA isolated journal: real SQL lock/privacy, exact snapshots, corrections and least privilege
+ok 128 - NBA isolated journal: real SQL lock/privacy, exact snapshots, corrections and least privilege
+  ---
+  duration_ms: 17199.3715
+  ...
+# Subtest: calendar drafts stay unpublished and uncollected; retries preserve state and failures roll back
+not ok 129 - calendar drafts stay unpublished and uncollected; retries preserve state and failures roll back
+  ---
+  duration_ms: 32437.1781
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\nfl-calendar-draft.test.ts:10:1'
+  failureType: 'testCodeFailure'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: history uses approved full PPR with fumbles once, preserves incomplete/zero/stale semantics
+ok 130 - history uses approved full PPR with fumbles once, preserves incomplete/zero/stale semantics
+  ---
+  duration_ms: 137.2504
+  ...
+# Subtest: live history target requires dedicated credentials, exact project and explicit activation
+not ok 131 - live history target requires dedicated credentials, exact project and explicit activation
+  ---
+  duration_ms: 16.3347
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\nfl-history.test.ts:69:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\nfl-history.test.ts:94:10)
+    Test.runInAsyncScope (node:async_hooks:211:14)
+    Test.run (node:internal/test_runner/test:979:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:677:18)
+    Test.postRun (node:internal/test_runner/test:1090:19)
+    Test.run (node:internal/test_runner/test:1018:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: history roles isolate raw imports; real-only signatures, duplicate delivery and correction retain settlement sentinel
+ok 132 - history roles isolate raw imports; real-only signatures, duplicate delivery and correction retain settlement sentinel
+  ---
+  duration_ms: 16958.4683
+  ...
+# Subtest: exact NFL migration: isolated grants, free allocation, FLEX, ownership and preserved scarcity
+not ok 133 - exact NFL migration: isolated grants, free allocation, FLEX, ownership and preserved scarcity
+  ---
+  duration_ms: 30928.2795
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\nfl-member.test.ts:7:1'
+  failureType: 'testCodeFailure'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: audited test retirement preserves permanent allocations and wallet; unauthorized retirement/resurrection denied
+ok 134 - audited test retirement preserves permanent allocations and wallet; unauthorized retirement/resurrection denied
+  ---
+  duration_ms: 11531.9735
+  ...
+# Subtest: official roster gates direct admin and pack mint paths; private evidence and append-only audit
+ok 135 - official roster gates direct admin and pack mint paths; private evidence and append-only audit
+  ---
+  duration_ms: 10597.8016
+  ...
+# Subtest: seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+not ok 136 - seven-mode SQL: salary boundaries, API authority, immutable locks, private drafts and frozen configuration
+  ---
+  duration_ms: 33032.3539
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\nfl-seven.test.ts:9:1'
+  failureType: 'testCodeFailure'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: batch HMAC, freshness, dataset, body-size and malformed archive reject before import
+ok 137 - batch HMAC, freshness, dataset, body-size and malformed archive reject before import
+  ---
+  duration_ms: 127.2423
+  ...
+# Subtest: batch uses existing transactional importer; duplicates, older snapshots, corrections and missingness
+ok 138 - batch uses existing transactional importer; duplicates, older snapshots, corrections and missingness
+  ---
+  duration_ms: 14223.01
+  ...
+# Subtest: page atomicity, lease, restart checkpoint, tombstones, conflicts and epoch replacement
+ok 139 - page atomicity, lease, restart checkpoint, tombstones, conflicts and epoch replacement
+  ---
+  duration_ms: 15025.7889
+  ...
+# Subtest: whole fixture uses existing journal; corrections, pending, frozen teams and reviewer gates
+ok 140 - whole fixture uses existing journal; corrections, pending, frozen teams and reviewer gates
+  ---
+  duration_ms: 14067.4023
+  ...
+# Subtest: Operational incidents final: retention exclusion, holds, audit and verified-phone races
+ok 141 - Operational incidents final: retention exclusion, holds, audit and verified-phone races
+  ---
+  duration_ms: 34719.9656
+  ...
+# Subtest: Operational incidents: founder MFA, least privilege, deduplication, concurrency and durable audit
+ok 142 - Operational incidents: founder MFA, least privilege, deduplication, concurrency and durable audit
+  ---
+  duration_ms: 34474.3162
+  ...
+# Subtest: owned collection reads ledgers only, paginates consistently, isolates sports/accounts and follows transfers
+not ok 143 - owned collection reads ledgers only, paginates consistently, isolates sports/accounts and follows transfers
+  ---
+  duration_ms: 33942.5987
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\owned-collection.test.ts:6:1'
+  failureType: 'testCodeFailure'
+  error: 'Approved season catalogue and source-use rights required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: owner reporting: actual pack sources, date boundaries, private aggregates and MFA guard
+not ok 144 - owner reporting: actual pack sources, date boundaries, private aggregates and MFA guard
+  ---
+  duration_ms: 29575.5743
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\owner-command-centre.test.ts:9:1'
+  failureType: 'testCodeFailure'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: owner health evidence: real migration, MFA/current-role guard, private storage and retry idempotency
+ok 145 - owner health evidence: real migration, MFA/current-role guard, private storage and retry idempotency
+  ---
+  duration_ms: 10613.9945
+  ...
+# Subtest: owner reference SQL: independent registration totals, Sydney boundaries, role denial and redacted activity
+not ok 146 - owner reference SQL: independent registration totals, Sydney boundaries, role denial and redacted activity
+  ---
+  duration_ms: 27513.2343
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\owner-reference-reporting.test.ts:7:1'
+  failureType: 'testCodeFailure'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: canonical service handoff: NBA multiple games, DNP, missing stats, corrections, replay and atomic rollback
+ok 147 - canonical service handoff: NBA multiple games, DNP, missing stats, corrections, replay and atomic rollback
+  ---
+  duration_ms: 11034.3687
+  ...
+# Subtest: ordered migrations leave all new tables RLS protected and no public private-payload grants
+not ok 148 - ordered migrations leave all new tables RLS protected and no public private-payload grants
+  ---
+  duration_ms: 27522.5429
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:86:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: anonymous denied; active members only see own rows and cannot forge another session
+not ok 149 - anonymous denied; active members only see own rows and cannot forge another session
+  ---
+  duration_ms: 90.9368
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:107:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: staff metadata does not grant direct SQL mutation or provider payload access to authenticated role
+not ok 150 - staff metadata does not grant direct SQL mutation or provider payload access to authenticated role
+  ---
+  duration_ms: 0.1608
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:141:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: disabled profile and revoked or expired session block every member Data API table
+not ok 151 - disabled profile and revoked or expired session block every member Data API table
+  ---
+  duration_ms: 0.0938
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:166:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: strategy lifecycle disallows skipped states, unauthorised actors, fixture validation and unreviewed direct updates
+not ok 152 - strategy lifecycle disallows skipped states, unauthorised actors, fixture validation and unreviewed direct updates
+  ---
+  duration_ms: 0.1131
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:196:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: paper publication is pre-event immutable and never creates public notification outbox
+not ok 153 - paper publication is pre-event immutable and never creates public notification outbox
+  ---
+  duration_ms: 0.2711
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:256:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: mismatched candidate event and malformed EV fail closed
+not ok 154 - mismatched candidate event and malformed EV fail closed
+  ---
+  duration_ms: 0.0849
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:281:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: correction cannot link settlements from different publications or rewrite original outcome
+not ok 155 - correction cannot link settlements from different publications or rewrite original outcome
+  ---
+  duration_ms: 0.0855
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:299:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: account disable atomically revokes access, scrubs mutable personal records and queues idempotent erasure
+not ok 156 - account disable atomically revokes access, scrubs mutable personal records and queues idempotent erasure
+  ---
+  duration_ms: 0.5337
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:337:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: candidate and observation evidence cannot be silently rewritten or removed
+not ok 157 - candidate and observation evidence cannot be silently rewritten or removed
+  ---
+  duration_ms: 0.495
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:399:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: Phase 2 backup restores session policies and immutable strategy/paper evidence
+not ok 158 - Phase 2 backup restores session policies and immutable strategy/paper evidence
+  ---
+  duration_ms: 0.0874
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:421:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: quota reservations survive external failure and preserve unknown balances
+not ok 159 - quota reservations survive external failure and preserve unknown balances
+  ---
+  duration_ms: 0.0689
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:448:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: policy renewal preserves that jurisdiction's historical publications while restrictions still fail closed
+not ok 160 - policy renewal preserves that jurisdiction's historical publications while restrictions still fail closed
+  ---
+  duration_ms: 0.0605
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:485:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: as-of reports retain the earlier loss when a later correction was unavailable at report cutoff
+not ok 161 - as-of reports retain the earlier loss when a later correction was unavailable at report cutoff
+  ---
+  duration_ms: 0.0586
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:529:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: completion analytics cannot double count repeated or concurrent callbacks
+not ok 162 - completion analytics cannot double count repeated or concurrent callbacks
+  ---
+  duration_ms: 0.0585
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:545:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: research sensitivity settings cannot freeze below the release floor or outside the release odds range
+not ok 163 - research sensitivity settings cannot freeze below the release floor or outside the release odds range
+  ---
+  duration_ms: 0.1623
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:572:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: repeating signup for an unconfirmed existing profile cannot append or flip initial consent
+not ok 164 - repeating signup for an unconfirmed existing profile cannot append or flip initial consent
+  ---
+  duration_ms: 0.0658
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase2-security.test.ts:593:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: commercial tables have RLS, no direct API grants, no card or subscription activation
+not ok 165 - commercial tables have RLS, no direct API grants, no card or subscription activation
+  ---
+  duration_ms: 18578.2506
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase3-benefits.test.ts:36:1'
+  failureType: 'hookFailed'
+  error: 'Migration failed: 20261109232000_public_practice_phone_guards.sql'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\phase3-benefits.test.ts:22:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: competition drafts are audited, frozen append-only, and cannot produce rankings or awards
+not ok 166 - competition drafts are audited, frozen append-only, and cannot produce rankings or awards
+  ---
+  duration_ms: 141.3899
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase3-benefits.test.ts:101:1'
+  failureType: 'hookFailed'
+  error: 'Migration failed: 20261109232000_public_practice_phone_guards.sql'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\phase3-benefits.test.ts:22:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: deal drafts retain disclosure and audit and cannot become active through direct SQL
+not ok 167 - deal drafts retain disclosure and audit and cannot become active through direct SQL
+  ---
+  duration_ms: 1.1097
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\phase3-benefits.test.ts:180:1'
+  failureType: 'hookFailed'
+  error: 'Migration failed: 20261109232000_public_practice_phone_guards.sql'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    TestContext.<anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\tests\database\phase3-benefits.test.ts:22:13)
+    async TestHook.run (node:internal/test_runner/test:980:9)
+  ...
+# Subtest: NBA Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+ok 168 - NBA Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+  ---
+  duration_ms: 17074.8993
+  ...
+# Subtest: AFL Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+ok 169 - AFL Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+  ---
+  duration_ms: 11276.8058
+  ...
+# Subtest: NRL Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+ok 170 - NRL Play reads and writes require settled owned cards, preserve snapshots and reject catalogue IDs
+  ---
+  duration_ms: 12534.9872
+  ...
+# Subtest: owned jersey lookup accepts text player IDs and returns only requested players
+ok 171 - owned jersey lookup accepts text player IDs and returns only requested players
+  ---
+  duration_ms: 4409.5555
+  ...
+# 20261109232000_public_practice_phone_guards.sql Auth unique phone index required
+# Subtest: prize publication, overlap rejection, locked names, admin MFA and immutable audits
+not ok 172 - prize publication, overlap rejection, locked names, admin MFA and immutable audits
+  ---
+  duration_ms: 13723.389
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\premium-member-release.test.ts:8:1'
+  failureType: 'testCodeFailure'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: registered Premium transition is atomic and idempotent; database retains sealed receipts and rejects altered configuration
+ok 173 - registered Premium transition is atomic and idempotent; database retains sealed receipts and rejects altered configuration
+  ---
+  duration_ms: 7127.683
+  ...
+# Subtest: actual acquisition projection excludes retained operator and synthetic seeds without changing their identity metadata
+ok 174 - actual acquisition projection excludes retained operator and synthetic seeds without changing their identity metadata
+  ---
+  duration_ms: 3815.6152
+  ...
+# Subtest: capture is disabled by default and cannot be called through browser/service roles
+ok 175 - capture is disabled by default and cannot be called through browser/service roles
+  ---
+  duration_ms: 7733.3449
+  ...
+# Subtest: only explicit active recipients capture; successful hook returns no credential data
+ok 176 - only explicit active recipients capture; successful hook returns no credential data
+  ---
+  duration_ms: 115.5038
+  ...
+# Subtest: unknown, revoked, expired and non-reserved addresses fail closed
+ok 177 - unknown, revoked, expired and non-reserved addresses fail closed
+  ---
+  duration_ms: 36.4509
+  ...
+# Subtest: redirect, site, action, email-change and payload bounds reject without storing anything
+ok 178 - redirect, site, action, email-change and payload bounds reject without storing anything
+  ---
+  duration_ms: 45.2174
+  ...
+# Subtest: capture RLS rejects direct out-of-allowlist inserts and owner purge erases expired/revoked credentials
+ok 179 - capture RLS rejects direct out-of-allowlist inserts and owner purge erases expired/revoked credentials
+  ---
+  duration_ms: 29.8702
+  ...
+# Subtest: all capture tables enable RLS, hook remains invoker and read-only preflight parses without Auth rows
+ok 180 - all capture tables enable RLS, hook remains invoker and read-only preflight parses without Auth rows
+  ---
+  duration_ms: 129.3267
+  ...
+# Subtest: GoTrue PKCE hashes retain the prefix and enforce the complete hexadecimal length bound
+ok 181 - GoTrue PKCE hashes retain the prefix and enforce the complete hexadecimal length bound
+  ---
+  duration_ms: 62.3339
+  ...
+# Subtest: diagnostic upgrade emits only static field identifiers and preserves denied values privately
+ok 182 - diagnostic upgrade emits only static field identifiers and preserves denied values privately
+  ---
+  duration_ms: 48.5137
+  ...
+# Subtest: application query needs a real capture row, not only enabled configuration or proof ID
+ok 183 - application query needs a real capture row, not only enabled configuration or proof ID
+  ---
+  duration_ms: 7391.213
+  ...
+# Subtest: live hook definition changes, revoked proof and expired configuration immediately close app authorization
+ok 184 - live hook definition changes, revoked proof and expired configuration immediately close app authorization
+  ---
+  duration_ms: 67.7409
+  ...
+# Subtest: capabilities require an explicit grant, legal acceptance and privacy; genuine features never unlock
+not ok 185 - capabilities require an explicit grant, legal acceptance and privacy; genuine features never unlock
+  ---
+  duration_ms: 15241.4097
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-beta-auth.test.ts:77:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: wrong project, no session, caller metadata and revoked grants cannot authorize
+not ok 186 - wrong project, no session, caller metadata and revoked grants cannot authorize
+  ---
+  duration_ms: 96.1735
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-beta-auth.test.ts:114:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: capability arrays cannot smuggle genuine permissions or mutate an existing grant
+not ok 187 - capability arrays cannot smuggle genuine permissions or mutate an existing grant
+  ---
+  duration_ms: 0.1639
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-beta-auth.test.ts:129:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: invitation reservation is one-use and identity-bound; redemption removes credential hashes
+not ok 188 - invitation reservation is one-use and identity-bound; redemption removes credential hashes
+  ---
+  duration_ms: 0.099
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-beta-auth.test.ts:146:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: revoked invitation cannot reserve or reveal retained token/email hash
+not ok 189 - revoked invitation cannot reserve or reveal retained token/email hash
+  ---
+  duration_ms: 0.1194
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-beta-auth.test.ts:179:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: wall-clock expiry rejects reservation and capability inside an earlier transaction
+not ok 190 - wall-clock expiry rejects reservation and capability inside an earlier transaction
+  ---
+  duration_ms: 0.3292
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-beta-auth.test.ts:202:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: private tables are RLS-enabled with no browser read/write/function privilege
+not ok 191 - private tables are RLS-enabled with no browser read/write/function privilege
+  ---
+  duration_ms: 0.096
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-beta-auth.test.ts:221:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: administrator operations require actual private role plus MFA, not metadata
+not ok 192 - administrator operations require actual private role plus MFA, not metadata
+  ---
+  duration_ms: 0.095
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-beta-auth.test.ts:254:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: erasure clears personal onboarding/grants and invitation FK even outside preview context
+not ok 193 - erasure clears personal onboarding/grants and invitation FK even outside preview context
+  ---
+  duration_ms: 0.6408
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-beta-auth.test.ts:279:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+not ok 194 - preview grant allows exact account through the actual app query and SQL actor, not same-region peers
+  ---
+  duration_ms: 15155.8097
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-community.test.ts:79:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: preview grant fails closed without exact trusted hosted context or live same-user session
+not ok 195 - preview grant fails closed without exact trusted hosted context or live same-user session
+  ---
+  duration_ms: 60.974
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-community.test.ts:131:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+not ok 196 - tips, Edge accounting, leaderboards, marketing and commercial privileges never derive from a tester grant
+  ---
+  duration_ms: 0.1268
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-community.test.ts:177:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+not ok 197 - expiry, revocation, policy withdrawal and account revocation immediately deny preview access
+  ---
+  duration_ms: 0.0694
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-community.test.ts:209:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+not ok 198 - ordinary reviewed jurisdiction approvals retain their existing behavior without preview context
+  ---
+  duration_ms: 0.0854
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-community.test.ts:250:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: preview marker and grant constraints prevent scope broadening or mutable enrollment
+not ok 199 - preview marker and grant constraints prevent scope broadening or mutable enrollment
+  ---
+  duration_ms: 0.0969
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-community.test.ts:266:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+not ok 200 - browser roles cannot enumerate or self-enroll, even with forged preview/admin metadata and GUC
+  ---
+  duration_ms: 0.0638
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-community.test.ts:312:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: hard deletion removes tester identity mapping while retaining minimal grant audit
+not ok 201 - hard deletion removes tester identity mapping while retaining minimal grant audit
+  ---
+  duration_ms: 0.1631
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-community.test.ts:335:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: session expiry uses wall clock even when transaction start remains before expiry
+not ok 202 - session expiry uses wall clock even when transaction start remains before expiry
+  ---
+  duration_ms: 0.3885
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\preview-community.test.ts:361:1'
+  failureType: 'hookFailed'
+  error: 'column u.email does not exist'
+  code: '42703'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: existing-member public bootstrap uses restricted ordinary role and grants no staff access
+ok 203 - existing-member public bootstrap uses restricted ordinary role and grants no staff access
+  ---
+  duration_ms: 17645.301
+  ...
+# Subtest: invitation setup uses restricted views, denies another session and rolls back expired-session consent
+ok 204 - invitation setup uses restricted views, denies another session and rolls back expired-session consent
+  ---
+  duration_ms: 89.3767
+  ...
+# Subtest: production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+ok 205 - production runtime starts without login, elevated attributes, ownership, memberships or permanent DDL
+  ---
+  duration_ms: 26.5251
+  ...
+# Subtest: browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+ok 206 - browser table privileges remain unchanged and production server cannot read secrets/raw provider records
+  ---
+  duration_ms: 68.4916
+  ...
+# Subtest: runtime cannot escalate roles or execute privileged helper paths
+ok 207 - runtime cannot escalate roles or execute privileged helper paths
+  ---
+  duration_ms: 64.1698
+  ...
+# Subtest: runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+ok 208 - runtime cannot assign roles, approve regions, publish, settle, alter flags or edit immutable audit
+  ---
+  duration_ms: 22.1022
+  ...
+# Subtest: restricted runtime can create account consent/preferences without password visibility
+ok 209 - restricted runtime can create account consent/preferences without password visibility
+  ---
+  duration_ms: 48.4974
+  ...
+# Subtest: real actor/session and policy locks work while expired sessions are denied
+ok 210 - real actor/session and policy locks work while expired sessions are denied
+  ---
+  duration_ms: 62.3725
+  ...
+# Subtest: ordinary social writes fan out durably but cannot impersonate official or ledger posts
+ok 211 - ordinary social writes fan out durably but cannot impersonate official or ledger posts
+  ---
+  duration_ms: 36.7254
+  ...
+# Subtest: ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+ok 212 - ordinary-region access rechecks wall-clock session expiry after authorization-row query waits
+  ---
+  duration_ms: 425.9531
+  ...
+# Subtest: runtime queues cannot activate scanner/provider/publication jobs or external delivery
+ok 213 - runtime queues cannot activate scanner/provider/publication jobs or external delivery
+  ---
+  duration_ms: 11.4222
+  ...
+# Subtest: maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+ok 214 - maintenance leases only deletion jobs despite older unrelated work and expires only exhausted deletion leases
+  ---
+  duration_ms: 25.7301
+  ...
+# Subtest: bounded retention works through restricted role without removing current inbox records
+ok 215 - bounded retention works through restricted role without removing current inbox records
+  ---
+  duration_ms: 282.7739
+  ...
+# Subtest: restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+ok 216 - restricted runtime account revocation preserves immutable consent and pseudonymizes social history
+  ---
+  duration_ms: 104.8655
+  ...
+# Subtest: new signup persists exact separate approved policy versions and optional consents remain false
+not ok 217 - new signup persists exact separate approved policy versions and optional consents remain false
+  ---
+  duration_ms: 16867.6498
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\production-signup.test.ts:66:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: retrying signup cannot append consent or change an existing profile
+not ok 218 - retrying signup cannot append consent or change an existing profile
+  ---
+  duration_ms: 106.5763
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\production-signup.test.ts:93:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: a concurrent taken handle preserves account and legal evidence for username onboarding
+not ok 219 - a concurrent taken handle preserves account and legal evidence for username onboarding
+  ---
+  duration_ms: 0.1804
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\production-signup.test.ts:128:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: a historical handle race also preserves the new account without stealing the name
+not ok 220 - a historical handle race also preserves the new account without stealing the name
+  ---
+  duration_ms: 0.1528
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\production-signup.test.ts:166:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: other integrity errors are not disguised as username collisions
+not ok 221 - other integrity errors are not disguised as username collisions
+  ---
+  duration_ms: 0.1823
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\production-signup.test.ts:191:1'
+  failureType: 'hookFailed'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: NFL public member: free Core without beta admission, strict policy and isolated rounds
+ok 222 - NFL public member: free Core without beta admission, strict policy and isolated rounds
+  ---
+  duration_ms: 28412.635
+  ...
+# Subtest: AFL public member: free Core without beta admission, strict policy and isolated rounds
+ok 223 - AFL public member: free Core without beta admission, strict policy and isolated rounds
+  ---
+  duration_ms: 20976.4618
+  ...
+# Subtest: NRL public member: free Core without beta admission, strict policy and isolated rounds
+ok 224 - NRL public member: free Core without beta admission, strict policy and isolated rounds
+  ---
+  duration_ms: 16200.1361
+  ...
+# Subtest: Isolated round rewards persist through database supply guards and preserve unopened receipts
+ok 225 - Isolated round rewards persist through database supply guards and preserve unopened receipts
+  ---
+  duration_ms: 48985.4346
+  ...
+# Subtest: every exposed table and private table has RLS
+ok 226 - every exposed table and private table has RLS
+  ---
+  duration_ms: 7668.672
+  ...
+# Subtest: member cannot read another profile or escalate own row
+ok 227 - member cannot read another profile or escalate own row
+  ---
+  duration_ms: 24.0206
+  ...
+# Subtest: anonymous cannot access accounts or provider payloads
+ok 228 - anonymous cannot access accounts or provider payloads
+  ---
+  duration_ms: 7.7018
+  ...
+# Subtest: audit and launch evidence cannot be rewritten
+ok 229 - audit and launch evidence cannot be rewritten
+  ---
+  duration_ms: 19.0703
+  ...
+# Subtest: outbox deduplication and lease recovery
+ok 230 - outbox deduplication and lease recovery
+  ---
+  duration_ms: 23.0834
+  ...
+# Subtest: frozen strategy config cannot be changed
+ok 231 - frozen strategy config cannot be changed
+  ---
+  duration_ms: 9.2413
+  ...
+# Subtest: migration matches canonical schema
+ok 232 - migration matches canonical schema
+  ---
+  duration_ms: 11.3884
+  ...
+# Subtest: publication lifecycle enforces pre-start, immutable ledger, atomic outbox, withdrawal and settlement idempotency
+ok 233 - publication lifecycle enforces pre-start, immutable ledger, atomic outbox, withdrawal and settlement idempotency
+  ---
+  duration_ms: 85.9314
+  ...
+# Subtest: backup restores local immutable evidence and policy schema
+ok 234 - backup restores local immutable evidence and policy schema
+  ---
+  duration_ms: 3076.586
+  ...
+# Subtest: historical sport classification uses card evidence, retains ambiguous posts and protects new posts
+not ok 235 - historical sport classification uses card evidence, retains ambiguous posts and protects new posts
+  ---
+  duration_ms: 19490.1144
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\social-sport-migration.test.ts:6:1'
+  failureType: 'testCodeFailure'
+  error: 'Auth unique phone index required'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: durable stable identities, transfers, duplicate conflicts and owner release decisions remain isolated
+ok 236 - durable stable identities, transfers, duplicate conflicts and owner release decisions remain isolated
+  ---
+  duration_ms: 20572.4193
+  ...
+# Subtest: AFL journal, saved slots, DNP and corrections reconcile without frontend totals
+ok 237 - AFL journal, saved slots, DNP and corrections reconcile without frontend totals
+  ---
+  duration_ms: 21711.7644
+  ...
+# Subtest: NRL journal, saved slots, DNP and corrections reconcile without frontend totals
+ok 238 - NRL journal, saved slots, DNP and corrections reconcile without frontend totals
+  ---
+  duration_ms: 16540.2916
+  ...
+# Subtest: published NFL history pages beyond fantasy rounds with restricted reader and no settlement access
+ok 239 - published NFL history pages beyond fantasy rounds with restricted reader and no settlement access
+  ---
+  duration_ms: 10863.8596
+  ...
+# Subtest: AFL actual state service supplies shared team-name context without bypassing consent
+ok 240 - AFL actual state service supplies shared team-name context without bypassing consent
+  ---
+  duration_ms: 17884.688
+  ...
+# Subtest: NRL actual state service supplies shared team-name context without bypassing consent
+ok 241 - NRL actual state service supplies shared team-name context without bypassing consent
+  ---
+  duration_ms: 19785.1831
+  ...
+# Subtest: AFL private beta requires independent gate and preserves slot/round/privacy isolation
+ok 242 - AFL private beta requires independent gate and preserves slot/round/privacy isolation
+  ---
+  duration_ms: 21534.9151
+  ...
+# Subtest: NRL private beta requires independent gate and preserves slot/round/privacy isolation
+ok 243 - NRL private beta requires independent gate and preserves slot/round/privacy isolation
+  ---
+  duration_ms: 16683.9849
+  ...
+# Subtest: team continuity: first confirmation, private idempotent rollover, manual edits and mode separation
+ok 244 - team continuity: first confirmation, private idempotent rollover, manual edits and mode separation
+  ---
+  duration_ms: 20346.8905
+  ...
+# Subtest: independent sport rewards: offline catch-up, Core ownership, replay and account/sport isolation
+not ok 245 - independent sport rewards: offline catch-up, Core ownership, replay and account/sport isolation
+  ---
+  duration_ms: 17411.0972
+  location: 'C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\tests\\database\\three-sport-weekly.test.ts:7:1'
+  failureType: 'testCodeFailure'
+  error: 'Four verified Core players are not available. Your pack is still unopened.'
+  code: 'P0001'
+  name: 'error'
+  stack: |-
+    Ie.la (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:22506)
+    Ie.Qa (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:19876)
+    Ie.parse (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:4:18520)
+    _e.Ia (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1788)
+    <anonymous> (C:\Users\61412\.codex\worktrees\batch1-pack-phone-20261116\Docked.com.au\node_modules\@electric-sql\pglite\dist\index.cjs:15:1161)
+    wasm://wasm/0267bb86:wasm-function[10930]:0x5a5ccf
+    wasm://wasm/0267bb86:wasm-function[3585]:0x27eaeb
+    wasm://wasm/0267bb86:wasm-function[3627]:0x2869d1
+    wasm://wasm/0267bb86:wasm-function[3637]:0x286c2d
+    wasm://wasm/0267bb86:wasm-function[9914]:0x54fd4d
+  ...
+# Subtest: single-connection action consumes durable quota before transaction and retains rejected attempts
+ok 246 - single-connection action consumes durable quota before transaction and retains rejected attempts
+  ---
+  duration_ms: 8902.2393
+  ...
+# Subtest: weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+ok 247 - weekly Core SQL: admission, enrolment, catch-up, atomic opening, privacy and immutable receipts
+  ---
+  duration_ms: 12233.8689
+  ...
+1..247
+# tests 247
+# suites 0
+# pass 124
+# fail 121
+# cancelled 0
+# skipped 2
+# todo 0
+# duration_ms 1018995.5091

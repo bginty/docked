@@ -3,4 +3,4 @@ export const rateLimitQuery = `insert into private.rate_limits(key,count,reset_a
  values($1,1,now()+$2*interval '1 second') on conflict(key) do update
  set count=case when private.rate_limits.reset_at<=now() then 1 else private.rate_limits.count+1 end,
  reset_at=case when private.rate_limits.reset_at<=now() then now()+$2*interval '1 second' else private.rate_limits.reset_at end
- returning count`;
+ returning count, greatest(0,ceil(extract(epoch from reset_at-clock_timestamp())))::int retry_after_seconds`;

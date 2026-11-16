@@ -1,0 +1,62 @@
+{
+  "at": "2026-11-16T00:27:51.596Z",
+  "passed": true,
+  "scope": "Disconnected restored PostgreSQL clone; actual restricted role/API handlers; simulated authenticated sessions",
+  "productionWrites": 0,
+  "checks": [
+    "568 protected tables unchanged by migrations; function owners/ACLs/security/search paths unchanged; 908 custody records preserved",
+    "24 simultaneous duplicate purchases: one debit, one entitlement, nine unique allocations; lifetime total 890 → 899 only inside disposable clone",
+    "Conflicting request bytes, another member's entitlement, missing founder MFA and revoked admission denied without wallet or issuance changes",
+    "Discarded response and handler restart recover the same committed entitlement with no new debit or cards",
+    "Existing saved one-card purchase remains one card; it is not reinterpreted as a nine-card offer",
+    "Explicit source-rights withdrawal blocks new purchase atomically",
+    "24 concurrent opening retries reveal the original nine cards after source withdrawal; no new issuance/debit; original earned entitlement preserved",
+    "Affected-member projection matches the original full inventory repair exactly",
+    "Immutable serials/deletions, unbacked lifetime-counter advances and unrecorded parallel limited inventory rejected",
+    "Injected third-card persistence failure rolls back the debit, entitlement, prior allocations and supply counters together"
+  ],
+  "migrations": [
+    {
+      "file": "20261115113306_batch_private_pack_issuance_validation.sql",
+      "sha256": "2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1"
+    },
+    {
+      "file": "20261115211545_batch1_pack_guard_batching.sql",
+      "sha256": "3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6"
+    },
+    {
+      "file": "20261115235000_batch1_persistence_subdocuments.sql",
+      "sha256": "83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e"
+    }
+  ],
+  "purchaseDuplicateRequests": 24,
+  "openingDuplicateRequests": 24,
+  "duplicateDurationsMs": [
+    7337,
+    7341,
+    8713,
+    7790,
+    7986,
+    9005,
+    8387,
+    6717,
+    8711,
+    7123,
+    8879,
+    7874,
+    6767,
+    9067,
+    7603,
+    7359,
+    8259,
+    6424,
+    8369,
+    8957,
+    8205,
+    8611,
+    6786,
+    7940
+  ],
+  "restartRecoveryMs": 231,
+  "originalCustodyDigest": "4d9a35ef1450250568e97cb27cac644b90d6acb73f1bed59608e47a5a6362548"
+}

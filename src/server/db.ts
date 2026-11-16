@@ -20,7 +20,17 @@ export function db() {
   return connection;
 }
 export async function rateLimit(key: string, limit = 20, seconds = 60) {
+  return (await rateLimitStatus(key, limit, seconds)).allowed;
+}
+export async function rateLimitStatus(
+  key: string,
+  limit: number,
+  seconds: number,
+) {
   const sql = db();
   const rows = await sql.unsafe(rateLimitQuery, [key, seconds]);
-  return rows[0].count <= limit;
+  return {
+    allowed: rows[0].count <= limit,
+    retryAfterSeconds: Number(rows[0].retry_after_seconds),
+  };
 }

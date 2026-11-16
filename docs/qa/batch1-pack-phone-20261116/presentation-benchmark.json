@@ -1,0 +1,145 @@
+{
+  "at": "2026-11-15T23:28:16.328Z",
+  "environment": "Local headless Edge, 390x844; synthetic immediate receipt transport; no CPU/network emulation",
+  "unchangedSinceProduction": [
+    "src/components/pack-opening.tsx",
+    "src/components/pack-cinema-v2.tsx",
+    "src/app/pack-cinema-v2.css"
+  ],
+  "scope": "Shared before/after presentation code; excludes server latency and user pauses. Not installed Android or hosted measurements.",
+  "results": [
+    {
+      "sport": "nfl",
+      "motion": "no-preference",
+      "cards": 9,
+      "animationMs": [
+        1208.7999999821186,
+        1389.4000000059605,
+        1846.5,
+        2431.300000011921,
+        3200.800000011921,
+        3783.5,
+        1397.4000000059605,
+        1844.699999988079,
+        2428
+      ],
+      "measures": [
+        {
+          "name": "docked.purchase.test-credit.receipt-render",
+          "durationMs": 522.8000000119209
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "motion": "reduce",
+      "cards": 9,
+      "animationMs": [
+        29.400000005960464,
+        53,
+        20.69999998807907,
+        12.099999994039536,
+        16.30000001192093,
+        12.5,
+        10.900000005960464,
+        12.599999994039536,
+        13
+      ],
+      "measures": [
+        {
+          "name": "docked.purchase.test-credit.receipt-render",
+          "durationMs": 83.5
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "motion": "no-preference",
+      "cards": 9,
+      "animationMs": [
+        971.2000000178814,
+        1397.6000000238419,
+        1823.2000000178814,
+        2423.300000011921,
+        3204,
+        3794.4000000059605,
+        1384.699999988079,
+        1854.9000000059605,
+        2468.100000023842
+      ],
+      "measures": [
+        {
+          "name": "docked.purchase.test-credit.receipt-render",
+          "durationMs": 40.400000005960464
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "motion": "reduce",
+      "cards": 9,
+      "animationMs": [
+        57.69999998807907,
+        43.69999998807907,
+        12.200000017881393,
+        10.100000023841858,
+        11.699999988079071,
+        9.900000005960464,
+        10.900000005960464,
+        9.800000011920929,
+        9.900000005960464
+      ],
+      "measures": [
+        {
+          "name": "docked.purchase.test-credit.receipt-render",
+          "durationMs": 26.900000005960464
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "motion": "no-preference",
+      "cards": 9,
+      "animationMs": [
+        985,
+        1408.800000011921,
+        1835,
+        2464.600000023842,
+        3237.699999988079,
+        3817.2999999821186,
+        1418.199999988079,
+        1872.9000000059605,
+        2441
+      ],
+      "measures": [
+        {
+          "name": "docked.purchase.test-credit.receipt-render",
+          "durationMs": 29.900000005960464
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "motion": "reduce",
+      "cards": 9,
+      "animationMs": [
+        31.80000001192093,
+        32.69999998807907,
+        11.299999982118607,
+        12.199999988079071,
+        12.800000011920929,
+        26.700000017881393,
+        11.5,
+        11.099999994039536,
+        11
+      ],
+      "measures": [
+        {
+          "name": "docked.purchase.test-credit.receipt-render",
+          "durationMs": 25.299999982118607
+        }
+      ]
+    }
+  ],
+  "productionWrites": 0
+}

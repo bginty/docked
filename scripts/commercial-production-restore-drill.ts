@@ -23,6 +23,13 @@ const finalReconciliation =
   process.argv.includes("--final-reconciliation") || prelaunchReadiness;
 const keepIsolatedTarget = process.argv.includes("--keep-isolated-target");
 assert(!keepIsolatedTarget || prelaunchReadiness);
+const benchmarkLoopback = process.argv.includes("--benchmark-loopback");
+assert(
+  !benchmarkLoopback ||
+    (prelaunchReadiness &&
+      keepIsolatedTarget &&
+      process.argv.includes("--restore-only")),
+);
 const p1p4 = process.argv.includes("--p1-p4") || finalReconciliation;
 const remainingAdditions = process.argv.includes("--remaining-additions");
 const finalApproval = process.argv.includes("--final-approval");
@@ -555,7 +562,7 @@ async function mainRun() {
       "sh",
       image,
       "-c",
-      "initdb -D /restore/data -A trust --no-locale --encoding=UTF8 >/restore/init.log 2>&1 && exec postgres -D /restore/data -c listen_addresses='' -c unix_socket_directories=/restore -c shared_preload_libraries=pg_cron,pg_net -c cron.launch_active_jobs=off -c pg_net.database_name=network_worker_disabled",
+      `initdb -D /restore/data -A trust --no-locale --encoding=UTF8 >/restore/init.log 2>&1 && exec postgres -D /restore/data -c listen_addresses='${benchmarkLoopback ? "127.0.0.1" : ""}' -c unix_socket_directories=/restore -c shared_preload_libraries=pg_cron,pg_net -c cron.launch_active_jobs=off -c pg_net.database_name=network_worker_disabled`,
     ]);
     createdTarget = true;
     await run(["start", target]);
@@ -662,6 +669,7 @@ async function mainRun() {
       encryptedAtRest: "AES-256-GCM",
       restoreTarget: target,
       network: "none",
+      loopbackOnlyDriver: benchmarkLoopback,
       publishedPorts: 0,
       restored: true,
       protectedTables: protectedNames.length,

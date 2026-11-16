@@ -1,0 +1,66 @@
+{
+  "at": "2026-11-16T00:05:06.624Z",
+  "scope": "Isolated restored PostgreSQL; transaction rolled back",
+  "productionWrites": 0,
+  "migrations": [
+    {
+      "file": "20261115113306_batch_private_pack_issuance_validation.sql",
+      "sha256": "2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1",
+      "executionMs": 18
+    },
+    {
+      "file": "20261115211545_batch1_pack_guard_batching.sql",
+      "sha256": "3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6",
+      "executionMs": 59
+    },
+    {
+      "file": "20261115235000_batch1_persistence_subdocuments.sql",
+      "sha256": "83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e",
+      "executionMs": 24
+    }
+  ],
+  "changedFunctions": [
+    {
+      "signature": "beta_packs.capture(before_document jsonb, after_document jsonb)",
+      "beforeSha256": "4e9144c937f96b15fc2f69a3c98bcaea906d85c66ece9577ec2b6f0e8f4ecbb3",
+      "afterSha256": "84e10e9e3224e439cecf73dc7d6d1fc3c7ba5182f7c11646d56ed865553cbcb6"
+    },
+    {
+      "signature": "commercial_billing.prevent_parallel_inventory()",
+      "beforeSha256": "7478624b18760c2aa5b2aeb0617f4611fd6f8bae26c3bc3aa1ee5c82455aa56a",
+      "afterSha256": "fb757888559691b24a1bcea33932f90a7f0d3ac2c8f4f57b35be865fc87dd126"
+    },
+    {
+      "signature": "credits_sandbox.guard_economy_state()",
+      "beforeSha256": "05d8b643f33d6103791775897981590a059648f0f84bda601713517024467da4",
+      "afterSha256": "74344af9fc3363f750f8135fc3bf30eda498dc015c7d5582f196e179f82e1abd"
+    },
+    {
+      "signature": "credits_sandbox.guard_redemption()",
+      "beforeSha256": "dfac05f9782b5c8edc24c41501e407d56995f9d36f13b1da86edeca9145f12d0",
+      "afterSha256": "69af0d86c1c5f5d6b4e39c74f4d74dd4c9a368b40348936d0a04c337f37a6909"
+    },
+    {
+      "signature": "credits_sandbox.marketplace_guard()",
+      "beforeSha256": "773a612f22b8e1e4e4a7e59591ebc92e2b0b51c1663d2982906bef6c7e5699c6",
+      "afterSha256": "f7f5bb347d97e702db41c71b3c02fdd85592121f7a691b1cc9e65a1db4d17fd4"
+    },
+    {
+      "signature": "credits_sandbox.project_fixture_inventory()",
+      "beforeSha256": "197f45fa18685fdb244c7fd97807ca5748ad5615ef78d1b4db2da1d1d0fc338c",
+      "afterSha256": "a161baac5a460281b4f6bdcb34184c6be0ecb57c181da2cdd2a0af72163a7bfb"
+    },
+    {
+      "signature": "sports_feed.rarity_transfer_guard()",
+      "beforeSha256": "a4f4fa4f13397fbbd63e4b87ae56ae68bc9a882e7e4b68bef61b39129a54454f",
+      "afterSha256": "214ce28538dd5801a73d010adb9ba66c6c072cfe516d1f85ad2a38ea401b4163"
+    }
+  ],
+  "otherFunctionBodiesUnchanged": true,
+  "functionSecurityMetadataUnchanged": true,
+  "tablePrivilegesAndRlsUnchanged": true,
+  "policiesUnchanged": true,
+  "functionCount": 791,
+  "tableSecurityDigest": "a2c650ff709756eb6ea4759cae156e0106559b064adde73de9ff38c3fede2a80",
+  "policyDigest": "c6349125296ffe46e9aae595d24703f5ffa512858a8ae6b3f1aa87aaa4eba793"
+}

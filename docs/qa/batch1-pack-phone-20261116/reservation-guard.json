@@ -1,0 +1,126 @@
+{
+  "passed": true,
+  "scope": "Actual PostgreSQL trigger and plans; synthetic reservation oracle; all DDL/data rolled back",
+  "checks": [
+    {
+      "version": "before",
+      "mode": "force_custom_plan",
+      "scenario": "unchanged",
+      "rejected": false
+    },
+    {
+      "version": "before",
+      "mode": "force_custom_plan",
+      "scenario": "new allocation",
+      "rejected": false
+    },
+    {
+      "version": "before",
+      "mode": "force_custom_plan",
+      "scenario": "unreserved transfer",
+      "rejected": false
+    },
+    {
+      "version": "before",
+      "mode": "force_custom_plan",
+      "scenario": "reserved transfer",
+      "rejected": true
+    },
+    {
+      "version": "before",
+      "mode": "force_custom_plan",
+      "scenario": "reserved removal",
+      "rejected": true
+    },
+    {
+      "version": "before",
+      "mode": "force_generic_plan",
+      "scenario": "unchanged",
+      "rejected": false
+    },
+    {
+      "version": "before",
+      "mode": "force_generic_plan",
+      "scenario": "new allocation",
+      "rejected": false
+    },
+    {
+      "version": "before",
+      "mode": "force_generic_plan",
+      "scenario": "unreserved transfer",
+      "rejected": false
+    },
+    {
+      "version": "before",
+      "mode": "force_generic_plan",
+      "scenario": "reserved transfer",
+      "rejected": true
+    },
+    {
+      "version": "before",
+      "mode": "force_generic_plan",
+      "scenario": "reserved removal",
+      "rejected": true
+    },
+    {
+      "version": "candidate",
+      "mode": "force_custom_plan",
+      "scenario": "unchanged",
+      "rejected": false
+    },
+    {
+      "version": "candidate",
+      "mode": "force_custom_plan",
+      "scenario": "new allocation",
+      "rejected": false
+    },
+    {
+      "version": "candidate",
+      "mode": "force_custom_plan",
+      "scenario": "unreserved transfer",
+      "rejected": false
+    },
+    {
+      "version": "candidate",
+      "mode": "force_custom_plan",
+      "scenario": "reserved transfer",
+      "rejected": true
+    },
+    {
+      "version": "candidate",
+      "mode": "force_custom_plan",
+      "scenario": "reserved removal",
+      "rejected": true
+    },
+    {
+      "version": "candidate",
+      "mode": "force_generic_plan",
+      "scenario": "unchanged",
+      "rejected": false
+    },
+    {
+      "version": "candidate",
+      "mode": "force_generic_plan",
+      "scenario": "new allocation",
+      "rejected": false
+    },
+    {
+      "version": "candidate",
+      "mode": "force_generic_plan",
+      "scenario": "unreserved transfer",
+      "rejected": false
+    },
+    {
+      "version": "candidate",
+      "mode": "force_generic_plan",
+      "scenario": "reserved transfer",
+      "rejected": true
+    },
+    {
+      "version": "candidate",
+      "mode": "force_generic_plan",
+      "scenario": "reserved removal",
+      "rejected": true
+    }
+  ]
+}

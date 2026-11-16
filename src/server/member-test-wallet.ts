@@ -17,6 +17,7 @@ import {
 import { tradingCommandMode, reviewedBetaTrading } from "../core/beta-trading";
 import { privateOfferEnabled } from "../core/private-card-offers";
 import { hiddenMarketCards } from "./market-visibility";
+import { memberPackReceipt } from "./member-pack-receipt";
 import {
   authorizeFixtureCommand,
   fixtureCommerceVisibility,
@@ -29,9 +30,10 @@ import {
   assertMemberTestEconomy,
   testReceipt,
 } from "@/core/member-test-wallet";
-export async function memberTestSource(
+async function memberTestSession(
   input?: unknown,
   refreshCatalogue = true,
+  receiptOnly = false,
 ) {
   if (
     process.env.DOCKED_FRIENDS_BETA !== "true" ||
@@ -53,7 +55,12 @@ export async function memberTestSource(
   const store = new CreditsSandboxStore(sql, async (tx, state) => {
     await setCommunityClaims(tx as unknown as TransactionSql, who);
     assertMemberTestEconomy(state);
-    await refreshEconomyCatalogue(tx, state);
+    if (command?.kind !== "open-pack")
+      await refreshEconomyCatalogue(
+        tx,
+        state,
+        command?.kind === "buy-pack" ? command.product : undefined,
+      );
     const fixtureSport = command
       ? await authorizeFixtureCommand(tx, state, command)
       : null;
@@ -151,16 +158,24 @@ export async function memberTestSource(
     }
   });
   let result: unknown = null;
+  let requestId: string | undefined;
   if (input !== undefined) {
     const body = z
       .object({ request: z.string().uuid(), command: z.unknown() })
       .strict()
       .parse(input);
+    requestId = body.request;
     const parsed = creditsCommand.parse(body.command);
     if (parsed.kind === "swap-window") {
       if (!isOwner || who.aal !== "aal2") throw Error("Owner MFA required");
       command = parsed;
     } else command = memberTestCommand(body.command);
+    if (
+      receiptOnly &&
+      command.kind !== "buy-pack" &&
+      command.kind !== "open-pack"
+    )
+      throw new CreditsRejected("A pack request is required.");
     if (
       command.kind === "cancel-listing" &&
       command.expectedRevision === undefined
@@ -172,13 +187,64 @@ export async function memberTestSource(
     if (other && !peers.some((p) => p.id === other))
       throw Error("Counterparty not admitted");
     try {
-      result = await store.execute(
-        command.kind === "swap-window"
-          ? { id: who.user.id, role: "reviewer", aal: "aal2" }
-          : { id: who.user.id, role: "member" },
-        body.request,
-        command,
-      );
+      // A committed pack receipt remains recoverable when a provider is down or
+      // collection permission has since expired. Re-reading it does not issue
+      // anything and must not repeat the global settlement/catalogue work.
+      // Authentication/admission/MFA were checked above and are checked again
+      // in the response snapshot below. The lookup is scoped to this member.
+      const prior = ["buy-pack", "open-pack"].includes(command.kind)
+        ? (
+            await sql`select document #> array['requests',${`${who.user.id}:${body.request}`}] prior
+            from credits_sandbox.state where id`
+          )[0]?.prior
+        : null;
+      if (
+        prior &&
+        prior.fingerprint !==
+          JSON.stringify({ role: "member", c: creditsCommand.parse(command) })
+      )
+        throw new CreditsRejected(
+          "Idempotency conflict. Check the original purchase request.",
+        );
+      result = prior
+        ? prior.result
+        : await store.execute(
+            command.kind === "swap-window"
+              ? { id: who.user.id, role: "reviewer", aal: "aal2" }
+              : { id: who.user.id, role: "member" },
+            body.request,
+            command,
+            ["buy-pack", "open-pack"].includes(command.kind)
+              ? async (tx) => {
+                  await setCommunityClaims(
+                    tx as unknown as TransactionSql,
+                    who,
+                  );
+                  const [replay] = await tx`select kind,
+                  (select document #> array['requests',${`${who.user.id}:${body.request}`}]
+                    from credits_sandbox.state where id) prior
+                  from credits_sandbox.access where user_id=${who.user.id}::uuid
+                    and enabled and beta_private.admitted(user_id)`;
+                  if (
+                    !replay ||
+                    (replay.kind === "owner" && who.aal !== "aal2")
+                  )
+                    throw Error("Admission revoked");
+                  if (!replay.prior) return null;
+                  if (
+                    replay.prior.fingerprint !==
+                    JSON.stringify({
+                      role: "member",
+                      c: creditsCommand.parse(command),
+                    })
+                  )
+                    throw new CreditsRejected(
+                      "Idempotency conflict. Check the original purchase request.",
+                    );
+                  return { result: replay.prior.result };
+                }
+              : undefined,
+          );
     } catch (error) {
       if (tradingCommandMode(command))
         await recordTradingFailure(sql, who, body.request, error);
@@ -194,6 +260,18 @@ export async function memberTestSource(
       }
       throw error;
     }
+  }
+  if (receiptOnly && command && requestId) {
+    return timePurchase("purchase_view", () =>
+      sql.begin(memberReadIsolation, async (tx) => {
+        await setCommunityClaims(tx, who);
+        const [access] = await tx`select kind from credits_sandbox.access
+        where user_id=${who.user.id}::uuid and enabled and beta_private.admitted(user_id)`;
+        if (!access || (access.kind === "owner" && who.aal !== "aal2"))
+          throw Error("Admission revoked");
+        return memberPackReceipt(tx, who.user.id, requestId!, command!);
+      }),
+    );
   }
   // MVCC provides a consistent read without queueing every page load behind the
   // global settlement lock. Mutations still use the store's exclusive lock.
@@ -243,6 +321,19 @@ export async function memberTestSource(
     sql,
     who,
   };
+}
+export async function memberTestSource(
+  input?: unknown,
+  refreshCatalogue = true,
+) {
+  const result = await memberTestSession(input, refreshCatalogue);
+  if (!("s" in result)) throw Error("Wallet projection unavailable");
+  return result;
+}
+export async function memberTestPackCommand(input: unknown) {
+  const result = await memberTestSession(input, false, true);
+  if (!("packUpdate" in result)) throw Error("Pack confirmation unavailable");
+  return result;
 }
 export async function memberTestWallet(
   input?: unknown,

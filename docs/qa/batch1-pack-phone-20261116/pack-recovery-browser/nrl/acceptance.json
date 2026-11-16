@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-15T22:58:46.695Z",
+  "checks": [
+    "Conclusive supply rejection does not allocate or debit",
+    "Lost committed response leaves nine cards and saved original request",
+    "Reload recovers same request, one journal debit and same nine cards",
+    "Recovery reaches actual card reveal"
+  ],
+  "environment": "Mobile browser and actual React/components/core; loopback fixture transport",
+  "productionWrites": 0,
+  "physicalAndroidTest": false
+}

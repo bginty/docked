@@ -1,0 +1,123 @@
+{
+  "at": "2026-11-16T01:20:09.559Z",
+  "passed": true,
+  "scope": "Batch 1 isolated implementation acceptance; not Production, protected hosted or physical Android acceptance",
+  "productionWrites": 0,
+  "performance": {
+    "matchedCasesPerPhase": 36,
+    "confirmationP95Ms": {
+      "before": 36448,
+      "after": 4753
+    },
+    "savedRecoveryP95Ms": {
+      "before": 3776,
+      "after": 329
+    },
+    "nineCard": {
+      "originalCases": 12,
+      "originalP95Ms": 5500,
+      "additionalFixedCases": 36,
+      "additionalP95Ms": 3754,
+      "pooledCases": 48,
+      "pooledP95Ms": 3771,
+      "pooledRecoveryP95Ms": 241
+    },
+    "targetsMet": true,
+    "durableCommitIncludedInTiming": false,
+    "authenticatedSession": "simulated",
+    "source": "performance-summary.json"
+  },
+  "transactionIntegrity": {
+    "purchaseDuplicates": 24,
+    "openingDuplicates": 24,
+    "oneDebitAndNineAllocations": true,
+    "restartRecoveryMs": 231,
+    "injectedFailureAtomicRollback": true,
+    "source": "postgres-acceptance.json"
+  },
+  "checks": {
+    "platformFullPassed": 842,
+    "finalFocusedPassed": 15,
+    "databaseDistinctPassedAcrossRuns": 247,
+    "databaseFinalAffectedPassed": 23,
+    "documentReconstructionCases": 169,
+    "fullRestoredDocumentReconstruction": true,
+    "financialGuardCases": 32,
+    "reservationGuardCases": 20,
+    "browserPassed": 33,
+    "sportRecoveryScenarios": 12,
+    "phoneRecoveryScenarios": 4,
+    "typecheckExitCode": 0,
+    "lintExitCode": 0,
+    "cleanProductionBuild": true,
+    "buildId": "ROedSwugO0qI0Y-h9-NET",
+    "clientBoundaryAssets": 109
+  },
+  "databaseIntegrity": {
+    "protectedTablesUnchanged": 568,
+    "changedFunctions": 7,
+    "aclRlsPoliciesUnchanged": true,
+    "migrations": [
+      {
+        "file": "20261115113306_batch_private_pack_issuance_validation.sql",
+        "sha256": "2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1",
+        "executionMs": 18
+      },
+      {
+        "file": "20261115211545_batch1_pack_guard_batching.sql",
+        "sha256": "3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6",
+        "executionMs": 59
+      },
+      {
+        "file": "20261115235000_batch1_persistence_subdocuments.sql",
+        "sha256": "83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e",
+        "executionMs": 24
+      }
+    ]
+  },
+  "productionFinalReadback": {
+    "capturedAt": "2026-11-16T01:08:47.478Z",
+    "release": {
+      "channel": "beta",
+      "origin": "https://docked.com.au",
+      "hostingProvider": "vercel",
+      "siteId": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+      "hostingAccountId": "team_tf6xweKKyVCj9bTppUKttJ4l",
+      "commit": "12ccfd5879ae83f1bd62210ee16a3feb6907d9ef",
+      "deploymentId": "dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy",
+      "projectRef": "pojoymtniryarxxunyvz",
+      "publicRegistration": false,
+      "invitedAuthentication": true
+    },
+    "counts": {
+      "definitions": 6540,
+      "lifetime": 890,
+      "legacy": 888,
+      "beta_allocations": 2,
+      "commercial_cards": 0,
+      "active_competitions": 0,
+      "open_commercial_controls": 0,
+      "public_flags": 0,
+      "deletion_schedules": 0
+    },
+    "custodyRecords": 908,
+    "custodyDigest": "7e8e3c84c34e6e91720c7cdfd421186c0b447a17d12bbfd1713ca7d7e59f6714",
+    "financialHashes": {
+      "journal": "169f3c885102f441209c4da749ead6e1",
+      "lots": "8242e479ec64befa949b09f81ce0de98",
+      "cases": "4e0b147458f83573a76cb261914af04c",
+      "aggregate": "4484e67459ce3cbfa95f39910ea1938d"
+    },
+    "productionWrites": 0
+  },
+  "knownLimits": [
+    "The 247 database checks passed across repair/fresh-cluster runs; not one uninterrupted suite. Earlier failures are retained.",
+    "The broad platform/database suites preceded final performance edits; affected focused, actual PostgreSQL, browser and build checks cover final code.",
+    "24-way committed duplicate-purchase stress took 6424-9067 ms; the sequential p95 target is not a concurrent-burst guarantee.",
+    "Matched timing uses rollback/savepoints to preserve equivalent data and excludes durable COMMIT, hosted Auth and mobile Internet.",
+    "Protected hosted and genuine installed Android acceptance remain outstanding.",
+    "No SMS/provider delivery, Google Billing/refund test or public/commercial activation performed."
+  ],
+  "batch2": "Review only; BATCH_2_RECOMMENDATION.txt",
+  "deploymentApprovalRecorded": false
+}

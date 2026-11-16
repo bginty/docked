@@ -1,0 +1,1961 @@
+{
+  "phase": "baseline",
+  "rows": [
+    {
+      "sport": "afl",
+      "type": "PREMIUM",
+      "cards": 1,
+      "price": 700,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 28946,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 28936,
+          "responseBodyReadMs": 4.4,
+          "responseJsonParseMs": 5.56,
+          "databaseWire": {
+            "sentBytes": 7953672,
+            "receivedBytes": 9572096,
+            "queries": 39
+          },
+          "timings": "wallet;dur=28915, purchase_auth;dur=0.3, purchase_lock;dur=286.1, purchase_rules;dur=2502.4, purchase_issue;dur=335.0, purchase_persist;dur=24509.7, purchase_transaction;dur=27641.4, purchase_view;dur=897.9, purchase_total;dur=28926.6"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2255,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 2248,
+          "responseBodyReadMs": 2.37,
+          "responseJsonParseMs": 4.1,
+          "databaseWire": {
+            "sentBytes": 5917,
+            "receivedBytes": 9575546,
+            "queries": 34
+          },
+          "timings": "wallet;dur=2241, purchase_auth;dur=0.0, purchase_lock;dur=223.8, purchase_rules;dur=968.9, purchase_issue;dur=186.9, purchase_persist;dur=0.0, purchase_transaction;dur=1390.0, purchase_view;dur=567.4, purchase_total;dur=2248.0"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 25426,
+          "status": 200,
+          "bytes": 612237,
+          "handlerMs": 25414,
+          "responseBodyReadMs": 4.11,
+          "responseJsonParseMs": 7.79,
+          "databaseWire": {
+            "sentBytes": 7953778,
+            "receivedBytes": 9576251,
+            "queries": 36
+          },
+          "timings": "wallet;dur=25401, purchase_auth;dur=0.0, purchase_lock;dur=286.3, purchase_rules;dur=1183.5, purchase_issue;dur=295.3, purchase_persist;dur=22342.5, purchase_transaction;dur=24121.5, purchase_view;dur=725.3, purchase_total;dur=25413.1"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "type": "PREMIUM",
+      "cards": 3,
+      "price": 1900,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 24139,
+          "status": 200,
+          "bytes": 609473,
+          "handlerMs": 24131,
+          "responseBodyReadMs": 2.98,
+          "responseJsonParseMs": 5.6,
+          "databaseWire": {
+            "sentBytes": 7957833,
+            "receivedBytes": 9574298,
+            "queries": 39
+          },
+          "timings": "wallet;dur=24121, purchase_auth;dur=0.0, purchase_lock;dur=343.0, purchase_rules;dur=1329.6, purchase_issue;dur=330.5, purchase_persist;dur=21145.8, purchase_transaction;dur=23157.3, purchase_view;dur=644.4, purchase_total;dur=24129.6"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2197,
+          "status": 200,
+          "bytes": 609473,
+          "handlerMs": 2192,
+          "responseBodyReadMs": 2.05,
+          "responseJsonParseMs": 3.55,
+          "databaseWire": {
+            "sentBytes": 5919,
+            "receivedBytes": 9579950,
+            "queries": 34
+          },
+          "timings": "wallet;dur=2185, purchase_auth;dur=0.0, purchase_lock;dur=312.4, purchase_rules;dur=1049.2, purchase_issue;dur=162.9, purchase_persist;dur=0.2, purchase_transaction;dur=1532.7, purchase_view;dur=414.3, purchase_total;dur=2190.8"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 28349,
+          "status": 200,
+          "bytes": 617649,
+          "handlerMs": 28340,
+          "responseBodyReadMs": 3.23,
+          "responseJsonParseMs": 6.13,
+          "databaseWire": {
+            "sentBytes": 7958092,
+            "receivedBytes": 9580735,
+            "queries": 36
+          },
+          "timings": "wallet;dur=28333, purchase_auth;dur=0.0, purchase_lock;dur=341.7, purchase_rules;dur=1409.0, purchase_issue;dur=344.0, purchase_persist;dur=25431.1, purchase_transaction;dur=27533.3, purchase_view;dur=544.7, purchase_total;dur=28339.3"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "type": "PREMIUM",
+      "cards": 9,
+      "price": 5000,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 24649,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 24635,
+          "responseBodyReadMs": 5.66,
+          "responseJsonParseMs": 8.89,
+          "databaseWire": {
+            "sentBytes": 7970726,
+            "receivedBytes": 9580983,
+            "queries": 41
+          },
+          "timings": "wallet;dur=24621, purchase_auth;dur=0.0, purchase_lock;dur=232.7, purchase_rules;dur=842.0, purchase_issue;dur=293.8, purchase_persist;dur=22014.0, purchase_transaction;dur=23389.1, purchase_view;dur=730.5, purchase_total;dur=24633.8"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 3224,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 3210,
+          "responseBodyReadMs": 4.15,
+          "responseJsonParseMs": 9.7,
+          "databaseWire": {
+            "sentBytes": 5919,
+            "receivedBytes": 9593080,
+            "queries": 34
+          },
+          "timings": "wallet;dur=3195, purchase_auth;dur=0.1, purchase_lock;dur=395.6, purchase_rules;dur=1371.5, purchase_issue;dur=244.3, purchase_persist;dur=0.0, purchase_transaction;dur=2022.0, purchase_view;dur=664.7, purchase_total;dur=3209.5"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 35859,
+          "status": 200,
+          "bytes": 634026,
+          "handlerMs": 35845,
+          "responseBodyReadMs": 5.5,
+          "responseJsonParseMs": 7.69,
+          "databaseWire": {
+            "sentBytes": 7970944,
+            "receivedBytes": 9594105,
+            "queries": 36
+          },
+          "timings": "wallet;dur=35831, purchase_auth;dur=0.0, purchase_lock;dur=317.3, purchase_rules;dur=1853.2, purchase_issue;dur=313.1, purchase_persist;dur=32293.4, purchase_transaction;dur=34787.5, purchase_view;dur=596.0, purchase_total;dur=35843.2"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "type": "STANDARD",
+      "cards": 1,
+      "price": 100,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 43452,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 43438,
+          "responseBodyReadMs": 4.41,
+          "responseJsonParseMs": 9.82,
+          "databaseWire": {
+            "sentBytes": 7953644,
+            "receivedBytes": 9572081,
+            "queries": 39
+          },
+          "timings": "wallet;dur=43424, purchase_auth;dur=0.0, purchase_lock;dur=317.4, purchase_rules;dur=1051.0, purchase_issue;dur=370.7, purchase_persist;dur=40380.5, purchase_transaction;dur=42127.5, purchase_view;dur=622.8, purchase_total;dur=43437.3"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 3140,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 3133,
+          "responseBodyReadMs": 2.95,
+          "responseJsonParseMs": 3.88,
+          "databaseWire": {
+            "sentBytes": 5919,
+            "receivedBytes": 9575516,
+            "queries": 34
+          },
+          "timings": "wallet;dur=3124, purchase_auth;dur=0.0, purchase_lock;dur=396.7, purchase_rules;dur=1751.6, purchase_issue;dur=183.6, purchase_persist;dur=0.0, purchase_transaction;dur=2340.9, purchase_view;dur=488.8, purchase_total;dur=3132.0"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 35453,
+          "status": 200,
+          "bytes": 612163,
+          "handlerMs": 35443,
+          "responseBodyReadMs": 4.19,
+          "responseJsonParseMs": 6.17,
+          "databaseWire": {
+            "sentBytes": 7953750,
+            "receivedBytes": 9576221,
+            "queries": 36
+          },
+          "timings": "wallet;dur=35434, purchase_auth;dur=0.0, purchase_lock;dur=333.1, purchase_rules;dur=980.4, purchase_issue;dur=258.5, purchase_persist;dur=32778.2, purchase_transaction;dur=34357.3, purchase_view;dur=582.9, purchase_total;dur=35442.5"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "type": "STANDARD",
+      "cards": 3,
+      "price": 300,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 26516,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 26503,
+          "responseBodyReadMs": 4.24,
+          "responseJsonParseMs": 8.39,
+          "databaseWire": {
+            "sentBytes": 7957648,
+            "receivedBytes": 9574207,
+            "queries": 39
+          },
+          "timings": "wallet;dur=26491, purchase_auth;dur=0.0, purchase_lock;dur=337.2, purchase_rules;dur=1600.7, purchase_issue;dur=679.3, purchase_persist;dur=22673.2, purchase_transaction;dur=25300.2, purchase_view;dur=731.4, purchase_total;dur=26502.5"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2794,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 2785,
+          "responseBodyReadMs": 3.08,
+          "responseJsonParseMs": 5.47,
+          "databaseWire": {
+            "sentBytes": 5919,
+            "receivedBytes": 9579768,
+            "queries": 34
+          },
+          "timings": "wallet;dur=2778, purchase_auth;dur=0.0, purchase_lock;dur=338.9, purchase_rules;dur=1296.4, purchase_issue;dur=186.0, purchase_persist;dur=0.0, purchase_transaction;dur=1830.5, purchase_view;dur=535.0, purchase_total;dur=2784.7"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 26182,
+          "status": 200,
+          "bytes": 617576,
+          "handlerMs": 26164,
+          "responseBodyReadMs": 4.62,
+          "responseJsonParseMs": 12.69,
+          "databaseWire": {
+            "sentBytes": 7957910,
+            "receivedBytes": 9580553,
+            "queries": 36
+          },
+          "timings": "wallet;dur=26152, purchase_auth;dur=0.0, purchase_lock;dur=217.6, purchase_rules;dur=870.9, purchase_issue;dur=169.4, purchase_persist;dur=23386.8, purchase_transaction;dur=24651.5, purchase_view;dur=945.6, purchase_total;dur=26164.1"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "type": "STANDARD",
+      "cards": 9,
+      "price": 700,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 28723,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 28703,
+          "responseBodyReadMs": 5.1,
+          "responseJsonParseMs": 15.22,
+          "databaseWire": {
+            "sentBytes": 7969734,
+            "receivedBytes": 9580622,
+            "queries": 39
+          },
+          "timings": "wallet;dur=28685, purchase_auth;dur=0.0, purchase_lock;dur=345.7, purchase_rules;dur=1537.1, purchase_issue;dur=430.4, purchase_persist;dur=24784.9, purchase_transaction;dur=27119.1, purchase_view;dur=915.0, purchase_total;dur=28702.0"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 3776,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 3767,
+          "responseBodyReadMs": 3.74,
+          "responseJsonParseMs": 5.86,
+          "databaseWire": {
+            "sentBytes": 5919,
+            "receivedBytes": 9592598,
+            "queries": 34
+          },
+          "timings": "wallet;dur=3752, purchase_auth;dur=0.0, purchase_lock;dur=394.5, purchase_rules;dur=1681.8, purchase_issue;dur=298.2, purchase_persist;dur=0.0, purchase_transaction;dur=2388.0, purchase_view;dur=944.5, purchase_total;dur=3766.0"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 28973,
+          "status": 200,
+          "bytes": 633927,
+          "handlerMs": 28960,
+          "responseBodyReadMs": 4.77,
+          "responseJsonParseMs": 7.38,
+          "databaseWire": {
+            "sentBytes": 7970464,
+            "receivedBytes": 9593623,
+            "queries": 36
+          },
+          "timings": "wallet;dur=28947, purchase_auth;dur=0.0, purchase_lock;dur=349.8, purchase_rules;dur=1459.2, purchase_issue;dur=211.2, purchase_persist;dur=25610.4, purchase_transaction;dur=27640.2, purchase_view;dur=770.1, purchase_total;dur=28959.9"
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "PREMIUM",
+      "cards": 1,
+      "price": 700,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 28800,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 28786,
+          "responseBodyReadMs": 4.18,
+          "responseJsonParseMs": 9.32,
+          "databaseWire": {
+            "sentBytes": 7953195,
+            "receivedBytes": 9571708,
+            "queries": 36
+          },
+          "timings": "wallet;dur=28773, purchase_auth;dur=0.0, purchase_lock;dur=242.8, purchase_rules;dur=1213.4, purchase_issue;dur=309.8, purchase_persist;dur=25308.7, purchase_transaction;dur=27083.1, purchase_view;dur=1100.8, purchase_total;dur=28785.4"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 3366,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 3349,
+          "responseBodyReadMs": 4.9,
+          "responseJsonParseMs": 12.13,
+          "databaseWire": {
+            "sentBytes": 5410,
+            "receivedBytes": 9575171,
+            "queries": 31
+          },
+          "timings": "wallet;dur=3335, purchase_auth;dur=0.0, purchase_lock;dur=422.9, purchase_rules;dur=1669.8, purchase_issue;dur=234.1, purchase_persist;dur=0.0, purchase_transaction;dur=2338.8, purchase_view;dur=541.2, purchase_total;dur=3348.3"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 1654,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 1653,
+          "responseBodyReadMs": 0.19,
+          "responseJsonParseMs": 0.04,
+          "databaseWire": {
+            "sentBytes": 2377,
+            "receivedBytes": 5381988,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=403.2, purchase_rules;dur=986.3, purchase_issue;dur=198.1, purchase_transaction;dur=1603.2, purchase_total;dur=1653.0",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "PREMIUM",
+      "cards": 3,
+      "price": 1900,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 26106,
+          "status": 200,
+          "bytes": 609473,
+          "handlerMs": 26098,
+          "responseBodyReadMs": 3.01,
+          "responseJsonParseMs": 5.65,
+          "databaseWire": {
+            "sentBytes": 7957299,
+            "receivedBytes": 9573875,
+            "queries": 36
+          },
+          "timings": "wallet;dur=26090, purchase_auth;dur=0.0, purchase_lock;dur=491.3, purchase_rules;dur=1901.5, purchase_issue;dur=605.8, purchase_persist;dur=21896.2, purchase_transaction;dur=24914.8, purchase_view;dur=789.9, purchase_total;dur=26097.1"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2211,
+          "status": 200,
+          "bytes": 609473,
+          "handlerMs": 2204,
+          "responseBodyReadMs": 2.63,
+          "responseJsonParseMs": 4.83,
+          "databaseWire": {
+            "sentBytes": 5410,
+            "receivedBytes": 9579505,
+            "queries": 31
+          },
+          "timings": "wallet;dur=2197, purchase_auth;dur=0.0, purchase_lock;dur=256.9, purchase_rules;dur=1013.3, purchase_issue;dur=137.8, purchase_persist;dur=0.0, purchase_transaction;dur=1414.8, purchase_view;dur=473.5, purchase_total;dur=2203.7"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 1462,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 1461,
+          "responseBodyReadMs": 0.27,
+          "responseJsonParseMs": 0.01,
+          "databaseWire": {
+            "sentBytes": 2377,
+            "receivedBytes": 5384155,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=298.3, purchase_rules;dur=939.9, purchase_issue;dur=171.2, purchase_transaction;dur=1425.4, purchase_total;dur=1461.1",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "PREMIUM",
+      "cards": 9,
+      "price": 5000,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 27363,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 27357,
+          "responseBodyReadMs": 2.09,
+          "responseJsonParseMs": 3.79,
+          "databaseWire": {
+            "sentBytes": 7971079,
+            "receivedBytes": 9581011,
+            "queries": 38
+          },
+          "timings": "wallet;dur=27352, purchase_auth;dur=0.0, purchase_lock;dur=329.1, purchase_rules;dur=1434.9, purchase_issue;dur=593.8, purchase_persist;dur=24213.2, purchase_transaction;dur=26579.9, purchase_view;dur=544.0, purchase_total;dur=27356.6"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2393,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 2376,
+          "responseBodyReadMs": 4.16,
+          "responseJsonParseMs": 12.36,
+          "databaseWire": {
+            "sentBytes": 5410,
+            "receivedBytes": 9593537,
+            "queries": 31
+          },
+          "timings": "wallet;dur=2364, purchase_auth;dur=0.0, purchase_lock;dur=239.2, purchase_rules;dur=904.2, purchase_issue;dur=152.3, purchase_persist;dur=0.0, purchase_transaction;dur=1302.6, purchase_view;dur=640.5, purchase_total;dur=2376.1"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 2759,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 2759,
+          "responseBodyReadMs": 0.27,
+          "responseJsonParseMs": 0.02,
+          "databaseWire": {
+            "sentBytes": 2377,
+            "receivedBytes": 5391171,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=543.3, purchase_rules;dur=1839.5, purchase_issue;dur=293.5, purchase_transaction;dur=2703.5, purchase_total;dur=2758.3",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "STANDARD",
+      "cards": 1,
+      "price": 100,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 26924,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 26911,
+          "responseBodyReadMs": 4.18,
+          "responseJsonParseMs": 8.45,
+          "databaseWire": {
+            "sentBytes": 7953147,
+            "receivedBytes": 9571684,
+            "queries": 36
+          },
+          "timings": "wallet;dur=26900, purchase_auth;dur=0.0, purchase_lock;dur=328.2, purchase_rules;dur=1820.2, purchase_issue;dur=702.0, purchase_persist;dur=23140.5, purchase_transaction;dur=26000.8, purchase_view;dur=491.4, purchase_total;dur=26910.7"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 3219,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 3212,
+          "responseBodyReadMs": 2.38,
+          "responseJsonParseMs": 4.26,
+          "databaseWire": {
+            "sentBytes": 5410,
+            "receivedBytes": 9575123,
+            "queries": 31
+          },
+          "timings": "wallet;dur=3206, purchase_auth;dur=0.0, purchase_lock;dur=378.4, purchase_rules;dur=1527.1, purchase_issue;dur=243.5, purchase_persist;dur=0.1, purchase_transaction;dur=2157.6, purchase_view;dur=757.0, purchase_total;dur=3211.8"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 1923,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 1922,
+          "responseBodyReadMs": 0.31,
+          "responseJsonParseMs": 0.03,
+          "databaseWire": {
+            "sentBytes": 2377,
+            "receivedBytes": 5381964,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=196.6, purchase_rules;dur=1375.6, purchase_issue;dur=288.3, purchase_transaction;dur=1894.6, purchase_total;dur=1922.1",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "STANDARD",
+      "cards": 3,
+      "price": 300,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 26519,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 26508,
+          "responseBodyReadMs": 3.32,
+          "responseJsonParseMs": 8.34,
+          "databaseWire": {
+            "sentBytes": 7957363,
+            "receivedBytes": 9573916,
+            "queries": 36
+          },
+          "timings": "wallet;dur=26496, purchase_auth;dur=0.0, purchase_lock;dur=604.1, purchase_rules;dur=1357.9, purchase_issue;dur=379.4, purchase_persist;dur=22806.6, purchase_transaction;dur=25157.5, purchase_view;dur=848.8, purchase_total;dur=26506.7"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2829,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 2816,
+          "responseBodyReadMs": 3.93,
+          "responseJsonParseMs": 9.19,
+          "databaseWire": {
+            "sentBytes": 5410,
+            "receivedBytes": 9579587,
+            "queries": 31
+          },
+          "timings": "wallet;dur=2804, purchase_auth;dur=0.0, purchase_lock;dur=296.6, purchase_rules;dur=1051.3, purchase_issue;dur=252.4, purchase_persist;dur=0.0, purchase_transaction;dur=1609.0, purchase_view;dur=698.1, purchase_total;dur=2815.4"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 1590,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 1590,
+          "responseBodyReadMs": 0.17,
+          "responseJsonParseMs": 0.01,
+          "databaseWire": {
+            "sentBytes": 2377,
+            "receivedBytes": 5384196,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=313.7, purchase_rules;dur=914.1, purchase_issue;dur=220.2, purchase_transaction;dur=1466.4, purchase_total;dur=1589.1",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "STANDARD",
+      "cards": 9,
+      "price": 700,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 36448,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 36439,
+          "responseBodyReadMs": 2.84,
+          "responseJsonParseMs": 6.07,
+          "databaseWire": {
+            "sentBytes": 7970035,
+            "receivedBytes": 9580624,
+            "queries": 36
+          },
+          "timings": "wallet;dur=36429, purchase_auth;dur=0.0, purchase_lock;dur=231.7, purchase_rules;dur=1035.3, purchase_issue;dur=475.6, purchase_persist;dur=33849.9, purchase_transaction;dur=35600.3, purchase_view;dur=577.8, purchase_total;dur=36438.7"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2541,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 2527,
+          "responseBodyReadMs": 4.26,
+          "responseJsonParseMs": 8.98,
+          "databaseWire": {
+            "sentBytes": 5410,
+            "receivedBytes": 9593003,
+            "queries": 31
+          },
+          "timings": "wallet;dur=2520, purchase_auth;dur=0.0, purchase_lock;dur=301.0, purchase_rules;dur=872.0, purchase_issue;dur=235.7, purchase_persist;dur=0.0, purchase_transaction;dur=1416.4, purchase_view;dur=648.4, purchase_total;dur=2527.1"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 1472,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 1472,
+          "responseBodyReadMs": 0.13,
+          "responseJsonParseMs": 0.01,
+          "databaseWire": {
+            "sentBytes": 2377,
+            "receivedBytes": 5390904,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=369.0, purchase_rules;dur=842.8, purchase_issue;dur=118.2, purchase_transaction;dur=1368.9, purchase_total;dur=1471.0",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "PREMIUM",
+      "cards": 1,
+      "price": 700,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 29653,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 29640,
+          "responseBodyReadMs": 4.05,
+          "responseJsonParseMs": 9.86,
+          "databaseWire": {
+            "sentBytes": 7953700,
+            "receivedBytes": 9572110,
+            "queries": 39
+          },
+          "timings": "wallet;dur=29628, purchase_auth;dur=0.0, purchase_lock;dur=204.5, purchase_rules;dur=1227.5, purchase_issue;dur=811.9, purchase_persist;dur=26091.0, purchase_transaction;dur=28349.6, purchase_view;dur=831.1, purchase_total;dur=29639.1"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2519,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 2509,
+          "responseBodyReadMs": 3.15,
+          "responseJsonParseMs": 6.32,
+          "databaseWire": {
+            "sentBytes": 5919,
+            "receivedBytes": 9575574,
+            "queries": 34
+          },
+          "timings": "wallet;dur=2500, purchase_auth;dur=0.0, purchase_lock;dur=384.1, purchase_rules;dur=1153.0, purchase_issue;dur=120.8, purchase_persist;dur=0.0, purchase_transaction;dur=1678.1, purchase_view;dur=447.7, purchase_total;dur=2508.5"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 26797,
+          "status": 200,
+          "bytes": 612157,
+          "handlerMs": 26777,
+          "responseBodyReadMs": 7.98,
+          "responseJsonParseMs": 11.54,
+          "databaseWire": {
+            "sentBytes": 7953806,
+            "receivedBytes": 9576279,
+            "queries": 36
+          },
+          "timings": "wallet;dur=26763, purchase_auth;dur=0.0, purchase_lock;dur=205.3, purchase_rules;dur=1412.0, purchase_issue;dur=224.0, purchase_persist;dur=23713.6, purchase_transaction;dur=25562.7, purchase_view;dur=712.4, purchase_total;dur=26776.8"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "PREMIUM",
+      "cards": 3,
+      "price": 1900,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 23989,
+          "status": 200,
+          "bytes": 609473,
+          "handlerMs": 23981,
+          "responseBodyReadMs": 2.48,
+          "responseJsonParseMs": 4.79,
+          "databaseWire": {
+            "sentBytes": 7957640,
+            "receivedBytes": 9574195,
+            "queries": 39
+          },
+          "timings": "wallet;dur=23975, purchase_auth;dur=0.0, purchase_lock;dur=289.3, purchase_rules;dur=891.0, purchase_issue;dur=291.3, purchase_persist;dur=21579.6, purchase_transaction;dur=23059.9, purchase_view;dur=572.6, purchase_total;dur=23981.0"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2727,
+          "status": 200,
+          "bytes": 609473,
+          "handlerMs": 2717,
+          "responseBodyReadMs": 3.44,
+          "responseJsonParseMs": 7.16,
+          "databaseWire": {
+            "sentBytes": 5919,
+            "receivedBytes": 9579744,
+            "queries": 34
+          },
+          "timings": "wallet;dur=2705, purchase_auth;dur=0.0, purchase_lock;dur=321.6, purchase_rules;dur=1452.1, purchase_issue;dur=192.4, purchase_persist;dur=0.0, purchase_transaction;dur=1972.9, purchase_view;dur=423.9, purchase_total;dur=2716.5"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 24840,
+          "status": 200,
+          "bytes": 617654,
+          "handlerMs": 24833,
+          "responseBodyReadMs": 2.64,
+          "responseJsonParseMs": 4.75,
+          "databaseWire": {
+            "sentBytes": 7957898,
+            "receivedBytes": 9580529,
+            "queries": 36
+          },
+          "timings": "wallet;dur=24827, purchase_auth;dur=0.0, purchase_lock;dur=282.4, purchase_rules;dur=1667.6, purchase_issue;dur=344.5, purchase_persist;dur=21681.5, purchase_transaction;dur=23990.3, purchase_view;dur=531.3, purchase_total;dur=24832.6"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "PREMIUM",
+      "cards": 9,
+      "price": 5000,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 25858,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 25844,
+          "responseBodyReadMs": 3.93,
+          "responseJsonParseMs": 10.19,
+          "databaseWire": {
+            "sentBytes": 7970062,
+            "receivedBytes": 9580631,
+            "queries": 41
+          },
+          "timings": "wallet;dur=25832, purchase_auth;dur=0.0, purchase_lock;dur=202.2, purchase_rules;dur=988.0, purchase_issue;dur=528.8, purchase_persist;dur=22939.7, purchase_transaction;dur=24666.2, purchase_view;dur=712.5, purchase_total;dur=25843.5"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 3035,
+          "status": 200,
+          "bytes": 609469,
+          "handlerMs": 3026,
+          "responseBodyReadMs": 2.67,
+          "responseJsonParseMs": 6.21,
+          "databaseWire": {
+            "sentBytes": 5919,
+            "receivedBytes": 9592376,
+            "queries": 34
+          },
+          "timings": "wallet;dur=3018, purchase_auth;dur=0.0, purchase_lock;dur=355.7, purchase_rules;dur=1694.1, purchase_issue;dur=240.7, purchase_persist;dur=0.0, purchase_transaction;dur=2303.0, purchase_view;dur=396.6, purchase_total;dur=3025.9"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 23789,
+          "status": 200,
+          "bytes": 632473,
+          "handlerMs": 23778,
+          "responseBodyReadMs": 4,
+          "responseJsonParseMs": 7.14,
+          "databaseWire": {
+            "sentBytes": 7970280,
+            "receivedBytes": 9593401,
+            "queries": 36
+          },
+          "timings": "wallet;dur=23768, purchase_auth;dur=0.0, purchase_lock;dur=230.3, purchase_rules;dur=966.9, purchase_issue;dur=192.5, purchase_persist;dur=21318.2, purchase_transaction;dur=22714.5, purchase_view;dur=619.0, purchase_total;dur=23777.6"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "STANDARD",
+      "cards": 1,
+      "price": 100,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 25844,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 25837,
+          "responseBodyReadMs": 2.83,
+          "responseJsonParseMs": 4.76,
+          "databaseWire": {
+            "sentBytes": 7953646,
+            "receivedBytes": 9572082,
+            "queries": 39
+          },
+          "timings": "wallet;dur=25829, purchase_auth;dur=0.0, purchase_lock;dur=282.0, purchase_rules;dur=1122.8, purchase_issue;dur=269.2, purchase_persist;dur=23111.7, purchase_transaction;dur=24792.5, purchase_view;dur=731.7, purchase_total;dur=25836.1"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2245,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 2238,
+          "responseBodyReadMs": 2.28,
+          "responseJsonParseMs": 4.48,
+          "databaseWire": {
+            "sentBytes": 5921,
+            "receivedBytes": 9575518,
+            "queries": 34
+          },
+          "timings": "wallet;dur=2232, purchase_auth;dur=0.0, purchase_lock;dur=207.4, purchase_rules;dur=1173.0, purchase_issue;dur=216.8, purchase_persist;dur=0.0, purchase_transaction;dur=1605.7, purchase_view;dur=391.4, purchase_total;dur=2238.1"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 24704,
+          "status": 200,
+          "bytes": 612128,
+          "handlerMs": 24688,
+          "responseBodyReadMs": 3.91,
+          "responseJsonParseMs": 12.73,
+          "databaseWire": {
+            "sentBytes": 7953752,
+            "receivedBytes": 9576223,
+            "queries": 36
+          },
+          "timings": "wallet;dur=24677, purchase_auth;dur=0.0, purchase_lock;dur=272.5, purchase_rules;dur=1068.6, purchase_issue;dur=327.6, purchase_persist;dur=21930.9, purchase_transaction;dur=23607.7, purchase_view;dur=606.4, purchase_total;dur=24687.4"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "STANDARD",
+      "cards": 3,
+      "price": 300,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 24760,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 24753,
+          "responseBodyReadMs": 2.05,
+          "responseJsonParseMs": 4.96,
+          "databaseWire": {
+            "sentBytes": 7957670,
+            "receivedBytes": 9574218,
+            "queries": 39
+          },
+          "timings": "wallet;dur=24748, purchase_auth;dur=0.0, purchase_lock;dur=396.0, purchase_rules;dur=1725.3, purchase_issue;dur=325.2, purchase_persist;dur=21505.2, purchase_transaction;dur=23959.3, purchase_view;dur=554.3, purchase_total;dur=24752.8"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2303,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 2291,
+          "responseBodyReadMs": 3.97,
+          "responseJsonParseMs": 8.23,
+          "databaseWire": {
+            "sentBytes": 5921,
+            "receivedBytes": 9579790,
+            "queries": 34
+          },
+          "timings": "wallet;dur=2280, purchase_auth;dur=0.0, purchase_lock;dur=240.8, purchase_rules;dur=869.1, purchase_issue;dur=119.6, purchase_persist;dur=0.0, purchase_transaction;dur=1235.9, purchase_view;dur=620.5, purchase_total;dur=2290.7"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 25206,
+          "status": 200,
+          "bytes": 617486,
+          "handlerMs": 25200,
+          "responseBodyReadMs": 1.98,
+          "responseJsonParseMs": 3.6,
+          "databaseWire": {
+            "sentBytes": 7957932,
+            "receivedBytes": 9580575,
+            "queries": 36
+          },
+          "timings": "wallet;dur=25195, purchase_auth;dur=0.0, purchase_lock;dur=289.4, purchase_rules;dur=1062.0, purchase_issue;dur=147.4, purchase_persist;dur=22553.6, purchase_transaction;dur=24059.5, purchase_view;dur=804.6, purchase_total;dur=25199.7"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "STANDARD",
+      "cards": 9,
+      "price": 700,
+      "account": "founder",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 24182,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 24169,
+          "responseBodyReadMs": 3.74,
+          "responseJsonParseMs": 9.89,
+          "databaseWire": {
+            "sentBytes": 7969670,
+            "receivedBytes": 9580590,
+            "queries": 39
+          },
+          "timings": "wallet;dur=24158, purchase_auth;dur=0.0, purchase_lock;dur=238.3, purchase_rules;dur=908.0, purchase_issue;dur=360.5, purchase_persist;dur=21693.5, purchase_transaction;dur=23206.9, purchase_view;dur=533.7, purchase_total;dur=24168.4"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2825,
+          "status": 200,
+          "bytes": 609474,
+          "handlerMs": 2813,
+          "responseBodyReadMs": 3.99,
+          "responseJsonParseMs": 7.57,
+          "databaseWire": {
+            "sentBytes": 5921,
+            "receivedBytes": 9592534,
+            "queries": 34
+          },
+          "timings": "wallet;dur=2800, purchase_auth;dur=0.0, purchase_lock;dur=330.5, purchase_rules;dur=1209.9, purchase_issue;dur=136.2, purchase_persist;dur=0.0, purchase_transaction;dur=1684.9, purchase_view;dur=640.0, purchase_total;dur=2812.9"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 25281,
+          "status": 200,
+          "bytes": 633592,
+          "handlerMs": 25271,
+          "responseBodyReadMs": 3.82,
+          "responseJsonParseMs": 6.64,
+          "databaseWire": {
+            "sentBytes": 7970400,
+            "receivedBytes": 9593559,
+            "queries": 36
+          },
+          "timings": "wallet;dur=25262, purchase_auth;dur=0.0, purchase_lock;dur=397.9, purchase_rules;dur=1819.2, purchase_issue;dur=338.4, purchase_persist;dur=21872.0, purchase_transaction;dur=24437.7, purchase_view;dur=489.7, purchase_total;dur=25270.4"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "type": "PREMIUM",
+      "cards": 1,
+      "price": 700,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 26186,
+          "status": 200,
+          "bytes": 27877,
+          "handlerMs": 26184,
+          "responseBodyReadMs": 0.61,
+          "responseJsonParseMs": 1.37,
+          "databaseWire": {
+            "sentBytes": 7954830,
+            "receivedBytes": 9572612,
+            "queries": 46
+          },
+          "timings": "wallet;dur=26181, purchase_auth;dur=0.0, purchase_lock;dur=316.0, purchase_rules;dur=1017.6, purchase_issue;dur=585.6, purchase_persist;dur=22548.7, purchase_transaction;dur=24476.1, purchase_view;dur=1438.5, purchase_total;dur=26183.4"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2652,
+          "status": 200,
+          "bytes": 27877,
+          "handlerMs": 2652,
+          "responseBodyReadMs": 0.27,
+          "responseJsonParseMs": 0.34,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9575945,
+            "queries": 41
+          },
+          "timings": "wallet;dur=2649, purchase_auth;dur=0.0, purchase_lock;dur=378.4, purchase_rules;dur=1234.6, purchase_issue;dur=142.5, purchase_persist;dur=0.0, purchase_transaction;dur=1763.9, purchase_view;dur=665.1, purchase_total;dur=2651.1"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 28546,
+          "status": 200,
+          "bytes": 30589,
+          "handlerMs": 28546,
+          "responseBodyReadMs": 0.28,
+          "responseJsonParseMs": 0.36,
+          "databaseWire": {
+            "sentBytes": 7954936,
+            "receivedBytes": 9576650,
+            "queries": 43
+          },
+          "timings": "wallet;dur=28545, purchase_auth;dur=0.0, purchase_lock;dur=208.1, purchase_rules;dur=1001.9, purchase_issue;dur=227.7, purchase_persist;dur=25638.8, purchase_transaction;dur=27082.6, purchase_view;dur=1275.8, purchase_total;dur=28545.5"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "type": "PREMIUM",
+      "cards": 3,
+      "price": 1900,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 25335,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 25330,
+          "responseBodyReadMs": 1.07,
+          "responseJsonParseMs": 3.82,
+          "databaseWire": {
+            "sentBytes": 7959234,
+            "receivedBytes": 9574943,
+            "queries": 46
+          },
+          "timings": "wallet;dur=25327, purchase_auth;dur=0.0, purchase_lock;dur=229.3, purchase_rules;dur=908.1, purchase_issue;dur=322.0, purchase_persist;dur=22484.0, purchase_transaction;dur=23950.3, purchase_view;dur=1121.1, purchase_total;dur=25329.4"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 3262,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 3261,
+          "responseBodyReadMs": 0.52,
+          "responseJsonParseMs": 0.65,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9580607,
+            "queries": 41
+          },
+          "timings": "wallet;dur=3258, purchase_auth;dur=0.0, purchase_lock;dur=282.9, purchase_rules;dur=1277.0, purchase_issue;dur=288.2, purchase_persist;dur=0.0, purchase_transaction;dur=1855.6, purchase_view;dur=1082.4, purchase_total;dur=3259.2"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 26583,
+          "status": 200,
+          "bytes": 36062,
+          "handlerMs": 26582,
+          "responseBodyReadMs": 0.38,
+          "responseJsonParseMs": 0.62,
+          "databaseWire": {
+            "sentBytes": 7959492,
+            "receivedBytes": 9581392,
+            "queries": 43
+          },
+          "timings": "wallet;dur=26580, purchase_auth;dur=0.0, purchase_lock;dur=374.3, purchase_rules;dur=1185.9, purchase_issue;dur=143.2, purchase_persist;dur=23682.5, purchase_transaction;dur=25394.0, purchase_view;dur=897.4, purchase_total;dur=26581.5"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "type": "PREMIUM",
+      "cards": 9,
+      "price": 5000,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 27015,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 27014,
+          "responseBodyReadMs": 0.28,
+          "responseJsonParseMs": 0.48,
+          "databaseWire": {
+            "sentBytes": 7971422,
+            "receivedBytes": 9581402,
+            "queries": 46
+          },
+          "timings": "wallet;dur=27012, purchase_auth;dur=0.0, purchase_lock;dur=233.5, purchase_rules;dur=1268.9, purchase_issue;dur=703.2, purchase_persist;dur=23842.2, purchase_transaction;dur=26057.5, purchase_view;dur=775.4, purchase_total;dur=27013.1"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 3061,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 3060,
+          "responseBodyReadMs": 0.31,
+          "responseJsonParseMs": 0.48,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9593525,
+            "queries": 41
+          },
+          "timings": "wallet;dur=3058, purchase_auth;dur=0.0, purchase_lock;dur=277.9, purchase_rules;dur=1213.1, purchase_issue;dur=294.6, purchase_persist;dur=0.0, purchase_transaction;dur=1793.1, purchase_view;dur=1016.9, purchase_total;dur=3059.7"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 28822,
+          "status": 200,
+          "bytes": 52623,
+          "handlerMs": 28820,
+          "responseBodyReadMs": 0.59,
+          "responseJsonParseMs": 0.93,
+          "databaseWire": {
+            "sentBytes": 7972148,
+            "receivedBytes": 9594550,
+            "queries": 43
+          },
+          "timings": "wallet;dur=28818, purchase_auth;dur=0.0, purchase_lock;dur=288.0, purchase_rules;dur=1532.5, purchase_issue;dur=436.7, purchase_persist;dur=25219.8, purchase_transaction;dur=27490.1, purchase_view;dur=1085.7, purchase_total;dur=28819.7"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "type": "STANDARD",
+      "cards": 1,
+      "price": 100,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 25572,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 25571,
+          "responseBodyReadMs": 0.35,
+          "responseJsonParseMs": 0.61,
+          "databaseWire": {
+            "sentBytes": 7955008,
+            "receivedBytes": 9572708,
+            "queries": 46
+          },
+          "timings": "wallet;dur=25569, purchase_auth;dur=0.0, purchase_lock;dur=278.3, purchase_rules;dur=1163.0, purchase_issue;dur=565.9, purchase_persist;dur=22667.4, purchase_transaction;dur=24682.6, purchase_view;dur=728.5, purchase_total;dur=25569.8"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 1975,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 1974,
+          "responseBodyReadMs": 0.25,
+          "responseJsonParseMs": 0.38,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9576137,
+            "queries": 41
+          },
+          "timings": "wallet;dur=1973, purchase_auth;dur=0.0, purchase_lock;dur=214.5, purchase_rules;dur=893.2, purchase_issue;dur=112.8, purchase_persist;dur=0.0, purchase_transaction;dur=1227.0, purchase_view;dur=579.5, purchase_total;dur=1974.2"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 28110,
+          "status": 200,
+          "bytes": 30611,
+          "handlerMs": 28110,
+          "responseBodyReadMs": 0.23,
+          "responseJsonParseMs": 0.3,
+          "databaseWire": {
+            "sentBytes": 7955114,
+            "receivedBytes": 9576842,
+            "queries": 43
+          },
+          "timings": "wallet;dur=28109, purchase_auth;dur=0.0, purchase_lock;dur=264.5, purchase_rules;dur=1472.0, purchase_issue;dur=328.6, purchase_persist;dur=25164.5, purchase_transaction;dur=27237.0, purchase_view;dur=738.1, purchase_total;dur=28109.7"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "type": "STANDARD",
+      "cards": 3,
+      "price": 300,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 26791,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 26789,
+          "responseBodyReadMs": 0.72,
+          "responseJsonParseMs": 0.88,
+          "databaseWire": {
+            "sentBytes": 7959020,
+            "receivedBytes": 9574838,
+            "queries": 46
+          },
+          "timings": "wallet;dur=26786, purchase_auth;dur=0.0, purchase_lock;dur=259.3, purchase_rules;dur=914.7, purchase_issue;dur=303.7, purchase_persist;dur=23577.2, purchase_transaction;dur=25062.7, purchase_view;dur=1268.1, purchase_total;dur=26788.4"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 3377,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 3376,
+          "responseBodyReadMs": 0.22,
+          "responseJsonParseMs": 0.3,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9580397,
+            "queries": 41
+          },
+          "timings": "wallet;dur=3375, purchase_auth;dur=0.0, purchase_lock;dur=561.5, purchase_rules;dur=1814.7, purchase_issue;dur=165.3, purchase_persist;dur=0.0, purchase_transaction;dur=2550.0, purchase_view;dur=679.0, purchase_total;dur=3375.9"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 28713,
+          "status": 200,
+          "bytes": 35972,
+          "handlerMs": 28712,
+          "responseBodyReadMs": 0.38,
+          "responseJsonParseMs": 0.63,
+          "databaseWire": {
+            "sentBytes": 7959282,
+            "receivedBytes": 9581182,
+            "queries": 43
+          },
+          "timings": "wallet;dur=28711, purchase_auth;dur=0.0, purchase_lock;dur=177.8, purchase_rules;dur=1040.8, purchase_issue;dur=165.9, purchase_persist;dur=26359.7, purchase_transaction;dur=27750.6, purchase_view;dur=784.2, purchase_total;dur=28712.2"
+        }
+      ]
+    },
+    {
+      "sport": "afl",
+      "type": "STANDARD",
+      "cards": 9,
+      "price": 700,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 28158,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 28156,
+          "responseBodyReadMs": 0.6,
+          "responseJsonParseMs": 0.98,
+          "databaseWire": {
+            "sentBytes": 7971080,
+            "receivedBytes": 9581240,
+            "queries": 46
+          },
+          "timings": "wallet;dur=28154, purchase_auth;dur=0.0, purchase_lock;dur=202.7, purchase_rules;dur=824.0, purchase_issue;dur=348.5, purchase_persist;dur=25431.1, purchase_transaction;dur=26812.2, purchase_view;dur=1061.8, purchase_total;dur=28155.6"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2555,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 2554,
+          "responseBodyReadMs": 0.24,
+          "responseJsonParseMs": 0.33,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9593201,
+            "queries": 41
+          },
+          "timings": "wallet;dur=2553, purchase_auth;dur=0.0, purchase_lock;dur=352.3, purchase_rules;dur=1343.1, purchase_issue;dur=117.9, purchase_persist;dur=0.0, purchase_transaction;dur=1820.5, purchase_view;dur=555.2, purchase_total;dur=2553.6"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 28663,
+          "status": 200,
+          "bytes": 52294,
+          "handlerMs": 28662,
+          "responseBodyReadMs": 0.38,
+          "responseJsonParseMs": 0.48,
+          "databaseWire": {
+            "sentBytes": 7971810,
+            "receivedBytes": 9594226,
+            "queries": 43
+          },
+          "timings": "wallet;dur=28660, purchase_auth;dur=0.0, purchase_lock;dur=188.0, purchase_rules;dur=905.3, purchase_issue;dur=153.2, purchase_persist;dur=26577.8, purchase_transaction;dur=27829.9, purchase_view;dur=663.1, purchase_total;dur=28662.0"
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "PREMIUM",
+      "cards": 1,
+      "price": 700,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 25138,
+          "status": 200,
+          "bytes": 27877,
+          "handlerMs": 25137,
+          "responseBodyReadMs": 0.54,
+          "responseJsonParseMs": 0.87,
+          "databaseWire": {
+            "sentBytes": 7954301,
+            "receivedBytes": 9572199,
+            "queries": 43
+          },
+          "timings": "wallet;dur=25135, purchase_auth;dur=0.0, purchase_lock;dur=231.7, purchase_rules;dur=857.2, purchase_issue;dur=257.2, purchase_persist;dur=21988.5, purchase_transaction;dur=23341.2, purchase_view;dur=1512.4, purchase_total;dur=25136.3"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 4658,
+          "status": 200,
+          "bytes": 27877,
+          "handlerMs": 4658,
+          "responseBodyReadMs": 0.27,
+          "responseJsonParseMs": 0.38,
+          "databaseWire": {
+            "sentBytes": 6786,
+            "receivedBytes": 9575520,
+            "queries": 38
+          },
+          "timings": "wallet;dur=4656, purchase_auth;dur=0.0, purchase_lock;dur=360.4, purchase_rules;dur=2016.5, purchase_issue;dur=305.2, purchase_persist;dur=0.0, purchase_transaction;dur=2698.6, purchase_view;dur=1715.1, purchase_total;dur=4657.3"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 1947,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 1947,
+          "responseBodyReadMs": 0.16,
+          "responseJsonParseMs": 0.01,
+          "databaseWire": {
+            "sentBytes": 2379,
+            "receivedBytes": 5381848,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=497.0, purchase_rules;dur=1243.0, purchase_issue;dur=156.0, purchase_transaction;dur=1910.8, purchase_total;dur=1946.6",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "PREMIUM",
+      "cards": 3,
+      "price": 1900,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 26015,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 26013,
+          "responseBodyReadMs": 0.6,
+          "responseJsonParseMs": 1,
+          "databaseWire": {
+            "sentBytes": 7958661,
+            "receivedBytes": 9574501,
+            "queries": 43
+          },
+          "timings": "wallet;dur=26011, purchase_auth;dur=0.0, purchase_lock;dur=365.8, purchase_rules;dur=1039.5, purchase_issue;dur=437.1, purchase_persist;dur=22651.0, purchase_transaction;dur=24499.9, purchase_view;dur=1229.1, purchase_total;dur=26013.1"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 3653,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 3653,
+          "responseBodyReadMs": 0.22,
+          "responseJsonParseMs": 0.3,
+          "databaseWire": {
+            "sentBytes": 6786,
+            "receivedBytes": 9580124,
+            "queries": 38
+          },
+          "timings": "wallet;dur=3652, purchase_auth;dur=0.0, purchase_lock;dur=554.8, purchase_rules;dur=1994.8, purchase_issue;dur=241.3, purchase_persist;dur=0.0, purchase_transaction;dur=2815.5, purchase_view;dur=618.2, purchase_total;dur=3652.4"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 1220,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 1220,
+          "responseBodyReadMs": 0.14,
+          "responseJsonParseMs": 0.01,
+          "databaseWire": {
+            "sentBytes": 2379,
+            "receivedBytes": 5384150,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=227.8, purchase_rules;dur=835.6, purchase_issue;dur=118.5, purchase_transaction;dur=1196.5, purchase_total;dur=1219.7",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "PREMIUM",
+      "cards": 9,
+      "price": 5000,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 24070,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 24067,
+          "responseBodyReadMs": 2.11,
+          "responseJsonParseMs": 1.42,
+          "databaseWire": {
+            "sentBytes": 7971459,
+            "receivedBytes": 9581265,
+            "queries": 43
+          },
+          "timings": "wallet;dur=24064, purchase_auth;dur=0.0, purchase_lock;dur=181.2, purchase_rules;dur=978.0, purchase_issue;dur=483.9, purchase_persist;dur=21479.9, purchase_transaction;dur=23129.3, purchase_view;dur=727.5, purchase_total;dur=24066.2"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2909,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 2909,
+          "responseBodyReadMs": 0.23,
+          "responseJsonParseMs": 0.31,
+          "databaseWire": {
+            "sentBytes": 6786,
+            "receivedBytes": 9593652,
+            "queries": 38
+          },
+          "timings": "wallet;dur=2908, purchase_auth;dur=0.0, purchase_lock;dur=221.1, purchase_rules;dur=1274.9, purchase_issue;dur=272.6, purchase_persist;dur=0.0, purchase_transaction;dur=1776.6, purchase_view;dur=987.3, purchase_total;dur=2908.5"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 1221,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 1221,
+          "responseBodyReadMs": 0.13,
+          "responseJsonParseMs": 0.02,
+          "databaseWire": {
+            "sentBytes": 2379,
+            "receivedBytes": 5390914,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=194.9, purchase_rules;dur=844.5, purchase_issue;dur=143.2, purchase_transaction;dur=1197.0, purchase_total;dur=1221.0",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "STANDARD",
+      "cards": 1,
+      "price": 100,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 24544,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 24543,
+          "responseBodyReadMs": 0.47,
+          "responseJsonParseMs": 0.73,
+          "databaseWire": {
+            "sentBytes": 7954535,
+            "receivedBytes": 9572323,
+            "queries": 43
+          },
+          "timings": "wallet;dur=24541, purchase_auth;dur=0.0, purchase_lock;dur=256.6, purchase_rules;dur=1499.4, purchase_issue;dur=342.1, purchase_persist;dur=21125.3, purchase_transaction;dur=23270.8, purchase_view;dur=1008.6, purchase_total;dur=24542.5"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2704,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 2702,
+          "responseBodyReadMs": 0.6,
+          "responseJsonParseMs": 0.81,
+          "databaseWire": {
+            "sentBytes": 6786,
+            "receivedBytes": 9575768,
+            "queries": 38
+          },
+          "timings": "wallet;dur=2700, purchase_auth;dur=0.0, purchase_lock;dur=218.1, purchase_rules;dur=896.6, purchase_issue;dur=169.5, purchase_persist;dur=0.0, purchase_transaction;dur=1291.1, purchase_view;dur=1105.0, purchase_total;dur=2701.8"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 1979,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 1979,
+          "responseBodyReadMs": 0.19,
+          "responseJsonParseMs": 0.01,
+          "databaseWire": {
+            "sentBytes": 2379,
+            "receivedBytes": 5381972,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=303.1, purchase_rules;dur=1499.5, purchase_issue;dur=117.4, purchase_transaction;dur=1935.6, purchase_total;dur=1978.2",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "STANDARD",
+      "cards": 3,
+      "price": 300,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 24062,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 24060,
+          "responseBodyReadMs": 0.49,
+          "responseJsonParseMs": 0.7,
+          "databaseWire": {
+            "sentBytes": 7958739,
+            "receivedBytes": 9574549,
+            "queries": 43
+          },
+          "timings": "wallet;dur=24058, purchase_auth;dur=0.0, purchase_lock;dur=295.2, purchase_rules;dur=966.9, purchase_issue;dur=590.9, purchase_persist;dur=21130.5, purchase_transaction;dur=22991.8, purchase_view;dur=832.7, purchase_total;dur=24060.1"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2344,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 2344,
+          "responseBodyReadMs": 0.21,
+          "responseJsonParseMs": 0.29,
+          "databaseWire": {
+            "sentBytes": 6786,
+            "receivedBytes": 9580220,
+            "queries": 38
+          },
+          "timings": "wallet;dur=2342, purchase_auth;dur=0.0, purchase_lock;dur=326.8, purchase_rules;dur=1169.7, purchase_issue;dur=153.9, purchase_persist;dur=0.0, purchase_transaction;dur=1658.3, purchase_view;dur=558.1, purchase_total;dur=2343.2"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 2007,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 2007,
+          "responseBodyReadMs": 0.32,
+          "responseJsonParseMs": 0.02,
+          "databaseWire": {
+            "sentBytes": 2379,
+            "receivedBytes": 5384198,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=262.3, purchase_rules;dur=1421.1, purchase_issue;dur=272.6, purchase_transaction;dur=1983.4, purchase_total;dur=2006.7",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nfl",
+      "type": "STANDARD",
+      "cards": 9,
+      "price": 700,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 24353,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 24352,
+          "responseBodyReadMs": 0.26,
+          "responseJsonParseMs": 0.37,
+          "databaseWire": {
+            "sentBytes": 7970669,
+            "receivedBytes": 9580865,
+            "queries": 43
+          },
+          "timings": "wallet;dur=24350, purchase_auth;dur=0.0, purchase_lock;dur=249.4, purchase_rules;dur=1005.4, purchase_issue;dur=279.1, purchase_persist;dur=21982.4, purchase_transaction;dur=23523.8, purchase_view;dur=636.0, purchase_total;dur=24351.3"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2577,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 2577,
+          "responseBodyReadMs": 0.21,
+          "responseJsonParseMs": 0.31,
+          "databaseWire": {
+            "sentBytes": 6786,
+            "receivedBytes": 9592852,
+            "queries": 38
+          },
+          "timings": "wallet;dur=2576, purchase_auth;dur=0.0, purchase_lock;dur=258.4, purchase_rules;dur=1313.5, purchase_issue;dur=323.2, purchase_persist;dur=0.0, purchase_transaction;dur=1902.4, purchase_view;dur=557.4, purchase_total;dur=2576.6"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 1313,
+          "status": 400,
+          "bytes": 110,
+          "handlerMs": 1313,
+          "responseBodyReadMs": 0.37,
+          "responseJsonParseMs": 0.03,
+          "databaseWire": {
+            "sentBytes": 2379,
+            "receivedBytes": 5390514,
+            "queries": 15
+          },
+          "timings": "purchase_auth;dur=0.0, purchase_lock;dur=190.8, purchase_rules;dur=919.1, purchase_issue;dur=162.9, purchase_transaction;dur=1289.1, purchase_total;dur=1312.0",
+          "error": "Pack contains a player awaiting roster review. Your entitlement is preserved."
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "PREMIUM",
+      "cards": 1,
+      "price": 700,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 25899,
+          "status": 200,
+          "bytes": 27877,
+          "handlerMs": 25899,
+          "responseBodyReadMs": 0.24,
+          "responseJsonParseMs": 0.38,
+          "databaseWire": {
+            "sentBytes": 7954842,
+            "receivedBytes": 9572619,
+            "queries": 46
+          },
+          "timings": "wallet;dur=25898, purchase_auth;dur=0.0, purchase_lock;dur=314.5, purchase_rules;dur=1822.7, purchase_issue;dur=392.0, purchase_persist;dur=22235.5, purchase_transaction;dur=24773.2, purchase_view;dur=957.2, purchase_total;dur=25898.4"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2633,
+          "status": 200,
+          "bytes": 27877,
+          "handlerMs": 2632,
+          "responseBodyReadMs": 0.27,
+          "responseJsonParseMs": 0.4,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9575959,
+            "queries": 41
+          },
+          "timings": "wallet;dur=2631, purchase_auth;dur=0.0, purchase_lock;dur=255.4, purchase_rules;dur=1483.6, purchase_issue;dur=182.5, purchase_persist;dur=0.0, purchase_transaction;dur=1927.8, purchase_view;dur=572.9, purchase_total;dur=2632.0"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 26277,
+          "status": 200,
+          "bytes": 30542,
+          "handlerMs": 26275,
+          "responseBodyReadMs": 0.57,
+          "responseJsonParseMs": 1.05,
+          "databaseWire": {
+            "sentBytes": 7954948,
+            "receivedBytes": 9576664,
+            "queries": 43
+          },
+          "timings": "wallet;dur=26273, purchase_auth;dur=0.0, purchase_lock;dur=192.9, purchase_rules;dur=1280.8, purchase_issue;dur=347.0, purchase_persist;dur=23070.8, purchase_transaction;dur=24899.8, purchase_view;dur=1130.5, purchase_total;dur=26274.9"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "PREMIUM",
+      "cards": 3,
+      "price": 1900,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 27066,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 27065,
+          "responseBodyReadMs": 0.35,
+          "responseJsonParseMs": 0.4,
+          "databaseWire": {
+            "sentBytes": 7959232,
+            "receivedBytes": 9574943,
+            "queries": 46
+          },
+          "timings": "wallet;dur=27064, purchase_auth;dur=0.0, purchase_lock;dur=417.8, purchase_rules;dur=1073.6, purchase_issue;dur=587.2, purchase_persist;dur=24133.2, purchase_transaction;dur=26224.9, purchase_view;dur=678.3, purchase_total;dur=27064.6"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2693,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 2692,
+          "responseBodyReadMs": 0.46,
+          "responseJsonParseMs": 0.66,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9580607,
+            "queries": 41
+          },
+          "timings": "wallet;dur=2690, purchase_auth;dur=0.0, purchase_lock;dur=213.5, purchase_rules;dur=1056.3, purchase_issue;dur=175.1, purchase_persist;dur=0.0, purchase_transaction;dur=1451.0, purchase_view;dur=1007.4, purchase_total;dur=2692.0"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 25478,
+          "status": 200,
+          "bytes": 36056,
+          "handlerMs": 25477,
+          "responseBodyReadMs": 0.51,
+          "responseJsonParseMs": 0.78,
+          "databaseWire": {
+            "sentBytes": 7959490,
+            "receivedBytes": 9581392,
+            "queries": 43
+          },
+          "timings": "wallet;dur=25475, purchase_auth;dur=0.0, purchase_lock;dur=279.2, purchase_rules;dur=1157.2, purchase_issue;dur=311.6, purchase_persist;dur=22544.4, purchase_transaction;dur=24303.4, purchase_view;dur=893.2, purchase_total;dur=25476.6"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "PREMIUM",
+      "cards": 9,
+      "price": 5000,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 28040,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 28039,
+          "responseBodyReadMs": 0.23,
+          "responseJsonParseMs": 0.35,
+          "databaseWire": {
+            "sentBytes": 7970740,
+            "receivedBytes": 9581041,
+            "queries": 46
+          },
+          "timings": "wallet;dur=28038, purchase_auth;dur=0.0, purchase_lock;dur=327.4, purchase_rules;dur=1424.8, purchase_issue;dur=363.1, purchase_persist;dur=25044.4, purchase_transaction;dur=27167.3, purchase_view;dur=727.7, purchase_total;dur=28038.7"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2837,
+          "status": 200,
+          "bytes": 27881,
+          "handlerMs": 2836,
+          "responseBodyReadMs": 0.2,
+          "responseJsonParseMs": 0.28,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9592803,
+            "queries": 41
+          },
+          "timings": "wallet;dur=2835, purchase_auth;dur=0.0, purchase_lock;dur=269.5, purchase_rules;dur=1109.2, purchase_issue;dur=270.3, purchase_persist;dur=0.0, purchase_transaction;dur=1657.6, purchase_view;dur=1030.9, purchase_total;dur=2836.0"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 26035,
+          "status": 200,
+          "bytes": 52290,
+          "handlerMs": 26034,
+          "responseBodyReadMs": 0.65,
+          "responseJsonParseMs": 1.06,
+          "databaseWire": {
+            "sentBytes": 7971466,
+            "receivedBytes": 9593828,
+            "queries": 43
+          },
+          "timings": "wallet;dur=26031, purchase_auth;dur=0.0, purchase_lock;dur=303.4, purchase_rules;dur=908.6, purchase_issue;dur=160.3, purchase_persist;dur=23356.5, purchase_transaction;dur=24734.8, purchase_view;dur=1046.1, purchase_total;dur=26033.3"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "STANDARD",
+      "cards": 1,
+      "price": 100,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 24675,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 24674,
+          "responseBodyReadMs": 0.35,
+          "responseJsonParseMs": 0.53,
+          "databaseWire": {
+            "sentBytes": 7955090,
+            "receivedBytes": 9572750,
+            "queries": 46
+          },
+          "timings": "wallet;dur=24672, purchase_auth;dur=0.0, purchase_lock;dur=253.6, purchase_rules;dur=1081.1, purchase_issue;dur=462.0, purchase_persist;dur=22013.7, purchase_transaction;dur=23818.2, purchase_view;dur=727.2, purchase_total;dur=24673.2"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2666,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 2665,
+          "responseBodyReadMs": 0.31,
+          "responseJsonParseMs": 0.45,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9576221,
+            "queries": 41
+          },
+          "timings": "wallet;dur=2664, purchase_auth;dur=0.0, purchase_lock;dur=197.3, purchase_rules;dur=965.2, purchase_issue;dur=243.1, purchase_persist;dur=0.0, purchase_transaction;dur=1411.9, purchase_view;dur=960.5, purchase_total;dur=2664.9"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 25578,
+          "status": 200,
+          "bytes": 30568,
+          "handlerMs": 25576,
+          "responseBodyReadMs": 0.48,
+          "responseJsonParseMs": 0.81,
+          "databaseWire": {
+            "sentBytes": 7955196,
+            "receivedBytes": 9576926,
+            "queries": 43
+          },
+          "timings": "wallet;dur=25575, purchase_auth;dur=0.0, purchase_lock;dur=209.8, purchase_rules;dur=1111.0, purchase_issue;dur=337.7, purchase_persist;dur=22413.7, purchase_transaction;dur=24079.4, purchase_view;dur=1222.1, purchase_total;dur=25576.1"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "STANDARD",
+      "cards": 3,
+      "price": 300,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 25675,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 25673,
+          "responseBodyReadMs": 0.58,
+          "responseJsonParseMs": 0.83,
+          "databaseWire": {
+            "sentBytes": 7959032,
+            "receivedBytes": 9574845,
+            "queries": 46
+          },
+          "timings": "wallet;dur=25671, purchase_auth;dur=0.0, purchase_lock;dur=333.3, purchase_rules;dur=1010.3, purchase_issue;dur=362.5, purchase_persist;dur=22710.1, purchase_transaction;dur=24426.4, purchase_view;dur=973.4, purchase_total;dur=25672.5"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2826,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 2824,
+          "responseBodyReadMs": 0.44,
+          "responseJsonParseMs": 1.91,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9580411,
+            "queries": 41
+          },
+          "timings": "wallet;dur=2822, purchase_auth;dur=0.0, purchase_lock;dur=342.1, purchase_rules;dur=1350.8, purchase_issue;dur=123.1, purchase_persist;dur=0.0, purchase_transaction;dur=1823.2, purchase_view;dur=713.1, purchase_total;dur=2823.0"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 26627,
+          "status": 200,
+          "bytes": 35939,
+          "handlerMs": 26625,
+          "responseBodyReadMs": 0.42,
+          "responseJsonParseMs": 0.9,
+          "databaseWire": {
+            "sentBytes": 7959294,
+            "receivedBytes": 9581196,
+            "queries": 43
+          },
+          "timings": "wallet;dur=26623, purchase_auth;dur=0.0, purchase_lock;dur=324.3, purchase_rules;dur=1586.1, purchase_issue;dur=223.6, purchase_persist;dur=23565.3, purchase_transaction;dur=25710.1, purchase_view;dur=659.3, purchase_total;dur=26624.7"
+        }
+      ]
+    },
+    {
+      "sport": "nrl",
+      "type": "STANDARD",
+      "cards": 9,
+      "price": 700,
+      "account": "Brenton",
+      "outcomes": [
+        {
+          "action": "confirmation",
+          "durationMs": 26176,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 26175,
+          "responseBodyReadMs": 0.33,
+          "responseJsonParseMs": 0.4,
+          "databaseWire": {
+            "sentBytes": 7971036,
+            "receivedBytes": 9581219,
+            "queries": 46
+          },
+          "timings": "wallet;dur=26174, purchase_auth;dur=0.0, purchase_lock;dur=292.8, purchase_rules;dur=1267.3, purchase_issue;dur=329.7, purchase_persist;dur=23468.7, purchase_transaction;dur=25365.2, purchase_view;dur=644.2, purchase_total;dur=26174.6"
+        },
+        {
+          "action": "saved-recovery",
+          "durationMs": 2633,
+          "status": 200,
+          "bytes": 27882,
+          "handlerMs": 2633,
+          "responseBodyReadMs": 0.21,
+          "responseJsonParseMs": 0.3,
+          "databaseWire": {
+            "sentBytes": 7295,
+            "receivedBytes": 9593159,
+            "queries": 41
+          },
+          "timings": "wallet;dur=2632, purchase_auth;dur=0.0, purchase_lock;dur=202.4, purchase_rules;dur=1160.0, purchase_issue;dur=249.1, purchase_persist;dur=0.0, purchase_transaction;dur=1619.4, purchase_view;dur=879.0, purchase_total;dur=2632.7"
+        },
+        {
+          "action": "reveal",
+          "durationMs": 26877,
+          "status": 200,
+          "bytes": 52012,
+          "handlerMs": 26876,
+          "responseBodyReadMs": 0.38,
+          "responseJsonParseMs": 0.59,
+          "databaseWire": {
+            "sentBytes": 7971766,
+            "receivedBytes": 9594184,
+            "queries": 43
+          },
+          "timings": "wallet;dur=26874, purchase_auth;dur=0.0, purchase_lock;dur=231.3, purchase_rules;dur=1363.9, purchase_issue;dur=355.9, purchase_persist;dur=24092.3, purchase_transaction;dur=26052.0, purchase_view;dur=650.0, purchase_total;dur=26875.4"
+        }
+      ]
+    }
+  ]
+}

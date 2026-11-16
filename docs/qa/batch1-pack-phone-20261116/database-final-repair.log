@@ -1,0 +1,205 @@
+TAP version 13
+# Subtest: staff queue query returns current content and bounded audit history without private credentials
+ok 1 - staff queue query returns current content and bounded audit history without private credentials
+  ---
+  duration_ms: 16247.0879
+  ...
+# Subtest: dashboard queue categories filter outstanding reports before the 100-record limit
+ok 2 - dashboard queue categories filter outstanding reports before the 100-record limit
+  ---
+  duration_ms: 50.8661
+  ...
+# Subtest: NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+ok 3 - NFL catalogue supports social tagging without enabling pricing, and NFL posts obey blocks
+  ---
+  duration_ms: 39.1387
+  ...
+# Subtest: NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+ok 4 - NFL catalogue migration preserves existing provider mappings and rejects sport collisions
+  ---
+  duration_ms: 28.5205
+  ...
+# Subtest: collection preferences default private, and runtime writes cannot target another profile
+ok 5 - collection preferences default private, and runtime writes cannot target another profile
+  ---
+  duration_ms: 20.0176
+  ...
+# Subtest: community creation requires authoritative staff and MFA even through the database runtime role
+ok 6 - community creation requires authoritative staff and MFA even through the database runtime role
+  ---
+  duration_ms: 5.0175
+  ...
+# Subtest: post card snapshot and player/community context cannot be silently rewritten
+ok 7 - post card snapshot and player/community context cannot be silently rewritten
+  ---
+  duration_ms: 7.1309
+  ...
+# Subtest: followed player discussion replies create one private in-app notification
+ok 8 - followed player discussion replies create one private in-app notification
+  ---
+  duration_ms: 25.5028
+  ...
+# Subtest: all social rows and private helpers deny direct anonymous/member access even with staff claims
+ok 9 - all social rows and private helpers deny direct anonymous/member access even with staff claims
+  ---
+  duration_ms: 47.4661
+  ...
+# Subtest: official identity and durable ownership cannot be forged or deleted
+ok 10 - official identity and durable ownership cannot be forged or deleted
+  ---
+  duration_ms: 18.7236
+  ...
+# Subtest: trusted actor requires matching live session and most recent eligible 18+ policy
+ok 11 - trusted actor requires matching live session and most recent eligible 18+ policy
+  ---
+  duration_ms: 20.4317
+  ...
+# Subtest: private profiles and both directions of blocking hide social posts without deleting them
+ok 12 - private profiles and both directions of blocking hide social posts without deleting them
+  ---
+  duration_ms: 19.7681
+  ...
+# Subtest: post access and queued delivery evaluate the actual recipient under the latest feature policy
+ok 13 - post access and queued delivery evaluate the actual recipient under the latest feature policy
+  ---
+  duration_ms: 11.7102
+  ...
+# Subtest: post fanout jobs are atomic, durable and deduplicated with the originating post
+ok 14 - post fanout jobs are atomic, durable and deduplicated with the originating post
+  ---
+  duration_ms: 9.3927
+  ...
+# Subtest: social post identity and ledger link cannot be rewritten; removals use tombstones
+ok 15 - social post identity and ledger link cannot be rewritten; removals use tombstones
+  ---
+  duration_ms: 7.943
+  ...
+# Subtest: private media requires manual approval and matching owner before attachment
+ok 16 - private media requires manual approval and matching owner before attachment
+  ---
+  duration_ms: 17.6138
+  ...
+# Subtest: thread parent must belong to the same post and depth is bounded
+ok 17 - thread parent must belong to the same post and depth is bounded
+  ---
+  duration_ms: 20.1583
+  ...
+# Subtest: notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+ok 18 - notification settings are private, email/push cannot activate and recipient ownership is enforced by revoked writes
+  ---
+  duration_ms: 6.0342
+  ...
+# Subtest: collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+ok 19 - collection privacy: existing private default, per-card hiding, owners, missing profiles and revoked direct access
+  ---
+  duration_ms: 37.3116
+  ...
+# Subtest: collection projections reject an expired session even when reading own cards
+ok 20 - collection projections reject an expired session even when reading own cards
+  ---
+  duration_ms: 7.4147
+  ...
+# Subtest: account erasure purges personal social content but preserves durable referenced records and the other member
+ok 21 - account erasure purges personal social content but preserves durable referenced records and the other member
+  ---
+  duration_ms: 49.1831
+  ...
+# Subtest: unfunded buyers cannot reserve pack inventory
+ok 22 - unfunded buyers cannot reserve pack inventory
+  ---
+  duration_ms: 15883.1185
+  ...
+# Subtest: fantasy tables use RLS; browsers and runtime cannot write or invoke helpers
+ok 23 - fantasy tables use RLS; browsers and runtime cannot write or invoke helpers
+  ---
+  duration_ms: 15.5522
+  ...
+# Subtest: fourth member, forged session, revoked member and disabled profile fail closed
+ok 24 - fourth member, forged session, revoked member and disabled profile fail closed
+  ---
+  duration_ms: 18.3651
+  ...
+# Subtest: three-user starter claim and opening are persistent, idempotent, non-tradeable and form legal teams
+ok 25 - three-user starter claim and opening are persistent, idempotent, non-tradeable and form legal teams
+  ---
+  duration_ms: 293.0124
+  ...
+# Subtest: scarcity, serials, provenance, credit ledger and rules cannot be rewritten
+ok 26 - scarcity, serials, provenance, credit ledger and rules cannot be rewritten
+  ---
+  duration_ms: 13.6792
+  ...
+# Subtest: market settlement credits 925 and fee 75; insufficient funds and double sale leave records intact
+ok 27 - market settlement credits 925 and fee 75; insufficient funds and double sale leave records intact
+  ---
+  duration_ms: 51.2459
+  ...
+# Subtest: stale trades roll back all ownership; valid multi-card trade is atomic
+ok 28 - stale trades roll back all ownership; valid multi-card trade is atomic
+  ---
+  duration_ms: 47.0051
+  ...
+# Subtest: invalid position and duplicate lineups fail; admin authorization is enforced
+ok 29 - invalid position and duplicate lineups fail; admin authorization is enforced
+  ---
+  duration_ms: 11.875
+  ...
+# Subtest: empty configured formation is rejected and distinct serials cannot duplicate a player by default
+ok 30 - empty configured formation is rejected and distinct serials cannot duplicate a player by default
+  ---
+  duration_ms: 27.4084
+  ...
+# Subtest: rarity is absent from scoring; unavailable player has zero score, no bench
+ok 31 - rarity is absent from scoring; unavailable player has zero score, no bench
+  ---
+  duration_ms: 5.5522
+  ...
+# Subtest: three-user locked round publishes immutable results and championship points once
+ok 32 - three-user locked round publishes immutable results and championship points once
+  ---
+  duration_ms: 2759.9795
+  ...
+# Subtest: pack issuance failure rolls back debit, serial allocation and opening items
+ok 33 - pack issuance failure rolls back debit, serial allocation and opening items
+  ---
+  duration_ms: 98.7137
+  ...
+# Subtest: retirement preserves ownership, rejects new lineup and issues one replacement
+ok 34 - retirement preserves ownership, rejects new lineup and issues one replacement
+  ---
+  duration_ms: 54.1502
+  ...
+# Subtest: idempotency keys reject changed payloads and ledgers reconcile to zero
+ok 35 - idempotency keys reject changed payloads and ledgers reconcile to zero
+  ---
+  duration_ms: 14.2425
+  ...
+# Subtest: runtime read projection cannot reveal other users wallets or private provenance
+ok 36 - runtime read projection cannot reveal other users wallets or private provenance
+  ---
+  duration_ms: 41.0207
+  ...
+# Subtest: manual statistics and versioned scoring are permissioned and freeze after results
+ok 37 - manual statistics and versioned scoring are permissioned and freeze after results
+  ---
+  duration_ms: 959.2915
+  ...
+# Subtest: account erasure leaves pseudonymous ownership membership instead of blocking profile deletion
+ok 38 - account erasure leaves pseudonymous ownership membership instead of blocking profile deletion
+  ---
+  duration_ms: 34.6191
+  ...
+# Subtest: owned collection reads ledgers only, paginates consistently, isolates sports/accounts and follows transfers
+ok 39 - owned collection reads ledgers only, paginates consistently, isolates sports/accounts and follows transfers
+  ---
+  duration_ms: 13915.3407
+  ...
+1..39
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 35571.6418

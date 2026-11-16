@@ -1,0 +1,1239 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/browser/pack-opening.test.ts",
+      "tests/browser/pack-cinema-v2.test.ts",
+      "tests/browser/pack-review-sharing.test.ts",
+      "tests/browser/weekly-pack-recovery.test.ts"
+    ],
+    "configFile": "C:\\Users\\61412\\.codex\\worktrees\\batch1-pack-phone-20261116\\Docked.com.au\\playwright.config.ts",
+    "rootDir": "C:/Users/61412/.codex/worktrees/batch1-pack-phone-20261116/Docked.com.au/tests/browser",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/61412/.codex/worktrees/batch1-pack-phone-20261116/Docked.com.au/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/61412/.codex/worktrees/batch1-pack-phone-20261116/Docked.com.au/tests/browser",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "pack-cinema-v2.test.ts",
+      "file": "pack-cinema-v2.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "V3 afl: all six tiers use the confirmed card, preserve identity until turn, one issuance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 29630,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:03:28.789Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-59e3bfa2bd260e56654f",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 40,
+          "column": 7
+        },
+        {
+          "title": "V3 nfl: all six tiers use the confirmed card, preserve identity until turn, one issuance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 21898,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:03:59.709Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-69fd9b3e861aa55e6ebc",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 40,
+          "column": 7
+        },
+        {
+          "title": "V3 nrl: all six tiers use the confirmed card, preserve identity until turn, one issuance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 22265,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:04:21.670Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-e1d8f3df4638233c3360",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 40,
+          "column": 7
+        },
+        {
+          "title": "V3 is the ordinary receipt default; original V1 remains a design-only comparison",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4651,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:04:44.018Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-c654466cb31c8c047050",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 98,
+          "column": 5
+        },
+        {
+          "title": "V3 rapid inputs, skip, Reveal All, resume and replay do not reissue nine cards",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5617,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:04:48.738Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-bc4f814446a727e752f6",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 115,
+          "column": 5
+        },
+        {
+          "title": "V3 reduced motion has no animation, no Canvas loop; reveal and share stay accessible at 320px",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5759,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:04:54.427Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-0eecdd5896f1c98a8103",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 156,
+          "column": 5
+        },
+        {
+          "title": "V3 tolerates unavailable Canvas and backgrounding without losing the receipt",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3852,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:05:00.238Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-c13dba71a81cc7dd8258",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 192,
+          "column": 5
+        },
+        {
+          "title": "V3 Share My Pull still exports the awarded Icon at 1080 × 1920",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6625,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:05:04.166Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-e8e5ca464ca40272d690",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 218,
+          "column": 5
+        },
+        {
+          "title": "V3 economy quality keeps the card and caps the Canvas resolution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6749,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:05:10.858Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-c4fcd9981729aea57483",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 246,
+          "column": 7
+        },
+        {
+          "title": "V3 balanced quality keeps the card and caps the Canvas resolution",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7672,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:05:17.673Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-69f41698c489678a9353",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 246,
+          "column": 7
+        },
+        {
+          "title": "V3 original layered audio renders six distinct scores without clipping",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2165,
+                  "errors": [],
+                  "stdout": [
+                    {
+                      "text": "AUDIO_V3 [{\"tier\":\"CORE\",\"duration\":1.52,\"peak\":0.25565916299819946,\"energy\":32.125008211448126,\"rms\":0.02189175277430045},{\"tier\":\"RARE\",\"duration\":2.12,\"peak\":0.3168807625770569,\"energy\":47.76442844972088,\"rms\":0.02260294704069571},{\"tier\":\"ELITE\",\"duration\":2.8,\"peak\":0.24235773086547852,\"energy\":63.16100311573128,\"rms\":0.02261654177235362},{\"tier\":\"ULTRA_RARE\",\"duration\":3.6,\"peak\":0.23457053303718567,\"energy\":72.95779707835774,\"rms\":0.02143706431909577},{\"tier\":\"LEGENDARY\",\"duration\":4.6000000000000005,\"peak\":0.22526076436042786,\"energy\":88.9990432577519,\"rms\":0.020945679718145482},{\"tier\":\"ICON\",\"duration\":5.450000000000001,\"peak\":0.21269181370735168,\"energy\":95.66525621026832,\"rms\":0.019950765942271027}]\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:05:25.418Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-068f506e0507a25e3677",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 278,
+          "column": 5
+        },
+        {
+          "title": "V3 audio follows visual phases, reuses one context per pack, and stops on mute/close",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9279,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:05:27.642Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-ad921a9803bdd3aa9b50",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 333,
+          "column": 5
+        },
+        {
+          "title": "V3 complete nine-card sequence keeps order, best pull and a single issuance",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 28290,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:05:36.976Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-8df19f997f0de1d1a188",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 386,
+          "column": 5
+        },
+        {
+          "title": "nfl summary and existing card details share the actual card without another opening",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6929,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:06:05.328Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-6ca853e22670864a1c5a",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 421,
+          "column": 7
+        },
+        {
+          "title": "afl summary and existing card details share the actual card without another opening",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5351,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:06:12.338Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-48b7a4bb56831f1b1cd6",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 421,
+          "column": 7
+        },
+        {
+          "title": "nrl summary and existing card details share the actual card without another opening",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7289,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:06:17.764Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-a3d12785f0e2c7c27b7f",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 421,
+          "column": 7
+        },
+        {
+          "title": "share preview fills the viewport without the desktop sheet translation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6080,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:06:25.125Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "e67998ad170616b93d03-80ca6736110b83d64df6",
+          "file": "pack-cinema-v2.test.ts",
+          "line": 469,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "pack-opening.test.ts",
+      "file": "pack-opening.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "lost receipt response, saved progress, replay and accessibility at 360",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 14215,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:06:31.306Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-1a85a9a07fee77d8fc49",
+          "file": "pack-opening.test.ts",
+          "line": 15,
+          "column": 7
+        },
+        {
+          "title": "lost receipt response, saved progress, replay and accessibility at 412",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13155,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:06:45.583Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-bf338fdc517d5c24c284",
+          "file": "pack-opening.test.ts",
+          "line": 15,
+          "column": 7
+        },
+        {
+          "title": "lost receipt response, saved progress, replay and accessibility at 1366",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 13897,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:06:58.790Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-9112e75e2d8c78a0e051",
+          "file": "pack-opening.test.ts",
+          "line": 15,
+          "column": 7
+        },
+        {
+          "title": "reduced motion, keyboard opening and duplicate input",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3864,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:12.746Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-6818090942a0a59fc17e",
+          "file": "pack-opening.test.ts",
+          "line": 115,
+          "column": 5
+        },
+        {
+          "title": "an existing NBA receipt keeps its original read-only reveal",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2604,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:16.683Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "abf60fc6a6d8821267e8-be1283022c73c77bf956",
+          "file": "pack-opening.test.ts",
+          "line": 164,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "pack-review-sharing.test.ts",
+      "file": "pack-review-sharing.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "large text keeps full player names and usable actions within narrow review cards",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3260,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:19.372Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5765e17b56900e3f52bb-b30610e8ef0822d244bc",
+          "file": "pack-review-sharing.test.ts",
+          "line": 14,
+          "column": 5
+        },
+        {
+          "title": "each card shares its own image directly; cancellation and detail sharing preserve the pack",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10089,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:22.717Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5765e17b56900e3f52bb-c064040fd066918ba6e6",
+          "file": "pack-review-sharing.test.ts",
+          "line": 70,
+          "column": 5
+        },
+        {
+          "title": "expired web gesture keeps the selected image ready for a fresh Share tap",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4956,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:32.876Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5765e17b56900e3f52bb-25d1dc4ef7b878be79ee",
+          "file": "pack-review-sharing.test.ts",
+          "line": 203,
+          "column": 5
+        },
+        {
+          "title": "unsupported sharing offers the exact-card download without a selection step",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4814,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:37.890Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5765e17b56900e3f52bb-2a205c985bbfb0333625",
+          "file": "pack-review-sharing.test.ts",
+          "line": 239,
+          "column": 5
+        },
+        {
+          "title": "v30 native bridge reports the missing image capability instead of pretending file sharing works",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3368,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:42.776Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5765e17b56900e3f52bb-c15fd6c7786f401908ad",
+          "file": "pack-review-sharing.test.ts",
+          "line": 270,
+          "column": 5
+        },
+        {
+          "title": "installed native image bridge prepares only the chosen PNG and opens the Android share sheet",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3237,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:46.192Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5765e17b56900e3f52bb-70fa1c240fa8da60e828",
+          "file": "pack-review-sharing.test.ts",
+          "line": 308,
+          "column": 5
+        },
+        {
+          "title": "nine-card review layout at 320",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3462,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:49.483Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5765e17b56900e3f52bb-5a8bffa5e52618d6bb99",
+          "file": "pack-review-sharing.test.ts",
+          "line": 396,
+          "column": 7
+        },
+        {
+          "title": "nine-card review layout at 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3561,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:53.012Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5765e17b56900e3f52bb-4964cb4ea5f14face88c",
+          "file": "pack-review-sharing.test.ts",
+          "line": 396,
+          "column": 7
+        },
+        {
+          "title": "nine-card review layout at 768",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3137,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:56.638Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5765e17b56900e3f52bb-bdedd0f7460772636e01",
+          "file": "pack-review-sharing.test.ts",
+          "line": 396,
+          "column": 7
+        },
+        {
+          "title": "nine-card review layout at 1366",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3141,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:07:59.876Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "5765e17b56900e3f52bb-1e9e04d6956ce5710f87",
+          "file": "pack-review-sharing.test.ts",
+          "line": 396,
+          "column": 7
+        }
+      ]
+    },
+    {
+      "title": "weekly-pack-recovery.test.ts",
+      "file": "weekly-pack-recovery.test.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "weekly source outage is explained; the saved pack opens once after recovery",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6072,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-15T23:08:03.098Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "0bf2724705af5cf6528e-f6ca8fce175d592ee632",
+          "file": "weekly-pack-recovery.test.ts",
+          "line": 13,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-15T23:03:21.915Z",
+    "duration": 291972.804,
+    "expected": 33,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
