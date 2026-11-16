@@ -14,6 +14,7 @@ import {
 } from "../../src/core/auth-readiness";
 import { customerOnboardingEnabled } from "../../src/core/customer-onboarding.mjs";
 import { phoneDeliveryReady } from "../../src/core/public-phone";
+import { config, sameApplicationOrigin } from "../../src/server/config";
 import {
   commercialLedgerEnvironment,
   isolatedBillingConfiguration,
@@ -58,6 +59,71 @@ const env: Record<string, string> = {
     ].map((k) => [k, "false"]),
   ),
 };
+function attendedPhoneEnvironment(): Record<string, string> {
+  return {
+    ...env,
+    REGISTRATION_ENABLED: "false",
+    DOCKED_ISOLATED_PHONE_TEST: "true",
+    DOCKED_PUBLIC_PHONE_OTP: "true",
+    DOCKED_ISOLATED_GOOGLE_TEST: "false",
+    DOCKED_ISOLATED_PHONE_MEMBERS:
+      "00000000-0000-4000-8000-000000000001,00000000-0000-4000-8000-000000000002",
+    DOCKED_ISOLATED_PHONE_UNTIL: new Date(Date.now() + 3600000).toISOString(),
+    DOCKED_PUBLIC_PHONE_POLICY_REFERENCE: "2026-11-11-privacy-phone-v4",
+  };
+}
+test("attended Preview phone login and redirects use only its exact deployment origin", () => {
+  const phone = attendedPhoneEnvironment();
+  const origin = `https://${phone.VERCEL_URL}`;
+  assert.equal(config(phone).siteUrl, origin);
+  assert.equal(config(phone).registration, false);
+  assert.equal(sameApplicationOrigin(origin, phone), true);
+  for (const rejected of [
+    null,
+    phone.SITE_URL,
+    "https://docked.com.au",
+    "https://docked-preview-other.vercel.app",
+    origin + ".evil.invalid",
+    origin + "/path",
+  ])
+    assert.equal(sameApplicationOrigin(rejected, phone), false);
+});
+test("attended Preview origin rejects expired, unbound and Production configurations", () => {
+  const phone = attendedPhoneEnvironment();
+  for (const changed of [
+    { VERCEL_ENV: "production" },
+    { VERCEL_TARGET_ENV: "production" },
+    { VERCEL_PROJECT_ID: "different-project" },
+    { VERCEL_ORG_ID: "different-team" },
+    { NEXT_PUBLIC_SUPABASE_URL: "https://pojoymtniryarxxunyvz.supabase.co" },
+    { VERCEL_URL: "docked.com.au" },
+    { VERCEL_URL: "docked-preview-valid.vercel.app.evil.invalid" },
+    { DOCKED_ISOLATED_PHONE_UNTIL: new Date(Date.now() - 1000).toISOString() },
+    { REGISTRATION_ENABLED: "true" },
+    { DOCKED_ISOLATED_PHONE_MEMBERS: "" },
+  ]) {
+    const invalid = { ...phone, ...changed };
+    assert.equal(
+      sameApplicationOrigin(`https://${phone.VERCEL_URL}`, invalid),
+      false,
+    );
+    assert.throws(() => config(invalid));
+  }
+});
+test("closed Preview and ordinary application origins retain their existing behavior", () => {
+  assert.equal(config(env).siteUrl, env.SITE_URL);
+  assert.equal(sameApplicationOrigin(env.SITE_URL, env), true);
+  const closed = {
+    ...attendedPhoneEnvironment(),
+    DOCKED_ISOLATED_PHONE_TEST: "false",
+    DOCKED_PUBLIC_PHONE_OTP: "false",
+  };
+  assert.equal(config(closed).siteUrl, env.SITE_URL);
+  assert.equal(
+    sameApplicationOrigin(`https://${env.VERCEL_URL}`, closed),
+    false,
+  );
+});
 test("private phone acceptance admits only two existing accounts and keeps registration closed", () => {
   const memberA = "00000000-0000-4000-8000-000000000001";
   const memberB = "00000000-0000-4000-8000-000000000002";
