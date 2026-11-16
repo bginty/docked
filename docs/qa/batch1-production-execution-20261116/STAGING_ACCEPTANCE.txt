@@ -1,0 +1,50 @@
+DOCKED — BATCH 1 AUTHENTICATED STAGING ACCEPTANCE
+16 November 2026, 22:39 Sydney (11:39 UTC).
+
+Exact candidate: 76df44ba1adef012c5ec2119563cbc05ff9e3c0b
+Deployment: dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh
+Approved package: 954e467e9e0a5a6e15db154eb03a055913823e067248470f556cf20f31092436
+Approved secret-reference addendum: d11dc58f8ae13f542b4ad03499ea46a9f9afeb635c95bab526b263b3b4c8ee0e
+
+The generated Vercel hostname renders the login form, but private-beta Auth
+correctly accepts only the canonical https://docked.com.au origin. A credential-
+free POST confirmed 403 Origin denied before Auth processing. This is a staging
+workflow restriction, not a failed founder password or a new Production defect.
+The initially requested staging-host login was withdrawn; no guard was relaxed.
+
+The founder ran the reviewed GET-only FOUNDER_READONLY_CHECK.js on docked.com.au
+using their own existing MFA-protected browser session. Each candidate request
+used Vercel's documented dpl deployment pin. This kept the real same-origin
+browser request and existing authentication; no forged Origin/Host, cookie export,
+JWT impersonation, alias change, secret change or security exception was used.
+The generated staging URL retained its existing Vercel protection.
+Provider reference: https://vercel.com/docs/skew-protection
+
+The console result and actual browser network responses were independently read.
+Unpinned release identity remained 12ccfd5879ae83f1bd62210ee16a3feb6907d9ef.
+Pinned identity before and after the receipt read was the exact candidate above.
+GET /api/test-wallet?view=packs returned HTTP200, Cache-Control private,no-store.
+Actual browser elapsed time: 2,529ms, one observation. This includes Auth and data
+retrieval; no individual Auth/database timing was returned.
+Request: syd1::syd1::4s5j8-1794829190036-924ea03f45e7
+
+All 37 saved receipt hashes, covering 265 historical card allocations, matched
+the founder's existing database records independently. Owner identity matched;
+the actual route enforces owner AAL2. Zero purchases, grants, pack-opening
+requests, newly issued cards or financial corrections were performed.
+Some historical receipts belong to previously hidden sports; preserving a saved
+receipt does not activate that sport. NBA remains hidden in the app controls.
+
+The normal browser session refreshed the same existing founder token chain twice and the
+collection read counter. Complete redacted before-images were independently
+matched against the authenticated encrypted backup restored with no network or
+published ports. No Auth tables are silently ignored: every row/authority field,
+MFA factor and credential hash is compared, with only the exact observed session
+refresh and collection counter accepted. Six altered-security cases are rejected.
+The UTC timestamp-without-time-zone field is parsed explicitly as UTC, preventing
+the Sydney laptop timezone from producing a false drift result.
+
+Limits: this proves authenticated candidate access and existing-receipt retrieval.
+It does not measure purchase confirmation, saved-request POST recovery p50/p95,
+physical Android, SMS or Google Billing/refund acceptance. Those remain distinct
+from this mandatory pre-promotion read-only check.

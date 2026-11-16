@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-16T10:32:02.708Z",
+  "at": "2026-11-16T11:06:10.794Z",
   "release": {
     "channel": "beta",
     "origin": "https://docked.com.au",
@@ -10292,15 +10292,7 @@
     "counts": true,
     "custodyRecords": true,
     "custodyDigest": true,
-    "financialHashes": true,
-    "schema": true,
-    "functions": true,
-    "tableSecurityDigest": true,
-    "policyDigest": true,
-    "roles": true,
-    "memberships": true,
-    "weekly": true,
-    "season": true
+    "financialHashes": true
   },
   "predecessorMatches": [
     {
@@ -10339,6 +10331,5 @@
       "actual": "a4f4fa4f13397fbbd63e4b87ae56ae68bc9a882e7e4b68bef61b39129a54454f"
     }
   ],
-  "productionWrites": 0,
-  "comparedBaselineFile": "docs/qa/batch1-beta-alignment-20261116/production-schema-current.json"
+  "productionWrites": 0
 }

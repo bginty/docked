@@ -1,0 +1,54 @@
+DOCKED — APPROVED BATCH 1 EXECUTION CONTINUED
+HISTORICAL INTERMEDIATE REPORT — see FINAL_DEPLOYMENT_REPORT.txt for the final result.
+16 November 2026,11:16UTC. Supersedes the initial pre-write hold in EXECUTION_REPORT.txt.
+
+The founder explicitly approved runtime-verification addendum d11dc58f8ae13f542b4ad03499ea46a9f9afeb635c95bab526b263b3b4c8ee0e.
+Source76df44ba1adef012c5ec2119563cbc05ff9e3c0b and original package954e467e9e0a5a6e15db154eb03a055913823e067248470f556cf20f31092436 remain unchanged.
+Five write-only secret bindings were rechecked unchanged;104 known values retained.
+No rotation, IAM expansion, Secret-to-Config conversion or replacement credentials.
+
+Operator correction before any migration
+The first transaction stopped in pre-write drift comparison: postgres.js returns
+Result extends Array, while persisted evidence is a plain JSON array. Strict
+prototype equality failed for identical roles. No migration SQL had been reached.
+Independent11:06UTC readback confirmed original seven function hashes, no Batch1
+versions recorded, original assets/security and gates unchanged.
+The operator now compares each complete snapshot using its persisted JSON form.
+No fields are omitted. Regression tests use the actual postgres.js Result type,
+demonstrate the original false difference, and reject role elevation, membership,
+wallet and custody changes. Both tests pass; typecheck and operator lint pass.
+The corrected full drift comparison was independently exercised read-only before
+the successful second execution. No approved application or migration bytes changed.
+
+Database result — COMMITTED
+11:12:18UTC: all THREE approved migrations and their ledger entries committed
+atomically. Exact file hashes match. Exactly seven expected function bodies changed;
+all function owners/permissions/security metadata and568 protected tables preserved.
+Private-beta wallet lock window53,211ms. Individual migration SQL59ms/65ms/39ms.
+Current schema fingerprint138ac70b6c67d4d4b53452867387f5d7,10,340 schema objects.
+6,540 definitions;891 lifetime limited cards;909 custody records. Zero financial,
+ownership, source-rights, inventory, Auth, feature-gate or customer-record mutations.
+The only data additions were the three reviewed migration-history entries.
+11:13:59UTC independent read-only postflight passed all568 table/security comparisons,
+financial/custody/counter integrity, migration checksum readback and closed gates.
+DO NOT APPLY THE THREE BATCH1 MIGRATIONS AGAIN.
+
+Application result — STAGED, NOT PROMOTED at this observation
+Deployment dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh, exact source76df44ba...
+https://docked-production-ftv9wvlsd-briant-s-projects.vercel.app
+TargetProduction; Node22.x; build in progress. Existing protection retained.
+Independent11:16UTC resolution of BOTH docked.com.au and
+docked-production-briant-s-projects.vercel.app still points to prior
+dpl_A2BQuwB5YgRbfpcW4M7K9ihENqPy/source12ccfd5879ae83f1bd62210ee16a3feb6907d9ef.
+The candidate's metadata lists a planned default alias; actual aliases have not moved.
+Promotion still requires READY, protected route checks, authorised genuine existing
+receipt recovery, current database/runtime checks and unchanged closed gates.
+
+Independent Auth preservation11:16UTC
+Both Production and Preview signupDisabled=true, Phone provider OFF, SMS test OTP
+not configured. Existing authenticator support remains enabled. No SMS attempts,
+Auth configuration writes, credential setup or public-registration change.
+
+Website/Android performance, genuine physical acceptance, SMS and Google payment/
+refund acceptance remain distinct. No automated Production purchase or grant.
+Google Play remains untouched; public launch NO-GO.

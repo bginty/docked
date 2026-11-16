@@ -1,0 +1,83 @@
+{
+  "at": "2026-11-16T11:12:18.495Z",
+  "elapsedMs": 51735,
+  "schema": {
+    "fingerprint": "138ac70b6c67d4d4b53452867387f5d7",
+    "objects": 10340
+  },
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 891,
+    "beta_allocations": 3,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "custodyRecords": 909,
+  "custodyDigest": "575f2b8ee45cc16189d16443cb8dd59d17b4b5648ab71ba495e2da26db4d0100",
+  "protectedTables": 568,
+  "securityDigest": "d8bb32c50db33f49d8586b14ddde26f9feaf454d2809521d73e0f5645d3dcc20",
+  "migrations": [
+    {
+      "version": "20261115113306",
+      "sha256": "2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1"
+    },
+    {
+      "version": "20261115211545",
+      "sha256": "3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6"
+    },
+    {
+      "version": "20261115235000",
+      "sha256": "83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e"
+    }
+  ],
+  "source": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "packageSha": "954e467e9e0a5a6e15db154eb03a055913823e067248470f556cf20f31092436",
+  "addendumSha": "d11dc58f8ae13f542b4ad03499ea46a9f9afeb635c95bab526b263b3b4c8ee0e",
+  "backup": {
+    "authenticated": true,
+    "capturedAt": "2026-11-16T10:43:59.011Z",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "bytes": 137393817,
+    "plaintextSha256": "61413d9757bd1859782af6a795e1cd29c2b3de5de86301dbe014d34fb88e2971",
+    "tableCount": 570,
+    "plaintextWritten": false
+  },
+  "applied": [
+    {
+      "file": "supabase/migrations/20261115113306_batch_private_pack_issuance_validation.sql",
+      "sha256": "2443b8cfdbdab1eba3b00207b58e57b6710bb9610b626de6b9d1e09f8d515fe1",
+      "milliseconds": 59
+    },
+    {
+      "file": "supabase/migrations/20261115211545_batch1_pack_guard_batching.sql",
+      "sha256": "3238b888efb5505098613829b0f35132fd032cbce042d0d81c2475d65f943ed6",
+      "milliseconds": 65
+    },
+    {
+      "file": "supabase/migrations/20261115235000_batch1_persistence_subdocuments.sql",
+      "sha256": "83b79cb39f2adbd6cb574d70ba290d9af1dcfe70ca1e9d8b7ea61b863559515e",
+      "milliseconds": 39
+    }
+  ],
+  "drift": {
+    "cronRowsAdded": 8,
+    "weeklyZeroIssuanceRowsAdded": 4,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true,
+    "appendedNflPendingReview": 0,
+    "immutableRoundRows": 8
+  },
+  "lockWindowMs": 53211,
+  "customerWrites": 0,
+  "functionsChanged": 7,
+  "protectedTablesUnchanged": 568,
+  "committed": true
+}
