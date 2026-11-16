@@ -1,0 +1,47 @@
+{
+  "observedAt": "2026-11-16T20:31:54.8232734Z",
+  "source": "fe1572e1781e9d2806d5af45c5d5569b669d5d93",
+  "dependencyChanges": 0,
+  "counts": {
+    "info": 0,
+    "low": 0,
+    "moderate": 1,
+    "high": 0,
+    "critical": 0,
+    "total": 1
+  },
+  "next": {
+    "name": "next",
+    "severity": "moderate",
+    "isDirect": true,
+    "via": [
+      {
+        "source": 1247486,
+        "name": "next",
+        "dependency": "next",
+        "title": "Next.js: Information disclosure across root params when a 'use cache' function is called through unstable_cache()",
+        "url": "https://github.com/advisories/GHSA-mfr8-8qww-v76h",
+        "severity": "moderate",
+        "cwe": [
+          "CWE-362"
+        ],
+        "cvss": {
+          "score": 0,
+          "vectorString": null
+        },
+        "range": ">=16.3.0 <=16.4.4"
+      }
+    ],
+    "effects": [],
+    "range": "16.3.0 - 16.4.4",
+    "nodes": [
+      "node_modules/next"
+    ],
+    "fixAvailable": {
+      "name": "next",
+      "version": "16.4.6",
+      "isSemVerMajor": false
+    }
+  },
+  "error": null
+}

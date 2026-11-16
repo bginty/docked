@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "projectRef": "bckkllmndoxzpzdqrevb",
+  "organizationId": "ernfnkcbalhyqpsrzdwa",
+  "sourceCommit": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "memberSetSha256": "3e17c471a2a961963ca62c1edcb78d03f99fbc353830f1a2a7830b53a6ffa2c0",
+  "startsAt": "2026-11-16T20:13:56.476Z",
+  "until": "2026-11-16T22:13:56.476Z",
+  "maximumAttempts": 6,
+  "maximumSegments": 20,
+  "maximumAud": 5,
+  "cumulativeMaximumAud": 20,
+  "attended": true,
+  "signupEnabled": false,
+  "packageSha256": "e7a570ecbfce5a82438117d2e0174649e0e55ea399f5f3b8c46d2e338413b41e",
+  "providerEnabled": false,
+  "productionChanged": false,
+  "expiryAndAccountGuardsPassed": true,
+  "unarmedPreparationCorrection": "Deadline derived from identical start clock; shortened by one millisecond before any API mutation, deployment or watcher arming."
+}

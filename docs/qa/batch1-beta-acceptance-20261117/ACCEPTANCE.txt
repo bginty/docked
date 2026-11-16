@@ -1,0 +1,40 @@
+DOCKED — FOUNDER PRODUCTION BETA ACCEPTANCE, 17 NOVEMBER 2026
+
+Source 76df44ba1adef012c5ec2119563cbc05ff9e3c0b remains deployed as
+dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh. No deployment or migration was repeated.
+
+Founder-performed purchases, independently reconciled read-only:
+- AFL Standard 9, 06:53 Sydney: nine unique permanent cards, 700 TEST credits.
+- NFL Standard 9, 07:00 Sydney: nine unique permanent cards, 700 TEST credits.
+Each has one debit journal, one allocation event, nine saved receipt cards and
+valid ownership/serial/lifetime accounting. Both contain eight Rare and one Elite.
+The founder explicitly confirmed the separate NFL purchase was intentional.
+Total: 18 cards, 1,400 credits spent, founder wallet 4,100 -> 2,700.
+
+The founder also confirmed: "All nine reappear — Android app" after reloading
+and reopening the EXISTING AFL pack. This is founder device attestation; it is
+not automated Android inspection. The installed version was not independently
+read from that device during this session. Saved-result integrity is independently
+corroborated by the database and receipt rendering checks. NFL Android recovery
+has not separately been attested. No HTTP p50/p95 was captured for these actions;
+creation-to-opening timestamps are not network latency measurements.
+
+Current read-only snapshot at 2026-11-16T20:01:49.397Z:
+6,540 definitions; 909 lifetime limited copies; 927 custody records; 21 new beta
+allocations beyond the 888 preserved legacy copies. Zero duplicate serials or
+lifetime counter mismatches. Previous journals, cards and custody unchanged.
+These are observed counts, never reset targets. Public registration and all
+commercial sales/issuance/transfers/gameplay controls remain closed. Existing
+invited-beta free-credit packs remain the separately authorised exception.
+
+Evidence: purchase-verification.json and asset-check-verification.json retain
+their original observation facts. Their physicalAndroidConfirmed:false field
+means no device attestation had yet been incorporated at capture; the later
+founder attestation above supplements, rather than rewrites, those snapshots.
+Operator: scripts/batch1-beta-purchase-verify.ts; read-only SQL, no purchases,
+grants, Auth mutation or recovery commands. Targeted lint and typecheck passed.
+
+Acceptance remains partial: two of the six intended sport/family combinations.
+NRL Standard and Premium NFL/AFL/NRL are not claimed as physical acceptance.
+No further automatic purchases or grants. Genuine Google TEST billing/refunds
+and physical OTP remain separate gates. Public launch remains NO-GO.

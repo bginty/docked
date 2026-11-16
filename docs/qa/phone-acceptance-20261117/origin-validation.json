@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "fe1572e1781e9d2806d5af45c5d5569b669d5d93",
+  "verifiedAt": "2026-11-16T20:33:29.293Z",
+  "tests": {
+    "command": "node --import tsx --test tests/platform/isolated-public-preview.test.ts tests/platform/hosted-review.test.ts tests/platform/private-preview.test.ts",
+    "passed": 17,
+    "failed": 0
+  },
+  "lint": {
+    "files": [
+      "src/server/config.ts",
+      "tests/platform/isolated-public-preview.test.ts"
+    ],
+    "passed": true
+  },
+  "localBuild": "origin-webpack-build.json",
+  "hostedCorrectionNotYetDeployed": true
+}

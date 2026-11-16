@@ -1,0 +1,77 @@
+DOCKED — ATTENDED PREVIEW PHONE PREFLIGHT, 17 NOVEMBER 2026
+
+Founder confirmed availability at the laptop with an Australian phone. Existing
+bounded SMS authority was recorded in the overnight instruction; it was not
+requested again. Original package and all six referenced evidence hashes match.
+Both Preview identities remained the original synthetic accounts; no account,
+credential, source, schema, grant, balance or customer record was changed.
+
+Twilio Console authenticated successfully. Existing service contains DOCKED AU;
+the sender inventory reports Australia / Active. Geo permissions allow only the
+Australia / Cocos / Christmas Islands (+61) destination group. The application
+accepts Australian 04/+614 mobiles only. Console balance displayed $20; earlier
+currency verification established USD. Console access is not proof that the saved
+Supabase Twilio token will authenticate a send. No message was attempted.
+
+Fresh authenticated Auth inspection: both providers OFF, signup OFF. Preview
+retains six digits, 300-second expiry, 60-second resend, six SMS/hour and saved
+Twilio settings. Production retains its previous OFF state and no Twilio settings.
+
+Local preparation encountered an expired Vercel access token; the existing CLI
+refreshed it successfully during project inspection, without another user login.
+A one-millisecond local deadline calculation error was corrected by shortening
+the unarmed deadline, before any deployment or provider mutation. The OFF-only
+watchdog armed and verified project/limits. The fixed end was 22:13:56.476Z.
+
+Exact original source 76df44ba1adef012c5ec2119563cbc05ff9e3c0b was built in protected
+Preview as dpl_Fz9ZETRmNQwFqTe6nTRN8QjQUuxu. The founder used the existing synthetic
+login privately. The app rejected the request with "Origin denied" before Auth.
+The anonymous HTTP origin preflight also failed. No successful hosted phone
+acceptance, credential send verification, or delivery is claimed.
+
+Root cause: config().siteUrl still resolves to the old fixed isolated SITE_URL,
+while the browser uses the unique URL of the new Vercel Preview. The prior closed
+Preview checks verified page GETs and Supabase logins separately; they did not
+exercise this browser POST against the new origin. This was a preparation gap.
+No request origin was forged and no guard or permission was bypassed.
+
+The session was stopped. The independent watchdog PATCHed OFF only and read OFF
+back at 20:20:18.655Z. The temporary deployment was removed and GET independently
+returned 404 at 20:23:11.153Z. The original closed Preview remains available.
+No enable operation, SMS, SQL mutation, signup or Production mutation occurred.
+
+Prepared correction: only while BOTH isolated public Preview and the attended
+phone flag are true, validate the existing complete project/environment/expiry
+guard and bind redirects/origin comparison to the platform's exact VERCEL_URL.
+No Host/forwarded-header trust and no wildcard. Ordinary Production, closed
+Preview, checkout and all existing account/expiry restrictions remain unchanged.
+The replacement source is isolated from later unrelated branch changes.
+
+Seventeen focused tests passed: exact origin, rejection of another Preview,
+Production, expiry, project/team drift, altered account admission, and unchanged
+closed-Preview/production-review/private-beta behavior. Targeted lint passed.
+The default local Turbopack build could not resolve node_modules through an
+out-of-checkout junction. This is recorded as a failed local build, not hidden.
+Separate Webpack compilation evidence is recorded alongside it. Hosted default
+build and genuine browser login must pass after separate exact-source approval.
+
+Twilio's current AU rate page lists US$0.0515 per outbound alphanumeric SMS
+segment, with possible additional fees. This is a published estimate, not actual
+session billing: https://www.twilio.com/en-us/sms/pricing/au . Reconcile provider
+message cost/segments after each permitted send. Stop if cost cannot be bounded.
+Six attempts /20 segments /A$5 including fees and FX, cumulative A$20, remain the
+limits. No balance top-up or public SMS budget is authorised.
+
+Next: review the exact Preview-only correction package; then one attended
+replacement window using the same two accounts and sender. Genuine delivery,
+canonical number verification, invalid/expired/replay/resend behavior and
+verified-result recovery remain uncompleted. Public launch stays NO-GO.
+
+Local Webpack build, including TypeScript, completed successfully at 20:31:48Z.
+The build raised an existing dependency advisory. An authenticated-free npm
+registry audit reports one moderate Next.js advisory, zero high/critical:
+https://github.com/advisories/GHSA-mfr8-8qww-v76h . Its documented trigger requires
+a use-cache function reading root params called through unstable_cache. Source
+and next.config.ts searches found none of those APIs/configuration. This is a
+source applicability assessment, not a universal security clearance. Dependency
+versions were unchanged; a maintenance upgrade is separate from this correction.

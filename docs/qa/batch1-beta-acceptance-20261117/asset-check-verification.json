@@ -1,0 +1,82 @@
+{
+  "at": "2026-11-16T20:01:49.397Z",
+  "observation": "asset-check",
+  "source": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "deployment": "dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh",
+  "beforeAt": "2026-11-16T11:59:40.316Z",
+  "revisionBefore": "326",
+  "revisionAfter": "330",
+  "founderWalletBefore": 4100,
+  "founderWalletAfter": 2700,
+  "newPacksAcrossAllMembers": 2,
+  "newFounderPacks": [
+    {
+      "packSha256": "ac48b7d57aa18e7f79e7099d08cea488673d4c45f72e9645647a23a4f2baaeaa",
+      "product": "Standard 9 Pack",
+      "sport": "nfl",
+      "family": "STANDARD",
+      "createdAt": "2026-11-16T20:00:43.181Z",
+      "openedAt": "2026-11-16T20:00:45.770Z",
+      "cardCount": 9,
+      "uniquePlayers": 9,
+      "debit": 700,
+      "oneJournal": true,
+      "oneAllocationEvent": true,
+      "permanentAllocationRows": 9,
+      "serialsAndOwnershipVerified": true,
+      "cardIdsSha256": "2eae86a0011d5c409584df78ff68a0a364c9930d35629ad736c581c77093c3cd",
+      "durableRequestResultPresent": true,
+      "savedReceiptRecoverable": true,
+      "savedReceiptCards": 9,
+      "rarityCounts": {
+        "RARE": 8,
+        "ELITE": 1
+      }
+    },
+    {
+      "packSha256": "e6a94ab505eaa28afde54e3010f36060c1984f7a379773e34f87cae59f2b23d4",
+      "product": "Standard 9 Pack",
+      "sport": "afl",
+      "family": "STANDARD",
+      "createdAt": "2026-11-16T19:53:32.868Z",
+      "openedAt": "2026-11-16T19:53:36.696Z",
+      "cardCount": 9,
+      "uniquePlayers": 9,
+      "debit": 700,
+      "oneJournal": true,
+      "oneAllocationEvent": true,
+      "permanentAllocationRows": 9,
+      "serialsAndOwnershipVerified": true,
+      "cardIdsSha256": "7759786cf386ced6dc484c1954527626ee387cadbc5a1202967cfdd5d14967c6",
+      "durableRequestResultPresent": true,
+      "savedReceiptRecoverable": true,
+      "savedReceiptCards": 9,
+      "rarityCounts": {
+        "RARE": 8,
+        "ELITE": 1
+      }
+    }
+  ],
+  "newJournalCount": 2,
+  "previousJournalsPreserved": true,
+  "previousCardsAndCustodyPreserved": true,
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 909,
+    "beta_allocations": 21,
+    "lifetime_mismatches": 0,
+    "custody": 927
+  },
+  "commercial": {
+    "sales_enabled": false,
+    "issuance_enabled": false,
+    "transfers_enabled": false,
+    "gameplay_enabled": false
+  },
+  "duplicateSerials": 0,
+  "verification": "READ ONLY Production transaction; founder reports purchase completed",
+  "automaticPurchases": 0,
+  "productionWrites": 0,
+  "actualClientConfirmationLatencyMs": null,
+  "physicalAndroidConfirmed": false
+}

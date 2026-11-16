@@ -1,0 +1,84 @@
+DOCKED — PREVIEW PHONE ORIGIN CORRECTION; SEPARATE APPROVAL REQUIRED
+17 November 2026. This package does not authorise Production changes.
+
+Exact application source: fe1572e1781e9d2806d5af45c5d5569b669d5d93
+Base: 76df44ba1adef012c5ec2119563cbc05ff9e3c0b
+Package: origin-correction-package.json (SHA-256 presented with the request).
+
+Reason
+The original source's fixed SITE_URL rejects the new protected Preview browser
+origin. Login failed before Auth. The first attended session sent zero messages;
+Phone was never enabled. OFF was independently read back and the temporary
+deployment removed. Do not repeat that uncorrected deployment.
+
+Exact source difference
+- src/server/config.ts: only when isolated Preview AND its bounded phone-test
+  flag are true, require the existing full isolated environment validator and
+  use HTTPS plus the platform's VERCEL_URL for redirects and same-origin checks.
+- tests/platform/isolated-public-preview.test.ts: three focused regression cases.
+No dependency, SQL, Android, wallet, card, profile, grant, recipient, price or
+Production-runtime change. No Host-header/forwarded-header trust, wildcard origin
+or additional account permission. All other application files match the base.
+The full commit/tree and all deployable source files are bound by the manifest.
+
+Authority requested
+Approve this correction for 24 hours and ONE replacement attended Preview SMS
+window, maximum two hours including preparation/build time. Reuse the original
+two synthetic identities, their credentials, existing sender/Messaging Service,
+existing protected Vercel project prj_C3thcg7PjP1Bnn4kR3rk4oRFegYR and Supabase
+Preview bckkllmndoxzpzdqrevb / organization ernfnkcbalhyqpsrzdwa.
+No new accounts, infrastructure, services, schema, shared project environment
+variables or authentication permissions. Preserve the existing 5,700-credit hold.
+
+Runtime remains the original reviewed five phone-window settings:
+DOCKED_ISOLATED_PHONE_TEST=true; DOCKED_PUBLIC_PHONE_OTP=true;
+DOCKED_ISOLATED_PHONE_MEMBERS=the two bound existing UUIDs;
+DOCKED_ISOLATED_PHONE_UNTIL=recorded UTC deadline within two hours;
+DOCKED_PUBLIC_PHONE_POLICY_REFERENCE=2026-11-11-privacy-phone-v4.
+The only additional deployment metadata difference is the exact source commit.
+All unrelated runtime settings retain the closed Preview recipe. Production
+credentials, customer sessions and data are excluded. Do not change SITE_URL,
+create or repoint aliases, relax Vercel protection or reuse a Production origin.
+
+Execution and acceptance
+1. Verify this package, Git source/tree, source-file hashes, original SMS evidence,
+   private identity digest and fresh founder presence/authority. Export only the
+   frozen deployable Git files; retain the existing Preview project binding.
+2. Record a fresh <=2h window and arm the already-tested OFF-only watchdog while
+   Phone is OFF. Verify project, existing accounts, hold and commercial assets.
+3. Stage only this exact source/runtime in protected Preview. The normal hosted
+   build must pass. Verify denied anonymous/cross-origin requests, permitted
+   browser origin, exact two-account admission and closed registration/commerce.
+4. Founder signs into the existing synthetic identity privately. Verify the
+   phone screen before enabling delivery. Stop on login or permission failure.
+5. PATCH Preview external_phone_enabled=true ONLY, then compare all other Auth
+   settings and read back. Preserve six digits, 300-second expiry, 60-second
+   resend, six SMS/hour, no fixed OTP/auto-confirm and signup OFF. This switch is
+   project-wide; the app's two-account allowlist is not a provider account limit.
+6. Founder privately enters the controlled AU phone and received codes. Maximum
+   SIX send attempts total across the failed and replacement sessions, TWENTY
+   segments, A$5 including fees/FX, cumulative A$20: stop on the first limit.
+   Reconcile each provider message/cost; stop if cost is unknown or unbounded.
+   No automatic send/retry, no recharge, no purchases and no grants.
+7. Record actual delivery/receipt, authoritative Auth plus canonical uniqueness,
+   invalid/expired/replayed codes, resend denial and saved verification recovery.
+   Existing verified-number replacement remains support-assisted, not bypassed.
+8. On completion, first unexpected error, founder departure or deadline, PATCH
+   Phone OFF and independently read it back; remove only this disposable
+   deployment. Preserve verified QA history, existing accounts/assets and the
+   original closed Preview. Verify Production remains OFF and unchanged.
+
+The watcher is local: machine sleep/process termination/network loss can prevent
+remote closure. Keep the laptop awake and attended; app expiry alone does not
+disable Supabase. Never report closure without readback. No new Production
+configuration, live SMS window, Google TEST transport, payments, public signup,
+commercial issuance, marketplace or Play publication is authorised here.
+
+Validation evidence is attached to the manifest. Local Turbopack could not follow
+the shared dependency junction; that failed attempt remains recorded. The
+separate local Webpack build is compilation/type validation, not hosted or
+physical-device acceptance. The normal hosted build remains a mandatory gate.
+
+This new approval is required by the founder's exact-source restriction: the
+previous SMS package binds source 76df44ba and cannot approve modified bytes.
+Public launch remains NO-GO.

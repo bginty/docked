@@ -96,3 +96,9 @@ scripts/overnight-*.ts text eol=lf
 scripts/phone-window-shutdown.mjs text eol=lf
 scripts/lib/phone-window-shutdown.mjs text eol=lf
 tests/platform/phone-window-shutdown.test.ts text eol=lf
+
+# Preserve founder device attestations and the bounded Preview session evidence.
+docs/qa/batch1-beta-acceptance-20261117/** -text
+docs/qa/phone-acceptance-20261117/** -text
+scripts/batch1-beta-purchase-verify.ts text eol=lf
+scripts/final-preview-phone-control.ps1 text eol=lf
