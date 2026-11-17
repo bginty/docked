@@ -1,0 +1,17 @@
+{
+  "reportedOn": "2026-11-17",
+  "reportingTimezone": "Australia/Sydney",
+  "source": "988ea0ba905e91d3c1cdf0c5e18812849b138968",
+  "deployment": "dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd",
+  "evidenceType": "founder attestation following live deployment",
+  "questionScope": "Reopen Docked on the affected phone, visit /app, complete existing login/MFA if prompted, and confirm Operational incidents loads",
+  "founderResponse": "loads on both android app and mobile browser",
+  "androidAppOwnerLanding": "PASS — founder confirmed",
+  "mobileBrowserOwnerLanding": "PASS — founder confirmed",
+  "automatedPhysicalDeviceInspectionClaimed": false,
+  "newLoginOrMfaChallengeConfirmed": false,
+  "androidBuildNumberIndependentlyInspected": false,
+  "barryInteractiveLoginConfirmed": false,
+  "additionalProductionActionPerformed": false,
+  "publicLaunch": "NO-GO"
+}
