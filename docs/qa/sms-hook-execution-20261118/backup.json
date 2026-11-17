@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-17T21:56:39.771Z",
+  "authenticated": true,
+  "capturedAt": "2026-11-17T21:52:27.634Z",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "bytes": 140776270,
+  "plaintextSha256": "9bc91012628f1f24a0572e8f1a60a27034fe7720e15bd378a26a9a8e3d366688",
+  "tableCount": 578,
+  "plaintextWritten": false,
+  "restorePassed": true,
+  "backupCaptureEarliestBound": "2026-11-17T21:38:20Z",
+  "restore": {
+    "at": "2026-11-17T21:56:29.131Z",
+    "backupAt": "2026-11-17T21:52:27.634Z",
+    "sourceProject": "pojoymtniryarxxunyvz",
+    "archiveSha256": "9bc91012628f1f24a0572e8f1a60a27034fe7720e15bd378a26a9a8e3d366688",
+    "archiveBytes": 140776270,
+    "encryptedAtRest": "AES-256-GCM",
+    "restoreTarget": "docked-commercial-restore-20261118b",
+    "network": "none",
+    "loopbackOnlyDriver": false,
+    "publishedPorts": 0,
+    "restored": true,
+    "protectedTables": 576,
+    "protectedRecordsUnchanged": true,
+    "migrationsReapplied": false,
+    "productionWrites": 0,
+    "cronActive": false
+  }
+}
