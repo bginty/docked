@@ -1,0 +1,47 @@
+{
+  "dateAedt": "2026-11-18",
+  "passed": true,
+  "scope": "Changed local presentation, prepared public email branch and new activation/closure operators; existing production acceptance reused",
+  "typecheck": { "command": "npm run typecheck", "exitCode": 0 },
+  "lint": { "scope": "All changed application, test and operator files", "exitCode": 0 },
+  "applicationBuild": {
+    "command": "npx next build --webpack",
+    "exitCode": 0,
+    "hosted": false,
+    "warning": "27 traced files outside outputFileTracingRoot because node_modules is a workspace junction. This local build is NOT an exportable prebuilt deployment; the reviewed execution requires a fresh hosted locked install/build."
+  },
+  "targetedTests": [
+    { "files": ["tests/platform/auth-mail-worker.test.ts", "tests/platform/production-graph-mail.test.ts", "tests/platform/paid-launch-home.test.ts"], "passed": 21, "failed": 0, "providerSends": 0 },
+    { "files": ["scripts/production-phone-window-shutdown.test.mjs", "scripts/production-phone-adapter.test.mjs"], "passed": 10, "failed": 0, "providerSends": 0 }
+  ],
+  "database": {
+    "restoredSnapshot": "20261117i",
+    "network": "none",
+    "portBindings": 0,
+    "deliveryEnabled": false,
+    "activationScenarios": 5,
+    "phoneSessionChecks": 10,
+    "allChangesRolledBack": true,
+    "evidence": ["activation-rehearsal.json", "phone-session-rehearsal.json"]
+  },
+  "browser": {
+    "local": true,
+    "widths": [390,1440],
+    "noHorizontalOverflow": true,
+    "clientErrors": 0,
+    "policyPagesHttp200": 4,
+    "closedSignup": true,
+    "physicalAndroid": false,
+    "evidence": "local-browser.json"
+  },
+  "acceptedContractFilesUnchanged": 21,
+  "newSqlMigrations": 0,
+  "newAndroidBuild": false,
+  "newRealCheckoutOrRefund": false,
+  "newSms": false,
+  "newEmail": false,
+  "newCardIssuance": false,
+  "candidateHostedAcceptance": "Pending separate exact configuration/deployment approval",
+  "productionSignedHookEndToEnd": "Pending at most one separately approved attended A$1 Founder attempt",
+  "finalGoReady": false
+}

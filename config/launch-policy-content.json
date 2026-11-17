@@ -67,15 +67,15 @@
     {
       "id": "refund-policy",
       "title": "Purchases and refunds",
-      "status": "Owner-approved commercial model, prepared for release. Real-money purchases remain disabled pending external and technical release checks.",
+      "status": "Australian commercial release. Google Play handles Android credit purchases. Consumer rights and the refund safeguards below apply.",
       "sections": [
         {
           "title": "Current availability",
-          "text": "Docked currently uses test credits and isolated test inventory. These are not cash and cannot be withdrawn. Google Play licence-test orders are not evidence of a real-money purchase. Public paid purchasing, withdrawals, paid competition entry and prize awards remain disabled."
+          "text": "Australian members aged 18 or over with an eligible, phone-verified account can purchase Docked Credits through Google Play and use them for Standard and Premium card packs. The checkout identifies the price and credit amount before confirmation. Docked Credits are not cash and cannot be withdrawn. Test credits, TEST orders and isolated test inventory remain separate from purchased credits and commercial packs. Paid competition entry, prizes and withdrawals are unavailable."
         },
         {
-          "title": "Approved paid-release products",
-          "text": "The approved Google Play credit packages are A$49 for 4,900 Docked Credits and A$99 for 9,900, with no bonus credits. Google checkout must display the current price before confirmation. Credits are intended to be used in the shared wallet for sport-specific packs. No direct Australian-dollar pack prices are approved.\n\nStandard packs: 1 card for 100 credits; 3 for 300; 9 for 700. Premium packs: 1 card for 700 credits; 3 for 1,900; 9 for 5,000. Review the exact product, card count, eligible rarities, displayed chances and final price before confirming. Packs contain random digital cards; a particular player, rarity or financial return is not guaranteed. Core is excluded from paid packs. Premium draws only Ultra Rare, Legendary and Icon. These product descriptions do not activate sales."
+          "title": "Credit packages and pack contents",
+          "text": "Google Play credit packages are A$49 for 4,900 Docked Credits and A$99 for 9,900, with no bonus credits. These Australian dollar prices include 10% GST; no extra GST is added at checkout. No separate charge is made when freely granted test credits are issued. Google checkout displays the current price before confirmation. Credits can be used for NFL, AFL or NRL packs. Packs are priced in credits.\n\nStandard packs: 1 card for 100 credits; 3 for 300; 9 for 700. Premium packs: 1 card for 700 credits; 3 for 1,900; 9 for 5,000. A 9-card pack delivers nine permanent digital cards in one successful fulfilment. Review the sport, exact card count, price and available balance before confirming. A 4,900-credit package alone does not cover a 5,000-credit Premium 9-card pack.\n\nFor each Standard card slot, the rarity probabilities are Rare 85%, Elite 12%, Ultra Rare 2.5%, Legendary 0.49% and Icon 0.01%. For each Premium card slot, they are Ultra Rare 90%, Legendary 9.9% and Icon 0.1%. Core cards are excluded. These are probabilities for each card slot, not a guarantee of any rarity or player in a pack. A pack contains no duplicate player. If the required eligible supply cannot support the complete pack, the purchase fails without a partial debit or partial delivery; probabilities are not silently substituted. Repeating a completed request does not debit or deliver twice.\n\nSupply limits apply permanently per player and rarity across issuances: Core unlimited; Rare 5,000; Elite 2,500; Ultra Rare 400; Legendary 50; Icon 1. Existing legitimate issued copies consume these limits. Transfers, refunds and a player leaving a roster do not reset lifetime issuance. Cards are digital entitlements within Docked, not investments or ownership of a player, trademark or copyright. No particular player, resale value or financial return is guaranteed."
         },
         {
           "title": "Requesting help or a refund",
@@ -86,10 +86,12 @@
           "text": "A pending or declined purchase does not provide spendable credits. The server verifies purchase state and the associated member before fulfilment. Repeated requests must not credit a purchase twice.\n\nWhen Google confirms a refund or revocation, Docked reverses the remaining credits from that purchase once. If credits have already been spent, the account can enter a recovery hold: affected spending or transfers may be restricted while support reviews the purchase, spending and refund records. Your history remains available. A hold is not an automatic bank charge, a negative spendable balance, debt collection or permission to take another member's cards. It does not remove consumer-law remedies.\n\nContact support@docked.com.au to dispute a hold, correct a mistaken account association or provide relevant refund evidence. Support must verify the purchase and record the reason for any resolution. No automatic charge or unrelated-card clawback is authorised by this policy. TEST orders and commercial purchases remain separate."
         },
         {
-          "title": "Release and consumer safeguards",
-          "text": "The owner has approved this commercial model and the disclosed recovery-hold approach. That approval does not establish player/data rights, legal clearance or Google Play approval. Sales remain disabled until those requirements, the final customer purchase flow and operational support procedures are verified. Unopened packs, completed openings and later card transfers must be reviewed under the actual purchase evidence and applicable consumer law; there is no blanket forfeiture or no-refund rule. Beta credits and cards do not silently become money or permanent commercial inventory."
+          "title": "Consumer safeguards",
+          "text": "Unopened packs, completed openings and later card transfers are reviewed using the actual purchase evidence and applicable consumer law. There is no blanket forfeiture or no-refund rule. Opening a pack does not remove rights that cannot be excluded. Beta credits, cards and unopened packs do not become usable commercial assets. Their original ownership provenance, financial records and lifetime supply consumption remain preserved as historical records. Retirement does not waive statutory rights, reclaim serials or automatically clear a refund or recovery hold."
         }
-      ]
+      ],
+      "version": "2026-11-17-purchases-paid-launch-v1",
+      "date": "17 November 2026"
     },
     {
       "id": "retention",
@@ -117,34 +119,35 @@
     {
       "id": "commercial-policy",
       "title": "Service and commercial release policy",
-      "status": "Owner-approved commercial model; public release, live payments and third-party rights remain gated.",
+      "status": "Australian adult release with Google Play credit purchases and paid Standard and Premium card packs. Marketplace buying, selling, trading and swaps remain disabled. Competitions, prizes and withdrawals remain unavailable.",
       "sections": [
         {
           "title": "Service scope",
-          "text": "Docked offers NFL, AFL and NRL fantasy cards through one account. The current service is an invitation-only Australian adult test beta. Public registration is closed. Withdrawals, real-money purchases, paid competition entry and prize awards are disabled. Test credits and inventory have no cash value. NBA remains unavailable."
+          "text": "Docked offers NFL, AFL and NRL digital collectible cards to Australian members aged 18 or over. Public accounts require verified email and an Australian mobile number, with one verified phone number linked to one Docked account. Phone verification establishes control of the number; it does not prove residency or that a person owns only one number. NBA is unavailable. Docked Credits have no cash withdrawal facility. Paid competition entry, prizes and withdrawals are unavailable."
         },
         {
           "title": "Gameplay and collections",
-          "text": "Teams, positions, salary caps, multipliers, lockout and scoring follow the selected competition's saved rules. Fantasy salaries are not wallet credits. Scoring is postgame or as available, not guaranteed live play-by-play. A purchase does not guarantee a win. The prepared free Core eligibility path creates no collectible ownership and remains controlled by competition eligibility and activation. Public free-play onboarding must be verified before registration opens."
+          "text": "The six competition entries are labelled Practice and remain disabled. Real scored competitions and associated statistics are not enabled until their permissions and release checks are complete. Card ownership does not activate a competition or guarantee any game result. Commercial collections display cards legitimately acquired through the commercial service. Historical beta cards, credits, packs, teams and rankings do not carry into commercial participation. Their original issuance, serials, custody and financial history remain protected historical records; permanent supply is never replenished by retirement."
         },
         {
           "title": "Packs and marketplace",
-          "text": "Standard and Premium packs are part of the owner-approved commercial model, subject to the purchase and refund policy and activation requirements. Card supply, serials, probabilities and ownership protections are not changed by these documents.\n\nThe marketplace supports credit sales only; offers and swaps are disabled. A 5% selling fee is deducted when your card sells, capped at 2,000 credits per sale. There's no minimum fee. Buyers pay the listed price. Fees are rounded to the nearest whole credit; half a credit rounds up. Sell a card for 1,000 credits: the fee is 50 and you receive 950. Existing historical fees are preserved. Commercial resale using purchased funds remains switched off until transfer, fraud, recovery and platform requirements are verified. Docked does not currently offer credit cash-out, peer-to-peer cash transfers or export of cards outside the service. A Docked card is a digital entitlement within the service, not ownership of a player, trademark or copyright, and no resale or financial return is promised."
+          "text": "Standard and Premium packs follow the prices, contents and rarity probabilities shown before purchase and in the Purchases and refunds notice. Successful fulfilment records all cards and their serials atomically. Opening the reveal displays cards already allocated to the account; a retry does not create extra copies.\n\nMarketplace buying, selling, trading, swaps and offers are disabled at this release. There is no cash withdrawal, peer-to-peer cash transfer or card export outside Docked. No resale value, financial return or future marketplace availability is promised."
         },
         {
           "title": "Account and community rules",
           "text": "Use your own account, accurate eligibility information and the normal confirmation/security procedures. Do not evade access restrictions, impersonate others, exploit purchases or harass members. Existing reporting, blocking and moderation controls apply. No new privacy consent or previously accepted policy is silently replaced by this publication."
         },
         {
-          "title": "Remaining release requirements",
-          "text": "The commercial-model decisions and use of verified professional player names are owner-confirmed. Separate rights for proprietary statistics, photographs, logos, distinctive protected artwork or endorsement claims are not implied by that confirmation. Remaining release requirements concern the applicable sources/materials, legal and Google Play assessment of paid cards, multipliers and credit resale, final customer acceptance, approved retention operations and the final release configuration. Withdrawals, paid competition entry and prizes remain disabled. These documents do not claim independent legal review, a provider licence or Google approval."
+          "title": "Rights and service restrictions",
+          "text": "Docked uses verified player identities and original generic card artwork. No affiliation or endorsement by players, clubs or leagues is implied. Professional names do not confer rights to official photographs, logos, protected artwork or proprietary statistics. Required source acknowledgements are provided through the source notices. NBA, real scored competitions, paid entry, prizes, withdrawals, swaps and offers remain unavailable unless separately reviewed and released. Customer support is available at support@docked.com.au."
         },
         {
           "title": "Clean commercial starting position",
           "text": "Beta credits and card allocations are historical testing records. They do not become commercial balances, usable commercial cards, paid packs, active teams, rankings or marketplace assets. Ordinary beta customers re-register themselves; retained Owners also start commercial participation at zero. Historical card issuance remains permanently counted against each player’s rarity limit. A protected entitlement raised before retirement is reviewed individually; the transition does not waive statutory rights or automatically clear a refund or recovery hold."
         }
       ],
-      "version": "2026-11-17-commercial-clean-launch-v1"
+      "version": "2026-11-17-commercial-paid-launch-v2",
+      "date": "17 November 2026"
     }
   ]
 }

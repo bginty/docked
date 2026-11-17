@@ -1,0 +1,46 @@
+{
+  "at": "2026-11-17T13:32:32.318Z",
+  "passed": true,
+  "hosted": false,
+  "physicalAndroid": false,
+  "authenticated": false,
+  "productionWrites": 0,
+  "checks": [
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "homeStatus": 200,
+      "noSignup": true,
+      "noHorizontalOverflow": true,
+      "clientErrors": []
+    },
+    {
+      "path": "/commercial-policy",
+      "status": 200
+    },
+    {
+      "path": "/refund-policy",
+      "status": 200
+    },
+    {
+      "path": "/privacy",
+      "status": 200
+    },
+    {
+      "path": "/terms",
+      "status": 200
+    },
+    {
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "homeStatus": 200,
+      "noSignup": true,
+      "noHorizontalOverflow": true,
+      "clientErrors": []
+    }
+  ]
+}

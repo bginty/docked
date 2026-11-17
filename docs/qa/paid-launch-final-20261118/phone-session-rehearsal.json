@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-17T13:43:50.832Z",
+  "passed": true,
+  "isolatedRestore": true,
+  "network": "none",
+  "hosted": false,
+  "productionWrites": 0,
+  "smsSent": 0,
+  "checks": [
+    "exact retained Owner with verified MFA",
+    "disabled window denies",
+    "all five other cohort identities denied",
+    "one 100-cent reservation",
+    "duplicate returns saved pending state",
+    "second attempt denied",
+    "provider failure keeps reservation and history",
+    "closure denies even duplicate",
+    "duplicate preparation cannot replenish",
+    "rollback removes synthetic window and source digest unchanged"
+  ]
+}

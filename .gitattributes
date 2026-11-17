@@ -131,3 +131,14 @@ scripts/public-launch-runtime* text eol=lf
 
 config/operations/public-runtime* text eol=lf
 scripts/twilio-readiness-readonly.mjs text eol=lf
+
+# Exact final paid-launch configuration, operators and evidence.
+docs/qa/paid-launch-final-20261118/** text eol=lf
+docs/qa/paid-launch-final-20261118/*.png -text
+config/operations/paid-launch-final.json text eol=lf
+config/operations/production-phone-one-attempt.json text eol=lf
+scripts/paid-launch-* text eol=lf
+scripts/production-phone-* text eol=lf
+scripts/lib/paid-launch-* text eol=lf
+scripts/lib/production-phone-* text eol=lf
+scripts/lib/supabase-management-read.mjs text eol=lf

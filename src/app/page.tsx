@@ -1,93 +1,22 @@
-import { competitionNames } from "@/core/competition-display";
-import { brand } from "@/brand/brand";
-import Link from "next/link";
-import { FantasyHero, FantasyLogo } from "@/components/fantasy-brand";
+import { environmentPresentation } from "@/server/presentation";
+import { phoneDeliveryReady } from "@/core/public-phone";
+import { PaidLaunchHome } from "@/components/paid-launch-home";
+
+export const dynamic = "force-dynamic";
 export const metadata = {
-  title: "Fantasy sports cards",
+  title: "NFL, AFL and NRL collectible cards",
   alternates: { canonical: "/" },
 };
-export default function Home() {
-  const production = false;
-  const liveBeta = false;
-  return (
-    <div className="fantasy-public">
-      <header>
-        <Link href="/" aria-label="Docked home">
-          <FantasyLogo />
-        </Link>
-        <Link className="button" href="/app/login">
-          {production ? "Log in" : "Tester login"}
-        </Link>
-      </header>
-      <section className="fantasy-welcome">
-        <FantasyHero />
-        <div>
-          <p className="eyebrow">
-            {liveBeta
-              ? "FANTASY CARDS · LIVE BETA"
-              : production
-                ? "FANTASY CARDS · FREE TO PLAY"
-                : "FANTASY SPORTS CARDS · CLOSED PREVIEW"}
-          </p>
-          <h1>
-            COLLECT.
-            <br />
-            BUILD.
-            <br />
-            COMPETE.
-          </h1>
-          <p>
-            {production
-              ? "Collect limited fictional player cards. Open your free Starter pack, build your football team and earn daily gameplay rewards."
-              : "Collect cards, build teams and follow competition scores in Docked’s invitation-only beta. Available sports depend on your approved testing access."}
-          </p>
-          <p>One collection, on your phone and in your browser.</p>
-          <div className="actions">
-            <Link className="button" href="/app">
-              Open member workspace
-            </Link>
-            <Link href={production && !liveBeta ? "/app/signup" : "/app/login"}>
-              {production && !liveBeta
-                ? "Create a free account"
-                : "Invited tester access"}
-            </Link>
-          </div>
-          <p className="small-note">
-            {production
-              ? "Free gameplay. Fictional players. No paid packs, cash value or cash prizes. Marketplace transfers are not open yet."
-              : "Private beta. Public registration is closed. Test credits have no cash value. Fictional test inventory is clearly labelled."}
-          </p>
-        </div>
-      </section>
-      <section className="fantasy-stats">
-        <div>
-          <h2>Collect</h2>
-          <p>
-            Your collection stays with your account. Fictional test inventory
-            remains separate from permanent collectible cards.
-          </p>
-        </div>
-        <div>
-          <h2>Build</h2>
-          <p>
-            Build your team in {competitionNames.SALARY_CAP} or{" "}
-            {competitionNames.OPEN}. Each sport uses its own formation and
-            scoring rules; historical rounds keep their saved rules.
-          </p>
-        </div>
-        <div>
-          <h2>Compete</h2>
-          <p>
-            {production
-              ? "Enter free NFL test competitions and follow post-game points. EPL is unavailable until its data and scoring are verified."
-              : "Enter leagues and track simulated rounds. Trade with fellow testers."}
-          </p>
-        </div>
-      </section>
-      <footer>
-        <p>DOCKED · {brand.tagline}</p>
-        <Link href="/privacy">Privacy</Link> · <Link href="/terms">Terms</Link>
-      </footer>
-    </div>
-  );
+
+export default async function Home() {
+  // Same request-cached registration projection as signup; this controls a link,
+  // while Auth and the database independently enforce admission.
+  const environment = await environmentPresentation();
+  const canRegister =
+    environment.registrationAvailable &&
+    environment.publicCustomer &&
+    environment.commercialSurface &&
+    process.env.DOCKED_COMMERCIAL_CHECKOUT === "true" &&
+    phoneDeliveryReady();
+  return <PaidLaunchHome canRegister={canRegister} />;
 }

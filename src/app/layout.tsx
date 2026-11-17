@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   ),
   title: { default: "Docked — " + fantasyTagline, template: "%s | Docked" },
   description:
-    "Collect NFL, AFL and NRL player cards, build fantasy teams and follow postgame points where available. Invitation-only test beta; no cash value.",
+    "Permanent NFL, AFL and NRL collectible cards. Standard and Premium packs, lifetime rarity limits and secure saved collections. Australian customers aged 18 or older.",
   manifest: "/manifest.webmanifest",
   robots: { index: false, follow: false },
   appleWebApp: {

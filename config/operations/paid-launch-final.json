@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "status": "PREPARED_NOT_AUTHORISED",
+  "productionBaseline": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "vercelProject": "prj_l0rpVDPRuIRp9UcBUkudeyUK5yST",
+  "supabaseProject": "pojoymtniryarxxunyvz",
+  "newMigrations": [],
+  "preserveClosedBase": "config/operations/public-runtime-closed.json",
+  "paidRuntimeOverrides": {
+    "DOCKED_PUBLIC_CUSTOMERS": "true",
+    "DOCKED_PUBLIC_MEMBER_SETUP": "true",
+    "DOCKED_PUBLIC_MEMBER_SETUP_POLICY_APPROVED": "true",
+    "TERMS_VERSION": "2026-11-17-commercial-paid-launch-v2",
+    "DOCKED_PUBLIC_TERMS_VERSION": "2026-11-17-commercial-paid-launch-v2",
+    "PRIVACY_POLICY_VERSION": "2026-11-17-privacy-clean-launch-v5",
+    "DOCKED_PUBLIC_PRIVACY_VERSION": "2026-11-17-privacy-clean-launch-v5",
+    "LEGAL_ENTITY_VERIFIED": "true",
+    "AUTH_EMAIL_ENABLED": "true",
+    "DOCKED_COMMERCIAL_SERVICE": "true",
+    "DOCKED_COMMERCIAL_SURFACES": "true",
+    "DOCKED_COMMERCIAL_CHECKOUT": "true",
+    "DOCKED_COMMERCIAL_MARKETPLACE": "false",
+    "DOCKED_PUBLIC_PHONE_OTP": "true",
+    "DOCKED_SMS_BUDGET_HOOK_ENABLED": "true",
+    "DOCKED_PUBLIC_PHONE_POLICY_REFERENCE": "565589b6f748fccd138bd10018f7eb621adc9efb7677f4082963039d8eb0c33b",
+    "REGISTRATION_ENABLED": "false"
+  },
+  "finalRegistrationOverride": { "REGISTRATION_ENABLED": "true" },
+  "privateSmsBindings": [
+    "DOCKED_TWILIO_ACCOUNT_SID",
+    "DOCKED_TWILIO_AUTH_TOKEN",
+    "DOCKED_TWILIO_MESSAGE_SERVICE_SID",
+    "DOCKED_SMS_HOOK_SECRET"
+  ],
+  "boundWindowVariable": "DOCKED_SMS_BUDGET_WINDOW",
+  "authDisabledConfiguration": {
+    "disable_signup": true,
+    "external_phone_enabled": false,
+    "hook_send_sms_enabled": false,
+    "hook_send_sms_uri": "https://docked.com.au/api/webhooks/auth-sms",
+    "sms_autoconfirm": false,
+    "sms_otp_length": 6,
+    "sms_otp_exp": 300,
+    "sms_max_frequency": 60,
+    "sms_test_otp": ""
+  },
+  "authPrivateMatchingSecret": "hook_send_sms_secrets matches DOCKED_SMS_HOOK_SECRET; new signing secret generated privately after approval; no existing key rotation",
+  "phoneActivationDelta": {
+    "external_phone_enabled": true,
+    "hook_send_sms_enabled": true
+  },
+  "signupActivationDelta": { "disable_signup": false },
+  "authEmail": {
+    "function": "docked-auth-email",
+    "observedVersion": 47,
+    "deploymentRequired": true,
+    "verify_jwt": false,
+    "mandatoryWebhookSignature": true,
+    "files": [
+      "supabase/functions/docked-auth-email/index.ts",
+      "supabase/functions/docked-auth-email/router.mjs",
+      "supabase/functions/docked-auth-email/mail.mjs",
+      "supabase/functions/docked-auth-email/queue.mjs"
+    ],
+    "closedStage": {
+      "DOCKED_GRAPH_RECIPIENT_MODE": "approved-beta",
+      "DOCKED_GRAPH_PUBLIC_AUTH_READY": "false",
+      "DOCKED_GRAPH_TEST_ENABLED": "false"
+    },
+    "publicStage": {
+      "DOCKED_GRAPH_RECIPIENT_MODE": "public-customers",
+      "DOCKED_GRAPH_PUBLIC_AUTH_READY": "true",
+      "DOCKED_GRAPH_TEST_ENABLED": "false",
+      "DOCKED_GRAPH_INVITES_READY": "false"
+    },
+    "boundedExpiryVariable": "DOCKED_GRAPH_PUBLIC_AUTH_UNTIL",
+    "authRateLimitDelta": {
+      "rate_limit_email_sent": 30,
+      "smtp_max_frequency": 60
+    },
+    "preserve": "Existing Graph certificate, account, sender, signed hook secret, queue, scheduler and immutable history; no operational-recipient change"
+  },
+  "sqlOperator": "scripts/lib/paid-launch-configuration.mjs",
+  "sqlPhases": ["prepare", "phone", "commerce", "registration"],
+  "eligibilitySource": "docs/qa/final-release-decision-20261117/season-eligibility.json",
+  "eligibilityDigest": "1956d1715dcd2ef494dad469f8b272951853d5d76773fe9ae39f5537996e6830",
+  "eligibleDefinitions": 6065,
+  "excludedDefinitions": 475,
+  "operatingWindowDays": 7,
+  "publicSmsBudgetAudCents": 5000,
+  "reservationAudCents": 100,
+  "automaticRenewal": false,
+  "googleProducts": [
+    {
+      "id": "docked_credits_4900_v1",
+      "option": "buy-au",
+      "credits": 4900,
+      "audCents": 4900
+    },
+    {
+      "id": "docked_credits_9900_v1",
+      "option": "buy-au",
+      "credits": 9900,
+      "audCents": 9900
+    }
+  ],
+  "googleRelease": {
+    "versionCode": 31,
+    "versionName": "1.30",
+    "submission": 3,
+    "changes": 10,
+    "country": "AU",
+    "minimumAge": 18,
+    "managedPublishing": true
+  },
+  "registrationOnlyLaunch": false,
+  "externalPrerequisites": "Exact configuration approval, protected staging, zero-send hook checks, at most one separately authorised A$1 Founder attempt if actual Auth callback remains unverified, then final coordinated GO",
+  "neverEnable": [
+    "marketplace",
+    "swaps",
+    "offers",
+    "NBA",
+    "prizes",
+    "withdrawals",
+    "six Practice competitions",
+    "real scoring",
+    "beta credits/grants",
+    "deletion schedules"
+  ]
+}

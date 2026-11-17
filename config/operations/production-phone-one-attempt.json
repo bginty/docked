@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "status": "PREPARED_NOT_AUTHORISED",
+  "projectRef": "pojoymtniryarxxunyvz",
+  "organizationId": "otldyeunbqabbcjydjpe",
+  "maximumAttempts": 1,
+  "maximumReservedAudCents": 100,
+  "maximumDurationSeconds": 7200,
+  "attended": true,
+  "signupEnabled": false,
+  "founderSelection": "Exact preserved cohort: kind owner AND originalRole owner; independently match original identity, current full Owner role and verified individual MFA. Do not use a display name.",
+  "privateSourceCohort": "Existing clean-transition-20261117/manifest.private.json; never publish UUID/email/phone",
+  "window": "One new disabled row, allowlist only verified Founder UUID; source/package/actual start/deadline fingerprinted before approval execution; no reuse/replenishment",
+  "appStage": "Copy closed runtime, set only DOCKED_PUBLIC_CUSTOMERS, DOCKED_PUBLIC_PHONE_OTP and DOCKED_SMS_BUDGET_HOOK_ENABLED true; bind exact one-attempt window, approved phone policy and existing Twilio credentials. All registration, commercial and beta switches false.",
+  "authStage": "Use paid-launch-final.json authDisabledConfiguration; Phone and hook stay OFF through zero-send checks",
+  "zeroSendChecks": [
+    "invalid signature denied before reservation",
+    "correct local signature denied by missing/disabled window",
+    "retired/QA reservation denied",
+    "zero attempts and zero provider messages",
+    "existing Owner administration available"
+  ],
+  "watchdog": "node scripts/production-phone-watchdog.mjs --watch private-data/<approved-session>",
+  "founderAction": "Privately enter AU mobile in installed v31, deliberately Send code ONCE, enter received code, reload; no automatic resend. Existing Owner MFA enforced; do not disclose number/code.",
+  "closure": "STOP file after result, or <=2h hard expiry; watchdog closes only exact row and Auth Phone/hook, preserves attempts; independently read back both OFF",
+  "publicLaunchAfterward": false,
+  "budget": "Separate one-A$1 attended authority required; public A$50/7day budget unchanged; no automatic purchase/funding"
+}

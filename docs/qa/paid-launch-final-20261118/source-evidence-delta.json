@@ -1,0 +1,167 @@
+{
+  "recordedAt": "2026-11-17T13:50:42.152Z",
+  "evidenceIndex": "cb1ee482d86a085af5e46678d13b0027870b188f",
+  "productionSource": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "method": "Git blob bytes versus LF-normalized candidate; no real billing/SMS/pack tests repeated",
+  "comparisons": [
+    {
+      "file": "src/server/google-commercial-verifier.ts",
+      "productionSha256": "a868823917cf6508650fc7630d2be74c4e45ab0d77578d4fe9b6ab5171d5a6d8",
+      "candidateSha256": "a868823917cf6508650fc7630d2be74c4e45ab0d77578d4fe9b6ab5171d5a6d8",
+      "unchanged": true
+    },
+    {
+      "file": "src/core/commercial-billing.ts",
+      "productionSha256": "ecd8db3a12a9e782dc74e4b885b233c9294ec9052424579bc4278f7ddea8e430",
+      "candidateSha256": "ecd8db3a12a9e782dc74e4b885b233c9294ec9052424579bc4278f7ddea8e430",
+      "unchanged": true
+    },
+    {
+      "file": "src/server/commercial-ledger.ts",
+      "productionSha256": "2f7c9f532a7bb3b23afa14e66003d5bda9fb21d218d923720fa63b7a7320add4",
+      "candidateSha256": "2f7c9f532a7bb3b23afa14e66003d5bda9fb21d218d923720fa63b7a7320add4",
+      "unchanged": true
+    },
+    {
+      "file": "src/server/commercial-reconciliation.ts",
+      "productionSha256": "f445422ed57c714fdfab0b3db95d7c387fde126d5b5f197c4fdfaed74cabcf03",
+      "candidateSha256": "f445422ed57c714fdfab0b3db95d7c387fde126d5b5f197c4fdfaed74cabcf03",
+      "unchanged": true
+    },
+    {
+      "file": "src/server/commercial-runtime.ts",
+      "productionSha256": "013d715fe42a0910c975bb09cee1ebb71edc6ed8a30a1ea9d3e9b36479c29923",
+      "candidateSha256": "013d715fe42a0910c975bb09cee1ebb71edc6ed8a30a1ea9d3e9b36479c29923",
+      "unchanged": true
+    },
+    {
+      "file": "src/server/member-commercial.ts",
+      "productionSha256": "5cad25669ae1397d5a00e80487093365eae8ee974b1ed578a5af2a6444d01da0",
+      "candidateSha256": "5cad25669ae1397d5a00e80487093365eae8ee974b1ed578a5af2a6444d01da0",
+      "unchanged": true
+    },
+    {
+      "file": "src/app/api/store/google/commercial/route.ts",
+      "productionSha256": "a0ebe21660b6c3975d2fd562f01ba3c9e6f310b6ac697dd75b633120c6f4a817",
+      "candidateSha256": "a0ebe21660b6c3975d2fd562f01ba3c9e6f310b6ac697dd75b633120c6f4a817",
+      "unchanged": true
+    },
+    {
+      "file": "src/core/paid-pack-catalogue.ts",
+      "productionSha256": "84b86c30baaebd533deb671183ca6ba724339aef88198af419e0bc1e5d33a041",
+      "candidateSha256": "84b86c30baaebd533deb671183ca6ba724339aef88198af419e0bc1e5d33a041",
+      "unchanged": true
+    },
+    {
+      "file": "src/core/pack-odds.ts",
+      "productionSha256": "da099ec22079a3558e3250698306d2ebdd27b0fe7be55707aa0aebd5c9d030e5",
+      "candidateSha256": "da099ec22079a3558e3250698306d2ebdd27b0fe7be55707aa0aebd5c9d030e5",
+      "unchanged": true
+    },
+    {
+      "file": "android/app/src/main/java/au/com/docked/app/DockedBillingPlugin.java",
+      "productionSha256": "7b8061def285b0d7eafbae7152d96cea406ed9f546c8d029b48121786ae57eed",
+      "candidateSha256": "7b8061def285b0d7eafbae7152d96cea406ed9f546c8d029b48121786ae57eed",
+      "unchanged": true
+    },
+    {
+      "file": "src/server/public-phone.ts",
+      "productionSha256": "e41d8cbd9931fd33092525eea5ccf61c1d8b38b105f59af11bede0e26b92da74",
+      "candidateSha256": "e41d8cbd9931fd33092525eea5ccf61c1d8b38b105f59af11bede0e26b92da74",
+      "unchanged": true
+    },
+    {
+      "file": "src/core/public-phone.ts",
+      "productionSha256": "24d96d68cda782af44f032630fdb759126a3fb84dbfc3ceae5053c0350960124",
+      "candidateSha256": "24d96d68cda782af44f032630fdb759126a3fb84dbfc3ceae5053c0350960124",
+      "unchanged": true
+    },
+    {
+      "file": "src/core/phone-challenge.ts",
+      "productionSha256": "d819b6c8ee84b25dfff8de9c4d3aa177041c70e0b637da5d2cbe4f1ad2b2ac8d",
+      "candidateSha256": "d819b6c8ee84b25dfff8de9c4d3aa177041c70e0b637da5d2cbe4f1ad2b2ac8d",
+      "unchanged": true
+    },
+    {
+      "file": "src/app/api/auth/phone/route.ts",
+      "productionSha256": "29aeec2d6bac6870b33b80ea85492eee64f34afca786eb795b65a9c4d0bcef7b",
+      "candidateSha256": "29aeec2d6bac6870b33b80ea85492eee64f34afca786eb795b65a9c4d0bcef7b",
+      "unchanged": true
+    },
+    {
+      "file": "src/app/app/verify-phone/page.tsx",
+      "productionSha256": "ab6be1641b203a4f345c284788156f345a02e61f8173fc1a84df808ff76c3dd0",
+      "candidateSha256": "ab6be1641b203a4f345c284788156f345a02e61f8173fc1a84df808ff76c3dd0",
+      "unchanged": true
+    },
+    {
+      "file": "src/components/public-phone-verification.tsx",
+      "productionSha256": "d7465c08ff9bbbbfaaa9dc2b86722165daa0afeff435ddae3175f12c2dd95614",
+      "candidateSha256": "d7465c08ff9bbbbfaaa9dc2b86722165daa0afeff435ddae3175f12c2dd95614",
+      "unchanged": true
+    },
+    {
+      "file": "src/server/sms-budget-hook.ts",
+      "productionSha256": "ad9986d8c61e5e021e91b9d57fee6041e68c18101b23398802890a08e050ab2d",
+      "candidateSha256": "ad9986d8c61e5e021e91b9d57fee6041e68c18101b23398802890a08e050ab2d",
+      "unchanged": true
+    },
+    {
+      "file": "src/app/api/webhooks/auth-sms/route.ts",
+      "productionSha256": "de31472a3cb5f03196a73b056ba7d03e9cd57684325210e0210f0a492591d34b",
+      "candidateSha256": "de31472a3cb5f03196a73b056ba7d03e9cd57684325210e0210f0a492591d34b",
+      "unchanged": true
+    },
+    {
+      "file": "src/core/auth-readiness.ts",
+      "productionSha256": "879ba3f54ecd1af111e1cb8ec0cd725bab1cbce00bddeff48eab3bcce1f780cf",
+      "candidateSha256": "879ba3f54ecd1af111e1cb8ec0cd725bab1cbce00bddeff48eab3bcce1f780cf",
+      "unchanged": true
+    },
+    {
+      "file": "src/app/api/auth/route.ts",
+      "productionSha256": "9b9654c9a4d537f0b26846ce8e8b03837808b544f0ee50b6b7a2ba0fda8299f9",
+      "candidateSha256": "9b9654c9a4d537f0b26846ce8e8b03837808b544f0ee50b6b7a2ba0fda8299f9",
+      "unchanged": true
+    },
+    {
+      "file": "src/app/api/auth/public-member-setup/route.ts",
+      "productionSha256": "bd1c4021ea9a8de249201620f706310b4ae6639270689972c2ad18061fc961ff",
+      "candidateSha256": "bd1c4021ea9a8de249201620f706310b4ae6639270689972c2ad18061fc961ff",
+      "unchanged": true
+    }
+  ],
+  "authMail": {
+    "deployedVersion": 47,
+    "deployedProviderBundleSha256": "cc8cc7c6ecce565857064e0857b8fa77247102ae98380568cb7aa8ef1d1c197c",
+    "files": [
+      {
+        "file": "index.ts",
+        "candidateSha256": "2fb90abf640880564f5b2bbf2ae3bbd0fb1b56e0c352f4805e6a28a6ec1ccb27",
+        "savedDeployedCopySha256": "85ef20a7503e16274c43008a22cf2c5359ed35f12595365e7a374653ba048bf0",
+        "equivalentIgnoringTrailingWhitespace": false
+      },
+      {
+        "file": "mail.mjs",
+        "candidateSha256": "837582df7ec7090beb354c64fe470fd81db7e4bcce47083d1a66fa69166637ed",
+        "savedDeployedCopySha256": "ba3ece739bd117ffa14f936f23fb32a418755a275d38d83d0c968c11c624fee7",
+        "equivalentIgnoringTrailingWhitespace": false
+      },
+      {
+        "file": "router.mjs",
+        "candidateSha256": "deeba5f79a92c9f23b659358155611347d37daf3de0e135ac03b11388a7cdfe2",
+        "savedDeployedCopySha256": "7a00c5d6e8f0796733b939818edaa84ef5db7f89e1eb4a849914eb8b3cca30ea",
+        "equivalentIgnoringTrailingWhitespace": true
+      },
+      {
+        "file": "queue.mjs",
+        "candidateSha256": "2e684e597fffabb908b3bc09c87e5363922c5e955ef90c537859a51e3bc252e7",
+        "savedDeployedCopySha256": "953109aa47cfa857212297b03861c387f1277d4fec00fb4fae1d487b5a611bf0",
+        "equivalentIgnoringTrailingWhitespace": true
+      }
+    ],
+    "note": "Saved deployed copies have an additional trailing newline. Meaningful source comparison excludes trailing whitespace. The public-recipient branch and two public-authority environment bindings are not yet deployed; router and queue are equivalent. Candidate also contains existing isolated-preview helpers, not enabled by Production router."
+  },
+  "nativeChanged": false,
+  "newSqlMigrations": 0
+}

@@ -1,0 +1,178 @@
+FINAL PAID LAUNCH — PREPARED, NOT AUTHORISED
+18 November 2026 AEDT. No new migrations. No automatic execution from these files.
+
+BASELINE AND AUTHORITY
+Production source 78482f713fd93b6677f85b43c5c49cfa00acccde,
+Vercel dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE. Deployment completed and independently
+verified; do not repeat it or either installed SMS/public-Owner migration.
+Reuse cb1ee482 evidence matrix and ../public-launch-execution-20261117/HANDOVER.txt.
+Read preparation-package.json or launch-package.json and verify its exact digest
+with scripts/paid-launch-package.mjs before any newly approved operation.
+No authority is inferred from a file, local test, prepared policy or this runbook.
+Each approval lasts <=24 hours. New application/operator bytes require new approval.
+No new role grants, recovery-key changes, Auth identities, inventory imports or SQL
+function declarations. Existing restricted docked_app runtime and Owner MFA remain.
+
+COMMON PREFLIGHT
+Re-read actual Production alias/source, Supabase pojoymtniryarxxunyvz / organisation
+otldyeunbqabbcjydjpe, Vercel prj_l0rpVDPRuIRp9UcBUkudeyUK5yST / team_tf6xweKKyVCj9bTppUKttJ4l.
+Stop for unexplained material drift; do not use historical counts as reset targets.
+Authenticate a NEW encrypted backup and isolated network-disabled restore <=60min
+before the first database mutation; preflight <=10min before each material step.
+Use existing commercial-production-restore-drill workflow; compare current financial
+journals, refunds/holds, custody, serials, counts, profiles/retirement, roles/MFA/RLS,
+settings and source digest. Classify scheduler differences individually. No blanket
+permission for new source purges. Check both installed migrations/history once only.
+Current observed census: 6540 definitions,918 lifetime-issued,936 custody,0 commercial
+cards. Preserve subsequent legitimate activity and all historical Google TEST evidence.
+Store execution plans, authority timestamps, credentials and checkpoint responses
+only under restricted ignored private-data. Reports contain hashes/aggregates only.
+Secret values stay out of CLI arguments, console output, source and chat.
+
+PART A — SEPARATE PREPARATION + ONE ATTENDED PHONE ATTEMPT APPROVAL
+This scope does NOT approve public registration, sales, issuance or Play publication.
+1. Export exact source: node scripts/paid-launch-package.mjs export preparation
+   <approved-sha256> <new-empty-candidate-directory>.
+   Use a fresh locked installation and Vercel build; do not deploy local .next output
+   produced with the workspace node_modules junction. Preserve existing secrets by
+   IDs/targets/update timestamps and previously reviewed binding checks. New settings
+   are deployment-local; do not mutate the old deployment's global environment.
+2. Stage the exact candidate using reviewed Production-target --prod --skip-domain,
+   current project/team and source metadata. Keep Production alias on baseline until
+   protected checks pass. No Preview/Production spoofing or wildcard origin changes.
+   Closed source changes are homepage, metadata and the existing exact paid-policy
+   proposal. Policies are approved publication only under this new package. Owner
+   support and all financial/phone/pack/Android implementation bytes are unchanged.
+3. Deploy ONLY the four frozen docked-auth-email files with verify_jwt=false (required
+   for Auth webhooks); the existing Svix signature remains mandatory. Live version47
+   lacks public-customer recipient handling. Preserve Graph credentials/certificate,
+   sender, signing secret, queue, worker and founder-only operational outbox. Stage
+   recipientMode=approved-beta, PUBLIC_AUTH_READY=false, TEST_ENABLED=false. Run no
+   real email test. Invalid signature rejected; existing queue/worker healthy; inspect
+   exact deployed source. Never test a valid email callback against the live mail
+   sender. Accepted isolated signed/recipient tests cover the new branch.
+4. Prepare matching SMS signing value privately as v1,whsec_<32 random bytes base64>.
+   This is a NEW hook secret, not rotation of an existing live key. Bind the same
+   value in Supabase hook_send_sms_secrets and Vercel DOCKED_SMS_HOOK_SECRET. Use the
+   existing Twilio account/token/DOCKED sender/Messaging Service from the restricted
+   readiness file. No new provider/service. Compare private fingerprints, not values.
+   Apply only authDisabledConfiguration in config/operations/paid-launch-final.json;
+   Phone=false,hook=false,signup disabled,6 digits/300s/60s minimum,autoconfirm=false,
+   no test numbers. Existing Auth email hook and TOTP settings preserved.
+5. Just before the attended session, privately match the original Founder cohort
+   identity to current verified email, Full Owner/TOTP and transition record. Create
+   phone-window.json using the reviewed plan shape, actual start/deadline <=2h,
+   one unique window ID, exact source/package and SHA256(Founder UUID). Never infer
+   identity from display name. authority.private.json records the real approval and
+   exact plan hash, validity and operator file hashes; never fabricate approval.
+   Render disabled window with:
+   node scripts/production-phone-session-render.mjs <private-plan> <private-cohort> <new-private-sql>
+   Rendered SQL defaults to ROLLBACK. Rehearse, check exact private row/SQL hashes,
+   then change only the final transaction boundary to COMMIT under this approval.
+   Apply via reviewed privileged connection, ON_ERROR_STOP, then read back disabled,
+   allowlist1,budget100,reserved0,attempts0 and matching authority/deadline. No other
+   window may be enabled; no update/reuse of an old session or allocation.
+6. Candidate runtime = public-runtime-closed.json plus the exact one-attempt appStage
+   in production-phone-one-attempt.json, private SMS bindings and this window only.
+   All commerce, registration and beta flags remain false. On protected candidate:
+   anonymous denied; invalid signature denied; correctly signed synthetic callback
+   denied by disabled window; zero attempts/provider requests; retired/QA denied.
+   Use synthetic non-routable payloads only while the window is disabled. Verify
+   existing Owner GET routes and exact notice/home bytes, no new MFA/drill/purchases.
+   Promote only after these checks pass; postflight all closed gates/assets/runtime.
+7. Start OFF-only watchdog with current approved authority/plan and privately pinned
+   DB connection: node scripts/production-phone-watchdog.mjs --watch <private-session-dir>.
+   Wait for armed.json. Operator must remain connected; never promise local process
+   reliability. Database expiry/cap independently bound delivery if laptop stops.
+   Only while Founder is present: enable EXACT row after readback, then PATCH Auth
+   external_phone_enabled=true AND hook_send_sms_enabled=true together. No fallback
+   provider path. Re-read signup disabled, secret match, exclusive URI, budget/MFA.
+8. Founder opens existing supported deep link docked://app/verify-phone in installed
+   v31 (native allowlist already contains /app/verify-phone; no new build). It carries
+   no session token or credentials. Use the app's own Founder session and MFA. The
+   narrow read-only check confirmed this identity has no verified Production phone;
+   recheck that fact rather than clearing a phone if it has changed.
+   Enter own Australian mobile, Send code ONCE, enter
+   code, reload. Do not impersonate, pre-send, automatically retry or ask for codes.
+   Inspect one reservation, one provider result, Auth confirmation and canonical
+   phone claim. Receipt/delivery alone is not code/persistence acceptance. Any error,
+   timeout, cost >A$1, extra segment or ambiguity ENDS the one-attempt authority.
+9. Create STOP file; watchdog closes exact row and disables Auth Phone/hook. Read
+   both barriers independently. Preserve attempt/uncertain cost and audit; never
+   replenish. Restore closed phone application flags using exact same source if
+   needed; this is the reviewed session closure, not a different application.
+   No need to repeat accepted Founder/Barry MFA, billing, packs, SMS programme.
+   Phone integration acceptance becomes a prerequisite artifact for Part B.
+
+PART B — DISTINCT FINAL COORDINATED GO, ONLY AFTER PART A PASSES
+The final manifest binds source, config, policy, operators and eligibility digest.
+Exact time/window IDs/secret fingerprints are runtime parameters restricted by the
+reviewed bounds, recorded in a private plan before execution. This is not permission
+to broaden fields. Final approval binds the actual successful Part A deployment/
+acceptance hashes too; unresolved acceptance means NO-GO, no conditional activation.
+No registration-only launch. No real-money synthetic acceptance transactions.
+1. Fresh common preflight and confirm Play still shows v31/1.30, approved 10 changes,
+   Australia,18+,phone Data Safety,managed publishing ON. No new review/build.
+2. Bind private public plan with approval hash, current tariff evidence hash, Google
+   readiness evidence hash, terms/privacy,unique window,actual start and <=7day end,
+   5000AUDc/100c reservations. Recheck current tariff supports A$1; no pending invoice
+   condition. Existing funding can exhaust before50 messages; never auto-fund.
+3. Render phase SQL: node scripts/paid-launch-render.mjs prepare <private-plan> <new-private-sql>.
+   Review/rehearse exact bytes; replace final ROLLBACK with COMMIT only after verified
+   authority/preflight. SQL transaction uses lock_timeout3s/statement_timeout45s,
+   expected checkpoint and immutable audit; failure rolls back the phase. No blind
+   rerun after timeout: independently inspect audit and current state first.
+   prepare approves existing6065 IDs/2 products, keeps475excluded, closes dormant beta
+   grant/trading toggles, sets paid policy/scope and creates DISABLED5000c window. No
+   import/issuance. Original source provenance remains immutable; paid attestation
+   binds through control.approvals and audit, not rewritten rights_reference.
+4. Stage same exact application with paidRuntimeOverrides (REGISTRATION_ENABLED=false),
+   exact public window and same secrets. Auth Phone/hook initially OFF. Set email
+   publicStage, PUBLIC_AUTH_UNTIL to SAME <=7day end; Auth email30/hour/60s frequency.
+   No new Graph permission/certificate or operational-recipient expansion. Public
+   email accepts only signed verified Auth actions; invitations/tests remain OFF.
+   Verify closed registration, readonly commercial catalogue/prices/odds/role and
+   Owner views using existing session, no transaction. Promote only exact build.
+5. Render/apply phone phase, then enable Auth Phone+hook together and verify exact
+   public window/no fallback. Reuse one-attempt integration evidence; no second SMS.
+6. In existing Google Play products enable only buy-au on docked_credits_4900_v1
+   and docked_credits_9900_v1. Read back AU,A49/A99,4900/9900 credits,Digital app sales /
+   custom GST10%,multi-quantity OFF. Stop on mismatch; do not change product IDs or
+   pricing. No customer checkout. Render/apply commerce phase: sales+issuance together,
+   transfers/gameplay remain OFF. Verify all18 pack offers and allowed supply read-only.
+7. Prepare final application build with REGISTRATION_ENABLED=true while DB/Auth
+   signup remain closed. Verify candidate contracts. Render/apply registration phase
+   only after funded SMS and paid fulfilment; enables AU policy/registration and
+   NFL/AFL/NRL sport read/display capabilities. All SIX ROUND enabled=false values
+   stay unchanged. Promote exact final runtime, then enable Supabase signup. Confirm
+   first-customer public flow reachable, emails/phone required,zero inherited assets.
+   Do not register on a customer's behalf or purchase/mint a benchmark pack.
+8. Only now use Google managed publishing's existing 'Publish 10 changes' for v31.
+   Do not turn managed publishing OFF. Read back actual publication/propagation,
+   record status; never infer immediate availability. If publication fails, close
+   customer acquisition/new sales as needed and reconcile accepted operations.
+9. Monitor at activation,+15min,+1h,+24h: Auth/email/hook errors, budget/reservations/
+   real provider cost, server latency, first legitimate Google verification and
+   acknowledgement, one credit/debit/allocation, all nine cards for nine-card packs,
+   receipt/reveal, refund worker/outbox and immutable journals. No manufactured orders.
+   Daily tariff/funding review is required; stop sends if envelope no longer holds.
+   Public SMS,email-authority and commercial approval expire within7days; review
+   before expiry. No automatic renewal/funding. A$50 cap can stop new onboarding.
+
+EMERGENCY / RECOVERY
+Use existing MFA Owner emergency_close (accepted installed implementation), or render
+and apply close phase for exact current approval/window. Verify DB signup/sales/
+issuance/transfers/gameplay/SMS OFF. Separately close application registration/new
+checkout, Supabase signup/Phone/hook and Google product availability when needed.
+Keep receipt/refund read/recovery workers and Owner access operational where safe.
+The close operator never changes journals/custody/counters/attempt history.
+Before any real customer transaction, conditional app/runtime rollback to baseline
+78482f71 / dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE is allowed after verified closed gates,
+current compatibility and exact original bindings. Edge rollback requires captured
+v47 source and original nonsecret settings, preserving queue and keys; never undo
+already-enqueued customer messages blindly. After signup/transactions, prefer forward
+repair while closed. Never restore old DB data, undo retirements, reclaim serials,
+recreate UUIDs, clear recovery holds or erase accepted transactions. Store publication,
+delivered messages, consents and allocations cannot be undone by toggling a switch.
+No planned downtime; individual DB phases fail on lock3s/statement45s. Maintenance
+is closed-gate configuration, not a customer-asset rewrite.
