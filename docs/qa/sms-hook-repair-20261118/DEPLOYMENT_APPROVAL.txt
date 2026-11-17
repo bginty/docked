@@ -1,0 +1,54 @@
+EXACT SMS-HOOK REPAIR + REPLACEMENT ATTENDED ATTEMPT — AWAITING APPROVAL
+
+Application source: 6e96e61192b82ee576aa0a8365808081a98b30fa
+Package SHA256: 632eed5b7d5fd5b41265775ec3a3810e5b79d05c21ecf2bed230501fe0b4374b
+Branch: codex/sms-hook-repair-20261118
+Manifest: docs/qa/sms-hook-repair-20261118/package.json
+Runbook: docs/qa/sms-hook-repair-20261118/EXECUTION.txt
+Validity requested: 24 hours from explicit approval.
+
+DECISION A — exact application-only deployment
+Fix signed SMS destination parsing for observed GoTrue v2.198.0 and add a direct
+Verify your phone link to the MFA-protected Owner Incidents page. These are the
+only application changes; vercel.json additionally disables this branch's automatic
+deployment. 1024 source-file hashes, unchanged existing operator hashes and exact
+reviewed execution instructions are bound in the manifest.
+
+Fresh encrypted backup/authenticated isolated restore, <=10-minute drift checks,
+exact source verification, protected hosted build and existing Owner read-only
+acceptance are required before promotion. All public/commercial gates remain closed.
+No SQL migrations, Edge function redeployment, Android build, inventory import,
+customer retirement, wallet/ownership changes, real checkout or refund transaction.
+No old acceptance programmes are repeated. Existing secret bindings are preserved.
+
+Conditional application-only rollback target:
+405058ebfe3e2c915d43ed5344dfb3fcd7930049 / dpl_ACcdM4ivSaNW2ARC3tQf3MmaL2sZ.
+Phone/hook and all windows must first be verified OFF; preserve any new legitimate
+verification and every historical financial/card record. Never restore an old DB.
+Expected downtime: no planned outage; normal staged build/promotion. No wallet lock.
+
+DECISION B — one replacement attended Founder-only Production SMS attempt
+The old session is closed and will NEVER be reused. Its browser attempt failed
+before budget reservation/provider dispatch; it was not Android acceptance.
+After A passes, authorise one new <=2-hour allowlisted session, maximum ONE deliberate
+attempt and A$1 reservation, using the existing Founder account/MFA and installed
+v31. Founder uses the new in-app link, enters number/code privately and presses
+Send Code personally. No automatic retry/resend; no agent send.
+Any failure ends this authority. Close exact window and Auth Phone/hook immediately
+after result and independently verify both barriers. The prior watchdog emitted a
+generic verification error, so its exit status alone is not accepted as closure
+proof. Independent readback confirmed the old window/Phone/hook OFF.
+The public A$50/7-day budget stays unchanged and inactive.
+
+Evidence: the two new regressions fail on the deployed parser and pass with this
+fix; 23 focused tests, changed-file lint, TypeScript and complete local Webpack
+build pass. Native routing guards are covered; physical-device navigation and the
+corrected live Auth-to-hook send are explicitly pending this separate authority.
+No live phone number, OTP or credential appears in the package.
+
+Why new approval: the prior 405058eb source approval cannot authorise new application
+bytes, and the original single-attempt authority ended on failure. Both A and B
+require an explicit Founder decision; neither permits coordinated public launch.
+Registration, public Auth-email recipients, credit sales, commercial issuance,
+marketplace, NBA, prizes/withdrawals, real scoring and Play publication remain OFF.
+Google Play managed publishing remains ON. Public launch remains NO-GO.
