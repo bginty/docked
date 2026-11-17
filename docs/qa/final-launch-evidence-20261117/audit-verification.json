@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-17T10:52:10.548286+00:00",
+  "checks": [
+    "All 28 referenced evidence files exist and match captured SHA-256",
+    "All new JSON parses; 22 requirements have source, validity, change, gap and classification",
+    "Policy proposal/current file hashes match; application policy not modified",
+    "No raw Twilio account/service/message SID or hook secret in new artifacts"
+  ],
+  "originalPackageVerified": "a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39",
+  "originalSource": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "noApplicationOrMigrationChanges": true,
+  "newAcceptanceTests": 0,
+  "productionWrites": 0,
+  "smsSent": 0,
+  "purchasesOrRefunds": 0
+}

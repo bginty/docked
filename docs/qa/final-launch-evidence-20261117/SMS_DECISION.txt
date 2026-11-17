@@ -1,0 +1,110 @@
+SMS EVIDENCE REUSE AND COST DECISION — 17 NOVEMBER 2026
+
+Classification: REUSE EVIDENCE for delivery/verification; CONFIGURE and VERIFY
+CHANGED PATH for the Production signed hook. No SMS sent during this audit.
+
+Accepted evidence
+The protected Preview at source fe1572e1781e9d2806d5af45c5d5569b669d5d93,
+deployment dpl_C1K3vZ5Bs7u4rfQXiMLiJVbwGwwp, delivered one real SMS, accepted
+the founder's code and preserved verification on reload after Phone was disabled.
+The provider independently reported delivered/one segment; the founder attested
+receipt. Auth verification, canonical phone claim and audit were independently
+checked. This evidence is accepted, including persistence. Do not repeat it.
+See ../phone-acceptance-20261117/continuation/ACCEPTANCE.txt and its integrity,
+deployment and closure JSON. This was genuine browser/device participation,
+not an independently observed installed-v31 Production-hook transaction.
+
+What differs
+Preview used Supabase's built-in Twilio integration. Production will use:
+Production Auth -> signed HTTPS callback -> Vercel -> locked budget reservation
+-> the SAME Twilio account/Messaging Service/DOCKED sender -> finish checkpoint
+-> Auth code verification -> existing phone-claim registry.
+The UI, phone API, normalisation and verification/reload implementation are
+unchanged from the accepted phone source (source-comparison.json). Owner landing
+and Owner-only consent renewal changed separately and have their own evidence.
+The sender/account is active and already configured privately. No replacement
+provider, sender, service, token rotation or Preview setup is needed.
+
+Existing tests cover signature rejection, signed payload validation, AU mobile
+normalisation, one ASCII segment, duplicate delivery, provider error/ambiguity,
+no automatic resend, expiry, locked A$1 reservations, rate limits, concurrent
+budget exhaustion and denial of retired/internal QA identities. The reserve
+function requires an allowed, verified-email, non-deleted, non-anonymous Auth
+identity. The caller is signed Supabase, not a client-supplied identity. The
+ordinary phone route independently checks its current verified user/session and
+required Owner MFA. Commercial admission separately checks current consent.
+Evidence: ../final-public-runtime-20261117/sms-budget-database-tests.json and
+../public-launch-runtime-20261117/verification-summary.json. No tests rerun here.
+
+Cost decision — A$1 reservation is supported by current evidence
+Authenticated tariff GET at 10:35:08 UTC: all 26 Australian network entries have
+maximum US$0.0515/segment. Authenticated carrier-fee usage returned zero recorded
+fees/count for the available 10–17 November period. This is not a claim that
+future fees are contractually zero. Account has no automatic recharge/add-on
+plan; the existing alphanumeric sender has no leased-number charge. The pending
+historical message price/invoice is accounting follow-up, NOT a launch blocker.
+
+Conservative calculation (assumptions, not a provider price guarantee):
+  US$0.0515 base + 0.025 pumping + 0.015 engagement + 0.001 failure = 0.0925
+  / 0.50 USD per AUD x 1.10 tax allowance x 1.10 FX/payment-fee allowance
+  x 2 contingency = A$0.44770; round upward to A$0.50.
+All optional fees and failure processing are included even though not all apply
+to a successful plain OTP. The second full fee bundle is contingency, not an
+invented tariff. USD0.50/AUD is materially below the RBA's 17-Nov indicative
+USD0.6742/AUD. The Twilio Verify API is not used; the hook calls Messaging.
+At this stressed estimate the unchanged A$1 reservation has more than twice the
+required allowance. No budget increase or extra invoice-generating SMS is needed.
+
+The database hard stop remains A$50 total / seven days / at most 50 reservations.
+Every attempted/unknown/failed send consumes A$1; none is replenished. The body
+is fixed ASCII, below one GSM segment, AU +614 only. No auto top-up/renewal.
+The cost assumption is an operational condition, not an automated FX oracle:
+recheck tariff, features and FX before window activation and daily; stop sending
+if the A$1 envelope is no longer supported, tariffs cannot be read at that check,
+unexpected segmentation/fees occur, or funding is unavailable. Close the window
+before any adjustment; a higher budget/reservation requires separate review.
+Do not lower the reservation to increase capacity. Provider price changes can
+never be represented as impossible. Existing funded credit may stop delivery
+earlier than 50 attempts; do not auto-fund to achieve the limit.
+
+Sources (read 17 November; account GET evidence in sms-tariff-readback.json):
+https://www.twilio.com/en-us/sms/pricing/au
+https://www.twilio.com/docs/messaging/api/pricing
+https://help.twilio.com/articles/360016571913-What-are-SMS-and-MMS-Carrier-Fees
+https://www.rba.gov.au/statistics/frequency/exchange-rates.html
+https://supabase.com/docs/guides/auth/auth-hooks/send-sms-hook
+
+Minimum remaining verification, zero-send first
+1. After separately approved 78482f71 deployment, configure the existing private
+   credentials and a new hook signing secret, with Phone/hook/delivery OFF. Use
+   pojoymtniryarxxunyvz and https://docked.com.au/api/webhooks/auth-sms only.
+   Compare protected secret fingerprints/bindings without exposing values.
+2. Read back Auth/provider configuration, six-digit/300s OTP, >=60s resend,
+   sms_autoconfirm=false, empty test numbers, exact project/origin and same
+   sender/service. Verify the exclusive hook path: no unbudgeted fallback.
+3. Protected hosted probes with no enabled budget window must reject invalid
+   signatures, retired/QA users and disabled/expired windows without calling
+   Twilio. These configuration probes are not claims of an Auth-origin callback.
+   Keep signup closed and no customer creation; do not spoof a founder session.
+
+Specific remaining decision, NOT an automatic repeat programme
+Read-only settings and a synthetic signed callback cannot prove that actual
+Production Auth invokes the endpoint with its current signing secret/payload,
+finishes within its timeout, and persists phone confirmation in the installed
+v31 flow. Failure would block genuine customers at onboarding (fail closed),
+not justify bypassing the hook or phone requirement. Accepted Preview evidence
+does not cover this newly introduced provider-to-hook-to-budget boundary.
+
+If that gap remains after configuration checks, the minimum is ONE deliberate
+founder send/verify/reload through installed v31, original Owner identity only,
+<=2-hour allowlisted window and A$1 reserved, maximum ONE attempt, no automatic
+retry. Founder enters phone/code privately. Check one reservation, one provider
+result and persistent Auth/registry verification; retain existing MFA. Close
+the window and independently verify Phone/hook/delivery OFF immediately after.
+A failed/ambiguous attempt ends this authority; investigate before asking for
+another. This needs separate explicit founder authority and a frozen exact
+configuration/operator package; none is granted by this audit.
+
+This decision supersedes the old pending-invoice gate and blanket two-attempt
+prescription for future phone preparation. It DOES NOT edit or broaden the
+frozen a7ee2cd7 deployment package, which excludes provider changes/sends.

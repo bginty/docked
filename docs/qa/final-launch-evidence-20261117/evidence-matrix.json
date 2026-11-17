@@ -1,0 +1,515 @@
+{
+  "at": "2026-11-17T10:46:36.059171+00:00",
+  "purpose": "Authoritative evidence-reuse audit; does not authorise operations",
+  "productionSource": "988ea0ba905e91d3c1cdf0c5e18812849b138968",
+  "productionDeployment": "dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd",
+  "preparedSource": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "preparedPackage": "a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39",
+  "liveDbReadback": {
+    "observedAt": "2026-11-17T10:42:15.492182Z",
+    "preparedMigrationsInstalled": 0,
+    "smsSchemaPresent": false,
+    "openCommercialControls": 0,
+    "openPublicFlags": 0
+  },
+  "sources": {
+    "google": {
+      "file": "docs/qa/final-release-decision-20261117/historical-google-revalidated.json",
+      "sha256": "d9751815eab5001fa9f830d1378632028752fb748026a64769d1b2736f9d71ac",
+      "testedSourceOrContract": "Actual three November Google TEST orders, revalidated 17 November against source 76df44ba; acknowledgement fix dfed57b2; original TEST/refund/hold evidence retained",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "billing_compare": {
+      "file": "docs/qa/final-release-decision-20261117/billing-source-comparison.json",
+      "sha256": "4abea539198139102b7e5e225027de2e0a6d4255a1b0abb783f306deb585934b",
+      "testedSourceOrContract": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f -> 76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "financial": {
+      "file": "docs/qa/v31-revenue-launch-20261113/billing-final.json",
+      "sha256": "157f9bc5fdad0985e2aee629e045dc762550ce19696c98ded68efea89b962eb6",
+      "testedSourceOrContract": "November commercial safeguard contract; real isolated PostgreSQL, synthetic money, not settlement",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "hosted_packs": {
+      "file": "docs/qa/batch1-hosted-release-20261116/hosted-acceptance-summary.json",
+      "sha256": "2bcc64e34440129538bffbc2714872604624e4f1dd91bc45a69b43918bca32f1",
+      "testedSourceOrContract": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b / dpl_GvnAZByHkwpngA5E7Gn72Pkdsq2M; 18 offers, genuine Preview Auth/MFA",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "android": {
+      "file": "docs/qa/batch1-beta-acceptance-20261117/ACCEPTANCE.txt",
+      "sha256": "35898524605375917dcfca43f6f858a1ef9a83275025250d55e8d8320fdc0d9c",
+      "testedSourceOrContract": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b / dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh; actual founder AFL/NFL9 purchases, Android AFL reload attestation",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "phone": {
+      "file": "docs/qa/phone-acceptance-20261117/continuation/ACCEPTANCE.txt",
+      "sha256": "12229215c2a4a4235ba699799c4eb06f07f3794b07addb323d38d187c17461b5",
+      "testedSourceOrContract": "fe1572e1781e9d2806d5af45c5d5569b669d5d93 / dpl_C1K3vZ5Bs7u4rfQXiMLiJVbwGwwp",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "phone_integrity": {
+      "file": "docs/qa/phone-acceptance-20261117/continuation/verification-integrity.json",
+      "sha256": "d6be9904db4de474d3f7b48566216cbfcc0332c9ab6a0f8125b5d4f09fc51e75",
+      "testedSourceOrContract": "Same accepted Preview deployment; independent confirmed Auth/phone claim/audit and persistence",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "auth_lifecycle": {
+      "file": "docs/qa/clean-transition-20261117/auth-lifecycle-tests.json",
+      "sha256": "a9a7dca69fe4fa8d68892cd7cae7f66762ee1673a052b426400599f5f3e5fea7",
+      "testedSourceOrContract": "Isolated GoTrue v2.198.0; 21 real Auth lifecycle checks; no external delivery",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "clean_tests": {
+      "file": "docs/qa/clean-transition-20261117/verification.json",
+      "sha256": "f9858911985576622c5075371d1a8a7bf64ef63c38cad77c87723c950010986a",
+      "testedSourceOrContract": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b clean-transition implementation; 48 automated, 21 lifecycle, 7 checkpoints, 20 Owner read/guard checks",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "retirement": {
+      "file": "docs/qa/clean-retirement-execution-20261117/EXECUTION_REPORT.txt",
+      "sha256": "8a0a3fd77afe84650f9072b65e018c56aa829944470dda96c63f3569eb14f554",
+      "testedSourceOrContract": "11daff82afa0e247a363cd4383082c90a3d58c4f; package 2e55e1c183f095d0bcad913b16cb0143192deb698b3859f5f5104d1ac0573898; completed once",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "owner": {
+      "file": "docs/qa/post-beta-owner-execution-20261117/EXECUTION_REPORT.txt",
+      "sha256": "d04f549508059700c631106e152ea851b2873bb0cee58ce75ce1b36bf2535a03",
+      "testedSourceOrContract": "988ea0ba905e91d3c1cdf0c5e18812849b138968 / dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "founder_device": {
+      "file": "docs/qa/post-beta-owner-execution-20261117/founder-physical-device-acceptance.json",
+      "sha256": "6c1287aad65daa46104e9c1ccf3a13d8d8549de7b4d1f05f574663c9a8091961",
+      "testedSourceOrContract": "Founder actual Android app and mobile browser acceptance; c18f7b00 evidence",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "barry": {
+      "file": "docs/qa/post-beta-owner-execution-20261117/barry-owner-acceptance.json",
+      "sha256": "315071f56a4e05e24079c941bf0e468e1b9b0530e4b5f5541cdc4695364ce974",
+      "testedSourceOrContract": "Founder attestation Barry signed in with original identity and reached incidents; c18f7b00 evidence",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "incidents": {
+      "file": "docs/qa/v31-founder-session-20261112/INCIDENT_ACCEPTANCE.txt",
+      "sha256": "c8a6d7293d1d08ad578f28c50e4c14fa3a679120494ec936a86da39fd0125684",
+      "testedSourceOrContract": "60f9e66acecaa9ce6419ad07e2691b777400a3d4; founder own acknowledge/resolve/reload, immutable history, no email",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "vault": {
+      "file": "docs/qa/v31-vault-custody-20261114/verification.json",
+      "sha256": "dbe4517d4075e5e81db12a29f7e97dd95a7f5a106bd32985bbdbafc0e4722323",
+      "testedSourceOrContract": "Actual same-key Secret Manager custody 14 November; pinned version1, unchanged IAM, audited isolated restore",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "vault_restore": {
+      "file": "docs/qa/v31-vault-custody-20261114/isolated-recovery.json",
+      "sha256": "6eede1c0ec3adbaeb4ffc8c9709f09da99fdefa983fe343c0cba7cd5c82768e2",
+      "testedSourceOrContract": "Actual existing backup key; 558 protected tables matched; not merely synthetic secret",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "inventory": {
+      "file": "docs/qa/v31-founder-session-20261112/inventory-approved-1232/EXECUTION_RESULT.txt",
+      "sha256": "74785b113dfb9f8aee413918241bc7173f3805a444dc17bea92a3e7b0b493454",
+      "testedSourceOrContract": "d719075c operator ae5f9ab407098def266669d57d46537db041f4c77aa99524712f3fd97363365f; completed once12Nov",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "decisions": {
+      "file": "docs/qa/final-release-decision-20261117/DECISION.txt",
+      "sha256": "a89d18c8c66958f49c6758c943756a8f4208b3e142b2c87f901c6ec53e9e0189",
+      "testedSourceOrContract": "Founder pricing, GST, material-use scope, 6065 definition ID digest and A$50 decisions; six-checkout requirement withdrawn",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "google_console": {
+      "file": "docs/qa/final-release-decision-20261117/console-verification.json",
+      "sha256": "623cd521ac031a0cbc03949ab043c11b3c5cd03cb614e28bfbacaf68529a3bba",
+      "testedSourceOrContract": "Authenticated17Nov Play UI: v31/1.30 and Data Safety ready to publish, managed publishing ON, AU, GST10%",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "google_products": {
+      "file": "docs/qa/final-release-decision-20261117/google-tax-price-readback.json",
+      "sha256": "f8b970192bdea4ea17da458805abf773e0f94236f6b51296ea92ae620c903a79",
+      "testedSourceOrContract": "Authenticated17Nov Google API: A$49/A$99 buy-au inactive, multi-quantity false",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "commercial_readiness": {
+      "file": "docs/qa/final-release-decision-20261117/commercial-readiness.json",
+      "sha256": "20a226aa49d7542d0159632904ba99afb0c2084c74a9d29ce68a14b348e71bf5",
+      "testedSourceOrContract": "All18 frozen offers/supply capacity/prices/odds; not authority to activate",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "public_tests": {
+      "file": "docs/qa/public-launch-runtime-20261117/verification-summary.json",
+      "sha256": "310a6a01cd18711410cdca3b0873a32300f6bd945d8aa0cb0591057c79645266",
+      "testedSourceOrContract": "78482f713fd93b6677f85b43c5c49cfa00acccde; 56 targeted,12 restored groups, exact install,build/lint/audit",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "sms_database": {
+      "file": "docs/qa/final-public-runtime-20261117/sms-budget-database-tests.json",
+      "sha256": "4786a74b9b497253fca6e7cb4f1b7581b5c2143cf43b315a20e3282ba9b44f10",
+      "testedSourceOrContract": "Final migration039fe257;10 groups,20 duplicates,20 competing requests,retired/QA denial",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "public_package": {
+      "file": "docs/qa/public-launch-runtime-20261117/DEPLOYMENT_APPROVAL.txt",
+      "sha256": "dcde3ea870290885c9cd898607fc8b02e3faa33106ea1e6d465d1a93ad0cb784",
+      "testedSourceOrContract": "78482f713fd93b6677f85b43c5c49cfa00acccde / a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39; UNAPPROVED/UNDEPLOYED",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "baseline": {
+      "file": "docs/qa/public-launch-runtime-20261117/production-baseline.json",
+      "sha256": "b539280c36126235bbfc36573c531655d1c4cbc3f923e5ce3aa205384f0d3b86",
+      "testedSourceOrContract": "Live988ea0ba/dpl_Du8; latest asset census10:11UTC17Nov:6540/918/936,zero commercial assets/open gates",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "account_tariff": {
+      "file": "docs/qa/public-launch-runtime-20261117/twilio-account-pricing.json",
+      "sha256": "2111f6a786966ec93024fbc4d1f3423bf09cc68906dba15882560d97742f9fe1",
+      "testedSourceOrContract": "Authenticated same active Twilio account/service/sender,26AU network prices; no writes",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "current_tariff": {
+      "file": "docs/qa/final-launch-evidence-20261117/sms-tariff-readback.json",
+      "sha256": "1eeccd0eca1342af406be1587cfc5f9938f2aa3fc6345b988b6aa9045dffe55f",
+      "testedSourceOrContract": "Authenticated tariff/carrier-fee usage GET17Nov10:35UTC; no messages",
+      "hashEncoding": "UTF-8 canonical LF"
+    },
+    "bridge": {
+      "file": "docs/qa/final-launch-evidence-20261117/source-comparison.json",
+      "sha256": "b3c3e3a86d040231719dc96eba578d2defdf432d2bab1cb6c3ecb163c6355785",
+      "testedSourceOrContract": "SHA-256 source bridge from actual accepted Google/Batch1/phone to live988 and prepared784",
+      "hashEncoding": "UTF-8 canonical LF"
+    }
+  },
+  "features": [
+    {
+      "feature": "Australian registration",
+      "requirement": "Fresh verified-email AU adult account; new UUID/consent; no inherited assets",
+      "evidence": [
+        "auth_lifecycle",
+        "clean_tests",
+        "retirement",
+        "public_tests"
+      ],
+      "implementationChanged": "Clean retirement implemented; public runtime configuration not yet promoted",
+      "evidenceStillValid": "PARTIAL",
+      "actualRemainingGap": "Public-mode dependency/runtime and current consent binding remain closed/unverified hosted",
+      "smallestAction": "Deploy prepared 784 separately; verify configuration/closed signup and Owner support path. Open signup only in final coordinated paid launch; no real customer deletion/signup rehearsal",
+      "classification": "VERIFY CHANGED PATH"
+    },
+    {
+      "feature": "Phone delivery, code and persistence",
+      "requirement": "Genuine AU SMS, code accepted, verification persists after reload",
+      "evidence": [
+        "phone",
+        "phone_integrity",
+        "bridge"
+      ],
+      "implementationChanged": "Phone UI/API/normalisation/reload unchanged; sender/account unchanged",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "None for accepted Preview behaviour",
+      "smallestAction": "Reuse the actual delivery and reload; do not send another Preview SMS",
+      "classification": "REUSE EVIDENCE"
+    },
+    {
+      "feature": "Production phone integration",
+      "requirement": "Signed Auth hook, exact account/session binding, exclusive budgeted delivery",
+      "evidence": [
+        "phone",
+        "sms_database",
+        "public_tests",
+        "account_tariff",
+        "bridge"
+      ],
+      "implementationChanged": "Production Send SMS hook replaces built-in provider path; new DB budget and bindings",
+      "evidenceStillValid": "PARTIAL",
+      "actualRemainingGap": "Production signing/bindings/timeout and callback success have not run as one real chain",
+      "smallestAction": "Configure disabled first; zero-send protected checks; then decide ONE founder-only A$1 attempt if actual provider-to-hook persistence gap remains. See SMS_DECISION.txt",
+      "classification": "VERIFY CHANGED PATH"
+    },
+    {
+      "feature": "SMS spending limits",
+      "requirement": "A$50 total for seven days,AU mobile only,no auto top-up,locked A$1/attempt",
+      "evidence": [
+        "sms_database",
+        "public_tests",
+        "current_tariff",
+        "account_tariff"
+      ],
+      "implementationChanged": "Final reserve excludes retired/QA; tested corrected SQL not deployed",
+      "evidenceStillValid": "PARTIAL",
+      "actualRemainingGap": "Install inactive migration; bind future window/authority and cost evidence",
+      "smallestAction": "Reuse10 groups and fee envelope; deploy inactive guard with784; activate reviewed window only after authority. No invoice wait or budget increase",
+      "classification": "CONFIGURE"
+    },
+    {
+      "feature": "Owner identities and MFA",
+      "requirement": "Founder/Barry original identities,Full Owner,individual MFA",
+      "evidence": [
+        "retirement",
+        "owner",
+        "founder_device",
+        "barry"
+      ],
+      "implementationChanged": "Retirement/promotion/login fix completed; original identities/factors retained",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "None for completed Owner login acceptance",
+      "smallestAction": "Reuse both acceptances; no repeated incident drill or broad login test",
+      "classification": "REUSE EVIDENCE"
+    },
+    {
+      "feature": "Public Owner/support administration",
+      "requirement": "MFA/session-bound customer/payment/support/incident and emergency tools",
+      "evidence": [
+        "public_tests",
+        "owner"
+      ],
+      "implementationChanged": "784 adds restricted public equivalents and reversible support restrictions",
+      "evidenceStillValid": "PARTIAL",
+      "actualRemainingGap": "Only new public-mode hosted path has not been accepted",
+      "smallestAction": "Separately approve 784; protected existing-Owner read-only candidate check, then promote/postflight. Do not repeat previous Owner login programme",
+      "classification": "VERIFY CHANGED PATH"
+    },
+    {
+      "feature": "Google purchase and acknowledgement",
+      "requirement": "A$49/4900 and A$99/9900,verified provider binding,exactly-once wallet,consume",
+      "evidence": [
+        "google",
+        "billing_compare",
+        "financial",
+        "bridge"
+      ],
+      "implementationChanged": "Verifier/native unchanged since consume fix; ledger/runtime/route unchanged since76df44",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "Products/DB/application purchase flags intentionally inactive",
+      "smallestAction": "Reusethree TEST orders and later consumed receipt. Final configuration activates existing products; no new checkouts required absent a material defect",
+      "classification": "CONFIGURE"
+    },
+    {
+      "feature": "Refund/recovery reconciliation",
+      "requirement": "Provider refund/revocation,hold after spending,immutable journals/no unrelated loss",
+      "evidence": [
+        "google",
+        "financial",
+        "bridge"
+      ],
+      "implementationChanged": "Reconciliation/ledger unchanged since accepted Batch 1",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "Reconciliation/alert configuration needs final operational readback, not another transaction",
+      "smallestAction": "Reuse actual refunds and DB scenarios; retain5,700-credit TEST hold and configure existing workers/monitoring at launch",
+      "classification": "CONFIGURE"
+    },
+    {
+      "feature": "Standard and Premium NFL",
+      "requirement": "Correct1/3/9 cards,prices,atomic debit and saved receipt",
+      "evidence": [
+        "hosted_packs",
+        "android",
+        "financial",
+        "bridge"
+      ],
+      "implementationChanged": "Pack engine/catalogue/odds unchanged",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "Sales/issuance intentionally closed",
+      "smallestAction": "Reuse all 18 offers plus actual NFL nine-card acceptance; activation only under final GO",
+      "classification": "REUSE EVIDENCE"
+    },
+    {
+      "feature": "Standard and Premium AFL",
+      "requirement": "Correct1/3/9 cards,prices,atomic debit and saved receipt",
+      "evidence": [
+        "hosted_packs",
+        "android",
+        "financial",
+        "bridge"
+      ],
+      "implementationChanged": "Pack engine/catalogue/odds unchanged",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "Sales/issuance intentionally closed",
+      "smallestAction": "Reuse all 18 offers and actual AFL nine-card/Android reload",
+      "classification": "REUSE EVIDENCE"
+    },
+    {
+      "feature": "Standard and Premium NRL",
+      "requirement": "Correct1/3/9 cards,prices,atomic debit and saved receipt",
+      "evidence": [
+        "hosted_packs",
+        "financial",
+        "bridge"
+      ],
+      "implementationChanged": "Same accepted pack engine for NRL; no changed native path",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "No separateNRL physical claim; not a material retest requirement",
+      "smallestAction": "Reuse authenticatedNRL offers/integrity; do not manufacture permanent cards for benchmarking",
+      "classification": "REUSE EVIDENCE"
+    },
+    {
+      "feature": "Android packs and recovery",
+      "requirement": "Installed app purchase/reload/reveal; no duplicate issuance",
+      "evidence": [
+        "android",
+        "bridge"
+      ],
+      "implementationChanged": "Native billing plugin and pack route unchanged; public gating/legacy visibility revised",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "Native build version was founder-attested in pack session, not independently read from handset",
+      "smallestAction": "Retain actual Android result plus unchanged native contract; read-only new public-mode surfaces during configuration acceptance, no new APK/test purchase",
+      "classification": "REUSE EVIDENCE"
+    },
+    {
+      "feature": "Collections and clean commercial start",
+      "requirement": "Commercial own cards only; zero inherited beta advantages",
+      "evidence": [
+        "clean_tests",
+        "retirement",
+        "bridge",
+        "public_tests"
+      ],
+      "implementationChanged": "Member view includeLegacy true->false; covered by clean-transition evidence",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "No new commercial cards exist to display before sales; historic beta cards intentionally excluded",
+      "smallestAction": "Reuse isolation/recovery tests; never restore retired cards or build unnecessary legacy adapter",
+      "classification": "REUSE EVIDENCE"
+    },
+    {
+      "feature": "Permanent scarcity and inventory",
+      "requirement": "Never reclaim serials;Core unlimited/Rare 5,000/Elite 2,500/Ultra Rare 400/Legendary 50/Icon 1",
+      "evidence": [
+        "inventory",
+        "retirement",
+        "baseline",
+        "hosted_packs",
+        "financial"
+      ],
+      "implementationChanged": "Import and later legitimate allocations already reconciled; no reset",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "6,065 eligible definitions remain dormant;475 excluded",
+      "smallestAction": "Bind existing approved ID digest at final activation; no import/remint. Fresh counts/digests only as deployment/activation preflight",
+      "classification": "CONFIGURE"
+    },
+    {
+      "feature": "Pricing, GST,merchant,payout",
+      "requirement": "Approved inclusive prices/tax disclosures;TEST not revenue;actual refund adjustment",
+      "evidence": [
+        "decisions",
+        "google_console",
+        "google_products",
+        "bridge"
+      ],
+      "implementationChanged": "Pricing/odds/tax decisions unchanged;product prices read back17Nov",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "First actual settlement cannot precede a sale; not a prerequisite test",
+      "smallestAction": "Retain acceptedGST/payout decisions;final readback exactproducts10%GST,then reconcile actual settlements as they occur",
+      "classification": "REUSE EVIDENCE"
+    },
+    {
+      "feature": "Material-use scope and source rights",
+      "requirement": "Approved genericnames/colours/cities, source provenance/attribution,6065IDs",
+      "evidence": [
+        "decisions",
+        "inventory"
+      ],
+      "implementationChanged": "Founder legal-advice attestation accepted; no expanded materials or statistics",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "Activation must record this existing scope against rights/control rows",
+      "smallestAction": "Use approved scope/digest;retain dataset conditions. No generic new licence request,roster freshness veto or collection-permission renewal for old approved identities",
+      "classification": "CONFIGURE"
+    },
+    {
+      "feature": "Consent and launch notices",
+      "requirement": "Explicit current commercial Terms/Privacy,prices/odds/refunds,cleanstart",
+      "evidence": [
+        "clean_tests",
+        "retirement",
+        "decisions"
+      ],
+      "implementationChanged": "Live preparation notice differs from paid-launch availability; old proposed collection wording predatesretirement",
+      "evidenceStillValid": "PARTIAL",
+      "actualRemainingGap": "Publish exact paid-launch copy and bind consent versions without copying historical acceptance",
+      "smallestAction": "Reuse prepared wording; correctbeta asset clause in localproposal,freeze for finalapproval. Privacy/data categories unchanged; Owners accept newcommercial terms themselves",
+      "classification": "CONFIGURE"
+    },
+    {
+      "feature": "Incidents,alerts,emergency and retention",
+      "requirement": "Founder-onlyemail,OwnerMFA,audit,90day exclusions,emergencyclose;cleanupOFF",
+      "evidence": [
+        "incidents",
+        "public_tests",
+        "retirement"
+      ],
+      "implementationChanged": "Core lifecycle accepted;newpublicsupport/emergencyclose in784",
+      "evidenceStillValid": "PARTIAL",
+      "actualRemainingGap": "New public Owner route/read-only check; monitor recipient/configactivation",
+      "smallestAction": "Reuse originalemailreceipt/drill/immutablehistory. Verify only changed public path/config; no email/drill/retentiontest repetition",
+      "classification": "VERIFY CHANGED PATH"
+    },
+    {
+      "feature": "Recovery-key custody",
+      "requirement": "Founder-controlled MFA/vault,same-keybackuprestore,noexpandedruntimeaccess",
+      "evidence": [
+        "vault",
+        "vault_restore"
+      ],
+      "implementationChanged": "Actualsame-key transfer and isolated recovery completed 14 November",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "None",
+      "smallestAction": "Reuse actual custody/restore; do not repeat synthetic or live transfer",
+      "classification": "REUSE EVIDENCE"
+    },
+    {
+      "feature": "Play publication and Data Safety",
+      "requirement": "Approved v31/1.30,AU,approved phone Data Safety,managed publishing ON",
+      "evidence": [
+        "google_console",
+        "google_products",
+        "bridge"
+      ],
+      "implementationChanged": "No native/data-category change in784; commercial availability copy only",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "Final founder coordinated approval and actual publication/propagation",
+      "smallestAction": "Reuse 17 November ready-to-publish;read back at finalaction,publishexisting group only after paid service ready. No v32/resubmission indicated",
+      "classification": "CONFIGURE"
+    },
+    {
+      "feature": "Optional exclusions",
+      "requirement": "Marketplace/NBA/prizes/withdrawals/scoredcompetitionsOFF;six disabled Practice",
+      "evidence": [
+        "public_tests",
+        "baseline"
+      ],
+      "implementationChanged": "Five optional beta-only administration modules safely unavailable",
+      "evidenceStillValid": "YES",
+      "actualRemainingGap": "None for paid-pack launch",
+      "smallestAction": "Keep optional features off; no Batch2/marketplaceproject on critical path",
+      "classification": "REUSE EVIDENCE"
+    },
+    {
+      "feature": "Deployment/activation authority",
+      "requirement": "Exact approvedsource/config, backup/drift/postflight, final paid GO",
+      "evidence": [
+        "public_package",
+        "baseline"
+      ],
+      "implementationChanged": "784prepared;no recordedexactapproval andzero of two migrationsinstalled",
+      "evidenceStillValid": "NO",
+      "actualRemainingGap": "Authority not granted; this is not missingtest evidence",
+      "smallestAction": "Founder approves exact existing a7ee package; then separate phoneconfiguration/changedhook decision; finalcoordinatedGO after controls pass",
+      "classification": "ACTUAL BLOCKER"
+    }
+  ],
+  "supersededRequirements": [
+    "Blanket sixGoogle checkouts/54newcards",
+    "Repeating genuinePreviewSMS delivery/verify/reload",
+    "Six-account public adoption/legacy customer opening adapter",
+    "Repeat retirement/Barry promotion/Owner login acceptance",
+    "Genericplayernameclearancequestionoutsideapproved scope",
+    "Historical invoice as SMS activation gate",
+    "Physical tests for each sport/family without changed native path"
+  ],
+  "noNewTests": true,
+  "productionWrites": 0,
+  "messagesSent": 0,
+  "transactionsCreated": 0,
+  "finalGoReady": false
+}

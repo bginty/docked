@@ -1,0 +1,29 @@
+{
+  "approved": false,
+  "published": false,
+  "existingPreparedSourceUnchanged": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "targetFile": "config/launch-policy-content.json",
+  "expectedBeforeFileSha256": "0029c3c1f51bba319acfe4a250040d68662366792cf839d169f92c224572f4f1",
+  "proposedFileSha256": "73b22a8593586868e35704e6d9ec9dadadf9690cd609bcd0226b727cf4f1696b",
+  "sourceProposalReused": "docs/qa/final-release-decision-20261117/commercial-wording.PROPOSED.json",
+  "changes": [
+    {
+      "document": "refund-policy",
+      "beforeSha256": "047347cb3f6f3420f82e587915f4641a5467bd1b02bdd6e579d31d4d836cbce7",
+      "afterSha256": "30f805d994d6c15a2970df9abfd8a7599b66d8dc14090ec302e99cda4485c723",
+      "version": "2026-11-17-purchases-paid-launch-v1"
+    },
+    {
+      "document": "commercial-policy",
+      "beforeSha256": "21ef75e7b462f1d9bad18a6d3bc9736ddc14a546c08a66ce852eb30d956255b5",
+      "afterSha256": "ead986fb9c11870f74852ad2327ee04b3158655c84ddeeb42a1f6ab5b2c7ebc9",
+      "version": "2026-11-17-commercial-paid-launch-v2"
+    }
+  ],
+  "privacyAndRetentionByteContentUnchanged": true,
+  "cleanCommercialStartingPositionSectionUnchanged": true,
+  "termsVersion": "2026-11-17-commercial-paid-launch-v2",
+  "privacyVersion": "2026-11-17-privacy-clean-launch-v5",
+  "googleReviewAssessment": "No Android binary, collected/shared data category, phone privacy or product model change. Reuse existing v31/Data Safety approval; no resubmission indicated. Verify actual ready-to-publish group at activation.",
+  "execution": "Data-only proposal. Not loaded by the application. Final publication requires exact application/policy approval and candidate readback; do not mutate the frozen a7ee2cd7 package."
+}

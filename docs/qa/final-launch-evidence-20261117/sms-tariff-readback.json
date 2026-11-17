@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-17T10:35:08.625Z",
+  "currency": "USD",
+  "auNetworks": 26,
+  "maxAuPrice": 0.0515,
+  "carrierUsage": [
+    {
+      "category": "sms-messages-carrierfees",
+      "count": "0",
+      "price": "0",
+      "currency": "usd",
+      "start": "2026-11-10",
+      "end": "2026-11-17"
+    }
+  ],
+  "methods": [
+    "GET"
+  ],
+  "settingsChanged": 0,
+  "messagesSent": 0,
+  "invoiceWaitRequired": false
+}

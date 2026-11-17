@@ -1,0 +1,292 @@
+{
+  "at": "2026-11-17T10:43:08.883114+00:00",
+  "method": "Read-only git blob SHA-256 comparison; no tests repeated",
+  "commits": {
+    "google_ack": "dfed57b27401c8c4d2bbdc1ae7cb30f2c86f6b9f",
+    "accepted_batch1": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+    "accepted_phone": "fe1572e1781e9d2806d5af45c5d5569b669d5d93",
+    "live": "988ea0ba905e91d3c1cdf0c5e18812849b138968",
+    "prepared": "78482f713fd93b6677f85b43c5c49cfa00acccde"
+  },
+  "files": [
+    {
+      "file": "src/server/google-commercial-verifier.ts",
+      "sha256": {
+        "google_ack": "a868823917cf6508650fc7630d2be74c4e45ab0d77578d4fe9b6ab5171d5a6d8",
+        "accepted_batch1": "a868823917cf6508650fc7630d2be74c4e45ab0d77578d4fe9b6ab5171d5a6d8",
+        "accepted_phone": "a868823917cf6508650fc7630d2be74c4e45ab0d77578d4fe9b6ab5171d5a6d8",
+        "live": "a868823917cf6508650fc7630d2be74c4e45ab0d77578d4fe9b6ab5171d5a6d8",
+        "prepared": "a868823917cf6508650fc7630d2be74c4e45ab0d77578d4fe9b6ab5171d5a6d8"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/core/commercial-billing.ts",
+      "sha256": {
+        "google_ack": "ecd8db3a12a9e782dc74e4b885b233c9294ec9052424579bc4278f7ddea8e430",
+        "accepted_batch1": "ecd8db3a12a9e782dc74e4b885b233c9294ec9052424579bc4278f7ddea8e430",
+        "accepted_phone": "ecd8db3a12a9e782dc74e4b885b233c9294ec9052424579bc4278f7ddea8e430",
+        "live": "ecd8db3a12a9e782dc74e4b885b233c9294ec9052424579bc4278f7ddea8e430",
+        "prepared": "ecd8db3a12a9e782dc74e4b885b233c9294ec9052424579bc4278f7ddea8e430"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/server/commercial-ledger.ts",
+      "sha256": {
+        "google_ack": "f6f7aaf7d29a58767625f01d4f44b29bcbcf378275e2e7b961e8c1a793c13279",
+        "accepted_batch1": "2f7c9f532a7bb3b23afa14e66003d5bda9fb21d218d923720fa63b7a7320add4",
+        "accepted_phone": "2f7c9f532a7bb3b23afa14e66003d5bda9fb21d218d923720fa63b7a7320add4",
+        "live": "2f7c9f532a7bb3b23afa14e66003d5bda9fb21d218d923720fa63b7a7320add4",
+        "prepared": "2f7c9f532a7bb3b23afa14e66003d5bda9fb21d218d923720fa63b7a7320add4"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/server/commercial-reconciliation.ts",
+      "sha256": {
+        "google_ack": "c3e11e26d87730dec6438b26c3878cb1c5940b53f9ff2120a7ded70213b878a7",
+        "accepted_batch1": "f445422ed57c714fdfab0b3db95d7c387fde126d5b5f197c4fdfaed74cabcf03",
+        "accepted_phone": "f445422ed57c714fdfab0b3db95d7c387fde126d5b5f197c4fdfaed74cabcf03",
+        "live": "f445422ed57c714fdfab0b3db95d7c387fde126d5b5f197c4fdfaed74cabcf03",
+        "prepared": "f445422ed57c714fdfab0b3db95d7c387fde126d5b5f197c4fdfaed74cabcf03"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/server/commercial-runtime.ts",
+      "sha256": {
+        "google_ack": "ff79484fa7501a3af01b93902a8b8e2ee3630e09a360df2cfe4fec6e66569607",
+        "accepted_batch1": "013d715fe42a0910c975bb09cee1ebb71edc6ed8a30a1ea9d3e9b36479c29923",
+        "accepted_phone": "013d715fe42a0910c975bb09cee1ebb71edc6ed8a30a1ea9d3e9b36479c29923",
+        "live": "013d715fe42a0910c975bb09cee1ebb71edc6ed8a30a1ea9d3e9b36479c29923",
+        "prepared": "013d715fe42a0910c975bb09cee1ebb71edc6ed8a30a1ea9d3e9b36479c29923"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/server/member-commercial.ts",
+      "sha256": {
+        "google_ack": "29ab55dd44b9dd8d5cf1b2949bf1b780888a6fb906e6bd65144590a8e33c15e3",
+        "accepted_batch1": "740beb7fb80845a2be481efe973be782f53f3a83bd42c8f22e550ab1de26157b",
+        "accepted_phone": "740beb7fb80845a2be481efe973be782f53f3a83bd42c8f22e550ab1de26157b",
+        "live": "5cad25669ae1397d5a00e80487093365eae8ee974b1ed578a5af2a6444d01da0",
+        "prepared": "5cad25669ae1397d5a00e80487093365eae8ee974b1ed578a5af2a6444d01da0"
+      },
+      "batch1ToPreparedUnchanged": false,
+      "phoneToPreparedUnchanged": false,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/app/api/store/google/commercial/route.ts",
+      "sha256": {
+        "google_ack": "4f17b6a67fbf9083094425cf0a0a068d239cad5543d163dd2c3517eebdeb8083",
+        "accepted_batch1": "a0ebe21660b6c3975d2fd562f01ba3c9e6f310b6ac697dd75b633120c6f4a817",
+        "accepted_phone": "a0ebe21660b6c3975d2fd562f01ba3c9e6f310b6ac697dd75b633120c6f4a817",
+        "live": "a0ebe21660b6c3975d2fd562f01ba3c9e6f310b6ac697dd75b633120c6f4a817",
+        "prepared": "a0ebe21660b6c3975d2fd562f01ba3c9e6f310b6ac697dd75b633120c6f4a817"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/core/paid-pack-catalogue.ts",
+      "sha256": {
+        "google_ack": "84b86c30baaebd533deb671183ca6ba724339aef88198af419e0bc1e5d33a041",
+        "accepted_batch1": "84b86c30baaebd533deb671183ca6ba724339aef88198af419e0bc1e5d33a041",
+        "accepted_phone": "84b86c30baaebd533deb671183ca6ba724339aef88198af419e0bc1e5d33a041",
+        "live": "84b86c30baaebd533deb671183ca6ba724339aef88198af419e0bc1e5d33a041",
+        "prepared": "84b86c30baaebd533deb671183ca6ba724339aef88198af419e0bc1e5d33a041"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/core/pack-odds.ts",
+      "sha256": {
+        "google_ack": "da099ec22079a3558e3250698306d2ebdd27b0fe7be55707aa0aebd5c9d030e5",
+        "accepted_batch1": "da099ec22079a3558e3250698306d2ebdd27b0fe7be55707aa0aebd5c9d030e5",
+        "accepted_phone": "da099ec22079a3558e3250698306d2ebdd27b0fe7be55707aa0aebd5c9d030e5",
+        "live": "da099ec22079a3558e3250698306d2ebdd27b0fe7be55707aa0aebd5c9d030e5",
+        "prepared": "da099ec22079a3558e3250698306d2ebdd27b0fe7be55707aa0aebd5c9d030e5"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "android/app/src/main/java/au/com/docked/app/DockedBillingPlugin.java",
+      "sha256": {
+        "google_ack": "7b8061def285b0d7eafbae7152d96cea406ed9f546c8d029b48121786ae57eed",
+        "accepted_batch1": "7b8061def285b0d7eafbae7152d96cea406ed9f546c8d029b48121786ae57eed",
+        "accepted_phone": "7b8061def285b0d7eafbae7152d96cea406ed9f546c8d029b48121786ae57eed",
+        "live": "7b8061def285b0d7eafbae7152d96cea406ed9f546c8d029b48121786ae57eed",
+        "prepared": "7b8061def285b0d7eafbae7152d96cea406ed9f546c8d029b48121786ae57eed"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/server/public-phone.ts",
+      "sha256": {
+        "google_ack": null,
+        "accepted_batch1": "e41d8cbd9931fd33092525eea5ccf61c1d8b38b105f59af11bede0e26b92da74",
+        "accepted_phone": "e41d8cbd9931fd33092525eea5ccf61c1d8b38b105f59af11bede0e26b92da74",
+        "live": "e41d8cbd9931fd33092525eea5ccf61c1d8b38b105f59af11bede0e26b92da74",
+        "prepared": "e41d8cbd9931fd33092525eea5ccf61c1d8b38b105f59af11bede0e26b92da74"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/core/public-phone.ts",
+      "sha256": {
+        "google_ack": null,
+        "accepted_batch1": "24d96d68cda782af44f032630fdb759126a3fb84dbfc3ceae5053c0350960124",
+        "accepted_phone": "24d96d68cda782af44f032630fdb759126a3fb84dbfc3ceae5053c0350960124",
+        "live": "24d96d68cda782af44f032630fdb759126a3fb84dbfc3ceae5053c0350960124",
+        "prepared": "24d96d68cda782af44f032630fdb759126a3fb84dbfc3ceae5053c0350960124"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/core/phone-challenge.ts",
+      "sha256": {
+        "google_ack": null,
+        "accepted_batch1": "d819b6c8ee84b25dfff8de9c4d3aa177041c70e0b637da5d2cbe4f1ad2b2ac8d",
+        "accepted_phone": "d819b6c8ee84b25dfff8de9c4d3aa177041c70e0b637da5d2cbe4f1ad2b2ac8d",
+        "live": "d819b6c8ee84b25dfff8de9c4d3aa177041c70e0b637da5d2cbe4f1ad2b2ac8d",
+        "prepared": "d819b6c8ee84b25dfff8de9c4d3aa177041c70e0b637da5d2cbe4f1ad2b2ac8d"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/app/api/auth/phone/route.ts",
+      "sha256": {
+        "google_ack": null,
+        "accepted_batch1": "29aeec2d6bac6870b33b80ea85492eee64f34afca786eb795b65a9c4d0bcef7b",
+        "accepted_phone": "29aeec2d6bac6870b33b80ea85492eee64f34afca786eb795b65a9c4d0bcef7b",
+        "live": "29aeec2d6bac6870b33b80ea85492eee64f34afca786eb795b65a9c4d0bcef7b",
+        "prepared": "29aeec2d6bac6870b33b80ea85492eee64f34afca786eb795b65a9c4d0bcef7b"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/app/app/verify-phone/page.tsx",
+      "sha256": {
+        "google_ack": null,
+        "accepted_batch1": "ab6be1641b203a4f345c284788156f345a02e61f8173fc1a84df808ff76c3dd0",
+        "accepted_phone": "ab6be1641b203a4f345c284788156f345a02e61f8173fc1a84df808ff76c3dd0",
+        "live": "ab6be1641b203a4f345c284788156f345a02e61f8173fc1a84df808ff76c3dd0",
+        "prepared": "ab6be1641b203a4f345c284788156f345a02e61f8173fc1a84df808ff76c3dd0"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/components/public-phone-verification.tsx",
+      "sha256": {
+        "google_ack": null,
+        "accepted_batch1": "d7465c08ff9bbbbfaaa9dc2b86722165daa0afeff435ddae3175f12c2dd95614",
+        "accepted_phone": "d7465c08ff9bbbbfaaa9dc2b86722165daa0afeff435ddae3175f12c2dd95614",
+        "live": "d7465c08ff9bbbbfaaa9dc2b86722165daa0afeff435ddae3175f12c2dd95614",
+        "prepared": "d7465c08ff9bbbbfaaa9dc2b86722165daa0afeff435ddae3175f12c2dd95614"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/server/sms-budget-hook.ts",
+      "sha256": {
+        "google_ack": null,
+        "accepted_batch1": null,
+        "accepted_phone": null,
+        "live": "ad9986d8c61e5e021e91b9d57fee6041e68c18101b23398802890a08e050ab2d",
+        "prepared": "ad9986d8c61e5e021e91b9d57fee6041e68c18101b23398802890a08e050ab2d"
+      },
+      "batch1ToPreparedUnchanged": false,
+      "phoneToPreparedUnchanged": false,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/app/api/webhooks/auth-sms/route.ts",
+      "sha256": {
+        "google_ack": null,
+        "accepted_batch1": null,
+        "accepted_phone": null,
+        "live": "de31472a3cb5f03196a73b056ba7d03e9cd57684325210e0210f0a492591d34b",
+        "prepared": "de31472a3cb5f03196a73b056ba7d03e9cd57684325210e0210f0a492591d34b"
+      },
+      "batch1ToPreparedUnchanged": false,
+      "phoneToPreparedUnchanged": false,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/core/auth-readiness.ts",
+      "sha256": {
+        "google_ack": "8188fe0e48fb1f56616426fb6585b57dcab87c3473904318ec0cb0845086a1ce",
+        "accepted_batch1": "879ba3f54ecd1af111e1cb8ec0cd725bab1cbce00bddeff48eab3bcce1f780cf",
+        "accepted_phone": "879ba3f54ecd1af111e1cb8ec0cd725bab1cbce00bddeff48eab3bcce1f780cf",
+        "live": "879ba3f54ecd1af111e1cb8ec0cd725bab1cbce00bddeff48eab3bcce1f780cf",
+        "prepared": "879ba3f54ecd1af111e1cb8ec0cd725bab1cbce00bddeff48eab3bcce1f780cf"
+      },
+      "batch1ToPreparedUnchanged": true,
+      "phoneToPreparedUnchanged": true,
+      "liveToPreparedUnchanged": true
+    },
+    {
+      "file": "src/app/api/auth/route.ts",
+      "sha256": {
+        "google_ack": "89126ebfe6be30208079fbc0c9476877a21fa17d9fd1818867edb3fed6f2e76b",
+        "accepted_batch1": "77fe901c1ea5c8ffb75b90092eff3733dee382df6b40d0fdceb0d38d2f4ca5ab",
+        "accepted_phone": "77fe901c1ea5c8ffb75b90092eff3733dee382df6b40d0fdceb0d38d2f4ca5ab",
+        "live": "15ab6efc0387ff1b11421bebc7159abc6315d027a309a710623f2a0569e4ffb2",
+        "prepared": "9b9654c9a4d537f0b26846ce8e8b03837808b544f0ee50b6b7a2ba0fda8299f9"
+      },
+      "batch1ToPreparedUnchanged": false,
+      "phoneToPreparedUnchanged": false,
+      "liveToPreparedUnchanged": false
+    },
+    {
+      "file": "src/app/api/auth/public-member-setup/route.ts",
+      "sha256": {
+        "google_ack": null,
+        "accepted_batch1": "dedeefe38b8c7d6a1d75fdbbe823147f9b62d63d8f0a83d366c5befdd5efa2e4",
+        "accepted_phone": "dedeefe38b8c7d6a1d75fdbbe823147f9b62d63d8f0a83d366c5befdd5efa2e4",
+        "live": "bd1c4021ea9a8de249201620f706310b4ae6639270689972c2ad18061fc961ff",
+        "prepared": "bd1c4021ea9a8de249201620f706310b4ae6639270689972c2ad18061fc961ff"
+      },
+      "batch1ToPreparedUnchanged": false,
+      "phoneToPreparedUnchanged": false,
+      "liveToPreparedUnchanged": true
+    }
+  ],
+  "interpretation": {
+    "google": "Verifier/native contract unchanged since accepted consume fix. Ledger/reconciliation/runtime/routes/catalogue/odds unchanged since accepted Batch1. Earlier ledger guards already covered by retained database/hosted tests.",
+    "memberView": "Only member-commercial difference since Batch1 sets includeLegacy=false; retirement isolation evidence applies. Receipt/credit/refund methods unchanged.",
+    "phone": "Compare actual files, not release-folder dates. Existing phone UI/API/normalisation verification retained; new signed callback plus budget database must be bound to Production configuration.",
+    "scope": "File equality is not hosted configuration acceptance; database changes require their separate recorded evidence."
+  }
+}
