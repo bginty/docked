@@ -1,0 +1,48 @@
+EXACT OBSERVED RETENTION DIFFERENCE - APPROVAL REQUIRED BEFORE PROMOTION
+
+Manifest SHA-256: 7a35d0453881a2f6638f4679f15bc7282b2907d214eb685d2c573abe68fd83a8
+Source and original package: 78482f713fd93b6677f85b43c5c49cfa00acccde / a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39
+Candidate: dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE. Source, runtime package and SQL bytes unchanged.
+
+The two reviewed migrations committed successfully at 11:55:58 UTC and passed
+independent post-SQL verification. DO NOT apply them again. The original app
+988ea0ba / dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd remains live. Candidate acceptance
+passed: 11 anonymous checks and 17 authenticated read-only Owner/support checks.
+
+At 12:17 UTC the unchanged existing hourly NFL retention job purged the expired
+body of sports_feed.raw_revisions ID 31. It expired at 12:10:04.998379 UTC. Only
+body and purged_at changed. All provenance, original body_hash, rights reference,
+112 raw row identities and the other 111 rows are unchanged. This was the existing
+scheduler, not a deployment operation. An authenticated encrypted backup and
+read-only SQL reconstruction independently reproduce the entire prior table hash.
+The raw source payload is not a card, ownership or financial record. No card or
+lifetime supply is reclaimed. This does not renew source collection permission.
+
+The reviewed EXECUTION permits known scheduler bookkeeping. Purging payload
+content exceeds a bookkeeping-only interpretation, so this one exact difference
+is presented separately under the founder's material-drift instruction. No
+blanket exception, future purge, scheduler change or weakened drift guard.
+
+Three append-only routine SOURCE_REVIEW_EXPIRED refusals (3847 weekly, 3848 pbp,
+3849 rosters) separately match pre-existing payloads and unchanged schedules.
+Their previous audit rows, fixtures, source evidence and outcomes remain unchanged.
+Those existing collection refusals remain unresolved and are not a regression
+introduced by the candidate. No new source or sports functionality is authorised.
+
+Continuation after explicit acceptance: fresh encrypted backup, isolated restore
+and <=10-minute preflight; compare every protected table, financial/custody/supply,
+roles/MFA/retirement, schema/ACL and closed gate. Verify both migrations already
+installed; no SQL replay. Reuse the successful read-only staged acceptance unless
+a materially changed path invalidates it. Promote only the candidate above under
+the still-valid original approval. Original expiry is NOT extended by this addendum.
+After promotion verify alias/source/runtime, empty SMS/support tables, Owner reads
+and all customer assets. Conditional reviewed app/runtime rollback stays limited
+to the original app; never restore historical data or undo the source purge.
+
+Local restore tooling subsequently became unavailable; Docker returned HTTP500.
+This affects continuation readiness only. The successful pre-SQL isolated restore
+remains valid historical evidence. A new functioning restore must pass before
+promotion; the failure cannot be waived or replaced by an invented pass.
+
+All signup, SMS, payments, issuance, trading, competitions and Play publication
+remain excluded. No customer action or repeated acceptance programme required.

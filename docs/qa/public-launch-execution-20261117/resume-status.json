@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-17T12:10:23.613Z",
-  "state": "awaiting_readonly_candidate_owner_acceptance",
+  "at": "2026-11-17T12:45:38.268Z",
+  "state": "awaiting_exact_retention_baseline_approval",
   "source": "78482f713fd93b6677f85b43c5c49cfa00acccde",
   "packageSha256": "a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39",
   "liveSource": "988ea0ba905e91d3c1cdf0c5e18812849b138968",
@@ -15,18 +15,31 @@
   "approvalStillValid": true,
   "conservativeExpiryUtc": "2026-11-18T11:20:00Z",
   "browserFailure": null,
-  "hostedAcceptance": "Candidate build passed; narrow authenticated read-only acceptance pending",
+  "hostedAcceptance": "Passed: 11 anonymous and 17 authenticated read-only Owner checks",
   "backupRun": "20261117h",
   "backupProcessSession": 49145,
   "backupStatus": "authenticated_restore_passed",
   "publicLaunch": "NO-GO",
-  "nextAction": "Finish candidate anonymous checks and new public Owner read-only acceptance, fresh drift, then promote exact approved candidate",
+  "nextAction": "After retention addendum approval, fresh encrypted backup/isolated restore and <=10-minute preflight, then promote same candidate; no SQL replay",
   "history": [
     {
       "at": "2026-11-17T11:32:22.624731+00:00",
       "state": "awaiting_existing_owner_browser_access",
       "browserFailure": "CDP focus-emulation timeout twice; native browser fallback stopped by Computer Use because active URL could not be verified as allowed. No further computer-use attempted."
+    },
+    {
+      "at": "2026-11-17T12:10:23.613Z",
+      "state": "awaiting_readonly_candidate_owner_acceptance"
+    },
+    {
+      "at": "2026-11-17T12:44:33.800Z",
+      "state": "awaiting_exact_retention_baseline_approval"
     }
   ],
-  "currentCandidate": "dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE"
+  "currentCandidate": "dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE",
+  "manualFounderCheckNeeded": false,
+  "retentionAddendumSha256": "7a35d0453881a2f6638f4679f15bc7282b2907d214eb685d2c573abe68fd83a8",
+  "retentionAddendumApproved": false,
+  "localDockerApiRecovered": true,
+  "freshRestoreRequired": true
 }

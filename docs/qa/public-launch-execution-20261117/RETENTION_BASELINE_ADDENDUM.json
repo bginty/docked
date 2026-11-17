@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "scope": "Accept only the already-observed source-retention difference before resuming the already-approved exact application promotion",
+  "source": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "packageSha256": "a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39",
+  "candidate": "dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE",
+  "rawRevision": {
+    "at": "2026-11-17T12:33:38.668Z",
+    "backupArchiveSha256": "a7ae7074b799043b7ec7562c31988e55207502573a0b28a4c747e2df3e029ec5",
+    "plaintextWritten": false,
+    "productionWrites": 0,
+    "table": "sports_feed.raw_revisions",
+    "rowId": 31,
+    "changedFields": [
+      "body",
+      "purged_at"
+    ],
+    "beforeBodyPresent": true,
+    "afterBodyNull": true,
+    "expiresAt": "2026-11-17 12:10:04.998379+00",
+    "purgedAt": "2026-11-17T12:17:00.112134+00:00",
+    "originalBodySha256": "d762bcc6981ef26f0ff38a4480f012eb92c8c3abb0958c4b23d41453b9fa447c",
+    "afterRowSha256": "635c3dedad69c545cd2332284cdbcc2caf0399956668496a5c4f85689351603c",
+    "metadataUnchanged": true,
+    "allOtherRowsUnchanged": true,
+    "reconstructedTableEqualsAuthenticatedBackup": true,
+    "tableCount": 112
+  },
+  "existingJob": {
+    "name": "docked-beta-nfl-raw-expiry",
+    "schedule": "17 * * * *",
+    "commandSha256": "f6162e49ff89e52f78e4cfcc1d011b29d8977fc9325a3a31a7f83951251d9e51",
+    "jobId": "1",
+    "runId": "196708",
+    "start": "2026-11-17T12:17:00.097Z",
+    "end": "2026-11-17T12:17:00.282Z",
+    "status": "succeeded",
+    "affectedRows": 1
+  },
+  "applicationBytesChanged": false,
+  "migrationsAlreadyApplied": [
+    "20261116215032",
+    "20261117091440"
+  ],
+  "migrationsToApply": [],
+  "freshBackupAndIsolatedRestoreRequired": true,
+  "freshPreflightMaximumMinutes": 10,
+  "existingApprovalExpiry": "2026-11-18T11:20:00Z",
+  "noFuturePurgeAllowance": true,
+  "noSourcePermissionRenewal": true,
+  "noProductionDataRestoration": true,
+  "noPublicActivation": true
+}

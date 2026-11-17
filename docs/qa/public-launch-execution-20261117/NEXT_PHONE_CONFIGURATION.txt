@@ -1,0 +1,78 @@
+PRODUCTION PHONE CONFIGURATION - PREPARED, NOT AUTHORISED OR EXECUTED
+
+Reuse final-launch-evidence-20261117/SMS_DECISION.txt and its tariff evidence.
+The accepted genuine Preview delivery/code/reload test remains accepted. The A$1
+reservation has been conservatively costed; no pending-invoice gate or repeated
+Preview SMS programme. Public budget stays A$50 for seven days, no auto top-up.
+
+Prerequisite: promote and verify the approved 78482f71 candidate. Its two exact
+SMS-budget/public-support migrations are already installed; never replay them.
+Existing Owner session, retirement, billing, pack, Android and vault evidence is
+retained. This preparation does not authorise any Production configuration write.
+
+Exact target and private material
+- Supabase project pojoymtniryarxxunyvz; Vercel project
+  prj_l0rpVDPRuIRp9UcBUkudeyUK5yST, Production only.
+- Auth signed hook URI https://docked.com.au/api/webhooks/auth-sms.
+- Existing approved Twilio account, token and Messaging Service come only from
+  the restricted local readiness file already completed by the founder.
+  No replacement service, sender, credential entry or token rotation is required.
+- Create one new hook signing secret after separate configuration approval,
+  matching Auth's supported v1,whsec_ form and DOCKED_SMS_HOOK_SECRET. This is not
+  a recovery-key change. Preserve all existing project secret bindings.
+- Bind only server-side DOCKED_TWILIO_ACCOUNT_SID, DOCKED_TWILIO_AUTH_TOKEN,
+  DOCKED_TWILIO_MESSAGE_SERVICE_SID, DOCKED_SMS_HOOK_SECRET and the exact approved
+  DOCKED_SMS_BUDGET_WINDOW / DOCKED_PUBLIC_PHONE_POLICY_REFERENCE. No public prefix.
+
+Disabled configuration stage
+Keep Auth external_phone_enabled=false, hook_send_sms_enabled=false and
+disable_signup=true. Six digits, 300-second expiry, resend >=60 seconds,
+sms_autoconfirm=false and no built-in test numbers. Retain individual Owner TOTP.
+Application delivery flags remain OFF on the live alias. Read back only the
+reviewed configuration delta, secret-binding metadata and private fingerprints.
+
+Protected zero-send verification
+The endpoint exits before signature verification while its application flags
+are OFF; a 503 alone must NOT be claimed as testing the signed-hook integration.
+To test beyond that outer guard, separately approve a protected candidate with
+DOCKED_PUBLIC_CUSTOMERS/DOCKED_PUBLIC_PHONE_OTP/DOCKED_SMS_BUDGET_HOOK_ENABLED=true,
+all registration/commerce gates false, Auth Phone/hook OFF and no enabled budget
+window. The database denies every send. Test invalid signature, missing window
+and retired/QA denial without impersonating an Owner or using a real OTP/number.
+Record independent zero attempts and zero provider messages. Reuse existing
+local signature/concurrency tests; no broad acceptance programme.
+
+The remaining real boundary, if still uncovered after those checks
+Actual Production Auth -> signing key/payload -> Vercel -> budget transaction ->
+Twilio -> Auth verification/registry persistence has not yet been exercised.
+Preview used built-in Twilio. A synthetic signed callback does not establish that
+Auth invokes this new hook correctly or within its five-second timeout. Failure
+blocks onboarding. The proposed minimum is ONE deliberate founder-only attempt
+in installed v31, A$1 maximum reserved, <=2 hours, no automatic retry. It requires
+separate authority, not the public A$50 operating-budget decision.
+
+Prepared shutdown correction
+The old phone-window-shutdown helper is specifically bounded to the earlier
+Preview six-attempt/A$5 programme and closes only Phone. It must not be reused
+unchanged for this one-attempt signed-hook session. New independently tested
+scripts/lib/production-phone-window-shutdown.mjs validates the exact Production
+project, one founder, one attempt, 100 cents and <=2 hours. It independently closes
+the named budget window and both Auth Phone/hook, retains all attempts/reservations,
+never sends/enables anything, and refuses to label uncertain closure successful.
+Eight isolated tests pass, including either service outage and lost shutdown
+acknowledgement. This is operator preparation, not a hosted/provider acceptance.
+
+Still to freeze before requesting that separate configuration authority
+Bind the adapter that reads/closes the exact budget window, the private founder
+identity fingerprint, actual start/deadline, approved configuration/secret metadata,
+protected staging procedure and independently verified OFF-only recovery into
+one exact operator package. Do not execute an unfrozen adapter or enlarge the cap.
+The existing SQL expiry and 100-cent reservation remain hard independent controls
+even if the operator host fails. No public launch follows automatically.
+
+Final coordinated launch remains the existing COORDINATED_GO.txt scope, after
+these genuine remaining controls pass. No registration-only alternative, new
+inventory import, six-checkout retest, Android build or Google resubmission.
+
+Provider documentation reviewed 17 November 2026:
+https://supabase.com/docs/guides/auth/auth-hooks/send-sms-hook

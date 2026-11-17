@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-17T12:45:38.272Z",
+  "command": "node --test scripts/production-phone-window-shutdown.test.mjs",
+  "passed": 8,
+  "failed": 0,
+  "isolated": true,
+  "providerRequests": 0,
+  "productionWrites": 0,
+  "files": [
+    {
+      "file": "scripts/lib/production-phone-window-shutdown.mjs",
+      "sha256": "279c5950718db29e435bad3b6865330debfa5f7244514361491f7b79b813098c"
+    },
+    {
+      "file": "scripts/production-phone-window-shutdown.test.mjs",
+      "sha256": "72ff04fe7422e89a41bbbd3d689561a6f85008ce5d879b4b09e39d9974259a12"
+    }
+  ],
+  "coverage": [
+    "one attempt/100-cent/project scope",
+    "expiry preserves charged reservations",
+    "manual stop and changed safety settings",
+    "database outage still closes Auth",
+    "Auth outage still closes database window",
+    "lost closure acknowledgement",
+    "expired or overlong attendance rejected",
+    "Phone requires hook and wrong-window closure denied"
+  ]
+}

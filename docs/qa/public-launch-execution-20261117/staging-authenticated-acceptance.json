@@ -1,0 +1,51 @@
+{
+  "at": "2026-11-17T12:13:58.798Z",
+  "source": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "deployment": "dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE",
+  "authenticatedAccess": true,
+  "ownSession": true,
+  "mfaAal2": true,
+  "incidentsRead": true,
+  "publicOperationsRead": true,
+  "publicSupportRead": true,
+  "noBetaApiRequests": true,
+  "productionWrites": 0,
+  "businessMutations": 0,
+  "authAndRateBookkeepingPossible": true,
+  "transport": "Origin-scoped CUA CDP Runtime.evaluate, GET-only fetch with Vercel dpl query pin; no credentials read or exported",
+  "manualFounderCheckNeeded": false,
+  "note": "Existing Owner MFA enforced by APIs; no repeated MFA challenge or new user attestation claimed. productionWrites denotes no business mutation, not Auth refresh or read-rate bookkeeping.",
+  "operationsSha256": "6fbde87a1dbff70a4552144508e1bb60a1b1685d9cf4913537b2fcaef63dd429",
+  "incidentsSha256": "0f30cc31721c2574da175d6781363c194eed7e630940233ed87a578b4759637f",
+  "csvSha256": "75531de60fe43611fbbaaf6ec4bb9239baa31b76e575782bac840dc81f019dc5",
+  "lookup": [
+    {"category":"members","searchPassed":true,"detailPassed":true,"detailSha256":"b3e298dd32ea75d82e9194a555a13729d3c5e80da6777ac30507650ce5dfa138"},
+    {"category":"cards","searchPassed":true,"detailPassed":true,"detailSha256":"873c24f76c668ac005329a06075340bc9d2d5c0c3fd50445d3fc66dd0689ee97"},
+    {"category":"transactions","searchPassed":true,"empty":true,"absentDetailCorrectly404":true}
+  ],
+  "pages": [
+    {"path":"/admin/incidents","rendered":true,"sha256":"df5e61df255ed2fc6879a843e9bc51281458d22a8694bb1494ef46c0fc7bf874"},
+    {"path":"/admin/operations","rendered":true,"sha256":"a73b8ab95eaa3a785f2c2ea4f0881877f7d62d8403f7fc43c39def9cf5303380"},
+    {"path":"/admin/workspace/users","rendered":true,"sha256":"a5672d813d4dd7b5d54167f182d0a926a21fdcb5514c6199786e43f758a256c4"},
+    {"path":"/admin/workspace/payments","rendered":true,"sha256":"67818242a91f5de38fa15fde30de83837d686eee5a36b3130ad50a18bb0a75ef"}
+  ],
+  "checks": [
+    {"path":"/api/beta-release","status":404,"elapsedMs":194},
+    {"path":"/api/app-session","status":200,"elapsedMs":501},
+    {"path":"/api/admin/operations","status":200,"elapsedMs":1194},
+    {"path":"/api/admin/operations","format":"csv","status":200,"elapsedMs":438},
+    {"path":"/api/admin/incidents","status":200,"elapsedMs":191},
+    {"path":"/admin/incidents","status":200,"elapsedMs":419},
+    {"path":"/admin/operations","status":200,"elapsedMs":535},
+    {"path":"/admin/workspace/users","status":200,"elapsedMs":363},
+    {"path":"/admin/workspace/payments","status":200,"elapsedMs":234},
+    {"path":"/api/admin/search","status":200,"elapsedMs":311},
+    {"path":"/api/admin/record","status":200,"elapsedMs":246},
+    {"path":"/api/admin/search","status":200,"elapsedMs":254},
+    {"path":"/api/admin/record","status":200,"elapsedMs":250},
+    {"path":"/api/admin/search","status":200,"elapsedMs":273},
+    {"path":"/api/admin/record","status":404,"elapsedMs":245},
+    {"path":"/app","status":200,"elapsedMs":163,"streamedRedirectToIncidents":true},
+    {"path":"/api/beta-release","status":404,"elapsedMs":155}
+  ]
+}

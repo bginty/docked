@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-17T12:41:38.979Z",
+  "readOnly": true,
+  "notPromotionClearance": true,
+  "source": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "installedMigrations": [
+    "20261116215032",
+    "20261117091440"
+  ],
+  "protectedInvariantComparisonPassed": true,
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custodyRecords": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "originalIdentitiesMfaAndRetirementUnchanged": true,
+  "rolesAndPermissionsUnchanged": true,
+  "emptyNewControlTables": 4,
+  "changedTables": [
+    "auth.refresh_tokens",
+    "auth.sessions",
+    "auth.users",
+    "cron.job_run_details",
+    "private.docked_mail_scheduler",
+    "private.rate_limits",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.raw_revisions",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "retentionDifferenceRequiresApproval": true
+}
