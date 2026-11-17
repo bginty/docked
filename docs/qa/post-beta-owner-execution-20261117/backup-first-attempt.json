@@ -1,0 +1,10 @@
+{
+  "run": "20261117f",
+  "result": "Export incomplete; not accepted as a backup",
+  "cause": "pg_dump COPY of credits_sandbox.history lost its TLS connection",
+  "encryptedPartialRetained": true,
+  "manifestAuthenticated": false,
+  "restoreAttempted": false,
+  "productionWrites": 0,
+  "nextStep": "One bounded retry with a fresh exported snapshot; no change to application, backup encryption, integrity requirements or Production data"
+}

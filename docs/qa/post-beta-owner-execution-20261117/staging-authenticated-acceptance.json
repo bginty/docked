@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-17T07:52:04.674Z",
+  "source": "988ea0ba905e91d3c1cdf0c5e18812849b138968",
+  "deployment": "dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd",
+  "method": "Founder-run same-origin deployment-pinned GETs; console proof and independent CDP response witness",
+  "authenticatedAccess": true,
+  "ownSession": true,
+  "mfaAal2": true,
+  "mfaExplanation": "Existing AAL2 session enforced by the deployed Owner API; no fresh authenticator challenge claimed",
+  "incidentsRead": true,
+  "ownerPageRendered": true,
+  "incidentReportSha256": "0f30cc31721c2574da175d6781363c194eed7e630940233ed87a578b4759637f",
+  "appRedirect": "Streamed NEXT_REDIRECT to /admin/incidents",
+  "fantasyRedirect": {"status":307,"location":"/admin/incidents"},
+  "noBetaApiRequests": true,
+  "networkWitnessComplete": true,
+  "noBetaApiRequestScope": "The actual read-only fetch session; full client/mobile navigation is a post-promotion check",
+  "timingsMs": {"session":439,"incidentApi":715,"incidentHtml":479,"appEntry":161,"oldFantasyEntry":526},
+  "productionWrites": 0,
+  "writesMeaning": "No requested business/account-administration/incident mutations. Normal Auth session refresh must be reconciled separately.",
+  "physicalAndroid": "Pending",
+  "barryOwnInteractiveSession": "Pending; isolated role/MFA tests and original Production identity/MFA records verified"
+}

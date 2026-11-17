@@ -1,0 +1,96 @@
+DOCKED — OWNER LOGIN FIX DEPLOYED, 17 NOVEMBER 2026
+
+Result
+------
+Approved application 988ea0ba905e91d3c1cdf0c5e18812849b138968 was promoted
+to docked.com.au as dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd. Vercel's domain
+lookup and independent live release checks returned the candidate. Package
+a771b9425bebc0987433038b26662c266d122b2bc6e24fdb984a43b67c9618c9
+remained unchanged. No SQL, role, account, environment or launch activation was
+performed. No rollback was needed. Public launch remains NO-GO.
+
+Cause and correction
+--------------------
+Completed onboarding sent retained Owners into retired beta gameplay. Admin
+startup did not release the loading overlay, global sport loading touched beta
+routes, and login/MFA/native return paths did not consistently support incidents.
+Rejected refresh cookies also needed narrow recovery handling. The exact approved
+fix routes verified post-beta Owners through existing MFA to administration,
+releases admin startup, avoids beta background calls and clears only definitively
+rejected browser-session cookies. It does not restore beta access or assets.
+
+Production protection
+---------------------
+Authenticated AES-256-GCM backup captured 07:29:13Z; isolated restore verified
+07:32:04Z, network disabled, no ports and cron disabled. All 572 protected tables
+matched. Two unlogged network transport tables were excluded from durable-record
+comparison. No migrations were replayed. The initial backup's interrupted TLS
+stream was rejected, and one fresh bounded retry succeeded.
+
+Fresh preflight at 08:01:02Z passed before promotion. Database postflight also
+passed. Definitions 6,540; lifetime-issued limited copies 918; custody records
+936. These are observed counts, not reset targets. Wallet/custody digests,
+financial journals, receipts, holds, schema, functions, RLS/roles and permissions
+were unchanged. No duplicate serial, supply mismatch or unbalanced journal.
+
+Both original Owner identities, individual verified MFA and Full Owner roles
+were preserved. Three retired customers remain denied with zero sessions; QA
+remains excluded. Beta pack access is denied for all six historical identities.
+Only independently reconciled scheduler bookkeeping and normal refreshes of the
+founder's existing AAL2 session differed from the backup. No unexplained drift.
+
+Runtime comparison preserved 97 explicit values, seven readable inherited values,
+18 Production bindings and five inherited write-only secret references. Secret
+values were not falsely claimed readable. Only truthful deployment/source metadata
+changed. No registration, SMS, payments, issuance, trading, prize, withdrawal or
+deletion activation; NBA hidden and six competitions disabled Practice. Play was
+not touched.
+
+Actual acceptance
+-----------------
+Pre-existing isolated verification: 29 targeted tests, two mobile component cases,
+lint, TypeScript and full build. The hosted build was READY; eight anonymous
+security checks passed before and after promotion.
+
+At 07:52Z the founder ran the reviewed read-only script using his own session.
+Console and Network evidence independently confirmed exact candidate provenance,
+existing AAL2 enforcement, incident API/page access and both entry redirects.
+No new MFA challenge is claimed. Single observed staging reads: app-session
+439ms, incident API 715ms and incident HTML 479ms; these are not p50/p95 or
+physical-device measurements. CLI smoke timings include CLI overhead.
+
+After promotion, genuine Chrome navigation from /app and /fantasy/play reached
+/admin/incidents. The historical incident audit was visible, the startup overlay
+cleared, and mobile navigation/account links worked at 412x915. Complete captured
+network evidence showed zero /api/sports-beta or /api/test-wallet requests and
+zero JavaScript exceptions. No incident actions, email dispatches or purchases
+were performed. Temporary viewport settings were reset.
+
+Acceptance limits and next step
+------------------------------
+Physical mobile/installed-v31 confirmation was requested from the founder after
+the successful live browser checks. At report preparation that response remains
+pending. Barry's own interactive login and a genuine fresh cold login are not
+claimed; original identity/MFA/Owner and isolated authorization checks passed.
+Do not impersonate either Owner or recreate retired sessions to demonstrate them.
+
+The only current user action for this fix is to reopen Docked on the affected
+phone, visit /app and complete existing login/MFA if prompted. Do not record a
+drill or mutate incidents. Other public-runtime/SMS/commercial work remains a
+separate reviewed package and final launch approval.
+
+Evidence
+--------
+AUTHORITY.json; backup-restore.json; preflight.json; promotion-ready.json;
+deployment-promoted.json; application-postflight.json; postflight.json;
+staging-authenticated-acceptance.json; production-anonymous-smoke.json;
+live-owner-browser.json; live-owner-mobile.jpg. STAGING_NOTES.txt records local
+verification-tool corrections without concealing failed attempts.
+
+Recovery
+--------
+Only conditional application rollback to retirement-aware 9e57c094 / deployment
+dpl_ZNUTkFD88udQGYcdnJ8eJaUZ5QBq is authorised by the reviewed package, after
+re-verifying containment/runtime/schema. It would restore the known landing bug.
+Never restore a Production database snapshot, retired UUID, session, balance,
+card or serial. Keep authenticated encrypted backup and private evidence secure.

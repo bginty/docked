@@ -1,0 +1,45 @@
+Approved exact source 988ea0ba / package a771b942 is staged as
+dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd. Hosted build READY; not promoted.
+
+Backup attempt 20261117f lost TLS during pg_dump; its encrypted partial is not
+accepted. Bounded fresh retry 20261117g succeeded, authenticated and restored
+without network/cron. All 572 protected tables matched. No migrations replayed.
+
+The local read-only drift helper initially compared JSON object key order rather
+than count/hash values against the backup manifest. Corrected that comparison;
+no application or database bytes changed. Final preflight passed all 572 tables,
+schema/roles/functions and customer assets, with only independently verified
+scheduler bookkeeping since the backup. Prior changes since retirement are
+founder Auth login/MFA/refresh activity, independently reconciled; no credential,
+identity, privilege or customer-asset change.
+
+Anonymous smoke initially expected HTTP 307 for /app. Next streams this redirect
+as HTTP 200 with an explicit meta refresh and NEXT_REDIRECT to /app/login. The
+actual HTML was inspected. The harness now requires that exact login redirect
+when status is 200; all other status/denial checks remain. Eight hosted checks
+passed. Reported command timings include CLI overhead, not application latency.
+
+Vercel's documented skew protection does not pin address-bar document navigation
+using ?dpl. That observation correctly showed the old live source. A normal HTTP
+fetch with the identical deployment pin independently returned the exact candidate
+source/ID. No routing setting or origin/authentication guard was changed.
+Source: https://vercel.com/docs/skew-protection
+
+The founder's own read-only fetch check passed at 07:52 UTC; the console result
+and actual Network redirect were independently observed. Full live navigation
+was subsequently verified after promotion (live-owner-browser.json).
+Browser raw-CDP Network.loadNetworkResource is unsupported; no credential export,
+cookie transplant or bypass was attempted. The reviewed local JS uses same-origin
+GETs only and validates source before and after. It does not change incidents or
+send notifications. Normal provider session maintenance must be reconciled.
+
+The final pre-promotion database check must be fresh (<=10 minutes), encrypted
+backup <=1 hour and approval valid. No promotion without authenticated evidence.
+Installed Android and Barry's own interactive session must be reported separately
+from local fixtures. All public and commercial gates stay closed. NO-GO.
+
+The final preflight additionally reconciled two routine refresh rotations in
+the founder's existing AAL2 session, preserving parent chains and all unrelated
+Auth rows. A Windows file-URL import correction was needed in the local audit
+helper; the frozen application and approval bytes were unchanged. No drift guard
+was weakened. The promotion-ready check passed before the Vercel promotion.

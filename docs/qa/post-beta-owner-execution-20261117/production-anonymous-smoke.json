@@ -1,0 +1,69 @@
+{
+  "at": "2026-11-17T08:02:14.712Z",
+  "source": "988ea0ba905e91d3c1cdf0c5e18812849b138968",
+  "packageSha": "a771b9425bebc0987433038b26662c266d122b2bc6e24fdb984a43b67c9618c9",
+  "deployment": "dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd",
+  "target": "production",
+  "nodeVersion": "22.x",
+  "checks": [
+    {
+      "route": "/api/beta-release",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 1824,
+      "passed": true
+    },
+    {
+      "route": "/app/login",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 1115,
+      "passed": true
+    },
+    {
+      "route": "/app",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 542,
+      "passed": true
+    },
+    {
+      "route": "/admin/incidents",
+      "method": "GET",
+      "status": 307,
+      "elapsedMs": 140,
+      "passed": true
+    },
+    {
+      "route": "/api/app-session",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 532,
+      "passed": true
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 99,
+      "passed": true
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 198,
+      "passed": true
+    },
+    {
+      "route": "/api/auth/phone",
+      "method": "POST",
+      "status": 403,
+      "elapsedMs": 91,
+      "passed": true
+    }
+  ],
+  "anonymousSmoke": true,
+  "authenticatedReceiptRecovery": false,
+  "productionPerformanceMeasured": false
+}

@@ -1,0 +1,123 @@
+{
+  "at": "2026-11-17T07:36:09.175Z",
+  "mode": "preflight",
+  "protectedTables": 572,
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custodyRecords": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "identities": [
+    {
+      "classification": "owner",
+      "originalIdentityPresent": true,
+      "retired": false,
+      "allowed": true,
+      "mfa": true,
+      "fullOwner": true,
+      "betaPackAccess": false
+    },
+    {
+      "classification": "customer",
+      "originalIdentityPresent": true,
+      "retired": true,
+      "allowed": false,
+      "mfa": false,
+      "fullOwner": false,
+      "betaPackAccess": false,
+      "retiredSessionsAbsent": true
+    },
+    {
+      "classification": "customer",
+      "originalIdentityPresent": true,
+      "retired": true,
+      "allowed": false,
+      "mfa": false,
+      "fullOwner": false,
+      "betaPackAccess": false,
+      "retiredSessionsAbsent": true
+    },
+    {
+      "classification": "system",
+      "originalIdentityPresent": true,
+      "retired": false,
+      "allowed": false,
+      "mfa": false,
+      "fullOwner": false,
+      "betaPackAccess": false
+    },
+    {
+      "classification": "customer",
+      "originalIdentityPresent": true,
+      "retired": true,
+      "allowed": false,
+      "mfa": false,
+      "fullOwner": false,
+      "betaPackAccess": false,
+      "retiredSessionsAbsent": true
+    },
+    {
+      "classification": "owner",
+      "originalIdentityPresent": true,
+      "retired": false,
+      "allowed": true,
+      "mfa": true,
+      "fullOwner": true,
+      "betaPackAccess": false
+    }
+  ],
+  "unchangedSchemaRolesMfaAndCustomerAssets": true,
+  "changesSinceRetirement": [
+    "auth.mfa_amr_claims",
+    "auth.mfa_challenges",
+    "auth.mfa_factors",
+    "auth.refresh_tokens",
+    "auth.sessions",
+    "auth.users",
+    "beta_private.rate_limits",
+    "cron.job_run_details",
+    "private.docked_mail_scheduler",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "productionWrites": 0,
+  "backup": {
+    "authenticated": true,
+    "capturedAt": "2026-11-17T07:29:13.479Z",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "bytes": 140837110,
+    "plaintextSha256": "426fe07babc709a2b7d5627c206a43efd02d01f5397da6ac080e073973e6ac74",
+    "tableCount": 574,
+    "plaintextWritten": false
+  },
+  "restored": true,
+  "protectedRecordsUnchanged": true,
+  "scheduler": {
+    "cronRowsAdded": 65,
+    "weeklyZeroIssuanceRowsAdded": 32,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true
+  },
+  "appendedNflPendingReview": 1,
+  "changedTablesSinceBackup": [
+    "cron.job_run_details",
+    "private.docked_mail_scheduler",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "nonSchedulerDrift": 0,
+  "preflightPassed": true
+}

@@ -1,0 +1,80 @@
+{
+  "at": "2026-11-17T07:23:01.172Z",
+  "baseline": "Completed retirement postflight",
+  "observation": "2026-11-17T07:17:19.011Z",
+  "founderOnly": true,
+  "originalPasswordsIdentitiesRolesMfaSecretsUnchanged": true,
+  "retiredCustomersStillDenied": true,
+  "changes": [
+    {
+      "table": "users",
+      "kind": "updated",
+      "fields": [
+        "updated_at",
+        "last_sign_in_at"
+      ]
+    },
+    {
+      "table": "sessions",
+      "kind": "updated",
+      "fields": [
+        "updated_at",
+        "refreshed_at",
+        "ip_hash"
+      ]
+    },
+    {
+      "table": "sessions",
+      "kind": "added",
+      "founderOnly": true
+    },
+    {
+      "table": "refresh_tokens",
+      "kind": "updated",
+      "fields": [
+        "revoked",
+        "updated_at"
+      ]
+    },
+    {
+      "table": "refresh_tokens",
+      "kind": "added",
+      "founderOnly": true
+    },
+    {
+      "table": "refresh_tokens",
+      "kind": "added",
+      "founderOnly": true
+    },
+    {
+      "table": "refresh_tokens",
+      "kind": "added",
+      "founderOnly": true
+    },
+    {
+      "table": "mfa_amr_claims",
+      "kind": "added",
+      "founderOnly": true
+    },
+    {
+      "table": "mfa_amr_claims",
+      "kind": "added",
+      "founderOnly": true
+    },
+    {
+      "table": "mfa_challenges",
+      "kind": "added",
+      "founderOnly": true
+    },
+    {
+      "table": "mfa_factors",
+      "kind": "updated",
+      "fields": [
+        "updated_at",
+        "last_challenged_at_hash"
+      ]
+    }
+  ],
+  "hostedLoginClaimed": false,
+  "productionWrites": 0
+}
