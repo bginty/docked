@@ -1,0 +1,67 @@
+NEXT FOUNDER ACTIONS — DEPLOYMENT COMPLETE, ACCOUNTS UNCHANGED
+
+1. Notice timing and delivery (not yet approved or sent)
+Provide the proposed Sydney end-of-beta date/time. The exact reviewed text is
+../clean-transition-20261117/CUSTOMER_NOTICE.txt, SHA-256:
+9cb6bd4ca4200748ea428ea3a42b5ce576e70fcc88f334f5417a447881577f2b.
+Delivery is to the THREE verified ordinary beta customers only. The retained
+Owners and internal QA identity must not receive a misleading retirement notice.
+Private drafts/recipients are prepared from the frozen identity manifest, never
+from display names. No email, phone, password or full customer UUID is published
+in this report. A timestamp cover and exact recipient/message review must be
+finalised before requesting delivery approval. No retirement time is invented.
+Private draft location: private-data/clean-deployment-20261117/customer-notice-drafts/.
+Those .eml files include an explicit internal draft cover and are not send-ready.
+Use the authorised business mailbox; do not widen the founder-only operational
+alert recipient list. Keep actual delivery evidence privately and review any
+specific protected-entitlement claim before that account can be retired.
+
+2. Separate exact account operation (not approved by the deployment)
+Reviewed request: ../clean-transition-20261117/ACCOUNT_RETIREMENT_APPROVAL.txt
+Source: 9e57c094cb7b4af02277e191a2e64fa2e6b22c6b
+Account package: c569dcfeea5f0e8fbebcab7b14dc03674aca7ffbd6c8581d4d3287a5108f2855
+Private cohort digest:
+9ae298d2b6c16c48c2901b021db443df48f160d819ab361bf02487d5a45823c7
+
+Retain Founder 623d1e69... as Owner and Barry ef641248... with his original
+identity/MFA, promoting the latter from Admin to the existing Full Owner role.
+Retire Luke 9fa5cdbb..., Brenton d6ab4838... and other invited customer eea25d64....
+Preserve QA e56880e0... independently, with no public commercial participation.
+External Cloud/Supabase/Play/Twilio/vault rights are not expanded.
+
+Execution prerequisites:
+- Approved notice actually delivered, notified time reached, no unresolved
+  specific entitlement exception. Publication of the policy is not delivery.
+- Separate exact account-package approval, maximum 24 hours, still valid at
+  every irreversible Auth call. No source/package/cohort mismatch.
+- Fresh authenticated encrypted backup <=1 hour and verified isolated restore;
+  fresh preflight <=10 minutes; current legitimate activity reconciled.
+- Installed schema/source verified; exact account identities, roles, both Owners'
+  individual MFA and reviewed GoTrue v2.198.0 verified again.
+- Commercial balances/cards/packs/lineups empty; launch and delivery gates closed;
+  no competing release, invitation/grant or retirement operator.
+
+Do NOT reapply today's migration. Run the reviewed contain -> retire -> complete
+sequence with checkpoint readback and renewed preflight at each boundary.
+Containment blocks beta privileges and assets; supported soft deletion is limited
+to the three customer Auth identities, freeing their identifiers. Historical
+UUID references, cards, custody, serials, TEST receipts, refunds and recovery holds
+remain. No replacement accounts are created. They register themselves later with
+new UUIDs, fresh email/Australian-phone verification and explicit commercial consent.
+Brenton's California beta exception confers no Australian public eligibility.
+
+Supabase soft deletion is irreversible. No ordinary undelete or automatic app
+rollback after containment. On timeout, independently read the same UUID before
+retrying; preserve containment and audit checkpoints. After the first deletion,
+recovery is forward-only. Never reclaim serials, zero old journals or restore an
+old database over later activity. See the reviewed EXECUTION.txt and RECOVERY.txt.
+
+3. Participation after the account operation
+Founder and Barry each verify their own login/MFA and Owner access and accept
+commercial notices themselves. Both start with zero usable commercial assets.
+Public registration remains closed until final coordinated paid-launch approval.
+
+4. Final public configuration and GO
+See PAID_LAUNCH_SEQUENCE.txt for the remaining inactive SMS-budget/public runtime
+package, bounded new-Production-path acceptance and final publication/paid-packs
+approval. Do not repeat already accepted billing, SMS, identity, vault or GST work.

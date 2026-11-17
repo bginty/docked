@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-17T03:14:26.632Z",
+  "databaseSource": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b",
+  "warningCodes": [
+    "auth_leaked_password_protection"
+  ],
+  "warningsUnchanged": true,
+  "newWarnings": 0,
+  "migrationVersion": "20261117001019",
+  "migrationAndOperatorHashesIndependentlyMatched": true,
+  "transitionRegistryRows": 0,
+  "softRetiredAuthUsers": 0,
+  "liveRoles": {
+    "owner": 1,
+    "admin": 1
+  },
+  "verifiedMfaFactors": 2
+}

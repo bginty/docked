@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-17T02:48:31.990Z",
+  "passed": true,
+  "isolated": true,
+  "productionWrites": 0,
+  "existingRowsUnchanged": true,
+  "rollbackVerified": true,
+  "protectedTables": 568,
+  "files": [
+    {
+      "path": "supabase/migrations/20261117001019_clean_commercial_account_transition.sql",
+      "sha256": "74d8a48be8897435e8ef53734117861c9072495a0fb5d069027bdcefbdf33aa4"
+    },
+    {
+      "path": "config/operations/clean-commercial-transition.prepared.sql",
+      "sha256": "857ee8823c3b2b0d48bcc5ad419feefc8f81d089ed34242c4fdbd6a28ff0b111"
+    }
+  ],
+  "limited": 918,
+  "definitions": 6540,
+  "policyCount": 436,
+  "betaAccounts": 6,
+  "nonSuperuser": true,
+  "registryRows": 0
+}

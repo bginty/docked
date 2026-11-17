@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-17T03:17:16.952Z",
+  "source": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b",
+  "deployment": "dpl_ZNUTkFD88udQGYcdnJ8eJaUZ5QBq",
+  "authenticatedAccess": true,
+  "existingReceiptRecovered": true,
+  "ownSession": true,
+  "ownerMfaGuardPassed": true,
+  "memberSha256": "f0ebb58f5db0391f39d3d5eca611fa218327c5a8663f1e4050d8727f81417827",
+  "method": "Genuine founder Chrome session; same-origin authenticated GET with Vercel deployment pin, candidate identity checked before and after",
+  "receiptScope": "Every returned OPENED receipt with cards; each receipt checked for unique card IDs. Existing NFL, AFL and NRL receipts were recovered; historical basketball audit records were preserved.",
+  "sampleReceiptCardCounts": [9, 9, 9],
+  "sampleCardIdHashes": [
+    "22e5b5c270d389d7ea5c685024114ba0b696679a1729e288bbb67b37966458ae",
+    "854a823b03841adb3f73601bd2ba48903784d6fd5b662959af6ff2a138a2f146",
+    "41f3f5921392e4f7601e38110186e015aad65b9e33c429c1a98266fdcb70ec92"
+  ],
+  "timings": [
+    {"path":"/api/beta-release","status":200,"elapsedMs":407,"requestId":"syd1::syd1::spzmp-1794885433683-ec77aa1fd7d4"},
+    {"path":"/api/test-wallet?view=packs","status":200,"elapsedMs":1546,"requestId":"syd1::syd1::mp89g-1794885434091-9aa80e61188a"},
+    {"path":"/api/admin/incidents","status":200,"elapsedMs":283,"requestId":"syd1::syd1::fcxrv-1794885435675-b4dee5791eaf"},
+    {"path":"/api/beta-release","status":200,"elapsedMs":130,"requestId":"syd1::syd1::fcxrv-1794885435958-8cd3647c8ac9"}
+  ],
+  "purchases":0,"grants":0,"openingRequests":0,"incidentWrites":0,"physicalAndroidTest":false,
+  "routingNote":"Top-level navigation ignored the dpl pin; this was rejected as candidate evidence. Same-origin fetch returned the exact candidate. The first CDP command exceeded the tool's 3-second response limit; the complete read-only result was collected with the documented longer command timeout. No application changes or security bypass were used."
+}

@@ -1,0 +1,146 @@
+{
+  "at": "2026-11-17T03:17:55.369Z",
+  "source": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b",
+  "packageSha": "d3a7960eb0ac2de8fa86e4185d2b8902621e53368729e4d3639e7643518914fa",
+  "deployment": "dpl_ZNUTkFD88udQGYcdnJ8eJaUZ5QBq",
+  "target": "production",
+  "nodeVersion": "22.x",
+  "checks": [
+    {
+      "route": "/api/beta-release",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 10585,
+      "passed": true
+    },
+    {
+      "route": "/app/login",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 11492,
+      "passed": true
+    },
+    {
+      "route": "/app/signup",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 8053,
+      "passed": true
+    },
+    {
+      "route": "/app/invitation-setup",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 9115,
+      "passed": true
+    },
+    {
+      "route": "/privacy",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 10097,
+      "passed": true
+    },
+    {
+      "route": "/commercial-policy",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 10515,
+      "passed": true
+    },
+    {
+      "route": "/refund-policy",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 8870,
+      "passed": true
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 10737,
+      "passed": true
+    },
+    {
+      "route": "/api/workspace-wallet",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 8143,
+      "passed": true
+    },
+    {
+      "route": "/api/mobile/capabilities",
+      "method": "GET",
+      "status": 401,
+      "elapsedMs": 9546,
+      "passed": true
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 9919,
+      "passed": true
+    },
+    {
+      "route": "/api/admin/founder-credits",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 9436,
+      "passed": true
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "POST",
+      "status": 403,
+      "elapsedMs": 9774,
+      "passed": true
+    },
+    {
+      "route": "/api/auth/phone",
+      "method": "POST",
+      "status": 403,
+      "elapsedMs": 8392,
+      "passed": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nfl",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 8400,
+      "passed": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=afl",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 9280,
+      "passed": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=nrl",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 9895,
+      "passed": true
+    },
+    {
+      "route": "/api/public-gameplay?sport=basketball",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 9012,
+      "passed": true
+    },
+    {
+      "route": "/preview/pack-opening",
+      "method": "GET",
+      "status": 404,
+      "elapsedMs": 10254,
+      "passed": true
+    }
+  ],
+  "anonymousSmoke": true,
+  "authenticatedReceiptRecovery": false,
+  "productionPerformanceMeasured": false
+}

@@ -1,0 +1,124 @@
+{
+  "kind": "post-deployment-evidence-index-not-an-approval-package",
+  "encoding": "UTF-8, LF; raw file bytes",
+  "source": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b",
+  "packageSha256": "d3a7960eb0ac2de8fa86e4185d2b8902621e53368729e4d3639e7643518914fa",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9"
+    },
+    {
+      "path": "EXECUTION_REPORT.txt",
+      "sha256": "7ca6002183f5eb6625f3d6f07e49b3f581e372aebd6cb23f515e0a769c249c2c"
+    },
+    {
+      "path": "NEXT_APPROVALS.txt",
+      "sha256": "2d8e71a6fd8f91283c70bc12459f89f65051e040a9421d2db7f3b3f67202f8c3"
+    },
+    {
+      "path": "PAID_LAUNCH_SEQUENCE.txt",
+      "sha256": "afc9ee9945ea38817c1fa5e1e1cd9711a985a83d36a957c63c169eca72127fa6"
+    },
+    {
+      "path": "application-postflight.json",
+      "sha256": "f5dc3bab0ca3040f8b7935461d1a6e17fde10fe72edc9d27583ddd5055a3554d"
+    },
+    {
+      "path": "application-preflight.json",
+      "sha256": "62ced77ecdedc204a9dec606b0ceb3fb8e4f483a53ce813bad35126437462b8d"
+    },
+    {
+      "path": "auth-backup-reconciliation.json",
+      "sha256": "b8f6ee2cc3404e4fed186cbd9f822b27fdcfe80feee09733a54d6411232bfb72"
+    },
+    {
+      "path": "auth-provider-state.json",
+      "sha256": "b7acf1f5d1ecde6d2239557fbc40a43eba9011446ddddb7433764baf4bc56fe9"
+    },
+    {
+      "path": "backup-scheduler-reconciliation.json",
+      "sha256": "c363250974b0efd44a7265f882af86b4f5bf15293a85f29817dbc5146dc2144a"
+    },
+    {
+      "path": "database-applied.json",
+      "sha256": "cd560ad8bcabb87a2e56f81a2a889d8c9b33ad4aff9abeeff1cf35ff2e9c1d26"
+    },
+    {
+      "path": "database-postflight.json",
+      "sha256": "62ca81c0ef018f9d9ed040c247c2869d45b8a893a1a8d7b80649d8e7a9514a4f"
+    },
+    {
+      "path": "database-preflight.json",
+      "sha256": "90d344bc9fed72f83996c3efe2dd2e8c6a17936f2b38386ed77020fcffb4d081"
+    },
+    {
+      "path": "deployment-promoted.json",
+      "sha256": "99899056fcb9786dd2aca2653693a8d2babc932e3ed4748db569af90c5213272"
+    },
+    {
+      "path": "deployment-submitted.json",
+      "sha256": "048d56d9afc9e6faa14aa8575800dd6339164f8e0784037ab475179900874296"
+    },
+    {
+      "path": "hash-verification.json",
+      "sha256": "cab3d33a9c93bcec9f4da38345805c9b0c860a924ac072ec9ea04f2e05daa106"
+    },
+    {
+      "path": "isolated-http.json",
+      "sha256": "1678fd9c536620a5f8cebb955aa78094c8dd6bca921ce000017d5be3ccb0ae3c"
+    },
+    {
+      "path": "isolated-platform.json",
+      "sha256": "b3d31b91e63747749fcbe8fda80b0bb5e3f7826d5460ee128375791ad3c87d3c"
+    },
+    {
+      "path": "isolated-staging-schema.json",
+      "sha256": "f0a859b2b163d2bdf9df2ca6b3b460bbe36077e198791b250cf3aa2c2130fb2c"
+    },
+    {
+      "path": "local-cleanup.json",
+      "sha256": "3fe6dccc4756a29055d468d8aad90f33105e628b2c0260d21e1685437eeadb50"
+    },
+    {
+      "path": "managed-permission-rehearsal.json",
+      "sha256": "5f55053391440df8b9ab54b1f7c3b9d6dedd14223be7cfe4a9dbce61ca0a5a3e"
+    },
+    {
+      "path": "notice-preparation.json",
+      "sha256": "f5cc460fd6631ee881dda6332a7d45fc8286d31a093b603aadd9e57ffd9d08bf"
+    },
+    {
+      "path": "production-anonymous-smoke.json",
+      "sha256": "da0ebd6fb447b89c80e831f06e9f2453929174040c5777c0525616af491ccbb0"
+    },
+    {
+      "path": "production-authenticated-acceptance.json",
+      "sha256": "a7f2db6fdbba392101ca86c9c042c339717dbd5494c39dd934ca8c3654151160"
+    },
+    {
+      "path": "runtime-preflight.json",
+      "sha256": "71b121c38b798eed8a32f2df1b852dd4258dd48c59484635cf2bdd9d56da4529"
+    },
+    {
+      "path": "security-postflight.json",
+      "sha256": "1812653225f39c72562e84752d1a7f23e38ad6c2b1d96b957671e598ae2f9abd"
+    },
+    {
+      "path": "source-export.json",
+      "sha256": "d903cdb34bb31ab1988763f152a14f6093ab783311fd720faa6113e7cd636f70"
+    },
+    {
+      "path": "stage-preflight.json",
+      "sha256": "e5dda1c691538c65552ff456299d0c98563989ea4c1773baa144aee680443146"
+    },
+    {
+      "path": "staging-anonymous-smoke.json",
+      "sha256": "68b54e28e2d9acfa5375fcc6cf7d6d8758c207cf6faa29957884a06ac4c43b1e"
+    },
+    {
+      "path": "staging-authenticated-acceptance.json",
+      "sha256": "aae4cc4d8f6e3d7d1bf68163840a806f7c2152288d228177aadaeb893822ebe8"
+    }
+  ]
+}
