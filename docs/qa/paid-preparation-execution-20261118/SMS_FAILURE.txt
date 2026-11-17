@@ -1,0 +1,30 @@
+Production one-attempt session: FAILED, CLOSED. Public launch NO-GO.
+
+User evidence: browser Send Code returned "Unable to send a code. Check your number
+or contact support." Native deep link opened the existing Owner Incidents screen.
+Do not ask the Founder to retry. No phone number or OTP is included here.
+
+Observed 2026-11-17T21:09:56Z (08:09:56 AEDT 18 November):
+- Supabase Auth v2.198.0 PUT failed with unexpected_failure / HTTP 500.
+- Its signed hook https://docked.com.au/api/webhooks/auth-sms returned an error.
+- Vercel metrics in 21:09:40Z–21:10:10Z show one phone-route 400 and one hook 503.
+- No SMS budget reservation or provider message occurred.
+- Auth phone confirmation and private verified-phone claim remain absent.
+
+Closure: phone-closure.json independently confirms window/Phone/hook OFF and signup
+closed at 21:11:24Z. sms-provider-observation.json reports zero Twilio messages.
+Watchdog printed a generic verification failure, with no result.json; independent
+closure is confirmed, but a clean watchdog outcome is not claimed.
+
+Version-specific source evidence for the payload mismatch:
+https://raw.githubusercontent.com/supabase/auth/v2.198.0/internal/api/phone.go
+https://raw.githubusercontent.com/supabase/auth/v2.198.0/internal/hooks/v0hooks/v0hooks.go
+For phone_change, user.PhoneChange and sms.Phone contain the target number;
+user.Phone remains the previous phone. Current Docked parsing instead requires
+user.phone and ignores sms.phone. An unverified account can therefore fail before
+reservation. Reproduce with fictional signed input before implementing the fix.
+
+Unaffected: actual live application 405058ebfe3e2c915d43ed5344dfb3fcd7930049,
+dpl_ACcdM4ivSaNW2ARC3tQf3MmaL2sZ, homepage/policies/email preparation, existing billing,
+pack, Android recovery, inventory, Owner MFA and historical evidence. Do not rerun
+those programmes. Never represent this browser failure as successful SMS acceptance.

@@ -43,7 +43,7 @@ COMPLETED
 - Original Founder identity, verified email, Owner role, verified individual TOTP
   and retained transition independently matched; no Production phone claim exists.
 
-ATTENDED SESSION STARTED — ONE APPROVED ATTEMPT UNUSED
+ATTENDED SESSION CLOSED — FAILED BEFORE PROVIDER DISPATCH
 Founder confirmed laptop and installed Android app readiness at the next turn.
 Fresh preflight completed 20:56:39Z on 17 November (07:56:39 AEDT on 18 November),
 with no protected-data changes. Exact disabled-window SQL was rehearsed against
@@ -62,6 +62,32 @@ screen, then deliberately Send Code only when instructed. Actual receipt, code
 acceptance, persistence and independent shutdown remain pending. Never resend,
 extend/reuse this window, or replenish a reservation. On failure, create STOP and
 independently confirm the exact window and Auth Phone/hook OFF.
+
+SUPERSEDING RESULT (18 November): the Founder reported that the external deep link
+opened Incidents in the installed app. The website verification page was independently
+visible in the existing authenticated Owner session. The Founder then deliberately
+attempted sending from a browser and reported "Unable to send a code. Check your
+number or contact support." This was NOT installed-Android acceptance.
+Supabase Auth v2.198.0 recorded a failed PUT and hook error at 21:09:56Z on 17 November;
+Vercel metrics show one /api/auth/phone 400 and one /api/webhooks/auth-sms 503 in that
+interval. No replay was made. STOP was created immediately after the report.
+Independent closure readback at 21:11:24Z confirms exact window OFF, Auth Phone OFF,
+hook OFF, signup closed, zero reservations and zero attempts. Twilio read-only check
+at 21:11:20Z found zero new messages. The Founder remains unverified by phone, with
+original Owner identity, verified email and individual MFA intact.
+The watchdog exited with its generic closure-verification error and did not write
+result.json. Its clean completion is NOT claimed; the separate direct DB/Auth
+readback proves both barriers closed. Preserve this operator limitation for review.
+The one-attempt session is ENDED and must never be reused or extended, even though
+no provider message or charge was created. Any replacement attempt requires approval.
+Fresh read-only postflight at 21:16:34Z found no changed protected fields, financial
+or custody digests; census remains 6540 / 918 / 936 and zero commercial cards.
+The live GoTrue source puts the target number in sms.phone for phone-change OTP,
+whereas the deployed hook reads user.phone. A narrow isolated correction is being
+prepared. Prior zero-send 503 checks prove fail-closed/no-send behaviour only; they
+did not independently establish successful payload parsing or Auth signature matching.
+No new application, migration, account change or provider send is approved by this
+failure investigation. Final GO remains blocked by the specific SMS integration repair.
 
 EVIDENCE REUSED
 cb1ee482 authoritative 22-requirement index; prior genuine Preview SMS, three Google
