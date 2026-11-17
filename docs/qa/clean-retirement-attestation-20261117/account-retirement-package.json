@@ -1,0 +1,106 @@
+{
+  "kind": "clean-commercial-account-transition",
+  "schemaVersion": 2,
+  "source": "11daff82afa0e247a363cd4383082c90a3d58c4f",
+  "tree": "81c6d2fa5fccd3fe944b19a24fbd09a21f5b8d54",
+  "project": "pojoymtniryarxxunyvz",
+  "deployedApplicationSource": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b",
+  "deployedApplication": "dpl_ZNUTkFD88udQGYcdnJ8eJaUZ5QBq",
+  "maximumApprovalHours": 24,
+  "backupMaximumAgeSeconds": 3600,
+  "preflightMaximumAgeSeconds": 600,
+  "accountManifestSha256": "9ae298d2b6c16c48c2901b021db443df48f160d819ab361bf02487d5a45823c7",
+  "noticeSha256": "9cb6bd4ca4200748ea428ea3a42b5ce576e70fcc88f334f5417a447881577f2b",
+  "noticeHashMeaning": "Reviewed text provenance only; not delivery or customer acceptance",
+  "communicationRequirement": "founder-attested-prior-direct-communication",
+  "communicationEvidence": {
+    "path": "docs/qa/clean-retirement-attestation-20261117/FOUNDER_ATTESTATION.json",
+    "sha256": "99bf469fa19242d0be0c4ca78838cf7461320043e15aaa2db54658a76315555d"
+  },
+  "newNotificationEmailsAuthorised": false,
+  "scheduledNoticeDelay": null,
+  "requiredAuthVersion": "v2.198.0",
+  "scope": "contain-and-soft-retire-three-beta-customers-retain-two-owners",
+  "retainedOwners": 2,
+  "softRetiredCustomers": 3,
+  "preservedSystemIdentities": 1,
+  "replacementAccountsCreated": 0,
+  "migrationsToApply": [],
+  "applicationDeployment": false,
+  "installedDependencies": [
+    {
+      "path": "supabase/migrations/20261117001019_clean_commercial_account_transition.sql",
+      "sha256": "74d8a48be8897435e8ef53734117861c9072495a0fb5d069027bdcefbdf33aa4"
+    },
+    {
+      "path": "config/operations/clean-commercial-transition.prepared.sql",
+      "sha256": "857ee8823c3b2b0d48bcc5ad419feefc8f81d089ed34242c4fdbd6a28ff0b111"
+    }
+  ],
+  "files": [
+    {
+      "path": "supabase/migrations/20261117001019_clean_commercial_account_transition.sql",
+      "sha256": "74d8a48be8897435e8ef53734117861c9072495a0fb5d069027bdcefbdf33aa4"
+    },
+    {
+      "path": "config/operations/clean-commercial-transition.prepared.sql",
+      "sha256": "857ee8823c3b2b0d48bcc5ad419feefc8f81d089ed34242c4fdbd6a28ff0b111"
+    },
+    {
+      "path": "docs/qa/clean-transition-20261117/CUSTOMER_NOTICE.txt",
+      "sha256": "9cb6bd4ca4200748ea428ea3a42b5ce576e70fcc88f334f5417a447881577f2b"
+    },
+    {
+      "path": "docs/qa/clean-retirement-attestation-20261117/FOUNDER_ATTESTATION.json",
+      "sha256": "99bf469fa19242d0be0c4ca78838cf7461320043e15aaa2db54658a76315555d"
+    },
+    {
+      "path": "scripts/clean-commercial-transition.ts",
+      "sha256": "76e446daebf633387d7dd020f5885305ce90cd9a08d6189efeab9783dfc8fd1e"
+    },
+    {
+      "path": "scripts/clean-transition-authority.ts",
+      "sha256": "e8766fac0bcb9667c7608d12556ab9bdf40624716ee9eee3e7680e3340e6e92c"
+    },
+    {
+      "path": "src/core/account-retirement.ts",
+      "sha256": "df20cf42d3202a9c26910abb6a5104f2e96c88ff074c108c42492e0ce4dc4ab1"
+    },
+    {
+      "path": "docs/qa/clean-retirement-attestation-20261117/RECOVERY.txt",
+      "sha256": "93e102f96ffab7815ba0f33c4ae68b8cbd87f2b2b9a2acfaa67e14b4b01aad2a"
+    },
+    {
+      "path": "docs/qa/clean-retirement-attestation-20261117/EXECUTION.txt",
+      "sha256": "f799d9d101554e2d6f9a0ff964afc4c4293b531c1f77d31d365f3e2fb3420d37"
+    },
+    {
+      "path": "docs/qa/clean-retirement-attestation-20261117/TERMS_REVIEW.txt",
+      "sha256": "847867ab32e648c0bd1c93dfa5ee52ac99ed2fb8b34d658eec4633fa22e19755"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "docs/qa/clean-retirement-attestation-20261117/restored-database-tests.json",
+      "sha256": "e6f031d8cbace58c0c8375bce89bcad603c00fc7a24ab43ce4980a9842c2f43a"
+    },
+    {
+      "path": "docs/qa/clean-retirement-attestation-20261117/containment-helper-tests.json",
+      "sha256": "46e6db0bce0de96c06cbf96617450d57d205dfadae20163245078fd17fc611b5"
+    },
+    {
+      "path": "docs/qa/clean-retirement-attestation-20261117/production-readonly-audit.json",
+      "sha256": "86b24715a75f3e91e2d43745eceaa570da9e097e61c1a5c644ae31176f3f4163"
+    },
+    {
+      "path": "docs/qa/clean-retirement-attestation-20261117/verification.json",
+      "sha256": "422302e4b6a4a904f1686377846a9b99b2ca82ae7eb4bfaf51c0d069c5c72efe"
+    }
+  ],
+  "previousAccountPackage": "c569dcfeea5f0e8fbebcab7b14dc03674aca7ffbd6c8581d4d3287a5108f2855",
+  "unresolvedProtectedClaimsPermitted": false,
+  "financialAndLifetimeSupplyReset": false,
+  "sharesExternalPermissions": false,
+  "enablesAnyLaunchGate": false,
+  "publicLaunch": false
+}
