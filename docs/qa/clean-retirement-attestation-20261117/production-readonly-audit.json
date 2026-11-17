@@ -1,0 +1,75 @@
+{
+  "at": "2026-11-17T04:54:34.777633+00:00",
+  "accounts": [
+    {
+      "role": "owner",
+      "reference": "623d1e69",
+      "softRetired": false,
+      "verifiedMfa": 1,
+      "emailVerified": true,
+      "termsVersions": [
+        "2026-10-09-beta-rc2",
+        "2026-10-11-beta-rc3"
+      ]
+    },
+    {
+      "role": "none",
+      "reference": "9fa5cdbb",
+      "softRetired": false,
+      "verifiedMfa": 0,
+      "emailVerified": true,
+      "termsVersions": [
+        "2026-10-11-beta-rc3"
+      ]
+    },
+    {
+      "role": "none",
+      "reference": "d6ab4838",
+      "softRetired": false,
+      "verifiedMfa": 0,
+      "emailVerified": true,
+      "termsVersions": [
+        "2026-10-11-beta-rc3"
+      ]
+    },
+    {
+      "role": "none",
+      "reference": "e56880e0",
+      "softRetired": false,
+      "verifiedMfa": 0,
+      "emailVerified": true,
+      "termsVersions": [
+        "2026-10-09-beta-rc2",
+        "2026-10-11-beta-rc3"
+      ]
+    },
+    {
+      "role": "none",
+      "reference": "eea25d64",
+      "softRetired": false,
+      "verifiedMfa": 0,
+      "emailVerified": true,
+      "termsVersions": [
+        "2026-10-11-beta-rc3"
+      ]
+    },
+    {
+      "role": "admin",
+      "reference": "ef641248",
+      "softRetired": false,
+      "verifiedMfa": 1,
+      "emailVerified": true,
+      "termsVersions": [
+        "2026-10-11-beta-rc3"
+      ]
+    }
+  ],
+  "readOnly": true,
+  "definitions": 6540,
+  "commercialCards": 0,
+  "lifetimeLimited": 918,
+  "transitionEvents": 0,
+  "transitionBatches": 0,
+  "publicRegistration": false,
+  "commercialControlsOpen": 0
+}

@@ -1,0 +1,19 @@
+{
+  "at": "2026-11-17T06:16:04.159Z",
+  "hookTests": {
+    "command": "node --import tsx --test tests/platform/sms-budget-hook.test.ts",
+    "passed": 8,
+    "failed": 0
+  },
+  "databaseTestGroups": 10,
+  "actualRestoredCohortSmsTest": "passed; six identities; all changes rolled back",
+  "publicOwnerIncidentMfaTest": "passed for both retained Owners; AAL1 rejected",
+  "eslint": "passed for all three changed/prepared scripts",
+  "whitespace": "git diff --check passed",
+  "applicationBuild": "Not rerun; application files unchanged in this preparation",
+  "hostedOwnerLogin": "pending founder/Barry participation",
+  "publicRuntimePackage": "not yet frozen; required Owner support integration remains",
+  "productionChangesAfterRetirement": 0,
+  "smsSent": 0,
+  "publicLaunch": "NO-GO"
+}

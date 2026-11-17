@@ -1,0 +1,117 @@
+{
+  "at": "2026-11-17T06:11:43.841Z",
+  "environment": "Network-disabled restored database; restricted docked_app role; synthetic local claims from restored sessions",
+  "retainedOwners": 2,
+  "publicOwnerProfilesRolesAndTransitionRead": "passed",
+  "publicIncidentReadWithAal2": "passed for both Owners",
+  "publicIncidentReadWithAal1": "denied for both Owners",
+  "sourceDigestUnchangedAfterRollback": true,
+  "surfaces": [
+    {
+      "path": "src/server/admin-search.ts",
+      "explicitlyRequiresBetaRuntime": true,
+      "dependencies": [
+        {
+          "function": "admin_search",
+          "betaSchemaExists": true,
+          "publicSchemaExists": false
+        }
+      ]
+    },
+    {
+      "path": "src/server/admin-record.ts",
+      "explicitlyRequiresBetaRuntime": true,
+      "dependencies": [
+        {
+          "function": "admin_record_detail",
+          "betaSchemaExists": true,
+          "publicSchemaExists": false
+        }
+      ]
+    },
+    {
+      "path": "src/server/admin-announcements.ts",
+      "explicitlyRequiresBetaRuntime": true,
+      "dependencies": [
+        {
+          "function": "announcement_mutate",
+          "betaSchemaExists": true,
+          "publicSchemaExists": false
+        },
+        {
+          "function": "announcement_history",
+          "betaSchemaExists": true,
+          "publicSchemaExists": false
+        },
+        {
+          "function": "announcement_list",
+          "betaSchemaExists": true,
+          "publicSchemaExists": false
+        }
+      ]
+    },
+    {
+      "path": "src/server/moderation-cases.ts",
+      "explicitlyRequiresBetaRuntime": true,
+      "dependencies": [
+        {
+          "function": "moderation_case_mutate",
+          "betaSchemaExists": true,
+          "publicSchemaExists": false
+        },
+        {
+          "function": "moderation_case_read",
+          "betaSchemaExists": true,
+          "publicSchemaExists": false
+        }
+      ]
+    },
+    {
+      "path": "src/server/moderation-retention.ts",
+      "explicitlyRequiresBetaRuntime": true,
+      "dependencies": [
+        {
+          "function": "moderation_retention_command",
+          "betaSchemaExists": true,
+          "publicSchemaExists": false
+        },
+        {
+          "function": "moderation_retention_list",
+          "betaSchemaExists": true,
+          "publicSchemaExists": false
+        }
+      ]
+    },
+    {
+      "path": "src/server/owner-operations.ts",
+      "explicitlyRequiresBetaRuntime": true,
+      "dependencies": [
+        {
+          "function": "owner_command_centre",
+          "betaSchemaExists": true,
+          "publicSchemaExists": false
+        }
+      ]
+    },
+    {
+      "path": "src/server/owner-health.ts",
+      "explicitlyRequiresBetaRuntime": true,
+      "dependencies": [
+        {
+          "function": "owner_health_record",
+          "betaSchemaExists": true,
+          "publicSchemaExists": false
+        }
+      ]
+    },
+    {
+      "path": "src/server/owner-marketplace.ts",
+      "explicitlyRequiresBetaRuntime": true,
+      "dependencies": []
+    }
+  ],
+  "conclusion": "Core incident access uses both retained Owner identities correctly in the public role. Eight existing administration modules explicitly require beta mode; a flag-only public switch cannot preserve all their current functions. This review does not certify full public-runtime acceptance.",
+  "hostedOwnerLogin": "not exercised by this isolated test",
+  "productionWrites": 0,
+  "emailsSent": 0
+}

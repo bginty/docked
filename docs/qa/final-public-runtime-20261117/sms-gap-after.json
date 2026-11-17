@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-17T06:09:29.397Z",
+  "environment": "Network-disabled authenticated Production restore; local rolled-back transaction",
+  "migration": "supabase/migrations/20261116215032_public_sms_budget_guard.sql",
+  "migrationSha256": "039fe257313e83d9f3c90ca85dec916414f60c142d7a7b987bc574083d03fca6",
+  "callerRole": "docked_app",
+  "decisions": [
+    {
+      "kind": "owner",
+      "decision": "send"
+    },
+    {
+      "kind": "customer",
+      "decision": "denied"
+    },
+    {
+      "kind": "customer",
+      "decision": "denied"
+    },
+    {
+      "kind": "system",
+      "decision": "denied"
+    },
+    {
+      "kind": "customer",
+      "decision": "denied"
+    },
+    {
+      "kind": "owner",
+      "decision": "send"
+    }
+  ],
+  "onlyRetainedOwnersReserved": true,
+  "originalSourceDigestUnchanged": true,
+  "temporarySchemaRemovedByRollback": true,
+  "productionWrites": 0,
+  "smsSent": 0
+}

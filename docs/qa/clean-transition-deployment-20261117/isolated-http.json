@@ -1,0 +1,96 @@
+{
+  "at": "2026-11-17T03:05:44.689Z",
+  "source": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b",
+  "passed": true,
+  "checks": [
+    {
+      "path": "/app/login",
+      "status": 200,
+      "elapsedMs": 285
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "elapsedMs": 37
+    },
+    {
+      "path": "/commercial-policy",
+      "status": 200,
+      "elapsedMs": 32
+    },
+    {
+      "path": "/refund-policy",
+      "status": 200,
+      "elapsedMs": 20
+    },
+    {
+      "path": "/app/signup",
+      "status": 200,
+      "elapsedMs": 63
+    },
+    {
+      "path": "/api/store/google/commercial",
+      "status": 403,
+      "elapsedMs": 18
+    },
+    {
+      "path": "/api/workspace-wallet",
+      "status": 403,
+      "elapsedMs": 16
+    },
+    {
+      "path": "/api/mobile/capabilities",
+      "status": 401,
+      "elapsedMs": 15
+    },
+    {
+      "path": "/api/admin/incidents",
+      "status": 403,
+      "elapsedMs": 18
+    },
+    {
+      "path": "/api/admin/founder-credits",
+      "status": 403,
+      "elapsedMs": 23
+    },
+    {
+      "path": "/api/auth/public-member-setup",
+      "status": 503,
+      "elapsedMs": 32
+    },
+    {
+      "path": "/api/auth/phone",
+      "status": 403,
+      "elapsedMs": 25
+    },
+    {
+      "path": "/api/public-gameplay?sport=nfl",
+      "status": 403,
+      "elapsedMs": 20
+    },
+    {
+      "path": "/api/public-gameplay?sport=afl",
+      "status": 403,
+      "elapsedMs": 27
+    },
+    {
+      "path": "/api/public-gameplay?sport=nrl",
+      "status": 403,
+      "elapsedMs": 24
+    },
+    {
+      "path": "/preview/pack-opening",
+      "status": 404,
+      "elapsedMs": 89
+    }
+  ],
+  "restrictedDatabase": true,
+  "transitionStarted": false,
+  "anonymousAccessDenied": true,
+  "noProviderCredentials": true,
+  "noExternalNetwork": true,
+  "authenticatedCustomerSession": false,
+  "productionWrites": 0,
+  "accountActions": 0,
+  "physicalAndroid": false
+}

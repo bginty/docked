@@ -1,0 +1,126 @@
+{
+  "kind": "clean-commercial-schema-application",
+  "source": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b",
+  "tree": "ed4c6e11afaeb5ce7b1191fde5dfc946d23e12bb",
+  "project": "pojoymtniryarxxunyvz",
+  "maximumApprovalHours": 24,
+  "noticeSha256": "9cb6bd4ca4200748ea428ea3a42b5ce576e70fcc88f334f5417a447881577f2b",
+  "publicLaunch": false,
+  "backupMaximumAgeSeconds": 3600,
+  "preflightMaximumAgeSeconds": 600,
+  "financialAndLifetimeSupplyReset": false,
+  "previousProduction": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "previousDeployment": "dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh",
+  "migrations": [
+    {
+      "path": "supabase/migrations/20261117001019_clean_commercial_account_transition.sql",
+      "sha256": "74d8a48be8897435e8ef53734117861c9072495a0fb5d069027bdcefbdf33aa4"
+    }
+  ],
+  "operatorDeclarationsOnly": {
+    "path": "config/operations/clean-commercial-transition.prepared.sql",
+    "sha256": "857ee8823c3b2b0d48bcc5ad419feefc8f81d089ed34242c4fdbd6a28ff0b111"
+  },
+  "notice": {
+    "path": "docs/qa/clean-transition-20261117/CUSTOMER_NOTICE.txt",
+    "sha256": "9cb6bd4ca4200748ea428ea3a42b5ce576e70fcc88f334f5417a447881577f2b"
+  },
+  "recovery": {
+    "path": "docs/qa/clean-transition-20261117/RECOVERY.txt",
+    "sha256": "6e7eca85cf8d20514390effa55ac576b625772c07c000f0ef21742539c3df9b7"
+  },
+  "applicationChanges": [
+    {
+      "path": "config/launch-policy-content.json",
+      "gitBlobSha256": "0029c3c1f51bba319acfe4a250040d68662366792cf839d169f92c224572f4f1"
+    },
+    {
+      "path": "config/operations/clean-commercial-transition.prepared.sql",
+      "gitBlobSha256": "857ee8823c3b2b0d48bcc5ad419feefc8f81d089ed34242c4fdbd6a28ff0b111"
+    },
+    {
+      "path": "config/operations/public-identity-adoption.prepared.sql",
+      "gitBlobSha256": "d5ba38bff492636621b9afc21911f57b632c3965b31afe761f30da8f994e372d"
+    },
+    {
+      "path": "src/app/api/auth/public-member-setup/route.ts",
+      "gitBlobSha256": "bd1c4021ea9a8de249201620f706310b4ae6639270689972c2ad18061fc961ff"
+    },
+    {
+      "path": "src/app/api/webhooks/auth-sms/route.ts",
+      "gitBlobSha256": "de31472a3cb5f03196a73b056ba7d03e9cd57684325210e0210f0a492591d34b"
+    },
+    {
+      "path": "src/app/app/onboarding/public/page.tsx",
+      "gitBlobSha256": "349854855da07ba0e66c99f7617f5ac7258b1090cb68d395127502f0fa289619"
+    },
+    {
+      "path": "src/components/google-test-credits.tsx",
+      "gitBlobSha256": "2914c0dd2bed4538bb078182f8538521ee463c2641cd13ed1849c92ab89062ba"
+    },
+    {
+      "path": "src/core/account-retirement.ts",
+      "gitBlobSha256": "df20cf42d3202a9c26910abb6a5104f2e96c88ff074c108c42492e0ce4dc4ab1"
+    },
+    {
+      "path": "src/server/auth.ts",
+      "gitBlobSha256": "8525d22a3486a1cc71f04ae610db6779080b345048c736a1f738b11e2b04880d"
+    },
+    {
+      "path": "src/server/config.ts",
+      "gitBlobSha256": "514f9ed13c11c6b19a03fa93763c74e4ba9aae39b4d9d3a1e9020d02dd6fb10b"
+    },
+    {
+      "path": "src/server/member-commercial.ts",
+      "gitBlobSha256": "5cad25669ae1397d5a00e80487093365eae8ee974b1ed578a5af2a6444d01da0"
+    },
+    {
+      "path": "src/server/public-member-setup.ts",
+      "gitBlobSha256": "e9bb9899b6d691ac896107b845da04747064610527ac5ffa6c35ce09f6f74ac6"
+    },
+    {
+      "path": "src/server/retained-owner-onboarding.ts",
+      "gitBlobSha256": "1ee4c295776caeb67db7c2163e7e326f251ef9017ff4f60a8974dc30a158f43b"
+    },
+    {
+      "path": "src/server/sms-budget-hook.ts",
+      "gitBlobSha256": "ad9986d8c61e5e021e91b9d57fee6041e68c18101b23398802890a08e050ab2d"
+    },
+    {
+      "path": "vercel.json",
+      "gitBlobSha256": "654efd1534197b16d4f0f0cd4f16140ec011ec08df69e734b93e0febe1cbe0dc"
+    }
+  ],
+  "changesAccountRows": false,
+  "callsAuthAdmin": false,
+  "appliesPendingSmsBudgetMigration": false,
+  "changesRuntimeSettings": false,
+  "publishesReviewedPolicyWording": true,
+  "activeBetaAccessPreservedUntilSeparateContainment": true,
+  "evidence": [
+    {
+      "path": "docs/qa/clean-transition-20261117/restored-database-tests.json",
+      "sha256": "63c5de604ab4df0939732aaf4b02d64fcff6476ff31171cefc6d368ae906336b"
+    },
+    {
+      "path": "docs/qa/clean-transition-20261117/owner-surface-tests.json",
+      "sha256": "25de7c21e4d380aeb96c571a0e1169035ba4bc7419086d6e39055f6c4dbf8443"
+    },
+    {
+      "path": "docs/qa/clean-transition-20261117/auth-lifecycle-tests.json",
+      "sha256": "a9a7dca69fe4fa8d68892cd7cae7f66762ee1673a052b426400599f5f3e5fea7"
+    },
+    {
+      "path": "docs/qa/clean-transition-20261117/auth-checkpoint-tests.json",
+      "sha256": "ff5a11c0ead782d76a3c3b5950b2652cd31edfa6bdbf936a952168e19a6a9bb1"
+    },
+    {
+      "path": "docs/qa/clean-transition-20261117/supply-census.json",
+      "sha256": "1b6861b0da2a63d2475a464e12fd6f704785be7a227c4b21890d0cb88d5c11dc"
+    },
+    {
+      "path": "docs/qa/clean-transition-20261117/verification.json",
+      "sha256": "f9858911985576622c5075371d1a8a7bf64ef63c38cad77c87723c950010986a"
+    }
+  ]
+}

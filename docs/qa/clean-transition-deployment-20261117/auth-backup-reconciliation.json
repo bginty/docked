@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-17T03:00:23.277Z",
+  "refreshRotations": 1,
+  "founderOnly": true,
+  "existingMfaSessionOnly": true,
+  "credentialsMfaRolesUnchanged": true,
+  "changes": [
+    {
+      "table": "users",
+      "idSha256": "f0ebb58f5db0391f39d3d5eca611fa218327c5a8663f1e4050d8727f81417827",
+      "fields": [
+        "updated_at"
+      ]
+    },
+    {
+      "table": "sessions",
+      "idSha256": "c4fc0110e5ddf8474123bde52df48d622de014b2e29b8f95f933f052def4d66a",
+      "fields": [
+        "updated_at",
+        "refreshed_at",
+        "ip_hash"
+      ]
+    },
+    {
+      "table": "refresh_tokens",
+      "idSha256": "fabefaec30d6a86bc18937b03a90188a3a0573f4ebeb80cfb16b425fcb57de77",
+      "fields": [
+        "revoked",
+        "updated_at"
+      ]
+    }
+  ],
+  "rateChanges": [
+    {
+      "route": "weekly-core",
+      "beforeCount": 1,
+      "afterCount": 2,
+      "resetAt": "2026-11-17T02:51:54.770038+00:00"
+    }
+  ]
+}

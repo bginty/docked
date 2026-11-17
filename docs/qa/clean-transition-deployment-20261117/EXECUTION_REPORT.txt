@@ -1,0 +1,91 @@
+COMPLETED CLOSED-GATE DEPLOYMENT — 17 NOVEMBER 2026
+
+Production source: 9e57c094cb7b4af02277e191a2e64fa2e6b22c6b
+Approved package: d3a7960eb0ac2de8fa86e4185d2b8902621e53368729e4d3639e7643518914fa
+Vercel: dpl_ZNUTkFD88udQGYcdnJ8eJaUZ5QBq
+Promoted: 2026-11-17 03:20 UTC / 14:20 Sydney (AEDT).
+Live docked.com.au alias independently verified. Public launch remains NO-GO.
+
+Executed authority
+The founder explicitly approved this exact schema/application package for 24 hours.
+Only its one migration and operator function declarations were installed, atomically.
+No account operator function was called. No customer notification was sent.
+Reviewed privacy v5 and commercial policy wording are published; acceptance was
+not fabricated. No historical migration, inventory import or provider test repeated.
+
+Migration: 20261117001019_clean_commercial_account_transition.sql
+SHA-256: 74d8a48be8897435e8ef53734117861c9072495a0fb5d069027bdcefbdf33aa4
+Declarations: config/operations/clean-commercial-transition.prepared.sql
+SHA-256: 857ee8823c3b2b0d48bcc5ad419feefc8f81d089ed34242c4fdbd6a28ff0b111
+The installed migration-history statement hashes were independently read back.
+The inactive SMS-budget migration was excluded and remains a separate release item.
+
+Preflight and staging
+- Exact source/package/file hashes matched; 1,010 application files were exported
+  from canonical Git blobs without line-ending changes. No application edits.
+- Fresh AES-256-GCM backup authenticated and restored in isolation, no network,
+  published ports or live provider credentials. Capture completed 02:36:58 UTC.
+  Native archive: 140,512,394 bytes; plaintext archive SHA-256:
+  a7b651f87a55dd1c1c1df15f620d268be4f40cc68433b5ba2b3b0969f5058763.
+  The dump streamed through encryption/restore; no plaintext dump file was written.
+- All 568 existing protected tables reconciled. Actual current counts were used,
+  never reset to an earlier card baseline. Auth refresh activity was reconciled to
+  the original founder session and encrypted backup, preserving credentials/MFA.
+- Routine cron/zero-issuance weekly/mail heartbeat and pending-review NFL worker
+  activity was individually reconciled; prior immutable histories stayed unchanged.
+- Managed non-superuser permissions rehearsal passed, including the existing
+  Supautils policy grant on storage.objects. No Production role grant was added.
+- Exact app built and passed 16 isolated HTTP checks against the restored database.
+  Protected Vercel staging passed 19 anonymous policy/gate checks and genuine
+  founder-session read-only receipt/Owner-MFA acceptance before promotion.
+
+Installation and Production acceptance
+- New migration committed once. Four empty registry tables and restrictive
+  policies added; no existing customer/financial/card/role rows changed.
+- Measured transaction lock window: 48.846 seconds. This is actual DDL lock exposure,
+  not a claim of zero beta interruption. No failed customer request was observed.
+- Production postflight at 03:24:27 UTC verified all 572 protected tables,
+  including the four empty new tables. No account containment, soft deletion,
+  identifier release, role change, grant, purchase or card opening occurred.
+- 6,540 definitions; 918 lifetime limited copies; 936 custody records; 30 beta
+  allocations; zero commercial cards. Zero duplicate serials, lifetime-count
+  mismatches or unbalanced journals. Original receipts, TEST refunds and recovery
+  holds remained byte/digest-equivalent under the reviewed comparison.
+- Live roles still one Owner and one Admin; two verified MFA factors. Barry's
+  promotion is deliberately pending the separately approved account operation.
+- Genuine live founder Chrome session recovered 40 opened receipts, including 30
+  nine-card receipts, and passed the existing Owner incident MFA guard. Sample
+  card-ID hashes matched protected staging. Receipt GET took 1,770 ms; incident
+  GET took 234 ms. These are individual read timings, not p50/p95 measurements.
+- No new physical Android test was performed; earlier accepted Android, Google
+  TEST purchase/refund, genuine Preview SMS, vault and incident evidence stands.
+- Runtime: 97 explicit values, seven readable inherited values and 18 Production
+  bindings preserved. Five write-only secret references retained unchanged IDs,
+  targets and timestamps; their secret values were not falsely claimed readable.
+- Supabase signup disabled, Phone OFF, SMS hook OFF, individual TOTP enabled.
+  All public/commercial controls, deletion schedules and six competitions remain
+  disabled. Practice status and NBA hiding are preserved. No Play action occurred.
+- No new security-advisor warning. The pre-existing leaked-password-protection
+  warning remains unchanged; it was not silently dismissed or disabled here.
+
+Evidence and limits
+JSON files in this directory record the checks and timestamps. The encrypted
+backup and detailed private Auth/runtime comparisons stay outside Git. The restore
+proof is in ../v31-prelaunch-execution-20261111/database/restore-20261117c/.
+Both task-owned local containers were stopped and removed after verification;
+the restored database was held only in tmpfs. The encrypted backup is retained.
+Founder live-session access is directly verified; other beta identity, role,
+session and credential preservation is database evidence, not impersonated login.
+Google managed publishing and v31 were untouched, not newly re-reviewed here.
+
+Recovery
+No recovery was needed. While the transition registry is empty, the reviewed
+conditional app-only rollback may use previous deployment
+dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh / source 76df44ba1adef012c5ec2119563cbc05ff9e3c0b,
+after fresh compatibility/asset/permission checks. Keep the additive schema if safe.
+Never restore this backup over later legitimate transactions as an ordinary rollback.
+After account containment, follow the separate forward-recovery instructions.
+
+Next: NEXT_APPROVALS.txt and PAID_LAUNCH_SEQUENCE.txt. No deployment approval needs
+to be repeated for this completed package. Customer notice delivery, account
+retirement and final paid launch remain separate decisions.

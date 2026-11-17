@@ -1,0 +1,53 @@
+{
+  "algorithm": "SHA-256 of UTF-8 text with LF line endings; evidence manifest, not deployment approval",
+  "files": [
+    {
+      "file": "docs/qa/final-public-runtime-20261117/PREPARATION_RESULT.txt",
+      "sha256": "5958ddc8282794d0a1798427a5ab6788054f41cc095143672637a443f397849d"
+    },
+    {
+      "file": "docs/qa/final-public-runtime-20261117/PRODUCTION_PHONE_PREPARATION.txt",
+      "sha256": "a8a3f994e815d92266fef3097f58ba49a35bb0e8fc35bdfd82068456f483f157"
+    },
+    {
+      "file": "docs/qa/final-public-runtime-20261117/local-cleanup.json",
+      "sha256": "d7baf8ef89f00db8636bc1ecf3f3d64cb01e92826011f9e3df120424c2c7bf42"
+    },
+    {
+      "file": "docs/qa/final-public-runtime-20261117/owner-runtime-review.json",
+      "sha256": "9c6e2dc6a6ed2e7d979a17c08cc7e16d22e3c286a1ced6044203ad4d98d122b8"
+    },
+    {
+      "file": "docs/qa/final-public-runtime-20261117/sms-budget-database-tests.json",
+      "sha256": "4786a74b9b497253fca6e7cb4f1b7581b5c2143cf43b315a20e3282ba9b44f10"
+    },
+    {
+      "file": "docs/qa/final-public-runtime-20261117/sms-gap-after.json",
+      "sha256": "7bc004c0f5eea3082f931651cac47f7891d0f5b03b691cb47a3deb607839e860"
+    },
+    {
+      "file": "docs/qa/final-public-runtime-20261117/sms-gap-before.json",
+      "sha256": "eea8e1a3b0b5e3b4417554630d1c4988036b3f577eac63a89ea57a67f226f575"
+    },
+    {
+      "file": "docs/qa/final-public-runtime-20261117/verification.json",
+      "sha256": "3c30cc0442152f13df6b4bc75d031c40c017036f359943d37b70608e863ee694"
+    },
+    {
+      "file": "scripts/public-owner-runtime-review.mjs",
+      "sha256": "d2de7926065328e21de31a4535b984b71cb4ec179c140915e64011c43a4b725b"
+    },
+    {
+      "file": "scripts/sms-budget-postgres.mjs",
+      "sha256": "8c9921858c781cc38ee1211e88e58ae31e010fce6b68489273b3a876b796e948"
+    },
+    {
+      "file": "scripts/sms-budget-transition-restored.mjs",
+      "sha256": "f6084f063476bd7e54edccb771c589a926cf7fdb251b558c40f0e9c67f6a228a"
+    },
+    {
+      "file": "supabase/migrations/20261116215032_public_sms_budget_guard.sql",
+      "sha256": "039fe257313e83d9f3c90ca85dec916414f60c142d7a7b987bc574083d03fca6"
+    }
+  ]
+}

@@ -38,7 +38,10 @@ begin
  n := clock_timestamp();
  if not found or not win.enabled or n<win.starts_at or n>=win.expires_at then return 'denied';end if;
  if win.allowlist is not null and not (u=any(win.allowlist)) then return 'denied';end if;
- if not exists(select 1 from auth.users where id=u and email_confirmed_at is not null
+ -- The clean-transition registry also excludes retained internal QA identities.
+ -- Auth email confirmation survives soft deletion, so it alone is insufficient.
+ if not launch_transition.identity_allowed(u) then return 'denied';end if;
+ if not exists(select 1 from auth.users where id=u and deleted_at is null and email_confirmed_at is not null
   and not coalesce(is_anonymous,false) and (banned_until is null or banned_until<=n)) then return 'denied';end if;
  select * into previous from sms_delivery.attempts where window_id=w and fingerprint=f;
  if found then

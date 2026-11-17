@@ -1,0 +1,40 @@
+{
+  "at": "2026-11-17T03:00:17.696Z",
+  "elapsedMs": 54319,
+  "schema": {
+    "fingerprint": "8d7a65bb36bcd04aa33757766c33a695",
+    "objects": 10343
+  },
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "custodyRecords": 936,
+  "custodyDigest": "8340ed6c5584fd3f0832fc17431081548f3b8956e6da53df6f0c19d6c3a674ac",
+  "protectedTables": 568,
+  "rolesSha256": "d8bb32c50db33f49d8586b14ddde26f9feaf454d2809521d73e0f5645d3dcc20",
+  "source": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b",
+  "packageSha": "d3a7960eb0ac2de8fa86e4185d2b8902621e53368729e4d3639e7643518914fa",
+  "backup": {
+    "authenticated": true,
+    "capturedAt": "2026-11-17T02:36:58.037Z",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "bytes": 140512394,
+    "plaintextSha256": "a7b651f87a55dd1c1c1df15f620d268be4f40cc68433b5ba2b3b0969f5058763",
+    "tableCount": 570,
+    "plaintextWritten": false
+  },
+  "registryAbsent": true,
+  "productionWrites": 0
+}

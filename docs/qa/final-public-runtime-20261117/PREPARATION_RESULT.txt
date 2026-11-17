@@ -1,0 +1,82 @@
+FINAL PUBLIC-RUNTIME PREPARATION — 17 NOVEMBER 2026
+Not a deployment/activation approval package. Public launch remains NO-GO.
+
+Completed retirement
+The separate approved account operation is COMPLETE. See
+../clean-retirement-execution-20261117/EXECUTION_REPORT.txt and completion.json.
+Do not repeat containment, Auth retirement, the Owner promotion, or old migrations.
+Production source remains 9e57c094cb7b4af02277e191a2e64fa2e6b22c6b at
+dpl_ZNUTkFD88udQGYcdnJ8eJaUZ5QBq. New preparation below is NOT deployed.
+
+Verified and corrected in isolation
+1. The pending SMS budget migration accepted an excluded internal QA identity.
+   The actual restored transition guard denied that identity, but the old SMS
+   function tested only Auth email confirmation. Auth email confirmation also
+   survives a supported Auth soft deletion.
+2. The pending migration now independently requires the deployed transition
+   identity guard and auth.users.deleted_at IS NULL. Retired customers and
+   internal QA cannot reserve budget, even if a stale provider callback arrives.
+3. Ten disposable Postgres test groups passed, including 20 concurrent duplicate
+   reservations, 20 competing reservations against a three-attempt cap, expiry,
+   allowlists, account/global limits, ambiguous outcomes and restricted grants.
+4. Eight existing signed-hook tests passed: valid signature/one segment, stale
+   signature, malformed/non-AU payload, denial, duplicate callbacks, provider
+   failure, failed persistence and slow reservation. No SMS was sent.
+5. The exact pending SQL was applied only inside a rolled-back transaction on the
+   authenticated network-disabled Production restore. Restricted docked_app calls
+   denied all three customer identities and internal QA; both retained Owners
+   could reserve within the local fictional window. All original account/asset
+   digest values and schema absence were unchanged after rollback.
+6. Both retained Owners passed public-role profile/role/incident reads using
+   isolated local AAL2 claims. AAL1 was rejected for each. These are database
+   tests, not hosted MFA or browser acceptance.
+7. Scoped ESLint and git diff whitespace checks passed. Only SQL/test preparation
+   changed; no application build or new Android binary was needed for this patch.
+
+Dependencies and scope
+20261116215032_public_sms_budget_guard.sql is STILL UNDEPLOYED. It now depends on
+the already-deployed launch_transition.identity_allowed(uuid) function and the
+installed GoTrue deleted_at field. The future exact migration operator must
+assert both dependencies and apply only this reviewed pending migration; do not
+run an unrestricted migration push or replay the clean-account migration.
+No window, provider setting, secret, account, existing balance or issued card is
+created/modified in Production by this preparation.
+
+Remaining public-runtime compatibility work
+The global db() connection changes from mapped beta namespaces to public schemas
+when DOCKED_BETA_STAGING becomes false. Eight administration modules explicitly
+require beta mode. Eleven called private functions have beta implementations but
+no public counterpart on the restored current schema. Exact evidence is in
+owner-runtime-review.json. These are pre-existing public-mode gaps, not failed
+retirement or lost Barry permissions in the currently deployed beta runtime.
+
+Core public incident access already works under the restricted public role.
+Commercial billing uses its separate reviewed restricted commercial role. Before
+freezing the final public-runtime package, verify the minimum customer-support,
+Owner oversight and emergency-control paths against public customer records.
+Implement missing paths using the existing two Owners and MFA/session checks.
+Do not globally grant the public role access to beta tables, turn on beta wallet
+grants, copy retired assets, or expose administrative credentials to clients.
+Historic beta-only search/reporting can remain clearly scoped to history; it must
+not silently become the source for new commercial customer management. Optional
+marketplace activation and announcement tooling must not delay paid packs.
+
+Next concrete acceptance
+Founder opens /admin/incidents in the existing account and completes MFA privately;
+Barry then checks his own Owner session. Browser automation timed out; manual
+confirmation is pending, not recorded as passed. No new drill/email is needed.
+Complete secure hook credential verification and the remaining public-role HTTP
+rehearsal, then freeze one exact closed-gate runtime/SQL/configuration package.
+Only after separately authorised configuration/testing: bounded installed-v31
+phone acceptance on the Production project/hook, keeping public signup and sales
+closed. Existing Preview SMS and historical Google TEST evidence remain accepted.
+
+The final coordinated GO remains separate: public Australian signup, A$49/A$99
+Google purchases, Standard/Premium packs and v31 publication. No repeated inventory
+import, six-order billing test programme, new Android submission, or legacy sealed
+pack adapter is justified by the completed retirement.
+
+Remaining active engineering estimate: 3–6 hours, subject to the public Owner
+support-path findings; then roughly 15–30 minutes of founder/device participation
+and separately approved execution. Credentials/access or external review can add
+waiting time. This is an estimate, not a claim the final release package is ready.

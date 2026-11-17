@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-17T03:35:22.190Z",
+  "frozenNoticeSha256": "9cb6bd4ca4200748ea428ea3a42b5ce576e70fcc88f334f5417a447881577f2b",
+  "customerBodySha256": "98d21af879710e05bd662b8eaccaa2a89c9914cac059c377c7168a971ccbf190",
+  "privateCohortDigest": "9ae298d2b6c16c48c2901b021db443df48f160d819ab361bf02487d5a45823c7",
+  "recipientCount": 3,
+  "verifiedAgainstFrozenEmailHashes": true,
+  "timePending": true,
+  "deliveryApprovalPending": true,
+  "sent": 0,
+  "drafts": [
+    {
+      "accountReference": "9fa5cdbb",
+      "recipientSha256": "fe7c5034e91adb0ed561fe80daf62b2de21738675d2773b13e3633143a69e8b3",
+      "filename": "9fa5cdbb-notice.eml",
+      "draftSha256": "ba80b5e6205d06090ddc7e3fa57fba81dd3625d30f7f6838de701afb80677471"
+    },
+    {
+      "accountReference": "d6ab4838",
+      "recipientSha256": "35028c3635dc2b3702297a43502eb4cc432d715052c9da83d0e4857b2ceb2c00",
+      "filename": "d6ab4838-notice.eml",
+      "draftSha256": "8598d8d45d82c7664a01123cc00708d56f11d29f52ef0ea9bc371eb32c40e649"
+    },
+    {
+      "accountReference": "eea25d64",
+      "recipientSha256": "f7c10a8ab1efa5cdc1b14f79b34ac9bbb5dcf8b05272a38f0d5b738b5dd76c37",
+      "filename": "eea25d64-notice.eml",
+      "draftSha256": "108d777bd711c2abcde0d13aaa029f5c5b5f1c6b557ece24f5dcf9d692a0610d"
+    }
+  ]
+}

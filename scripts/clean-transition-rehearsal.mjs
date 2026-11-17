@@ -3,8 +3,19 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
-const target = "docked-commercial-restore-20261117b",
-  dir = "private-data/clean-transition-20261117";
+import { mkdirSync } from "node:fs";
+import {
+  validatePriorCommunication,
+  communicationAction,
+} from "./clean-transition-authority.ts";
+const installed = process.argv.includes("--installed-attestation");
+const target = installed
+    ? "docked-commercial-restore-20261117d"
+    : "docked-commercial-restore-20261117b",
+  dir = installed
+    ? "private-data/clean-retirement-attestation-20261117"
+    : "private-data/clean-transition-20261117";
+mkdirSync(dir, { recursive: true });
 const run = (s) =>
   execFileSync(
     "docker",
@@ -39,7 +50,12 @@ const inspect = JSON.parse(
 )[0];
 assert.equal(inspect.HostConfig.NetworkMode, "none");
 assert.equal(Object.keys(inspect.HostConfig.PortBindings ?? {}).length, 0);
-const p = JSON.parse(readFileSync(dir + "/plan.private.json", "utf8"));
+const p = JSON.parse(
+  readFileSync(
+    "private-data/clean-transition-20261117/plan.private.json",
+    "utf8",
+  ),
+);
 const manifest = p.accounts
   .map((a) => ({
     id: a.id,
@@ -57,16 +73,46 @@ writeFileSync(
 );
 const q = (s) => "'" + s.replaceAll("'", "''") + "'";
 const manifestSql = q(JSON.stringify(manifest)) + "::jsonb";
-const body =
-  readFileSync(
-    "supabase/migrations/20261117001019_clean_commercial_account_transition.sql",
-    "utf8",
-  ) +
-  "\n" +
-  readFileSync(
-    "config/operations/clean-commercial-transition.prepared.sql",
-    "utf8",
+const body = installed
+  ? ""
+  : readFileSync(
+      "supabase/migrations/20261117001019_clean_commercial_account_transition.sql",
+      "utf8",
+    ) +
+    "\n" +
+    readFileSync(
+      "config/operations/clean-commercial-transition.prepared.sql",
+      "utf8",
+    );
+let communicationSql = "";
+if (installed) {
+  assert.equal(
+    run("select count(*) from launch_transition.batches").trim(),
+    "0",
+    "Fresh uncontained restore required",
   );
+  const bytes = readFileSync(
+    "docs/qa/clean-retirement-attestation-20261117/FOUNDER_ATTESTATION.json",
+  );
+  const sha = (b) => createHash("sha256").update(b).digest("hex");
+  const detail = validatePriorCommunication(
+    {
+      schemaVersion: 2,
+      source: "isolated-rehearsal",
+      accountManifestSha256: sha(JSON.stringify(manifest)),
+      communicationRequirement: "founder-attested-prior-direct-communication",
+      communicationEvidence: { path: "rehearsal", sha256: sha(bytes) },
+    },
+    manifest,
+    bytes,
+  );
+  communicationSql = `
+insert into launch_transition.events(batch,action,detail)select batch,${q(communicationAction)},${q(JSON.stringify(detail))}::jsonb from result;
+select pg_temp.assert_true((select count(*)=1 from launch_transition.events where action=${q(communicationAction)} and detail=${q(JSON.stringify(detail))}::jsonb),'Communication checkpoint not exact');
+select pg_temp.assert_true(pg_temp.denied('update launch_transition.events set detail=''{}'' where action=''${communicationAction}'''),'Communication evidence mutable');
+select pg_temp.assert_true(not exists(select 1 from launch_transition.events where detail ? 'noticeDelivered'),'Invented delivery marker');
+`;
+}
 const owners = p.accounts.filter((a) => a.kind === "owner"),
   customers = p.accounts.filter((a) => a.kind === "customer");
 let sql = `begin;
@@ -89,6 +135,7 @@ select pg_temp.assert_true(not public_gameplay.signup_allowed('AU','NSW','not-ap
 select pg_temp.assert_true(pg_temp.denied(${q(`select launch_transition.prepare(${manifestSql},'wrong',repeat('a',64),repeat('b',64))`)}),'Source drift was not rejected');
 select pg_temp.assert_true(pg_temp.denied(${q(`select launch_transition.prepare(${manifestSql},launch_transition.source_digest(),repeat('a',64),null)`)}),'Missing notice was not rejected');
 create temp table result as select launch_transition.prepare(${manifestSql},launch_transition.source_digest(),repeat('a',64),repeat('b',64)) batch;
+${communicationSql}
 select pg_temp.assert_true(launch_transition.prepare(${manifestSql},'ignored-after-exact-checkpoint',repeat('a',64),repeat('b',64))=(select batch from result),'Idempotent containment retry failed');
 select pg_temp.assert_true((select count(*)=2 from public.profiles),'Only retained Owners may be copied');
 select pg_temp.assert_true((select count(*)=2 from private.roles where role='owner'),'Two public Owners required');
@@ -152,7 +199,7 @@ select pg_temp.assert_true(not exists(select * from original_beta_audit except s
 select pg_temp.assert_true(not exists(select * from original_admission_events except select * from beta_private.admission_events),'Prior admission history changed');
 create temp table after_hashes as select * from pg_temp.capture();
 select pg_temp.assert_true(not exists(select 1 from after_hashes a join original_hashes b using(name)where(a.hash,a.rows)is distinct from(b.hash,b.rows)and a.name<>all(array[
-'beta_private.admission_control','beta_private.admission_events','beta_private.audit_events','public.profiles','private.roles','private.consent_events','public.notification_preferences','beta_private.roles','beta_public.profiles','beta_private.friends_roster','beta_private.named_tester_exception','credits_sandbox.access','credits_sandbox.trading_members','private.audit_events','operations.incidents','operations.events'])),'Unexpected protected table drift: '||(select jsonb_agg(a.name order by a.name)::text from after_hashes a join original_hashes b using(name)where(a.hash,a.rows)is distinct from(b.hash,b.rows)));
+'beta_private.admission_control','beta_private.admission_events','beta_private.audit_events','public.profiles','private.roles','private.consent_events','public.notification_preferences','beta_private.roles','beta_public.profiles','beta_private.friends_roster','beta_private.named_tester_exception','credits_sandbox.access','credits_sandbox.trading_members','private.audit_events','operations.incidents','operations.events'${installed ? ", 'launch_transition.batches','launch_transition.accounts','launch_transition.historical_cards','launch_transition.events'" : ""}])),'Unexpected protected table drift: '||(select jsonb_agg(a.name order by a.name)::text from after_hashes a join original_hashes b using(name)where(a.hash,a.rows)is distinct from(b.hash,b.rows)));
 select jsonb_build_object('passed',true,'protectedTables',(select count(*)from original_hashes),'expectedChangedTables',(select jsonb_agg(a.name order by a.name)from after_hashes a join original_hashes b using(name)where(a.hash,a.rows)is distinct from(b.hash,b.rows)),
 'definitions',(select count(*)from commercial_billing.definitions),'lifetimeLimited',(select sum(issued)from commercial_billing.definitions),'historicalCards',(select count(*)from launch_transition.historical_cards),'copiedOwners',(select count(*)from public.profiles),'customerRetirements',(select count(*)from launch_transition.accounts where kind='customer'),'authDeleted',0,'externalDeliveries',0,'allChangesRolledBack',true);
 rollback;
@@ -165,8 +212,19 @@ try {
   assert(line, "Missing acceptance result");
   const result = JSON.parse(line);
   writeFileSync(
-    "docs/qa/clean-transition-20261117/restored-database-tests.json",
-    JSON.stringify({ at: new Date().toISOString(), ...result }, null, 2) + "\n",
+    installed
+      ? "docs/qa/clean-retirement-attestation-20261117/restored-database-tests.json"
+      : "docs/qa/clean-transition-20261117/restored-database-tests.json",
+    JSON.stringify(
+      {
+        at: new Date().toISOString(),
+        installedSchemaReused: installed,
+        founderAttestationCheckpoint: installed,
+        ...result,
+      },
+      null,
+      2,
+    ) + "\n",
   );
   console.log(JSON.stringify(result));
 } catch (e) {

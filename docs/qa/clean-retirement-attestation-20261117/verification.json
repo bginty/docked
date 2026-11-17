@@ -1,0 +1,55 @@
+{
+  "at": "2026-11-17T05:07:33.325Z",
+  "productionWrites": 0,
+  "notificationsSent": 0,
+  "authRetirements": 0,
+  "applicationChanges": 0,
+  "newMigrations": 0,
+  "founderCommunicationEvidence": "founder-attestation; prior direct communication; no date or delivery receipt invented",
+  "restore": {
+    "path": "docs/qa/v31-prelaunch-execution-20261111/database/restore-20261117d/restore-only.json",
+    "sha256": "8f532ecc968968d5bbd9cbc4c8ed2fc579d3492f9e651f3d1180827c62b91cdc",
+    "at": "2026-11-17T05:01:37.240Z",
+    "backupAt": "2026-11-17T04:58:31.679Z",
+    "sourceProject": "pojoymtniryarxxunyvz",
+    "archiveSha256": "116df0fdd4fbffb1b70d0e0afda34cc439836cf06ee22d65c4561efacf7902a5",
+    "archiveBytes": 140788692,
+    "encryptedAtRest": "AES-256-GCM",
+    "restoreTarget": "docked-commercial-restore-20261117d",
+    "network": "none",
+    "loopbackOnlyDriver": false,
+    "publishedPorts": 0,
+    "restored": true,
+    "protectedTables": 572,
+    "protectedRecordsUnchanged": true,
+    "migrationsReapplied": false,
+    "productionWrites": 0,
+    "cronActive": false
+  },
+  "tests": {
+    "focusedAutomated": 30,
+    "failed": 0,
+    "types": true,
+    "scopedEslint": true,
+    "restoredContainment": true,
+    "realOperatorHelper": true,
+    "allRestoreChangesRolledBack": true
+  },
+  "historicalAuthAcceptanceRetained": [
+    {
+      "path": "docs/qa/clean-transition-20261117/auth-lifecycle-tests.json",
+      "sha256": "a9a7dca69fe4fa8d68892cd7cae7f66762ee1673a052b426400599f5f3e5fea7"
+    },
+    {
+      "path": "docs/qa/clean-transition-20261117/auth-checkpoint-tests.json",
+      "sha256": "ff5a11c0ead782d76a3c3b5950b2652cd31edfa6bdbf936a952168e19a6a9bb1"
+    },
+    {
+      "path": "docs/qa/clean-transition-20261117/owner-surface-tests.json",
+      "sha256": "25de7c21e4d380aeb96c571a0e1169035ba4bc7419086d6e39055f6c4dbf8443"
+    }
+  ],
+  "newPhysicalAndroidOrSmsTest": false,
+  "reapplicationOfDeployedSql": false,
+  "backupIsEvidenceNotFutureFreshnessApproval": true
+}

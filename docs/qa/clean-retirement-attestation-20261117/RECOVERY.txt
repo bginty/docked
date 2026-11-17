@@ -1,0 +1,56 @@
+REVISED ACCOUNT OPERATION — NO NEW DDL OR APPLICATION DEPLOYMENT
+
+Only the new exact account package can authorise this revised operator. The prior
+c569dcfe... package and its noticeDelivered flag cannot authorise these bytes.
+Communication evidence is the hash-bound founder attestation. No new email, SMS,
+invented delivery receipt, communication date or 19 November delay is required.
+
+Before containment
+Verify current deployed source 9e57c094cb7b4af02277e191a2e64fa2e6b22c6b and its
+installed migration/operator definitions. Do not reapply either. Verify fresh
+encrypted backup <=1 hour and isolated restore, preflight <=10 minutes, current
+account identities/roles/Owner MFA and no unexplained asset or permission drift.
+All commercial/public/SMS controls remain closed and commercial assets empty.
+Check the exact six-account manifest and any actual specific entitlement exception.
+Use one operator; no concurrent invitations, credit grants, release or retirement.
+
+Containment is atomic. It retains two Owner UUIDs, promotes Barry's existing
+in-app Admin role to Owner, preserves QA historically, blocks beta advantages and
+ordinary beta access. It appends an immutable FOUNDER_PRIOR_COMMUNICATION_ATTESTED
+event in the SAME transaction. Its detail says founder attestation, unknown prior
+communication time, zero new notification emails and no commercial consent.
+The existing notice_sha256 column remains the reviewed text reference only.
+Neither that hash nor the event is described as email delivery evidence.
+
+If the event cannot be recorded or differs on retry, the transaction fails;
+containment cannot commit without the exact communication checkpoint. A retry
+must use the same package, cohort and evidence. Do not append conflicting evidence.
+Before containment commit, transaction rollback leaves all accounts unchanged.
+
+After containment
+No automatic restoration of beta access. Supported GoTrue soft deletion applies
+ONLY to the three reviewed customers, with durable attempt and readback checkpoints.
+Before every irreversible Auth boundary, recheck approval expiry; use supported
+deleteUser(id, true), not direct Auth SQL deletion. On a timeout, read the same UUID
+before deciding whether another call is necessary. Never interpret an unavailable
+Auth row, failed provider response or missing checkpoint as successful retirement.
+
+Soft deletion is irreversible. No ordinary undelete, old-UUID recreation or
+automatic application rollback is permitted after containment. Partial completion
+stays contained and cannot activate registration. Continue only uncompleted exact
+identities within valid authority and fresh preflight/backup; otherwise seek the
+specific needed recovery authority. Never use a full old database restore over
+later legitimate transactions as an account undo.
+
+After completion
+Verify retained Owner identities/MFA, Barry's own audited Owner actions, three
+customer tombstones, old-session denial, claim release, preserved QA restriction,
+empty commercial assets and unchanged journals/holds/custody/serials/supply.
+No replacement customer account is created by this operator. Normal future signup
+requires a new UUID, new email/Australian-phone verification and explicit commercial
+acceptance. It never retrieves historical assets using an email or phone match.
+
+Financial/card history and statutory/privacy obligations remain preserved under
+their existing restricted handling and review requirements. No data cleanup,
+inventory import, card issuance, live payment, Phone activation, public signup,
+marketplace, prize/withdrawal, scoring, key rotation or Google publication is included.

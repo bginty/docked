@@ -13,6 +13,13 @@ import {
   type RetirementAdmin,
 } from "../src/core/account-retirement";
 import { databaseConnectionOptions } from "../src/server/database-tls";
+import {
+  communicationAction,
+  containWithCommunication,
+  validatePriorCommunication,
+  validateRetirementApproval,
+  type RetirementApproval,
+} from "./clean-transition-authority";
 const arg = (key: string) => {
   const at = process.argv.indexOf(key);
   assert(at >= 0 && process.argv[at + 1], `Required ${key}`);
@@ -42,40 +49,15 @@ async function main() {
     pkg.accountManifestSha256,
     "Exact private account manifest changed",
   );
-  let approval:
-    | {
-        packageSha256: string;
-        source: string;
-        approvedAt: string;
-        expiresAt: string;
-        scope: string;
-        noticeDelivered: boolean;
-      }
-    | undefined;
+  const communication = validatePriorCommunication(
+    pkg,
+    manifest,
+    readFileSync(pkg.communicationEvidence.path),
+  );
+  let approval: RetirementApproval | undefined;
   if (action !== "preflight") {
     approval = JSON.parse(readFileSync(arg("--approval"), "utf8"));
-    assert(approval);
-    assert.equal(approval.packageSha256, digest(packageBytes));
-    assert.equal(approval.source, pkg.source);
-    assert.equal(
-      approval.scope,
-      "contain-and-soft-retire-three-beta-customers-retain-two-owners",
-    );
-    assert.equal(
-      approval.noticeDelivered,
-      true,
-      "Approved transition notice must have been delivered before retirement",
-    );
-    const start = Date.parse(approval.approvedAt),
-      end = Date.parse(approval.expiresAt);
-    assert(
-      Number.isFinite(start) &&
-        end > start &&
-        end - start <= 86400000 &&
-        Date.now() >= start &&
-        Date.now() < end,
-      "Exact approval expired or invalid",
-    );
+    validateRetirementApproval(approval!, pkg, digest(packageBytes));
   }
   // Verify source through immutable Git objects as well as operator file hashes.
   assert.equal(
@@ -192,11 +174,19 @@ async function main() {
     );
     if (action === "contain") {
       const batch = await sql.begin(async (tx) => {
+        validateRetirementApproval(approval!, pkg, digest(packageBytes));
         await tx`set local lock_timeout='5s'`;
         await tx`set local statement_timeout='120s'`;
-        return (
-          await tx`select launch_transition.prepare(${tx.json(manifest)},${reviewed.source},${digest(packageBytes)},${pkg.noticeSha256}) batch`
-        )[0].batch;
+        // The existing notice_sha256 remains a content reference, not delivery proof.
+        // Bind honest communication evidence atomically to containment. No new DDL.
+        return containWithCommunication(
+          tx,
+          manifest,
+          reviewed.source,
+          digest(packageBytes),
+          pkg.noticeSha256,
+          communication,
+        );
       });
       console.log(
         JSON.stringify({
@@ -209,9 +199,30 @@ async function main() {
       return;
     }
     assert(preflight.batch, "Committed containment required");
+    const [batchProof] =
+      await sql`select approval_sha256,notice_sha256 from launch_transition.batches where id=${preflight.batch}`;
+    assert.equal(
+      batchProof.approval_sha256,
+      digest(packageBytes),
+      "Different account package contained",
+    );
+    assert.equal(batchProof.notice_sha256, pkg.noticeSha256);
+    const communicationEvents =
+      await sql`select detail from launch_transition.events where batch=${preflight.batch} and action=${communicationAction}`;
+    assert.equal(
+      communicationEvents.length,
+      1,
+      "Attested communication checkpoint required",
+    );
+    assert.deepEqual(
+      communicationEvents[0].detail,
+      communication,
+      "Communication checkpoint drift",
+    );
     // Retirement is a forward-only phase. Do not require old source digest after
     // a successful soft deletion; re-validate each exact identity and checkpoint.
     if (action === "complete") {
+      validateRetirementApproval(approval!, pkg, digest(packageBytes));
       await sql`select launch_transition.complete(${preflight.batch})`;
       console.log(JSON.stringify({ complete: true, gatesRemainClosed: true }));
       return;

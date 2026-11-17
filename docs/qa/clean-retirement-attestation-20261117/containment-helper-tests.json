@@ -1,0 +1,16 @@
+{
+  "at": "2026-11-17T05:05:22.870Z",
+  "helperSha256": "e8766fac0bcb9667c7608d12556ab9bdf40624716ee9eee3e7680e3340e6e92c",
+  "passed": true,
+  "checks": [
+    "Attestation insert failure rolls back containment and Owner promotion",
+    "Real operator helper records exact attestation and two Owners with zero commercial assets",
+    "Identical containment retry adds no duplicate event",
+    "Changed communication checkpoint fails closed and rolls back"
+  ],
+  "allChangesRolledBack": true,
+  "externalDeliveries": 0,
+  "authCalls": 0,
+  "productionWrites": 0,
+  "network": "none"
+}

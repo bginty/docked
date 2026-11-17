@@ -1,0 +1,45 @@
+EXACT ACCOUNT TRANSITION APPROVAL REQUEST — NOT YET APPROVED
+
+Source: 9e57c094cb7b4af02277e191a2e64fa2e6b22c6b
+Package SHA-256: c569dcfeea5f0e8fbebcab7b14dc03674aca7ffbd6c8581d4d3287a5108f2855
+Manifest: account-retirement-package.json (raw UTF-8 bytes, LF)
+Private six-account manifest digest: 9ae298d2b6c16c48c2901b021db443df48f160d819ab361bf02487d5a45823c7
+Customer notice SHA-256: 9cb6bd4ca4200748ea428ea3a42b5ce576e70fcc88f334f5417a447881577f2b
+
+Separate authority, maximum24h: AFTER successful schema/application deployment,
+approved notice delivery and fresh backup/preflight, contain the exact beta cohort
+and use supported GoTrue v2.198.0 soft deletion for THREE customers only.
+
+Retain Founder623d1e69… exact UUID/MFA/Owner.
+Retain Barryef641248… exact UUID/MFA; Admin -> existing Full Owner role.
+Retire Luke9fa5cdbb…, Brentond6ab4838…, other invited customereea25d64….
+Preserve internal QAe56880e0… Auth/history separately; no public participation.
+Exact full identifiers/email hashes are in the private reviewed manifest, never
+chosen by display name. Any mismatch/new/unidentified Auth account aborts.
+
+Atomic containment copies only the two Owners' profiles/historical consent and
+preferences, records role changes, blocks beta assets and ordinary invitations.
+No new commercial consent or assets are fabricated. Then individually record an
+attempt, call deleteUser(id,true), independently verify and checkpoint. Complete
+only when all three soft deletions and both Owner identities/MFA pass.
+
+ZERO commercial credits/cards/packs/lineups for retained/new customer participation.
+No old balance/ledger/card/custody/supply/receipt/hold is reset or deleted. The
+three sealed beta packs remain archived. Historical card serials remain consumed.
+No new account, message, purchase, pack opening, mint, live key access or external
+Owner permission is authorised. Replacement accounts register themselves normally
+with NEW UUIDs, email/phone verification and explicit commercial consent.
+
+The old credentials/sessions will stop working and email/phone identifiers become
+reusable. This soft deletion is IRREVERSIBLE. Recovery is forward-only, retaining
+tombstones/audits; never hard-delete, recreate an old UUID or restore the entire
+old database over later activity. See RECOVERY.txt and EXECUTION.txt.
+
+Mandatory prerequisites: approved notice delivered, no unresolved specific
+protected-entitlement claim, exactly reviewed identities/roles, individually
+verified Owner MFA, unchanged Auth version, encrypted restored backup<=1h,
+preflight<=10m and closed empty commercial runtime. No automated access restoration
+on partial failure. Brenton's California exception does not become AU eligibility.
+
+This request does NOT approve public registration, SMS delivery, sales/issuance,
+trading, competitions, prizes/withdrawals, deletion schedules or Google publication.

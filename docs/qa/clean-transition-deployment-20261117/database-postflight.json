@@ -1,0 +1,45 @@
+{
+  "at": "2026-11-17T03:24:27.263Z",
+  "elapsedMs": 54183,
+  "schema": {
+    "fingerprint": "51f5e3b4a28935a9b2c982db77d931e6",
+    "objects": 10847
+  },
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "custodyRecords": 936,
+  "custodyDigest": "8340ed6c5584fd3f0832fc17431081548f3b8956e6da53df6f0c19d6c3a674ac",
+  "protectedTables": 572,
+  "rolesSha256": "d8bb32c50db33f49d8586b14ddde26f9feaf454d2809521d73e0f5645d3dcc20",
+  "source": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b",
+  "packageSha": "d3a7960eb0ac2de8fa86e4185d2b8902621e53368729e4d3639e7643518914fa",
+  "drift": {
+    "cronRowsAdded": 62,
+    "weeklyZeroIssuanceRowsAdded": 30,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true,
+    "founderSessionActivity": {
+      "founderSessionOnly": true,
+      "unchangedCredentialsMfaAndAuthority": true,
+      "refreshRotations": 1,
+      "baselineVerifiedAgainstEncryptedBackup": true
+    },
+    "appendedNflPendingReview": 1,
+    "immutableRoundRows": 8
+  },
+  "registryEmpty": true,
+  "allAssetsPreserved": true
+}

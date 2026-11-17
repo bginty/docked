@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-17T03:21:24.326Z",
+  "source": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b",
+  "deployment": "dpl_ZNUTkFD88udQGYcdnJ8eJaUZ5QBq",
+  "authenticatedAccess": true,
+  "existingReceiptRecovered": true,
+  "ownerMfaGuardPassed": true,
+  "ownSession": true,
+  "memberSha256": "f0ebb58f5db0391f39d3d5eca611fa218327c5a8663f1e4050d8727f81417827",
+  "openedReceipts": 40,
+  "nineCardReceipts": 30,
+  "receiptSetSha256": "ec5235073067127854114958b1b3c61fcb87be858c44d9309d5b377e42ddd956",
+  "firstThreeCardIdHashes": [
+    "22e5b5c270d389d7ea5c685024114ba0b696679a1729e288bbb67b37966458ae",
+    "854a823b03841adb3f73601bd2ba48903784d6fd5b662959af6ff2a138a2f146",
+    "41f3f5921392e4f7601e38110186e015aad65b9e33c429c1a98266fdcb70ec92"
+  ],
+  "stagingSampleHashesMatch": true,
+  "method": "Genuine founder Chrome session; same-origin authenticated GET on live docked.com.au without deployment pin, release identity checked before and after",
+  "timings": [
+    {"path":"/api/beta-release","status":200,"elapsedMs":1018,"requestId":"syd1::syd1::vwkvl-1794885680278-49c1b972df4d"},
+    {"path":"/api/test-wallet?view=packs","status":200,"elapsedMs":1770,"requestId":"syd1::syd1::b6khm-1794885681286-855a7504882a"},
+    {"path":"/api/admin/incidents","status":200,"elapsedMs":234,"requestId":"syd1::syd1::5rpg2-1794885683109-4694aa2e836a"},
+    {"path":"/api/beta-release","status":200,"elapsedMs":112,"requestId":"syd1::syd1::wz5zd-1794885683345-5e1be78889e9"}
+  ],
+  "purchases":0,"grants":0,"openingRequests":0,"incidentWrites":0,"physicalAndroidTest":false,
+  "performanceLimit":"One readback timing, not p50/p95 or a new pack-purchase benchmark. Existing November Android and billing acceptance is not repeated."
+}

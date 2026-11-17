@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-17T03:11:35.078Z",
+  "project": "pojoymtniryarxxunyvz",
+  "readOnly": true,
+  "phoneProviderOff": true,
+  "totpEnabled": true,
+  "configurationSha256": "943c30253637b1e9b8bd7b287195ef1ec20181efd056ab981758073095b8819d",
+  "settings": {
+    "external_phone_enabled": false,
+    "sms_provider": "twilio",
+    "sms_autoconfirm": false,
+    "mfa_totp_enroll_enabled": true,
+    "mfa_totp_verify_enabled": true,
+    "disable_signup": true,
+    "hook_send_sms_enabled": false
+  }
+}
