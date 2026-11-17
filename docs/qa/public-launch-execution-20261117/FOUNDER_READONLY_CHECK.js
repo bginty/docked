@@ -1,0 +1,25 @@
+/* Run once in Chrome Console on https://docked.com.au using your own Owner session.
+ * GET only. No credentials read/exported, MFA changes, incident actions, SMS,
+ * purchases or support mutations. Normal Auth refresh/rate bookkeeping may occur.
+ * Vercel's documented deployment pin selects only the approved staged build.
+ */
+(async()=>{
+ const source='78482f713fd93b6677f85b43c5c49cfa00acccde',deployment='dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE',checks=[];
+ const check=(ok,message)=>{if(!ok)throw Error(message)};
+ const hash=async value=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(value))))).map(b=>b.toString(16).padStart(2,'0')).join('');
+ const read=async(path,kind='json',expected=200)=>{const url=new URL(path,location.origin);url.searchParams.set('dpl',deployment);const start=performance.now();const r=await fetch(url,{method:'GET',credentials:'same-origin',cache:'no-store',redirect:kind==='html'?'manual':'error',signal:AbortSignal.timeout(30000)});checks.push({path:path.split('?')[0],status:r.status,responseType:r.type,elapsedMs:Math.round(performance.now()-start)});if(kind==='html'&&r.type==='opaqueredirect')return {redirect:true};check(r.status===expected,'Read unavailable: '+path.split('?')[0]+' ('+r.status+')');if(kind==='status'){await r.body?.cancel();return r.status}return kind==='json'?r.json():r.text()};
+ try{
+ check(location.origin==='https://docked.com.au','Use docked.com.au only');check(Date.now()<Date.parse('2026-11-18T11:20:00Z'),'Approval expired');
+ await read('/api/beta-release','status',404);
+ const session=await read('/api/app-session');check(session.authenticated&&session.ownerAccess,'Existing retained Owner session required');
+ const operations=await read('/api/admin/operations?scope=live');check(operations.data?.scope==='live'&&operations.data.inventory.length===6540,'Public-mode candidate pin/report failed');check(operations.data.metrics.openSales===0&&operations.data.metrics.openIssuance===0&&operations.data.metrics.commercialCards===0,'Commercial gates/assets changed');
+ const csv=await read('/api/admin/operations?scope=live&format=csv','text');check(csv.startsWith('"scope","edition"')&&csv.split('\r\n').length===6541,'Inventory CSV invalid');
+ const incidents=await read('/api/admin/incidents');
+ const pages=[];for(const [path,marker]of [['/admin/incidents','Operational incidents'],['/admin/operations','Commercial operations'],['/admin/workspace/users','Customer'],['/admin/workspace/payments','Payment']]){const page=await read(path,'html');check(typeof page==='string'&&page.includes(marker),'Owner page unavailable: '+path);check(!page.includes('Report unavailable. No estimated totals'),'Public report unavailable');pages.push({path,rendered:true,sha256:await hash(page)});}
+ const lookup=[];for(const [category,q]of [['members','Account'],['cards','Definition'],['transactions','Google']]){const result=await read('/api/admin/search?category='+category+'&q='+q);check(Array.isArray(result.results),'Invalid search response');const first=result.results[0];if(first){const detail=await read('/api/admin/record?category='+category+'&record='+encodeURIComponent(first.id));check(detail.record?.source==='Public commercial records; historical beta assets excluded','Wrong record scope');if(category==='members')check(detail.record.fields['Commercial credits']===0&&detail.record.fields['Commercial cards']===0,'Inherited beta assets');lookup.push({category,searchPassed:true,detailPassed:true,detailSha256:await hash(detail.record)});}else{check(category==='transactions','Expected current customer/definition record');await read('/api/admin/record?category=transactions&record=nonexistent-commercial-receipt','status',404);lookup.push({category,searchPassed:true,empty:true,absentDetailCorrectly404:true,note:'Production commercial receipts are independently confirmed empty; no payment test or fabricated receipt.'});}}
+ const entry=await read('/app','html');check(entry.redirect||(typeof entry==='string'&&entry.includes('NEXT_REDIRECT')&&entry.includes('/admin/incidents')),'Owner landing changed');
+ await read('/api/beta-release','status',404);
+ console.info('DOCKED_PUBLIC_OWNER_ACCEPTANCE '+JSON.stringify({at:new Date().toISOString(),source,deployment,authenticatedAccess:true,ownSession:true,mfaAal2:true,incidentsRead:true,publicOperationsRead:true,publicSupportRead:lookup.every(x=>x.detailPassed||x.absentDetailCorrectly404),noBetaApiRequests:true,productionWrites:0,businessMutations:0,authAndRateBookkeepingPossible:true,operationsSha256:await hash(operations),incidentsSha256:await hash(incidents),csvSha256:await hash(csv),lookup,pages,checks,note:'Existing Owner MFA enforced by APIs; no repeated MFA challenge claimed.'}));
+ return 'PASSED — staged public Owner reports and support read-only checks.';
+ }catch(error){console.error('DOCKED_PUBLIC_OWNER_STOP '+JSON.stringify({at:new Date().toISOString(),message:String(error),checks,businessMutations:0}));return 'STOPPED — tell Codex the message; do not change browser protection.';}
+})();

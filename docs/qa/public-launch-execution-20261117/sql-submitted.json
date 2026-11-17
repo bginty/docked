@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-17T11:55:56.565Z",
+  "source": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "packageSha256": "a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39",
+  "wrapperSha256": "0a70a05d5e7a382a10a19d06f4a6e896162bedef3e3ff2121377ffc91532bcc2",
+  "migrations": [
+    {
+      "file": "supabase/migrations/20261116215032_public_sms_budget_guard.sql",
+      "sha256": "039fe257313e83d9f3c90ca85dec916414f60c142d7a7b987bc574083d03fca6"
+    },
+    {
+      "file": "supabase/migrations/20261117091440_public_owner_support.sql",
+      "sha256": "821461e12e4862ef68dd39135ce0d4bf48d2e8dfc46fa99013e4594de470726a"
+    }
+  ],
+  "preflightAt": "2026-11-17T11:55:27.815Z",
+  "backupCaptureEarliestBound": "2026-11-17T11:25:00.000Z",
+  "backupSha256": "a7ae7074b799043b7ec7562c31988e55207502573a0b28a4c747e2df3e029ec5",
+  "attempt": 1
+}

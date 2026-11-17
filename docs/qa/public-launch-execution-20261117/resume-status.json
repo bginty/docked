@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-17T11:32:22.624731+00:00",
-  "state": "awaiting_existing_owner_browser_access",
+  "at": "2026-11-17T12:10:23.613Z",
+  "state": "awaiting_readonly_candidate_owner_acceptance",
   "source": "78482f713fd93b6677f85b43c5c49cfa00acccde",
   "packageSha256": "a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39",
   "liveSource": "988ea0ba905e91d3c1cdf0c5e18812849b138968",
@@ -8,17 +8,25 @@
   "sourceVerified": true,
   "exactSourceExported": true,
   "runtimePreservationPassed": true,
-  "productionChanges": 0,
-  "migrationsApplied": 0,
-  "deploymentSubmitted": false,
+  "productionChanges": 2,
+  "migrationsApplied": 2,
+  "deploymentSubmitted": true,
   "promoted": false,
   "approvalStillValid": true,
   "conservativeExpiryUtc": "2026-11-18T11:20:00Z",
-  "browserFailure": "CDP focus-emulation timeout twice; native browser fallback stopped by Computer Use because active URL could not be verified as allowed. No further computer-use attempted.",
-  "hostedAcceptance": "Not performed; mandatory before promotion",
+  "browserFailure": null,
+  "hostedAcceptance": "Candidate build passed; narrow authenticated read-only acceptance pending",
   "backupRun": "20261117h",
   "backupProcessSession": 49145,
-  "backupStatus": "capture_in_progress",
+  "backupStatus": "authenticated_restore_passed",
   "publicLaunch": "NO-GO",
-  "nextAction": "Bring existing https://docked.com.au/admin/incidents Chrome tab to foreground and resume in a new turn. No new deployment approval required while exact package/window remain valid. Complete backup verification/fresh drift/local rehearsal before SQL; narrow protected candidate check before promotion."
+  "nextAction": "Finish candidate anonymous checks and new public Owner read-only acceptance, fresh drift, then promote exact approved candidate",
+  "history": [
+    {
+      "at": "2026-11-17T11:32:22.624731+00:00",
+      "state": "awaiting_existing_owner_browser_access",
+      "browserFailure": "CDP focus-emulation timeout twice; native browser fallback stopped by Computer Use because active URL could not be verified as allowed. No further computer-use attempted."
+    }
+  ],
+  "currentCandidate": "dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE"
 }

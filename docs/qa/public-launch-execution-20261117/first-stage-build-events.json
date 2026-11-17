@@ -1,0 +1,316 @@
+{
+  "at": "2026-11-17T12:04:08.962Z",
+  "deployment": "dpl_3d4QuKjERBHHKJWrTfy3UzSHaReR",
+  "events": [
+    {
+      "created": 1794916691729,
+      "date": 1794916691729,
+      "type": "stdout",
+      "text": "Running build in Washington, D.C., USA (East) – iad1",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916691729,
+      "date": 1794916691729,
+      "type": "stdout",
+      "text": "Build machine configuration: 4 cores, 7 GB (Standard Build Machine)",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916691733,
+      "date": 1794916691733,
+      "type": "stdout",
+      "text": "Retrieving list of deployment files...",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916692151,
+      "date": 1794916692151,
+      "type": "stdout",
+      "text": "Downloading 1017 deployment files...",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916693588,
+      "date": 1794916693588,
+      "type": "stdout",
+      "text": "Restored build cache from previous deployment (Du8W6gJRXWBb3d6frPT7oVyhprwd)",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916695628,
+      "date": 1794916695628,
+      "type": "stdout",
+      "text": "Running \"vercel build\"",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916695642,
+      "date": 1794916695642,
+      "type": "stderr",
+      "text": "Vercel CLI 65.15.0",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916696109,
+      "date": 1794916696109,
+      "type": "stdout",
+      "text": "Running \"install\" command: `npm ci`...",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916702585,
+      "date": 1794916702585,
+      "type": "stderr",
+      "text": "npm warn deprecated jsrsasign@11.1.5: This package is no longer maintained.",
+      "level": "warning",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755017,
+      "date": 1794916755017,
+      "type": "stdout",
+      "text": "",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755017,
+      "date": 1794916755017,
+      "type": "stdout",
+      "text": "added 312 packages, and audited 313 packages in 59s",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755017,
+      "date": 1794916755017,
+      "type": "stdout",
+      "text": "",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755017,
+      "date": 1794916755017,
+      "type": "stdout",
+      "text": "62 packages are looking for funding",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755018,
+      "date": 1794916755018,
+      "type": "stdout",
+      "text": "  run `npm fund` for details",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755239,
+      "date": 1794916755239,
+      "type": "stdout",
+      "text": "",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755239,
+      "date": 1794916755239,
+      "type": "stdout",
+      "text": "11 moderate severity vulnerabilities",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755239,
+      "date": 1794916755239,
+      "type": "stdout",
+      "text": "",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755239,
+      "date": 1794916755239,
+      "type": "stdout",
+      "text": "To address issues that do not require attention, run:",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755239,
+      "date": 1794916755239,
+      "type": "stdout",
+      "text": "  npm audit fix",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755239,
+      "date": 1794916755239,
+      "type": "stdout",
+      "text": "",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755239,
+      "date": 1794916755239,
+      "type": "stdout",
+      "text": "To address all issues, run:",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755239,
+      "date": 1794916755239,
+      "type": "stdout",
+      "text": "  npm audit fix --force",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755239,
+      "date": 1794916755239,
+      "type": "stdout",
+      "text": "",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755239,
+      "date": 1794916755239,
+      "type": "stdout",
+      "text": "Run `npm audit` for details.",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755342,
+      "date": 1794916755342,
+      "type": "stdout",
+      "text": "Detected Next.js version: 16.4.6",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755396,
+      "date": 1794916755396,
+      "type": "stdout",
+      "text": "Running \"node scripts/guard-hosted-build.mjs && npm run build\"",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755473,
+      "date": 1794916755473,
+      "type": "stderr",
+      "text": "Docked refuses a hosted build outside its reviewed deployment boundary.",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    },
+    {
+      "created": 1794916755483,
+      "date": 1794916755483,
+      "type": "stderr",
+      "text": "Error: [BUILD_UTILS_SPAWN_1] Command \"node scripts/guard-hosted-build.mjs && npm run build\" exited with 1",
+      "level": "error",
+      "info": {
+        "type": "build",
+        "name": "bld_h2pr4dpdh",
+        "entrypoint": "."
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+APPROVED CLOSED-GATE PUBLIC RUNTIME — 17 NOVEMBER 2026
+
+Approved source 78482f713fd93b6677f85b43c5c49cfa00acccde; package
+a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39.
+Existing authority remains valid; no broadened scope or new approval inferred.
+
+Completed
+- Exact package and 1,021 frozen application export files verified.
+- New authenticated AES-256-GCM backup, digest
+  a7ae7074b799043b7ec7562c31988e55207502573a0b28a4c747e2df3e029ec5.
+  Isolated restore: network none, no published ports, tmpfs, cron disabled;
+  572 protected tables verified unchanged. Capture freshness conservatively
+  measured from 11:25 UTC, not the 11:36:45 manifest-completion timestamp.
+- Exact two-migration local commit, duplicate-application rejection and all
+  12 restored Owner/support/security groups passed. No SMS or live mutations.
+- Fresh Production drift: unchanged original schema/functions/roles/memberships,
+  6,540 definitions, 918 lifetime issuance, 936 custody records, zero commercial
+  cards, zero unbalanced journals, zero duplicate serials. Counts are observations.
+  Existing Owner refresh-token chains and scheduler rows compared individually.
+- Exact reviewed SQL wrapper committed once at 11:55:58 UTC. Independent post-SQL
+  comparison passed: only the approved schema delta and two migration histories,
+  four new empty RLS control/audit tables, original protected data unchanged.
+- Existing Phone/provider/hook/signup OFF; both retained Owner MFA factors intact.
+- Candidate dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE built successfully. Eleven protected
+  anonymous checks passed. Candidate has NOT been promoted at this checkpoint.
+
+Two staged build failures were investigated, not hidden
+1. CLI inferred parent documentation Git metadata alongside the exact frozen
+   application source. Explicit gitCommitSha now matches the approved source.
+   This metadata correction alone did not resolve the build rejection.
+2. The old beta deployment's explicit SUPABASE_SECRET_KEY value was empty. Carrying
+   that empty override forward masked the existing project secret binding, and
+   the public-mode build guard correctly rejected it. Removed only that empty
+   override; candidate inherits the same existing sensitive Production binding.
+   No key was read, copied, rotated or changed. All project environment IDs,
+   targets and update timestamps remain unchanged. The approved package explicitly
+   requires preserving this existing binding. Application/SQL/package bytes unchanged.
+   Successful hosted build confirms the unchanged guard now accepts the configuration.
+
+The full build install log reported development-inclusive moderate dependency
+findings. A fresh production-only lockfile audit reports zero vulnerabilities;
+no dependency versions or source bytes were changed during execution.
+
+Current live application remains 988ea0ba905e91d3c1cdf0c5e18812849b138968 /
+dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd until required authenticated candidate acceptance.
+The two new additive migrations are installed; DO NOT apply them again.
+
+Pending: founder's existing-session read-only candidate check of new public
+reports/customer/card/empty-payment support projections, fresh drift, promotion
+and postflight. This is changed-path acceptance, not repetition of Owner login,
+MFA, incident, vault, billing, pack, Android or Preview SMS programmes.
+
+Read-only support queries may create/update only their existing rate-limit
+bookkeeping; no support action, customer change, incident event or transaction
+is authorised. Payment lookup must show the genuine empty commercial receipt
+state, not fabricated migrated TEST transactions.
+
+Final evidence index cb1ee482 remains authoritative. The cost-bound resolution
+and one-attempt-only SMS decision in final-launch-evidence-20261117 supersede
+older invoice/two-attempt planning, without editing the frozen deployment packet.
+Production signed-hook configuration remains separately unapproved and untouched.
+
+All public/commercial gates remain OFF. Google Play untouched. Launch NO-GO.

@@ -1,0 +1,47 @@
+{
+  "at": "2026-11-17T12:06:05.056Z",
+  "offlineDiagnostic": true,
+  "steps": [
+    {
+      "name": "pack",
+      "result": false
+    },
+    {
+      "name": "isolated",
+      "result": false
+    },
+    {
+      "name": "beta",
+      "result": false
+    },
+    {
+      "name": "review",
+      "result": false
+    },
+    {
+      "name": "production",
+      "result": "accepted"
+    }
+  ],
+  "settings": {
+    "DOCKED_HOSTED_PRODUCTION": "true",
+    "DOCKED_HOSTED_PREVIEW": "false",
+    "APP_ENV": "production",
+    "SUPABASE_ENV": "production",
+    "LEGAL_ENTITY_VERIFIED": "true",
+    "DATABASE_CONNECTION_MODE": "session",
+    "DATABASE_RUNTIME": "serverless",
+    "REGISTRATION_ENABLED": "false",
+    "DOCKED_RELEASE_CHANNEL": "stable",
+    "VERCEL_GIT_COMMIT_SHA": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+    "DOCKED_CODE_COMMIT": "78482f713fd93b6677f85b43c5c49cfa00acccde"
+  },
+  "submittedBlankSecretRejected": true,
+  "explicitSubmittedSecretEmpty": true,
+  "disabledFlagMismatches": [],
+  "databaseBound": true,
+  "originBound": true,
+  "commitBound": true,
+  "publishableKeyModern": true,
+  "existingSecretModern": true
+}

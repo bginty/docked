@@ -1,0 +1,10 @@
+{
+  "at": "2026-11-17T12:03:36.569Z",
+  "failedDeployment": "dpl_3d4QuKjERBHHKJWrTfy3UzSHaReR",
+  "sourceFilesVerified": 1021,
+  "approvedSource": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "incorrectInheritedGitMetadata": "7873fcbb82c05403bf38d077b7edff57d157edfa",
+  "correction": "Bind gitCommitSha metadata to exact frozen source, matching existing githubCommitSha and DOCKED_CODE_COMMIT; no source, SQL, credentials, role or gate changes",
+  "reason": "Vercel CLI inferred parent documentation HEAD for the frozen export; public guard checks source equality",
+  "newProductionApplicationPromoted": false
+}
