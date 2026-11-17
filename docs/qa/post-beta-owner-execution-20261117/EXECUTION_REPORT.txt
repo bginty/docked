@@ -72,15 +72,19 @@ On 17 November 2026 (Australia/Sydney), the founder confirmed that Operational
 incidents loads in both the Android app and mobile browser on the affected phone:
 "loads on both android app and mobile browser". This closes the founder's physical
 device landing check by attestation; it is not automated device inspection or an
-independent Android build-number check. Barry's own interactive login and a new
-cold login/MFA challenge are not claimed; original identity/MFA/Owner and isolated
-authorization checks passed.
+independent Android build-number check.
+
+The founder subsequently confirmed on the same date: "Barry logged in and took
+him to operational incident page". Barry's own login and Owner landing therefore
+pass by founder attestation. No automated inspection of Barry's session, device
+type, new MFA challenge or every administrative action is claimed. Original
+identity/MFA/Owner and isolated authorization checks passed independently.
 Do not impersonate either Owner or recreate retired sessions to demonstrate them.
 
-Do not repeat the founder's completed mobile acceptance. Barry's personal session
-check remains outstanding and must use his own identity/MFA. Other public-runtime,
-SMS and commercial work remains a separate reviewed package and final launch
-approval. This attestation required no further Production action.
+Retained-Owner landing acceptance is complete for both founder and Barry. Do not
+repeat these completed checks. Other public-runtime, SMS and commercial work
+remains a separate reviewed package and final launch approval. These attestations
+required no further Production action and do not authorise public launch.
 
 Evidence
 --------
@@ -88,7 +92,8 @@ AUTHORITY.json; backup-restore.json; preflight.json; promotion-ready.json;
 deployment-promoted.json; application-postflight.json; postflight.json;
 staging-authenticated-acceptance.json; production-anonymous-smoke.json;
 live-owner-browser.json; live-owner-mobile.jpg;
-founder-physical-device-acceptance.json. STAGING_NOTES.txt records local
+founder-physical-device-acceptance.json; barry-owner-acceptance.json.
+STAGING_NOTES.txt records local
 verification-tool corrections without concealing failed attempts.
 
 Recovery
