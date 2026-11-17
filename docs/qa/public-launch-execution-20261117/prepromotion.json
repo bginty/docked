@@ -1,0 +1,166 @@
+{
+  "at": "2026-11-17T13:06:19.148Z",
+  "mode": "prepromotion",
+  "passed": true,
+  "backup": {
+    "authenticated": true,
+    "capturedAt": "2026-11-17T13:01:32.298Z",
+    "projectRef": "pojoymtniryarxxunyvz",
+    "bytes": 140692334,
+    "plaintextSha256": "04e612c6092d47857e350d4cff6cb75db1f4bfcfc081823b7f2836273fd0815d",
+    "tableCount": 578,
+    "plaintextWritten": false
+  },
+  "backupCaptureEarliestBound": "2026-11-17T12:48:14.7372580Z",
+  "restoredTables": 576,
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custodyRecords": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "sourceDigest": "3613ddeea5384bb615247748acf412e07889837aea6f3bbe82b8eaeebfc195d1",
+  "identities": [
+    {
+      "classification": "owner",
+      "originalIdentityPresent": true,
+      "retired": false,
+      "allowed": true,
+      "mfa": true,
+      "fullOwner": true,
+      "betaPackAccess": false
+    },
+    {
+      "classification": "customer",
+      "originalIdentityPresent": true,
+      "retired": true,
+      "allowed": false,
+      "mfa": false,
+      "fullOwner": false,
+      "betaPackAccess": false
+    },
+    {
+      "classification": "customer",
+      "originalIdentityPresent": true,
+      "retired": true,
+      "allowed": false,
+      "mfa": false,
+      "fullOwner": false,
+      "betaPackAccess": false
+    },
+    {
+      "classification": "system",
+      "originalIdentityPresent": true,
+      "retired": false,
+      "allowed": false,
+      "mfa": false,
+      "fullOwner": false,
+      "betaPackAccess": false
+    },
+    {
+      "classification": "customer",
+      "originalIdentityPresent": true,
+      "retired": true,
+      "allowed": false,
+      "mfa": false,
+      "fullOwner": false,
+      "betaPackAccess": false
+    },
+    {
+      "classification": "owner",
+      "originalIdentityPresent": true,
+      "retired": false,
+      "allowed": true,
+      "mfa": true,
+      "fullOwner": true,
+      "betaPackAccess": false
+    }
+  ],
+  "installedReviewedMigrations": [
+    "20261116215032",
+    "20261117091440"
+  ],
+  "migrationsAppliedThisContinuation": 0,
+  "scheduler": {
+    "cronRowsAdded": 411,
+    "weeklyZeroIssuanceRowsAdded": 200,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true
+  },
+  "ownerRefresh": {
+    "refreshRotations": 3,
+    "founderOnly": true,
+    "existingMfaSessionOnly": true,
+    "credentialsMfaRolesUnchanged": true,
+    "changes": [
+      {
+        "table": "users",
+        "idSha256": "f0ebb58f5db0391f39d3d5eca611fa218327c5a8663f1e4050d8727f81417827",
+        "fields": [
+          "updated_at"
+        ]
+      },
+      {
+        "table": "sessions",
+        "idSha256": "c4fc0110e5ddf8474123bde52df48d622de014b2e29b8f95f933f052def4d66a",
+        "fields": [
+          "updated_at",
+          "refreshed_at",
+          "ip_hash"
+        ]
+      },
+      {
+        "table": "sessions",
+        "idSha256": "de83f4a14c9c3b9a0162ccb33db173ee83a2b0baa933138fe723beb2212acb04",
+        "fields": [
+          "updated_at",
+          "refreshed_at",
+          "ip_hash"
+        ]
+      },
+      {
+        "table": "refresh_tokens",
+        "idSha256": "b677ab4c07abcbd6f3f5d4336672d5dfe4ac88d17e1e0c330d52dfacef61411c",
+        "fields": [
+          "revoked",
+          "updated_at"
+        ]
+      },
+      {
+        "table": "refresh_tokens",
+        "idSha256": "be202a0abe58099a3676be1dc91be566e42ee80aab287e43ee80a1c783029ecf",
+        "fields": [
+          "revoked",
+          "updated_at"
+        ]
+      }
+    ],
+    "rateChanges": []
+  },
+  "retentionAddendumSha256": "7a35d0453881a2f6638f4679f15bc7282b2907d214eb685d2c573abe68fd83a8",
+  "changedTables": [
+    "auth.refresh_tokens",
+    "auth.sessions",
+    "auth.users",
+    "cron.job_run_details",
+    "private.docked_mail_scheduler",
+    "private.rate_limits",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.raw_revisions",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "unexplainedDrift": 0,
+  "emptyNewTables": 4,
+  "ownerReportRateRows": 2
+}

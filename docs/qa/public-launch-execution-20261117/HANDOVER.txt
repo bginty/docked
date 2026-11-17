@@ -1,82 +1,55 @@
-CLOSED-GATE PUBLIC RUNTIME - EXECUTION HANDOVER, 17 NOVEMBER 2026
+CLOSED-GATE PUBLIC RUNTIME - COMPLETED 18 NOVEMBER 2026 AEDT
 
-Application promotion is PAUSED, not completed. Public launch remains NO-GO.
+Production source: 78482f713fd93b6677f85b43c5c49cfa00acccde
+Approved package: a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39
+Actual Vercel deployment: dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE
+Production alias: docked.com.au
+Independent postflight passed at 2026-11-17T13:07:54.859Z.
+Public launch remains NO-GO. Do not redeploy to recreate evidence.
 
-Completed and independently verified
-- Exact source 78482f713fd93b6677f85b43c5c49cfa00acccde and package
-  a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39 unchanged.
-- Fresh authenticated encrypted Production backup and isolated restore passed
-  before SQL. 572 protected tables; external network/ports/cron disabled.
-- Both approved migrations committed once at 11:55:58 UTC, then independently
-  verified. No previous migration, account operation or inventory import repeated.
-- Candidate dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE built successfully. Eleven protected
-  anonymous checks and seventeen actual authenticated Owner GET checks passed.
-  The existing Owner session read new public reports, JSON/CSV, incidents and
-  permitted customer/card/payment projections. No founder action, customer support
-  mutation, new MFA test, email, purchase or SMS was performed.
-- Full read-only state comparison at 12:41:38 UTC: 6540 definitions, 918 lifetime
-  issued limited copies, 936 custody records and 30 post-baseline beta allocations.
-  Zero commercial cards/open controls, duplicate serials, lifetime discrepancies
-  or unbalanced journals. Original identities, retirement, roles, MFA, ownership,
-  wallets, source digest and all reviewed schema/function/permission changes match.
-  Four new SMS/support control tables remain empty. Phone, Auth signup and hook OFF.
+Both approved migrations committed once at 11:55:58 UTC. Continuation applied
+zero migrations. Exact files, wrapper and migration history verified:
+20261116215032_public_sms_budget_guard.sql
+20261117091440_public_owner_support.sql
+No previous migration, import, account retirement or financial operation repeated.
 
-Actual live application
-988ea0ba905e91d3c1cdf0c5e18812849b138968
-dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd
-The additive SQL is installed beneath this compatible application. DO NOT reapply.
-The new candidate has NOT been promoted. The browser remains on Operational
-incidents; the successful candidate check needed no manual Console script.
-
-Precise hold and requested decision
-At 12:17 UTC the pre-existing hourly NFL source-retention job cleared expired
-raw_revisions body 31. Only body/purged_at changed. Read-only reconstruction from
-the authenticated backup reproduced the complete prior table checksum: all 111
-other rows and all provenance are unchanged. No assets or issuance were affected.
-Because deletion of source content exceeds scheduler bookkeeping, the founder's
-material-drift condition requires acceptance of this exact observed difference.
-RETENTION_BASELINE_ADDENDUM.json SHA-256:
+Founder-approved retention addendum:
 7a35d0453881a2f6638f4679f15bc7282b2907d214eb685d2c573abe68fd83a8
-No future purge allowance, new source rights or changed application bytes.
-The original deployment authority expires conservatively 18-Nov 11:20 UTC;
-this pending addendum does not extend it. Do not infer approval from silence.
+Only already-expired payload 31 cleared by its existing job; authenticated
+read-only reconstruction verified prior table. No future purge allowance.
+NEW encrypted backup run 20261117i and isolated restore passed: 576 protected
+tables; external network, ports and cron disabled. Conservative capture start
+12:48:14 UTC; restore completed 13:04:30; prepromotion passed 13:06:19 UTC.
+Original application/package bytes unchanged; original authority remained valid.
 
-Resume only after that decision: fresh encrypted backup and isolated restore,
-<=10-minute drift/permissions/gate checks, exact candidate promotion and postflight.
-The two migration histories must be present, not replayed. Accepted read-only
-staging evidence remains tied to the unchanged candidate/source; repeat only a
-specific changed path or the actual post-promotion Owner public-route check.
-Never restore a database snapshot over current data or undo source retention.
+Protected records: 6540 definitions, 918 lifetime-issued limited copies, 936
+custody records, 30 subsequent beta allocations and zero commercial cards.
+No duplicate serials, lifetime mismatches or unbalanced journals. Wallets,
+ownership, holds, refunds, identities, roles, retirement and MFA preserved.
+Both retained Owners have Full Owner permissions. Retired customers and internal
+QA remain excluded. No beta assets became usable commercially. Four new SMS/
+support tables remain empty. Eighteen runtime bindings and five write-only
+secret references unchanged.
 
-Local tooling
-Docker became unresponsive during the additional row investigation. The source
-comparison was completed by authenticated in-memory archive extraction and
-read-only SQL, with no plaintext backup written to disk. Docker Desktop was
-restarted and its API/running containers became responsive again. The prior
-network-isolated disposable restore stopped; fresh restoration is required for
-continuation. No Production service was restarted. Do not modify unrelated local
-containers. Existing encrypted archives and historical test evidence are retained.
+Hosted acceptance: eleven anonymous and seventeen authenticated staged GET checks
+passed, including public Owner reporting, support projections, JSON/CSV and
+incidents. After promotion, eleven live anonymous checks passed. Existing founder
+session independently read app-session, live public operations and incidents at
+13:08:34 UTC, unpinned. No new MFA, mutation, purchase, email or SMS occurred.
+Earlier physical Founder/Barry acceptance reused. No runtime errors found in
+Vercel's post-promotion window when queried at 13:14 UTC; this is a narrow window,
+not proof about future traffic.
 
-Independent preparation completed while promotion paused
-Added an OFF-only one-attempt Production SMS watchdog module and eight passing
-isolated tests. It closes the exact budget window plus Auth Phone and hook, keeps
-reservations/history, and reports uncertain shutdown as failure. The old Preview
-six-attempt/A$5 watchdog cannot be reused unchanged. No Production configuration
-or spending occurred. NEXT_PHONE_CONFIGURATION.txt records exact configuration,
-zero-send checks and the remaining operator adapter/approval work. This is not
-a claim that the new Production Auth-to-hook boundary has been verified.
+Auth signup, Phone and signed hook remain OFF. Registration, credit sales, paid
+issuance, marketplace, prizes, withdrawals, NBA and deletion remain OFF. Six
+competitions remain disabled Practice. Google Play untouched.
 
-Remaining launch work
-1. Resolve this one retention baseline decision and finish the already-approved
-   application promotion/postflight.
-2. Freeze and separately approve the disabled signed-hook configuration/operator;
-   perform zero-send verification. If the actual Production Auth boundary remains
-   uncovered, propose only ONE founder-directed A$1/<=2-hour installed-v31 attempt.
-3. Bind final notices/configuration and accepted inventory/financial decisions
-   into the existing coordinated paid-launch scope for explicit final GO.
-No blanket payment retest, new inventory import, repeat retirement, MFA, vault,
-incident, Preview SMS or Android pack programme. All accepted evidence at
-cb1ee482 remains authoritative. No registration-only public launch.
+Next: prepare exact zero-send SMS configuration, accurate launch notices/customer
+landing and coordinated activation manifest. The changed Production Auth-to-hook
+boundary remains unaccepted; any single founder A$1 attempt needs separate
+approval. New source/configuration needs exact approval. Reuse cb1ee482 evidence;
+no blanket billing, pack, SMS, account, vault or incident retesting.
 
-Registration, SMS, payments, issuance, marketplace, prizes, withdrawals, real
-scoring, NBA and deletion remain OFF. Google Play/managed publishing untouched.
+Evidence: application-postflight.json, postflight.json, prepromotion.json,
+resume-restore-only.json, live-owner-acceptance.json, staging-authenticated-acceptance.json,
+production-anonymous-smoke.json and retention-addendum-authority.json.
