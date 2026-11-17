@@ -1,0 +1,60 @@
+DOCKED - EXACT CLOSED-GATE PUBLIC RUNTIME DEPLOYMENT APPROVAL
+
+Source commit: 78482f713fd93b6677f85b43c5c49cfa00acccde
+Package SHA-256: a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39
+Package: docs/qa/public-launch-runtime-20261117/production-package.json
+Authority: 24 hours only after explicit founder approval; none recorded yet.
+
+Approve only the application, restricted public runtime configuration, and TWO migrations:
+1. supabase/migrations/20261116215032_public_sms_budget_guard.sql
+   SHA-256: 039fe257313e83d9f3c90ca85dec916414f60c142d7a7b987bc574083d03fca6
+2. supabase/migrations/20261117091440_public_owner_support.sql
+   SHA-256: 821461e12e4862ef68dd39135ce0d4bf48d2e8dfc46fa99013e4594de470726a
+
+Exact atomic wrapper: config/operations/public-runtime-migrations.prepared.sql
+SHA-256: 0a70a05d5e7a382a10a19d06f4a6e896162bedef3e3ff2121377ffc91532bcc2
+
+Scope: protected Production-target staging, required read-only Owner acceptance,
+promotion only after all checks pass; conditional reviewed app/runtime rollback.
+Switch from beta mapping to existing restricted docked_app; keep all signup,
+Phone, hook, commerce, trading, competition and deletion gates OFF. All other
+current runtime values and write-only secret references stay unchanged.
+
+SQL adds four private RLS tables: sms_delivery.windows/attempts and
+private.owner_support_events/owner_customer_restrictions. Two internal support
+helpers and four Owner functions; SMS reserve/finish granted only to docked_app.
+Existing identity_allowed keeps its ACL/retirement protections and checks the
+new inactive restriction table. No historical data, accounts, roles or assets
+are changed; zero SMS windows, restrictions or support actions are seeded.
+New Owner commands require current session + individual AAL2, immutable audit
+and request identity; they cannot grant assets, change MFA, clear holds or enable
+commerce. Temporary restrictions preserve social history and original identities.
+
+Preconditions: source/operator/SQL/package hashes unchanged, current live baseline
+988ea0ba / dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd or separately reviewed drift;
+NEW authenticated encrypted backup <=60 minutes with isolated verified restore;
+fresh <=10-minute preflight; all financial/custody/supply/roles/MFA/session/RLS
+and runtime fingerprints reconciled. Historical counts are never reset targets.
+Use only the exact reviewed wrapper; abort if either migration already exists.
+
+Local evidence: 56 targeted tests; 12 restored groups; exact committed local
+installation and duplicate-apply rejection; existing 10-group SMS concurrency
+evidence retained; Next16.4.6 build/lint and zero-vulnerability production audit.
+94 commercial/phone/native files unchanged. No new physical/hosted claims.
+Before promotion verify the new PUBLIC-mode support pages through the Owner's
+own session on the protected candidate, without purchasing or changing records.
+Expected planned downtime: none; SQL lock wait limit5s/statement limit120s.
+
+Recovery: before promotion discard candidate; after promotion rollback only to
+the exact prior application AND its original runtime after safe compatibility
+and closed-gate checks. Keep installed SQL/audit evidence. Never restore old
+customer data, undo retirement, reclaim serials or clear recovery holds.
+
+EXCLUDED: enabling SMS/hooks or spending, Auth configuration, account changes,
+inventory import/activation, card issuance, real payments, public registration,
+trading/prizes/withdrawals, key rotation, Android build changes, Google publication.
+Public SMS all-in price ceiling remains unconfirmed; this does not enable sending.
+
+Full reviewed instructions: EXECUTION.txt. Technical review: REVIEW.txt.
+Phone configuration and separate <=2-attempt/A$2 acceptance: PHONE_CONFIGURATION.txt.
+Public launch remains NO-GO. No Production execution has been performed.
