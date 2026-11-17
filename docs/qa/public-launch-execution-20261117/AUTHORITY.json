@@ -1,0 +1,25 @@
+{
+  "source": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "packageSha256": "a7ee2cd7aac16898533e2f13d4f0c079c44b2e0aa57add61944acd3ee14bab39",
+  "authority": "Explicit founder message: DOCKED \u2014 APPROVED CLOSED-GATE PUBLIC RUNTIME DEPLOYMENT",
+  "observedAtUtc": "2026-11-17T11:22:56Z",
+  "conservativeExpiryUtc": "2026-11-18T11:20:00Z",
+  "expiryNote": "Conservative execution deadline earlier than 24h after first tool observation; not an invented precise message timestamp",
+  "evidenceIndex": "cb1ee482d86a085af5e46678d13b0027870b188f",
+  "migrations": [
+    "20261116215032_public_sms_budget_guard.sql",
+    "20261117091440_public_owner_support.sql"
+  ],
+  "publicLaunch": "NO-GO",
+  "excluded": [
+    "SMS/configuration enablement",
+    "signup",
+    "payments",
+    "issuance",
+    "trading",
+    "Play publication",
+    "account/role operations"
+  ],
+  "explicitFounderApproval": true,
+  "conservativeExecutionCutoff": "2026-11-18T11:20:00Z"
+}
