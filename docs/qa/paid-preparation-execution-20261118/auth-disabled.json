@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-17T20:40:55.242Z",
+  "passed": true,
+  "phoneOff": true,
+  "hookOff": true,
+  "signupOff": true,
+  "exactHookUri": true,
+  "sixDigits": true,
+  "expirySeconds": 300,
+  "resendSeconds": 60,
+  "mfaAndEmailSettingsPreserved": true,
+  "matchingPrivateInputSha256": "7d86fbad914c1d23e049815fc6bd082cb9cab14893e72f7c1564f515cb9b3d0d",
+  "providerReturnsMaskedHash": true,
+  "providerReadbackStable": true,
+  "plaintextReadback": false,
+  "actualAuthSignatureAcceptancePending": true,
+  "documentation": "https://supabase.com/docs/guides/deployment/terraform/reference",
+  "changedFields": [
+    "hook_send_sms_uri",
+    "sms_otp_exp",
+    "sms_max_frequency",
+    "sms_test_otp",
+    "hook_send_sms_secrets"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "at": "2026-11-17T20:41:14.758Z",
+  "capturedAt": "2026-11-17T20:40:44.329Z",
+  "passed": true,
+  "readOnly": true,
+  "productionWrites": 0,
+  "changedTables": [
+    "auth.refresh_tokens",
+    "auth.sessions",
+    "auth.users",
+    "cron.job_run_details",
+    "private.docked_mail_scheduler",
+    "private.rate_limits",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "unexplainedDrift": 0,
+  "sourcePurges": 0,
+  "appendOnlyPendingReviewWorkerRows": 30,
+  "scheduler": {
+    "cronRowsAdded": 1854,
+    "weeklyZeroIssuanceRowsAdded": 908,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true
+  },
+  "ownerRefresh": {
+    "refreshRotations": 3,
+    "founderOnly": true,
+    "existingMfaSessionOnly": true,
+    "credentialsMfaRolesUnchanged": true,
+    "changes": [
+      {
+        "table": "users",
+        "idSha256": "f0ebb58f5db0391f39d3d5eca611fa218327c5a8663f1e4050d8727f81417827",
+        "fields": [
+          "updated_at"
+        ]
+      },
+      {
+        "table": "sessions",
+        "idSha256": "c4fc0110e5ddf8474123bde52df48d622de014b2e29b8f95f933f052def4d66a",
+        "fields": [
+          "updated_at",
+          "refreshed_at",
+          "ip_hash"
+        ]
+      },
+      {
+        "table": "refresh_tokens",
+        "idSha256": "3e237d414814a83e908354c9afa83a3dd912767a794e8fe1702bee9ff2a48339",
+        "fields": [
+          "revoked",
+          "updated_at"
+        ]
+      }
+    ],
+    "rateChanges": []
+  },
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custodyRecords": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "rolesMfaFinancialHistoryUnchanged": true,
+  "emptyNewControlTables": 4
+}

@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-17T20:06:28.728Z",
+  "passed": true,
+  "readOnly": true,
+  "productionWrites": 0,
+  "source": "78482f713fd93b6677f85b43c5c49cfa00acccde",
+  "deployment": "dpl_5tqAzCqmiUQxVRvJ2iaTeULNPjFE",
+  "unchangedProductionEnvBindings": 18,
+  "preservedWriteOnlyReferences": 5,
+  "authConfigSha256": "943c30253637b1e9b8bd7b287195ef1ec20181efd056ab981758073095b8819d",
+  "emailFunctionVersion": 47,
+  "emailRecipientMode": "approved-beta",
+  "signupOff": true,
+  "phoneOff": true,
+  "hookOff": true,
+  "mfaPreserved": true,
+  "newHookSecretPreparedPrivately": true,
+  "newSecretBoundToProvider": false,
+  "changedRuntimeKeys": [
+    "VERCEL_GIT_COMMIT_SHA",
+    "DOCKED_PUBLIC_CUSTOMERS",
+    "DOCKED_PUBLIC_PHONE_OTP",
+    "DOCKED_SMS_BUDGET_HOOK_ENABLED",
+    "DOCKED_CODE_COMMIT",
+    "DOCKED_PUBLIC_PHONE_POLICY_REFERENCE",
+    "DOCKED_SMS_BUDGET_WINDOW",
+    "DOCKED_SMS_HOOK_SECRET",
+    "DOCKED_TWILIO_ACCOUNT_SID",
+    "DOCKED_TWILIO_AUTH_TOKEN",
+    "DOCKED_TWILIO_MESSAGE_SERVICE_SID"
+  ],
+  "publicBudgetInactive": true
+}

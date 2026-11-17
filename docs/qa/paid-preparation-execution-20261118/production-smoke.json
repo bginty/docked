@@ -1,0 +1,101 @@
+{
+  "at": "2026-11-17T20:39:44.453Z",
+  "source": "405058ebfe3e2c915d43ed5344dfb3fcd7930049",
+  "packageSha256": "5ac121c65e4e0d2815b92897dc15275457b0029586a509fcb34684336dea1bed",
+  "deployment": "dpl_ACcdM4ivSaNW2ARC3tQf3MmaL2sZ",
+  "passed": true,
+  "protected": false,
+  "checks": [
+    {
+      "route": "/",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 338,
+      "passed": true
+    },
+    {
+      "route": "/terms",
+      "method": "GET",
+      "status": 307,
+      "elapsedMs": 89,
+      "passed": true
+    },
+    {
+      "route": "/commercial-policy",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 129,
+      "passed": true
+    },
+    {
+      "route": "/refund-policy",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 109,
+      "passed": true
+    },
+    {
+      "route": "/privacy",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 98,
+      "passed": true
+    },
+    {
+      "route": "/app/login",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 117,
+      "passed": true
+    },
+    {
+      "route": "/api/app-session",
+      "method": "GET",
+      "status": 200,
+      "elapsedMs": 129,
+      "passed": true
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 89,
+      "passed": true
+    },
+    {
+      "route": "/api/admin/operations?scope=live",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 82,
+      "passed": true
+    },
+    {
+      "route": "/api/admin/customer-support",
+      "method": "POST",
+      "status": 403,
+      "elapsedMs": 85,
+      "passed": true
+    },
+    {
+      "route": "/api/store/google/commercial",
+      "method": "GET",
+      "status": 403,
+      "elapsedMs": 199,
+      "passed": true
+    },
+    {
+      "route": "/api/auth/phone",
+      "method": "POST",
+      "status": 403,
+      "elapsedMs": 98,
+      "passed": true
+    },
+    {
+      "route": "/api/webhooks/auth-sms",
+      "method": "POST",
+      "status": 503,
+      "elapsedMs": 117,
+      "passed": true
+    }
+  ]
+}
