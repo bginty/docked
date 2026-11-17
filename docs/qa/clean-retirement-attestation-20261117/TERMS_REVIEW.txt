@@ -1,0 +1,59 @@
+ACCEPTED BETA TERMS AND COMMUNICATION REVIEW — 17 NOVEMBER 2026
+
+Finding: no specific requirement for a new notification email, a fixed notice
+period or a 19 November retirement date was found in the reviewed accepted terms.
+No additional customer email is authorised. The founder's current attestation of
+prior direct communication is the recorded evidence; neither a delivery receipt
+nor a communication date is invented. It is not new commercial consent.
+
+Evidence reviewed
+- Fresh read-only Production consent audit: all three ordinary beta customers
+  accepted 2026-10-11-beta-rc3. Founder and internal QA additionally have rc2 events.
+- docs/policies/2026-10-11-beta-rc3/terms.md, full text. The last paragraph requires
+  material changes to be communicated before application but specifies no delivery
+  method or waiting interval. Beta assets do not automatically become commercial
+  assets. Audit history and lifetime issuance remain protected.
+- docs/policies/2026-10-11-beta-rc3/privacy.md, full text. Closure restricts access,
+  preserves necessary evidence and provides support/review. Eligible contact/media
+  handling targets and minimisation reviews still apply. Historical preservation
+  is not permission to keep identifiable information indefinitely.
+- docs/policies/2026-10-09-beta-rc2/terms.md is labelled draft in the repository;
+  older recorded events are preserved without relabelling that file as effective.
+  The ordinary retiring customers' accepted rc3 is the relevant cohort evidence.
+- src/core/named-private-tester.ts: Brenton's accepted v1 personal exception permits
+  withdrawal and ends before public/commercial launch unless separately reviewed.
+  Permanent card records remain protected when test access ends. California
+  testing eligibility is not Australian commercial eligibility.
+- Current config/launch-policy-content.json: clean-start privacy/commercial wording
+  preserves historical serials, custody, refund obligations and specific entitlement
+  review; it does not promise beta commercial carryover or a fixed notice period.
+
+Protected obligations retained
+Permanent card records, original ownership provenance, serials and lifetime supply
+consumption remain unchanged. Test credits and cards are not reclassified as real
+customer payments. Original Google TEST receipts/refunds, the recovery hold and
+financial journals remain attached to the historical identities. Three historical
+sealed packs are archived, never opened, reminted or converted to commercial stock.
+Non-excludable rights and access to support remain. Any specific entitlement claim
+that is actually received must be isolated before retiring that account; no waiver
+or satisfaction of such a claim is inferred from the founder's communication.
+
+The existing reviewed account plan records no ordinary-customer recovery case.
+This review does not assert that all private conversations or external legal
+documents have been independently inspected. No concrete contrary obligation was
+identified in the accepted policy and account evidence reviewed. The founder's
+attestation satisfies the revised operator's communication prerequisite, not an
+opinion extinguishing unrecorded rights. No extra generic legal sign-off is added.
+
+Technical references rechecked
+https://supabase.com/changelog.md — no relevant changed deleteUser contract found;
+the operator still requires the reviewed live GoTrue v2.198.0 before execution.
+https://supabase.com/docs/reference/javascript/auth-admin-deleteuser — supported
+server-side soft deletion is irreversible; independent readback remains required.
+https://supabase.com/docs/guides/auth/managing-user-data — an already-issued JWT
+can survive deletion until expiry; deployed containment/session/RLS guards remain.
+No keys, tokens or customer details were included in the documentation searches.
+
+The founder's present instruction changes the operator prerequisite. Earlier
+notice-delivery/date instructions and unsent drafts are superseded, not evidence
+that any formal notice was sent. Original frozen deployment artifacts stay intact.

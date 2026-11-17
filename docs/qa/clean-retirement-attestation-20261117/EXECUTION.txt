@@ -1,0 +1,55 @@
+REVISED EXECUTION — SEPARATE EXACT APPROVAL REQUIRED, NO PRODUCTION WRITES YET
+
+Communication prerequisite is satisfied by FOUNDER_ATTESTATION.json. No email
+delivery or later notice date is authorised or needed. This does not itself
+authorise containment, Barry's role change or Auth retirement.
+
+Use the frozen source and new account-retirement-package.json in this directory.
+Verify every frozen file hash, unchanged six-account manifest and already-deployed
+schema/application. Do not rerun the clean-transition migration or redeploy the app.
+Keep credentials in the existing private credential file, never shell arguments,
+chat, logs or Git. See RECOVERY.txt before any irreversible boundary.
+
+After an actual separate founder approval, record a private approval JSON with:
+  packageSha256: the exact new package digest
+  source: the exact new operator source commit
+  approvedAt / expiresAt: ACTUAL authority timestamps, maximum 24 hours
+  scope: contain-and-soft-retire-three-beta-customers-retain-two-owners
+  communicationEvidenceSha256: the frozen FOUNDER_ATTESTATION.json SHA-256
+Never add noticeDelivered. Neither true nor false is accepted by the revised guard.
+Do not invent approval times or extend expiry. Implementation authority is not
+account-execution authority.
+
+Refresh the encrypted backup/isolated restore and protected asset/permission/Auth
+checks. Counts are observations, never reset targets. Resolve actual unexpected
+drift or a specific protected claim before continuing.
+
+Read-only command:
+node --import tsx scripts/clean-commercial-transition.ts --action preflight
+  --package docs/qa/clean-retirement-attestation-20261117/account-retirement-package.json
+  --manifest private-data/clean-transition-20261117/manifest.private.json
+  --private-credentials <existing-private-credentials.json>
+  --output <fresh-private-preflight.json>
+
+After approval ONLY, the same package/manifest/credential arguments are used with:
+  --approval <actual-private-approval.json>
+  --preflight <fresh-private-preflight.json>
+  --backup-proof <fresh-authenticated-restore-proof.json>
+Run sequentially --action contain, --action retire, --action complete. Inspect
+every checkpoint and re-preflight between stages. Every Auth call rechecks expiry.
+No parallel account operators; no timeout-driven blind rerun of prior steps.
+
+The reviewed notice hash is still a content/provenance reference in the existing
+database schema. The separate immutable communication event records what actually
+occurred: founder-attested prior direct communication, no new email or fake receipt.
+Only the same package and exact event may pass later retire/complete checks.
+
+After success, perform exact postflight and invite Founder/Barry individually to
+verify their retained login/MFA. Current commercial notices require their own
+acceptance; an operator does not impersonate them. Returning customers do not
+register until separately approved Australian public registration opens.
+
+Then continue the previously prepared Production phone-budget/public-runtime
+package and bounded acceptance. Existing Google TEST, Preview SMS, vault and
+incident results remain accepted. Final paid-launch publication/activation is
+separate. No public/commercial control is enabled by this account package.
