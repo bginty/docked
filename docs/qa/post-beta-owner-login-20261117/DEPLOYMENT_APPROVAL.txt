@@ -1,0 +1,55 @@
+DOCKED — POST-BETA OWNER LOGIN FIX: EXACT PRODUCTION APPROVAL
+
+Approval requested, not yet recorded. Maximum duration: 24 hours from explicit
+founder approval. Public launch remains NO-GO.
+
+Application source:
+988ea0ba905e91d3c1cdf0c5e18812849b138968
+
+Package SHA-256 (production-package.json, exact UTF-8 bytes):
+a771b9425bebc0987433038b26662c266d122b2bc6e24fdb984a43b67c9618c9
+
+Branch: codex/post-beta-owner-login-20261117
+Current Production: 9e57c094cb7b4af02277e191a2e64fa2e6b22c6b
+Current deployment: dpl_ZNUTkFD88udQGYcdnJ8eJaUZ5QBq
+
+Authorises only the frozen application-only fix: retained Owner entry and MFA
+routing to incidents, admin startup/navigation, native resume and safe rejected
+browser-session recovery. Includes protected staging, authenticated read-only
+acceptance, promotion, postflight and conditional safe application-only rollback
+to the exact current retirement-aware deployment, under EXECUTION.txt.
+
+There are 18 changed runtime files (17 application files and the Git auto-deploy
+branch exclusion), 1,014 hashed runtime files, zero migrations, zero role/account
+operations and zero runtime-variable changes. Full comparison and file hashes
+are in production-package.json. No Preview infrastructure is added.
+
+Required before promotion: unchanged approval bytes; fresh encrypted backup and
+isolated restore; fresh financial/custody/retirement/permissions checks; unchanged
+effective runtime and secret references; passing hosted build; existing Owner's
+own MFA/read-only candidate acceptance and verified source provenance. Expected
+downtime: none. A rejected browser refresh requires a new sign-in, without changing
+the account identity or signing out other devices.
+
+Already verified: 29 targeted tests, two mobile component cases, lint, TypeScript,
+full production build, both original Owner/MFA records and read-only asset checks.
+Genuine new hosted sign-in and installed Android acceptance are not yet claimed.
+
+Excluded: restoring beta access/assets, SQL, account retirement/creation, live role
+changes, SMS, public registration, payments, card issuance, trading, prizes,
+withdrawals, deletion schedules, key changes and Google Play publication.
+Keep NBA hidden, six competitions disabled Practice and all commercial gates OFF.
+
+Recovery: abandon before promotion; after promotion use only the documented
+conditional rollback to 9e57c094 if retirement containment remains verified.
+Never restore a database snapshot, deleted Auth identity, card, balance or serial.
+
+Review: REVIEW.txt
+Exact preflight, staging, acceptance and recovery: EXECUTION.txt
+Manifest: production-package.json
+Verifier: node scripts/post-beta-owner-package.mjs verify a771b9425bebc0987433038b26662c266d122b2bc6e24fdb984a43b67c9618c9
+
+Suggested approval:
+"Approve this exact application-only Owner login fix for 24 hours, subject to
+the reviewed preflight, staging, acceptance and recovery requirements. Keep all
+public and commercial gates closed."
