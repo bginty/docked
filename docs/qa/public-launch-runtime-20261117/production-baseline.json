@@ -1,0 +1,50 @@
+{
+  "at": "2026-11-17T09:38:41.585515Z",
+  "source": "988ea0ba905e91d3c1cdf0c5e18812849b138968",
+  "deployment": "dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd",
+  "definitions": 6540,
+  "lifetimeIssued": 918,
+  "commercialCards": 0,
+  "commercialLots": 0,
+  "betaAllocations": 30,
+  "owners": 2,
+  "openControls": 0,
+  "openPublicFlags": 0,
+  "activeRounds": 0,
+  "disabledPracticeRounds": 6,
+  "lifetimeMismatches": 0,
+  "unbalancedJournals": 0,
+  "testWarnings": 0,
+  "smsSchemaAbsent": true,
+  "supportFunctionAbsent": true,
+  "countsAreResetTargets": false,
+  "productionWrites": 0,
+  "products": [
+    {
+      "id": "docked_credits_4900_v1",
+      "credits": 4900,
+      "audCents": 4900,
+      "approved": false
+    },
+    {
+      "id": "docked_credits_9900_v1",
+      "credits": 9900,
+      "audCents": 9900,
+      "approved": false
+    }
+  ],
+  "latestReadOnlyObservation": {
+    "at": "2026-11-17T10:11:44.272838Z",
+    "source": "988ea0ba905e91d3c1cdf0c5e18812849b138968",
+    "deployment": "dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd",
+    "definitions": 6540,
+    "lifetimeIssued": 918,
+    "owners": 2,
+    "smsSchemaAbsent": true,
+    "supportFunctionAbsent": true,
+    "openCommercialControls": 0,
+    "openFlags": 0,
+    "activeOrScoredRounds": 0,
+    "custodyRecords": 936
+  }
+}

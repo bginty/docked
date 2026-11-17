@@ -25,8 +25,6 @@ export async function adminSearch(
     categories: parsed.permitted,
   };
   if (parsed.query.length < 2) return response;
-  if (process.env.DOCKED_BETA_STAGING !== "true")
-    throw Error("Search source unavailable");
   if (!(await rateLimit(`admin-search:${actor.user.id}`, 40, 60)))
     throw Error("Search rate limit");
   const rows = await db().begin(async (tx) => {

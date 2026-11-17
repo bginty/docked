@@ -1,0 +1,65 @@
+FINAL PUBLIC RUNTIME — REVIEW; PREPARATION ONLY
+
+Actual live baseline: 988ea0ba905e91d3c1cdf0c5e18812849b138968,
+Vercel dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd, checked against the live alias.
+Production read-only census: production-baseline.json. Counts are observations,
+never reset targets. Historical custody latest verified: 936; fresh deployment
+preflight must independently recompute custody and every protected digest.
+Founder and Barry landing acceptance in c18f7b00 is retained, not repeated.
+
+Essential changes
+- Public Owner authentication and login/MFA return destinations preserve the
+  retained-Owner landing fix when beta mode is OFF. No client role assumptions.
+- Restricted public equivalents for admin_search, admin_record_detail and
+  owner_command_centre. Customer, Google receipt/refund status, commercial pack,
+  card and permanent supply records use commercial/public projections only.
+- Private immutable support events and reversible customer restrictions; current Owner identity/session/AAL2 at the
+  database boundary; audited notes and optimistic restrict/restore commands for
+  ordinary new commercial customers. Restrictions use a separate private state table and the existing live-identity gate. They never update profiles.disabled_at (which invokes legacy social erasure). A restored customer profile/handle/history survived restrict/restore. No Owner/retired/system-account mutation,
+  password reset, MFA reset, phone release, asset transfer or hold clearance.
+- Emergency pause has no enable action. It closes sales/issuance/transfers/gameplay,
+  all database feature flags and SMS windows. Provider registration/Phone switches
+  must ALSO be disabled through the documented operational procedure. Requests
+  already accepted by Google/Twilio require reconciliation, not cancellation claims.
+- No direct beta-table grants. Existing launch_transition.identity_allowed(uuid) retains its ACL and retirement checks and adds the reversible restriction check; no restriction rows are installed. All new support functions revoke public/Auth/service_role
+  access; only docked_app may execute the four external support projections/actions.
+- Pending SMS SQL now rejects launch-transition exclusions and Auth soft deletion;
+  no windows or credentials are seeded. Its source hash is unchanged from the
+  accepted isolated correction after canonical LF checkout.
+- Next.js 16.4.3 -> 16.4.6, same minor line; locked Next/@next binaries/env dependency
+  update only. npm audit initially found GHSA-mfr8-8qww-v76h. Docked uses neither
+  affected use-cache/unstable_cache pattern. Patched dependency removes the known
+  advisory without changing Android/native code. Post-update audit attached.
+
+Optional surfaces
+Five remaining beta-only modules (announcements, advanced moderation cases,
+moderation retention, legacy owner health and marketplace) remain unavailable.
+Public workspace screens explicitly disable optional sections. Do not enable
+community posting, historical rewards, announcements, marketplace or scored
+competitions in the paid-pack launch while their optional workflows are closed.
+Customer support, payment evidence and incident controls do not depend on them.
+Existing detailed commercial billing/refund tools retain their separate restricted
+commercial role; internal commercial-service gate remains OFF in THIS deployment.
+They become available only through the later reviewed launch configuration.
+
+Unchanged commercial authority/evidence
+No billing algorithm, verifier, refund ledger, pack odds/pricing, issuance function,
+card source dataset, Terms/Privacy wording or native binary changes. All 18
+Standard/Premium NFL/AFL/NRL 1/3/9 offers and A$49/A$99 products retain existing
+accepted evidence. Old Google TEST receipts remain TEST, holds remain protected.
+The founder-approved 6,065 definitions / 475 exclusions remain the future paid
+set (digest 1956d1715dcd2ef494dad469f8b272951853d5d76773fe9ae39f5537996e6830).
+No reimport/activation. Final launch must bind that set and the already-recorded
+founder-attested generic material scope to existing rights/control records, while
+preserving dataset conditions. Do not repeat identity or legal-attestation decisions.
+Six competitions remain disabled Practice; NBA hidden; zero inherited assets.
+
+Testing limits
+Restored PostgreSQL tests use local claims and transactions in the authenticated,
+network-disabled snapshot. They are not new genuine hosted MFA/device acceptance.
+HTTP route tests execute actual handler modules with isolated Auth/database
+boundaries. No hosted acceptance is claimed before separately approved staging.
+The only newly required hosted check is the PUBLIC-mode support/configuration
+change, using an existing Owner session read-only; no repeated incident drill.
+The bounded Production SMS session is separate. No new Google checkout programme,
+Android version, Preview infrastructure, account migration or vault work is needed.

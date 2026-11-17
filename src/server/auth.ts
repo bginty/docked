@@ -90,7 +90,6 @@ export const identity = cache(async function identity() {
   // The retained Owner role comes from the live database, never client metadata.
   // Completed beta onboarding must not send these identities back to beta play.
   const postBetaOwner =
-    process.env.DOCKED_BETA_STAGING === "true" &&
     p[0].launch_transition?.betaEnded === true &&
     (
       await sql`select 1 from private.roles where user_id=${user.id} and role='owner'`

@@ -20,6 +20,8 @@ import { AdminShell } from "@/components/admin-shell";
 import { adminDisplayName } from "@/server/admin-display-name";
 import { adminUnreadNotifications } from "@/server/admin-unread-notifications";
 import { AppAuthShell } from "@/components/app-auth-shell";
+import { publicOwnerSections } from "@/core/public-owner-support";
+import { PublicOwnerSupport } from "@/components/public-owner-support";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Docked administrative workspace",
@@ -58,6 +60,18 @@ export default async function AdminWorkspacePage({
   const workspace =
     adminWorkspaces[section as Exclude<AdminSection, "dashboard">];
   const query = await searchParams;
+  const publicMode = process.env.DOCKED_BETA_STAGING !== "true";
+  if (publicMode && !publicOwnerSections.has(section))
+    return (
+      <AdminShell role={who.role} displayName={await adminDisplayName(who)}>
+        <h1>{item.label}</h1>
+        <p>
+          This optional workspace is unavailable for commercial launch. No beta
+          assets or activation controls are exposed.
+        </p>
+        <Link href="/admin/operations">Commercial operations</Link>
+      </AdminShell>
+    );
   const selectedRecord = typeof query.record === "string" ? query.record : "";
   const q = typeof query.q === "string" ? query.q : "";
   const page = typeof query.page === "string" ? query.page : "1";
@@ -99,7 +113,8 @@ export default async function AdminWorkspacePage({
       unreadCount={unreadCount}
       active={item.id}
     >
-      {["competitions", "users", "rewards"].includes(section) &&
+      {!publicMode &&
+        ["competitions", "users", "rewards"].includes(section) &&
         ["owner", "admin"].includes(who.role) && (
           <Link className="button" href="/admin/member-release">
             Prize schedules & team names
@@ -110,7 +125,22 @@ export default async function AdminWorkspacePage({
         <h1>{item.label}</h1>
         <p>{workspace.description}</p>
         <nav className="actions" aria-label={`${item.label} tools`}>
-          {workspace.actions
+          {(publicMode
+            ? [
+                { label: "Commercial operations", href: "/admin/operations" },
+                {
+                  label: "Billing and refunds",
+                  href: "/admin/commercial-billing",
+                  roles: ["owner"] as const,
+                },
+                {
+                  label: "Operational incidents",
+                  href: "/admin/incidents",
+                  roles: ["owner"] as const,
+                },
+              ]
+            : workspace.actions
+          )
             .filter(
               (action) =>
                 !action.roles ||
@@ -128,7 +158,20 @@ export default async function AdminWorkspacePage({
         </nav>
         {recordProblem && <p role="alert">{recordProblem}</p>}
         {record && <AdminRecordDetail record={record} />}
-        {section === "rewards" && who.role === "owner" && (
+        {publicMode &&
+          section === "users" &&
+          record &&
+          who.role === "owner" && (
+            <PublicOwnerSupport
+              target={record.id}
+              disabledAt={
+                typeof record.fields["Restricted at"] === "string"
+                  ? record.fields["Restricted at"]
+                  : null
+              }
+            />
+          )}
+        {!publicMode && section === "rewards" && who.role === "owner" && (
           <>
             <FounderCreditPanel />
             <BetaCreditRequestPanel />

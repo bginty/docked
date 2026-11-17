@@ -1,0 +1,474 @@
+{
+  "at": "2026-11-17T10:02:40.408Z",
+  "methods": [
+    "GET"
+  ],
+  "productionChanges": 0,
+  "smsSent": 0,
+  "accountStatus": "active",
+  "accountType": "Full",
+  "accountFingerprint": "6fd09d789c51dd4c06b7385213612ed3c5a0b1e4ee1b07a2b3863f0cd8e1d8d2",
+  "sameAccountAndService": true,
+  "serviceName": "Docked private phone verification",
+  "senderAttached": true,
+  "usecase": "verification",
+  "smartEncoding": true,
+  "validityPeriod": 36000,
+  "currency": "USD",
+  "country": "AU",
+  "outbound": [
+    {
+      "mcc": "505",
+      "mnc": "1",
+      "carrier": "Telstra",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "2",
+      "carrier": "Optus",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "3",
+      "carrier": "Vodafone",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "6",
+      "carrier": "3",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "12",
+      "carrier": "3",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "71",
+      "carrier": "Telstra",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "72",
+      "carrier": "Telstra",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "90",
+      "carrier": "Optus",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "38",
+      "carrier": "Vodafone",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "19",
+      "carrier": "Lycamobile",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "999",
+      "carrier": "Other",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "88",
+      "carrier": "Pivotel",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "50",
+      "carrier": "Pivotel",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "14",
+      "carrier": "3GIS",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "7",
+      "carrier": "Vodafone",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "8",
+      "carrier": "One-tel",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "13",
+      "carrier": "Railcorp",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "99",
+      "carrier": "One-tel",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "11",
+      "carrier": "Telstra",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "21",
+      "carrier": "Queensland",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "24",
+      "carrier": "Advance Comm Tech",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "30",
+      "carrier": "Compatel",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "16",
+      "carrier": "Victoria Rail",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "35",
+      "carrier": "MessageBird",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "26",
+      "carrier": "Dialogue",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    },
+    {
+      "mcc": "505",
+      "mnc": "55",
+      "carrier": "MessageBird",
+      "prices": [
+        {
+          "numberType": "mobile",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        },
+        {
+          "numberType": "local",
+          "currentPrice": "0.0515",
+          "basePrice": "0.0515"
+        }
+      ]
+    }
+  ],
+  "maximumPublishedAccountRate": 0.0515,
+  "feeCaveat": "Country rate response does not independently itemise carrier, optional feature, tax or FX charges. Do not treat base rate alone as final all-in cost.",
+  "recentDeliveryCharges": [
+    {
+      "status": "delivered",
+      "segments": 1,
+      "price": null,
+      "currency": "USD",
+      "sentAt": "Mon, 16 Nov 2026 21:09:19 +0000"
+    }
+  ]
+}

@@ -7,7 +7,7 @@ export function operationFilters(input: Record<string, string | undefined>) {
     .object({
       start: z.iso.date(),
       end: z.iso.date(),
-      sport: z.enum(["all", "football", "nfl", "afl"]),
+      sport: z.enum(["all", "football", "nfl", "afl", "nrl"]),
       scope: z.enum(["live", "beta"]),
       staff: z.enum(["false", "true"]),
     })
@@ -64,7 +64,7 @@ export type Operations = {
     distinct_serials: number;
   }[];
   reports: { id: string; status: string; created_at: string }[];
-  emailFailures: number;
+  emailFailures: number | null;
   limitations: string[];
 };
 export function csv(rows: (string | number | null)[][]) {

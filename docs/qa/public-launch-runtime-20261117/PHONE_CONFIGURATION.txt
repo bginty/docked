@@ -1,0 +1,86 @@
+PRODUCTION PHONE CONFIGURATION AND BOUNDED V31 SESSION - NOT AUTHORISED YET
+
+Existing account/token and Messaging Service were verified by GET-only API calls;
+the approved DOCKED sender remains attached and active. No replacement service,
+phone number or provider account is needed. Private credential entry is complete.
+Never copy the restricted local credential file into Git, build output or reports.
+
+Readiness and actual cost
+- Account pricing API: all 26 AU network entries, maximum US$0.0515/segment.
+- Console: US$20 funded, auto-recharge absent, no additional product plans.
+- Prior genuine accepted Preview message: delivered, one segment; final price
+  remains null in the authenticated API. No verification SMS was repeated.
+- Published optional fees: pumping protection US$0.025, Engagement Suite US$0.015,
+  failed-message processing US$0.001. Budget conservatively includes all three,
+  although a plain OTP has no link/scheduling and failures are not successful sends.
+- Known-rate illustration: (0.0515+0.025+0.015+0.001)/0.6742*1.10 = A$0.151.
+  RBA 17-Nov indicative FX is not a binding card conversion quote. Extra carrier
+  fees and actual payment-method FX charges have not been independently bounded.
+  Therefore A$1 is the implemented reservation, NOT yet a proven all-in ceiling.
+- STOP SMS activation until final provider fee evidence (existing message price,
+  carrier tariff/usage statement) and conversion costs support <=A$1. No higher
+  budget is requested on speculation; if verified cost exceeds A$1, present the
+  actual required reservation/budget adjustment before enabling anything.
+- Recheck read-only pricing using scripts/twilio-readiness-readonly.mjs; do not send
+  a new message merely to obtain the old message's pending cost.
+
+References checked 17 November 2026
+https://www.twilio.com/docs/messaging/api/pricing
+https://www.twilio.com/en-us/sms/pricing/au
+https://help.twilio.com/articles/46871410243099-Understanding-SMS-Message-Fees-Carrier-Fees-and-Phone-Number-Fees
+https://www.rba.gov.au/statistics/frequency/exchange-rates.html
+https://supabase.com/docs/guides/auth/auth-hooks/send-sms-hook
+https://supabase.com/docs/reference/api/v1-update-auth-service-config
+
+Exact configuration preparation (separate approval before any Production write)
+1. After the closed-gate deployment, verify its package and both migration histories.
+   Resolve existing private AC/Auth Token/MG values; verify project pojoymtniryarxxunyvz
+   and approved account fingerprint from twilio-account-pricing.json. No key rotation.
+2. Create one Auth Send SMS Hook signing secret through the supported Supabase
+   configuration and securely bind the same secret to DOCKED_SMS_HOOK_SECRET.
+   This is a new hook secret only, not a recovery-key or Twilio-token rotation.
+   Hook URI: https://docked.com.au/api/webhooks/auth-sms.
+   Keep hook_send_sms_enabled=false and external_phone_enabled=false; keep
+   disable_signup=true. Verify these actual provider fields against current API
+   documentation before writing. Existing Preview configuration is untouched.
+3. Bind server-only DOCKED_TWILIO_ACCOUNT_SID, DOCKED_TWILIO_AUTH_TOKEN,
+   DOCKED_TWILIO_MESSAGE_SERVICE_SID from the existing restricted file; no NEXT_PUBLIC
+   secrets. Bind a separately approved DOCKED_SMS_BUDGET_WINDOW and current accepted
+   DOCKED_PUBLIC_PHONE_POLICY_REFERENCE. DOCKED_SMS_BUDGET_HOOK_ENABLED and
+   DOCKED_PUBLIC_PHONE_OTP remain false. Do not provision a window in this deployment.
+4. Auth code length six, expiry300 seconds, resend >=60 seconds; sms_autoconfirm=false. Built-in test numbers
+   empty. Verify hook is the exclusive SMS delivery path; a hook error must not fall
+   back to unbudgeted Twilio delivery. Both normalisations and unique phone claims stay.
+   Wrong/missing signature, expired hook or missing window fails without a provider call.
+
+Separate bounded Android approval, only once prerequisites pass
+- Existing installed Google Play v31; founder's original Owner UUID only (resolve
+  privately from immutable transition roster, not display name). No customer creation.
+- Explicit maximum2 hours, <=2 deliberate attempts, 200 AUD cents (A$2) reserved total,
+  enabled window budget200 cents and one-member allowlist. No automatic replenishment.
+- Registration, member setup, commerce, issuance, trading and competitions stay closed.
+  DOCKED_PUBLIC_CUSTOMERS=true is needed for the phone route, but REGISTRATION_ENABLED,
+  DOCKED_PUBLIC_MEMBER_SETUP and Supabase signup stay false. Existing Owners stay MFA.
+- Only after separately authorised restricted staging/configuration and watchdog are
+  ready: enable signed hook then Phone, and the two application delivery flags.
+- Founder opens /app/verify-phone in installed v31, privately enters own AU mobile,
+  deliberately selects Send code once. Operator checks one reservation/provider result.
+  Founder enters actual code, then reloads. Verify saved phone-confirmed state and the
+  existing Owner MFA session; no incident drill, payment, pack purchase or new Auth UUID.
+- A second attempt is optional, deliberate and within the same cap. Stop on ambiguous
+  failure, duplicate, cross-account access, missing signature or unexpected charge.
+  Never automatically resend after timeout. Retired/QA denial is proved by isolated
+  tests and read-only live registry checks; do not impersonate or reactivate them.
+- Close window, disable application delivery flags, disable Auth Phone and hook;
+  independently read back all OFF. Keep attempt evidence and phone verification;
+  never erase charges or undo legitimate identity evidence. A watchdog must close the
+  configuration even if the session ends unexpectedly. Preserve accepted user MFA.
+
+Final public launch is a THIRD separate approval
+The already-approved A$50 total first seven days does not authorise activation.
+New public window: budget5000 cents, duration<=7days, no auto renewal, 100c locked
+reservation per one-segment attempt, at most50 attempts; failures/unknown delivery
+consume a reservation. Rate limits30/hour overall,3/hour/account,60-second cooldown.
+Use a distinct authority/window; no transfer of unused test authority. Stop before
+reservation51, window expiry or any verified cost bound failure. Founder must approve
+any later top-up/extension. No automatic Twilio balance recharge is configured.

@@ -207,10 +207,7 @@ export async function POST(request: Request) {
     } | null,
     fallback: string,
   ) => {
-    if (
-      process.env.DOCKED_BETA_STAGING === "true" &&
-      user?.email_confirmed_at
-    ) {
+    if (user?.email_confirmed_at) {
       const ownerDestination = postBetaOwnerDestination(
         await identity(),
         fallback,

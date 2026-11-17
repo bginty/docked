@@ -7,6 +7,7 @@ import { adminDisplayName } from "@/server/admin-display-name";
 import { adminUnreadNotifications } from "@/server/admin-unread-notifications";
 import { FantasyLoadError } from "@/components/fantasy-load-error";
 import { memberAccessFailure } from "@/core/member-access-recovery";
+import { PublicOwnerDashboard } from "@/components/public-owner-dashboard";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Owner dashboard",
@@ -42,6 +43,16 @@ export default async function OperationsPage({
         selected.query.scope ??
         (process.env.DOCKED_BETA_STAGING === "true" ? "beta" : "live"),
     });
+    if (process.env.DOCKED_BETA_STAGING !== "true")
+      return (
+        <AdminShell
+          role={who.role}
+          displayName={displayName}
+          unreadCount={unreadCount}
+        >
+          <PublicOwnerDashboard data={data} />
+        </AdminShell>
+      );
     const params = new URLSearchParams({
       start: filters.start,
       end: filters.end,

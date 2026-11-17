@@ -1,0 +1,90 @@
+EXACT CLOSED-GATE EXECUTION — SEPARATE APPROVAL REQUIRED
+
+Read production-package.json and DEPLOYMENT_APPROVAL.txt first. Maximum authority
+24 hours from actual explicit approval, not file creation. No execution authority
+exists in this preparation. All stages stop on changed bytes or material drift.
+
+1. Verify package and export
+   node scripts/public-launch-runtime-package.mjs verify <approved-package-sha256>
+   node scripts/public-launch-runtime-package.mjs export <approved-package-sha256> <new-empty-directory>
+   Verify exact Vercel project/team and Production project pojoymtniryarxxunyvz.
+   Recheck current alias source/deployment against production-baseline.json.
+   Preserve every current runtime value/secret binding before staging. The ONLY
+   overrides are config/operations/public-runtime-closed.json and candidate source
+   provenance. Never change global env settings used by the old live deployment
+   during staging. Use per-deployment environment or an equivalent protected build.
+   Resolve DATABASE_URL privately to the existing restricted docked_app connection;
+   verify current_user, no superuser/BYPASSRLS/membership escalation. Preserve existing
+   SUPABASE_SECRET_KEY binding; any fallback must be the SAME reviewed existing key.
+   No key creation/rotation. Preserve all existing operational recipient restrictions.
+
+2. Fresh backup/preflight and local rehearsal
+   Capture NEW authenticated encrypted Production backup using the existing reviewed
+   commercial-production-restore-drill.ts workflow. Backup <=60 minutes at SQL apply;
+   verify digest/GCM authentication and isolated restoration, network=none/no ports,
+   tmpfs and disabled cron/provider delivery. Use actual current counts and protected
+   table fingerprints, never restore a past 918-card/936-custody target.
+   Preflight <=10 minutes at SQL apply/promotion. Reconcile financial journals,
+   source/issuance/serial/custody/ownership/entitlements/retirement/holds/roles/MFA/RLS,
+   Auth/provider OFF state, app runtime and current commercial flags. Unexplained
+   writes/permission differences abort. Routine known scheduler/Auth bookkeeping
+   needs row-specific independent comparison, not a blanket exclusion.
+   Rehearse both exact SQL files in order against the fresh restore with delivery
+   disabled. Test both retained roles, AAL1/invalid session denial, support audit,
+   no inherited assets and retired/system budget denial. No real provider callbacks.
+
+3. Atomic additive SQL, once only
+   Use config/operations/public-runtime-migrations.prepared.sql with psql -X -v ON_ERROR_STOP=1 and independently verified expected_source_digest, preflight_at, backup_verified_at, backup_sha256 and approved_package_sha256 variables, using the reviewed
+   existing migration connection after all above gates. It asserts prerequisites,
+   both absent versions/new objects, unchanged identity_allowed definition/ACL, closed control rows and unchanged protected source
+   digest. One transaction; lock_timeout=5s; statement_timeout=120s. Adds only:
+     20261116215032_public_sms_budget_guard.sql
+     20261117091440_public_owner_support.sql
+   Exact file hashes are in production-package.json. Registers exactly those two
+   versions/statements. No unrestricted migration push. No old migration/operator,
+   account-retirement, inventory or window/activation operation may run.
+   If either version/object already exists, stop and verify history; never blindly
+   retry. A connection timeout requires independent committed-state readback.
+   The new schemas/tables/functions are additive; identity_allowed is replaced with the existing retirement rule plus the inactive restriction lookup; the old beta app remains valid.
+
+4. Protected application stage
+   Export frozen Git bytes; install exact lockfile, use reviewed Vercel protected
+   Production-target staging with --skip-domain. Preserve original deployment live.
+   Same-origin remains https://docked.com.au. Do not spoof Preview/Production,
+   wildcard origins or bypass MFA. Candidate-pinned GET requests through the real
+   domain may use the existing Owner's own session, as in the accepted Owner fix.
+   Verify Vercel source metadata independently; /api/beta-release now deliberately
+   returns 404 (release is stable, registration closed), not a broken beta proof.
+   Required reads: /app and /api/app-session Owner routing; /admin/incidents read;
+   /admin/operations and its JSON/CSV; permitted customer/card/payment record lookup;
+   no beta wallets/gameplay calls; optional tools disabled. Anonymous API access
+   denied; signed-SMS endpoint disabled; registration/commerce/marketplace closed.
+   No staged support mutations on real customers, no incident action or email.
+   Use local accepted mutation tests; hosted candidate checks are read-only.
+   Confirm all controls/protected digests/current runtime and exact source again.
+
+5. Promote / postflight
+   Only if every stage passes within authority, promote the exact candidate ID to
+   docked.com.au. Re-read alias/source, runtime/secret reference IDs+targets+timestamps,
+   both SQL histories/permissions, empty SMS window/attempt tables and support audit
+   table and empty customer-restriction table, immutable existing data and OFF gates. Confirm current Owner session can
+   read the NEW public operations screens. Existing completed Owner login acceptance
+   is not repeated; a new authenticator prompt is completed by its Owner if required.
+   No customer/payment/pack test is authorised by this package.
+
+Recovery and downtime
+Expected planned downtime: none; additive SQL should finish quickly and promotion
+is atomic. Lock waits >5s abort; statement timeout120s; pause on any failed check.
+Before promotion: abandon candidate, leave old alias and original runtime intact.
+After promotion: conditional app+runtime rollback to 988ea0ba / dpl_Du8W6gJRXWBb3d6frPT7oVyhprwd
+ONLY after verifying retirement containment, original runtime bindings, closed gates,
+no new commercial activity and compatibility. Keep new additive SQL and any audit
+records; do not drop/erase them. Never restore a DB snapshot or undo Auth retirement,
+credits/cards/serials/holds. Public activation or an accepted support restriction
+changes rollback assumptions: stop and use separately reviewed forward recovery.
+
+Excluded always: public registration, SMS provider/hook enablement, window funding,
+message delivery, credit sales/purchases, issuance, inventory approval/import,
+customer/Owner/Auth changes, trading, prizes/withdrawals, deletions, live-key changes,
+Play publication and managed publishing changes. Phone config and final GO remain
+separate approvals.

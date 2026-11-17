@@ -66,115 +66,118 @@ const redirected = async (run: () => Promise<unknown>, destination: string) =>
       (error as { destination?: string }).destination === destination,
   );
 
-test("actual identity checks retain both Owners, require MFA and deny retired/revoked/forged access", async () => {
-  let id = "11111111-1111-4111-8111-111111111111";
-  const sessionId = "33333333-3333-4333-8333-333333333333";
-  let aal = "aal2",
-    role = "owner",
-    admitted = true,
-    allowed = true,
-    active = true;
-  let providerError: unknown = null;
-  const token = () =>
-    `fixture.${Buffer.from(JSON.stringify({ sub: id, session_id: sessionId, aal })).toString("base64url")}.isolated`;
-  const sql = async (parts: TemplateStringsArray) => {
-    const query = parts.join("?");
-    if (query.includes("private.admitted")) return [{ allowed: admitted }];
-    if (query.includes("private.beta_gameplay_identity"))
-      return [{ allowed: admitted }];
-    if (query.includes("select p.*"))
-      return [{ id, launch_transition: { allowed, betaEnded: true } }];
-    if (query.includes("where id=") && query.includes("and user_id="))
-      return active ? [{ id: sessionId }] : [];
-    if (query.includes("role='owner'")) return role === "owner" ? [{}] : [];
-    if (query.includes("gameplay_mfa_required"))
-      return [{ required: role === "owner" }];
-    if (query.includes("select role")) return role ? [{ role }] : [];
-    throw Error("Unexpected isolated identity query");
-  };
-  Object.assign(sql, { unsafe: (text: string) => text });
-  const auth = await load(
-    "src/server/auth.ts",
-    {
-      react: { cache: (fn: unknown) => fn },
-      "next/headers": {
-        cookies: async () => ({ getAll: () => [], set: () => {} }),
-      },
-      "@supabase/ssr": {
-        createServerClient: () => ({
-          auth: {
-            getSession: async () => ({
-              data: { session: { access_token: token() } },
-              error: null,
-            }),
-            getUser: async (provided: string) => {
-              assert.equal(provided, token());
-              return {
-                data: {
-                  user: providerError
-                    ? null
-                    : {
-                        id,
-                        email_confirmed_at: "2026-01-01",
-                        is_anonymous: false,
-                        user_metadata: { role: "owner" },
-                      },
-                },
-                error: providerError,
-              };
+for (const beta of [true, false])
+  test(`actual ${beta ? "beta" : "public"} identity checks retain both Owners, require MFA and deny retired/revoked/forged access`, async () => {
+    let id = "11111111-1111-4111-8111-111111111111";
+    const sessionId = "33333333-3333-4333-8333-333333333333";
+    let aal = "aal2",
+      role = "owner",
+      admitted = true,
+      allowed = true,
+      active = true;
+    let providerError: unknown = null;
+    const token = () =>
+      `fixture.${Buffer.from(JSON.stringify({ sub: id, session_id: sessionId, aal })).toString("base64url")}.isolated`;
+    const sql = async (parts: TemplateStringsArray) => {
+      const query = parts.join("?");
+      if (query.includes("private.admitted")) return [{ allowed: admitted }];
+      if (query.includes("private.beta_gameplay_identity"))
+        return [{ allowed: admitted }];
+      if (query.includes("select p.*"))
+        return [{ id, launch_transition: { allowed, betaEnded: true } }];
+      if (query.includes("where id=") && query.includes("and user_id="))
+        return active ? [{ id: sessionId }] : [];
+      if (query.includes("role='owner'")) return role === "owner" ? [{}] : [];
+      if (query.includes("gameplay_mfa_required"))
+        return [{ required: role === "owner" }];
+      if (query.includes("select role")) return role ? [{ role }] : [];
+      throw Error("Unexpected isolated identity query");
+    };
+    Object.assign(sql, { unsafe: (text: string) => text });
+    const auth = await load(
+      "src/server/auth.ts",
+      {
+        react: { cache: (fn: unknown) => fn },
+        "next/headers": {
+          cookies: async () => ({ getAll: () => [], set: () => {} }),
+        },
+        "@supabase/ssr": {
+          createServerClient: () => ({
+            auth: {
+              getSession: async () => ({
+                data: { session: { access_token: token() } },
+                error: null,
+              }),
+              getUser: async (provided: string) => {
+                assert.equal(provided, token());
+                return {
+                  data: {
+                    user: providerError
+                      ? null
+                      : {
+                          id,
+                          email_confirmed_at: "2026-01-01",
+                          is_anonymous: false,
+                          user_metadata: { role: "owner" },
+                        },
+                  },
+                  error: providerError,
+                };
+              },
             },
-          },
-        }),
+          }),
+        },
+        "./db": { db: () => sql },
+        "./config": { sameApplicationOrigin: () => true },
+        "@/core/deployment-environment": {
+          assertDeploymentEnvironment: () => {},
+        },
+        "@/core/pack-hosted-acceptance.mjs": {
+          assertPackHostedAcceptance: () => false,
+        },
       },
-      "./db": { db: () => sql },
-      "./config": { sameApplicationOrigin: () => true },
-      "@/core/deployment-environment": {
-        assertDeploymentEnvironment: () => {},
+      {
+        NEXT_PUBLIC_SUPABASE_URL: "https://fixture.supabase.co",
+        NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "fixture",
+        DOCKED_BETA_STAGING: String(beta),
+        BETA_ACCESS_ENABLED: "true",
+        DOCKED_OWNER_GAMEPLAY: "true",
       },
-      "@/core/pack-hosted-acceptance.mjs": {
-        assertPackHostedAcceptance: () => false,
-      },
-    },
-    {
-      NEXT_PUBLIC_SUPABASE_URL: "https://fixture.supabase.co",
-      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "fixture",
-      DOCKED_BETA_STAGING: "true",
-      BETA_ACCESS_ENABLED: "true",
-      DOCKED_OWNER_GAMEPLAY: "true",
-    },
-  );
-  for (const uid of [id, "22222222-2222-4222-8222-222222222222"]) {
-    id = uid;
-    assert.equal((await auth.identity()).postBetaOwner, true);
-    assert.equal((await auth.requireRole(["owner"])).user.id, uid);
-    await assert.rejects(
-      () => auth.requireIdentity(),
-      /Beta participation has ended/,
     );
-    aal = "aal1";
-    await assert.rejects(
-      () => auth.requireRole(["owner"]),
-      /Privileged MFA required/,
-    );
-    aal = "aal2";
-  }
-  active = false;
-  assert.equal(await auth.identity(), null);
-  active = true;
-  admitted = false;
-  assert.equal(await auth.identity(), null);
-  admitted = true;
-  allowed = false;
-  assert.equal(await auth.identity(), null);
-  allowed = true;
-  role = "";
-  assert.equal((await auth.identity()).postBetaOwner, false);
-  await assert.rejects(() => auth.requireRole(["owner"]), /Role denied/);
-  providerError = { status: 400, code: "session_not_found" };
-  assert.equal(await auth.identity(), null);
-  providerError = { status: 503, name: "AuthRetryableFetchError" };
-  await assert.rejects(() => auth.identity(), /temporarily unavailable/);
-});
+    for (const uid of [id, "22222222-2222-4222-8222-222222222222"]) {
+      id = uid;
+      assert.equal((await auth.identity()).postBetaOwner, true);
+      assert.equal((await auth.requireRole(["owner"])).user.id, uid);
+      if (beta)
+        await assert.rejects(
+          () => auth.requireIdentity(),
+          /Beta participation has ended/,
+        );
+      aal = "aal1";
+      await assert.rejects(
+        () => auth.requireRole(["owner"]),
+        /Privileged MFA required/,
+      );
+      aal = "aal2";
+    }
+    active = false;
+    assert.equal(await auth.identity(), null);
+    active = true;
+    admitted = false;
+    if (beta) assert.equal(await auth.identity(), null);
+    else assert.equal((await auth.identity()).postBetaOwner, true);
+    admitted = true;
+    allowed = false;
+    assert.equal(await auth.identity(), null);
+    allowed = true;
+    role = "";
+    assert.equal((await auth.identity()).postBetaOwner, false);
+    await assert.rejects(() => auth.requireRole(["owner"]), /Role denied/);
+    providerError = { status: 400, code: "session_not_found" };
+    assert.equal(await auth.identity(), null);
+    providerError = { status: 503, name: "AuthRetryableFetchError" };
+    await assert.rejects(() => auth.identity(), /temporarily unavailable/);
+  });
 
 test("actual entry and fantasy layout redirect retained Owners before onboarding/wallet rendering", async () => {
   let who: any = {
@@ -303,77 +306,78 @@ test("admin layout requires a current identity and MFA, and offers retry on serv
   assert(JSON.stringify(retry).includes("Retry Owner access"));
 });
 
-test("actual login and completed MFA routes override stale beta return destinations for retained Owners", async () => {
-  let aal = "aal1";
-  const user = {
-    id: "11111111-1111-4111-8111-111111111111",
-    email_confirmed_at: "2026-01-01",
-  };
-  const route = await load(
-    "src/app/api/auth/route.ts",
-    {
-      "@/server/auth": {
-        sameOrigin: () => true,
-        identity: async () => ({ postBetaOwner: true, aal, user }),
-        authClient: async () => ({
-          auth: {
-            signInWithPassword: async () => ({ data: { user }, error: null }),
-          },
-        }),
-      },
-      "@/server/config": {
-        config: () => ({ auth: true, database: true, production: true }),
-      },
-      "@/server/db": {
-        db: () => () => {
-          throw Error("No wallet or onboarding DB calls expected");
+for (const beta of [true, false])
+  test(`actual ${beta ? "beta" : "public"} login and completed MFA routes override stale beta return destinations for retained Owners`, async () => {
+    let aal = "aal1";
+    const user = {
+      id: "11111111-1111-4111-8111-111111111111",
+      email_confirmed_at: "2026-01-01",
+    };
+    const route = await load(
+      "src/app/api/auth/route.ts",
+      {
+        "@/server/auth": {
+          sameOrigin: () => true,
+          identity: async () => ({ postBetaOwner: true, aal, user }),
+          authClient: async () => ({
+            auth: {
+              signInWithPassword: async () => ({ data: { user }, error: null }),
+            },
+          }),
         },
-        rateLimit: async () => true,
+        "@/server/config": {
+          config: () => ({ auth: true, database: true, production: true }),
+        },
+        "@/server/db": {
+          db: () => () => {
+            throw Error("No wallet or onboarding DB calls expected");
+          },
+          rateLimit: async () => true,
+        },
+        "@/server/analytics": {},
+        "@/server/preview-auth": {},
+        "@/server/preview-invitations": {},
+        "@/server/signup-profile": {},
+        "@/core/auth-readiness": { productionAuthRequestDenial: () => null },
+        "@/core/private-preview.mjs": { assertPrivatePreview: () => false },
+        "@/server/mfa-flow": {
+          mfaFlow: async () => ({
+            ok: true,
+            mode: "verified",
+            redirect: "/fantasy/play",
+          }),
+        },
       },
-      "@/server/analytics": {},
-      "@/server/preview-auth": {},
-      "@/server/preview-invitations": {},
-      "@/server/signup-profile": {},
-      "@/core/auth-readiness": { productionAuthRequestDenial: () => null },
-      "@/core/private-preview.mjs": { assertPrivatePreview: () => false },
-      "@/server/mfa-flow": {
-        mfaFlow: async () => ({
-          ok: true,
-          mode: "verified",
-          redirect: "/fantasy/play",
-        }),
-      },
-    },
-    { DOCKED_BETA_STAGING: "true", BETA_ACCESS_ENABLED: "true" },
-  );
-  const post = (action: string) =>
-    route.POST(
-      new Request("https://docked.invalid/api/auth", {
-        method: "POST",
-        headers: { Origin: "https://docked.invalid" },
-        body: JSON.stringify({
-          action,
-          app: true,
-          email: "synthetic@example.invalid",
-          password: "Synthetic-password-only",
-          next: "/fantasy/play",
-        }),
-      }),
+      { DOCKED_BETA_STAGING: String(beta), BETA_ACCESS_ENABLED: "true" },
     );
-  assert.equal(
-    (await (await post("login")).json()).redirect,
-    "/mfa?next=%2Fadmin%2Fincidents",
-  );
-  aal = "aal2";
-  assert.equal(
-    (await (await post("login")).json()).redirect,
-    "/admin/incidents",
-  );
-  assert.equal(
-    (await (await post("mfa_verify")).json()).redirect,
-    "/admin/incidents",
-  );
-});
+    const post = (action: string) =>
+      route.POST(
+        new Request("https://docked.invalid/api/auth", {
+          method: "POST",
+          headers: { Origin: "https://docked.invalid" },
+          body: JSON.stringify({
+            action,
+            app: true,
+            email: "synthetic@example.invalid",
+            password: "Synthetic-password-only",
+            next: "/fantasy/play",
+          }),
+        }),
+      );
+    assert.equal(
+      (await (await post("login")).json()).redirect,
+      "/mfa?next=%2Fadmin%2Fincidents",
+    );
+    aal = "aal2";
+    assert.equal(
+      (await (await post("login")).json()).redirect,
+      "/admin/incidents",
+    );
+    assert.equal(
+      (await (await post("mfa_verify")).json()).redirect,
+      "/admin/incidents",
+    );
+  });
 
 test("actual proxy preserves multi-callback cookie changes, clears rejected chunks and never logs out other sessions", async () => {
   let failure: unknown = { status: 400, code: "refresh_token_not_found" };

@@ -122,3 +122,12 @@ tests/platform/clean-transition-authority.test.ts text eol=lf
 docs/qa/clean-transition-20261117/** text eol=lf
 docs/qa/clean-transition-20261117/*.png -text
 docs/qa/v31-prelaunch-execution-20261111/database/restore-20261117b/** text eol=lf
+
+# Final public runtime package is byte-stable across Windows checkouts.
+supabase/migrations/20261116215032_public_sms_budget_guard.sql text eol=lf
+supabase/migrations/20261117091440_public_owner_support.sql text eol=lf
+docs/qa/public-launch-runtime-20261117/** text eol=lf
+scripts/public-launch-runtime* text eol=lf
+
+config/operations/public-runtime* text eol=lf
+scripts/twilio-readiness-readonly.mjs text eol=lf

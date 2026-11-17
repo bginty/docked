@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-17T10:06:51.270Z",
+  "container": "docked-commercial-restore-20261117g",
+  "network": "none",
+  "productionWrites": 0,
+  "smsSent": 0,
+  "existingOwners": 2,
+  "checks": [
+    "public restricted Owner report/search/detail",
+    "zero inherited assets",
+    "AAL1 and anonymous denied",
+    "runtime direct table access denied",
+    "support notes audited",
+    "non-destructive restriction/restore with live identity denial and optimistic state",
+    "request idempotency",
+    "immutable support history",
+    "Owner restriction, enable command, extra actor and changed-request rejection",
+    "emergency pause only",
+    "retired and QA SMS denied",
+    "rollback preserves original financial/custody/supply digest"
+  ],
+  "files": [
+    {
+      "path": "supabase/migrations/20261116215032_public_sms_budget_guard.sql",
+      "sha256": "039fe257313e83d9f3c90ca85dec916414f60c142d7a7b987bc574083d03fca6"
+    },
+    {
+      "path": "supabase/migrations/20261117091440_public_owner_support.sql",
+      "sha256": "821461e12e4862ef68dd39135ce0d4bf48d2e8dfc46fa99013e4594de470726a"
+    }
+  ],
+  "passed": true
+}

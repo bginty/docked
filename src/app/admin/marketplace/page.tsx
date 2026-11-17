@@ -15,6 +15,16 @@ export default async function MarketplaceAdmin() {
   } catch {
     notFound();
   }
+  if (process.env.DOCKED_BETA_STAGING !== "true")
+    return (
+      <AdminShell role="owner" displayName="Owner" active="marketplace">
+        <h1>Marketplace is disabled</h1>
+        <p>
+          Buying, selling and swaps remain unavailable. Commercial payment, pack
+          and customer support are available from Commercial operations.
+        </p>
+      </AdminShell>
+    );
   try {
     return (
       <AdminShell role="owner" displayName="Owner" active="marketplace">

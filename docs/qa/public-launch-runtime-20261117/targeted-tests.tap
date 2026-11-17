@@ -1,0 +1,290 @@
+TAP version 13
+# Subtest: verified commercial receipt uses provider identity, exact AUD charge and account
+ok 1 - verified commercial receipt uses provider identity, exact AUD charge and account
+  ---
+  duration_ms: 116.2103
+  ...
+# Subtest: TEST receipts cannot cross commercial boundary in either direction
+ok 2 - TEST receipts cannot cross commercial boundary in either direction
+  ---
+  duration_ms: 8.625
+  ...
+# Subtest: reject manipulated account
+ok 3 - reject manipulated account
+  ---
+  duration_ms: 2.0167
+  ...
+# Subtest: reject manipulated product
+ok 4 - reject manipulated product
+  ---
+  duration_ms: 1.8887
+  ...
+# Subtest: reject manipulated region
+ok 5 - reject manipulated region
+  ---
+  duration_ms: 6.4334
+  ...
+# Subtest: reject manipulated quantity
+ok 6 - reject manipulated quantity
+  ---
+  duration_ms: 3.8
+  ...
+# Subtest: reject manipulated option
+ok 7 - reject manipulated option
+  ---
+  duration_ms: 2.3049
+  ...
+# Subtest: reject manipulated orderToken
+ok 8 - reject manipulated orderToken
+  ---
+  duration_ms: 2.8803
+  ...
+# Subtest: reject manipulated orderProduct
+ok 9 - reject manipulated orderProduct
+  ---
+  duration_ms: 2.8357
+  ...
+# Subtest: reject manipulated currency
+ok 10 - reject manipulated currency
+  ---
+  duration_ms: 3.146
+  ...
+# Subtest: pending without order remains pending and is not a verified charge
+ok 11 - pending without order remains pending and is not a verified charge
+  ---
+  duration_ms: 1.5585
+  ...
+# Subtest: partial refunds are held, full refund is cumulative without double counting
+ok 12 - partial refunds are held, full refund is cumulative without double counting
+  ---
+  duration_ms: 8.5811
+  ...
+# Subtest: amount drift records a charge needing review, never silently changes credit allocation
+ok 13 - amount drift records a charge needing review, never silently changes credit allocation
+  ---
+  duration_ms: 3.1104
+  ...
+# Subtest: provider outages do not leak tokens or invent successful purchases
+ok 14 - provider outages do not leak tokens or invent successful purchases
+  ---
+  duration_ms: 1.628
+  ...
+# Subtest: integer money and unchanged sport-specific pack configuration
+ok 15 - integer money and unchanged sport-specific pack configuration
+  ---
+  duration_ms: 47.4292
+  ...
+# Subtest: all sport/size variants require distinct supply for every positive-weight rarity
+ok 16 - all sport/size variants require distinct supply for every positive-weight rarity
+  ---
+  duration_ms: 54.2908
+  ...
+# Subtest: missing, fractional or invalid supply cannot satisfy a required rarity
+ok 17 - missing, fractional or invalid supply cannot satisfy a required rarity
+  ---
+  duration_ms: 1.0279
+  ...
+# Subtest: beta deployment cannot enable public registration or use an unknown channel
+ok 18 - beta deployment cannot enable public registration or use an unknown channel
+  ---
+  duration_ms: 11.4146
+  ...
+# Subtest: free-play production requires separate reviewed identities and cannot borrow Preview configuration
+ok 19 - free-play production requires separate reviewed identities and cannot borrow Preview configuration
+  ---
+  duration_ms: 3.1389
+  ...
+# Subtest: free-play action boundary rejects monetary requests and device-selected daily periods
+ok 20 - free-play action boundary rejects monetary requests and device-selected daily periods
+  ---
+  duration_ms: 58.5776
+  ...
+# Subtest: reviewed community-only production is isolated and does not treat inert keys as activation
+ok 21 - reviewed community-only production is isolated and does not treat inert keys as activation
+  ---
+  duration_ms: 6.5009
+  ...
+# Subtest: production flags must be explicitly closed; runtime scope and legal provenance cannot be omitted
+ok 22 - production flags must be explicitly closed; runtime scope and legal provenance cannot be omitted
+  ---
+  duration_ms: 29.1588
+  ...
+# Subtest: production cannot relabel Preview, unrelated projects, domain lookalikes or the reviewed project as Preview
+ok 23 - production cannot relabel Preview, unrelated projects, domain lookalikes or the reviewed project as Preview
+  ---
+  duration_ms: 9.7424
+  ...
+# Subtest: database binding rejects mixed projects, elevated roles, transaction pooling and URL overrides
+ok 24 - database binding rejects mixed projects, elevated roles, transaction pooling and URL overrides
+  ---
+  duration_ms: 19.8851
+  ...
+# Subtest: plain Node hosted build uses the same reviewed manifest and rejects incomplete production before compilation
+ok 25 - plain Node hosted build uses the same reviewed manifest and rejects incomplete production before compilation
+  ---
+  duration_ms: 8581.8679
+  ...
+# Subtest: challenge uses user-session phone_change and fresh same-member provider confirmation
+ok 26 - challenge uses user-session phone_change and fresh same-member provider confirmation
+  ---
+  duration_ms: 6.1728
+  ...
+# Subtest: provider rejection, outage and expired/wrong code never expose raw provider data
+ok 27 - provider rejection, outage and expired/wrong code never expose raw provider data
+  ---
+  duration_ms: 5.7897
+  ...
+# Subtest: successful OTP response alone cannot prove identity, number or confirmed timestamp
+ok 28 - successful OTP response alone cannot prove identity, number or confirmed timestamp
+  ---
+  duration_ms: 1.6719
+  ...
+# Subtest: invalid Australian number and resend cooldown retain actionable public guidance
+ok 29 - invalid Australian number and resend cooldown retain actionable public guidance
+  ---
+  duration_ms: 0.5923
+  ...
+# Subtest: phone API cannot expose raw diagnostics merely because they start with a public prefix
+ok 30 - phone API cannot expose raw diagnostics merely because they start with a public prefix
+  ---
+  duration_ms: 0.7729
+  ...
+# Subtest: actual beta identity checks retain both Owners, require MFA and deny retired/revoked/forged access
+ok 31 - actual beta identity checks retain both Owners, require MFA and deny retired/revoked/forged access
+  ---
+  duration_ms: 352.5352
+  ...
+# Subtest: actual public identity checks retain both Owners, require MFA and deny retired/revoked/forged access
+ok 32 - actual public identity checks retain both Owners, require MFA and deny retired/revoked/forged access
+  ---
+  duration_ms: 150.5444
+  ...
+# Subtest: actual entry and fantasy layout redirect retained Owners before onboarding/wallet rendering
+ok 33 - actual entry and fantasy layout redirect retained Owners before onboarding/wallet rendering
+  ---
+  duration_ms: 173.8524
+  ...
+# Subtest: actual native session route skips retired beta onboarding and refuses a missing identity
+ok 34 - actual native session route skips retired beta onboarding and refuses a missing identity
+  ---
+  duration_ms: 105.3639
+  ...
+# Subtest: admin layout requires a current identity and MFA, and offers retry on service outages
+ok 35 - admin layout requires a current identity and MFA, and offers retry on service outages
+  ---
+  duration_ms: 120.8189
+  ...
+# Subtest: actual beta login and completed MFA routes override stale beta return destinations for retained Owners
+ok 36 - actual beta login and completed MFA routes override stale beta return destinations for retained Owners
+  ---
+  duration_ms: 2248.7294
+  ...
+# Subtest: actual public login and completed MFA routes override stale beta return destinations for retained Owners
+ok 37 - actual public login and completed MFA routes override stale beta return destinations for retained Owners
+  ---
+  duration_ms: 1395.6757
+  ...
+# Subtest: actual proxy preserves multi-callback cookie changes, clears rejected chunks and never logs out other sessions
+ok 38 - actual proxy preserves multi-callback cookie changes, clears rejected chunks and never logs out other sessions
+  ---
+  duration_ms: 311.7843
+  ...
+# Subtest: installed Supabase SSR client removes a genuinely rejected refresh from request and response cookies
+ok 39 - installed Supabase SSR client removes a genuinely rejected refresh from request and response cookies
+  ---
+  duration_ms: 1030.6236
+  ...
+# Subtest: both retained Owner roles land on incidents and preserve individual MFA
+ok 40 - both retained Owner roles land on incidents and preserve individual MFA
+  ---
+  duration_ms: 7.5597
+  ...
+# Subtest: incidents survive login/MFA return validation without widening external redirects
+ok 41 - incidents survive login/MFA return validation without widening external redirects
+  ---
+  duration_ms: 1.4789
+  ...
+# Subtest: invalid refresh clears only this project's session chunks, retaining PKCE and unrelated cookies
+ok 42 - invalid refresh clears only this project's session chunks, retaining PKCE and unrelated cookies
+  ---
+  duration_ms: 8.0085
+  ...
+# Subtest: native resume returns retained Owners to incidents without interrupting MFA or restarting gameplay
+ok 43 - native resume returns retained Owners to incidents without interrupting MFA or restarting gameplay
+  ---
+  duration_ms: 1.0115
+  ...
+# Subtest: support command rejects forged identity, unexpected fields and invalid targets
+ok 44 - support command rejects forged identity, unexpected fields and invalid targets
+  ---
+  duration_ms: 32.8543
+  ...
+# Subtest: actual support HTTP endpoint rejects cross-origin, oversize, malformed and unauthenticated actions without disclosure
+ok 45 - actual support HTTP endpoint rejects cross-origin, oversize, malformed and unauthenticated actions without disclosure
+  ---
+  duration_ms: 636.8874
+  ...
+# Subtest: public operations reads public projection without any sandbox wallet read
+ok 46 - public operations reads public projection without any sandbox wallet read
+  ---
+  duration_ms: 1859.4316
+  ...
+# Subtest: phone evidence must come from confirmed Auth fields, never a typed number
+ok 47 - phone evidence must come from confirmed Auth fields, never a typed number
+  ---
+  duration_ms: 10.3315
+  ...
+# Subtest: SMS cannot send before public/OTP/policy configuration; beta unchanged
+ok 48 - SMS cannot send before public/OTP/policy configuration; beta unchanged
+  ---
+  duration_ms: 4.8734
+  ...
+# Subtest: signed AU send is single segment; accepted replay sends once
+ok 49 - signed AU send is single segment; accepted replay sends once
+  ---
+  duration_ms: 118.3514
+  ...
+# Subtest: invalid/stale signature never reaches reservation or provider
+ok 50 - invalid/stale signature never reaches reservation or provider
+  ---
+  duration_ms: 53.3789
+  ...
+# Subtest: signed non-AU number, invalid OTP and oversized payload fail closed
+ok 51 - signed non-AU number, invalid OTP and oversized payload fail closed
+  ---
+  duration_ms: 23.489
+  ...
+# Subtest: cap, expiry and pending statuses never dispatch
+ok 52 - cap, expiry and pending statuses never dispatch
+  ---
+  duration_ms: 8.2858
+  ...
+# Subtest: 20 simultaneous duplicate callbacks dispatch at most once
+ok 53 - 20 simultaneous duplicate callbacks dispatch at most once
+  ---
+  duration_ms: 17.6489
+  ...
+# Subtest: provider timeout/failure conserves budget and never retries
+ok 54 - provider timeout/failure conserves budget and never retries
+  ---
+  duration_ms: 7.8604
+  ...
+# Subtest: accepted send whose persistence fails is never automatically resent
+ok 55 - accepted send whose persistence fails is never automatically resent
+  ---
+  duration_ms: 3.477
+  ...
+# Subtest: slow reservation cannot start a late SMS after the hook deadline
+ok 56 - slow reservation cannot start a late SMS after the hook deadline
+  ---
+  duration_ms: 3613.423
+  ...
+1..56
+# tests 56
+# suites 0
+# pass 56
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 17471.2428

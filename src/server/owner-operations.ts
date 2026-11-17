@@ -11,7 +11,8 @@ export async function ownerOperations(
 ) {
   const who = await requireRole(["owner"]),
     filters = operationFilters(input);
-  if (filters.scope === "live" || process.env.DOCKED_BETA_STAGING !== "true")
+  const beta = process.env.DOCKED_BETA_STAGING === "true";
+  if ((beta && filters.scope === "live") || (!beta && filters.scope !== "live"))
     return { filters, data: null };
   const data = await db().begin(async (tx) => {
     // Admission checks take FOR SHARE locks; SQL READ ONLY would reject them.
@@ -20,6 +21,7 @@ export async function ownerOperations(
     await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true)`;
     const [r] =
       await tx`select private.owner_command_centre(${filters.startAt}::timestamptz,${filters.endAt}::timestamptz,${filters.sport === "all" ? null : filters.sport},${filters.staff === "true"}) value`;
+    if (!beta) return r.value as Operations;
     const [state] =
       await tx`select document from credits_sandbox.state where id`;
     const operations = {

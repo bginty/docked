@@ -9,8 +9,6 @@ export async function adminRecord(
 ): Promise<AdminRecord | null> {
   const actor = await requireRole([...adminRoles]);
   const parsed = adminRecordInput(input, actor.role);
-  if (process.env.DOCKED_BETA_STAGING !== "true")
-    throw Error("Record source unavailable");
   if (!(await rateLimit(`admin-record:${actor.user.id}`, 40, 60)))
     throw Error("Record rate limit");
   return db().begin(async (tx) => {

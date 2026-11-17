@@ -1,0 +1,61 @@
+{
+  "at": "2026-11-17T10:13:19.260540+00:00",
+  "targetedTests": {
+    "passed": 56,
+    "failed": 0,
+    "evidence": "targeted-tests.tap"
+  },
+  "restoredDatabase": {
+    "passed": true,
+    "groups": 12,
+    "evidence": "restored-tests.json",
+    "notes": "Both retained Owner rows with local AAL2 claims, synthetic customer and rollback; not genuine hosted MFA."
+  },
+  "exactAtomicInstall": {
+    "passed": true,
+    "evidence": "install-rehearsal.json",
+    "duplicateApplyDenied": true
+  },
+  "smsConcurrency": {
+    "reusedUnchangedMigrationEvidence": "../final-public-runtime-20261117/sms-budget-database-tests.json",
+    "groups": 10,
+    "duplicateRequests": 20,
+    "competingRequests": 20
+  },
+  "security": {
+    "newTablesWithRls": 4,
+    "directRuntimeWriteGrants": 0,
+    "newFunctionsCallableByAnonymousOrAuthenticated": 0,
+    "fixedSearchPaths": true,
+    "permittedRuntimeFunctions": 6,
+    "ownerMfaRecheckedInDatabase": true,
+    "noOwnerRoleFromClient": true,
+    "restrictionsDoNotInvokeErasureTriggers": true
+  },
+  "localCandidateConfigurationGuard": {
+    "passed": true,
+    "existingProjectAndRestrictedRoleBinding": true,
+    "notHostedAcceptance": true
+  },
+  "build": {
+    "exitCode": 0,
+    "next": "16.4.6",
+    "evidence": "build-result.json"
+  },
+  "lint": "Scoped application and operator checks passed",
+  "productionDependencyAudit": {
+    "vulnerabilities": 0,
+    "evidence": "npm-audit.json"
+  },
+  "resolvedPreparationFailures": [
+    "Initial Next16.4.3 build blocked by security advisory; reviewed same-minor16.4.6 patch passed full build and audit.",
+    "New support restriction initially used legacy erasure field; changed to separate restricted state through existing identity guard and tested profile/history preservation.",
+    "Prepared preflight used an incorrect round field; corrected to observed fixture_kind and exact install passed.",
+    "Synthetic test display name contained reserved support identity; changed to normal fictional player, guard preserved."
+  ],
+  "newHostedAcceptance": "Pending separately approved protected public-mode stage",
+  "physicalPhoneAcceptance": "Pending separate bounded Production hook authority; existing Preview and Owner device acceptances retained",
+  "productionWrites": 0,
+  "smsSent": 0,
+  "gatesChanged": 0
+}
