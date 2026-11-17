@@ -1,0 +1,93 @@
+APPROVED BETA RETIREMENT COMPLETED — 17 NOVEMBER 2026
+
+Completed 05:53:44 UTC / 16:53:44 Sydney. Public launch remains NO-GO.
+Operator source: 11daff82afa0e247a363cd4383082c90a3d58c4f
+Approved package: 2e55e1c183f095d0bcad913b16cb0143192deb698b3859f5f5104d1ac0573898
+Application unchanged: 9e57c094cb7b4af02277e191a2e64fa2e6b22c6b
+Vercel unchanged: dpl_ZNUTkFD88udQGYcdnJ8eJaUZ5QBq
+
+Executed exactly once: atomic containment and founder communication attestation;
+three supported Supabase Auth soft retirements with durable attempt/readback
+checkpoints; completion after independent verification and fresh preflights.
+No migration, application deployment, inventory import or replacement signup.
+
+Accounts
+- Founder 623d1e69… retains original identity, password/MFA and Full Owner role.
+- Barry ef641248… retains original identity/password/MFA; Admin became Full Owner
+  in the existing in-app role model. Both public and beta Owner mappings verified.
+- Luke 9fa5cdbb…, Brenton d6ab4838… and invited customer eea25d64… are soft-retired.
+  Exactly eight sessions and 62 refresh-token records belonging to these customers
+  were removed by the supported provider operation. Old credentials are cleared;
+  their original UUIDs remain tombstones for historical references.
+- Internal QA e56880e0… retains its original credentials/history but is denied
+  active/commercial participation. No external IAM or recovery custody expanded.
+
+Identifier and consent handling
+Three original emails no longer occur in Auth email/identity claims and are free
+for later normal registration. There were ZERO verified Production phone claims
+before retirement, and zero afterward; no active unrelated number was released.
+Real local GoTrue v2.198.0 lifecycle evidence already verifies email/phone reuse,
+new UUIDs, fresh verification and concurrent uniqueness. No Production replacement
+account was created and no genuine new Production phone test is claimed here.
+Returning customers must satisfy Australian public eligibility, verify themselves
+and accept commercial notices. Brenton's California beta exception is disabled.
+Only the two Owners' historical consent rows were copied; none is relabelled as
+new commercial acceptance. Owners must accept new notices themselves.
+
+Preserved assets and audit
+6,540 definitions; 918 lifetime-issued limited copies; 936 custody records;
+30 later beta allocations; zero commercial cards/accounts/packs. All counts are
+actual observations, not reset targets. Wallet/TEST receipts/refund/recovery-hold
+state and custody digests match before/after; no unbalanced journals, duplicate
+serials or lifetime mismatches. Permanent rarity limits and all issuance remain.
+1,035 unique historical beta card IDs are excluded from commercial participation.
+Three sealed historical entitlements remain unopened and preserved. No beta
+credits, cards, lineups or other assets were copied into commercial ownership.
+Fourteen immutable transition events include one honest prior-communication
+attestation, three attempt/readback pairs and completion. No email, delivery
+receipt, communication date, noticeDelivered marker or 19 November delay was used.
+The accepted-terms review and current internal cases show no specific unresolved
+ordinary-customer entitlement claim. External private conversations were not
+independently inspected; the founder's attestation remains identified as such.
+
+Independent safeguards
+Exact source/package/cohort/attestation/file hashes matched. Live Auth v2.198.0,
+both verified TOTP factors, installed migration/function definitions and all
+database roles/permissions matched. Backup authenticated AES-256-GCM and restored
+with no network, ports or cron; all 572 protected tables matched. Backup captured
+05:38:28 UTC; preflights were refreshed before each operator phase.
+Archive SHA-256: 681510ca65709af492caccf6e737559dabc3a6377ef7f498e8b5818a001c00c2
+No plaintext archive was written. Encrypted recovery material remains private.
+Routine scheduler changes were reconciled, including immutable history and
+zero-issuance weekly jobs. The reviewed named-tester revocation trigger produced
+exactly one admission revision increment and one append-only access-change event;
+no other admission fields/history changed. Full postflight passed at 05:54:41 UTC.
+
+The operator's initial READ-ONLY preflight needed the existing explicit trusted
+Supabase CA path. After supplying it, it passed without changing approved bytes
+or weakening TLS. The independent verifier was corrected to avoid locking member
+functions inside a read-only transaction and to compare the existing named-tester
+trigger effects exactly. Neither issue caused an extra containment/Auth operation.
+
+All launch controls remain closed: Auth signup disabled, Phone OFF, SMS hook OFF,
+commercial sales/issuance/transfers/gameplay OFF, deletion schedules OFF. NBA stays
+hidden; six competitions remain disabled Practice. Play/v31/managed publishing
+were untouched. Existing Google TEST/refund, Preview SMS, vault and incident
+acceptance was retained without repeating those tests.
+
+Evidence and limits
+completion.json, before/contained/retired/complete-verification.json and
+provider-state.json contain redacted results. Private row-level comparisons and
+the backup stay outside Git. Vercel connector verified the current deployment
+and unchanged environment bindings; write-only values are not claimed readable.
+Founder/Barry credential/MFA preservation and Owner authorization are verified
+against database/provider evidence. Browser control timed out twice on the
+existing Owner tab, so actual individual Owner browser acceptance remains pending.
+A precise founder-only read step was requested; no MFA or consent was impersonated.
+
+Recovery is forward-only after containment. Do not undelete/recreate old UUIDs,
+restore an old snapshot over current data, reclaim serials, clear recovery holds
+or roll back to an application that restores beta access. The approved sequence
+completed normally; no recovery or account retry was required.
+
+Next: FORWARD_PREPARATION.txt. No retirement approval needs to be repeated.
