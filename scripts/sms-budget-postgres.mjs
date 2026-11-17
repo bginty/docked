@@ -2,8 +2,23 @@
 import assert from "node:assert/strict";
 import { execFileSync, spawn } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
-const container = "docked-batch1-synthetic-20261116",
-  database = "sms_budget_guard_20261117";
+const cleanTransition = process.argv.includes("--clean-transition");
+const container = cleanTransition
+    ? "docked-commercial-restore-20261117e"
+    : "docked-batch1-synthetic-20261116",
+  database = cleanTransition
+    ? "sms_budget_clean_20261117"
+    : "sms_budget_guard_20261117";
+if (cleanTransition) {
+  const inspected = JSON.parse(
+    execFileSync("docker", ["inspect", container], {
+      encoding: "utf8",
+      windowsHide: true,
+    }),
+  )[0];
+  assert.equal(inspected.HostConfig.NetworkMode, "none");
+  assert.equal(Object.keys(inspected.HostConfig.PortBindings ?? {}).length, 0);
+}
 const migration =
   "supabase/migrations/20261116215032_public_sms_budget_guard.sql";
 const args = (db) => [
@@ -12,7 +27,7 @@ const args = (db) => [
   container,
   "psql",
   "-h",
-  "127.0.0.1",
+  cleanTransition ? "/restore" : "127.0.0.1",
   "-X",
   "-qAt",
   "-v",
@@ -55,8 +70,17 @@ try {
   assert.equal(query("select current_database();", "postgres"), "postgres");
   query(`create database ${database};`, "postgres");
   created = true;
-  query(`create schema auth;create table auth.users(id uuid primary key,email_confirmed_at timestamptz,is_anonymous boolean,banned_until timestamptz);
- insert into auth.users select ('00000000-0000-4000-8000-'||lpad(i::text,12,'0'))::uuid,now(),false,null from generate_series(1,70)i;`);
+  query(`create schema auth;create table auth.users(id uuid primary key,email_confirmed_at timestamptz,is_anonymous boolean,banned_until timestamptz,deleted_at timestamptz);
+ insert into auth.users select ('00000000-0000-4000-8000-'||lpad(i::text,12,'0'))::uuid,now(),false,null,null from generate_series(1,70)i;
+ create schema launch_transition;create table launch_transition.accounts(user_id uuid primary key,kind text not null);`);
+  const identityGuard = readFileSync(
+    "supabase/migrations/20261117001019_clean_commercial_account_transition.sql",
+    "utf8",
+  ).match(
+    /create function launch_transition\.identity_allowed\(u uuid\) returns boolean[\s\S]*?\$\$;/,
+  )?.[0];
+  assert(identityGuard, "Installed transition identity guard required");
+  query(identityGuard);
   query(readFileSync(migration, "utf8"));
   assert.equal(query("select count(*) from sms_delivery.windows"), "0");
   passed.push("Migration inactive, no window/provider/settings mutations");
@@ -128,6 +152,20 @@ try {
   for (const n of [3, 4, 5, 71])
     assert.equal(query(reserve("auth", n)), "denied");
   passed.push("Anonymous/unverified/banned/missing users denied");
+  query(
+    `update auth.users set deleted_at=now() where id='${user(6)}';
+     insert into launch_transition.accounts values('${user(7)}','customer'),('${user(8)}','system');`,
+  );
+  for (const n of [6, 7, 8]) assert.equal(query(reserve("auth", n)), "denied");
+  assert.equal(
+    query(
+      "select reserved_aud_cents from sms_delivery.windows where id='auth'",
+    ),
+    "0",
+  );
+  passed.push(
+    "Soft-deleted, contained customer and internal QA identities cannot reserve SMS budget",
+  );
   const permissions = query(
     "select has_table_privilege('docked_app','sms_delivery.windows','UPDATE'),has_table_privilege('docked_app','sms_delivery.attempts','INSERT'),has_function_privilege('anon','sms_delivery.reserve(text,text,uuid)','EXECUTE'),has_function_privilege('authenticated','sms_delivery.reserve(text,text,uuid)','EXECUTE'),has_function_privilege('service_role','sms_delivery.reserve(text,text,uuid)','EXECUTE');",
   );
@@ -141,7 +179,9 @@ try {
   assert.equal(query(reserve("global", 40)), "denied");
   passed.push("Global 30/hour bound enforced inside database lock");
   writeFileSync(
-    "docs/qa/final-release-decision-20261117/sms-budget-database-tests.json",
+    cleanTransition
+      ? "docs/qa/final-public-runtime-20261117/sms-budget-database-tests.json"
+      : "docs/qa/final-release-decision-20261117/sms-budget-database-tests.json",
     JSON.stringify(
       {
         at: new Date().toISOString(),

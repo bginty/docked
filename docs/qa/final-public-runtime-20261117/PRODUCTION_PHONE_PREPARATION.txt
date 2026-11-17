@@ -1,0 +1,61 @@
+PRODUCTION PHONE — EXACT CONFIGURATION PREPARATION, NOT EXECUTION AUTHORITY
+
+Use the existing verified Twilio account and existing DOCKED Messaging Service.
+Preview credential entry and genuine SMS verification are already accepted.
+Never infer an invalid saved token from Supabase's masked management readback.
+The earlier authenticated-pricing attempt used that representation and returned
+401; the Production hook needs the actual existing credential entered securely.
+No token rotation, replacement service, new sender or new paid account is needed.
+
+Protected Vercel Production server values for the reviewed hook:
+- DOCKED_TWILIO_ACCOUNT_SID: existing account SID (AC...).
+- DOCKED_TWILIO_AUTH_TOKEN: existing Auth Token, entered privately.
+- DOCKED_TWILIO_MESSAGE_SERVICE_SID: existing Messaging Service SID (MG...).
+- DOCKED_SMS_HOOK_SECRET: matching signed Supabase Send SMS hook secret.
+- DOCKED_SMS_BUDGET_WINDOW: exact separately approved window ID.
+No NEXT_PUBLIC prefix; never put these in Git, reports or chat.
+The existing budget hook URL is https://docked.com.au/api/webhooks/auth-sms.
+
+Before any enablement
+1. Final public-runtime package must pass restricted public-role authenticated
+   HTTP and Owner checks. Closed signup and commercial gates remain asserted.
+2. Review the revised inactive SMS migration and its clean-transition dependency.
+3. Privately verify GET-only Twilio account/service ownership, approved AU DOCKED
+   sender, AU-only destination permissions, funded balance and no automatic top-up.
+4. Verify an upper bound for one GSM single-segment AU send including provider and
+   carrier charges, currency conversion and tax. The reservation is A$1 per
+   attempt, not a claimed tariff. If the real all-in cost can exceed A$1, STOP and
+   revise the budget reservation/approval instead of assuming the cap holds.
+5. Configure the signed Send SMS hook and matching secret only under the separate
+   exact configuration approval. Verify disabled/provider-failure behaviour and
+   that no ordinary Twilio fallback can send outside the budgeted hook.
+6. Keep external_phone_enabled=false, disable_signup=true,
+   DOCKED_PUBLIC_PHONE_OTP=false and DOCKED_SMS_BUDGET_HOOK_ENABLED=false until the
+   bounded attended test is separately authorised. No default active window.
+
+Prepared attended test scope (not executed/authorised here)
+Founder-controlled AU handset and original retained Owner, current explicit
+commercial consent and MFA, installed v31, one deliberate send/verify/reload.
+At most two deliberate attempts, <=2 hours, <=A$2 reserved within remaining test
+authority. No automatic resend. A failure consumes its reservation and stops for
+inspection; no repeated full Preview acceptance programme is needed.
+Signup stays closed, the window has an explicit allowlist, and sales/issuance stay
+off. Record provider acceptance and actual handset verification separately.
+Disable the test window and Phone promptly after evidence is preserved.
+
+Already approved public operating budget
+A$50 total for the first seven days, no automatic top-up or extension. With the
+verified <=A$1 all-in ceiling, the prepared database reserves A$1 for each attempt
+and permits at most 50 attempts, additionally capped at 30/hour globally, 3/hour
+per identity and one per 60 seconds. Duplicate fingerprints cannot reserve or
+send twice. Pending/uncertain outcomes never replenish spending authority.
+Retired customers, internal QA, deleted, banned, unverified and anonymous identities
+are denied. A new legitimately registered/verified-email identity must verify its
+own phone; no retired identity's phone verification or historical assets transfer.
+
+Emergency stop
+Disable the active sms_delivery window and the public hook/Phone gate using the
+reviewed operator/configuration procedure; do not erase attempts or reuse a window
+to replenish its allowance. Already accepted sends may still arrive and remain
+chargeable. Stopping SMS must not prevent Owner MFA/incident access or receipt,
+refund and reconciliation processing. A further budget requires new authority.
