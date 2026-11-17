@@ -79,8 +79,9 @@ export const identity = cache(async function identity() {
     }
   }
   const p =
-    await sql`select * from public.profiles where id=${user.id} and disabled_at is null`;
+    await sql`select p.*,private.commercial_transition_status(p.id) launch_transition from public.profiles p where id=${user.id} and disabled_at is null`;
   if (!p.length) return null;
+  if (p[0].launch_transition?.allowed !== true) return null;
   const claims = verifiedSessionClaims(token, user.id);
   if (!claims) return null;
   const active =
@@ -115,6 +116,18 @@ export async function requireAccountIdentity() {
 }
 export async function requireIdentity() {
   const who = await requireAccountIdentity();
+  if (
+    publicCustomersEnabled() &&
+    who.profile.launch_transition?.commercialReady !== true
+  )
+    throw new Error("Public participation is not open yet.");
+  if (
+    process.env.DOCKED_BETA_STAGING === "true" &&
+    who.profile.launch_transition?.betaEnded === true
+  )
+    throw new Error(
+      "Beta participation has ended. Historical records remain available to authorised support.",
+    );
   if (publicCustomersEnabled() && !verifiedPhone(who.user))
     throw new Error(verifiedPhoneRequired);
   return who;

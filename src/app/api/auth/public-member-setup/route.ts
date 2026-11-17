@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { sameOrigin, requireIdentity } from "@/server/auth";
+import { sameOrigin, requireRole } from "@/server/auth";
 import { boundedCommunityBody } from "@/core/community-social";
 import { publicMemberSetupConfiguration } from "@/core/public-member-setup";
 import { rateLimit } from "@/server/db";
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
       { status: 403, headers },
     );
   try {
-    const who = await requireIdentity();
+    const who = await requireRole(["owner"]);
     if (!(await rateLimit(`public-member-setup:${who.user.id}`, 6, 300)))
       return NextResponse.json(
         { error: "Please wait before trying again." },

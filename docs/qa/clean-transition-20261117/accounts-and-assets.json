@@ -1,0 +1,666 @@
+{
+  "at": "2026-11-17T00:11:11.737Z",
+  "planSha256": "2141f99646694ff29bcc85a117b29c1aa1ecb72d3d4f4989e975a5796b22780e",
+  "accounts": [
+    {
+      "ref": "623d1e69…",
+      "identitySha256": "9ae81daad1419b7b4be8f4772911c5dd114ae44b15c4e207ac5acdae800237d4",
+      "label": "Founder",
+      "kind": "owner",
+      "identityEvidence": [
+        "Existing owner role + exact verified operational email + historical owner admission"
+      ],
+      "roles": [
+        "owner"
+      ],
+      "mfaVerified": true,
+      "country": "AU",
+      "emailVerified": true,
+      "phoneVerified": false,
+      "sessions": 57,
+      "betaCredits": 2000,
+      "cards": 297,
+      "limitedCards": 296,
+      "sealed": [
+        {
+          "cards": 1
+        },
+        {
+          "cards": 1
+        }
+      ],
+      "recoveryCases": 0,
+      "consentVersions": [
+        "terms:2026-10-09-beta-rc2",
+        "privacy:2026-10-09-beta-rc2",
+        "marketing:2026-10-09-beta-rc2",
+        "age_attestation:2026-10-09-beta-rc2",
+        "terms:2026-10-11-beta-rc3",
+        "privacy:2026-10-11-beta-rc3",
+        "age_attestation:2026-10-11-beta-rc3"
+      ],
+      "references": [
+        {
+          "table": "beta_fantasy.cards",
+          "column": "owner_id",
+          "count": 33
+        },
+        {
+          "table": "beta_fantasy.daily_claims",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.entries",
+          "column": "user_id",
+          "count": 9
+        },
+        {
+          "table": "beta_fantasy.entry_revisions",
+          "column": "user_id",
+          "count": 6
+        },
+        {
+          "table": "beta_fantasy.members",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.packs",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.requests",
+          "column": "user_id",
+          "count": 105
+        },
+        {
+          "table": "beta_fantasy.results",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.round_drafts",
+          "column": "user_id",
+          "count": 19
+        },
+        {
+          "table": "beta_fantasy.slot_locks",
+          "column": "user_id",
+          "count": 51
+        },
+        {
+          "table": "beta_fantasy.starter_claims",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.swap_requests",
+          "column": "user_id",
+          "count": 7
+        },
+        {
+          "table": "beta_fantasy.team_names",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.team_rollovers",
+          "column": "user_id",
+          "count": 15
+        },
+        {
+          "table": "credits_sandbox.access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "credits_sandbox.trading_members",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nba_beta_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nfl_allocations",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nfl_starter_entitlements",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.sport_sandbox_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.sport_sandbox_inventory",
+          "column": "user_id",
+          "count": 3
+        },
+        {
+          "table": "sports_feed.stream_members",
+          "column": "user_id",
+          "count": 4
+        },
+        {
+          "table": "sports_feed.weekly_core_packs",
+          "column": "user_id",
+          "count": 13
+        },
+        {
+          "table": "sports_feed.weekly_core_schedules",
+          "column": "user_id",
+          "count": 3
+        }
+      ],
+      "posts": 9,
+      "followers": 1
+    },
+    {
+      "ref": "e56880e0…",
+      "identitySha256": "ada7e434c2a9e6fdcae5f61fef29fc7e21b7af0ac56e644cb300f0c5c481b27f",
+      "label": "Internal synthetic QA",
+      "kind": "system",
+      "identityEvidence": [
+        "Exact original internal QA fixture UUID/email; no customer classification"
+      ],
+      "roles": [],
+      "mfaVerified": false,
+      "country": "AU",
+      "emailVerified": true,
+      "phoneVerified": false,
+      "sessions": 62,
+      "betaCredits": 9400,
+      "cards": 79,
+      "limitedCards": 76,
+      "sealed": [
+        {
+          "cards": 9
+        }
+      ],
+      "recoveryCases": 4,
+      "consentVersions": [
+        "privacy:2026-10-09-beta-rc2",
+        "terms:2026-10-09-beta-rc2",
+        "age_attestation:2026-10-09-beta-rc2",
+        "privacy:2026-10-11-beta-rc3",
+        "age_attestation:2026-10-11-beta-rc3",
+        "terms:2026-10-11-beta-rc3"
+      ],
+      "references": [
+        {
+          "table": "beta_fantasy.cards",
+          "column": "owner_id",
+          "count": 10
+        },
+        {
+          "table": "beta_fantasy.entry_revisions",
+          "column": "user_id",
+          "count": 40
+        },
+        {
+          "table": "beta_fantasy.members",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.requests",
+          "column": "user_id",
+          "count": 52
+        },
+        {
+          "table": "beta_fantasy.team_names",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "credits_sandbox.access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "credits_sandbox.store_receipts",
+          "column": "member_id",
+          "count": 4
+        },
+        {
+          "table": "credits_sandbox.store_test_admissions",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nba_beta_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nfl_allocations",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nfl_starter_entitlements",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.sport_sandbox_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.sport_sandbox_inventory",
+          "column": "user_id",
+          "count": 2
+        },
+        {
+          "table": "sports_feed.weekly_core_packs",
+          "column": "user_id",
+          "count": 3
+        },
+        {
+          "table": "sports_feed.weekly_core_schedules",
+          "column": "user_id",
+          "count": 3
+        }
+      ],
+      "posts": 0,
+      "followers": 0
+    },
+    {
+      "ref": "ef641248…",
+      "identitySha256": "c1a55e654eb2cdccb34881d8e7b6d08f1d0eeeec387923971928de2a274768e3",
+      "label": "Barry",
+      "kind": "owner",
+      "identityEvidence": [
+        "Exact original verified email + invitation/roster + reviewed 17 October admin grant"
+      ],
+      "roles": [
+        "admin"
+      ],
+      "mfaVerified": true,
+      "country": "AU",
+      "emailVerified": true,
+      "phoneVerified": false,
+      "sessions": 15,
+      "betaCredits": 172442,
+      "cards": 370,
+      "limitedCards": 370,
+      "sealed": [],
+      "recoveryCases": 0,
+      "consentVersions": [
+        "terms:2026-10-11-beta-rc3",
+        "privacy:2026-10-11-beta-rc3",
+        "age_attestation:2026-10-11-beta-rc3"
+      ],
+      "references": [
+        {
+          "table": "beta_fantasy.cards",
+          "column": "owner_id",
+          "count": 14
+        },
+        {
+          "table": "beta_fantasy.entries",
+          "column": "user_id",
+          "count": 7
+        },
+        {
+          "table": "beta_fantasy.entry_revisions",
+          "column": "user_id",
+          "count": 7
+        },
+        {
+          "table": "beta_fantasy.members",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.requests",
+          "column": "user_id",
+          "count": 20
+        },
+        {
+          "table": "beta_fantasy.round_drafts",
+          "column": "user_id",
+          "count": 8
+        },
+        {
+          "table": "beta_fantasy.slot_locks",
+          "column": "user_id",
+          "count": 50
+        },
+        {
+          "table": "beta_fantasy.team_names",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.team_rollovers",
+          "column": "user_id",
+          "count": 6
+        },
+        {
+          "table": "credits_sandbox.access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "credits_sandbox.trading_members",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nba_beta_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nfl_allocations",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nfl_starter_entitlements",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.sport_sandbox_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.sport_sandbox_inventory",
+          "column": "user_id",
+          "count": 3
+        },
+        {
+          "table": "sports_feed.stream_members",
+          "column": "user_id",
+          "count": 6
+        },
+        {
+          "table": "sports_feed.weekly_core_packs",
+          "column": "user_id",
+          "count": 13
+        },
+        {
+          "table": "sports_feed.weekly_core_schedules",
+          "column": "user_id",
+          "count": 3
+        }
+      ],
+      "posts": 4,
+      "followers": 1
+    },
+    {
+      "ref": "9fa5cdbb…",
+      "identitySha256": "78351f4208d42925303468dc3741219bc967c30f82d67e1a8903e9b789eb401f",
+      "label": "Luke",
+      "kind": "customer",
+      "identityEvidence": [
+        "Historical reviewed Luke UUID + current verified Auth/accepted invitation email match"
+      ],
+      "roles": [],
+      "mfaVerified": false,
+      "country": "AU",
+      "emailVerified": true,
+      "phoneVerified": false,
+      "sessions": 4,
+      "betaCredits": 25250,
+      "cards": 185,
+      "limitedCards": 185,
+      "sealed": [],
+      "recoveryCases": 0,
+      "consentVersions": [
+        "age_attestation:2026-10-11-beta-rc3",
+        "privacy:2026-10-11-beta-rc3",
+        "terms:2026-10-11-beta-rc3"
+      ],
+      "references": [
+        {
+          "table": "beta_fantasy.cards",
+          "column": "owner_id",
+          "count": 10
+        },
+        {
+          "table": "beta_fantasy.members",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.requests",
+          "column": "user_id",
+          "count": 3
+        },
+        {
+          "table": "beta_fantasy.team_names",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "credits_sandbox.access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "credits_sandbox.trading_members",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nba_beta_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nfl_allocations",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nfl_starter_entitlements",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.sport_sandbox_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.sport_sandbox_inventory",
+          "column": "user_id",
+          "count": 3
+        },
+        {
+          "table": "sports_feed.weekly_core_packs",
+          "column": "user_id",
+          "count": 13
+        },
+        {
+          "table": "sports_feed.weekly_core_schedules",
+          "column": "user_id",
+          "count": 3
+        }
+      ],
+      "posts": 1,
+      "followers": 1
+    },
+    {
+      "ref": "d6ab4838…",
+      "identitySha256": "ba042d52542b385a64cbce35f080aac034fc6bb16311c0ecfecc4186f189c1e4",
+      "label": "Brenton",
+      "kind": "customer",
+      "identityEvidence": [
+        "Reviewed named-tester UUID/email digest + accepted US exception"
+      ],
+      "roles": [],
+      "mfaVerified": false,
+      "country": "US",
+      "emailVerified": true,
+      "phoneVerified": false,
+      "sessions": 0,
+      "betaCredits": 100000,
+      "cards": 0,
+      "limitedCards": 0,
+      "sealed": [],
+      "recoveryCases": 0,
+      "consentVersions": [
+        "age_attestation:2026-10-11-beta-rc3",
+        "privacy:2026-10-11-beta-rc3",
+        "terms:2026-10-11-beta-rc3"
+      ],
+      "references": [
+        {
+          "table": "credits_sandbox.access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nba_beta_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.sport_sandbox_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.sport_sandbox_inventory",
+          "column": "user_id",
+          "count": 3
+        },
+        {
+          "table": "sports_feed.weekly_core_packs",
+          "column": "user_id",
+          "count": 3
+        },
+        {
+          "table": "sports_feed.weekly_core_schedules",
+          "column": "user_id",
+          "count": 3
+        }
+      ],
+      "posts": 0,
+      "followers": 0
+    },
+    {
+      "ref": "eea25d64…",
+      "identitySha256": "a4c135c4ea76cd28c230b1a420e5294923979fce97f2a28e23cc4eca053370b1",
+      "label": "Other invited customer",
+      "kind": "customer",
+      "identityEvidence": [
+        "Verified Auth email matches bound original roster and accepted admission"
+      ],
+      "roles": [],
+      "mfaVerified": false,
+      "country": "AU",
+      "emailVerified": true,
+      "phoneVerified": false,
+      "sessions": 4,
+      "betaCredits": 29900,
+      "cards": 1,
+      "limitedCards": 1,
+      "sealed": [],
+      "recoveryCases": 0,
+      "consentVersions": [
+        "terms:2026-10-11-beta-rc3",
+        "privacy:2026-10-11-beta-rc3",
+        "age_attestation:2026-10-11-beta-rc3"
+      ],
+      "references": [
+        {
+          "table": "beta_fantasy.entries",
+          "column": "user_id",
+          "count": 3
+        },
+        {
+          "table": "beta_fantasy.entry_revisions",
+          "column": "user_id",
+          "count": 3
+        },
+        {
+          "table": "beta_fantasy.members",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.requests",
+          "column": "user_id",
+          "count": 14
+        },
+        {
+          "table": "beta_fantasy.round_drafts",
+          "column": "user_id",
+          "count": 10
+        },
+        {
+          "table": "beta_fantasy.team_names",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "beta_fantasy.team_rollovers",
+          "column": "user_id",
+          "count": 6
+        },
+        {
+          "table": "credits_sandbox.access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.nba_beta_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.sport_sandbox_access",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.stream_members",
+          "column": "user_id",
+          "count": 1
+        },
+        {
+          "table": "sports_feed.weekly_core_packs",
+          "column": "user_id",
+          "count": 9
+        },
+        {
+          "table": "sports_feed.weekly_core_schedules",
+          "column": "user_id",
+          "count": 3
+        }
+      ],
+      "posts": 0,
+      "followers": 0
+    }
+  ],
+  "ledgerChecks": {
+    "validated": true,
+    "testProvenanceValidated": true,
+    "liveEnabled": false,
+    "redeemableLots": 0,
+    "withdrawals": 0,
+    "unclassifiedDeposits": 0
+  },
+  "phoneClaims": [
+    {
+      "count": 0
+    }
+  ],
+  "productionWrites": 0
+}

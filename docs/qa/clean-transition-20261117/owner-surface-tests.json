@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-17T01:17:09.042Z",
+  "owners": 2,
+  "checksPerOwner": [
+    "select beta_private.owner_health_gate()",
+    "select beta_private.require_privacy_owner()",
+    "select beta_private.sport_readiness_owner()",
+    "select beta_private.credit_request_owner()",
+    "select beta_private.moderation_case_role()",
+    "select beta_private.admin_search('unmatched-clean-test','all',1)",
+    "select credits_sandbox.trading_report()",
+    "select beta_fantasy.admin_prizes()",
+    "select beta_private.owner_command_centre(now()-interval '1 day',now(),null,true)",
+    "select operations.review('read')"
+  ],
+  "restrictedPublicRoleConsentWritesRehearsedAndRolledBack": true,
+  "passed": true,
+  "productionWrites": 0,
+  "allChangesRolledBack": true
+}

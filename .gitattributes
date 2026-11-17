@@ -102,3 +102,22 @@ docs/qa/batch1-beta-acceptance-20261117/** -text
 docs/qa/phone-acceptance-20261117/** -text
 scripts/batch1-beta-purchase-verify.ts text eol=lf
 scripts/final-preview-phone-control.ps1 text eol=lf
+
+# Exact clean-launch code, operators and notices remain byte-stable on Windows.
+supabase/migrations/20261117001019_clean_commercial_account_transition.sql text eol=lf
+config/operations/clean-commercial-transition.prepared.sql text eol=lf
+config/operations/public-identity-adoption.prepared.sql text eol=lf
+config/launch-policy-content.json text eol=lf
+scripts/clean-* text eol=lf
+src/core/account-retirement.ts text eol=lf
+src/server/retained-owner-onboarding.ts text eol=lf
+src/server/public-member-setup.ts text eol=lf
+src/server/auth.ts text eol=lf
+src/server/member-commercial.ts text eol=lf
+src/app/api/auth/public-member-setup/route.ts text eol=lf
+src/app/app/onboarding/public/page.tsx text eol=lf
+tests/database/retained-owner-onboarding.test.ts text eol=lf
+tests/platform/account-retirement.test.ts text eol=lf
+docs/qa/clean-transition-20261117/** text eol=lf
+docs/qa/clean-transition-20261117/*.png -text
+docs/qa/v31-prelaunch-execution-20261111/database/restore-20261117b/** text eol=lf

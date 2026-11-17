@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-17T00:53:16.073Z",
+  "passed": true,
+  "provider": "GoTrue v2.198.0",
+  "productionWrites": 0,
+  "checks": [
+    "Exact checkpoint SQL verifies real soft-deleted Auth rows",
+    "Retry creates one completion audit event",
+    "Partial retirement cannot complete",
+    "Shared retirement operator calls supported soft-delete API",
+    "Post-provider database checkpoint succeeds",
+    "Batch completion is idempotent",
+    "Retained Owner identity and individual MFA survive"
+  ]
+}

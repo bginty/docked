@@ -1,0 +1,104 @@
+IMPLEMENTED CLEAN COMMERCIAL TRANSITION — NOT PRODUCTION AUTHORITY
+
+1. Identity evidence and classification
+Six Auth identities were reconciled with verified email, original bound
+invitation/roster, the original delegated-admin grant, Brenton's exact private
+tester manifest, and the original internal QA fixture. Display names alone were
+not used. Full UUIDs, email/phone evidence, sessions and original asset records
+are in ignored private-data/clean-transition-20261117/. Public evidence uses
+truncated UUIDs. No account currently has a verified Production phone claim.
+
+Founder 623d1e69…: retain Owner. Barry ef641248…: retain identity, Admin -> Owner.
+Luke 9fa5cdbb…, Brenton d6ab4838…, other invited customer eea25d64…: retire.
+Internal QA e56880e0…: preserve Auth/history separately, exclude public access.
+Both Owners already have individual verified TOTP factors; retain them.
+
+2. Schema preparation changes no existing account or financial row
+New private/RLS launch_transition registry records the reviewed cohort, immutable
+historical card identifiers, batch checkpoints and append-only events. No role,
+profile, Auth, wallet, inventory or launch flag is changed merely by installing
+the migration/operator functions. New source requires this schema first.
+
+3. Separately approved containment transaction
+Require exact six-account manifest, fresh source digest, current closed gates,
+empty commercial assets, two verified Owner MFA identities and a delivered
+notice reference. Lock the same beta financial advisory key and affected tables.
+Insert the immutable cohort and all historical card identifiers. Copy ONLY the
+two Owner profiles, original consent events and notification preferences to the
+public schema. Grant Barry the existing Owner role, not a new permission system.
+Preserve all original audit/consent versions: no new commercial acceptance.
+Disable beta credit/trading access for the cohort and ordinary-customer
+invitations/exceptions. Old beta signup is denied after containment.
+
+Do not use generic profile disabled_at for this transition: restored rehearsal
+showed its erasure triggers remove social data. Registry containment instead
+preserves profile/social/financial/card history while denying active access.
+
+4. Auth retirement is separate and forward-only
+The reviewed operator calls the supported Supabase Admin deleteUser(id, true)
+API for ONLY the three contained customers. It never deletes auth.users by SQL,
+hard-deletes, creates replacements, clears holds or releases an unrelated claim.
+GoTrue v2.198.0 was independently read from Production and exercised locally.
+Soft deletion obfuscates credentials, keeps the original UUID/tombstone, removes
+sessions/refresh ability/MFA, and frees the original email/phone. It is NOT
+reversible account deactivation. Owner and system Auth identities are excluded.
+
+The durable attempt precedes each API call. Read back the same UUID, deleted_at,
+changed email hash, no sessions, no MFA and no phone claim before recording the
+checkpoint. A timeout/404/error is not success. Retry reads back first and never
+recreates a deleted account. Completion requires all three verified checkpoints
+and intact Owner identities/MFA. All activation flags still remain OFF.
+
+Supabase reference and version source:
+https://supabase.com/docs/reference/javascript/auth-admin-deleteuser
+https://supabase.com/docs/guides/auth/managing-user-data
+https://github.com/supabase/auth/tree/v2.198.0
+JWT signatures can outlive deletion; the registry, current-session checks and
+restrictive authenticated Data API/Storage RLS deny retired access immediately.
+No permissive policy or secret/service-role access is given to customers.
+
+5. Fresh registration and phone uniqueness
+No replacement is pre-created. The normal public signup route must pass existing
+eligibility/current-consent controls AND a completed transition. The new Auth
+UUID is the only asset key; no lookup by old email/phone grants historical assets.
+Phone synchronization ignores deleted Auth tombstones, removes only that UUID's
+claim and retains the unique canonical-number constraint. A new account must
+prove email and phone possession again. Existing unrelated claims stay intact.
+Brenton's former California test exception is retired; he cannot use it to
+bypass the Australian public eligibility rule.
+
+6. Assets and scarcity
+No old wallet balance becomes a commercial lot. Commercial preserved-collection
+projection is empty; historical card IDs are excluded from public Core inventory.
+Beta purchases/grants and beta participation end, including for Owners. Public
+collections/counts query commercial cards only; fantasy counts use public round
+identities. No beta lineups, rewards, followers, coupons or listings are copied.
+The old six-profile adoption SQL now aborts with an explicit withdrawal message.
+The proposed customer-facing legacy sealed-pack adapter is withdrawn.
+
+Historical issuance, ownership, serials, sealed allocations, ledger, refunds and
+recovery holds remain unchanged. Core unlimited; lifetime per-player caps Rare
+5000, Elite2500, Ultra Rare400, Legendary50, Icon1. No seasonal reset/reclaim.
+
+7. Owner access and consent
+Use existing role tables and requireRole/SQL Owner guards, individual AAL2 and
+live session checks. Barry's own UUID is recorded for incident acknowledgement
+and resolution. Founder inbox attestation remains recipient-only. Email alerts
+remain founder-only; external project/IAM/vault permissions are unchanged.
+Only a retained Owner can use the public setup form. Its explicit submission
+renews current notices in append-only consent events; retries do not fabricate
+duplicate acceptance or create another profile. A fresh public social profile
+has no inherited social relationships. Individual AU phone verification and the
+normal payment/supply restrictions apply to commercial participation.
+
+8. Privacy and contractual review
+Accepted ordinary-beta notices are 2026-10-11-beta-rc3; the founder/QA also have
+older rc2 events. Brenton's private notice ends access before public launch.
+The beta terms separate beta assets from future commercial assets and protect
+historical custody/supply, while requiring notice of material changes. No actual
+customer-payment entitlement was found. Any specific disputed/protected right
+must be isolated for review before retirement; this is not a legal conclusion.
+Draft privacy v5 replaces the old blanket account-preservation wording. Existing
+retention purposes/review periods and statutory exclusions remain applicable;
+historical preservation does not authorise unrestricted perpetual personal-data
+retention. No cleanup schedule is enabled.

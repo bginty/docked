@@ -1,0 +1,108 @@
+DOCKED — CLEAN ACCOUNT TRANSITION IMPLEMENTED, NOT DEPLOYED
+17 November 2026. Public launch NO-GO.
+Exact source and separate package hashes: DEPLOYMENT_APPROVAL.txt and
+ACCOUNT_RETIREMENT_APPROVAL.txt in this directory.
+
+A. Accounts reconciled by authoritative identity evidence
+Founder 623d1e69… — existing Owner, verified email/TOTP; retain exact Auth identity.
+Barry ef641248… — existing Admin, verified email/TOTP; retain identity, grant Owner.
+Luke 9fa5cdbb…, Brenton d6ab4838…, other invited customer eea25d64… — three ordinary
+beta customers to retire separately. Full identities remain in the private plan.
+Internal QA e56880e0… — system fixture, preserve Auth/history, no commercial access.
+No account has a verified Production phone claim. No identity classification is
+based solely on a display name. The third ordinary account is exactly bound to
+its accepted invitation and verified email; no extra name confirmation is needed.
+
+B. Historical assets (not new commercial balances)
+Account              Test credits   Historical owned card rows   Sealed packs
+Founder                     2,000             297                  2 (1 + 1)
+Barry                     172,442             370                  0
+Luke                       25,250             185                  0
+Brenton                   100,000               0                  0
+Other invited customer     29,900               1                  0
+Internal QA                 9,400              79                  1 (9 cards)
+QA credit balance is held, not spendable; its four recovery cases and the
+previously verified 5,700-credit TEST recovery exposure remain protected.
+Founder/Barry/other have 9/7/3 historical fantasy entries and 19/8/10 drafts.
+All related social, invitation, audit, restriction and receipt records remain.
+accounts-and-assets.json contains the complete redacted reference census.
+
+Grain matters: historical wallet card rows include old fixtures/Core/retired
+records. They are NOT the canonical limited-issuance total. Independent canonical
+checks confirm 6540 definitions, 918 lifetime-counted limited copies (888 legacy
+plus30 later beta allocations), 936 custody records, zero issuance mismatch.
+The broader historical exclusion registry contains1035 unique beta card IDs.
+None of these counts is a reset target; future preflight preserves later activity.
+No genuine customer revenue was found: existing three provider-verified Google
+TEST orders were refunded/revoked, and ledger provenance validation passes.
+
+C. Retirement
+Atomic database containment first; supported Supabase soft deletion second;
+independent Auth/session/phone/checkpoint verification third. Same old UUID stays
+as a tombstone with historical references; old credentials/session access ends.
+New signup reuses released identifiers with a NEW UUID and fresh verification.
+No replacement is created by the operator. Phone uniqueness remains enforced.
+Soft deletion is irreversible; interrupted execution stays blocked and resumes
+from checkpoints. See ARCHITECTURE.txt and RECOVERY.txt.
+
+D. Owner access
+Existing Owner role model, no parallel permissions. Both use individual MFA and
+their own audit identity; Barry gains legitimate in-app Owner functions. Founder
+email recipient/inbox attestation, external IAM and vault custody remain narrow.
+Administrative status grants no free commercial assets or payment exemptions.
+Both Owners must explicitly accept current commercial notices and verify their
+AU phone for participation. Their administrative access remains separate.
+
+E. Public migration
+Old public-identity-adoption.prepared.sql now aborts rather than copying six users.
+Only two Owner profiles/original consent/preferences are carried to public tables;
+all beta assets remain historical. Customer/service profiles are not adopted.
+Commercial collection projection excludes beta cards. Old beta signup/grants end.
+No beta lineups/social rewards/listings/coupons are copied. Sealed beta allocations
+stay archived; no customer-facing legacy opening adapter is needed under this policy.
+The new privacy/terms text and exact customer notice are included for approval.
+
+F. Verification
+Fresh encrypted restore; 567-base-table SQL protection comparison; 21 real local
+Auth lifecycle checks; seven real API/database checkpoint checks; both Owners'
+ten SQL guard/read checks plus restricted consent writes; 48 automated tests;
+one browser consent test; production build, typecheck and scoped lint passed.
+No external messages and no Production mutations. See TESTS.txt and JSON proofs.
+Specific protected entitlement disputes, if raised, remain individual review
+exceptions; the current accepted notices provide no automatic commercial carryover.
+
+G/H. Separate approvals and execution
+1. Exact schema/application/notice publication deployment: no account retirement,
+   live role changes or launch activation. Includes one new SQL migration and
+   installation of operator declarations; no old migrations reapplied.
+2. Exact account cohort after notice delivery and deployment acceptance: retain
+   two Owner UUIDs, grant Barry Owner, contain all beta advantages and soft-retire
+   exactly three ordinary accounts. Preserve the QA Auth identity/history.
+Fresh backup/drift/role/financial checks and valid24h approval are mandatory.
+Production operator has no default write action and rejects changed manifests,
+provider version, hashes, stale evidence or incomplete containment.
+Neither package is permission to open registration or publish Google Play.
+
+I. First paying customer
+This clean-transition implementation is ready for separate deployment review;
+it is not yet hosted/operationally accepted. Production remains the last verified
+76df44ba1adef012c5ec2119563cbc05ff9e3c0b / dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh.
+No Production account, balance, owner role, inventory or launch control changed.
+
+After the two approvals: hosted Owner MFA/notice checks, fresh public-runtime
+staging/zero-asset signup acceptance, separately approved Production phone/SMS
+budget configuration and the narrow installed-v31 acceptance remain. The inactive
+SMS budget migration and final paid-runtime configuration belong to the separate
+coordinated launch package; they are not silently included in this transition.
+Retain A$50 first-seven-day SMS budget, A$49/A$99 pricing, existing paid inventory
+definition approval, TEST/refund evidence, GST, vault and incident acceptance.
+No blanket six-checkout retest, new legacy adapter, optional marketplace release
+or Android version is required by this account work. Marketplace can remain OFF.
+Brenton's California exception does not carry into the Australian public launch.
+
+Estimated remaining active work, excluding approvals/notice/external waiting:
+2–4h controlled transition deployment/hosted acceptance; 3–6h final public-mode
+and phone-budget configuration/rehearsal/Android acceptance and launch package.
+These are planning estimates, conditional on unchanged source/permissions and
+successful hosted checks, not a promised launch time. Final coordinated GO for
+publication + Australian registration + credit sales + paid packs is still required.

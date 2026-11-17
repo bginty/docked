@@ -1,0 +1,18 @@
+{
+  "at": "2026-11-17T01:25:56.392Z",
+  "productionWrites": 0,
+  "automatedTests": {
+    "passed": 48,
+    "failed": 0
+  },
+  "localAuthLifecycleChecks": 21,
+  "realAuthDatabaseCheckpointChecks": 7,
+  "restoredOwnerReadAndGuardChecks": 20,
+  "restrictedOwnerConsentWrites": true,
+  "isolatedBrowserTests": 1,
+  "build": "passed Next 16.4.3 production build",
+  "typecheck": "passed",
+  "scopedLint": "passed",
+  "physicalAndroidTestPerformed": false,
+  "externalMessages": 0
+}

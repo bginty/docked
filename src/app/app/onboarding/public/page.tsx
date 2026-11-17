@@ -45,15 +45,15 @@ export default async function ExistingMemberPublicSetup() {
       <>
         <h1>Your account details are saved</h1>
         <p>
-          Your existing beta cards, balance and teams are preserved. Public
-          access and purchases remain controlled separately.
+          Your Owner account is retained. Commercial participation starts with
+          zero beta assets. Historical testing records remain protected.
         </p>
         <Link href="/fantasy/play" className="button">
           Return to Docked
         </Link>
       </>
     );
-  if (state.configurationPending || state.existingPolicyRenewal)
+  if (state.configurationPending)
     return (
       <>
         <h1>Account setup pending</h1>

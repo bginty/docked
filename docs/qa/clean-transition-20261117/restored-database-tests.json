@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-17T01:15:28.801Z",
+  "passed": true,
+  "authDeleted": 0,
+  "definitions": 6540,
+  "copiedOwners": 2,
+  "historicalCards": 1035,
+  "lifetimeLimited": 918,
+  "protectedTables": 567,
+  "externalDeliveries": 0,
+  "customerRetirements": 3,
+  "allChangesRolledBack": true,
+  "expectedChangedTables": [
+    "beta_private.admission_control",
+    "beta_private.admission_events",
+    "beta_private.friends_roster",
+    "beta_private.named_tester_exception",
+    "beta_private.roles",
+    "credits_sandbox.access",
+    "credits_sandbox.trading_members",
+    "operations.events",
+    "operations.incidents",
+    "private.audit_events",
+    "private.consent_events",
+    "private.roles",
+    "public.notification_preferences",
+    "public.profiles"
+  ]
+}

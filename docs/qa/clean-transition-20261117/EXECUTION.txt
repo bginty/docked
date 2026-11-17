@@ -1,0 +1,82 @@
+REVIEWED EXECUTION SEQUENCE — DO NOT EXECUTE WITHOUT SEPARATE EXACT APPROVALS
+
+All commands run from the frozen source worktree. Use private credential files
+already controlled by the founder/operator. Never place credentials in chat,
+command arguments, reports or Git. No new key/setup/rotation is requested.
+
+0. Review/freeze (local only)
+   node scripts/clean-transition-freeze.mjs <full-reviewed-source-commit>
+   Compare both generated package hashes with the exact founder approval.
+   The script only produces review artifacts; it does not grant approval.
+
+1. Schema/application package only
+   Read DEPLOYMENT_APPROVAL.txt, deployment-package.json and RECOVERY.txt.
+   Confirm deployed source/runtime and fresh protected-table census. Obtain the
+   exact package approval; previous unrelated 24h approvals do not apply.
+   Capture authenticated encrypted backup and isolated restore using the existing
+   reviewed backup workflow; require fresh proof rather than reusing today's file.
+   Rehearse the exact new SQL and candidate on the restore with delivery disabled.
+   Verify one absent migration version20261117001019 and absent registry schema.
+   Run one transaction with lock_timeout5s, statement_timeout120s:
+     supabase/migrations/20261117001019_clean_commercial_account_transition.sql
+     config/operations/clean-commercial-transition.prepared.sql
+     insert migration history version20261117001019, name
+       clean_commercial_account_transition, statements containing exact SQL.
+   Do NOT call launch_transition.prepare here. Do not apply all pending migrations.
+   If already installed, verify exact history/object bytes and skip; do not retry DDL.
+   Use the existing protected Vercel staging workflow for the frozen source, with
+   every current Production runtime setting unchanged. No Git auto-deploy: this
+   branch is explicitly disabled in vercel.json. Record candidate deployment ID.
+   Confirm same-origin/Auth, existing beta/founder access, MFA, receipts, OFF gates
+   and empty transition registry. Promote only after mandatory hosted checks pass.
+   Perform Production postflight and record actual source/deployment/SQL evidence.
+   The policy change is included here; no customer acceptance is fabricated.
+
+2. Deliver the approved notice before retirement
+   CUSTOMER_NOTICE.txt is exact reviewed wording. Founder supplies/authorises the
+   transition time and notification delivery separately. Save the delivery proof
+   privately. Do not impersonate customer acceptance or suppress a specific claim.
+   Verify no outstanding protected-entitlement exception before including an account.
+
+3. Account-only package (no schema reapplication, no deployment)
+   Obtain ACCOUNT_RETIREMENT_APPROVAL.txt's separate exact24h approval.
+   Create private approval JSON from the ACTUAL recorded founder instruction:
+     packageSha256: exact account-retirement-package.json SHA-256
+     source: exact frozen40-character source commit
+     approvedAt/expiresAt: actual UTC timestamps, <=24h, not inferred/extended
+     scope: contain-and-soft-retire-three-beta-customers-retain-two-owners
+     noticeDelivered: true only after actual reviewed notice delivery
+   Keep the credential JSON private; fields databaseUrl, supabaseUrl,
+   publishableKey, secretKey use existing secure credentials. The operator checks
+   the Sydney Production project identity and reviewed GoTrue version itself.
+
+   Read-only preflight:
+   node --import tsx scripts/clean-commercial-transition.ts --action preflight
+     --package docs/qa/clean-transition-20261117/account-retirement-package.json
+     --manifest private-data/clean-transition-20261117/manifest.private.json
+     --private-credentials <private-credentials.json> --output <private-preflight.json>
+
+   For each following stage, use the same package/manifest/credentials arguments
+   plus --approval <private-approval.json> --preflight <fresh-private-preflight.json>
+   --backup-proof <fresh-authenticated-restore-proof.json>:
+     --action contain
+     --action retire
+     --action complete
+   Run in that order, sequentially. Re-preflight after each boundary and inspect
+   checkpoints. No concurrent release, signup, grant or second operator. A timeout
+   requires readback; never assume a deletion failed or rerun all old steps blindly.
+   Approval expires per the actual instruction; it is rechecked at each Auth call.
+
+4. Acceptance and remaining launch work
+   Verify immutable journals/custody/issuance/holds against fresh baseline; verify
+   two retained Owner identities with their own MFA and three customer tombstones,
+   no customer sessions/phone claims, preserved system identity and empty commercial
+   assets. Owners perform their own hosted login and explicit notice acceptance.
+   Do not ask the retired customers to register before public registration opens.
+   Controlled public-mode/phone/Android acceptance and coordinated commercial
+   activation require their own reviewed configuration and final GO approval.
+
+The operator aborts by default with missing arguments. Its error never dumps a
+credential or raw provider response. Inspect private checkpoints/provider audit
+for failures. After an irreversible Auth boundary, keep containment and follow
+RECOVERY.txt; neither this runbook nor an app rollback authorises account undo.

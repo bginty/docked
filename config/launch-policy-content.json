@@ -6,7 +6,7 @@
     {
       "id": "privacy",
       "title": "Privacy notice",
-      "version": "2026-11-11-privacy-phone-v4",
+      "version": "2026-11-17-privacy-clean-launch-v5",
       "date": "on approved publication",
       "status": "This version becomes effective on approved publication. Phone verification, public registration and paid features remain subject to their separate release controls.",
       "sections": [
@@ -24,7 +24,7 @@
         },
         {
           "title": "Existing users and account recovery",
-          "text": "Existing accounts retain their identities and card ownership. Where public account features require phone verification, existing users must complete it too. A phone number does not replace your password, verified email or an enrolled authenticator. If your number is lost, changed or reassigned, contact support@docked.com.au. We use account-authentication and ownership checks before assisting recovery; possession of a reassigned number alone does not authorise transfer of another account, cards or credits. Account-deletion requests remain available without completing phone verification."
+          "text": "At the end of the private beta, ordinary beta accounts are retired. Returning testers register new accounts themselves, verify their email and Australian mobile again, and accept the commercial notices. The original email and phone may be reused after retirement is verified, but the new account has a new identity and cannot retrieve the old account’s assets. Australian eligibility requirements apply; a private overseas tester exception does not carry forward.\n\nThe two retained Owners keep their existing accounts for Owner administration, with individual MFA. They start commercial participation with no usable beta credits, cards, packs, lineups or other beta advantages. Administrative status does not provide free commercial assets or payment exemptions.\n\nHistorical beta transactions, TEST receipts, refunds, recovery holds, card issuance, serials, ownership and consent evidence remain restricted records for their documented purposes. Retiring access does not reset lifetime card supply or make historical cards available for reissue. It does not create a new acceptance of commercial terms. Contact support before the notified transition if you believe a specific existing entitlement needs review.\n\nA phone number does not replace your password, verified email or enrolled authenticator. Possession of a reassigned number alone never transfers another account, cards or credits. For loss or changes, contact support@docked.com.au. Account export and deletion requests remain available without completing phone verification."
         },
         {
           "title": "Social content and support",
@@ -138,8 +138,13 @@
         {
           "title": "Remaining release requirements",
           "text": "The commercial-model decisions and use of verified professional player names are owner-confirmed. Separate rights for proprietary statistics, photographs, logos, distinctive protected artwork or endorsement claims are not implied by that confirmation. Remaining release requirements concern the applicable sources/materials, legal and Google Play assessment of paid cards, multipliers and credit resale, final customer acceptance, approved retention operations and the final release configuration. Withdrawals, paid competition entry and prizes remain disabled. These documents do not claim independent legal review, a provider licence or Google approval."
+        },
+        {
+          "title": "Clean commercial starting position",
+          "text": "Beta credits and card allocations are historical testing records. They do not become commercial balances, usable commercial cards, paid packs, active teams, rankings or marketplace assets. Ordinary beta customers re-register themselves; retained Owners also start commercial participation at zero. Historical card issuance remains permanently counted against each player’s rarity limit. A protected entitlement raised before retirement is reviewed individually; the transition does not waive statutory rights or automatically clear a refund or recovery hold."
         }
-      ]
+      ],
+      "version": "2026-11-17-commercial-clean-launch-v1"
     }
   ]
 }

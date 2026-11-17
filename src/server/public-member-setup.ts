@@ -1,16 +1,14 @@
 import "server-only";
 import postgres, { type TransactionSql } from "postgres";
 import { DateTime } from "luxon";
-import { requireIdentity } from "./auth";
+import { requireRole } from "./auth";
 import { databaseConnectionOptions } from "./database-tls";
 import { isEmailOwnershipVerified } from "../core/auth-policy";
 import { publicMemberSetupConfiguration } from "../core/public-member-setup";
 import { appOnboardingSchema } from "../core/preview-testers";
 import { isPublicSport } from "../core/public-customer";
-import {
-  persistExistingMemberProfile,
-  readExistingMemberProfile,
-} from "./existing-member-onboarding";
+import { readExistingMemberProfile } from "./existing-member-onboarding";
+import { renewRetainedOwnerProfile } from "./retained-owner-onboarding";
 import type { SignupTransaction } from "./signup-profile";
 
 let connection: ReturnType<typeof postgres> | undefined;
@@ -45,7 +43,7 @@ async function setupActor() {
   if (!configuration) throw Error("Existing-member public setup unavailable");
   // Existing beta admission and owner MFA are retained. A caller cannot choose
   // this route to obtain weaker identity, a new account, or public permissions.
-  const who = await requireIdentity();
+  const who = await requireRole(["owner"]);
   if (!isEmailOwnershipVerified(who.user))
     throw Error("Verified email required");
   const sql = await setupDatabase();
@@ -109,18 +107,17 @@ export async function savePublicMemberSetup(input: unknown) {
   await sql.begin(async (tx) => {
     await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),
       set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true)`;
-    const result = await persistExistingMemberProfile(
+    const result = await renewRetainedOwnerProfile(
       transaction(tx),
       {
         userId: who.user.id,
         sessionId: who.sessionId,
         aal: who.aal,
-        mfaRequired: who.mfaRequired,
       },
       v,
       configuration.versions,
     );
-    if (result.created) {
+    if (result.renewed) {
       await tx`update public.profiles set sports=${v.sports},timezone=${v.timezone},
         onboarding_completed_at=coalesce(onboarding_completed_at,clock_timestamp()) where id=${who.user.id}`;
       await tx`select private.community_assert_access(${who.user.id},'community_social')`;
@@ -132,8 +129,8 @@ export async function savePublicMemberSetup(input: unknown) {
       await tx`insert into private.app_onboarding(user_id,interests) values(${who.user.id},${v.interests}) on conflict do nothing`;
       await tx`insert into private.audit_events(actor,action,subject,details) values(${who.user.id},'existing_member_public_profile_completed',${who.user.id},${tx.json({ terms: configuration.versions.terms, privacy: configuration.versions.privacy, source: "explicit authenticated member form" })})`;
     }
-    // An existing ordinary profile is never silently renewed or rewritten by
-    // this missing-profile-only migration form or a duplicate request.
+    // Only the retained Owner's explicit form can renew this profile. Ordinary
+    // beta customers use new registration, never this account-preserving path.
     const [profile] =
       await tx`select p.id from public.profiles p where p.id=${who.user.id}
       and p.disabled_at is null and p.age_attested and p.accepted_version=${configuration.versions.terms}

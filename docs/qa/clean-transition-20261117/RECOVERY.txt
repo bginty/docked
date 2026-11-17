@@ -1,0 +1,76 @@
+SAFE EXECUTION AND FORWARD RECOVERY
+
+No Production action is authorised by implementation or these instructions.
+There are TWO separate exact approvals: schema/application, then account cohort.
+Neither is coordinated paid-launch authority.
+
+Before schema/application deployment
+- Verify exact package/source/file hashes and compare live deployment/runtime.
+- Fresh authenticated AES-256-GCM backup <=1 hour old; isolated restore verified.
+- Reconcile current legitimate activity; historical 6540/918/936 are observations,
+  not reset targets. Require no unexplained financial/custody/RLS/Auth drift.
+- Require all public/commercial/phone/deletion controls OFF and six disabled
+  Practice competitions; keep NBA hidden. No changes to five original secrets,
+  additional write-only secrets, provider settings, Phone or managed publishing.
+- Rehearse exact SQL and protected staging against the isolated restore. Apply
+  ONLY the new clean-transition migration and reviewed operator declarations in
+  one transaction, record its migration history, then stage the exact application
+  against Production and check existing beta/founder access before promotion.
+- No containment call or Auth API call belongs in schema deployment. Check the
+  registry empty and all existing financial/customer hashes unchanged afterward.
+- Lock timeout 5 seconds; statement timeout 120 seconds. Abort instead of waiting
+  through an unexpected lock. Short DDL lock exposure; no planned public downtime
+  while launch stays closed. Reschedule if beta activity prevents safe locks.
+
+Rollback before containment
+On transaction failure, rollback the entire new SQL transaction. If SQL committed
+and application staging fails, leave additive security schema installed and keep
+the previously deployed app. Conditional app-only rollback to the independently
+verified preceding deployment is permitted ONLY if the transition registry is
+empty and beta access/permissions checks pass. Do not roll back old migrations,
+drop financial tables or use an old 890/891/918-card snapshot as a reset target.
+
+Before account containment
+- Verify application/schema postflight first. Freeze exact six-account private
+  manifest and resolve any changed identity/role/eligibility evidence separately.
+- Have approved notice delivered and the proposed privacy wording published as
+  authorised. Record delivery evidence privately, not a fabricated customer
+  acceptance. Resolve any specific protected-entitlement claim before its account.
+- Obtain the exact separate cohort approval (maximum 24 hours), fresh verified
+  backup <=1h and preflight <=10m. Auth must remain reviewed v2.198.0.
+- Production commercial runtime must be empty and closed. Preflight captures
+  current ledger/card/source digest; containment rechecks it while holding locks.
+- Run one reviewed operator; its per-account advisory lock prevents duplicate
+  retirement. No other release operator, invitation or grant may run concurrently.
+
+Irreversible boundary and interruptions
+- Before containment commit: SQL rollback leaves users unchanged.
+- After containment, before Auth API: customers remain blocked. Do not restore
+  access automatically. Verify registry and seek separate recovery approval if
+  abandoning this transition. Restart only the same approved manifest/package.
+- During API timeout: preserve containment; read Auth and database before retry.
+- After successful soft deletion, before checkpoint: same-UUID readback allows
+  recording the missing checkpoint; no duplicate identity or asset is created.
+- Partial cohort: do not mark complete or open public signup. Continue only the
+  remaining exact identities within a valid approval and fresh backup/preflight.
+- Completed cohort: rerun verification idempotently; no new consent/assets.
+
+After first soft deletion there is NO ordinary account/app rollback. Passwords,
+email identities and sessions cannot be recovered through an undelete API. Use
+forward recovery while preserving tombstones, original custody and audit links.
+Never hard-delete to force progress, recreate the old UUID, clear recovery holds,
+or restore the entire old database over new customer activity. Backup recovery is
+a separately approved disaster operation, not an automatic account undo.
+
+After completion
+Confirm two unchanged Owner UUIDs with MFA, three Auth tombstones, system retained,
+zero customer sessions/phone claims, empty commercial assets, unchanged original
+journals/receipts/holds/custody/serials/counters, immutable checkpoints and OFF gates.
+Actual Owner sign-in/consent and eventual new-customer website/v31 acceptance are
+hosted checks after separate approvals; isolated results do not claim those passed.
+
+Emergency controls
+Keep/reinstate registration, SMS window, sales, issuance, transfers and gameplay
+OFF under the separately reviewed release shutdown process. Preserve in-flight
+receipt/refund reconciliation; never reverse a customer debit by overwriting the
+ledger. A phone number/email never becomes an ownership recovery shortcut.

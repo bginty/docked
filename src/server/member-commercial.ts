@@ -99,7 +99,7 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
       ledger,
       who.user.id,
       authorize,
-      true,
+      false,
       marketEnabled,
     ),
     marketView: new CommercialMarketView(

@@ -1,0 +1,461 @@
+{
+  "at": "2026-11-17T00:04:04.722Z",
+  "productionWrites": 0,
+  "auditSha256": "31d70477c54cf1815140a88935fefe1eda837cf93e20bce9e59bbd1cfc38a8ef",
+  "accounts": [
+    {
+      "ref": "623d1e69…",
+      "identityDigest": "9ae81daad1419b7b4be8f4772911c5dd114ae44b15c4e207ac5acdae800237d4",
+      "profileHint": null,
+      "emailDomain": "docked.com.au",
+      "emailVerified": true,
+      "phoneSet": false,
+      "phoneVerified": false,
+      "deleted": false,
+      "banned": false,
+      "roles": [
+        "owner"
+      ],
+      "factors": [
+        {
+          "type": "totp",
+          "status": "verified",
+          "created": "2026-10-09T11:20:10.657483+00:00"
+        }
+      ],
+      "sessions": {
+        "aal2": 57,
+        "count": 57,
+        "unexpired": 57
+      },
+      "country": "AU",
+      "profile": true
+    },
+    {
+      "ref": "e56880e0…",
+      "identityDigest": "ada7e434c2a9e6fdcae5f61fef29fc7e21b7af0ac56e644cb300f0c5c481b27f",
+      "profileHint": null,
+      "emailDomain": "example.invalid",
+      "emailVerified": true,
+      "phoneSet": false,
+      "phoneVerified": false,
+      "deleted": false,
+      "banned": false,
+      "roles": [],
+      "factors": null,
+      "sessions": {
+        "aal2": 0,
+        "count": 62,
+        "unexpired": 62
+      },
+      "country": "AU",
+      "profile": true
+    },
+    {
+      "ref": "ef641248…",
+      "identityDigest": "c1a55e654eb2cdccb34881d8e7b6d08f1d0eeeec387923971928de2a274768e3",
+      "profileHint": null,
+      "emailDomain": "gmail.com",
+      "emailVerified": true,
+      "phoneSet": false,
+      "phoneVerified": false,
+      "deleted": false,
+      "banned": false,
+      "roles": [
+        "admin"
+      ],
+      "factors": [
+        {
+          "type": "totp",
+          "status": "verified",
+          "created": "2026-10-16T23:47:27.90437+00:00"
+        }
+      ],
+      "sessions": {
+        "aal2": 15,
+        "count": 15,
+        "unexpired": 15
+      },
+      "country": "AU",
+      "profile": true
+    },
+    {
+      "ref": "9fa5cdbb…",
+      "identityDigest": "78351f4208d42925303468dc3741219bc967c30f82d67e1a8903e9b789eb401f",
+      "profileHint": null,
+      "emailDomain": "gmail.com",
+      "emailVerified": true,
+      "phoneSet": false,
+      "phoneVerified": false,
+      "deleted": false,
+      "banned": false,
+      "roles": [],
+      "factors": null,
+      "sessions": {
+        "aal2": 0,
+        "count": 4,
+        "unexpired": 4
+      },
+      "country": "AU",
+      "profile": true
+    },
+    {
+      "ref": "d6ab4838…",
+      "identityDigest": "ba042d52542b385a64cbce35f080aac034fc6bb16311c0ecfecc4186f189c1e4",
+      "profileHint": null,
+      "emailDomain": "gmail.com",
+      "emailVerified": true,
+      "phoneSet": false,
+      "phoneVerified": false,
+      "deleted": false,
+      "banned": false,
+      "roles": [],
+      "factors": null,
+      "sessions": {
+        "aal2": 0,
+        "count": 0,
+        "unexpired": 0
+      },
+      "country": "US",
+      "profile": true
+    },
+    {
+      "ref": "eea25d64…",
+      "identityDigest": "a4c135c4ea76cd28c230b1a420e5294923979fce97f2a28e23cc4eca053370b1",
+      "profileHint": null,
+      "emailDomain": "gmail.com",
+      "emailVerified": true,
+      "phoneSet": false,
+      "phoneVerified": false,
+      "deleted": false,
+      "banned": false,
+      "roles": [],
+      "factors": null,
+      "sessions": {
+        "aal2": 0,
+        "count": 4,
+        "unexpired": 4
+      },
+      "country": "AU",
+      "profile": true
+    }
+  ],
+  "commercial": {
+    "receipts": "0",
+    "cards": "0",
+    "packs": "0",
+    "accounts": "0",
+    "definitions": "6540",
+    "issued": "918",
+    "control": {
+      "id": true,
+      "approvals": {},
+      "updated_at": "2026-11-01T23:14:45.99055+00:00",
+      "environment": "commercial",
+      "sales_enabled": false,
+      "policy_version": "commercial-launch-awaiting-approval-v1",
+      "gameplay_enabled": false,
+      "issuance_enabled": false,
+      "transfers_enabled": false
+    }
+  },
+  "foreignKeys": [
+    {
+      "relation": "auth.identities",
+      "conname": "identities_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "auth.mfa_factors",
+      "conname": "mfa_factors_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "auth.mfa_recovery_code_sets",
+      "conname": "mfa_recovery_code_sets_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "auth.oauth_authorizations",
+      "conname": "oauth_authorizations_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "auth.oauth_consents",
+      "conname": "oauth_consents_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "auth.one_time_tokens",
+      "conname": "one_time_tokens_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "auth.scim_users",
+      "conname": "scim_users_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE SET NULL"
+    },
+    {
+      "relation": "auth.sessions",
+      "conname": "sessions_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "auth.webauthn_challenges",
+      "conname": "webauthn_challenges_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "auth.webauthn_credentials",
+      "conname": "webauthn_credentials_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "beta_fantasy.team_names",
+      "conname": "team_names_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.admissions",
+      "conname": "admissions_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.app_onboarding",
+      "conname": "app_onboarding_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES beta_public.profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "beta_private.credit_request_events",
+      "conname": "credit_request_events_actor_fkey",
+      "definition": "FOREIGN KEY (actor) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.credit_requests",
+      "conname": "credit_requests_recipient_fkey",
+      "definition": "FOREIGN KEY (recipient) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.credit_requests",
+      "conname": "credit_requests_requested_by_fkey",
+      "definition": "FOREIGN KEY (requested_by) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.delegated_admin_admissions",
+      "conname": "delegated_admin_admissions_approved_by_fkey",
+      "definition": "FOREIGN KEY (approved_by) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.delegated_admin_admissions",
+      "conname": "delegated_admin_admissions_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.designated_administrators",
+      "conname": "designated_administrators_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.friends_roster",
+      "conname": "friends_roster_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.member_subscriptions",
+      "conname": "member_subscriptions_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES beta_public.profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "beta_private.named_tester_exception",
+      "conname": "named_tester_exception_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "beta_private.owner_gameplay_control",
+      "conname": "owner_gameplay_control_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.preview_beta_invitations",
+      "conname": "preview_beta_invitations_redeemed_user_id_fkey",
+      "definition": "FOREIGN KEY (redeemed_user_id) REFERENCES beta_public.profiles(id) ON DELETE SET NULL"
+    },
+    {
+      "relation": "beta_private.preview_tester_access",
+      "conname": "preview_tester_access_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES beta_public.profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "beta_private.roles",
+      "conname": "roles_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "beta_private.social_profiles",
+      "conname": "social_profiles_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES beta_public.profiles(id) ON DELETE SET NULL"
+    },
+    {
+      "relation": "beta_private.two_person_control",
+      "conname": "two_person_control_owner_id_fkey",
+      "definition": "FOREIGN KEY (owner_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.two_person_control",
+      "conname": "two_person_control_tester_id_fkey",
+      "definition": "FOREIGN KEY (tester_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "beta_private.unsubscribe_tokens",
+      "conname": "unsubscribe_tokens_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES beta_public.profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "beta_public.notification_preferences",
+      "conname": "notification_preferences_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES beta_public.profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "beta_public.personal_entries",
+      "conname": "personal_entries_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES beta_public.profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "beta_public.profiles",
+      "conname": "profiles_id_fkey",
+      "definition": "FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "beta_public.saved_tips",
+      "conname": "saved_tips_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES beta_public.profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "credits_sandbox.access",
+      "conname": "access_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "credits_sandbox.redemption_staff",
+      "conname": "redemption_staff_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "credits_sandbox.sale_notification_outbox",
+      "conname": "sale_notification_outbox_recipient_fkey",
+      "definition": "FOREIGN KEY (recipient) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "credits_sandbox.store_test_admissions",
+      "conname": "store_test_admissions_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "credits_sandbox.trading_members",
+      "conname": "trading_members_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "credits_sandbox.web_push_subscriptions",
+      "conname": "web_push_subscriptions_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "notification_preferences",
+      "conname": "notification_preferences_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "personal_entries",
+      "conname": "personal_entries_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "private.app_onboarding",
+      "conname": "app_onboarding_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "private.member_subscriptions",
+      "conname": "member_subscriptions_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "private.preview_beta_invitations",
+      "conname": "preview_beta_invitations_redeemed_user_id_fkey",
+      "definition": "FOREIGN KEY (redeemed_user_id) REFERENCES profiles(id) ON DELETE SET NULL"
+    },
+    {
+      "relation": "private.preview_tester_access",
+      "conname": "preview_tester_access_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "private.roles",
+      "conname": "roles_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "private.social_profiles",
+      "conname": "social_profiles_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES profiles(id) ON DELETE SET NULL"
+    },
+    {
+      "relation": "private.unsubscribe_tokens",
+      "conname": "unsubscribe_tokens_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "profiles",
+      "conname": "profiles_id_fkey",
+      "definition": "FOREIGN KEY (id) REFERENCES auth.users(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "saved_tips",
+      "conname": "saved_tips_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES profiles(id) ON DELETE CASCADE"
+    },
+    {
+      "relation": "sports_feed.nba_beta_access",
+      "conname": "nba_beta_access_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "sports_feed.nfl_starter_entitlements",
+      "conname": "nfl_starter_entitlements_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "sports_feed.sport_sandbox_access",
+      "conname": "sport_sandbox_access_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "sports_feed.weekly_core_job_failures",
+      "conname": "weekly_core_job_failures_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    },
+    {
+      "relation": "sports_feed.weekly_core_schedules",
+      "conname": "weekly_core_schedules_user_id_fkey",
+      "definition": "FOREIGN KEY (user_id) REFERENCES auth.users(id)"
+    }
+  ],
+  "authSchema": [
+    {
+      "version": "20261030120000"
+    },
+    {
+      "version": "20260911120000"
+    },
+    {
+      "version": "20260831180000"
+    },
+    {
+      "version": "20260824000001"
+    },
+    {
+      "version": "20260824000000"
+    }
+  ]
+}

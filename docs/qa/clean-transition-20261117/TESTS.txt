@@ -1,0 +1,63 @@
+ACTUAL VERIFICATION — 17 NOVEMBER 2026
+
+Production: read-only account/ledger/Auth/role/phone census and encrypted backup.
+Zero Production account changes, deletes, role grants, deployments or messages.
+Backup 2026-11-17T00:13:27.516Z: authenticated AES-256-GCM, isolated restore,
+568 protected tables verified. Network none, no published ports, cron disabled.
+See ../v31-prelaunch-execution-20261111/database/restore-20261117b/restore-only.json.
+This is evidence, not a sufficiently fresh backup for a future execution.
+
+Restored SQL: exact new migration and operator declarations; real constraints,
+triggers and existing accounts. 567 ordinary base tables compared (backup proof
+uses its 568-table manifest; these are different enumerations). Schema-only
+preparation changes no existing rows. Containment/retry/drift rejection,
+Owner copying/MFA, partial-completion denial, retired-token registry denial,
+legacy signup/grant closure, zero commercial assets, immutable audits and
+unchanged scarcity all pass. All rehearsal changes rolled back. 6540 definitions,
+918 lifetime-counted limited copies, 936 canonical custody records preserved.
+
+Owner SQL: both restored Owners pass ten Owner guard/read surfaces, including
+member search, reporting, inventory/sport readiness, moderation, marketplace
+oversight and incident review. Barry's acknowledgement/resolution use his own
+UUID; founder inbox attestation remains denied to Barry. Restricted docked_app
+role can renew explicit profile/consent/social setup without Auth schema access;
+those writes were rolled back. This is database acceptance, not a claim that
+Barry completed a hosted/browser session today.
+
+Real GoTrue HTTP lifecycle: SAME v2.198.0 as Production, disposable identities,
+Docker internal network and internal Mailpit only. 21 checks pass: MFA, supported
+soft deletion, same tombstone UUID, old password/session/refresh denial, email
+reuse with NEW UUID and fresh email verification, fresh phone verification,
+concurrent phone ownership, unrelated-number preservation, zero inherited assets
+and retained original financial/serial/hold evidence. Phone codes use the local
+provider test fixture; zero external SMS. Not a new physical-device acceptance.
+
+Actual checkpoint SQL + real disposable GoTrue API: seven checks pass, including
+partial-completion rejection, supported shared retirement operator, post-provider
+checkpoint, idempotent retries and Owner MFA retention.
+
+48 automated platform/database tests pass, including seven retirement failure/
+retry cases, eight retained-Owner consent cases, Auth recovery, public-phone
+guards, current-policy consent, permanent pack supply and reporting separation.
+One isolated browser form test passes at 390px/1440px: unchecked legal choices,
+current notice links, error recovery, no user_id/role injection, NBA absent.
+Full Next production build and TypeScript check pass; scoped ESLint passes.
+
+Useful failures caught and corrected in isolation
+- Generic profile disabling invoked social-erasure triggers: replaced with the
+  transition registry so historical social rows remain unchanged.
+- Old public setup copied all beta identities and could not renew retained Owner
+  consent: withdrawn and replaced with explicit MFA Owner-only renewal.
+- A not-yet-started/partial transition could reach a public gate: registration
+  and public participation now require verified completion.
+- The legacy invitation entry point could survive beta end: it now closes at
+  containment, without granting broader Auth or signup permissions.
+- The restricted-role test could not call auth.jwt directly. The application
+  already binds verified claims; the fixture now does the same. No Auth schema
+  permissions were widened.
+
+Not claimed
+No real user was deleted/re-registered. No customer accepted new notices for
+this test. No live SMS/payment/card issuance occurred. No new Android binary,
+Google submission or hosted post-deployment acceptance occurred. Existing actual
+November billing, refund, pack and genuine Preview SMS evidence remains valid.

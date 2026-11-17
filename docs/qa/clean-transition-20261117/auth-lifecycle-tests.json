@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-17T00:51:29.814Z",
+  "version": "v2.198.0",
+  "checks": [
+    "Retained Owner uses individual verified Auth MFA",
+    "Confirmed old phone claimed",
+    "Soft deletion retains original UUID/tombstone",
+    "Old email and password no longer authenticate",
+    "Existing Auth access token is rejected",
+    "Old refresh token is revoked",
+    "All old sessions removed",
+    "Retired phone released",
+    "Unrelated verified phone remains claimed",
+    "Repeated soft delete is idempotent",
+    "Normal signup reuses email with NEW UUID",
+    "Replacement has no inherited email or phone verification",
+    "Replacement cannot log in before its email verification",
+    "Email possession newly verified",
+    "Phone change does not inherit old verification",
+    "Fresh phone verification establishes NEW UUID claim",
+    "Concurrent verification: exactly one owner of a number",
+    "Duplicate active phone rejected",
+    "Old financial/serial/hold records unchanged",
+    "New account has zero historical assets",
+    "Retained Owner original session/login unchanged"
+  ],
+  "externalDeliveries": 0,
+  "phoneVerification": "Local provider test OTP only; no claim of genuine SMS",
+  "productionWrites": 0
+}
