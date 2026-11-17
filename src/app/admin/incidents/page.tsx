@@ -5,6 +5,7 @@ import { OperationalIncidents } from "@/components/operational-incidents";
 import { FantasyLoadError } from "@/components/fantasy-load-error";
 import { memberAccessFailure } from "@/core/member-access-recovery";
 import { adminDisplayName } from "@/server/admin-display-name";
+import { phoneDeliveryReady, verifiedPhone } from "@/core/public-phone";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Operational incidents",
@@ -16,6 +17,13 @@ export default async function Incidents() {
     const report = await operationalIncidents();
     return (
       <AdminShell role={who.role} displayName={await adminDisplayName(who)}>
+        {phoneDeliveryReady() && !verifiedPhone(who.user) && (
+          <p>
+            <a className="button" href="/app/verify-phone">
+              Verify your phone
+            </a>
+          </p>
+        )}
         <OperationalIncidents initial={report} />
       </AdminShell>
     );

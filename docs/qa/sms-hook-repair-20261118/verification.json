@@ -1,0 +1,44 @@
+{
+  "dateAedt": "2026-11-18",
+  "passed": true,
+  "scope": "Narrow signed-hook destination correction and Owner navigation link; no live provider requests",
+  "deployedBaseline": "405058ebfe3e2c915d43ed5344dfb3fcd7930049",
+  "authVersionObserved": "v2.198.0",
+  "regressionReproduction": { "beforeFix": "2 new tests failed as expected", "syntheticOnly": true },
+  "targetedTests": {
+    "passed": 23,
+    "failed": 0,
+    "files": [
+      "tests/platform/sms-budget-hook.test.ts",
+      "tests/platform/sms-hook-phone-change.test.ts",
+      "tests/platform/post-beta-owner.test.ts",
+      "tests/platform/native-navigation.test.ts",
+      "tests/platform/native-refresh.test.ts"
+    ],
+    "actualSmsSent": 0,
+    "coverage": ["current first-phone and change-phone payloads", "no fallback to old number", "invalid/missing target denied", "invalid and stale signature", "Australian mobile restriction", "20 concurrent duplicate callbacks", "timeout/uncertain reservation preserved", "no late dispatch", "unchanged Owner/MFA and native authentication guards"]
+  },
+  "typecheck": { "command": "node node_modules/typescript/bin/tsc --noEmit", "exitCode": 0 },
+  "lint": { "scope": "Changed source, tests and offline package operator", "exitCode": 0 },
+  "build": {
+    "command": "node node_modules/next/dist/bin/next build --webpack",
+    "exitCode": 0,
+    "log": "build.log",
+    "hosted": false,
+    "exportablePrebuilt": false,
+    "note": "Local workspace uses a node_modules junction. Fresh locked hosted build is required after approval; local output is not deployed."
+  },
+  "productionChangesDuringRepair": 0,
+  "productionClosureIndependentlyVerified": true,
+  "phoneProviderEnabled": false,
+  "hookEnabled": false,
+  "endedWindowEnabled": false,
+  "providerMessagesFromFailedAttempt": 0,
+  "reservedAudCentsFromFailedAttempt": 0,
+  "newMigrations": 0,
+  "newAndroidBuild": false,
+  "newBillingRefundPackTests": false,
+  "physicalAndroidNavigation": "Pending corrected deployment; external link did not reach the form",
+  "productionAuthHookEndToEnd": "FAILED before correction; pending separately approved replacement attempt",
+  "publicLaunchReady": false
+}

@@ -1,0 +1,33 @@
+The 18 November browser attempt reached Supabase Auth and the Production hook.
+Auth logged a failed hook invocation at 2026-11-17T21:09:56Z; Vercel recorded one
+phone API 400 and one hook 503. There were zero budget reservations and zero Twilio
+messages. No number/code/payload is recorded here. Phone/hook/window were closed.
+
+Live Auth health independently reports GoTrue v2.198.0. Its exact version source:
+https://raw.githubusercontent.com/supabase/auth/v2.198.0/internal/api/phone.go
+https://raw.githubusercontent.com/supabase/auth/v2.198.0/internal/hooks/v0hooks/v0hooks.go
+The updateUser(phone) flow supplies the destination in sms.phone. It leaves the
+existing user.phone unchanged until verification, which may be absent on first
+enrolment. Docked erroneously required user.phone and used it as the destination.
+This is an established incompatible contract, consistent with the observed failure;
+the original sensitive live webhook payload was deliberately not captured.
+
+Reproduction: fictional signed first-phone/change-phone fixtures fail against the
+deployed parser; it also incorrectly falls back to an old phone when the SMS target
+is missing. Both regression tests pass after the narrow correction. Signature
+validation, number normalisation, budget/identity reservation and deduplication are
+unchanged. No phone numbers, OTPs or provider credentials are logged.
+
+Previous Preview acceptance used Supabase's configured provider and remains valid
+for actual delivery/code/persistence. It did not cover this new Production signed
+hook. Prior 503 zero-send checks establish no-send/fail-closed behaviour only; a
+503 does not by itself prove payload parsing or signature agreement succeeded.
+
+Navigation: Founder reports the external deep link opens Incidents in installed
+v31, while browser verification renders. No device trace proves whether the URI was
+rewritten externally or interrupted in-app. Add a direct same-origin navigation
+link on the existing protected Incidents page rather than guessing or requiring
+logout/new Android bytes. Device acceptance of that link remains to be completed.
+
+Unaffected commercial, financial, scarcity, Android billing/pack-recovery and Owner
+MFA contracts reuse the authoritative existing evidence. No new broad test programme.

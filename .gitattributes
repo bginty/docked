@@ -38,6 +38,8 @@ scripts/lib/season-catalogue-package.mjs text eol=lf
 
 # Exact named-tester review package: preserve approved bytes on Windows.
 .gitattributes text eol=lf
+docs/qa/sms-hook-repair-20261118/** text eol=lf
+scripts/sms-hook-repair-package.mjs text eol=lf
 supabase/migrations/20261115092124_named_private_tester_exception.sql text eol=lf
 scripts/named-private-tester* text eol=lf
 scripts/lib/named-tester* text eol=lf

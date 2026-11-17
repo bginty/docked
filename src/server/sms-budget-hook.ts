@@ -4,8 +4,11 @@ import { z } from "zod";
 import { normalizedPhone } from "../core/public-phone";
 
 const payloadSchema = z.object({
-  user: z.object({ id: z.string().uuid(), phone: z.string().max(40) }),
-  sms: z.object({ otp: z.string().regex(/^[0-9]{6}$/) }),
+  user: z.object({ id: z.string().uuid() }),
+  sms: z.object({
+    otp: z.string().regex(/^[0-9]{6}$/),
+    phone: z.string().min(1).max(40),
+  }),
 });
 export type SmsBudgetStore = {
   reserve(window: string, fingerprint: string, user: string): Promise<string>;
@@ -40,7 +43,9 @@ export async function deliverBudgetedSms(
     throw Error("SMS unavailable");
   new Webhook(config.secret.slice(3)).verify(raw, headers);
   const input = payloadSchema.parse(JSON.parse(raw));
-  const phone = normalizedPhone(input.user.phone);
+  // GoTrue supplies the OTP destination in sms.phone. During phone_change,
+  // user.phone is absent or the OLD number; never use it as a fallback.
+  const phone = normalizedPhone(input.sms.phone);
   const fingerprint = createHmac("sha256", config.secret)
     .update(
       JSON.stringify([config.window, input.user.id, phone, input.sms.otp]),

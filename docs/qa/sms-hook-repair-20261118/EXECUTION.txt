@@ -1,0 +1,87 @@
+NARROW SMS HOOK / OWNER NAVIGATION CORRECTION — PREPARED, NOT AUTHORISED
+
+Baseline: source 405058ebfe3e2c915d43ed5344dfb3fcd7930049,
+Vercel dpl_ACcdM4ivSaNW2ARC3tQf3MmaL2sZ. Supabase GoTrue v2.198.0.
+The ended one-attempt window must remain disabled and must never be reused.
+Phone and hook were independently OFF at 2026-11-17T21:11:24Z; zero reservations
+and zero Twilio messages. The browser attempt failed. Android acceptance did not run.
+
+Scope: exactly the manifest application, no SQL migrations, no Edge deployment,
+no native Android changes, no account changes, no email test, no billing/pack tests.
+Source change: read signed sms.phone as the OTP destination, never user.phone;
+retain all signature, Australian-mobile, identity, budget, idempotency and expiry
+checks. Add a same-origin Verify your phone link on the MFA-protected Owner
+Incidents page when phone capability is configured and the Owner is unverified.
+The link performs navigation only; it does not enable Phone or send anything.
+Disable automatic Vercel Git deployment for this preparation branch.
+
+A. Application-only execution, only after exact-package approval
+1. Verify package SHA256, every Git source/operator/reviewed file and exact current
+   Production source/deployment; verify the prior ended window and Auth Phone/hook
+   OFF, signup OFF, no additional SMS attempts/messages, all commercial gates OFF.
+2. Reuse accepted billing, pack, Android recovery, privacy, MFA, account-retirement,
+   inventory, vault and incident evidence. No repeat migrations or entitlement work.
+3. Capture a new authenticated encrypted Production backup and verify its isolated
+   restoration. It must be <=60 minutes old before the first database mutation;
+   fresh drift preflight <=10 minutes before each material action. Preserve actual
+   financial, historical issuance/custody, role/MFA, consent, source and restriction
+   records. Historical 6540/918/936 counts are observations, never reset targets.
+4. Export exact Git bytes into a new empty candidate. Fresh locked hosted install
+   and build; never deploy a junction-based local prebuilt output. Existing project,
+   team, syd1 region, restricted runtime role and deployment protection unchanged.
+   Preserve existing secret references/IDs/targets/update times and every other
+   runtime value. Change source metadata and ONE new unused budget-window ID only.
+   No key rotation. Do not re-deploy the email function or reapply migrations.
+5. Stage Production-target with --prod --skip-domain. Auth Phone/hook and public
+   signup stay OFF. Do not create an active budget window during build/staging.
+   Verify closed public/commerce routes and unchanged homepage/policies; verify the
+   Owner page and link through the existing Owner session and normal MFA checks.
+6. Zero-send checks use the current signed payload contract:
+   user:{id:fictionalUUID}, sms:{phone:'+61400000000',otp:'000000'}.
+   Invalid signature denied; valid synthetic input with the UNUSED window denied;
+   zero reservations/messages. A generic 503 alone proves denial, NOT successful
+   Auth signature/payload integration. Version-specific isolated tests establish
+   payload handling. Do not manufacture an authenticated Founder webhook or send
+   with a mocked real identity. Never enable a provider to diagnose an error.
+7. Promote only after required build/Owner/security checks pass. Independently
+   verify alias/source/deployment, closed gates, Phone/hook OFF, all historical
+   protected digests, original Owners/MFA and old window OFF. No active SMS window.
+   Rollback app-only to dpl_ACcdM4ivSaNW2ARC3tQf3MmaL2sZ only if current data/runtime
+   remain compatible and all sending gates are OFF. Never restore old DB data.
+
+B. Replacement attended attempt, requires explicit authority in addition to A
+The prior attempt authority ended on failure, even though no SMS was dispatched.
+This manifest proposes exactly one NEW Founder-only session, <=2 hours, <=1 attempt,
+<=100 AUD cents reserved; no automatic retry/resend and no public budget activation.
+The existing A$50/7-day public decision stays unchanged and inactive.
+1. Reconfirm attendance and original Founder identity/verified email/TOTP, current
+   Auth v2.198.0, no verified Production phone and no unexpected account drift.
+2. Use the frozen original render/adapter/shutdown/watchdog operators and new source
+   and package authority. New private plan/window ID, actual start/deadline, <=1
+   allowlisted Founder, <=100c. Render disabled SQL, rehearse in isolation, fresh
+   preflight, commit only exact row/audit under the new authority. No other writes.
+3. Arm watchdog within five minutes; verify disabled window, zero attempts and
+   reservations. Enable only this window and Auth Phone/hook together. Signup and
+   all commercial gates remain OFF. Never enable Phone without the signed hook.
+4. Founder opens installed v31 normally to Incidents, uses the new in-app Verify
+   your phone link, and confirms the form BEFORE entering a number. If that route
+   fails, close the session; do not switch to browser and claim Android acceptance.
+5. Founder privately enters AU number, deliberately Send Code ONCE, then enters the
+   received code privately. No agent sends, passwords/codes/number in reports or
+   automatic retry. Inspect one reservation/provider result and Auth/claim state.
+   On failure, ambiguity, timeout, extra segment or cost-bound breach: STOP.
+6. On success verify persisted confirmation after reload, then STOP immediately.
+   After failure, STOP immediately without a second attempt. Independently read
+   exact DB window OFF and Auth Phone/hook OFF, regardless of watchdog exit status.
+   The prior watchdog printed a generic verification error despite independent
+   closure success; never rely on its exit status as the sole shutdown evidence.
+   If either barrier cannot be read, use reviewed OFF-only adapter and verify;
+   never replenish, delete attempts, rotate credentials or reuse the window.
+7. Preserve one-attempt, provider and Auth evidence privately with redacted report;
+   verify assets/gates remain intact. No public launch authority follows from this.
+
+Public registration, public Auth email recipients, A$50 public SMS window, credit
+sales, paid issuance, marketplace, NBA, scoring, prizes/withdrawals, retention
+deletion and Google Play publication remain disabled. No v32 requirement identified.
+Final coordinated public launch approval is still separate and cannot be requested
+as GO-ready until the specific Production SMS path has passed.

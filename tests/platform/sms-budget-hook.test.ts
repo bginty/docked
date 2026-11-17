@@ -15,7 +15,7 @@ const config = {
 };
 const input = {
   user: { id: "11111111-1111-4111-8111-111111111111", phone: "+61400000000" },
-  sms: { otp: "123456" },
+  sms: { otp: "123456", phone: "+61400000000" },
 };
 function signed(body = JSON.stringify(input), date = new Date()) {
   const id = "test-hook-id";
@@ -98,9 +98,9 @@ test("signed non-AU number, invalid OTP and oversized payload fail closed", asyn
   for (const body of [
     JSON.stringify({
       ...input,
-      user: { ...input.user, phone: "+12025550123" },
+      sms: { ...input.sms, phone: "+12025550123" },
     }),
-    JSON.stringify({ ...input, sms: { otp: "not-code" } }),
+    JSON.stringify({ ...input, sms: { ...input.sms, otp: "not-code" } }),
     " ".repeat(16385),
   ]) {
     const f = fixture(),
