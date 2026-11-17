@@ -1,0 +1,111 @@
+DOCKED — APPLICATION-ONLY OWNER RECOVERY EXECUTION
+
+Authority
+---------
+Execute only after the founder separately approves the exact source and SHA-256
+in DEPLOYMENT_APPROVAL.txt, for at most 24 hours. This is NOT an account-retirement
+approval and NOT a public launch approval. No SQL operator is to be executed.
+
+1. Exact bytes and current state
+-------------------------------
+Run node scripts/post-beta-owner-package.mjs verify <approved-package-sha256>.
+Verify Git remote source/tree and all reviewed file hashes. Stop on any changed
+application, migration, dependency or runtime bytes. Export only the manifest's
+sourceFiles from its sourceCommit; never deploy the working directory, .env,
+private-data, old account operators or an accumulated launch branch.
+
+Expected current domain: docked.com.au
+Project: prj_l0rpVDPRuIRp9UcBUkudeyUK5yST
+Team: team_tf6xweKKyVCj9bTppUKttJ4l
+Database: pojoymtniryarxxunyvz
+Expected current source: 9e57c094cb7b4af02277e191a2e64fa2e6b22c6b
+Expected current deployment: dpl_ZNUTkFD88udQGYcdnJ8eJaUZ5QBq
+
+Read actual domain/deployment, schema/migration history and completed retirement
+checkpoints afresh. Counts in evidence are observations, never reset targets.
+Preserve any independently verified subsequent legitimate activity. Stop for
+material or unexplained drift; do not resurrect accounts to match old counts.
+
+2. Backup / integrity / runtime
+------------------------------
+Capture a fresh authenticated encrypted Production backup no more than one hour
+old at promotion; restore/verify in isolation without live delivery/providers.
+Use the already reviewed backup method and founder-controlled recovery custody;
+do not transfer or rotate keys. Backup verification is a prerequisite, not
+permission to restore an old snapshot to Production.
+
+Production read-only preflight must be no more than ten minutes old at promotion.
+Compare protected financial journals, TEST receipts/refunds/holds, historical
+wallet, inventory definitions, allocations, lifetime/serial/custody records,
+owner identity/role/MFA, retirement completion and RLS/permissions. Verify three
+retired identities remain denied with no sessions and internal QA remains excluded.
+No account creation, grant, purchase, card opening or Auth retirement is allowed.
+
+Capture the complete effective current build/runtime configuration privately.
+Copy exact existing explicit values to the candidate; make no environment edits.
+For Vercel write-only secrets, verify unchanged IDs, names, targets, timestamps
+and binding references, as previously approved; do not require impossible value
+readback or substitute/rotate them. Compare all readable values and bindings.
+Only platform-generated deployment URL/ID/build metadata and truthful source
+provenance may differ. Stop on missing/changed secrets or an unreviewed override.
+
+Require closed public registration, phone delivery, live Google payments,
+commercial sales/issuance/transfers/gameplay, marketplace/prizes/withdrawals and
+deletion schedules. Keep NBA hidden and six competitions disabled Practice.
+Preserve Auth origin/CSRF, admission, MFA and protection settings. No Preview
+test-mode flags or credentials may enter Production.
+
+3. Protected staging (no promotion yet)
+--------------------------------------
+Use existing Vercel project/Production target with automatic domain assignment
+disabled (CLI --prod --skip-domain or equivalent reviewed API option). Keep
+deployment protection. Use only exported canonical source files, existing build
+settings/region and unchanged runtime. Record the candidate ID, exact source,
+successful hosted guard/build and READY status. No new infrastructure or keys.
+
+Inspect release provenance and closed gates. Anonymous login must load; protected
+admin GETs must require authentication; no test/provider bypass is permitted.
+The production-configured origin guard may reject login on a *.vercel.app URL.
+Do not weaken it. Use the existing same-origin deployment-pin approach from
+docked.com.au with the founder's own session and own MFA. First require
+/api/beta-release?dpl=<candidate> to return the exact candidate source and ID.
+Stop if the pin is ignored, protection is inaccessible or Auth cannot be verified.
+
+With the founder controlling login/MFA, read only:
+- /api/app-session: authenticated=true, ownerAccess=true, no beta onboarding.
+- /app and old /fantasy/play: redirect to /admin/incidents (or MFA first).
+- /admin/incidents and its existing GET API: permitted with AAL2, existing audit
+  history readable; no Record drill / Check health / acknowledge / resolve click.
+- No /api/sports-beta or /api/test-wallet background requests from admin.
+Verify the candidate source again after reads. Record redacted hashes/statuses,
+not cookies, MFA codes or customer data. Do not impersonate Barry or founder.
+
+4. Promotion and postflight
+--------------------------
+Promote only after exact-byte/runtime/integrity/hosted gates pass and approval is
+still valid. No migration precedes this promotion. Confirm actual domain source
+and deployment ID independently. Expected service downtime: none; no database
+locks or maintenance mode. A browser with a rejected refresh token must sign in
+again; other valid sessions are preserved.
+
+Repeat integrity/runtime/closed-gate checks and authenticated read-only incident
+access. Founder uses mobile browser and installed v31; Barry uses his own login
+and MFA. Verify cold login, refresh/resume, /app, old fantasy bookmark, account
+menu and incidents without stuck overlay or beta API calls. Never reuse or mint
+tokens for a retired customer. Keep isolated expiry/retired-denial evidence and
+check live retirement/session records read-only. Report any uncompleted individual
+or physical-device check honestly; do not equate browser emulation with Android.
+
+5. Recovery
+-----------
+Before promotion: abandon the candidate; existing domain remains unchanged.
+After promotion: conditional application-only rollback is limited to the exact
+current retirement-aware source 9e57c094 / dpl_ZNUTkFD88udQGYcdnJ8eJaUZ5QBq,
+only after verifying unchanged runtime/schema and completed containment guards
+still deny retired accounts and beta assets. This restores the known landing
+bug, not beta participation. Older pre-transition releases are prohibited.
+If rollback safety is uncertain, keep gates closed and prepare a reviewed forward
+fix. Never restore a database snapshot, Auth UUID, balance, session, card or serial.
+
+No account/financial recovery is needed for a successful application-only change.
+Stop on material drift or failed acceptance; do not alter reviewed bytes to pass.

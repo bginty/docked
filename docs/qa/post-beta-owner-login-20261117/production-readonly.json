@@ -1,0 +1,79 @@
+{
+  "at": "2026-11-17T06:50:20.180Z",
+  "readOnlyTransaction": true,
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custodyRecords": 936,
+  "walletDigest": "641256faf9767f8daff75a6221d2f6b29afd094a8cca08d10219007e5a62fd1b",
+  "custodyDigest": "8340ed6c5584fd3f0832fc17431081548f3b8956e6da53df6f0c19d6c3a674ac",
+  "unchangedSinceRetirement": true,
+  "identities": [
+    {
+      "classification": "owner",
+      "originalIdentityPresent": true,
+      "retired": false,
+      "transitionAllowed": true,
+      "betaEnded": true,
+      "fullOwner": true,
+      "verifiedMfa": true
+    },
+    {
+      "classification": "customer",
+      "originalIdentityPresent": true,
+      "retired": true,
+      "transitionAllowed": false,
+      "betaEnded": true,
+      "fullOwner": false,
+      "verifiedMfa": false,
+      "retiredSessionsAbsent": true
+    },
+    {
+      "classification": "customer",
+      "originalIdentityPresent": true,
+      "retired": true,
+      "transitionAllowed": false,
+      "betaEnded": true,
+      "fullOwner": false,
+      "verifiedMfa": false,
+      "retiredSessionsAbsent": true
+    },
+    {
+      "classification": "system",
+      "originalIdentityPresent": true,
+      "retired": false,
+      "transitionAllowed": false,
+      "betaEnded": true,
+      "fullOwner": false,
+      "verifiedMfa": false
+    },
+    {
+      "classification": "customer",
+      "originalIdentityPresent": true,
+      "retired": true,
+      "transitionAllowed": false,
+      "betaEnded": true,
+      "fullOwner": false,
+      "verifiedMfa": false,
+      "retiredSessionsAbsent": true
+    },
+    {
+      "classification": "owner",
+      "originalIdentityPresent": true,
+      "retired": false,
+      "transitionAllowed": true,
+      "betaEnded": true,
+      "fullOwner": true,
+      "verifiedMfa": true
+    }
+  ],
+  "productionWrites": 0,
+  "hostedOwnerSignIn": "Not performed; own MFA participation remains required after protected staging"
+}

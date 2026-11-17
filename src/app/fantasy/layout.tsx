@@ -7,6 +7,7 @@ import { publicCustomersEnabled } from "@/core/public-customer";
 import { identity } from "@/server/auth";
 import { verifiedPhone } from "@/core/public-phone";
 import { redirect } from "next/navigation";
+import { postBetaOwnerDestination } from "@/core/post-beta-owner";
 
 export default async function FantasyLayout({
   children,
@@ -14,6 +15,12 @@ export default async function FantasyLayout({
   children: ReactNode;
 }) {
   if (!fantasyPlatformEnabled() && !publicCustomersEnabled()) return children;
+  if (process.env.DOCKED_BETA_STAGING === "true") {
+    const who = await boundedRead(identity()).catch(() => null);
+    const destination = postBetaOwnerDestination(who);
+    // Outside the recovery catch: Next redirects must not become load errors.
+    if (destination) redirect(destination);
+  }
   if (publicCustomersEnabled()) {
     const who = await boundedRead(identity()).catch(() => null);
     if (

@@ -39,7 +39,7 @@ export default async function Page({
           Sign in first. Privileged operations require a verified MFA session.
         </p>
         <MfaForm next={query.next} />
-        <Link href="/dashboard">Account settings</Link>
+        <Link href="/app">Continue to Docked</Link>
       </AppAuthShell>
     );
   if (section === "unsubscribe")

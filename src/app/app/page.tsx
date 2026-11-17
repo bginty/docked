@@ -5,6 +5,7 @@ import { appOnboardingState } from "@/server/app-onboarding";
 import { betaOwnerAuthenticationOnly } from "@/core/hosted-beta.mjs";
 import { authClient } from "@/server/auth";
 import { db } from "@/server/db";
+import { postBetaOwnerDestination } from "@/core/post-beta-owner";
 export default async function AppEntry() {
   const { who } = await appViewer();
   if (!who) {
@@ -24,6 +25,8 @@ export default async function AppEntry() {
     }
     redirect("/app/login");
   }
+  const ownerDestination = postBetaOwnerDestination(who);
+  if (ownerDestination) redirect(ownerDestination);
   if (betaOwnerAuthenticationOnly(process.env)) redirect("/app/owner-setup");
   const state = await appOnboardingState(who.user.id);
   redirect(

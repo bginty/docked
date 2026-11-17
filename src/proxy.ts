@@ -8,6 +8,9 @@ import { authCookieOptions } from "@/core/auth-cookies";
 import { assertDeploymentEnvironment } from "@/core/deployment-environment";
 import { retiredProductPath } from "@/core/retired-product";
 import { isolatedV30Transport } from "@/server/isolated-v30-transport";
+import { rejectedSessionCookies } from "@/core/rejected-session-cookies";
+import { memberReturnPath } from "@/core/member-access-recovery";
+import type { CookieOptions } from "@supabase/ssr";
 export async function proxy(request: NextRequest) {
   if (
     assertPackHostedAcceptance(process.env) &&
@@ -47,6 +50,11 @@ export async function proxy(request: NextRequest) {
     !process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
   )
     return response;
+  const originalNames = request.cookies.getAll().map(({ name }) => name);
+  const pendingCookies = new Map<
+    string,
+    { name: string; value: string; options: CookieOptions }
+  >();
   const client = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
@@ -57,13 +65,51 @@ export async function proxy(request: NextRequest) {
           items.forEach(({ name, value }) => request.cookies.set(name, value));
           response = NextResponse.next({ request });
           items.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, authCookieOptions(options)),
+            pendingCookies.set(name, {
+              name,
+              value,
+              options: authCookieOptions(options),
+            }),
           );
         },
       },
     },
   );
-  await client.auth.getUser();
+  const result = await client.auth
+    .getUser()
+    .catch((error: unknown) => ({ error }));
+  const rejected = rejectedSessionCookies(
+    result.error,
+    originalNames,
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+  );
+  if (rejected.length) {
+    for (const name of rejected) {
+      request.cookies.delete(name);
+      pendingCookies.set(name, {
+        name,
+        value: "",
+        options: authCookieOptions({ path: "/", maxAge: 0 }),
+      });
+    }
+    const path = request.nextUrl.pathname;
+    if (
+      request.method === "GET" &&
+      /^\/(app|admin|fantasy|mfa|dashboard)(\/|$)/.test(path)
+    ) {
+      const login = new URL("/app/login", request.url);
+      login.searchParams.set("reason", "session-expired");
+      const next = memberReturnPath(
+        path === "/app/login" ? request.nextUrl.searchParams.get("next") : path,
+      );
+      if (next) login.searchParams.set("next", next);
+      response = NextResponse.redirect(login);
+    } else response = NextResponse.next({ request });
+  }
+  // Supabase can refresh/remove multiple chunks in separate callbacks. Preserve
+  // every Set-Cookie, including on a redirect; never sign out other devices.
+  for (const { name, value, options } of pendingCookies.values())
+    response.cookies.set(name, value, options);
   response.headers.set("Cache-Control", "private, no-store");
   return response;
 }

@@ -5,7 +5,8 @@ import { signOutBetaSession } from "@/core/beta-signout";
 import { authUsersRelation, authSessionsRelation } from "@/core/auth-relations";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { authClient, sameOrigin } from "@/server/auth";
+import { authClient, identity, sameOrigin } from "@/server/auth";
+import { postBetaOwnerDestination } from "@/core/post-beta-owner";
 import { config } from "@/server/config";
 import { db, rateLimit } from "@/server/db";
 import { hash } from "@/core/canonical-hash";
@@ -206,6 +207,16 @@ export async function POST(request: Request) {
     } | null,
     fallback: string,
   ) => {
+    if (
+      process.env.DOCKED_BETA_STAGING === "true" &&
+      user?.email_confirmed_at
+    ) {
+      const ownerDestination = postBetaOwnerDestination(
+        await identity(),
+        fallback,
+      );
+      if (ownerDestination) return ownerDestination;
+    }
     if (publicCustomersEnabled() && user?.email_confirmed_at) {
       const profiles =
         await sql`select id from public.profiles where id=${user.id}`;
@@ -279,6 +290,10 @@ export async function POST(request: Request) {
   }
   if (["mfa_status", "mfa_enroll", "mfa_verify"].includes(v.action)) {
     const result = await mfaFlow(client.auth, v.action, v.code, v.next);
+    if (!("error" in result) && result.mode === "verified") {
+      const destination = postBetaOwnerDestination(await identity(), v.next);
+      if (destination) result.redirect = destination;
+    }
     return NextResponse.json(result, {
       status: "error" in result ? 400 : 200,
       headers: { "Cache-Control": "private, no-store" },

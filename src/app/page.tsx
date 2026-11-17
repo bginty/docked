@@ -43,7 +43,7 @@ export default function Home() {
           </p>
           <p>One collection, on your phone and in your browser.</p>
           <div className="actions">
-            <Link className="button" href="/fantasy/play">
+            <Link className="button" href="/app">
               Open member workspace
             </Link>
             <Link href={production && !liveBeta ? "/app/signup" : "/app/login"}>

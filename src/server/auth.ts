@@ -87,12 +87,21 @@ export const identity = cache(async function identity() {
   const active =
     await sql`select id from ${sql.unsafe(authSessionsRelation())} where id=${claims.sessionId} and user_id=${user.id} and (not_after is null or not_after>now())`;
   if (!active.length) return null;
+  // The retained Owner role comes from the live database, never client metadata.
+  // Completed beta onboarding must not send these identities back to beta play.
+  const postBetaOwner =
+    process.env.DOCKED_BETA_STAGING === "true" &&
+    p[0].launch_transition?.betaEnded === true &&
+    (
+      await sql`select 1 from private.roles where user_id=${user.id} and role='owner'`
+    ).length > 0;
   const protection =
     process.env.DOCKED_OWNER_GAMEPLAY === "true"
       ? await sql`select private.gameplay_mfa_required(${user.id}::uuid) required`
       : [];
   return {
     mfaRequired:
+      postBetaOwner ||
       packAcceptance ||
       (process.env.DOCKED_OWNER_GAMEPLAY === "true" &&
         protection[0]?.required !== false) ||
@@ -100,6 +109,7 @@ export const identity = cache(async function identity() {
         (await sql`select 1 from private.roles where user_id=${user.id}`)
           .length > 0),
     user,
+    postBetaOwner,
     profile: p[0],
     aal: claims.aal as string,
     sessionId: claims.sessionId,

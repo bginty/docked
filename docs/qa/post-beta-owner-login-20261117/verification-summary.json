@@ -1,0 +1,28 @@
+{
+  "scope": "Post-beta Owner login/navigation; no database, Auth-provider, billing, card or launch mutation",
+  "targetedTests": {
+    "command": "node --import tsx --test tests/platform/post-beta-owner.test.ts tests/platform/post-beta-owner-routes.test.ts tests/platform/auth-policy.test.ts tests/platform/native-navigation.test.ts tests/platform/mfa-flow.test.ts tests/platform/app-auth.test.ts",
+    "passed": 29,
+    "failed": 0,
+    "skipped": 0
+  },
+  "mobileBrowser": {
+    "command": "node scripts/post-beta-owner-browser.mjs",
+    "passed": 2,
+    "widths": [
+      360,
+      412
+    ],
+    "type": "Actual components with isolated mocked navigation; Chrome mobile viewports, not a physical phone"
+  },
+  "lint": "Scoped changed-source/test/browser-driver ESLint passed; package helper checked separately",
+  "build": "next build --webpack and TypeScript passed; no provider credentials; subsequent vercel.json edit only disables Git auto-deployment for this branch",
+  "productionReadOnly": "Both retained original identities/Owner/MFA present; 3 retired users denied, no sessions; 918 lifetime copies/936 custody; wallet/custody digests unchanged",
+  "notClaimed": [
+    "Genuine new hosted Owner sign-in",
+    "Barry or founder impersonation",
+    "physical Android acceptance",
+    "new Production deployment",
+    "public launch readiness"
+  ]
+}

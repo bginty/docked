@@ -10,6 +10,8 @@ import {
 } from "@/core/admin-navigation";
 import { AdminGlobalSearch } from "./admin-global-search";
 import { AdminIcon } from "./admin-icon";
+import { useRetainedOwnerNavigation } from "./owner-navigation-context";
+import { StartupReady } from "./startup-loading";
 
 export function AdminShell({
   role,
@@ -29,6 +31,7 @@ export function AdminShell({
   children: ReactNode;
 }) {
   const [menu, setMenu] = useState(false);
+  const retainedOwner = useRetainedOwnerNavigation();
   const toggle = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     function close(event: KeyboardEvent) {
@@ -49,6 +52,7 @@ export function AdminShell({
   }, [menu]);
   return (
     <div className="admin-reference">
+      <StartupReady />
       <a className="admin-skip" href="#admin-main">
         Skip to dashboard content
       </a>
@@ -114,12 +118,14 @@ export function AdminShell({
         <AdminGlobalSearch />
         <div className="admin-account">
           <Link
-            href="/notifications"
+            href={retainedOwner ? "/admin/incidents" : "/notifications"}
             className="admin-notifications"
             aria-label={
-              unreadCount
-                ? `${unreadCount} unread notifications`
-                : "Notifications"
+              retainedOwner
+                ? "Operational incidents"
+                : unreadCount
+                  ? `${unreadCount} unread notifications`
+                  : "Notifications"
             }
           >
             <AdminIcon name="bell" />
@@ -132,13 +138,23 @@ export function AdminShell({
               </span>
               <span className="admin-account-name">
                 {displayName}
-                <small>{role === "owner" ? "Founder" : role}</small>
+                <small>{role === "owner" ? "Owner" : role}</small>
               </span>
               <span aria-hidden="true">⌄</span>
             </summary>
             <nav aria-label="Account">
-              <Link href="/fantasy/profile">My profile</Link>
-              <Link href="/dashboard">Manage account</Link>
+              <Link href={retainedOwner ? "/app" : "/fantasy/profile"}>
+                {retainedOwner ? "Owner access" : "My profile"}
+              </Link>
+              <Link
+                href={
+                  retainedOwner
+                    ? "/mfa?next=%2Fadmin%2Fincidents"
+                    : "/dashboard"
+                }
+              >
+                {retainedOwner ? "Security & MFA" : "Manage account"}
+              </Link>
             </nav>
           </details>
         </div>

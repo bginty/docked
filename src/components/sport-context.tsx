@@ -79,7 +79,8 @@ export function SportProvider({ children }: { children: ReactNode }) {
   const [capabilitiesReady, setCapabilitiesReady] = useState(false);
   const [capabilitiesError, setCapabilitiesError] = useState(false);
   const [capabilityAttempt, setCapabilityAttempt] = useState(0);
-  const memberArea = /^\/(fantasy|profile|dashboard|admin)(\/|$)/.test(path);
+  // Administration uses its own permission-scoped data, not member beta sport APIs.
+  const memberArea = /^\/(fantasy|profile|dashboard)(\/|$)/.test(path);
   useEffect(() => {
     const clear = () => setNotice("");
     window.addEventListener("docked:sport-draft-clean", clear);

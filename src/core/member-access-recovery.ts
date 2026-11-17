@@ -14,7 +14,7 @@ export function memberReturnPath(value?: string | null): string | null {
     )
       return null;
     if (
-      !/^\/(?:fantasy\/(play|cards|market|social|profile|results|prizes|test-wallet)|admin(?:\/(?:operations|nfl-history|marketplace|coupons|community(?:\/[a-z-]+)?|workspace\/[a-z-]+))?)\/?$/.test(
+      !/^\/(?:fantasy\/(play|cards|market|social|profile|results|prizes|test-wallet)|admin(?:\/(?:incidents|commercial-billing|operations|nfl-history|marketplace|coupons|community(?:\/[a-z-]+)?|workspace\/[a-z-]+))?)\/?$/.test(
         url.pathname,
       )
     )

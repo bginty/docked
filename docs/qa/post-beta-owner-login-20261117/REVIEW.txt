@@ -1,0 +1,81 @@
+DOCKED — POST-BETA OWNER LOGIN / LOADING FIX
+
+Status: implemented and locally verified; Production deployment requires a new
+exact-package approval. Public launch remains NO-GO.
+
+Root cause
+----------
+The completed beta transition correctly denies beta gameplay to retained Owners.
+However, /app still routed completed onboarding to /fantasy/play. A stale login
+return URL and native session routing could repeat that route. The resulting
+gameplay/wallet denial was displayed as a generic loading failure. In addition,
+the global sport provider treated /admin as member gameplay and AdminShell did
+not release the document startup overlay after client navigation.
+
+Authenticated Vercel logs on 2026-11-17 at 06:21–06:22 UTC independently confirm
+/fantasy/play authentication/service errors, /api/sports-beta access UNAVAILABLE,
+/api/test-wallet service errors and, at 06:21:27 UTC, refresh_token_not_found on
+/app/login. These are two related browser/route problems, not evidence that the
+retained Owner identities were deleted. Both original identities, Owner roles,
+individual verified TOTP factors and allowed transition records are intact.
+
+Correction
+----------
+1. Derive postBetaOwner only after provider-verified identity, current Auth
+   session, admission, transition and database Owner-role checks. No email,
+   display-name, hard-coded UUID or editable profile metadata grants access.
+2. During the existing closed beta runtime, ended-beta Owners land on
+   /admin/incidents, through their existing MFA challenge when needed. Apply the
+   same route to /app, old /fantasy bookmarks, login/MFA returns and native resume.
+   All page/API role checks and the betaEnded gameplay prohibition remain.
+3. Admin navigation no longer fetches beta sport capabilities or links retained
+   Owners to retired profiles/wallets. AdminShell releases the startup overlay.
+   MFA remains mandatory. The Owner label applies equally to Founder and Barry.
+4. Preserve every SDK cookie update across callbacks/redirects. On a definitive
+   provider rejection, remove only the matching project's browser session-cookie
+   chunks and return protected GET pages to login. The installed SDK also clears
+   its obsolete PKCE verifier. Do not log tokens, revoke other devices or clear
+   sessions for provider outages, throttling or an insufficient MFA level.
+
+Verification already completed
+------------------------------
+- 29 targeted tests passed (actual server route/identity/proxy modules with
+  isolated provider/DB boundaries, existing MFA/Auth/native tests and an installed
+  Supabase SSR client with a synthetic expired session/provider rejection).
+- Both synthetic retained Owner identities route correctly; AAL1 cannot enter
+  privileged pages; revoked sessions, retired customers, forged metadata and
+  service outages fail closed. Retired beta gameplay remains denied.
+- Actual client components passed mobile Chrome harness checks at 360px and
+  412px: startup overlay release, menu/Escape, Owner/MFA links, online/resume,
+  no horizontal overflow, zero beta API requests and zero JavaScript errors.
+- Scoped ESLint, TypeScript and full Next Webpack production build passed.
+- Fresh read-only Production transaction: 6,540 definitions, 918 lifetime-issued
+  limited copies and 936 custody records. Wallet/custody digests equal the
+  retirement postflight. Both original Owners/MFA remain; three retired customers
+  have no sessions; internal QA remains excluded. Commercial/public controls,
+  scored competitions and incident deletion schedules remain off.
+
+Evidence limitations
+--------------------
+The mobile harness uses mocked Next navigation, no hosted Auth or database.
+Server tests simulate provider/DB boundaries; the SSR refresh test uses the real
+installed client against a synthetic HTTP response. These do not claim a real
+Founder/Barry sign-in, physical Android acceptance or new hosted performance.
+An attended existing-Owner MFA/read-only check of the protected candidate and
+post-promotion mobile checks remain in EXECUTION.txt. No extra billing, pack,
+SMS, vault, incident-drill or account-retirement tests are required here.
+
+Scope and integration
+---------------------
+Application-only branch from actual Production source 9e57c094, retaining Batch 1
+and the clean transition. No SQL/migration, role, RLS, provider setting, runtime
+flag, dependency, Android artifact, policy, balance or card changes. vercel.json
+only disables automatic Git deployment for this preparation branch.
+
+Pending public-runtime/SMS preparation (23bdd45a on the separate launch branch)
+is not bundled. Merge this reviewed fix into that candidate before any later
+public runtime release. postBetaOwner is deliberately limited to the current
+beta runtime; normal commercial participation must still use the separately
+reviewed public admission/phone/consent rules. External Owner custody is unchanged.
+
+No Production write, deployment, purchase, SMS or operational email was performed.
