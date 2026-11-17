@@ -1,0 +1,52 @@
+EXACT CLOSED-GATE SCHEMA / APPLICATION APPROVAL REQUEST — NOT YET APPROVED
+
+Source: 9e57c094cb7b4af02277e191a2e64fa2e6b22c6b
+Package SHA-256: d3a7960eb0ac2de8fa86e4185d2b8902621e53368729e4d3639e7643518914fa
+Manifest: deployment-package.json (raw UTF-8 bytes, LF)
+Previous independently verified Production: 76df44ba1adef012c5ec2119563cbc05ff9e3c0b
+Vercel: dpl_Fnb75vUFUaDd4WL6pnkQDttKoQoh
+
+Proposed authority: maximum24h, exact source/package only. Install this ONE SQL
+migration and operator function declarations atomically, record migration history,
+protected staging/promotion, reviewed notice publication and postflight. NO account
+containment, Owner role changes, Auth deletion, identifier release or launch.
+
+Migration: supabase/migrations/20261117001019_clean_commercial_account_transition.sql
+SHA-256: 74d8a48be8897435e8ef53734117861c9072495a0fb5d069027bdcefbdf33aa4
+Operator declarations: config/operations/clean-commercial-transition.prepared.sql
+SHA-256: 857ee8823c3b2b0d48bcc5ad419feefc8f81d089ed34242c4fdbd6a28ff0b111
+The declarations create functions only; do not call prepare/retire/complete.
+No previous migrations are reapplied. The inactive SMS-budget migration is EXCLUDED.
+
+SQL impact: private/RLS launch_transition registry, immutable history triggers,
+session/phone/registration/Owner checks, restricted historical-card projection,
+beta-grant/signup closure conditional on later containment, incident actor guards,
+restrictive authenticated policies. No added customer permissive grant. No existing
+Auth/profile/role/financial/card row changes during installation.
+
+Application diff against actual Production is fully enumerated in the manifest.
+It includes inherited approved-Preview origin validation, accurate 4900-credit /
+5000-credit Premium disclosure and the INACTIVE SMS hook from prior preparation.
+No hook window, secret, Phone setting or provider registration is enabled here.
+New transition/Owner form guards and privacy v5/commercial notice are included.
+Pricing, probabilities, native Android/billing code and Batch1 performance stay.
+
+Required before execution: RECOVERY.txt plus exact hashes; fresh encrypted backup
+<=1h and verified isolated restore; fresh drift <=10m; all current financial,
+custody, lifetime, RLS, MFA and runtime settings verified; protected hosted staging;
+Owner/beta access, receipt recovery and all closed-gate checks pass. Compare actual
+Production source/settings again; unexpected changes require review, not reset.
+Record the migration transaction and Vercel deployment ID. Promote only after all
+staging gates pass, then repeat postflight. Runtime secrets/config stay unchanged.
+
+Recovery: atomic SQL rollback on error; before containment only, conditional safe
+app-only rollback to the fresh verified previous deployment. Leave additive schema
+if safe. After containment there is no automatic app/account rollback.
+Expected interruption: short DDL locks; 5s lock timeout/120s statement limit, abort
+on unexpected contention. No public downtime because public launch stays closed.
+
+Approving this package publishes only its reviewed policy wording. Customer-notice
+delivery is a separate prerequisite for the account package; no messages are sent
+by this deployment. Registration, SMS, live payments, commercial issuance, trading,
+prizes, withdrawals, cleanup, NBA, competitions and Play publication remain closed.
+Google managed publishing stays ON. Final paid launch requires separate approval.

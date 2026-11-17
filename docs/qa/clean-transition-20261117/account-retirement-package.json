@@ -1,0 +1,49 @@
+{
+  "kind": "clean-commercial-account-transition",
+  "source": "9e57c094cb7b4af02277e191a2e64fa2e6b22c6b",
+  "tree": "ed4c6e11afaeb5ce7b1191fde5dfc946d23e12bb",
+  "project": "pojoymtniryarxxunyvz",
+  "maximumApprovalHours": 24,
+  "noticeSha256": "9cb6bd4ca4200748ea428ea3a42b5ce576e70fcc88f334f5417a447881577f2b",
+  "publicLaunch": false,
+  "backupMaximumAgeSeconds": 3600,
+  "preflightMaximumAgeSeconds": 600,
+  "financialAndLifetimeSupplyReset": false,
+  "accountManifestSha256": "9ae298d2b6c16c48c2901b021db443df48f160d819ab361bf02487d5a45823c7",
+  "files": [
+    {
+      "path": "supabase/migrations/20261117001019_clean_commercial_account_transition.sql",
+      "sha256": "74d8a48be8897435e8ef53734117861c9072495a0fb5d069027bdcefbdf33aa4"
+    },
+    {
+      "path": "config/operations/clean-commercial-transition.prepared.sql",
+      "sha256": "857ee8823c3b2b0d48bcc5ad419feefc8f81d089ed34242c4fdbd6a28ff0b111"
+    },
+    {
+      "path": "docs/qa/clean-transition-20261117/CUSTOMER_NOTICE.txt",
+      "sha256": "9cb6bd4ca4200748ea428ea3a42b5ce576e70fcc88f334f5417a447881577f2b"
+    },
+    {
+      "path": "docs/qa/clean-transition-20261117/RECOVERY.txt",
+      "sha256": "6e7eca85cf8d20514390effa55ac576b625772c07c000f0ef21742539c3df9b7"
+    },
+    {
+      "path": "scripts/clean-commercial-transition.ts",
+      "sha256": "cfe43941fad77e161983f5c67aacfcb3f2e3021bdb9d593687d3f94588e87802"
+    },
+    {
+      "path": "src/core/account-retirement.ts",
+      "sha256": "df20cf42d3202a9c26910abb6a5104f2e96c88ff074c108c42492e0ce4dc4ab1"
+    }
+  ],
+  "scope": "contain-and-soft-retire-three-beta-customers-retain-two-owners",
+  "requiredAuthVersion": "v2.198.0",
+  "retainedOwners": 2,
+  "softRetiredCustomers": 3,
+  "preservedSystemIdentities": 1,
+  "replacementAccountsCreated": 0,
+  "noticeDeliveryRequired": true,
+  "unresolvedProtectedClaimsPermitted": false,
+  "sharesExternalPermissions": false,
+  "enablesAnyLaunchGate": false
+}
