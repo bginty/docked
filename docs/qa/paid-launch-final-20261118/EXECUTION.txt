@@ -59,7 +59,16 @@ This scope does NOT approve public registration, sales, issuance or Play publica
    Apply only authDisabledConfiguration in config/operations/paid-launch-final.json;
    Phone=false,hook=false,signup disabled,6 digits/300s/60s minimum,autoconfirm=false,
    no test numbers. Existing Auth email hook and TOTP settings preserved.
-5. Just before the attended session, privately match the original Founder cohort
+5. Choose a unique UNUSED window ID before the hosted build, without creating or
+   enabling a database window yet. Candidate runtime = public-runtime-closed.json
+   plus the exact one-attempt appStage in production-phone-one-attempt.json, private
+   SMS bindings and that window ID only. All commerce/registration/beta flags false.
+   On the protected candidate: anonymous denied; invalid signature denied; correctly
+   signed synthetic callback denied by MISSING window; zero provider requests.
+   Existing isolated tests establish retired/QA rejection. Verify existing Owner
+   GET routes and exact notice/home bytes, no new MFA/drill/purchases. Promote only
+   after checks pass; postflight all closed gates/assets/runtime. No SMS can send.
+6. AFTER that build/promotion, just before attendance, match original Founder cohort
    identity to current verified email, Full Owner/TOTP and transition record. Create
    phone-window.json using the reviewed plan shape, actual start/deadline <=2h,
    one unique window ID, exact source/package and SHA256(Founder UUID). Never infer
@@ -71,15 +80,10 @@ This scope does NOT approve public registration, sales, issuance or Play publica
    then change only the final transaction boundary to COMMIT under this approval.
    Apply via reviewed privileged connection, ON_ERROR_STOP, then read back disabled,
    allowlist1,budget100,reserved0,attempts0 and matching authority/deadline. No other
-   window may be enabled; no update/reuse of an old session or allocation.
-6. Candidate runtime = public-runtime-closed.json plus the exact one-attempt appStage
-   in production-phone-one-attempt.json, private SMS bindings and this window only.
-   All commerce, registration and beta flags remain false. On protected candidate:
-   anonymous denied; invalid signature denied; correctly signed synthetic callback
-   denied by disabled window; zero attempts/provider requests; retired/QA denied.
-   Use synthetic non-routable payloads only while the window is disabled. Verify
-   existing Owner GET routes and exact notice/home bytes, no new MFA/drill/purchases.
-   Promote only after these checks pass; postflight all closed gates/assets/runtime.
+   window may be enabled; no update/reuse of an old session or allocation. Perform
+   the signed disabled-window zero-send check with a synthetic non-routable payload.
+   Start the watchdog within five minutes of startsAt. Do not start this timer before
+   a hosted build; expired/late sessions must not be silently extended or replaced.
 7. Start OFF-only watchdog with current approved authority/plan and privately pinned
    DB connection: node scripts/production-phone-watchdog.mjs --watch <private-session-dir>.
    Wait for armed.json. Operator must remain connected; never promise local process
