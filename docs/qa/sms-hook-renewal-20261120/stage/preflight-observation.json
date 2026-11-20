@@ -1,0 +1,34 @@
+{
+  "at": "2026-11-20T06:48:06.133Z",
+  "mode": "preflight",
+  "readOnly": true,
+  "comparedWith": "Founder-accepted, hash-bound 20 November cutoff",
+  "changedTables": [
+    "auth.refresh_tokens",
+    "auth.sessions",
+    "auth.users",
+    "cron.job_run_details",
+    "private.docked_mail_scheduler",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "changedProtectedFields": [],
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custodyRecords": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "unclassified": true
+}
