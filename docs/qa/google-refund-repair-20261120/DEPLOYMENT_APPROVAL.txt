@@ -1,0 +1,12 @@
+FOUNDER DECISION | Closed-gate Google refund repair | Awaiting approval
+
+Application source 42d906af9a9d3c9fe4fa3afe7a7697d236816aee
+Exact package SHA-256 4d6234db51bacdc4640463425d8dd21a9d2bffb32d2435756c0e4ed306de70e8
+Branch codex/sms-hook-repair-20261118
+Manifest docs/qa/google-refund-repair-20261120/package.json
+Reviewed procedure docs/qa/google-refund-repair-20261120/EXECUTION.txt
+Validity requested 24 hours from explicit approval of these bytes.
+
+Approve the protected staging, closed-gate Production deployment and hosted acceptance of this exact repair. The only external test event is one built-in Google Play test notification. This creates a durable operational job and requires no order or customer payment. Observe two genuine five-minute cron invocations. The reviewed changes route both paths to the restricted commercial reconciliation worker and set the three confirmed commercial Pub/Sub values. Two temporary app-level phone switches are set false. Existing Google Cloud subscription, IAM, SQL schema, secrets, balances, ownership, commercial offers, Android v31 and Play publication settings require no modification.
+
+A fresh encrypted backup, successful isolated restore, fresh drift check, protected staging, closed controls and business-record verification are preconditions. Follow the reviewed conditional application-only recovery and postflight. Registration, SMS, sales, issuance and all other launch gates stay closed. This decision cannot authorise the old coordinated package or a new public launch. The actual hosted evidence will be bound into a separate revised launch package for decision.
