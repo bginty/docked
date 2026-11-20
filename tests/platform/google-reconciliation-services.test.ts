@@ -20,6 +20,8 @@ test("existing legacy scheduler keeps dormant commercial jobs closed", async () 
   const health = await runGoogleReconciliationServices(
     {
       DOCKED_GOOGLE_RECONCILIATION_ENABLED: "true",
+      DOCKED_BETA_STAGING: "true",
+      DOCKED_FRIENDS_BETA: "true",
       DOCKED_COMMERCIAL_SERVICE: "false",
     },
     {
@@ -59,10 +61,12 @@ test("one queue outage does not prevent the other queue from recovering", async 
     runGoogleReconciliationServices(
       {
         DOCKED_GOOGLE_RECONCILIATION_ENABLED: "true",
+        DOCKED_BETA_STAGING: "true",
+        DOCKED_FRIENDS_BETA: "true",
         DOCKED_COMMERCIAL_SERVICE: "true",
       },
       {
-        legacy: async () => {
+        legacy: () => {
           throw Error("private provider error");
         },
         commercial: async () => {
@@ -74,4 +78,48 @@ test("one queue outage does not prevent the other queue from recovering", async 
     /deferred; durable jobs retained/,
   );
   assert.equal(recovered, true);
+});
+
+test("retired beta setting never runs the legacy worker in a paid public runtime", async () => {
+  const health = await runGoogleReconciliationServices(
+    {
+      DOCKED_GOOGLE_RECONCILIATION_ENABLED: "true",
+      DOCKED_BETA_STAGING: "false",
+      DOCKED_FRIENDS_BETA: "false",
+      DOCKED_COMMERCIAL_SERVICE: "true",
+    },
+    {
+      legacy: () => {
+        throw Error("retired beta was invoked");
+      },
+      commercial: async () => ({ attentionRequired: false }),
+    },
+  );
+  assert.deepEqual(Object.keys(health.services), ["commercial"]);
+});
+
+test("a rejected commercial worker still waits for eligible historical work", async () => {
+  let completed = false;
+  await assert.rejects(
+    runGoogleReconciliationServices(
+      {
+        DOCKED_GOOGLE_RECONCILIATION_ENABLED: "true",
+        DOCKED_BETA_STAGING: "true",
+        DOCKED_FRIENDS_BETA: "true",
+        DOCKED_COMMERCIAL_SERVICE: "true",
+      },
+      {
+        legacy: async () => {
+          await new Promise<void>((resolve) => setImmediate(resolve));
+          completed = true;
+          return { attentionRequired: false };
+        },
+        commercial: async () => {
+          throw Error("provider unavailable");
+        },
+      },
+    ),
+    /deferred; durable jobs retained/,
+  );
+  assert.equal(completed, true);
 });

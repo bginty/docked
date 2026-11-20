@@ -6,6 +6,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 export const maxDuration = 60;
 export async function GET(req: Request) {
+  let commercialAttentionRequired = false;
   const response = await googleScheduledReconciliationRequest(req, {
     secret: process.env.CRON_SECRET ?? "",
     run: async () => {
@@ -13,6 +14,8 @@ export async function GET(req: Request) {
         legacy: () => memberGoogleReconciliation().run(),
         commercial: async () => (await commercialRuntime()).worker.run(),
       });
+      commercialAttentionRequired =
+        health.services.commercial?.attentionRequired === true;
       // Operational counters only: never log receipt tokens or account identity.
       const event = { event: "google-test-reconciliation", ...health };
       if (health.attentionRequired) console.error(JSON.stringify(event));
@@ -32,5 +35,10 @@ export async function GET(req: Request) {
         ),
       }),
     );
+  if (response.ok && commercialAttentionRequired)
+    return new Response(response.body, {
+      status: 503,
+      headers: response.headers,
+    });
   return response;
 }

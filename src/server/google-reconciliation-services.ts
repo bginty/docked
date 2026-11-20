@@ -1,4 +1,14 @@
 type Health = { attentionRequired: boolean } & Record<string, unknown>;
+export function legacyGoogleReconciliationEnabled(
+  env: Record<string, string | undefined>,
+) {
+  return (
+    env.DOCKED_GOOGLE_RECONCILIATION_ENABLED === "true" &&
+    env.DOCKED_BETA_STAGING === "true" &&
+    env.DOCKED_FRIENDS_BETA === "true"
+  );
+}
+
 /** Keep the existing scheduler and legacy queue. Dormant commercial configuration
  * must not open a connection or run commercial jobs; checkout activation is not
  * required to reconcile refunds for an already configured service. */
@@ -10,9 +20,7 @@ export async function runGoogleReconciliationServices(
   },
 ): Promise<Health & { services: Record<string, Health> }> {
   const enabled = [
-    ...(env.DOCKED_GOOGLE_RECONCILIATION_ENABLED === "true"
-      ? ["legacy" as const]
-      : []),
+    ...(legacyGoogleReconciliationEnabled(env) ? ["legacy" as const] : []),
     ...(env.DOCKED_COMMERCIAL_SERVICE === "true"
       ? ["commercial" as const]
       : []),
@@ -20,7 +28,7 @@ export async function runGoogleReconciliationServices(
   if (!enabled.length) throw Error("Store reconciliation is disabled");
   // One provider/queue failure must not prevent the other queue from running.
   const results = await Promise.allSettled(
-    enabled.map((name) => services[name]()),
+    enabled.map(async (name) => services[name]()),
   );
   if (results.some((r) => r.status === "rejected"))
     throw Error("Store reconciliation deferred; durable jobs retained");

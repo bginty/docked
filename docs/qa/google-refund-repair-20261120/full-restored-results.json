@@ -1,0 +1,149 @@
+{
+  "at": "2026-11-20T10:45:03.455Z",
+  "checks": [
+    "All three effective environments invoke the real scheduled commercial worker with retired beta excluded",
+    "Signed fixture persisted before 204, duplicate acknowledged once, unsigned denied and failed persistence retryable; push alone cannot adjust credits",
+    "Unspent refund authoritatively verified and reversed",
+    "Provider outage retained the leased job with backoff, reported attention, and recovered on the retry",
+    "Missed push recovered from the scheduled recheck of an already consumed and fully spent purchase",
+    "Partial and fully spent refunds give 700 and 4900 credit holds; retries and stale notifications never recredit; unrelated balance preserved",
+    "Archived history fingerprints preserved, commercial ownership and lifetime counters unchanged by refunds, all journals balanced"
+  ],
+  "network": "none",
+  "backend": "actual commercial scheduler route, verifier, restricted SQL runtime and ledger",
+  "provider": "synthetic Google order responses",
+  "hosted": false,
+  "externalTransactions": 0,
+  "productionWrites": 0,
+  "historicalGoogleRows": 4,
+  "fixtureCardsRetained": 8,
+  "providerFixtureReads": 33,
+  "holdExposures": [
+    700,
+    4900
+  ],
+  "zeroSpendableForRefundedCustomers": 3,
+  "unrelatedSpendable": 4900,
+  "schedulerRuns": [
+    {
+      "event": "google-test-reconciliation",
+      "services": {
+        "commercial": {
+          "scheduled": 0,
+          "attempted": 0,
+          "attention": 0,
+          "overdue": 0,
+          "retrying": 0,
+          "completed": 4,
+          "attentionRequired": false
+        }
+      },
+      "attentionRequired": false
+    },
+    {
+      "event": "google-test-reconciliation",
+      "services": {
+        "commercial": {
+          "scheduled": 0,
+          "attempted": 0,
+          "attention": 0,
+          "overdue": 0,
+          "retrying": 0,
+          "completed": 4,
+          "attentionRequired": false
+        }
+      },
+      "attentionRequired": false
+    },
+    {
+      "event": "google-test-reconciliation",
+      "services": {
+        "commercial": {
+          "scheduled": 0,
+          "attempted": 0,
+          "attention": 0,
+          "overdue": 0,
+          "retrying": 0,
+          "completed": 4,
+          "attentionRequired": false
+        }
+      },
+      "attentionRequired": false
+    },
+    {
+      "event": "google-test-reconciliation",
+      "services": {
+        "commercial": {
+          "scheduled": 0,
+          "attempted": 1,
+          "attention": 0,
+          "overdue": 0,
+          "retrying": 0,
+          "completed": 5,
+          "attentionRequired": false
+        }
+      },
+      "attentionRequired": false
+    },
+    {
+      "event": "google-test-reconciliation",
+      "services": {
+        "commercial": {
+          "scheduled": 0,
+          "attempted": 1,
+          "attention": 0,
+          "overdue": 0,
+          "retrying": 1,
+          "completed": 5,
+          "attentionRequired": true
+        }
+      },
+      "attentionRequired": true
+    },
+    {
+      "event": "google-test-reconciliation",
+      "services": {
+        "commercial": {
+          "scheduled": 0,
+          "attempted": 1,
+          "attention": 0,
+          "overdue": 0,
+          "retrying": 0,
+          "completed": 6,
+          "attentionRequired": false
+        }
+      },
+      "attentionRequired": false
+    },
+    {
+      "event": "google-test-reconciliation",
+      "services": {
+        "commercial": {
+          "scheduled": 1,
+          "attempted": 1,
+          "attention": 0,
+          "overdue": 0,
+          "retrying": 0,
+          "completed": 7,
+          "attentionRequired": false
+        }
+      },
+      "attentionRequired": false
+    },
+    {
+      "event": "google-test-reconciliation",
+      "services": {
+        "commercial": {
+          "scheduled": 0,
+          "attempted": 1,
+          "attention": 0,
+          "overdue": 0,
+          "retrying": 0,
+          "completed": 8,
+          "attentionRequired": false
+        }
+      },
+      "attentionRequired": false
+    }
+  ]
+}

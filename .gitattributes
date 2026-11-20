@@ -144,3 +144,7 @@ scripts/production-phone-* text eol=lf
 scripts/lib/paid-launch-* text eol=lf
 scripts/lib/production-phone-* text eol=lf
 scripts/lib/supabase-management-read.mjs text eol=lf
+
+# Preserve canonical bytes of the 20 November refund repair release manifest.
+docs/qa/google-refund-repair-20261120/** text eol=lf
+config/operations/google-refund-repair.json text eol=lf

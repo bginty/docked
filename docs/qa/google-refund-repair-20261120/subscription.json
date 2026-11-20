@@ -1,0 +1,12 @@
+{
+  "observedDateSydney": "2026-11-20",
+  "method": "Read-only Google Cloud Console subscription Details using the existing authenticated session",
+  "project": "docked-play-verification",
+  "topic": "projects/docked-play-verification/topics/docked-google-test-notifications",
+  "subscription": "projects/docked-play-verification/subscriptions/docked-google-test-notifications-push",
+  "pushEndpoint": "https://docked.com.au/api/store/google/notifications",
+  "oidcAudience": "https://docked.com.au/api/store/google/notifications",
+  "oidcServiceAccount": "docked-play-rtdn-push@docked-play-verification.iam.gserviceaccount.com",
+  "metadataAccess": "Existing interactive account. No billing-verifier IAM permission was granted.",
+  "googleCloudChangesRequired": 0
+}

@@ -1,0 +1,65 @@
+{
+  "isolatedPassed": true,
+  "scope": "Google refund dispatch and authenticated enqueue",
+  "baselineCommit": "41ccccd8c520cb04d49583eb36e5315eb67bceb5",
+  "confirmedLiveApplication": "6e96e61192b82ee576aa0a8365808081a98b30fa",
+  "confirmedLiveDeployment": "dpl_yV2vyZb1FQgdTciY2gHk25JtXVt8",
+  "frameworkBuild": {
+    "next": "16.4.6",
+    "webpack": true,
+    "typecheck": "passed",
+    "staticPages": 71
+  },
+  "changedFileLint": "passed",
+  "focusedPlatformTests": {
+    "passed": 37,
+    "failed": 0,
+    "skipped": 0,
+    "runs": "36 initially; final dispatcher rerun passed all six, including one additional asynchronous-failure regression"
+  },
+  "postgresRegressionGroups": 16,
+  "authenticatedRestore": {
+    "matchedProtectedTables": 576,
+    "network": "none",
+    "publishedPorts": 0
+  },
+  "configuredDispatcher": [
+    "closed repair",
+    "final paid config",
+    "public registration config"
+  ],
+  "authenticatedScheduledHandler": {
+    "healthy": 200,
+    "providerUnavailableAndRetryScheduled": 503,
+    "afterRecovery": 200
+  },
+  "signedFixture": {
+    "validDurable": 204,
+    "duplicate": 204,
+    "unsigned": 401,
+    "persistenceUnavailable": 503
+  },
+  "acceptedGenuineGoogleTestOrders": 3,
+  "providerContractsComparedFrom": "76df44ba1adef012c5ec2119563cbc05ff9e3c0b",
+  "unchangedComparedPaths": [
+    "src/server/google-commercial-verifier.ts",
+    "src/server/google-store-notifications.ts",
+    "src/server/google-play-oauth.ts",
+    "src/server/commercial-ledger.ts"
+  ],
+  "realCustomerTransactions": 0,
+  "productionMutations": 0,
+  "hostedCandidateAcceptance": "pending separate closed-gate deployment approval",
+  "coordinatedLaunch": "NO-GO",
+  "fullSchemaRehearsal": {
+    "passed": true,
+    "network": "none",
+    "fullRestoredProject": "pojoymtniryarxxunyvz",
+    "existingRestrictedRolesUsed": true,
+    "unchangedHistoricalGoogleReceiptRows": 4,
+    "externalProviderCalls": 0,
+    "fixtureCardsRetained": 8,
+    "containerStopped": true,
+    "preparationGuard": "Initial attempt correctly rejected concurrent historical founder-credit gates. Final isolated rehearsal followed the previously reviewed order to close those gates before fixture setup."
+  }
+}

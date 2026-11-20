@@ -1,0 +1,87 @@
+{
+  "at": "2026-11-20T10:17:07.316Z",
+  "input": "Full saved deployed bindings from verified Vercel baseline plus exact reviewed closed and paid overrides, then only the repair changes",
+  "baseline": "dpl_yV2vyZb1FQgdTciY2gHk25JtXVt8",
+  "usedFullEnvironmentsForDispatch": true,
+  "credentialValuesExported": 0,
+  "scenarios": [
+    {
+      "name": "closed",
+      "eligible": [
+        "commercial"
+      ],
+      "projection": {
+        "DOCKED_GOOGLE_RECONCILIATION_ENABLED": "true",
+        "DOCKED_BETA_STAGING": "false",
+        "DOCKED_FRIENDS_BETA": "false",
+        "DOCKED_COMMERCIAL_SERVICE": "true",
+        "DOCKED_COMMERCIAL_CHECKOUT": "false",
+        "DOCKED_COMMERCIAL_SURFACES": "false",
+        "DOCKED_COMMERCIAL_MARKETPLACE": "false",
+        "DOCKED_PUBLIC_PHONE_OTP": "false",
+        "DOCKED_SMS_BUDGET_HOOK_ENABLED": "false",
+        "DOCKED_PUBLIC_CUSTOMERS": "true",
+        "DOCKED_PUBLIC_MEMBER_SETUP": "false",
+        "REGISTRATION_ENABLED": "false",
+        "DOCKED_ISOLATED_PUBLIC": "false",
+        "DATABASE_RUNTIME": "serverless",
+        "APP_ENV": "production",
+        "DOCKED_GOOGLE_COMMERCIAL_PUSH_AUDIENCE": "https://docked.com.au/api/store/google/notifications",
+        "DOCKED_GOOGLE_COMMERCIAL_PUSH_SERVICE_ACCOUNT": "docked-play-rtdn-push@docked-play-verification.iam.gserviceaccount.com",
+        "DOCKED_GOOGLE_COMMERCIAL_PUSH_SUBSCRIPTION": "projects/docked-play-verification/subscriptions/docked-google-test-notifications-push"
+      }
+    },
+    {
+      "name": "paid",
+      "eligible": [
+        "commercial"
+      ],
+      "projection": {
+        "DOCKED_GOOGLE_RECONCILIATION_ENABLED": "true",
+        "DOCKED_BETA_STAGING": "false",
+        "DOCKED_FRIENDS_BETA": "false",
+        "DOCKED_COMMERCIAL_SERVICE": "true",
+        "DOCKED_COMMERCIAL_CHECKOUT": "true",
+        "DOCKED_COMMERCIAL_SURFACES": "true",
+        "DOCKED_COMMERCIAL_MARKETPLACE": "false",
+        "DOCKED_PUBLIC_PHONE_OTP": "true",
+        "DOCKED_SMS_BUDGET_HOOK_ENABLED": "true",
+        "DOCKED_PUBLIC_CUSTOMERS": "true",
+        "DOCKED_PUBLIC_MEMBER_SETUP": "true",
+        "REGISTRATION_ENABLED": "false",
+        "DOCKED_ISOLATED_PUBLIC": "false",
+        "DATABASE_RUNTIME": "serverless",
+        "APP_ENV": "production",
+        "DOCKED_GOOGLE_COMMERCIAL_PUSH_AUDIENCE": "https://docked.com.au/api/store/google/notifications",
+        "DOCKED_GOOGLE_COMMERCIAL_PUSH_SERVICE_ACCOUNT": "docked-play-rtdn-push@docked-play-verification.iam.gserviceaccount.com",
+        "DOCKED_GOOGLE_COMMERCIAL_PUSH_SUBSCRIPTION": "projects/docked-play-verification/subscriptions/docked-google-test-notifications-push"
+      }
+    },
+    {
+      "name": "registration",
+      "eligible": [
+        "commercial"
+      ],
+      "projection": {
+        "DOCKED_GOOGLE_RECONCILIATION_ENABLED": "true",
+        "DOCKED_BETA_STAGING": "false",
+        "DOCKED_FRIENDS_BETA": "false",
+        "DOCKED_COMMERCIAL_SERVICE": "true",
+        "DOCKED_COMMERCIAL_CHECKOUT": "true",
+        "DOCKED_COMMERCIAL_SURFACES": "true",
+        "DOCKED_COMMERCIAL_MARKETPLACE": "false",
+        "DOCKED_PUBLIC_PHONE_OTP": "true",
+        "DOCKED_SMS_BUDGET_HOOK_ENABLED": "true",
+        "DOCKED_PUBLIC_CUSTOMERS": "true",
+        "DOCKED_PUBLIC_MEMBER_SETUP": "true",
+        "REGISTRATION_ENABLED": "true",
+        "DOCKED_ISOLATED_PUBLIC": "false",
+        "DATABASE_RUNTIME": "serverless",
+        "APP_ENV": "production",
+        "DOCKED_GOOGLE_COMMERCIAL_PUSH_AUDIENCE": "https://docked.com.au/api/store/google/notifications",
+        "DOCKED_GOOGLE_COMMERCIAL_PUSH_SERVICE_ACCOUNT": "docked-play-rtdn-push@docked-play-verification.iam.gserviceaccount.com",
+        "DOCKED_GOOGLE_COMMERCIAL_PUSH_SUBSCRIPTION": "projects/docked-play-verification/subscriptions/docked-google-test-notifications-push"
+      }
+    }
+  ]
+}

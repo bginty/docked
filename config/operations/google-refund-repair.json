@@ -1,0 +1,12 @@
+{
+  "workerAndPush": {
+    "DOCKED_COMMERCIAL_SERVICE": "true",
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_AUDIENCE": "https://docked.com.au/api/store/google/notifications",
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_SERVICE_ACCOUNT": "docked-play-rtdn-push@docked-play-verification.iam.gserviceaccount.com",
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_SUBSCRIPTION": "projects/docked-play-verification/subscriptions/docked-google-test-notifications-push"
+  },
+  "closedRepairOverrides": {
+    "DOCKED_PUBLIC_PHONE_OTP": "false",
+    "DOCKED_SMS_BUDGET_HOOK_ENABLED": "false"
+  }
+}

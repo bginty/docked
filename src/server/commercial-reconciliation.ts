@@ -154,12 +154,13 @@ export class CommercialReconciliation {
   }
   async health() {
     const [row] = await this.ledger
-      .sql`select count(*) filter(where state='attention')::int attention,count(*) filter(where state in('pending','working') and created_at<clock_timestamp()-interval '1 hour')::int overdue,count(*) filter(where state='done')::int completed from commercial_billing.jobs`;
+      .sql`select count(*) filter(where state='attention')::int attention,count(*) filter(where state='pending' and attempts>0)::int retrying,count(*) filter(where state in('pending','working') and created_at<clock_timestamp()-interval '1 hour')::int overdue,count(*) filter(where state='done')::int completed from commercial_billing.jobs`;
     return {
       attention: Number(row.attention),
       overdue: Number(row.overdue),
+      retrying: Number(row.retrying),
       completed: Number(row.completed),
-      attentionRequired: row.attention > 0 || row.overdue > 0,
+      attentionRequired: row.attention > 0 || row.overdue > 0 || row.retrying > 0,
     };
   }
 }

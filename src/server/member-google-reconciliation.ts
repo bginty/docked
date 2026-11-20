@@ -1,4 +1,5 @@
 import "server-only";
+import { legacyGoogleReconciliationEnabled } from "./google-reconciliation-services";
 import { db } from "./db";
 import { StoreTestInbox } from "./store-test-inbox";
 import { StoreTestReconciliation } from "./store-reconciliation";
@@ -15,11 +16,7 @@ import draft from "../../config/store-credit-package-drafts.json";
  * member's test grant expires. It can only revisit an already-bound TEST receipt.
  * No caller supplies a member, amount, product, token or an arbitrary job command. */
 export function memberGoogleReconciliation() {
-  if (
-    process.env.DOCKED_GOOGLE_RECONCILIATION_ENABLED !== "true" ||
-    process.env.DOCKED_FRIENDS_BETA !== "true" ||
-    process.env.DOCKED_BETA_STAGING !== "true"
-  )
+  if (!legacyGoogleReconciliationEnabled(process.env))
     throw Error("Store reconciliation is disabled");
   const key = process.env.DOCKED_STORE_REFERENCE_KEY ?? "";
   const binding = process.env.DOCKED_STORE_ACCOUNT_BINDING_SECRET ?? "";

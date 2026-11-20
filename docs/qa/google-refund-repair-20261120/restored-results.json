@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-20T10:32:46.092Z",
+  "checks": [
+    "All three effective environments invoke the real scheduled commercial worker with retired beta excluded",
+    "Signed fixture persisted before 204, duplicate acknowledged once, unsigned denied and failed persistence retryable; push alone cannot adjust credits",
+    "Unspent refund authoritatively verified and reversed",
+    "Provider outage retained the leased job with backoff, reported attention, and recovered on the retry",
+    "Missed push recovered from the scheduled recheck of an already consumed and fully spent purchase",
+    "Partial and fully spent refunds give 700 and 4900 credit holds; retries and stale notifications never recredit; unrelated balance preserved",
+    "Archived history fingerprints preserved, commercial ownership and lifetime counters unchanged by refunds, all journals balanced"
+  ],
+  "network": "loopback database, intercepted offline Google transport",
+  "backend": "actual commercial scheduler route, verifier, restricted SQL runtime and ledger",
+  "provider": "synthetic Google order responses",
+  "hosted": false,
+  "externalTransactions": 0,
+  "productionWrites": 0,
+  "historicalGoogleRows": 4,
+  "fixtureCardsRetained": 8,
+  "providerFixtureReads": 33,
+  "holdExposures": [
+    700,
+    4900
+  ],
+  "zeroSpendableForRefundedCustomers": 3,
+  "unrelatedSpendable": 4900
+}
