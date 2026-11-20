@@ -1,0 +1,22 @@
+{
+  "at": "2026-11-20T13:22:56.975Z",
+  "method": "GET only",
+  "functionVersion": 49,
+  "edgeFunction": "ACTIVE",
+  "flags": {
+    "DOCKED_GRAPH_MAIL_ENABLED": "true",
+    "DOCKED_GRAPH_WORKER_READY": "true",
+    "DOCKED_GRAPH_TEST_ENABLED": "false",
+    "DOCKED_GRAPH_INVITES_READY": "true",
+    "DOCKED_GRAPH_RECIPIENT_MODE": "approved-beta"
+  },
+  "emailAuthEnabled": true,
+  "emailHookOn": true,
+  "emailHookExpectedUri": true,
+  "emailConfirmedRequired": true,
+  "emailRemainingClosedBeforeLaunch": true,
+  "siteUrl": "https://docked.com.au",
+  "releaseChannel": "stable",
+  "signupRejectedAsBeta": false,
+  "authEmailReadyInReviewedRuntime": true
+}

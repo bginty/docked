@@ -1,0 +1,38 @@
+{
+  "at": "2026-11-20T13:49:44.190Z",
+  "checkpoint": "closure",
+  "readOnly": true,
+  "data": {
+    "new_accounts": 0,
+    "new_email_verified": 0,
+    "new_phone_verified": 0,
+    "receipts": 0,
+    "credited": 0,
+    "packs": 0,
+    "cards": 0,
+    "incomplete_packs": 0,
+    "unbalanced_journals": 0,
+    "supply_errors": 0,
+    "active_rounds": 0,
+    "optional_controls": 0,
+    "other_features": 0,
+    "smsWindow": {
+      "enabled": false,
+      "budget_aud_cents": 5000,
+      "reserved_aud_cents": 0,
+      "expires_at": "2026-11-27T12:04:37.377Z",
+      "public_window": true,
+      "attempts": 0
+    },
+    "smsOutcomes": [],
+    "refundJobs": [
+      {
+        "state": "done",
+        "n": 1
+      }
+    ]
+  },
+  "signup": false,
+  "phone": false,
+  "signedHook": false
+}

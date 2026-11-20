@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-20T13:28:30.783Z",
+  "passed": true,
+  "checkedVia": "Google Android Publisher API and Twilio GET",
+  "previouslyBoundEvidence": {
+    "google": "6694f1ff0f3e59a7f5e875cc6732d91d69be79bca64625b5db5d19746c364b2d",
+    "sms": "8d1790a2f9959be289a6c31e85035e56721e048af617869dda4c66c37d2ac54c"
+  },
+  "freshEvidence": {
+    "google": "86f02513727a7aac13aa8c2ad856f2e3d260b3ed2573a2232cec2fd3788a31e8",
+    "sms": "745b359a970bcef6637c6e5821d47afff782c229b0a66e749152a59540642b99"
+  },
+  "samePricesRegionAndStatus": true,
+  "firstAttemptBudgetAud": 1,
+  "sevenDayMaximumAud": 50,
+  "windowStart": "2026-11-20T12:04:37.377Z",
+  "windowEnd": "2026-11-27T12:04:37.377Z",
+  "verifiedPlayConsole": {
+    "managedPublishing": true,
+    "readyCount": 10,
+    "australia": true,
+    "versionCode": 31,
+    "versionName": "1.30",
+    "audience": "18 and older",
+    "dataSafetyInReadyGroup": true
+  },
+  "optionalCommerceOff": true
+}
