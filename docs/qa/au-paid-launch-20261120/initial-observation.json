@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-20T12:43:13.870Z",
+  "mode": "initial",
+  "readOnly": true,
+  "comparedWith": "Latest reconciled 20 November coordinated launch preflight",
+  "changedTables": [
+    "cron.job_run_details",
+    "private.docked_mail_scheduler",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "changedProtectedFields": [],
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custodyRecords": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "unclassified": true
+}

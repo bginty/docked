@@ -1,0 +1,60 @@
+{
+  "at": "2026-11-20T12:15:44.538Z",
+  "capturedAt": "2026-11-20T12:09:56.469Z",
+  "passedExceptUnapprovedRow": true,
+  "readOnly": true,
+  "acceptedAsNewBaseline": false,
+  "knownException": {
+    "table": "sports_feed.nfl_worker_runs",
+    "id": 4153,
+    "task": "weekly",
+    "diagnostic": "SOURCE_REVIEW_EXPIRED",
+    "startedAt": "2026-11-20T12:05:00.456776+00:00",
+    "rowDigest": "f0f27e3ff4f0727c6d389218fec2a59222d287285ffb812d5e7b6be05bcf856a"
+  },
+  "previousWorkerRowsPreserved": true,
+  "sourceRowsUnchanged": true,
+  "productionWrites": 0,
+  "changedTables": [
+    "cron.job_run_details",
+    "private.docked_mail_scheduler",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "unexplainedDrift": 0,
+  "sourcePurges": 0,
+  "appendOnlyPendingReviewWorkerRows": 1,
+  "scheduler": {
+    "cronRowsAdded": 97,
+    "weeklyZeroIssuanceRowsAdded": 46,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true
+  },
+  "ownerRefresh": {
+    "refreshRotations": 0,
+    "founderOnly": true,
+    "existingMfaSessionOnly": true,
+    "credentialsMfaRolesUnchanged": true,
+    "changes": [],
+    "rateChanges": []
+  },
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custodyRecords": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "rolesMfaFinancialHistoryUnchanged": true,
+  "unchangedSmsAndSupportControlTables": 4
+}

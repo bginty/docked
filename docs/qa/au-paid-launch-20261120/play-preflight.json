@@ -1,0 +1,31 @@
+{
+  "observedOn": "2026-11-20",
+  "source": "Authenticated Google Play Console publishing overview, product pages, and regional transaction tax rates; read-only",
+  "versionCode": 31,
+  "versionName": "1.30",
+  "distribution": "Australia",
+  "managedPublishing": true,
+  "changesReadyToPublish": 10,
+  "storePublicationPerformed": false,
+  "adultAudience": "18+",
+  "phoneDataSafetyInReviewedGroup": true,
+  "products": [
+    {
+      "id": "docked_credits_4900_v1",
+      "option": "buy-au",
+      "country": "Australia",
+      "status": "Inactive",
+      "creditAmount": 4900
+    },
+    {
+      "id": "docked_credits_9900_v1",
+      "option": "buy-au",
+      "country": "Australia",
+      "status": "Inactive",
+      "creditAmount": 9900
+    }
+  ],
+  "category": "Digital app sales",
+  "australianTaxRow": "Australia GST Seller configurable Custom rate 10%",
+  "configurationEdits": 0
+}

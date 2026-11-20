@@ -1,0 +1,70 @@
+{
+  "at": "2026-11-20T12:44:43.560Z",
+  "capturedAt": "2026-11-20T12:43:13.870Z",
+  "launchManifest": "318da4a0eedc948eec202b1756d916d55d18a63bc873be24067021253d59da77",
+  "previouslyAcceptedRow": 4153,
+  "acceptedAsNewBaseline": false,
+  "passedExceptTwoUnapprovedRows": true,
+  "refusals": [
+    {
+      "id": 4154,
+      "task": "pbp",
+      "observedAt": "2026-11-20T12:10:00.650043+00:00",
+      "diagnostic": "SOURCE_REVIEW_EXPIRED",
+      "previousSameRefusal": 4103,
+      "rowSha256": "2cb0223e9ba2ab9c9b1d2d811888dec6536060b112f0dd9797db61c77688c21e"
+    },
+    {
+      "id": 4155,
+      "task": "rosters",
+      "observedAt": "2026-11-20T12:15:00.834752+00:00",
+      "diagnostic": "SOURCE_REVIEW_EXPIRED",
+      "previousSameRefusal": 4104,
+      "rowSha256": "13dfdafb6f344c3ea8bc8e3e039f4a3e9b2fea5e25ff5efdc1e6fcee976569b6"
+    }
+  ],
+  "readOnly": true,
+  "productionWrites": 0,
+  "changedTables": [
+    "cron.job_run_details",
+    "private.docked_mail_scheduler",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "unexplainedDrift": 0,
+  "sourcePurges": 0,
+  "appendOnlyPendingReviewWorkerRows": 2,
+  "scheduler": {
+    "cronRowsAdded": 149,
+    "weeklyZeroIssuanceRowsAdded": 72,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true
+  },
+  "ownerRefresh": {
+    "refreshRotations": 0,
+    "founderOnly": true,
+    "existingMfaSessionOnly": true,
+    "credentialsMfaRolesUnchanged": true,
+    "changes": [],
+    "rateChanges": []
+  },
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custodyRecords": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "rolesMfaFinancialHistoryUnchanged": true,
+  "unchangedSmsAndSupportControlTables": 4
+}

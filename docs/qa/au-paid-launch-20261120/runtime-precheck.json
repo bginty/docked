@@ -1,0 +1,118 @@
+{
+  "at": "2026-11-20T12:01:37.197Z",
+  "readOnly": true,
+  "g": {
+    "definitions": 6540,
+    "enabled_definitions": 0,
+    "lifetime": 918,
+    "commercial_cards": 0,
+    "enabled_commerce": 0,
+    "active_windows": 0,
+    "public_flags": 0,
+    "active_rounds": 0,
+    "prior_launch_steps": 0
+  },
+  "regions": [
+    {
+      "state": "ACT",
+      "approved": true,
+      "minimum_age": 18,
+      "available": true,
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z"
+    },
+    {
+      "state": "NSW",
+      "approved": true,
+      "minimum_age": 18,
+      "available": true,
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z"
+    },
+    {
+      "state": "NT",
+      "approved": true,
+      "minimum_age": 18,
+      "available": true,
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z"
+    },
+    {
+      "state": "QLD",
+      "approved": true,
+      "minimum_age": 18,
+      "available": true,
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z"
+    },
+    {
+      "state": "SA",
+      "approved": true,
+      "minimum_age": 18,
+      "available": true,
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z"
+    },
+    {
+      "state": "TAS",
+      "approved": true,
+      "minimum_age": 18,
+      "available": true,
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z"
+    },
+    {
+      "state": "VIC",
+      "approved": true,
+      "minimum_age": 18,
+      "available": true,
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z"
+    },
+    {
+      "state": "WA",
+      "approved": true,
+      "minimum_age": 18,
+      "available": true,
+      "effective_to": "2027-02-03T13:03:30.607Z",
+      "review_at": "2026-12-05T13:03:30.607Z"
+    }
+  ],
+  "eligibleCount": 6065,
+  "snapshotProblems": {},
+  "distinctIssuablePlayers": {
+    "nfl ULTRA_RARE": 403,
+    "nfl RARE": 403,
+    "afl LEGENDARY": 536,
+    "afl ICON": 536,
+    "nrl ULTRA_RARE": 274,
+    "afl ULTRA_RARE": 536,
+    "nrl RARE": 274,
+    "afl ELITE": 536,
+    "nrl LEGENDARY": 274,
+    "afl RARE": 536,
+    "nfl LEGENDARY": 403,
+    "nrl ELITE": 274,
+    "nrl ICON": 274,
+    "nfl ICON": 401,
+    "nfl ELITE": 403
+  },
+  "commercialRole": {
+    "role": "docked_commercial_runtime",
+    "restricted": true,
+    "permitted": true
+  },
+  "appRole": {
+    "role": "docked_app",
+    "session_access": true,
+    "phone_guard": true,
+    "signup_guard": true
+  },
+  "localRuntimeHas": {
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_AUDIENCE": true,
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_SERVICE_ACCOUNT": true,
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_SUBSCRIPTION": true,
+    "DOCKED_GOOGLE_COMMERCIAL_SERVICE_EMAIL": true,
+    "DOCKED_GOOGLE_COMMERCIAL_PRIVATE_KEY": true
+  }
+}

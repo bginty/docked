@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-20T12:24:23.297Z",
+  "mode": "read only",
+  "configured": {
+    "deploymentIdentityRequiresHostedCheck": true,
+    "reviewedDatabase": true,
+    "reviewedOrigin": true,
+    "allForbiddenFlagsOff": true,
+    "siteUrl": "https://docked.com.au"
+  },
+  "publicCustomersEnabled": true,
+  "phoneReady": true,
+  "registrationProjectionWithDbEnabled": true,
+  "denial": null,
+  "grants": {
+    "role": "docked_app",
+    "registration_read": true,
+    "auth_read": true,
+    "handles_read": true,
+    "profile_insert": true,
+    "preferences_insert": true,
+    "consent_insert": true,
+    "handle_insert": true,
+    "au_jurisdiction": true
+  }
+}
