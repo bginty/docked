@@ -1,0 +1,217 @@
+{
+  "source": "6e96e61192b82ee576aa0a8365808081a98b30fa",
+  "packageSha256": "632eed5b7d5fd5b41265775ec3a3810e5b79d05c21ecf2bed230501fe0b4374b",
+  "from": "2026-11-17T21:16:34.651Z",
+  "to": "2026-11-20T06:20:42.440Z",
+  "beforeTableSetSha256": "ec1552a4cc961f3f444d06242c706fdef08cfcf47635a8dacf8b722724e54425",
+  "afterTableSetSha256": "f552c5c373b4768edc01f2d5866824b1a49fbd2902a2d05231c2b4c82317eadf",
+  "protectedTables": 576,
+  "changedTables": [
+    "auth.mfa_amr_claims",
+    "auth.mfa_challenges",
+    "auth.mfa_factors",
+    "auth.refresh_tokens",
+    "auth.sessions",
+    "auth.users",
+    "cron.job_run_details",
+    "private.docked_mail_scheduler",
+    "private.rate_limits",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.raw_revisions",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "purges": [
+    {
+      "id": 32,
+      "expiredAt": "2026-11-18T00:05:02.631061+00:00",
+      "purgedAt": "2026-11-18T00:17:00.097273+00:00",
+      "priorRowDigest": "35d3504189a9d957eeb071ba33d75287",
+      "currentRowDigest": "14f0893ffe2a4b6512c9ed743f12f5d2",
+      "provenanceDigest": "5f03815a0b220c70d770df478b7d7e7f"
+    },
+    {
+      "id": 33,
+      "expiredAt": "2026-11-18T00:15:01.930062+00:00",
+      "purgedAt": "2026-11-18T00:17:00.171476+00:00",
+      "priorRowDigest": "3d3353098b7be63d7623e131172f639b",
+      "currentRowDigest": "869b79191676d3a6ee85403b6440b3cf",
+      "provenanceDigest": "9e2f4e4dcd9bdce82f7d70f5db6b305c"
+    },
+    {
+      "id": 35,
+      "expiredAt": "2026-11-18T12:15:02.255329+00:00",
+      "purgedAt": "2026-11-18T12:17:00.145723+00:00",
+      "priorRowDigest": "f36da998a9fd64cca2f30e89f35fdf9d",
+      "currentRowDigest": "ab06a5b39ff09099b288dc8652f9a56b",
+      "provenanceDigest": "51b171b5bf06f4369194159a811b637e"
+    },
+    {
+      "id": 36,
+      "expiredAt": "2026-11-19T00:05:02.856718+00:00",
+      "purgedAt": "2026-11-19T00:17:00.083137+00:00",
+      "priorRowDigest": "6bdaa7cfe0a43cf062257a5be34798f6",
+      "currentRowDigest": "bdd0f9c8e55688fa09175499a0fbb2cc",
+      "provenanceDigest": "0eed1631a995c9062104cafe728691f1"
+    },
+    {
+      "id": 37,
+      "expiredAt": "2026-11-19T00:15:02.965489+00:00",
+      "purgedAt": "2026-11-19T00:17:00.174213+00:00",
+      "priorRowDigest": "ec94f16f458f60ce7efba646cf0fcb98",
+      "currentRowDigest": "448f6f8ca904e74ff1eaa2ad459b8fb9",
+      "provenanceDigest": "c7bad819d98b1a2e3d8411eeef21eadb"
+    },
+    {
+      "id": 38,
+      "expiredAt": "2026-11-19T06:05:02.733931+00:00",
+      "purgedAt": "2026-11-19T06:17:00.170799+00:00",
+      "priorRowDigest": "75ef1f4371823991d1631b01a911021c",
+      "currentRowDigest": "5e0e04c503d74fba9fa6f3930daa58f8",
+      "provenanceDigest": "9662ecd60923a7c8c89eda3edc722737"
+    },
+    {
+      "id": 39,
+      "expiredAt": "2026-11-20T00:05:01.846763+00:00",
+      "purgedAt": "2026-11-20T00:17:00.156327+00:00",
+      "priorRowDigest": "3d204624f344f3f35c955d206af936de",
+      "currentRowDigest": "fc707dda00d88324026773f7c59b8a93",
+      "provenanceDigest": "8d3ef3c4154d253e1ba596f8050de8f6"
+    },
+    {
+      "id": 40,
+      "expiredAt": "2026-11-20T00:10:04.712932+00:00",
+      "purgedAt": "2026-11-20T00:17:00.248828+00:00",
+      "priorRowDigest": "73eeae40034d092377224d4061e2988d",
+      "currentRowDigest": "f931c8415acb8f387fcd6e3dd3d5bfdc",
+      "provenanceDigest": "8cc030c0de995e5f67339e7cef254186"
+    },
+    {
+      "id": 41,
+      "expiredAt": "2026-11-20T00:15:01.578467+00:00",
+      "purgedAt": "2026-11-20T00:17:00.483648+00:00",
+      "priorRowDigest": "34e22ed5a945228d8cc29bc53c2e535d",
+      "currentRowDigest": "d34e5a885846564d51c44ed58391c595",
+      "provenanceDigest": "0e60eea9b50fd7df74a0e6de95b86903"
+    }
+  ],
+  "rawRows": 112,
+  "unchangedRawRows": 103,
+  "rawDigestBefore": "ccec634618456c1726c32bf51c1cd189",
+  "rawDigestAfter": "5cca37ac276bb096994a5db842856d76",
+  "immutableWorkerHistory": true,
+  "knownSourceReviewExpired": [
+    {
+      "id": 3898,
+      "task": "weekly",
+      "rowSha256": "90e94c25802dfc9b470c259dba91b1c5cd72a299432e81e037da8c964650aae9"
+    },
+    {
+      "id": 3899,
+      "task": "pbp",
+      "rowSha256": "8a8573fdaff3870d5d15a8008e0841c44538f8a6630d6a3974e87ca17ebdf845"
+    },
+    {
+      "id": 3900,
+      "task": "rosters",
+      "rowSha256": "1df232abf29063bd4028292489080f5097d74238c096e7b2541fd116e0db198a"
+    },
+    {
+      "id": 3949,
+      "task": "weekly",
+      "rowSha256": "c3888ec6810b3d4d0cadf6e8ec85ddd8e4baf8d29656d32cfb9c38f69d602a0f"
+    },
+    {
+      "id": 3950,
+      "task": "pbp",
+      "rowSha256": "3f1c2e59314f884f5c0d3c2921ca0fd2ed2b3036db2bc26d4ba478b228288f18"
+    },
+    {
+      "id": 3951,
+      "task": "rosters",
+      "rowSha256": "f29ee8b4974b193f663da28ef59d641c3a0444c8fe70ada68b4ce66d83b21348"
+    },
+    {
+      "id": 4000,
+      "task": "weekly",
+      "rowSha256": "a44b2dd2c805179fb95c4e0731438eab1afeb82a25526a667539fb53358f4fea"
+    },
+    {
+      "id": 4001,
+      "task": "pbp",
+      "rowSha256": "c836b0edee6cf8dfba823bab29225a2ed1a363fb9ba9b66105c42afbec9324c6"
+    },
+    {
+      "id": 4002,
+      "task": "rosters",
+      "rowSha256": "d90ccd5750167a6a1ca0d4eb70570869d35ab737e1654dee3e9d767bfee1959d"
+    },
+    {
+      "id": 4051,
+      "task": "weekly",
+      "rowSha256": "b5f5bb9c30bf9bebc813198f04611cbbb021ce0ebf5ac1013103944a1b21c44f"
+    },
+    {
+      "id": 4052,
+      "task": "pbp",
+      "rowSha256": "397e192ed6b359b2842b58a7ea0a649410b3be01dc08d4e6da0676900251ba81"
+    },
+    {
+      "id": 4053,
+      "task": "rosters",
+      "rowSha256": "e57e13f93dfe7301685a4b79a0d1b977b4188e92baee9379d1a780ebfc33eef4"
+    },
+    {
+      "id": 4102,
+      "task": "weekly",
+      "rowSha256": "1e06eb4dd05aac5067883afff26279c5ea176b1427c34af263ca35ea0441522f"
+    },
+    {
+      "id": 4103,
+      "task": "pbp",
+      "rowSha256": "bfc9d3a6a78944274349a1ba8791f52939996ffc4bdfa489ed1d7371ceb4d083"
+    },
+    {
+      "id": 4104,
+      "task": "rosters",
+      "rowSha256": "e19a7b7e539935cc7456c84da99b40a76521ef0da6e7f37153edd0a8f5bde1f2"
+    }
+  ],
+  "pendingReconcileRows": 228,
+  "founderAuthOnly": {
+    "users last_sign_in_at,updated_at": 1,
+    "sessions ip_hash,refreshed_at,updated_at": 3,
+    "sessions added": 1,
+    "refresh_tokens revoked,updated_at": 3,
+    "refresh_tokens added": 8,
+    "mfa_amr_claims added": 2,
+    "mfa_challenges added": 1,
+    "mfa_factors last_challenged_at_hash,updated_at": 1
+  },
+  "founderAuthDeltaSha256": "86a83bf6ab69cfd9cb10b483d82d2320a6a5d2d6b8c17fcd38ee1a60470fae99",
+  "authRateBuckets": 3,
+  "rateDeltaSha256": "7d8af2b20c47de19f332d75f257d5f6be9b8dd191f105396ad876b791e5cfe67",
+  "scheduler": {
+    "cronRowsAdded": 13997,
+    "weeklyZeroIssuanceRowsAdded": 6848,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true
+  },
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custody": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "scope": "Only the actual changes through the named cutoff. No future purge, permission, authority, retirement, credential, or business changes. No changes authorised by this evidence."
+}

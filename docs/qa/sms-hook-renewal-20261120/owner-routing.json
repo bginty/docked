@@ -1,0 +1,39 @@
+{
+  "at": "2026-11-20T06:26:43.860Z",
+  "projectSkew": {
+    "skewProtectionMaxAge": 43200
+  },
+  "deploymentSkew": {},
+  "settings": {},
+  "stageCreated": "2026-11-17T21:56:59.207Z",
+  "stageTarget": "production",
+  "ownerCheck": {
+    "founderReportedStop": true,
+    "result": "New candidate Owner link unavailable",
+    "observedAt": "2026-11-20T06:21:30.233Z",
+    "businessMutations": 0
+  },
+  "providerReads": [
+    {
+      "deployment": "dpl_ACcdM4ivSaNW2ARC3tQf3MmaL2sZ",
+      "checks": [
+        {
+          "time": "2026-11-20T06:21:28.509Z",
+          "path": "/admin/incidents",
+          "status": 200
+        },
+        {
+          "time": "2026-11-20T06:21:28.204Z",
+          "path": "/api/app-session",
+          "status": 200
+        }
+      ],
+      "count": 2
+    },
+    {
+      "deployment": "dpl_9h5Bwy9izNued22EzAH7tE95AV5d",
+      "checks": [],
+      "count": 0
+    }
+  ]
+}
