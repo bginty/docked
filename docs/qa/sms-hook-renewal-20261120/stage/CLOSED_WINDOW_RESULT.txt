@@ -1,0 +1,7 @@
+Installed v31 opened the repaired verification form. The Founder subsequently confirmed a deliberate Send Code press and reported “Unable to send a code.” Vercel logged the form read at 18.06.18 AEDT and one failed phone request at 18.06.25 AEDT on 20 November. The corresponding response was HTTP 400. No signed SMS hook request appeared in the inspected interval.
+
+The test window had never been created. Independent readbacks after the click found Auth Phone and the hook off, zero active windows, zero budget attempts, zero Twilio messages since renewal and an unverified Founder phone. The SMS reservation was A$0. The Android app starts the 60-second cooldown on a deliberate press even when the request fails.
+
+The read-only preflight stopped on the three request-throttling rows updated by this press. Their counts all stayed at one. The reset timestamps match the HTTP request to within one second. Financial, custody, permanent issuance and permission digests matched the accepted baseline. No migration, promotion, refund, SMS transmission or public activation was performed in response to the press.
+
+The failed press ends the one-press test instruction. The exact observed rows and scope of one separately approved attended press are in closed-window-attempt-review.json (SHA-256 78301b1a13f18d0da0d36be35e6b07e32972e9818ddf4e273e690884ba4a7cdb). Keep sending closed pending the Founder’s decision and fresh checks. The published repair source remains 6e96e611; the Google Play app remains unpublished.

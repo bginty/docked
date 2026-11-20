@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "source": "6e96e61192b82ee576aa0a8365808081a98b30fa",
+  "deployment": "dpl_yV2vyZb1FQgdTciY2gHk25JtXVt8",
+  "repairPackage": "632eed5b7d5fd5b41265775ec3a3810e5b79d05c21ecf2bed230501fe0b4374b",
+  "existingBaselineApproval": "405c27448df2e5faae0752707f7ad9bbf7dbb6eb33146906d6b2fee7b749ad48",
+  "observedCutoff": "2026-11-20T07:09:49.088Z",
+  "clickAt": "2026-11-20T07:06:25.088Z",
+  "device": "Installed v31 (founder attestation)",
+  "appError": "Unable to send a code (founder attestation)",
+  "requestStatus": 400,
+  "observedHookRequests": 0,
+  "databaseAttempts": 0,
+  "providerMessages": 0,
+  "smsBudgetReservedAud": 0,
+  "phoneVerified": false,
+  "phoneOff": true,
+  "hookOff": true,
+  "replacementWindowCreated": false,
+  "previousClickStopped": true,
+  "changes": [
+    {
+      "bucket": "phone:cooldown:[Founder]",
+      "count": 1,
+      "beforeReset": "2026-11-17T21:10:56.375774+00:00",
+      "afterReset": "2026-11-20T07:07:25.288942+00:00"
+    },
+    {
+      "bucket": "phone:send:[Founder]",
+      "count": 1,
+      "beforeReset": "2026-11-17T22:09:56.383121+00:00",
+      "afterReset": "2026-11-20T08:06:25.29314+00:00"
+    },
+    {
+      "bucket": "public-phone-send:global",
+      "count": 1,
+      "beforeReset": "2026-11-17T22:09:56.38963+00:00",
+      "afterReset": "2026-11-20T08:06:25.296079+00:00"
+    }
+  ],
+  "rateTableBefore": {
+    "count": 9,
+    "hash": "a91a4fae88f2dcfabf86b4689e1320ff"
+  },
+  "rateTableAfter": {
+    "count": 9,
+    "hash": "b3cd6e0b4c04b43795c077041c2b17fe"
+  },
+  "scopeIfSeparatelyApproved": {
+    "maximumDeliberateFounderPresses": 1,
+    "maximumReservedAud": 1,
+    "maximumWindowSeconds": 7200,
+    "authorityEndsBy": "2026-11-21T06:13:22Z",
+    "founderOnly": true,
+    "sameUnusedWindowId": true,
+    "freshPreflightAndBackup": true,
+    "armWatchdogAndReadBackBeforePrompt": true,
+    "stopOnFailure": true,
+    "immediateShutdownAfterResult": true,
+    "applicationDeployments": 0,
+    "migrations": 0,
+    "publicActivation": false
+  }
+}

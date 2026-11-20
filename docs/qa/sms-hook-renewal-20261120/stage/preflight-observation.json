@@ -1,5 +1,5 @@
 {
-  "at": "2026-11-20T06:56:16.652Z",
+  "at": "2026-11-20T07:09:49.088Z",
   "mode": "preflight",
   "readOnly": true,
   "comparedWith": "Founder-accepted, hash-bound 20 November cutoff",
@@ -9,6 +9,7 @@
     "auth.users",
     "cron.job_run_details",
     "private.docked_mail_scheduler",
+    "private.rate_limits",
     "sports_feed.nfl_rounds",
     "sports_feed.nfl_worker_runs",
     "sports_feed.weekly_core_job_runs"
