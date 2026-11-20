@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-20T06:52:40.657Z",
+  "verifiedAt": "2026-11-20T06:54:17.668Z",
+  "source": "6e96e61192b82ee576aa0a8365808081a98b30fa",
+  "deployment": "dpl_yV2vyZb1FQgdTciY2gHk25JtXVt8",
+  "authenticatedOwner": true,
+  "ownSession": true,
+  "newPhoneLinkPresent": true,
+  "incidentsRead": true,
+  "existingMfaEnforced": true,
+  "providerMatchedAllRequestIds": true,
+  "passed": true,
+  "businessMutations": 0,
+  "smsSent": 0,
+  "checks": [
+    {
+      "path": "/api/app-session",
+      "status": 200,
+      "elapsedMs": 437
+    },
+    {
+      "path": "/admin/incidents",
+      "status": 200,
+      "elapsedMs": 1909
+    },
+    {
+      "path": "/api/admin/incidents",
+      "status": 200,
+      "elapsedMs": 217
+    }
+  ]
+}

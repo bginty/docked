@@ -1,0 +1,26 @@
+{
+  "status": "Preparation only; attended Production SMS acceptance and shutdown pending",
+  "liveSource": "6e96e61192b82ee576aa0a8365808081a98b30fa",
+  "liveDeployment": "dpl_yV2vyZb1FQgdTciY2gHk25JtXVt8",
+  "baselineLaunchPackage": "a6c71d09b0a4caa53d96a4a8a173875baba214203e27a4b607d583f2447c856a",
+  "repairPackage": "632eed5b7d5fd5b41265775ec3a3810e5b79d05c21ecf2bed230501fe0b4374b",
+  "changedSourceFiles": [
+    "src/app/admin/incidents/page.tsx",
+    "src/server/sms-budget-hook.ts",
+    "vercel.json"
+  ],
+  "sourceFileCount": 1024,
+  "eligibilityDigest": "1956d1715dcd2ef494dad469f8b272951853d5d76773fe9ae39f5537996e6830",
+  "eligible": 6065,
+  "excluded": 475,
+  "configurationSource": "config/operations/paid-launch-final.json",
+  "configurationSha256": "dd18531e356f9aabe10ea829660008abbfaf435dd0f8b09a10d7fd5ba793f93c",
+  "authEmailDeployedVersion": 49,
+  "publicSmsBudgetAud": 50,
+  "publicSmsBudgetDays": 7,
+  "oneSmsReservationAud": 1,
+  "conservativeSmsBoundAud": 0.44770000000000004,
+  "googleProductsAndSignedV31MatchPriorEvidence": true,
+  "googleReadback": "3bef200a1be0e17216ac3a4b548b8aca6adc697613b1deb2d73f426703489683",
+  "publicLaunchAuthorised": false
+}
