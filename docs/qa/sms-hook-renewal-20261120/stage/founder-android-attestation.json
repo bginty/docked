@@ -1,0 +1,22 @@
+{
+  "recordedAt": "2026-11-20T08:18:03.199Z",
+  "founderReport": "SMS worked, then an authenticator prompt appeared and the Founder signed in.",
+  "device": "Installed Docked v31, identified by the Founder in the attended session",
+  "singleSendSource": "Exactly one provider dispatch and one accepted Production reservation; Founder initiated the attended flow.",
+  "phoneOtpAccepted": true,
+  "afterPhoneConfirmation": {
+    "onboardingDocumentRequestedAt": "2026-11-20T08:10:52.910Z",
+    "ownerMfaPageAt": "2026-11-20T08:10:53.140Z",
+    "ownerIncidentsPageAt": "2026-11-20T08:11:12.740Z",
+    "sessionReadAt": "2026-11-20T08:11:15.270Z"
+  },
+  "persistenceEvidence": {
+    "source": "Fresh Production Auth and unique-claim read after the new page load, Owner sign-in and verified shutdown",
+    "readAt": "2026-11-20T08:15:07.387Z",
+    "verified": true,
+    "matchingClaim": true
+  },
+  "manualReloadOrScreenInspectionClaimed": false,
+  "oneSegmentDelivered": true,
+  "publicLaunchAuthorised": false
+}

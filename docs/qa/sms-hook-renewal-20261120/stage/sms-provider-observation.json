@@ -1,0 +1,23 @@
+{
+  "at": "2026-11-20T08:11:35.364Z",
+  "readOnly": true,
+  "attemptedMessages": 1,
+  "maximumApprovedAttempts": 1,
+  "messages": [
+    {
+      "idSha256": "f1e1470b735dfcb0a61f1af778169cad29711fd94db62eeaaefaa95d13ad998c",
+      "status": "delivered",
+      "errorCode": null,
+      "expectedMessagingService": true,
+      "expectedSender": true,
+      "direction": "outbound-api",
+      "segments": 1,
+      "price": null,
+      "currency": "USD",
+      "dateCreated": "Fri, 20 Nov 2026 08:10:47 +0000",
+      "dateSent": "Fri, 20 Nov 2026 08:10:48 +0000",
+      "providerDeliveryOnly": true
+    }
+  ],
+  "phoneOrOtpRecorded": false
+}

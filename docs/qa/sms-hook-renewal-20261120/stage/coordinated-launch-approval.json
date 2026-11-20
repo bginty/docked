@@ -1,0 +1,128 @@
+{
+  "version": "docked-coordinated-australian-paid-launch-20261120",
+  "status": "prepared for separate founder approval",
+  "scope": "Part B of the bound final paid-launch runbook, with current closed baseline and rollback target below",
+  "authorityReceived": false,
+  "closedProduction": {
+    "source": "6e96e61192b82ee576aa0a8365808081a98b30fa",
+    "deployment": "dpl_yV2vyZb1FQgdTciY2gHk25JtXVt8",
+    "sourceTree": "adb5134898efdae241ec448d64efb1fa3cc74d88",
+    "repairPackageSha256": "632eed5b7d5fd5b41265775ec3a3810e5b79d05c21ecf2bed230501fe0b4374b"
+  },
+  "reviewedLaunchPackage": {
+    "file": "docs/qa/paid-launch-final-20261118/launch-package.json",
+    "sha256": "a6c71d09b0a4caa53d96a4a8a173875baba214203e27a4b607d583f2447c856a"
+  },
+  "runtimeConfiguration": {
+    "file": "config/operations/paid-launch-final.json",
+    "sha256": "dd18531e356f9aabe10ea829660008abbfaf435dd0f8b09a10d7fd5ba793f93c"
+  },
+  "sourceOfCommercialDecisions": "cb1ee482d86a085af5e46678d13b0027870b188f",
+  "customerScope": "Australia 18+, verified email and Australian mobile, new consent and zero beta benefits",
+  "products": [
+    {
+      "id": "docked_credits_4900_v1",
+      "option": "buy-au",
+      "credits": 4900,
+      "audCents": 4900
+    },
+    {
+      "id": "docked_credits_9900_v1",
+      "option": "buy-au",
+      "credits": 9900,
+      "audCents": 9900
+    }
+  ],
+  "packs": "18 approved Standard/Premium 1-, 3- and 9-card offers across NFL, AFL and NRL",
+  "eligibleDefinitionDigest": "1956d1715dcd2ef494dad469f8b272951853d5d76773fe9ae39f5537996e6830",
+  "eligible": 6065,
+  "excluded": 475,
+  "budget": {
+    "totalAudCents": 5000,
+    "maxDays": 7,
+    "reservationAudCents": 100,
+    "automaticRenewal": false,
+    "automaticRecharge": false
+  },
+  "play": {
+    "versionCode": 31,
+    "versionName": "1.30",
+    "country": "AU",
+    "managedPublishing": true,
+    "executionPrecondition": "Read back current approved release, AU, age, phone declaration, managed publishing and pending change set; abort on discrepancy before any activation."
+  },
+  "maximumApprovalHours": 24,
+  "backupMaximumMinutes": 60,
+  "preflightMaximumMinutes": 10,
+  "executionOrder": [
+    "Validate exact hashes, private-expiry parameters, provider funding/tariff and Play readiness. Authenticate fresh backup, restore in isolation and classify fresh drift.",
+    "Render dormant public plan; keep signup closed while staging public email and checkout runtime. Confirm exact recipient routing and commercial catalogue.",
+    "Enable distinct budgeted public Phone/hook under the seven-day window. Enable only the two AU Google product options and approved commerce controls together.",
+    "Verify paid customer contract; enable registration last across application, database and Supabase. Publish existing v31 via managed publishing only after all AU signup and paid-pack paths are available.",
+    "Observe propagation, first legitimate purchase, receipt, acknowledgement, pack delivery, refunds and SMS spend at launch, 15 min, 1h and 24h."
+  ],
+  "recovery": "Close acquisition, new sales, issuance and SMS. Preserve accepted transactions, recoveries, journals, owned cards and consumed supply. Last closed app is the live repair deployment; use only when data and bindings are compatible. After customer activity prefer forward repair.",
+  "otherControls": "No new migrations, inventory import, sample real transactions or Android build. Marketplace, prizes, withdrawals, NBA and six scored competitions stay off.",
+  "completionEvidence": [
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/promotion.json",
+      "sha256": "d8f18ab5f0c20c212edf30646497a9f1a1e7417cf98baa6e520cb138ba37fe13"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/production-smoke.json",
+      "sha256": "4db6ea5add4a18b8eca77cdb9657886340374ed68da91a66d83e6799c2172e15"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/staging-owner.json",
+      "sha256": "b854dd56370412a87bb3b464676fe37de8165aa8b3115135605eb96fb0ece26b"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/launch-preparation.json",
+      "sha256": "3c3045dbce5406a1af4853cd53c8499a7079de3d8cc7bebbf312d129ff375dfe"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/google-readiness.json",
+      "sha256": "3bef200a1be0e17216ac3a4b548b8aca6adc697613b1deb2d73f426703489683"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/provider-readonly.json",
+      "sha256": "b6aafb2b48a6e016542492ac39345b5376f7a8c4b1f49404e98b30be64bed431"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/attended-attempt-authority.json",
+      "sha256": "4b3fda169836fb768f54c48b3adc14602e4a2c36cc802faee0f0cc383b1bbb84"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/phone-window-enabled.json",
+      "sha256": "4fe3e9fc17fec304b10f51acb1752dc3629f16350d32c85ae0b2196d571e96cf"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/phone-closure.json",
+      "sha256": "dd41d710c8a150b22df74df742ca74dbe02957907a470038a873acf6fba8eb41"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/phone-budget-and-claim.json",
+      "sha256": "b7a24cb4e936c11941f439109ac4545d44552264a861b1da82b6e26084947ef1"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/sms-provider-observation.json",
+      "sha256": "a450cb1238c9559ebcef688717daec573400fc4f0891b8ecc1f2a1435622febd"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/founder-android-attestation.json",
+      "sha256": "45cf4dc0b5f31fe74feb112ba457338142c3346ef8444fb45b9fe624057d4579"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/attended-asset-postflight.json",
+      "sha256": "bb0969d4c974c45bb323cc3fd2c7c9b9784080a47d5d9313d07928d1226a2e5c"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/attended-auth-reconciliation.json",
+      "sha256": "6d48320dfe5468144ae6a1c481064ebcc756bac0e078090b7df558a97e93d3ff"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/attended-session-navigation.json",
+      "sha256": "a00f5f5945a0a18ab3a0c3a3ce399e0ff96167d8d4198ace429fb8248a7bcf8a"
+    }
+  ]
+}
