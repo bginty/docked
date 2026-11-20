@@ -1,0 +1,285 @@
+{
+  "version": "docked-au-paid-launch-after-google-refund-repair-20261120",
+  "status": "Prepared for a separate coordinated founder decision",
+  "authorityReceived": false,
+  "applicationSource": "42d906af9a9d3c9fe4fa3afe7a7697d236816aee",
+  "exportSourceTree": "4dc6d38225af2003cad9d46e51d0e04b03d1e782",
+  "closedProduction": {
+    "source": "42d906af9a9d3c9fe4fa3afe7a7697d236816aee",
+    "deployment": "dpl_47Pacz13MFJZmEczsebmr3yiEvWd",
+    "alias": "docked.com.au",
+    "verifiedRepairPackage": {
+      "file": "docs/qa/google-refund-repair-20261120/package.json",
+      "sha256": "4d6234db51bacdc4640463425d8dd21a9d2bffb32d2435756c0e4ed306de70e8"
+    }
+  },
+  "supersedes": {
+    "file": "docs/qa/sms-hook-renewal-20261120/stage/coordinated-launch-approval.json",
+    "sha256": "5b9e314fdd841c6ae6359567cb485d8cf323995081a4accbb9913943d60d675f",
+    "authorityInherited": false
+  },
+  "previousAcceptedEvidence": [
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/promotion.json",
+      "sha256": "d8f18ab5f0c20c212edf30646497a9f1a1e7417cf98baa6e520cb138ba37fe13"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/production-smoke.json",
+      "sha256": "4db6ea5add4a18b8eca77cdb9657886340374ed68da91a66d83e6799c2172e15"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/staging-owner.json",
+      "sha256": "b854dd56370412a87bb3b464676fe37de8165aa8b3115135605eb96fb0ece26b"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/launch-preparation.json",
+      "sha256": "3c3045dbce5406a1af4853cd53c8499a7079de3d8cc7bebbf312d129ff375dfe"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/google-readiness.json",
+      "sha256": "3bef200a1be0e17216ac3a4b548b8aca6adc697613b1deb2d73f426703489683"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/provider-readonly.json",
+      "sha256": "b6aafb2b48a6e016542492ac39345b5376f7a8c4b1f49404e98b30be64bed431"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/attended-attempt-authority.json",
+      "sha256": "4b3fda169836fb768f54c48b3adc14602e4a2c36cc802faee0f0cc383b1bbb84"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/phone-window-enabled.json",
+      "sha256": "4fe3e9fc17fec304b10f51acb1752dc3629f16350d32c85ae0b2196d571e96cf"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/phone-closure.json",
+      "sha256": "dd41d710c8a150b22df74df742ca74dbe02957907a470038a873acf6fba8eb41"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/phone-budget-and-claim.json",
+      "sha256": "b7a24cb4e936c11941f439109ac4545d44552264a861b1da82b6e26084947ef1"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/sms-provider-observation.json",
+      "sha256": "a450cb1238c9559ebcef688717daec573400fc4f0891b8ecc1f2a1435622febd"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/founder-android-attestation.json",
+      "sha256": "45cf4dc0b5f31fe74feb112ba457338142c3346ef8444fb45b9fe624057d4579"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/attended-asset-postflight.json",
+      "sha256": "bb0969d4c974c45bb323cc3fd2c7c9b9784080a47d5d9313d07928d1226a2e5c"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/attended-auth-reconciliation.json",
+      "sha256": "6d48320dfe5468144ae6a1c481064ebcc756bac0e078090b7df558a97e93d3ff"
+    },
+    {
+      "file": "docs/qa/sms-hook-renewal-20261120/stage/attended-session-navigation.json",
+      "sha256": "a00f5f5945a0a18ab3a0c3a3ce399e0ff96167d8d4198ace429fb8248a7bcf8a"
+    }
+  ],
+  "evidenceIndexCommit": "cb1ee482d86a085af5e46678d13b0027870b188f",
+  "reviewedPartB": {
+    "file": "docs/qa/paid-launch-final-20261118/EXECUTION.txt",
+    "sha256": "55c9c30087fc9da472db0a2ee20a6643407b937d9e893d756d00a3dcd75e19bd"
+  },
+  "reviewedBusinessPackage": {
+    "file": "docs/qa/paid-launch-final-20261118/launch-package.json",
+    "sha256": "a6c71d09b0a4caa53d96a4a8a173875baba214203e27a4b607d583f2447c856a"
+  },
+  "baseRuntime": {
+    "file": "config/operations/paid-launch-final.json",
+    "sha256": "dd18531e356f9aabe10ea829660008abbfaf435dd0f8b09a10d7fd5ba793f93c"
+  },
+  "refundOverlay": {
+    "file": "config/operations/google-refund-repair.json",
+    "sha256": "bab9127ba63e658beff74127c4dd18da400243fc447f1493b5ababeacf4ab235"
+  },
+  "sourceRule": "Export the exact deployed refund-repair source using the bound repair manifest. The current closed deployment replaces older deployment targets in the inherited Part B procedure. Use its deployed credentials and preserve all existing secret references.",
+  "parameters": {
+    "mode": "Part B only",
+    "allowedHoursAfterDecision": 24,
+    "backupMaxMinutes": 60,
+    "preflightMaxMinutes": 10,
+    "newMigrations": [],
+    "accountOperations": [],
+    "inventoryImports": [],
+    "googleTestNotifications": 0
+  },
+  "paidDeploymentOverrides": {
+    "DOCKED_PUBLIC_CUSTOMERS": "true",
+    "DOCKED_PUBLIC_MEMBER_SETUP": "true",
+    "DOCKED_PUBLIC_MEMBER_SETUP_POLICY_APPROVED": "true",
+    "TERMS_VERSION": "2026-11-17-commercial-paid-launch-v2",
+    "DOCKED_PUBLIC_TERMS_VERSION": "2026-11-17-commercial-paid-launch-v2",
+    "PRIVACY_POLICY_VERSION": "2026-11-17-privacy-clean-launch-v5",
+    "DOCKED_PUBLIC_PRIVACY_VERSION": "2026-11-17-privacy-clean-launch-v5",
+    "LEGAL_ENTITY_VERIFIED": "true",
+    "AUTH_EMAIL_ENABLED": "true",
+    "DOCKED_COMMERCIAL_SERVICE": "true",
+    "DOCKED_COMMERCIAL_SURFACES": "true",
+    "DOCKED_COMMERCIAL_CHECKOUT": "true",
+    "DOCKED_COMMERCIAL_MARKETPLACE": "false",
+    "DOCKED_PUBLIC_PHONE_OTP": "true",
+    "DOCKED_SMS_BUDGET_HOOK_ENABLED": "true",
+    "DOCKED_PUBLIC_PHONE_POLICY_REFERENCE": "565589b6f748fccd138bd10018f7eb621adc9efb7677f4082963039d8eb0c33b",
+    "REGISTRATION_ENABLED": "false",
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_AUDIENCE": "https://docked.com.au/api/store/google/notifications",
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_SERVICE_ACCOUNT": "docked-play-rtdn-push@docked-play-verification.iam.gserviceaccount.com",
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_SUBSCRIPTION": "projects/docked-play-verification/subscriptions/docked-google-test-notifications-push"
+  },
+  "finalRegistrationOverride": {
+    "REGISTRATION_ENABLED": "true"
+  },
+  "closedMode": {
+    "DOCKED_COMMERCIAL_SERVICE": "true",
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_AUDIENCE": "https://docked.com.au/api/store/google/notifications",
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_SERVICE_ACCOUNT": "docked-play-rtdn-push@docked-play-verification.iam.gserviceaccount.com",
+    "DOCKED_GOOGLE_COMMERCIAL_PUSH_SUBSCRIPTION": "projects/docked-play-verification/subscriptions/docked-google-test-notifications-push",
+    "DOCKED_PUBLIC_PHONE_OTP": "false",
+    "DOCKED_SMS_BUDGET_HOOK_ENABLED": "false",
+    "REGISTRATION_ENABLED": "false",
+    "DOCKED_COMMERCIAL_CHECKOUT": "false",
+    "DOCKED_COMMERCIAL_SURFACES": "false",
+    "DOCKED_PUBLIC_MEMBER_SETUP": "false",
+    "DOCKED_COMMERCIAL_MARKETPLACE": "false",
+    "DOCKED_BETA_STAGING": "false",
+    "DOCKED_FRIENDS_BETA": "false"
+  },
+  "customerScope": "Australia 18+, verified email and Australian mobile, new consent and zero beta benefits",
+  "products": [
+    {
+      "id": "docked_credits_4900_v1",
+      "option": "buy-au",
+      "credits": 4900,
+      "audCents": 4900
+    },
+    {
+      "id": "docked_credits_9900_v1",
+      "option": "buy-au",
+      "credits": 9900,
+      "audCents": 9900
+    }
+  ],
+  "pricing": "Australian GST-inclusive. Multi-quantity disabled. 4,900 credits are insufficient for a 5,000-credit Premium nine-card pack.",
+  "packOffers": "18 approved Standard/Premium 1-, 3- and 9-card offers across NFL, AFL and NRL",
+  "perSportPackPrices": {
+    "sports": [
+      "NFL",
+      "AFL",
+      "NRL"
+    ],
+    "cardCounts": [
+      1,
+      3,
+      9
+    ],
+    "standardCredits": [
+      100,
+      300,
+      700
+    ],
+    "premiumCredits": [
+      700,
+      1900,
+      5000
+    ]
+  },
+  "inventory": {
+    "approved": 6065,
+    "excluded": 475,
+    "eligibilityDigest": "1956d1715dcd2ef494dad469f8b272951853d5d76773fe9ae39f5537996e6830"
+  },
+  "sms": {
+    "totalAudCents": 5000,
+    "maxDays": 7,
+    "reservationAudCents": 100,
+    "automaticRenewal": false,
+    "automaticRecharge": false
+  },
+  "play": {
+    "versionCode": 31,
+    "versionName": "1.30",
+    "country": "AU",
+    "managedPublishing": true,
+    "executionPrecondition": "Read back current approved release, AU, age, phone declaration, managed publishing and pending change set; abort on discrepancy before any activation."
+  },
+  "controlsOutsideScope": "No new migrations, inventory import, sample real transactions or Android build. Marketplace, prizes, withdrawals, NBA and six scored competitions stay off.",
+  "executionOrder": [
+    "Verify this manifest, repair source and referenced bytes, both hosted proofs and current closed alias. Authenticate a new qualifying encrypted backup and isolated restore, classify fresh drift and close any unresolved discrepancy. Recheck provider funding, SMS tariff, Google merchant/products, group of ten approved changes and emergency closure.",
+    "Use the bound Part B plan renderer with this approval hash, approved source/material scope, current evidence and a unique maximum seven-day public window. Rehearse the exact phase SQL against an isolated restore. Keep signup closed during preparation. Preserve all legitimate subsequent customer and TEST records, including the verified refund test job.",
+    "Prepare the 6,065 permitted definitions from the existing catalogue and two approved products. Keep 475 excluded. Close dormant beta grant controls and keep marketplace and competitions disabled. Bind public email and verified signed SMS configuration with existing identities. Stage paid application controls, including all three authenticated Google push bindings, then validate before activating payment surfaces.",
+    "Open the bounded public Phone/hook window. Activate only the two Australian Google product options and the approved commercial credit and pack gates. Read back actual effective AU prices, fulfilment and refund paths, catalogue, scarcity and emergency protections. Maintain signup closed while these gates are unverified.",
+    "Stage and validate the final registration override. With email, phone, billing and paid packs operational, open Australian 18+ signup by applying the registration phase, promoting the verified website runtime and then enabling Supabase signup. Confirm the complete first-customer contract without manufactured orders. Stop or close affected acquisition and commercial gates on failure.",
+    "After all mandatory checks pass, use existing managed publishing to publish the verified v31 / 1.30 group for Australia. Read back actual propagation. Monitor activation, 15 minutes, one hour and 24 hours for the first genuine customer and purchase, receipts, fulfilment, refund processing, reconciliation errors and SMS spend."
+  ],
+  "recovery": "Apply the reviewed close phase and close new customer acquisition, sales, issuance and SMS as required. Preserve accepted transactions, refund obligations, jobs, ownership and lifetime serials. Revert the app only to the verified closed deployment if compatible. After customer activity prefer forward recovery. Store publication and delivered cards cannot be undone by app rollback.",
+  "proofs": [
+    {
+      "file": "docs/qa/google-refund-execution-20261120/live-final-baseline.json",
+      "sha256": "479f8845fb64556e42fdd78fb46c0031ec4c1a104327fdfdcfd1e805d5e827d3"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/console-readback.json",
+      "sha256": "223bfd18033ddd6bd7fee94014f490687034d96b9ba3892fbb64b92b5a3c70d3"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/google-products.json",
+      "sha256": "04a1a0f743a29d45fa0a3a0b5d5de324fe9b9b3569b52b57003f0eb44ac3f053"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/subscription-console.json",
+      "sha256": "7baf0f389f99103cd5c9ab4bb8602c8555f0d4a0bd41702063252d52ab7d221a"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/backup.json",
+      "sha256": "1b76079f60ecb7f8d4bd3a3c1b3819f51cbf43b7ca93a66e3246c7aee433cf52"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/promotion.json",
+      "sha256": "a709e0fb0d7e8f4e6e874fe87966c9019f5920907b5254dc303f2e2983086d11"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/stage-check.json",
+      "sha256": "14c6601ccc27fb1a070390456cadfceed1347c8bf556fb335e0386e823f07982"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/live-check.json",
+      "sha256": "8138f99d398d3610b9c7e67415a54cdf840ad46f75290905a0049acd95f2a085"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/scheduled-acceptance.json",
+      "sha256": "28f9dcb401fffd6e79bb4c02de0f744fd2959091294cbf4250d42c811c469725"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/play-notification.json",
+      "sha256": "2a67d09f897180484e0a1fdc3ac7dc56cdb28e0050a66d290514a9a2f498b5c3"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/push-acceptance.json",
+      "sha256": "d0ff16d67ea9d0d93cc5da94bd3eec52b8c419830a7567279602d32cd3455147"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/queue-before-test.json",
+      "sha256": "25b506f4d69052948e47bf81d9ffca0c62d4badd5ed10aa3cbad655910ddb403"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/queue-after-test.json",
+      "sha256": "cf78e6ae2c58506a3e2b8db5cb50b4401bbc1a6b760911873effb533ae2e686e"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/postflight-reconciliation.json",
+      "sha256": "c3f0f23d14ddff8fd1e77f1a3849fb14562aa9e4875920548c28c83f1a1d9de3"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/final-census.json",
+      "sha256": "7649226c2a8d1e47e93cc80f588e366b7010695df462c8c15cf5b2dc37e86bb8"
+    },
+    {
+      "file": "docs/qa/google-refund-execution-20261120/auth-closed.json",
+      "sha256": "d69459687e1827d641828f3eff052c5b034b26d9d8696f6e5fd312c339dc16d5"
+    }
+  ]
+}

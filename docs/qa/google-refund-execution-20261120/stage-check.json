@@ -1,0 +1,80 @@
+{
+  "at": "2026-11-20T11:40:38.615Z",
+  "deployment": "dpl_47Pacz13MFJZmEczsebmr3yiEvWd",
+  "source": "42d906af9a9d3c9fe4fa3afe7a7697d236816aee",
+  "mode": "stage",
+  "checks": [
+    {
+      "route": "/",
+      "method": "GET",
+      "workerAuth": false,
+      "status": 200,
+      "requestId": "sdrdz-1795174849460-0ed5f2fda59e",
+      "at": "2026-11-20T11:40:52.138Z"
+    },
+    {
+      "route": "/api/store/google/commercial?view=wallet",
+      "method": "GET",
+      "workerAuth": false,
+      "status": 403,
+      "requestId": "sdrdz-1795174859700-7d9899f21ed3",
+      "at": "2026-11-20T11:41:01.726Z"
+    },
+    {
+      "route": "/api/auth/phone",
+      "method": "POST",
+      "workerAuth": false,
+      "status": 403,
+      "requestId": "5gsn4-1795174870390-350028586a1f",
+      "at": "2026-11-20T11:41:13.049Z"
+    },
+    {
+      "route": "/api/webhooks/auth-sms",
+      "method": "POST",
+      "workerAuth": false,
+      "status": 503,
+      "requestId": "nk8f7-1795174881685-6483a3f8b7b8",
+      "at": "2026-11-20T11:41:23.506Z"
+    },
+    {
+      "route": "/api/store/google/scheduled",
+      "method": "GET",
+      "workerAuth": false,
+      "status": 401,
+      "requestId": "c9wsr-1795174894269-318d34d3ca00",
+      "at": "2026-11-20T11:41:36.166Z"
+    },
+    {
+      "route": "/api/store/google/notifications",
+      "method": "POST",
+      "workerAuth": false,
+      "status": 401,
+      "requestId": "mb2j4-1795174904485-a86c1a2da1be",
+      "at": "2026-11-20T11:41:47.140Z"
+    },
+    {
+      "route": "/api/store/google/scheduled",
+      "method": "GET",
+      "workerAuth": true,
+      "status": 200,
+      "requestId": "gms8p-1795174917425-184e84e3bd5b",
+      "at": "2026-11-20T11:41:59.456Z"
+    }
+  ],
+  "health": {
+    "services": {
+      "commercial": {
+        "scheduled": 0,
+        "attempted": 0,
+        "attention": 0,
+        "overdue": 0,
+        "retrying": 0,
+        "completed": 0,
+        "attentionRequired": false
+      }
+    },
+    "attentionRequired": false
+  },
+  "passed": true,
+  "requestIdSource": "Matched Vercel request logs by deployment, host, method, path, status and time"
+}

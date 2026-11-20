@@ -1,0 +1,56 @@
+{
+  "at": "2026-11-20T11:54:00.433Z",
+  "capturedAt": "2026-11-20T11:53:48.543Z",
+  "passed": true,
+  "readOnly": true,
+  "productionWrites": 0,
+  "changedTables": [
+    "commercial_billing.jobs",
+    "cron.job_run_details",
+    "private.docked_mail_scheduler",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "unexplainedDrift": 0,
+  "sourcePurges": 0,
+  "appendOnlyPendingReviewWorkerRows": 1,
+  "scheduler": {
+    "cronRowsAdded": 45,
+    "weeklyZeroIssuanceRowsAdded": 22,
+    "mailTickAdvanced": true,
+    "existingHistoryUnchanged": true
+  },
+  "ownerRefresh": {
+    "refreshRotations": 0,
+    "founderOnly": true,
+    "existingMfaSessionOnly": true,
+    "credentialsMfaRolesUnchanged": true,
+    "changes": [],
+    "rateChanges": []
+  },
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 0,
+    "public_flags": 0,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custodyRecords": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "rolesMfaFinancialHistoryUnchanged": true,
+  "unchangedSmsAndSupportControlTables": 4,
+  "reviewedTestJob": "5112dee8035d66f540f4ce3266a413457b0cced905724590673b33bebf43b3be",
+  "historicalTestQueue": {
+    "jobs": 17,
+    "fingerprint": "2def79b01f5d2123f5b45c1e4b3fe0ae"
+  },
+  "commercialReceipts": 0
+}

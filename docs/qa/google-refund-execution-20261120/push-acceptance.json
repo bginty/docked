@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-20T11:52:36.557Z",
+  "source": "42d906af9a9d3c9fe4fa3afe7a7697d236816aee",
+  "deployment": "dpl_47Pacz13MFJZmEczsebmr3yiEvWd",
+  "passed": true,
+  "emissions": 1,
+  "pushStatus": 204,
+  "canonicalRequests": [
+    {
+      "at": "2026-11-20T11:51:16.133Z",
+      "host": "docked.com.au",
+      "method": "POST",
+      "path": "/api/store/google/notifications",
+      "status": 204,
+      "requestId": "k6c8b-1795175476133-f00f79b947e1"
+    }
+  ],
+  "jobRefSha256": "5112dee8035d66f540f4ce3266a413457b0cced905724590673b33bebf43b3be",
+  "jobCreatedAt": "2026-11-20T11:51:16.534Z",
+  "jobCompletedAt": "2026-11-20T11:51:16.568Z",
+  "jobKind": "test",
+  "jobState": "done",
+  "nullReceipt": true,
+  "workerAttempts": 1,
+  "legacyQueueUnchanged": true,
+  "commercialReceipts": 0,
+  "additionalGoogleOrders": 0,
+  "providerMessageIdMatched": false
+}

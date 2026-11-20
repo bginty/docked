@@ -1,28 +1,20 @@
 # Closed-gate Google refund repair
 
-The founder approved application `42d906af9a9d3c9fe4fa3afe7a7697d236816aee` under package SHA-256 `4d6234db51bacdc4640463425d8dd21a9d2bffb32d2435756c0e4ed306de70e8`. The source export matched all 1,026 application file hashes. The current execution checkpoint is before protected staging. No test notification has been sent. The public launch decision remains NO-GO.
+The repair passed Production acceptance on 20 November 2026. The live source is `42d906af9a9d3c9fe4fa3afe7a7697d236816aee`, Vercel deployment `dpl_47Pacz13MFJZmEczsebmr3yiEvWd`. Public launch awaits a separate founder decision. All times below use Sydney daylight time. [Live alias and runtime configuration](./live-final-baseline.json)
 
-## Production observations on 20 November
-
-| Check | Evidence |
+| Production evidence | Observed result |
 | --- | --- |
-| Live alias | Vercel returned READY for `dpl_yV2vyZb1FQgdTciY2gHk25JtXVt8` at `6e96e61192b82ee576aa0a8365808081a98b30fa`. The refund cron remained scheduled every five minutes. [Deployment](./live-baseline.json) |
-| Historical and financial integrity | 6,540 definitions, 918 limited copies and 936 custody records. No duplicate serials, lifetime-count discrepancies or unbalanced journals. Five tables advanced through verified scheduler activity. [Drift classification](./drift-classification.json) |
-| Commercial exposure | Zero commercial receipts or cards, zero open commercial controls and no funded SMS window. The website showed registration closed. Supabase signup, Phone and the SMS hook were off. [Census](./preflight-census.json) · [Auth configuration](./auth-closed.json) |
-| Google products | Google's API returned both Australian purchase options inactive at A$49 and A$99. The catalogue matched the earlier readback. [Google response](./google-products.json) |
-| Emergency closure | The shutdown SQL digest matched the earlier successful isolated rehearsal. The two historical beta control flags were present and the deployed beta runtime selectors were off. [Control readback](./additional-preflight.json) |
-| Repair configuration | The deployment-local overlay was prepared and checked against the approved package. Project-wide settings received zero changes. [Configuration diff](./runtime-overlay.json) |
+| Backup and preflight | A TLS interruption ended the initial export. A fresh encrypted copy authenticated and restored with networking and cron disabled. All 576 protected table checksums matched. Source integrity and pre-promotion drift passed. [Backup](./backup.json) · [Drift](./drift-classification.json) |
+| Protected staging | The commercial worker returned HTTP 200 with an empty queue. Both the unsigned push and uncredentialed cron returned HTTP 401. All seven request IDs matched Vercel logs. The commercial and historical queues matched before and after staging. [Staging evidence](./stage-check.json) |
+| Promotion | The verified candidate became the live deployment at 10:44 pm. All 18 project-level environment metadata records matched the prior baseline. The three reviewed commercial push bindings were present. [Promotion](./promotion.json) · [Effective bindings](./live-final-baseline.json) |
+| Natural scheduler | The 10:45:09 and 10:50:09 pm invocations returned HTTP 200. Each selected only the commercial worker. It reported zero outstanding work and zero attention or retry counts. The protected manual request is excluded. [Vercel request and worker evidence](./scheduled-acceptance.json) |
+| Authenticated Google delivery | One built-in Play test was sent to the active, reviewed Pub/Sub topic. Docked’s canonical endpoint returned HTTP 204 at 10:51:16 pm. Exactly one durable test job was created with no receipt, then completed on its first attempt in 34 ms. Matching request time, the new job and the deployed signature and subscription checks establish receipt. The Play UI showed the send in progress. The observed console response supplied no provider message ID. [Google console action](./play-notification.json) · [Delivery and completion](./push-acceptance.json) |
+| Financial and custody reconciliation | The sole new commercial queue row was the reviewed test job. All 17 historical Google queue entries matched their previous fingerprint. Financial history, Owner permissions/MFA, custody and lifetime supply matched preflight. Actual counts were 6,540 definitions, 918 limited copies, 936 custody records and zero commercial receipts or cards. Zero unexplained drift, duplicate serials or unbalanced journals. [Postflight](./postflight-reconciliation.json) |
+| Closed controls | The website returned HTTP 200 with registration closed. Auth signup, Phone and the SMS hook were off. There were zero funded SMS windows, enabled commerce or gameplay controls and sale-eligible definitions. [Commercial census](./final-census.json) · [Auth](./auth-closed.json) |
+| Play | Managed publishing was on. The existing Australian v31 / 1.30 rollout was among 10 changes ready to publish. The group included the privacy policy and Data Safety declaration. Both purchase options remained inactive at A$49 and A$99. [Publishing overview](./console-readback.json) · [Google products](./google-products.json) |
 
-## Google readback and next operation
+The Production event exercised authenticated transport, durable persistence and worker completion. Refund outcomes for spent and unspent credits are covered by the previously accepted real Google TEST orders and isolated restored-data scenarios. This repair produced zero real purchases or refunds. [Restored financial acceptance](../google-refund-repair-20261120/RESULTS.md)
 
-Two founder-supplied screenshots of the refreshed subscription Details page confirm the active subscription, its exact topic, signed push endpoint, audience and signer. Each matches the approved package. The earlier API read returned HTTP 403, and Chrome computer control stopped when it could not verify the URL. [Current subscription evidence](./subscription-console.json) · [Approved subscription](../google-refund-repair-20261120/subscription.json)
+## Decision
 
-The remaining console readback is the Docked Play Publishing overview. Check managed publishing and the pending release group against the [previous observation](../coordinated-paid-launch-20261120/play-console.json). A difference stops the operation for review. Once the readback matches, recheck the backup age and perform a new drift preflight within ten minutes of the change. Use the current exact repair approval while valid.
-
-Next in order are protected staging, closed-gate promotion, two consecutive genuine five-minute cron invocations, one built-in Play test notification, durable queue and completion checks, and the final financial and custody comparison. The coordinated paid-launch package can be frozen only after both hosted paths pass. [Reviewed procedure](../google-refund-repair-20261120/EXECUTION.txt)
-
-## Backup
-
-The first encrypted stream ended when the database TLS connection closed while reading NFL history. Its partial archive was excluded from release evidence. The retry completed from a fresh read-only snapshot. The authenticated 140,076,186-byte archive restored with networking and cron disabled. All 576 protected tables matched. The archive digest is `7e0b4e77d708a65dae5b29eb790ee60f3392acb47353c833fef3e80127d5b398`. The conservative one-hour backup clock starts at 11:12:14 UTC. Refresh the backup if that clock expires before the next required release check. [Authenticated restore](./backup.json)
-
-The initial queue read found zero commercial jobs, zero commercial receipts and 17 historical Google notification records. Capture a new queue baseline at the points specified in the deployment procedure. [Queue observation](./queue-initial.json)
+The two refund blockers are closed. The revised coordinated paid-launch manifest binds the current deployed application and both hosted proofs. The previous launch approval is superseded. Fresh launch-time backup, drift and provider checks remain execution prerequisites. [Exact founder decision](./PAID_LAUNCH_APPROVAL.txt) · [Manifest](./coordinated-paid-launch.json)

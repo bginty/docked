@@ -1,0 +1,58 @@
+{
+  "verifiedAt": "2026-11-20T11:50:41.694Z",
+  "source": "42d906af9a9d3c9fe4fa3afe7a7697d236816aee",
+  "deployment": "dpl_47Pacz13MFJZmEczsebmr3yiEvWd",
+  "method": "Vercel request records and function log of the promoted deployment at the first two scheduled five-minute ticks. No manual authenticated cron invocation after promotion. Protected staging invocation excluded by request ID and timestamp.",
+  "schedule": "*/5 * * * *",
+  "runs": [
+    {
+      "scheduledUtc": "2026-11-20T11:45:00.000Z",
+      "observedUtc": "2026-11-20T11:45:09.403Z",
+      "deployment": "dpl_47Pacz13MFJZmEczsebmr3yiEvWd",
+      "host": "docked-production-cku61ts3e-briant-s-projects.vercel.app",
+      "method": "GET",
+      "route": "/api/store/google/scheduled",
+      "requestId": "29xgl-1795175109403-5b8ea6471996",
+      "status": 200,
+      "worker": {
+        "services": {
+          "commercial": {
+            "scheduled": 0,
+            "attempted": 0,
+            "attention": 0,
+            "overdue": 0,
+            "retrying": 0,
+            "completed": 0,
+            "attentionRequired": false
+          }
+        },
+        "attentionRequired": false
+      }
+    },
+    {
+      "scheduledUtc": "2026-11-20T11:50:00.000Z",
+      "observedUtc": "2026-11-20T11:50:09.337Z",
+      "deployment": "dpl_47Pacz13MFJZmEczsebmr3yiEvWd",
+      "host": "docked-production-cku61ts3e-briant-s-projects.vercel.app",
+      "method": "GET",
+      "route": "/api/store/google/scheduled",
+      "requestId": "tc9gm-1795175409337-603203c3a1cb",
+      "status": 200,
+      "worker": {
+        "services": {
+          "commercial": {
+            "scheduled": 0,
+            "attempted": 0,
+            "attention": 0,
+            "overdue": 0,
+            "retrying": 0,
+            "completed": 0,
+            "attentionRequired": false
+          }
+        },
+        "attentionRequired": false
+      }
+    }
+  ],
+  "passed": true
+}

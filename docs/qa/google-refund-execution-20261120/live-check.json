@@ -1,0 +1,41 @@
+{
+  "at": "2026-11-20T11:44:27.840Z",
+  "deployment": "dpl_47Pacz13MFJZmEczsebmr3yiEvWd",
+  "source": "42d906af9a9d3c9fe4fa3afe7a7697d236816aee",
+  "mode": "live",
+  "checks": [
+    {
+      "route": "/",
+      "method": "GET",
+      "workerAuth": false,
+      "status": 200,
+      "requestId": "syd1::syd1::jzwss-1795175069055-5ab6cb24bf6a",
+      "at": "2026-11-20T11:44:29.880Z"
+    },
+    {
+      "route": "/api/store/google/commercial?view=wallet",
+      "method": "GET",
+      "workerAuth": false,
+      "status": 403,
+      "requestId": "syd1::syd1::c9d66-1795175069235-1dec497a2099",
+      "at": "2026-11-20T11:44:29.988Z"
+    },
+    {
+      "route": "/api/auth/phone",
+      "method": "POST",
+      "workerAuth": false,
+      "status": 403,
+      "requestId": "syd1::syd1::jzwss-1795175069360-4d8bd202ef43",
+      "at": "2026-11-20T11:44:30.116Z"
+    },
+    {
+      "route": "/api/webhooks/auth-sms",
+      "method": "POST",
+      "workerAuth": false,
+      "status": 503,
+      "requestId": "syd1::syd1::6vsjp-1795175069465-7c3d0fb441ab",
+      "at": "2026-11-20T11:44:30.231Z"
+    }
+  ],
+  "passed": true
+}

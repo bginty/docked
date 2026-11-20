@@ -1,6 +1,6 @@
 {
-  "at": "2026-11-20T11:06:04.052Z",
-  "capturedAt": "2026-11-20T11:05:44.094Z",
+  "at": "2026-11-20T11:43:36.635Z",
+  "capturedAt": "2026-11-20T11:43:25.313Z",
   "passed": true,
   "readOnly": true,
   "productionWrites": 0,
@@ -13,10 +13,10 @@
   ],
   "unexplainedDrift": 0,
   "sourcePurges": 0,
-  "appendOnlyPendingReviewWorkerRows": 7,
+  "appendOnlyPendingReviewWorkerRows": 9,
   "scheduler": {
-    "cronRowsAdded": 420,
-    "weeklyZeroIssuanceRowsAdded": 206,
+    "cronRowsAdded": 575,
+    "weeklyZeroIssuanceRowsAdded": 282,
     "mailTickAdvanced": true,
     "existingHistoryUnchanged": true
   },
