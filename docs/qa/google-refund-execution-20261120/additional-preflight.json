@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-20T11:13:13.775Z",
+  "googleProducts": [
+    {
+      "product": "docked_credits_4900_v1",
+      "credits": 4900,
+      "priceAud": 49,
+      "purchaseOptionActive": false
+    },
+    {
+      "product": "docked_credits_9900_v1",
+      "credits": 9900,
+      "priceAud": 99,
+      "purchaseOptionActive": false
+    }
+  ],
+  "historicalVerifierCheckAt": "2026-11-20T09:28:30.991Z",
+  "providerReadAt": "2026-11-20T11:06:08.580Z",
+  "unchangedBindingMetadataReadAt": "2026-11-20T11:01:37.646Z",
+  "unchangedCatalogue": true,
+  "retiredBetaControl": {
+    "enabled": true,
+    "grants_enabled": true
+  },
+  "betaAppRuntimeEnabled": false,
+  "closedRollbackTarget": "dpl_yV2vyZb1FQgdTciY2gHk25JtXVt8",
+  "shutdownRehearsalAt": "2026-11-20T09:36:02.388Z",
+  "shutdownSqlSha256": "12531dfc6503e09be0ebf06a7bdf27f0056f0e3fa9b3b5a979a99c7957fa0154",
+  "productionWrites": 0
+}

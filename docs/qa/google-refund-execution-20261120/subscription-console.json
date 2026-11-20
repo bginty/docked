@@ -1,0 +1,18 @@
+{
+  "recordedAtUtc": "2026-11-20 11:20:24 UTC",
+  "method": "Two founder-supplied screenshots of the refreshed Google Cloud subscription Details page",
+  "screenshotSha256": [
+    "f4528262f09fa421620000d831febb26ece033c6a04bd2fd8abf67966247bf6b",
+    "af832543b2eeddb1cc5a517a18e6e8c3ac6ae654eb96aae5b1a83036e0525632"
+  ],
+  "project": "docked-play-verification",
+  "subscription": "projects/docked-play-verification/subscriptions/docked-google-test-notifications-push",
+  "state": "active",
+  "topic": "projects/docked-play-verification/topics/docked-google-test-notifications",
+  "pushEndpoint": "https://docked.com.au/api/store/google/notifications",
+  "oidcAudience": "https://docked.com.au/api/store/google/notifications",
+  "oidcServiceAccount": "docked-play-rtdn-push@docked-play-verification.iam.gserviceaccount.com",
+  "pushAuthenticationEnabled": true,
+  "writes": 0,
+  "matchesReviewedSubscription": true
+}

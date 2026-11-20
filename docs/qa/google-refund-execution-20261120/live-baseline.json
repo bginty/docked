@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-20T11:01:37.646Z",
+  "source": "6e96e61192b82ee576aa0a8365808081a98b30fa",
+  "deployment": "dpl_yV2vyZb1FQgdTciY2gHk25JtXVt8",
+  "status": "READY",
+  "homepageHttp": 200,
+  "homepageRegistrationClosed": true,
+  "unchangedProjectEnvMetadata": 18,
+  "deploymentProtection": "all_except_custom_domains",
+  "billingBindingNames": [
+    "DOCKED_COMMERCIAL_ACCOUNT_BINDING_SECRET",
+    "DOCKED_COMMERCIAL_DATABASE_URL",
+    "DOCKED_COMMERCIAL_REFERENCE_KEY",
+    "DOCKED_COMMERCIAL_REFERENCE_KEY_ID",
+    "DOCKED_GOOGLE_COMMERCIAL_PRIVATE_KEY",
+    "DOCKED_GOOGLE_COMMERCIAL_SERVICE_EMAIL",
+    "DOCKED_GOOGLE_PUSH_AUDIENCE",
+    "DOCKED_GOOGLE_PUSH_SERVICE_ACCOUNT",
+    "DOCKED_GOOGLE_PUSH_SUBSCRIPTION",
+    "DOCKED_GOOGLE_RECONCILIATION_ENABLED"
+  ],
+  "crons": [
+    {
+      "path": "/api/store/google/scheduled",
+      "schedule": "*/5 * * * *"
+    }
+  ],
+  "productionWrites": 0
+}
