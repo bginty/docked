@@ -1,0 +1,28 @@
+{
+  "at": "2026-11-20T09:36:02.388Z",
+  "passed": true,
+  "target": "fresh network-isolated restore",
+  "network": "none",
+  "transaction": "rolled back",
+  "fundsMoved": 0,
+  "customersCreated": 0,
+  "smsSent": 0,
+  "productionWrites": 0,
+  "phases": [
+    "prepare",
+    "phone",
+    "commerce",
+    "registration",
+    "close"
+  ],
+  "phaseSqlHashes": {
+    "prepare": "427c7cc3d8b404a3dc7fc6d98c5018c84d5e512ed1a4429bf29f1835bde54c4d",
+    "phone": "b2de83c28d43c0f73b19680eb35c2a76bf69c7debdff272716c6f6d1a14ee782",
+    "commerce": "5b6ad306af3329ea55c93890f493f83b6af098db9bf0d0f5c9c29798d1a121fb",
+    "registration": "fcfed22949a836ce1f6d5e5a5cc9f6842ec49f3a35e7500e0240ce7b0db24db5",
+    "close": "12531dfc6503e09be0ebf06a7bdf27f0056f0e3fa9b3b5a979a99c7957fa0154"
+  },
+  "allFourDatabaseControlsClosedAfterShutdown": true,
+  "historicalFingerprintsUnchanged": true,
+  "postRollbackEqualsInitial": true
+}

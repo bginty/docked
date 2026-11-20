@@ -1,0 +1,25 @@
+{
+  "at": "2026-11-20T09:24:26.173Z",
+  "mode": "isolated invocation of frozen scheduler and receiver, no database or provider calls",
+  "launchSource": "6e96e61192b82ee576aa0a8365808081a98b30fa",
+  "legacyEnabled": true,
+  "legacyPrerequisites": [
+    false,
+    false
+  ],
+  "scheduledCommercialServiceEnabled": true,
+  "legacyCalls": 1,
+  "legacyError": "Store reconciliation is disabled",
+  "schedulerOutcome": "Store reconciliation is disabled",
+  "scheduledCommercialCallbacksStarted": 0,
+  "receiverPolicy": {
+    "audiencePresent": false,
+    "serviceAccountPresent": false,
+    "subscriptionPresent": false
+  },
+  "existingAudienceTargetsLegacy": true,
+  "receiverHttp": 401,
+  "reachedVerification": false,
+  "reachedEnqueue": false,
+  "productionWrites": 0
+}
