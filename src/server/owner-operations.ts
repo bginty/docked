@@ -8,6 +8,7 @@ import type { CreditsState } from "../core/credits-sandbox";
 import { contextualCompetitionName } from "../core/competition-display";
 export async function ownerOperations(
   input: Record<string, string | undefined>,
+  includeCommercialSummary = false,
 ) {
   const who = await requireRole(["owner"]),
     filters = operationFilters(input);
@@ -21,7 +22,17 @@ export async function ownerOperations(
     await tx`select set_config('request.jwt.claim.sub',${who.user.id},true),set_config('request.jwt.claims',${JSON.stringify({ sub: who.user.id, session_id: who.sessionId, aal: who.aal })},true)`;
     const [r] =
       await tx`select private.owner_command_centre(${filters.startAt}::timestamptz,${filters.endAt}::timestamptz,${filters.sport === "all" ? null : filters.sport},${filters.staff === "true"}) value`;
-    if (!beta) return r.value as Operations;
+    if (!beta) {
+      if (!includeCommercialSummary) return r.value as Operations;
+      const summary = await tx
+        .savepoint(async (nested) => {
+          const [row] =
+            await nested`select private.owner_commercial_summary(${filters.startAt}::timestamptz,${filters.endAt}::timestamptz) value`;
+          return row.value;
+        })
+        .catch(() => undefined);
+      return { ...r.value, publicSummary: summary } as Operations;
+    }
     const [state] =
       await tx`select document from credits_sandbox.state where id`;
     const operations = {

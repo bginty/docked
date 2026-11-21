@@ -1,4 +1,6 @@
 "use client";
+import Link from "next/link";
+import { packShopHref } from "@/core/pack-presentation";
 import { useEffect, useState } from "react";
 import { boundedFetch } from "@/core/bounded-request";
 import type { PublicSport } from "@/core/public-customer";
@@ -8,7 +10,7 @@ import { SportSandbox } from "./sport-sandbox";
 import { CompetitionResults } from "./competition-results";
 import { PrizesPage } from "./prizes-page";
 
-export function PublicGameplay({
+function CompetitionWorkspace({
   sport,
   surface,
 }: {
@@ -51,7 +53,7 @@ export function PublicGameplay({
       </section>
     );
   if (!state)
-    return <p role="status">Loading {sport.toUpperCase()} competitions…</p>;
+    return <p role="status">Loading {sport.toUpperCase()} competitionsâ€¦</p>;
   if (surface === "results")
     return (
       <CompetitionResults
@@ -87,5 +89,50 @@ export function PublicGameplay({
       publicCustomer
       apiPath={apiPath}
     />
+  );
+}
+
+export function PublicGameplay(
+  props: Parameters<typeof CompetitionWorkspace>[0],
+) {
+  return (
+    <>
+      {props.surface === "play" && (
+        <section className="fantasy-panel">
+          <h1>{props.sport.toUpperCase()} clubhouse</h1>
+          <p>
+            Browse your collection and build lineups where Practice entries are
+            available. Scored competitions and prizes are closed.
+          </p>
+          <nav className="actions" aria-label="Your cards and packs">
+            <Link
+              className="pack-control primary"
+              href={packShopHref(props.sport)}
+            >
+              Browse packs
+            </Link>
+            <Link
+              className="pack-control secondary"
+              href={packShopHref(props.sport, "mine")}
+            >
+              My packs
+            </Link>
+            <Link
+              className="pack-control secondary"
+              href={"/fantasy/cards?sport=" + props.sport}
+            >
+              My Cards
+            </Link>
+            <Link
+              className="pack-control secondary"
+              href="/fantasy/test-wallet"
+            >
+              Docked Credits
+            </Link>
+          </nav>
+        </section>
+      )}
+      <CompetitionWorkspace {...props} />
+    </>
   );
 }

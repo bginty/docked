@@ -32,6 +32,7 @@ export function operationFilters(input: Record<string, string | undefined>) {
   return { ...v, startAt: start.toUTC().toISO()!, endAt: end.toUTC().toISO()! };
 }
 export type Operations = {
+  publicSummary?: import("./public-owner-summary").PublicOwnerSummary;
   reference?: OwnerReferenceData;
   centre?: import("./owner-command-centre").CommandCentre;
   wallet?: import("./owner-wallet-summary").OwnerWalletSummary | null;

@@ -103,7 +103,7 @@ export default async function FantasyPage({
           <AppShell authenticated>
             <section className="fantasy-panel">
               <h1>Market</h1>
-              <p>Card trading is not available in this release.</p>
+              <p>Buying, selling, swapping and making offers are closed.</p>
               <p>Your cards and purchase history remain in your collection.</p>
               <NavigationShortcut
                 href={`/fantasy/cards?sport=${selectedSport}`}
@@ -227,9 +227,8 @@ export default async function FantasyPage({
         <main className="fantasy-gate">
           <StartupReady />
           <h1>Social</h1>
-          <p>Sign in with your invited account to see your feed.</p>
+          <p>Sign in to see your feed.</p>
           <Link href="/app/login">Sign in</Link>
-          <Link href="/mfa">Verify owner access</Link>
         </main>
       );
     }

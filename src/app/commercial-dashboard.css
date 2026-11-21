@@ -1,0 +1,55 @@
+.commercial-owner .commercial-trend {
+  height: 7rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  border-bottom: 1px solid currentColor;
+  margin-block: 1rem;
+}
+.commercial-trend span {
+  flex: 1;
+  background: #41b8ed;
+  min-width: 0;
+}
+.commercial-owner table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+.commercial-owner th,
+.commercial-owner td {
+  padding: 0.55rem;
+  border-bottom: 1px solid #8494a54a;
+}
+.commercial-table-scroll {
+  overflow-x: auto;
+  max-height: 22rem;
+}
+.commercial-owner .commercial-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+  gap: 1rem;
+}
+.commercial-owner dd {
+  margin: 0.3rem 0;
+  font-size: 1.25rem;
+  font-weight: 650;
+}
+.commercial-owner .owner-reference-panel {
+  min-width: 0;
+}
+.commercial-owner .owner-reference-charts {
+  grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+}
+.commercial-owner [aria-current="page"] {
+  outline: 2px solid #409deb;
+}
+
+@media (max-width: 700px) {
+  .commercial-owner .owner-reference-kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .commercial-owner .owner-reference-kpis > article:last-child {
+    grid-column: auto;
+  }
+}

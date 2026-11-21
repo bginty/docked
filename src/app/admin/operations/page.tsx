@@ -1,3 +1,4 @@
+import "../../commercial-dashboard.css";
 import { ownerOperations } from "@/server/owner-operations";
 import { requireRole } from "@/server/auth";
 import { AdminShell } from "@/components/admin-shell";
@@ -37,12 +38,15 @@ export default async function OperationsPage({
   ]);
   const selected = ownerReportPeriod(await searchParams);
   try {
-    const { filters, data } = await ownerOperations({
-      ...selected.query,
-      scope:
-        selected.query.scope ??
-        (process.env.DOCKED_BETA_STAGING === "true" ? "beta" : "live"),
-    });
+    const { filters, data } = await ownerOperations(
+      {
+        ...selected.query,
+        scope:
+          selected.query.scope ??
+          (process.env.DOCKED_BETA_STAGING === "true" ? "beta" : "live"),
+      },
+      true,
+    );
     if (process.env.DOCKED_BETA_STAGING !== "true")
       return (
         <AdminShell
@@ -50,7 +54,7 @@ export default async function OperationsPage({
           displayName={displayName}
           unreadCount={unreadCount}
         >
-          <PublicOwnerDashboard data={data} />
+          <PublicOwnerDashboard data={data} period={selected.period} />
         </AdminShell>
       );
     const params = new URLSearchParams({

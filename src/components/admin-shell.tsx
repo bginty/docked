@@ -8,6 +8,7 @@ import {
   canAccessAdminSection,
   type AdminSection,
 } from "@/core/admin-navigation";
+import { publicOwnerSections } from "@/core/public-owner-support";
 import { AdminGlobalSearch } from "./admin-global-search";
 import { AdminIcon } from "./admin-icon";
 import { LogoutControls, OwnerViewSwitch } from "./account-navigation";
@@ -71,7 +72,13 @@ export function AdminShell({
         </Link>
         <nav aria-label="Administration">
           {adminNavigation
-            .filter((item) => canAccessAdminSection(role, item.id))
+            .filter(
+              (item) =>
+                canAccessAdminSection(role, item.id) &&
+                (!customerMode ||
+                  item.id === "dashboard" ||
+                  publicOwnerSections.has(item.id)),
+            )
             .map((item) => (
               <Link
                 key={item.id}
@@ -86,11 +93,23 @@ export function AdminShell({
                 )}
               </Link>
             ))}
-          {role === "owner" && (
+          {role === "owner" && !customerMode && (
             <Link href="/admin/ingestion" onClick={() => setMenu(false)}>
               <AdminIcon name="chart" />
               <span>Statistics ingestion</span>
             </Link>
+          )}
+          {customerMode && (
+            <>
+              <Link href="/admin/incidents">
+                <AdminIcon name="bell" />
+                Operational incidents
+              </Link>
+              <Link href="/admin/commercial-billing">
+                <AdminIcon name="wallet" />
+                Billing and refunds
+              </Link>
+            </>
           )}
         </nav>
         <div className="admin-sidebar-art">
