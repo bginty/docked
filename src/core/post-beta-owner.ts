@@ -11,7 +11,7 @@ export function postBetaOwnerDestination(
   const destination =
     candidate && /^\/admin(?:\/|$)/.test(candidate)
       ? candidate
-      : "/admin/incidents";
+      : "/admin/operations";
   return who.aal === "aal2"
     ? destination
     : `/mfa?next=${encodeURIComponent(destination)}`;

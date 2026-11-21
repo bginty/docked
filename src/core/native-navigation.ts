@@ -167,7 +167,7 @@ export function nativeSessionDestination(
   };
   if (session.authenticated === false) return "/app/login";
   if (session.authenticated === true && session.ownerAccess === true)
-    return /^\/admin(?:\/|$)/.test(pathname) ? null : "/admin/incidents";
+    return /^\/admin(?:\/|$)/.test(pathname) ? null : "/admin/operations";
   if (session.authenticated === true && session.onboardingRequired === true)
     return "/app/onboarding";
   return null;

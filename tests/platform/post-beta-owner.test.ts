@@ -5,16 +5,16 @@ import { rejectedSessionCookies } from "../../src/core/rejected-session-cookies"
 import { memberReturnPath } from "../../src/core/member-access-recovery";
 import { nativeSessionDestination } from "../../src/core/native-navigation";
 
-test("both retained Owner roles land on incidents and preserve individual MFA", () => {
+test("both retained Owner roles land on Commercial operations and preserve individual MFA", () => {
   for (const label of ["Founder", "Barry"]) {
     assert.equal(
       postBetaOwnerDestination({ postBetaOwner: true, aal: "aal2" }),
-      "/admin/incidents",
+      "/admin/operations",
       label,
     );
     assert.equal(
       postBetaOwnerDestination({ postBetaOwner: true, aal: "aal1" }),
-      "/mfa?next=%2Fadmin%2Fincidents",
+      "/mfa?next=%2Fadmin%2Foperations",
       label,
     );
     for (const next of [
@@ -27,7 +27,7 @@ test("both retained Owner roles land on incidents and preserve individual MFA", 
     ])
       assert.equal(
         postBetaOwnerDestination({ postBetaOwner: true, aal: "aal2" }, next),
-        "/admin/incidents",
+        "/admin/operations",
       );
     assert.equal(
       postBetaOwnerDestination(
@@ -45,6 +45,11 @@ test("both retained Owner roles land on incidents and preserve individual MFA", 
 });
 
 test("incidents survive login/MFA return validation without widening external redirects", () => {
+  assert.equal(memberReturnPath("/admin/operations"), "/admin/operations");
+  for (const aal of ["aal1", "aal2"]) {
+    const destination = postBetaOwnerDestination({ postBetaOwner: true, aal }, "/admin/incidents");
+    assert.equal(destination, aal === "aal2" ? "/admin/incidents" : "/mfa?next=%2Fadmin%2Fincidents");
+  }
   assert.equal(memberReturnPath("/admin/incidents"), "/admin/incidents");
   for (const path of [
     "/admin/unknown",
@@ -90,7 +95,7 @@ test("invalid refresh clears only this project's session chunks, retaining PKCE 
     );
 });
 
-test("native resume returns retained Owners to incidents without interrupting MFA or restarting gameplay", () => {
+test("native resume returns retained Owners to Commercial operations without interrupting MFA or restarting gameplay", () => {
   const owner = {
     authenticated: true,
     onboardingRequired: true,
@@ -98,7 +103,7 @@ test("native resume returns retained Owners to incidents without interrupting MF
   };
   assert.equal(
     nativeSessionDestination(200, owner, "/fantasy/play"),
-    "/admin/incidents",
+    "/admin/operations",
   );
   assert.equal(nativeSessionDestination(200, owner, "/admin/incidents"), null);
   assert.equal(nativeSessionDestination(200, owner, "/mfa"), null);

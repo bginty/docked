@@ -18,14 +18,14 @@ export default async function AdminLayout({
       <AppAuthShell>
         <h1>Owner access is temporarily unavailable</h1>
         <p>Your session could not be checked. Please try again.</p>
-        <a className="button" href="/admin/incidents">
+        <a className="button" href="/admin/operations">
           Retry Owner access
         </a>
       </AppAuthShell>
     );
   }
-  if (!who) redirect("/app/login?next=%2Fadmin%2Fincidents");
-  if (who.aal !== "aal2") redirect("/mfa?next=%2Fadmin%2Fincidents");
+  if (!who) redirect("/app/login?next=%2Fadmin%2Foperations");
+  if (who.aal !== "aal2") redirect("/mfa?next=%2Fadmin%2Foperations");
   // Role authorization remains in each page/API; the layout does not grant it.
   return (
     <OwnerNavigationProvider

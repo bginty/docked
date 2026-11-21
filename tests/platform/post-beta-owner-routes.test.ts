@@ -223,17 +223,17 @@ test("actual entry and fantasy layout redirect retained Owners before onboarding
   const layout = await load("src/app/fantasy/layout.tsx", stubs, env);
   for (const id of ["fictional-founder", "fictional-barry"]) {
     who.user.id = id;
-    await redirected(() => entry.default(), "/admin/incidents");
+    await redirected(() => entry.default(), "/admin/operations");
     await redirected(
       () => layout.default({ children: "gameplay" }),
-      "/admin/incidents",
+      "/admin/operations",
     );
   }
   assert.equal(onboardingReads, 0);
   who = { ...who, aal: "aal1" };
   await redirected(
     () => layout.default({ children: "gameplay" }),
-    "/mfa?next=%2Fadmin%2Fincidents",
+    "/mfa?next=%2Fadmin%2Foperations",
   );
   who = null;
   await redirected(() => entry.default(), "/app/login");
@@ -292,12 +292,12 @@ test("admin layout requires a current identity and MFA, and offers retry on serv
   who = { ...who, aal: "aal1" };
   await redirected(
     () => layout.default({ children: "incidents" }),
-    "/mfa?next=%2Fadmin%2Fincidents",
+    "/mfa?next=%2Fadmin%2Foperations",
   );
   who = null;
   await redirected(
     () => layout.default({ children: "incidents" }),
-    "/app/login?next=%2Fadmin%2Fincidents",
+    "/app/login?next=%2Fadmin%2Foperations",
   );
   unavailable = true;
   const retry = await layout.default({ children: "incidents" });
@@ -366,16 +366,16 @@ for (const beta of [true, false])
       );
     assert.equal(
       (await (await post("login")).json()).redirect,
-      "/mfa?next=%2Fadmin%2Fincidents",
+      "/mfa?next=%2Fadmin%2Foperations",
     );
     aal = "aal2";
     assert.equal(
       (await (await post("login")).json()).redirect,
-      "/admin/incidents",
+      "/admin/operations",
     );
     assert.equal(
       (await (await post("mfa_verify")).json()).redirect,
-      "/admin/incidents",
+      "/admin/operations",
     );
   });
 

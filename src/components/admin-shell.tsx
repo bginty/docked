@@ -176,7 +176,7 @@ export function AdminShell({
               <Link
                 href={
                   retainedOwner
-                    ? "/mfa?next=%2Fadmin%2Fincidents"
+                    ? "/mfa?next=%2Fadmin%2Foperations"
                     : "/dashboard"
                 }
               >
