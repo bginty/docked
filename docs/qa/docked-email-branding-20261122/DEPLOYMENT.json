@@ -1,0 +1,55 @@
+{
+  "status": "approved_pending_deployment",
+  "project": "pojoymtniryarxxunyvz",
+  "function": "docked-auth-email",
+  "baseSource": "4a562c54d5f920c4fbbecf547427cc989db86fed",
+  "baseVersion": 50,
+  "baseBundleSha256": "8d6a17e9819169ad8f9d68b7eab9fc43d95aa561d9895ecaa8ba16de7fb1193a",
+  "verify_jwt": false,
+  "files": [
+    {
+      "name": "docked-auth-email/index.ts",
+      "sha256": "2fb90abf640880564f5b2bbf2ae3bbd0fb1b56e0c352f4805e6a28a6ec1ccb27"
+    },
+    {
+      "name": "docked-auth-email/router.mjs",
+      "sha256": "deeba5f79a92c9f23b659358155611347d37daf3de0e135ac03b11388a7cdfe2"
+    },
+    {
+      "name": "docked-auth-email/mail.mjs",
+      "sha256": "e2c5381492ae9676ad4d7238327136bd08713333ff8436928520af0ad52f1e6c"
+    },
+    {
+      "name": "docked-auth-email/queue.mjs",
+      "sha256": "b32f9e10c162b01d37fadd37677f842b9d96976b9f742b99666916f0d660870c"
+    },
+    {
+      "name": "docked-auth-email/presentation.mjs",
+      "sha256": "9860d09b55d0d7f0cd5020723e49f67406af857628a8d6806502fb7cd6e11fb3"
+    }
+  ],
+  "tests": {
+    "passed": 31,
+    "failed": 0,
+    "skipped": 0,
+    "focusedLint": "passed"
+  },
+  "testEmailsSent": 0,
+  "customerTokensUsed": 0,
+  "googleSettingsChanged": false,
+  "sourceCommit": "53e01fa184e480121dbb4df2844028dd08f0cb3c",
+  "productionVersion": 50,
+  "productionDeploymentAttempted": false,
+  "publicPush": "approved_pending",
+  "publicPushReason": "External publication was treated as a separate decision; preparing the change was authorized but public push was not.",
+  "branch": "codex/docked-email-branding-20261122",
+  "userApprovalRecordedAt": "2026-11-21T22:21:09.646967+00:00",
+  "preflight": {
+    "checkedAt": "2026-11-21T22:21:09.646967+00:00",
+    "liveVersion": 50,
+    "liveBundleSha256": "8d6a17e9819169ad8f9d68b7eab9fc43d95aa561d9895ecaa8ba16de7fb1193a",
+    "baselineUnchanged": true,
+    "activeOrRecentQueueJobs": 0,
+    "candidateHashesMatchReviewedManifest": true
+  }
+}

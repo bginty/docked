@@ -3,6 +3,7 @@ import {
   projectUrl,
   productionRecipientAllowed,
 } from "./mail.mjs";
+import { authenticationLink } from "./presentation.mjs";
 
 const encode = new TextEncoder();
 const b64 = (v) => btoa(String.fromCharCode(...new Uint8Array(v)));
@@ -65,13 +66,7 @@ export async function queueJobs(
         throw Error("Unapproved controlled recipient");
       const diagnostic =
         mode === "controlled" && /^[a-f0-9]{64}$/.test(diagnosticId ?? "");
-      const link = diagnostic
-        ? null
-        : new URL(
-            message.body.content
-              .split("\n")
-              .find((line) => line.startsWith("https://")),
-          );
+      const link = diagnostic ? null : authenticationLink(message.body);
       const token = diagnostic
         ? diagnosticId
         : (link.searchParams.get("token") ??

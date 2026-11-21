@@ -15,6 +15,10 @@ import {
   projectUrl,
   sendGraph,
 } from "../../supabase/functions/docked-auth-email/mail.mjs";
+import {
+  authEmailBody,
+  authenticationLink,
+} from "../../supabase/functions/docked-auth-email/presentation.mjs";
 
 function payload(action = "signup") {
   return {
@@ -117,11 +121,8 @@ test("Auth links bind production project and exact callbacks; secure email-chang
     const input = payload(action);
     input.email_data.token_hash = "pkce_" + "a".repeat(64);
     const [message] = messagesFor(input);
-    const link = new URL(
-      message.body.content
-        .split("\n")
-        .find((line: string) => line.startsWith("https://"))!,
-    );
+    assert.equal(message.body.contentType, "HTML");
+    const link = authenticationLink(message.body);
     assert.equal(
       link.origin,
       action === "recovery" || action === "signup"
@@ -143,6 +144,15 @@ test("Auth links bind production project and exact callbacks; secure email-chang
       ),
       input.email_data.token_hash,
     );
+    assert.equal(
+      link.searchParams.get("redirect_to"),
+      action === "magiclink" ? input.email_data.redirect_to : null,
+    );
+    const anchors = [...message.body.content.matchAll(/href="([^"]+)"/g)].map(
+      (match) => match[1].replaceAll("&amp;", "&"),
+    );
+    assert.deepEqual(anchors.slice(0, 2), [link.href, link.href]);
+    assert.doesNotMatch(message.body.content, /&type=|&redirect_to=/);
   }
   const messages = messagesFor(payload("email_change"));
   assert.equal(messages.length, 2);
@@ -150,12 +160,20 @@ test("Auth links bind production project and exact callbacks; secure email-chang
     messages[0].toRecipients[0].emailAddress.address,
     "member@example.test",
   );
-  assert.match(messages[0].body.content, new RegExp("b".repeat(64)));
+  assert.equal(
+    authenticationLink(messages[0].body).searchParams.get("token"),
+    "b".repeat(64),
+  );
+  assert.doesNotMatch(messages[0].body.content, new RegExp("a".repeat(64)));
   assert.equal(
     messages[1].toRecipients[0].emailAddress.address,
     "replacement@example.test",
   );
-  assert.match(messages[1].body.content, new RegExp("a".repeat(64)));
+  assert.equal(
+    authenticationLink(messages[1].body).searchParams.get("token"),
+    "a".repeat(64),
+  );
+  assert.doesNotMatch(messages[1].body.content, new RegExp("b".repeat(64)));
   for (const destination of [
     "https://evil.invalid/",
     "https://docked.com.au.evil.invalid/auth/callback",
@@ -176,6 +194,46 @@ test("Auth links bind production project and exact callbacks; secure email-chang
   assert.throws(() => messagesFor(payload("invite")));
   for (const action of ["toString", "__proto__", "constructor"])
     assert.throws(() => messagesFor(payload(action)));
+});
+
+test("branded Auth email escapes content, does not reflect member metadata and has no token-bearing image requests", () => {
+  const input = {
+    ...payload(),
+    user: {
+      ...payload().user,
+      user_metadata: { name: '<img src="https://untrusted.test/track">' },
+    },
+  };
+  const [message] = messagesFor(input);
+  assert.doesNotMatch(message.body.content, /untrusted|member@example/);
+  const images = [...message.body.content.matchAll(/<img[^>]+src="([^"]+)"/g)];
+  assert.equal(images.length, 1);
+  const imageUrl = new URL(images[0][1]);
+  assert.equal(imageUrl.origin, "https://docked.com.au");
+  assert.equal(imageUrl.search, "");
+  assert.equal(imageUrl.hash, "");
+  const escaped = authEmailBody(
+    "signup",
+    'A <title> & "quoted"',
+    authenticationLink(message.body).href,
+  );
+  assert.doesNotMatch(escaped.content, /A <title>/);
+  assert.match(escaped.content, /A &lt;title&gt; &amp; &quot;quoted&quot;/);
+  assert.equal(
+    authenticationLink(escaped).href,
+    authenticationLink(message.body).href,
+  );
+});
+
+test("queue link extraction accepts only one designated HTML Auth link and rejects malformed entity encoding", () => {
+  const body = messagesFor(payload())[0].body;
+  for (const content of [
+    body.content.replace('data-docked-auth-link="true"', ""),
+    body.content + body.content,
+    body.content.replace("&amp;type=", "&type="),
+    body.content.replace("&amp;type=", "&#38;type="),
+  ])
+    assert.throws(() => authenticationLink({ ...body, content }));
 });
 
 test("Certificate OAuth assertion uses PS256, fixed tenant endpoint and short expiry", async () => {
@@ -228,6 +286,7 @@ test("Graph transport pins sender, refuses redirects/errors and does not interpr
   assert.equal(calls[1].options.redirect, "error");
   const sent = JSON.parse(calls[1].options.body as string);
   assert.equal(sent.saveToSentItems, true);
+  assert.equal(sent.message.body.contentType, "HTML");
   assert.equal(
     sent.message.toRecipients[0].emailAddress.address,
     "member@example.test",

@@ -9,6 +9,7 @@ import {
   productionRecipientAllowed,
 } from "../../supabase/functions/docked-auth-email/mail.mjs";
 import { queueJobs } from "../../supabase/functions/docked-auth-email/queue.mjs";
+import { authenticationLink } from "../../supabase/functions/docked-auth-email/presentation.mjs";
 
 const origin = "https://docked-production.netlify.app";
 const token = "a".repeat(64);
@@ -203,11 +204,7 @@ test("invite messages use gated browser confirmation and encrypted stable queue 
     ),
   );
   const messages = messagesFor(payload, { allowInvites: true });
-  const url = new URL(
-    messages[0].body.content
-      .split("\n")
-      .find((s: string) => s.startsWith("https://"))!,
-  );
+  const url = authenticationLink(messages[0].body);
   assert.equal(url.pathname, "/auth/invite");
   assert.equal(url.origin, origin);
   assert.equal(url.searchParams.get("token_hash"), token);
