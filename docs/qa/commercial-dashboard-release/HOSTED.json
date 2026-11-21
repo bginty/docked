@@ -1,0 +1,19 @@
+{
+  "source": "58e9ad606cd066ff1639c59f978a6090e3aa63f7",
+  "project": "docked-preview",
+  "deployment": "dpl_2mdgpKiuvLu5rZsZQopiGFbL4PtQ",
+  "status": "READY",
+  "protectedRequests": [
+    {
+      "path": "/api/app-session",
+      "status": 200,
+      "authenticated": false
+    },
+    {
+      "path": "/api/admin/operations?scope=live",
+      "status": 403
+    }
+  ],
+  "signedInProductionDashboard": "Requires Release 2 staging and its separate approval.",
+  "screens": "Isolated browser-rendered comparisons, synthetic values."
+}
