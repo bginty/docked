@@ -568,3 +568,61 @@ test("installed Supabase SSR client removes a genuinely rejected refresh from re
     console.warn = oldWarn;
   }
 });
+
+test("Owner preference writes require same-origin public AAL2 Owner authority and bind each login independently", async () => {
+  let allowed = true,
+    retained = true,
+    origin = true,
+    uid = "founder",
+    sid = "login-one";
+  const route = await load(
+    "src/app/api/owner-view/route.ts",
+    {
+      "@/server/auth": {
+        sameOrigin: () => origin,
+        requireRole: async (roles: string[]) => {
+          assert.equal(roles.join(","), "owner");
+          if (!allowed) throw Error("denied");
+          return { postBetaOwner: retained, user: { id: uid }, sessionId: sid };
+        },
+      },
+    },
+    { DOCKED_PUBLIC_CUSTOMERS: "true" },
+  );
+  const post = (mode: string) =>
+    route.POST(
+      new Request("https://docked.com.au/api/owner-view?mode=" + mode, {
+        method: "POST",
+      }),
+    );
+  const enter = await post("customer");
+  assert.equal(enter.status, 303);
+  assert.equal(enter.headers.get("location"), "https://docked.com.au/app");
+  const first = enter.cookies.get("docked-owner-customer-view");
+  assert.ok(first.httpOnly && first.secure && first.sameSite === "lax");
+  sid = "login-two";
+  assert.notEqual(
+    (await post("customer")).cookies.get(first.name).value,
+    first.value,
+  );
+  uid = "barry";
+  assert.notEqual(
+    (await post("customer")).cookies.get(first.name).value,
+    first.value,
+  );
+  const leave = await post("owner");
+  assert.equal(
+    leave.headers.get("location"),
+    "https://docked.com.au/admin/operations",
+  );
+  assert.equal(leave.cookies.get(first.name).maxAge, 0);
+  assert.equal((await post("other")).status, 400);
+  retained = false;
+  assert.equal((await post("customer")).status, 403);
+  retained = true;
+  allowed = false;
+  assert.equal((await post("customer")).status, 403);
+  allowed = true;
+  origin = false;
+  assert.equal((await post("customer")).status, 403);
+});

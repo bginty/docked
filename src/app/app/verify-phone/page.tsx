@@ -1,3 +1,5 @@
+import { CustomerViewBanner } from "@/components/account-navigation";
+import { identity } from "@/server/auth";
 import { redirect } from "next/navigation";
 import { onboardingIdentity } from "@/server/onboarding-identity";
 import { publicCustomersEnabled } from "@/core/public-customer";
@@ -10,9 +12,11 @@ export default async function VerifyPhone() {
   if (who.mfaRequired && who.aal !== "aal2")
     redirect("/mfa?next=/app/verify-phone");
   if (verifiedPhone(who.user)) redirect("/app/onboarding");
+  const navigation = (await identity())?.customerView && <CustomerViewBanner />;
   if (!phoneDeliveryReady())
     return (
       <section>
+        {navigation}
         <h1>Phone verification pending</h1>
         <p>
           Account verification is not available yet. Your account is unchanged.
@@ -20,5 +24,10 @@ export default async function VerifyPhone() {
         <a href="mailto:support@docked.com.au">Contact support</a>
       </section>
     );
-  return <PublicPhoneVerification />;
+  return (
+    <>
+      {navigation}
+      <PublicPhoneVerification />
+    </>
+  );
 }

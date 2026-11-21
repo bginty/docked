@@ -1,3 +1,7 @@
+import {
+  LogoutControls,
+  CustomerViewBanner,
+} from "@/components/account-navigation";
 import Link from "next/link";
 import { identity } from "@/server/auth";
 import { config } from "@/server/config";
@@ -20,6 +24,7 @@ export default async function Dashboard() {
           <AccessGate configured={settings.database && settings.auth} />
         ) : (
           <>
+            {who.customerView && <CustomerViewBanner />}
             <nav className="tab-nav" aria-label="Account settings">
               <Link href="/fantasy/profile">My profile</Link>
               <Link href="/profile#edit">Community profile</Link>
@@ -43,13 +48,7 @@ export default async function Dashboard() {
               >
                 <Field label="Type DELETE to confirm" name="confirm" required />
               </ApiForm>
-              <ApiForm
-                endpoint="/api/auth"
-                action="logout"
-                submit="Log out all sessions"
-              >
-                <span />
-              </ApiForm>
+              <LogoutControls allDevices />
             </section>
           </>
         )}

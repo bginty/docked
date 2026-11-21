@@ -1,3 +1,4 @@
+import { LogoutControls } from "@/components/account-navigation";
 import { FantasyLoadError } from "@/components/fantasy-load-error";
 import { memberAccessFailure } from "@/core/member-access-recovery";
 import { StartupReady } from "@/components/startup-loading";
@@ -120,6 +121,7 @@ export default async function FantasyPage({
       const social = await boundedRead(ownProfileIdentity()).catch(() => ({}));
       return (
         <AppShell authenticated>
+          <LogoutControls allDevices />
           <ProfileOverview
             data={{
               user_id: who.user.id,

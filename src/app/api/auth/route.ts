@@ -1,8 +1,8 @@
 import { publicCustomersEnabled } from "@/core/public-customer";
 import { customerOnboardingEnabled } from "@/core/customer-onboarding.mjs";
 import { memberReturnPath } from "@/core/member-access-recovery";
-import { signOutBetaSession } from "@/core/beta-signout";
-import { authUsersRelation, authSessionsRelation } from "@/core/auth-relations";
+import { ownerViewCookie } from "@/core/owner-view";
+import { authUsersRelation } from "@/core/auth-relations";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { authClient, identity, sameOrigin } from "@/server/auth";
@@ -54,6 +54,7 @@ const schema = z.object({
   ]),
   email: z.string().email().max(254).optional(),
   app: z.boolean().optional(),
+  scope: z.enum(["local", "global"]).optional(),
   username: signupUsername.optional(),
   invitationCode: z.string().max(100).optional(),
   privacy: z.boolean().optional(),
@@ -253,37 +254,27 @@ export async function POST(request: Request) {
     return fallback;
   };
   if (v.action === "logout") {
-    if (process.env.DOCKED_BETA_STAGING === "true") {
-      try {
-        await signOutBetaSession(client.auth);
+    const scope = v.scope ?? "local";
+    if (scope === "global") {
+      const { data, error } = await client.auth.getUser();
+      if (error || !data.user)
         return NextResponse.json(
-          { ok: true, redirect: v.app ? "/app/login" : "/" },
-          { headers: { "Cache-Control": "no-store" } },
+          { error: "Log in again to log out all devices." },
+          { status: 401 },
         );
-      } catch {
-        return NextResponse.json(
-          { error: "Sign-out could not be confirmed. Please retry." },
-          { status: 503, headers: { "Cache-Control": "no-store" } },
-        );
-      }
     }
-    const { data: session } = await client.auth.getSession();
-    const token = session.session?.access_token;
-    const verified = token ? await client.auth.getUser(token) : null;
-    // Revoke database-backed sessions first so an Auth-provider error cannot
-    // leave copied JWTs usable against either the application or RLS.
-    if (verified?.data.user && !verified.error)
-      await sql`delete from ${sql.unsafe(authSessionsRelation())} where user_id=${verified.data.user.id}`;
-    const { error } = await client.auth.signOut({ scope: "global" });
-    if (error && !verified?.data.user)
+    const { error } = await client.auth.signOut({ scope });
+    if (error)
       return NextResponse.json(
         { error: "Sign-out could not be confirmed. Please retry." },
-        { status: 503 },
+        { status: 503, headers: { "Cache-Control": "no-store" } },
       );
-    return NextResponse.json({
-      ok: true,
-      redirect: v.app ? "/app/login" : "/",
-    });
+    const response = NextResponse.json(
+      { ok: true, redirect: v.app ? "/app/login" : "/" },
+      { headers: { "Cache-Control": "private, no-store" } },
+    );
+    response.cookies.delete(ownerViewCookie);
+    return response;
   }
   if (["mfa_status", "mfa_enroll", "mfa_verify"].includes(v.action)) {
     const result = await mfaFlow(client.auth, v.action, v.code, v.next);

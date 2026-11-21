@@ -13,7 +13,7 @@ export async function GET() {
         { status: 503, headers },
       );
     if (!who) return NextResponse.json({ authenticated: false }, { headers });
-    if (who.postBetaOwner)
+    if (who.postBetaOwner && !who.customerView)
       return NextResponse.json(
         { authenticated: true, onboardingRequired: false, ownerAccess: true },
         { headers },

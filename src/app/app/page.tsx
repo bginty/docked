@@ -1,4 +1,5 @@
 import { customerOnboardingEnabled } from "@/core/customer-onboarding.mjs";
+import { verifiedPhone } from "@/core/public-phone";
 import { redirect } from "next/navigation";
 import { appViewer } from "@/server/app-view";
 import { appOnboardingState } from "@/server/app-onboarding";
@@ -28,6 +29,8 @@ export default async function AppEntry() {
   const ownerDestination = postBetaOwnerDestination(who);
   if (ownerDestination) redirect(ownerDestination);
   if (betaOwnerAuthenticationOnly(process.env)) redirect("/app/owner-setup");
+  if (who.customerView && !verifiedPhone(who.user))
+    redirect("/app/verify-phone");
   const state = await appOnboardingState(who.user.id);
   redirect(
     state.completed && !state.legalRequired

@@ -10,7 +10,11 @@ import {
 } from "@/core/admin-navigation";
 import { AdminGlobalSearch } from "./admin-global-search";
 import { AdminIcon } from "./admin-icon";
-import { useRetainedOwnerNavigation } from "./owner-navigation-context";
+import { LogoutControls, OwnerViewSwitch } from "./account-navigation";
+import {
+  useCustomerModeAvailable,
+  useRetainedOwnerNavigation,
+} from "./owner-navigation-context";
 import { StartupReady } from "./startup-loading";
 
 export function AdminShell({
@@ -31,6 +35,7 @@ export function AdminShell({
   children: ReactNode;
 }) {
   const [menu, setMenu] = useState(false);
+  const customerMode = useCustomerModeAvailable() && role === "owner";
   const retainedOwner = useRetainedOwnerNavigation();
   const toggle = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -116,6 +121,7 @@ export function AdminShell({
           ☰
         </button>
         <AdminGlobalSearch />
+        {customerMode && <OwnerViewSwitch />}
         <div className="admin-account">
           <Link
             href={retainedOwner ? "/admin/incidents" : "/notifications"}
@@ -143,8 +149,10 @@ export function AdminShell({
               <span aria-hidden="true">⌄</span>
             </summary>
             <nav aria-label="Account">
-              <Link href={retainedOwner ? "/app" : "/fantasy/profile"}>
-                {retainedOwner ? "Owner access" : "My profile"}
+              <Link
+                href={retainedOwner ? "/admin/operations" : "/fantasy/profile"}
+              >
+                {retainedOwner ? "Owner dashboard" : "My profile"}
               </Link>
               <Link
                 href={
@@ -155,6 +163,8 @@ export function AdminShell({
               >
                 {retainedOwner ? "Security & MFA" : "Manage account"}
               </Link>
+              {customerMode && <OwnerViewSwitch />}
+              <LogoutControls allDevices />
             </nav>
           </details>
         </div>

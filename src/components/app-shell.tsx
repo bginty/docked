@@ -1,4 +1,5 @@
 "use client";
+import { CustomerViewBanner } from "./account-navigation";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -28,9 +29,15 @@ const nav: { href: string; label: string; icon: AppIconName }[] = [
 ];
 const ShellContext = createContext(false);
 /** Shared fantasy layout retains navigation and the wallet provider between routes. */
-export function PersistentAppShell({ children }: { children: ReactNode }) {
+export function PersistentAppShell({
+  children,
+  customerView = false,
+}: {
+  children: ReactNode;
+  customerView?: boolean;
+}) {
   return (
-    <AppShell authenticated>
+    <AppShell authenticated customerView={customerView}>
       <ShellContext.Provider value={true}>{children}</ShellContext.Provider>
     </AppShell>
   );
@@ -109,10 +116,12 @@ export function AppShell({
   children,
   authenticated = false,
   loading = false,
+  customerView = false,
 }: {
   children: ReactNode;
   authenticated?: boolean;
   loading?: boolean;
+  customerView?: boolean;
 }) {
   const path = usePathname();
   const { sport, nba, beta } = useSport();
@@ -260,6 +269,7 @@ export function AppShell({
           </header>
           <PwaStatus allowInstall={destination === "/fantasy/profile"} />
           <div className="app-content">
+            {customerView && <CustomerViewBanner />}
             {[
               "/fantasy/play",
               "/fantasy/cards",

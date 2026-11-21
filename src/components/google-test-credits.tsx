@@ -68,6 +68,9 @@ function GoogleCredits({
   const [items, setItems] = useState<(StoreItem & { credits: number })[]>([]),
     [session, setSession] = useState<Session | null>(null),
     [busy, setBusy] = useState(false),
+    [storeState, setStoreState] = useState<"loading" | "web" | "unavailable">(
+      "loading",
+    ),
     [message, setMessage] = useState(""),
     [refreshAttempt, setRefreshAttempt] = useState(0),
     [diagnostic, setDiagnostic] = useState("");
@@ -172,12 +175,16 @@ function GoogleCredits({
     void (async () => {
       if (
         !Capacitor.isNativePlatform() ||
-        Capacitor.getPlatform() !== "android" ||
-        !(await billing.capabilities()).enabled
-      )
+        Capacitor.getPlatform() !== "android"
+      ) {
+        if (!stopped) setStoreState("web");
         return;
+      }
       const capability = await billing.capabilities();
-      if ((capability.environment ?? "test") !== mode) return;
+      if (!capability.enabled || (capability.environment ?? "test") !== mode) {
+        if (!stopped) setStoreState("unavailable");
+        return;
+      }
       const s = await readSession();
       const available = await billing.products();
       if (stopped) return;
@@ -226,6 +233,7 @@ function GoogleCredits({
       if (!stopped) {
         setItems([]);
         setSession(null);
+        setStoreState("unavailable");
       }
     });
     return () => {
@@ -234,7 +242,34 @@ function GoogleCredits({
       void listener?.remove();
     };
   }, [member, mode, refreshAttempt]);
-  if (!session) return null;
+  if (!session) {
+    if (mode === "test") return null;
+    return (
+      <section className="panel">
+        <h2>Add Docked Credits</h2>
+        {storeState === "web" ? (
+          <p>
+            Open Docked in the installed Android app to buy credits through
+            Google Play.
+          </p>
+        ) : storeState === "unavailable" ? (
+          <>
+            <p>Google Play purchases are unavailable for this session.</p>
+            <button
+              onClick={() => {
+                setStoreState("loading");
+                setRefreshAttempt((n) => n + 1);
+              }}
+            >
+              Refresh store prices
+            </button>
+          </>
+        ) : (
+          <p role="status">Checking Google Play availability…</p>
+        )}
+      </section>
+    );
+  }
   async function buy(item: StoreItem) {
     if (running.current) return;
     running.current = true;
@@ -298,7 +333,7 @@ function GoogleCredits({
           onClick={() => void buy(item)}
         >
           {item.credits.toLocaleString("en-AU")}{" "}
-          {mode === "test" ? "test credits" : "Docked Credits"} ·{" "}
+          {mode === "test" ? "test credits" : "Docked Credits"} Â·{" "}
           {item.offers[0].price}
         </button>
       ))}

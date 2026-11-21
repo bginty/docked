@@ -34,7 +34,9 @@ export default async function FantasyLayout({
     const who = await boundedRead(requireIdentity());
     // Presentation only: each destination/API still performs its own auth/MFA checks.
     return (
-      <PersistentAppShell key={who.user.id}>{children}</PersistentAppShell>
+      <PersistentAppShell key={who.user.id} customerView={who.customerView}>
+        {children}
+      </PersistentAppShell>
     );
   } catch {
     // Destination retains its precise authentication, MFA and Retry recovery state.

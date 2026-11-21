@@ -1,3 +1,5 @@
+import { CustomerViewBanner } from "@/components/account-navigation";
+import { identity } from "@/server/auth";
 import { redirect } from "next/navigation";
 import { onboardingIdentity } from "@/server/onboarding-identity";
 import { appOnboardingState } from "@/server/app-onboarding";
@@ -30,11 +32,14 @@ export default async function AppOnboarding() {
     );
   if (state.completed && !state.legalRequired) redirect("/fantasy/play");
   return (
-    <AppOnboardingForm
-      legalRequired={state.legalRequired}
-      usernameRequired={state.usernameRequired}
-      minimumAge={state.minimumAge}
-      preferences={state.preferences}
-    />
+    <>
+      {(await identity())?.customerView && <CustomerViewBanner />}
+      <AppOnboardingForm
+        legalRequired={state.legalRequired}
+        usernameRequired={state.usernameRequired}
+        minimumAge={state.minimumAge}
+        preferences={state.preferences}
+      />
+    </>
   );
 }

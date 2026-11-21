@@ -3,6 +3,11 @@ import {
   assertPackHostedAcceptance,
   packAcceptanceIdentity,
 } from "@/core/pack-hosted-acceptance.mjs";
+import {
+  activeOwnerCustomerView,
+  ownerViewBinding,
+  ownerViewCookie,
+} from "@/core/owner-view";
 import { publicCustomersEnabled } from "@/core/public-customer";
 import { verifiedPhone, verifiedPhoneRequired } from "@/core/public-phone";
 import { cache } from "react";
@@ -109,6 +114,15 @@ export const identity = cache(async function identity() {
           .length > 0),
     user,
     postBetaOwner,
+    customerView: activeOwnerCustomerView(
+      publicCustomersEnabled(),
+      postBetaOwner,
+      claims.aal,
+      ownerViewBinding(user.id, claims.sessionId),
+      postBetaOwner && publicCustomersEnabled()
+        ? (await cookies()).get(ownerViewCookie)?.value
+        : undefined,
+    ),
     profile: p[0],
     aal: claims.aal as string,
     sessionId: claims.sessionId,
