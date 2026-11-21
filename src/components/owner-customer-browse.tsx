@@ -92,8 +92,8 @@ export function OwnerCustomerBrowse() {
           <h1>{titles[path] ?? "Docked"}</h1>
           {path === "/fantasy/test-wallet" && (
             <p>
-              Google Play offers 4,900 credits for A$49 and 9,900 credits for
-              A$99, including GST.
+              The Android wallet shows available Google Play top-ups and their
+              GST-inclusive prices before checkout.
             </p>
           )}
           {path === "/fantasy/market" && (

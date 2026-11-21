@@ -50,8 +50,10 @@ export function PaidLaunchHome({ canRegister }: { canRegister: boolean }) {
           <h2>Choose your credits</h2>
           <p>
             {canRegister ? "Buy" : "At launch, buy"} Docked Credits through
-            Google Play in the Android app: A$49 for 4,900 credits or A$99 for
-            9,900 credits, including GST. Credits cannot be withdrawn.
+            Google Play in the Android app. Your wallet shows the packages available
+            on your device and their prices, including GST, before checkout.
+            Existing options include A$49 for 4,900 credits and A$99 for 9,900 credits.
+            Credits cannot be withdrawn.
           </p>
         </div>
         <div>

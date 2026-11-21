@@ -20,3 +20,7 @@ Optional A$1 / 100 and A$3 / 300 would fund a Standard one/three card pack. With
 Google fee schedule: https://support.google.com/googleplay/android-developer/answer/16954621
 Australian GST: https://www.ato.gov.au/businesses-and-organisations/gst-excise-and-indirect-taxes/gst/when-to-charge-gst-and-when-not-to/taxable-sales
 Google product schema: https://developers.google.com/android-publisher/api-ref/rest/v3/monetization.onetimeproducts
+
+## Customer notice for publication with the approved tiers
+
+Australian Android customers on a supported app version can choose 700 Docked Credits for A$7, 1,900 for A$19, 4,900 for A$49, or 9,900 for A$99. Prices include GST. The installed app shows the products Google Play currently offers you and the price before checkout. A nine-card Standard pack costs 700 credits. A nine-card Premium pack costs 5,000 credits; 4,900 credits alone leaves a 100-credit shortfall. Adding credits and buying a pack are separate purchases. Unspent credits remain in your wallet for use in Docked and have no cash withdrawal facility. Publish only the tiers actually activated.
