@@ -1,0 +1,121 @@
+{
+  "verifiedAt": "2026-11-21T07:37:59.502Z",
+  "promotedAt": "2026-11-21T07:34:01.017Z",
+  "source": "83794e9ac31c54960bfc76b9a07b36047f20486b",
+  "packageSha256": "487bd703fb5b93c8a8f43327d0ec337452953ef9746db8bd67e4f9a141c254fa",
+  "liveAlias": "docked.com.au",
+  "deployment": "dpl_2k3nw6ZuhxCT5SyAdBwbCiiq4JyU",
+  "previousDeployment": "dpl_VpwKZaEsogGJUrD896CSqH5YyTwu",
+  "approvedApplicationFiles": 4,
+  "databaseMigrations": 0,
+  "googlePlayChanges": 0,
+  "environmentChanges": 0,
+  "founderSession": {
+    "stagedLogin": "/admin/operations",
+    "stagedRequests": [
+      {
+        "path": "/app",
+        "id": "mdxxm-1795246257245-5e456a7faaa4",
+        "status": 200
+      },
+      {
+        "path": "/admin/operations",
+        "id": "x7b28-1795246259072-706ba88ba38f",
+        "status": 200
+      },
+      {
+        "path": "/admin/incidents",
+        "id": "8jc2w-1795246258613-baf721710b95",
+        "status": 200
+      },
+      {
+        "path": "/api/app-session",
+        "id": "4qgfk-1795246256951-b56606c3201d",
+        "status": 200
+      }
+    ],
+    "liveLanding": "/admin/operations",
+    "directOperationalIncidents": true,
+    "liveRequestProof": [
+      {
+        "path": "/admin/operations",
+        "requestId": "syd1::syd1::wk88x-1795246452123-7b46c8750460",
+        "http": 200
+      },
+      {
+        "path": "/api/app-session",
+        "requestId": "syd1::syd1::dxcv5-1795246449761-8632f77c7019",
+        "http": 200
+      }
+    ]
+  },
+  "android": {
+    "app": "docked.fantasy",
+    "installed": "v31 / 1.30",
+    "initial": {
+      "at": "2026-11-21T07:36:28.117Z",
+      "app": "docked.fantasy",
+      "versionCode": 31,
+      "physical": true,
+      "mode": "observe",
+      "commercial": true,
+      "ownerViewControl": true,
+      "incidentsPage": false,
+      "login": false,
+      "mfa": false,
+      "launchError": false,
+      "publicLanding": false,
+      "nodes": 157
+    },
+    "backgroundAndResume": {
+      "at": "2026-11-21T07:37:02.954Z",
+      "app": "docked.fantasy",
+      "versionCode": 31,
+      "physical": true,
+      "mode": "resume",
+      "commercial": true,
+      "ownerViewControl": true,
+      "incidentsPage": false,
+      "login": false,
+      "mfa": false,
+      "launchError": false,
+      "publicLanding": false,
+      "nodes": 157
+    },
+    "method": "Observed existing Owner session on one physical device; launcher, Home then launcher; headings and navigation only."
+  },
+  "access": {
+    "retainedOwners": 2,
+    "bothRolesAndIndividualMFAVerified": true,
+    "isolatedLoginMfaResumeAndNavigationTestsPassed": 23,
+    "barryPersonalLoginAndAndroidResume": "Awaiting separate user attestation"
+  },
+  "postflight": {
+    "at": "2026-11-21T07:35:53.661Z",
+    "protectedTables": 576,
+    "custody": 936,
+    "counts": {
+      "definitions": 6540,
+      "lifetime": 933,
+      "beta_allocations": 30,
+      "commercial_cards": 15,
+      "open_controls": 1,
+      "public_flags": 1,
+      "active_or_scored": 0,
+      "deletion_schedules": 0
+    },
+    "integrity": {
+      "lifetime_mismatches": 0,
+      "duplicate_serials": 0,
+      "unbalanced_journals": 0
+    },
+    "canonicalHttpChecks": 15,
+    "genuineRefundCron": [
+      {
+        "at": "2026-11-21T07:35:09.093Z",
+        "requestId": "gcjp6-1795246509093-8a11edd440c4",
+        "overdue": 0
+      }
+    ]
+  }
+}
