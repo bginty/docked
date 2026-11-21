@@ -1,0 +1,41 @@
+{
+  "title": "Owner default login destination",
+  "source": "83794e9ac31c54960bfc76b9a07b36047f20486b",
+  "liveSource": "38832424a729015c4af06cca9f2592f0b1497ec0",
+  "expectedLiveDeployment": "dpl_VpwKZaEsogGJUrD896CSqH5YyTwu",
+  "expires": "24 hours from exact founder approval",
+  "reviewedFiles": {
+    "src/app/admin/layout.tsx": "34ab8ad148cb88f30a30e6802f0b293e6bf54ad1251b3ce5040948aa9d2827cb",
+    "src/components/admin-shell.tsx": "b9c8b14eaa66f64beec3b0d9e849f80a16dc48891e08fc506e961e1b625a4328",
+    "src/core/native-navigation.ts": "cd0aa8cdf074b86eaecdd3ca0b2e0db270d3437d12d7cdb607c05dbb000579bd",
+    "src/core/post-beta-owner.ts": "54ffcc8995e09d6ae8abd17fc52411aa2d02dd9976d3f243f8bef7fb892a5c89",
+    "tests/platform/post-beta-owner-routes.test.ts": "b6751aa00810dbff4e5af3f9686b229237006b86687a83dc5c79ea03a55da18b",
+    "tests/platform/post-beta-owner.test.ts": "ed9023e993d2d1e219fd498ec75b9efe55db541b4cd07d7833ad8520daf5d7d8"
+  },
+  "effect": "Retained Owners enter Commercial operations from ordinary login, MFA and native-hosted resume. Approved internal return destinations including incidents continue to work. Customer View remains session bound.",
+  "isolatedEvidence": {
+    "focusedTestsPassed": 23,
+    "suites": [
+      "post-beta-owner.test.ts",
+      "post-beta-owner-routes.test.ts",
+      "owner-customer-view.test.ts",
+      "native-navigation.test.ts"
+    ],
+    "eslint": "passed on all four changed application files"
+  },
+  "execution": [
+    "Confirm the exact production source and deployment, manifest hash, approved application Git blobs and active authority. Stop if another release is pending or Production differs.",
+    "Capture a fresh encrypted authenticated backup, verify isolated restore and compare current roles, RLS, customer assets, financial records, jobs and runtime settings. Preserve legitimate activity.",
+    "Stage this exact application against the Production target without changing the domain. Verify build, anonymous denials and normal signed-in Owner /app entry to Commercial operations. Confirm a direct incidents link and standard customer/MFA guards. Reuse completed clubhouse and catalogue evidence.",
+    "Promote the verified build and check canonical domain, normal Owner entry, incident access, unchanged registrations and checkout controls, genuine refund worker and reconciled postflight.",
+    "If staging fails leave the live deployment in place. If the promoted app fails, confirm the named prior application still matches schema/settings, then restore only its Vercel alias and verify."
+  ],
+  "scopeLimits": {
+    "databaseMigrations": 0,
+    "configurationChanges": 0,
+    "externalPlayActions": 0,
+    "customerBusinessMutations": 0,
+    "marketplaceActivation": false,
+    "creditProductChanges": false
+  }
+}
