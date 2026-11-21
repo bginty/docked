@@ -1,0 +1,66 @@
+{
+  "release": "Release 2 dashboard and illustrated Owner Customer View",
+  "authority": "Separate exact approval for up to 24 hours. Application only.",
+  "source": "38832424a729015c4af06cca9f2592f0b1497ec0",
+  "expectedLive": {
+    "source": "ed5a1d12579e8abab9fbd62702d243c3f903229f",
+    "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp"
+  },
+  "priorDashboardSource": "58e9ad606cd066ff1639c59f978a6090e3aa63f7",
+  "existingSchemaRequired": {
+    "version": "20261121021000",
+    "sqlSha256": "07ad0c710744a60cb3d24a8257f9a607b18ea1c50dd9864b584c8a5e6cc53554",
+    "verifiedFunctionSha256": "dfe6fe3bea717489b0bd988656043b7ef9498d239b0a227fba357f68148f904f",
+    "installedCount": 1
+  },
+  "filesFromLive": {
+    "src/app/admin/operations/page.tsx": "27d9118e372a2622eabf4cccd91498b4b51eb23b1c821bfa9b88d2890aab6acf",
+    "src/app/api/app-session/route.ts": "24e1b163572c9673074f9b94ae744b0d9d6e6fad96936104caee70efa7537738",
+    "src/app/app/onboarding/page.tsx": "bd95c74f3b6e8d5f407adaaafd1c40a23139b9d8a39749ff5475a5df8aed1de3",
+    "src/app/app/page.tsx": "f1b9373f1c6379d5a938247b01bb02f38fb4cca06a0aea9abed5ec9b5a0267bb",
+    "src/app/commercial-dashboard.css": "2f1853060d747271c09c9e86742438aee76da3c13603fd166c8915c80143c217",
+    "src/app/fantasy/[tab]/page.tsx": "685c352bfc7510e0b71b7287fe81c825e04b64a8c9573900e8688ff105725983",
+    "src/app/fantasy/layout.tsx": "21224a1de1021451ccfd492af2d76595ff3f7ab1a44c8efc38f5f7ca11e4be90",
+    "src/components/account-navigation.tsx": "162a2bbd528008664b1b8d830df78adaba12986ea7571ef183f9bba6176861c1",
+    "src/components/admin-shell.tsx": "4bb3963e483618c13cc839ac5a9af7e266a790ead179727efa83edd49f6cf5a9",
+    "src/components/app-shell.tsx": "ff8528162fe91d98fbb1a5f9395cd2ac6f2acc8edd7ae903aa79d163fc7167fc",
+    "src/components/owner-customer-browse.tsx": "954f3cd7ffd3f9de188e0a0aa76120abe2ab43cbfff33d6a3a4363f6ae2ef165",
+    "src/components/public-clubhouse.tsx": "a4425d99182753b3c84a0f937ae5b48a8c0210151578bf6126da719af5546ba9",
+    "src/components/public-gameplay.tsx": "618edd4faab811755d444afa06a229b98c524d1c93aa00ac27f5f5ca6185ab40",
+    "src/components/public-owner-dashboard.tsx": "8473322c5d4567f917eeb2c4db9febeffa1c34ea917e8f763cb7762b0b93687d",
+    "src/components/use-workspace-wallet.ts": "b482ce4cab6977b79b0ccdb122dce955fb4bea3e3d456ff2bab9587bad70ee1f",
+    "src/core/owner-operations.ts": "6255bbf278bde016340fc579902eb4b48a5cd8dad387573b3497e263a1ffb6fc",
+    "src/core/public-owner-summary.ts": "4f1850a5da2f6c4e270424c3bd1a59298deff96ad0aeb22134e3e9f7dd7e850c",
+    "src/server/owner-operations.ts": "2a4a809e0a74335b58f68852aed3fe5e0506041ddf72f741213cede5f140b60b"
+  },
+  "changesAfterOriginalDashboard": [
+    "src/app/api/app-session/route.ts",
+    "src/app/app/onboarding/page.tsx",
+    "src/app/app/page.tsx",
+    "src/app/fantasy/layout.tsx",
+    "src/components/account-navigation.tsx",
+    "src/components/app-shell.tsx",
+    "src/components/owner-customer-browse.tsx",
+    "src/components/public-clubhouse.tsx",
+    "src/components/public-gameplay.tsx",
+    "src/components/use-workspace-wallet.ts"
+  ],
+  "evidenceSha256": "8fa65bb7d734be9ad91db19169ac1ca9f6ac6e9dfe12ec517f7633a582f59acb",
+  "execution": [
+    "Verify the reviewed Git blobs, exact live deployment, runtime, reporting function and role grants. Reconcile intervening legitimate activity. Take and verify a fresh authenticated encrypted backup and isolated restore. Stop on unexplained drift.",
+    "Stage exact application in protected Production-target staging without moving docked.com.au. Reuse the installed reporting function. Apply zero migrations and change zero environment settings.",
+    "In protected staging, confirm anonymous reporting denial. In the Founder MFA session read the dashboard against contemporaneous ledger values. The Founder personally switches to Customer View, inspects the clubhouse, chooses Browse packs and sees six illustrated packs for the selected sport, then returns to the Owner dashboard. Never advance a page automatically or submit onboarding, SMS, checkout or pack requests. Leave the window open on an incomplete review. Reuse the isolated evidence for the other sports and prior accepted access checks.",
+    "Promote only after the Founder review and all integrity checks pass. Verify canonical source, signed-in dashboard and navigation, signup and login, protected report and receipt endpoints, genuine refund worker, financial and custody checks.",
+    "If application acceptance fails, leave the alias at the previous deployment. After promotion, revert only the application to the verified compatible prior deployment if required. Preserve the installed additive function and all genuine customer activity."
+  ],
+  "excluded": [
+    "Account or consent changes on behalf of a customer",
+    "Billing, payment, inventory, SMS, Google Play or feature-flag changes",
+    "Any new database migration or permission grant"
+  ],
+  "previousCandidate": "b49f5e4b71b6adf01df8a7ac14df7c3b561218b8",
+  "previousPackageSha256": "ce0f26a9397834e89d87d456b93b0d507993d7e46e27086aa68db09b553ce891",
+  "changesSinceLastStaging": [
+    "src/components/owner-customer-browse.tsx"
+  ]
+}

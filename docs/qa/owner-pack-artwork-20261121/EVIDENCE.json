@@ -1,0 +1,21 @@
+{
+  "reviewedSource": "38832424a729015c4af06cca9f2592f0b1497ec0",
+  "priorCandidate": {
+    "deployment": "dpl_2P7U8nCvUdzGaTkdV4RoXxXNVHdp",
+    "dashboard": "Founder sign-in and protected report returned HTTP 200. Desktop and mobile widths passed. Dashboard SMS figures matched two A$1 reservations and A$48 remaining.",
+    "switch": "Protected clubhouse and catalogue GETs returned 200, both deliberate mode changes returned 303, and the Founder confirmed returning to Commercial operations. The previous catalogue supplied text entries and the staging harness navigated past the clubhouse automatically. The Founder could not see the packs. Promotion was withheld."
+  },
+  "correctedCandidate": {
+    "appFilesChangedFromPriorCandidate": [
+      "src/components/owner-customer-browse.tsx"
+    ],
+    "browser": "Loopback Chrome, actual Owner Customer View shell with isolated identity and navigation. At 390 and 1440 px, each sports clubhouse opened its catalogue through Browse packs. All 18 distinct Standard/Premium artworks decoded and had visible height at both widths; all displayed prices matched the approved catalogue. Back to clubhouse preserved the sport. Zero write requests and zero wallet API calls.",
+    "mobilePreviewSha256": "88db40c887954536c3d83d9d5e1e32e0a373d351f5039c5822a0dcbb28437ebe",
+    "checks": [
+      "11 Owner routing and access tests passed",
+      "TypeScript and changed-file ESLint passed",
+      "Next.js optimized Webpack build passed"
+    ],
+    "hostedFounderAcceptance": "Pending on this exact source."
+  }
+}
