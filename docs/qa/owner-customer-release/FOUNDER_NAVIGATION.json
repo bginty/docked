@@ -1,0 +1,104 @@
+{
+  "at": "2026-11-21T03:12:26.737Z",
+  "source": "ed5a1d12579e8abab9fbd62702d243c3f903229f",
+  "stage": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+  "packageSha256": "080771d9ef0237dd30aa3bf34f9699c6e05bed50e52c8b3292fbc721aa0c7708",
+  "stagingMethod": "Verified each document and redirect on the same trusted public origin in a dedicated browser session. Exact request IDs were matched to the candidate in Vercel.",
+  "verifiedRequests": [
+    {
+      "path": "/api/owner-view",
+      "method": "POST",
+      "status": 303,
+      "id": "syd1::syd1::xgnst-1795230151803-f59fa7d2e226",
+      "at": "2026-11-21T03:02:31.091Z",
+      "htmlPinned": false,
+      "location": "/app",
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp"
+    },
+    {
+      "path": "/app",
+      "method": "GET",
+      "status": 200,
+      "id": "syd1::syd1::z2psv-1795230151997-f6d4fe6e8748",
+      "at": "2026-11-21T03:02:31.342Z",
+      "htmlPinned": true,
+      "location": null,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp"
+    },
+    {
+      "path": "/app/onboarding",
+      "method": "GET",
+      "status": 200,
+      "id": "syd1::syd1::9nzbw-1795230152682-cc545521fe7e",
+      "at": "2026-11-21T03:02:31.970Z",
+      "htmlPinned": true,
+      "location": null,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp"
+    },
+    {
+      "path": "/api/owner-view",
+      "method": "POST",
+      "status": 303,
+      "id": "syd1::syd1::j6f6k-1795230202112-881568d92935",
+      "at": "2026-11-21T03:03:21.754Z",
+      "htmlPinned": false,
+      "location": "/admin/operations",
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp"
+    },
+    {
+      "path": "/admin/operations",
+      "method": "GET",
+      "status": 200,
+      "id": "syd1::syd1::5j7fm-1795230202683-e37ff12412fc",
+      "at": "2026-11-21T03:03:22.502Z",
+      "htmlPinned": true,
+      "location": null,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp"
+    },
+    {
+      "path": "/api/app-session",
+      "method": "GET",
+      "status": 200,
+      "id": "syd1::syd1::mdlmj-1795230501886-91ea8d3aadab",
+      "at": "2026-11-21T03:08:22.079Z",
+      "htmlPinned": false,
+      "location": null,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp"
+    },
+    {
+      "path": "/admin/incidents",
+      "method": "GET",
+      "status": 200,
+      "id": "syd1::syd1::5j7fm-1795230530251-fe7bb5c49ac1",
+      "at": "2026-11-21T03:08:49.968Z",
+      "htmlPinned": true,
+      "location": null,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp"
+    },
+    {
+      "path": "/api/app-session",
+      "id": "syd1::syd1::dfc9q-1795230144555-a7de65f89bb8",
+      "at": "2026-11-21T03:02:23.805Z",
+      "status": 200,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+      "method": "GET"
+    }
+  ],
+  "founderAttestation": "Both views opened directly. The Founder also reported that saving a profile name failed in the restricted staging window.",
+  "observed": {
+    "customerBanner": "Customer View \u2014 Your Own Account",
+    "ordinaryCustomerRoute": "/app/onboarding",
+    "customerSession": {
+      "authenticated": true,
+      "onboardingRequired": true
+    },
+    "ownerReturn": "/admin/operations",
+    "incidentsAfterSwitch": 200,
+    "anonymousCustomerModeSwitch": 403,
+    "currentOwnersRequiringPublicUsername": 2,
+    "productionProfileConsentWrittenByTest": false,
+    "productionPurchases": 0
+  },
+  "acceptanceMethod": "The browser observer mistyped the customer banner punctuation through a Windows encoding conversion. The actual banner and session response were inspected in the attended window. The independent network transcript and founder readback establish the outcome.",
+  "profileSave": "The staging operator rejects all profile, consent and financial POSTs before dispatch. It is a navigation-only acceptance. No real account was enrolled by this operation."
+}
