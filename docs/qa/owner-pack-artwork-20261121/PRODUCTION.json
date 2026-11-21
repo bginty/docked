@@ -1,0 +1,90 @@
+{
+  "source": "38832424a729015c4af06cca9f2592f0b1497ec0",
+  "packageSha256": "c0e6b86471a100e851bca5014d6c7338986883d7c87246c7a64dcdeec553d6ed",
+  "deployedAt": "2026-11-21T06:47:17.885Z",
+  "production": "dpl_VpwKZaEsogGJUrD896CSqH5YyTwu",
+  "prior": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+  "schemaChanges": 0,
+  "configurationChanges": 0,
+  "founderReview": "Founder reported NFL Clubhouse, confirmed illustrated Standard and Premium packs including nine cards, and confirmed return to Commercial operations.",
+  "staging": {
+    "providerChecks": 8,
+    "matchedWebPImages": 6,
+    "serverRenderedReportComparedWithLedger": true,
+    "separateJsonRead": {
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+      "requestId": "5dvcw-1795243020801-73ba8c6f7b63",
+      "creditedToCandidate": false
+    }
+  },
+  "postflight": {
+    "independentLiveHTTPChecks": 15,
+    "signedInDashboard": {
+      "checkedAt": "2026-11-21T06:55:10.644Z",
+      "observations": [
+        {
+          "deployment": "dpl_VpwKZaEsogGJUrD896CSqH5YyTwu",
+          "id": "mwbcp-1795243927069-cef578f8c8bc",
+          "at": 1795243927069,
+          "path": "/admin/operations",
+          "status": 200,
+          "domain": "docked.com.au"
+        },
+        {
+          "deployment": "dpl_VpwKZaEsogGJUrD896CSqH5YyTwu",
+          "id": "6mgpb-1795243927067-79969c9fde08",
+          "at": 1795243927067,
+          "path": "/admin/operations",
+          "status": 200,
+          "domain": "docked.com.au"
+        },
+        {
+          "deployment": "dpl_VpwKZaEsogGJUrD896CSqH5YyTwu",
+          "id": "2jp98-1795243927064-f42549bb5153",
+          "at": 1795243927064,
+          "path": "/admin/operations",
+          "status": 200,
+          "domain": "docked.com.au"
+        },
+        {
+          "deployment": "dpl_VpwKZaEsogGJUrD896CSqH5YyTwu",
+          "id": "brkzh-1795243923652-b51ba1922a13",
+          "at": 1795243923652,
+          "path": "/admin/operations",
+          "status": 200,
+          "domain": "docked.com.au"
+        }
+      ],
+      "heading": "Commercial operations",
+      "switchControl": "View as Customer",
+      "smsReservedCents": 200,
+      "smsRemainingCents": 4800
+    },
+    "refundCron": [
+      {
+        "at": "2026-11-21T06:50:09.099Z",
+        "requestId": "5ln8p-1795243809099-cb592fa0f98f",
+        "overdue": 0
+      }
+    ],
+    "protectedTables": 576,
+    "counts": {
+      "definitions": 6540,
+      "lifetime": 933,
+      "beta_allocations": 30,
+      "commercial_cards": 15,
+      "open_controls": 1,
+      "public_flags": 1,
+      "active_or_scored": 0,
+      "deletion_schedules": 0
+    },
+    "custodyRecords": 936,
+    "integrity": {
+      "lifetime_mismatches": 0,
+      "duplicate_serials": 0,
+      "unbalanced_journals": 0
+    },
+    "verifiedSixRoleGrants": 6
+  },
+  "knownIssue": "Retained Owner default login leads to Operational incidents. /admin/operations renders the live dashboard and Return to Owner Dashboard leads there. Follow-up application approval is separate."
+}
