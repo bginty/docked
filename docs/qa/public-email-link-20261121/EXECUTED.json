@@ -1,0 +1,258 @@
+{
+  "source": "fd162088105d02c73398b7ba761fed334dc1f5ab",
+  "package": "19d58313a50336779e9c29c9308601043dd687211f2b8a1388baca3e5b10afd7",
+  "priorDeployment": "dpl_ENRo3YtNe3NWe4gQ9tCTwhWHx4wR",
+  "deployment": "dpl_9DX5EYTE3KeHQoxPPzV8X8MLc8S5",
+  "approvedWindow": "24h",
+  "containment": {
+    "at": "2026-11-21T00:11:34.974Z",
+    "evidence": "canonical token-free GET returns 503 before token handling",
+    "before": {
+      "app_open": true,
+      "new_accounts": 1,
+      "emails_confirmed": 0
+    },
+    "providerSignupDisabled": true,
+    "registrationFlag": false,
+    "emailOtpLifetimeSeconds": 3600,
+    "otherAuthSettingsUnchanged": true
+  },
+  "backup": {
+    "capturedAt": "2026-11-21T00:39:14.426Z",
+    "archiveSha256": "dbd84a0803af287608c04d55dae8b684acb806d69ca52c81eaa0f7e4554e8446",
+    "authenticated": true,
+    "restored": true,
+    "network": "none",
+    "protectedTables": 576
+  },
+  "preflight": {
+    "tables": 576,
+    "counts": {
+      "definitions": 6540,
+      "lifetime": 918,
+      "beta_allocations": 30,
+      "commercial_cards": 0,
+      "open_controls": 1,
+      "public_flags": 0,
+      "active_or_scored": 0,
+      "deletion_schedules": 0
+    },
+    "financialAndSupplyIntegrity": {
+      "lifetime_mismatches": 0,
+      "duplicate_serials": 0,
+      "unbalanced_journals": 0
+    },
+    "custody": 936,
+    "unexplained": 0
+  },
+  "checks": {
+    "staged": [
+      {
+        "path": "/auth/verify",
+        "http": 200,
+        "requestId": "syd1::syd1::lwgmv-1795222018602-1a88060b87cf",
+        "at": "2026-11-21T00:47:00.701Z"
+      },
+      {
+        "path": "/auth/verify",
+        "http": 400,
+        "requestId": "syd1::syd1::cpgqd-1795222019503-80c627c7628b",
+        "at": "2026-11-21T00:47:01.329Z"
+      },
+      {
+        "path": "/auth/recovery",
+        "http": 200,
+        "requestId": "syd1::syd1::zzwqq-1795222020199-c26ce8bb79a3",
+        "at": "2026-11-21T00:47:01.787Z"
+      },
+      {
+        "path": "/auth/recovery",
+        "http": 400,
+        "requestId": "syd1::syd1::85qng-1795222020564-97861a912f27",
+        "at": "2026-11-21T00:47:02.114Z"
+      },
+      {
+        "path": "/auth/invite",
+        "http": 503,
+        "requestId": "syd1::syd1::w22k9-1795222020896-684b0ecb902a",
+        "at": "2026-11-21T00:47:02.635Z"
+      },
+      {
+        "path": "/app/login",
+        "http": 200,
+        "requestId": "syd1::syd1::lg8dd-1795222021408-b1513d620ff3",
+        "at": "2026-11-21T00:47:03.136Z"
+      },
+      {
+        "path": "/app/signup",
+        "http": 200,
+        "requestId": "syd1::syd1::cpgqd-1795222021914-3696cb291e3d",
+        "at": "2026-11-21T00:47:03.285Z"
+      },
+      {
+        "path": "/api/app-session",
+        "http": 200,
+        "requestId": "syd1::syd1::dmsf6-1795222022060-5d3122d02a5f",
+        "at": "2026-11-21T00:47:03.717Z"
+      },
+      {
+        "path": "/api/admin/incidents",
+        "http": 403,
+        "requestId": "syd1::syd1::szb7x-1795222022537-12b1512da0ed",
+        "at": "2026-11-21T00:47:03.900Z"
+      }
+    ],
+    "live": [
+      {
+        "path": "/auth/verify",
+        "http": 200,
+        "requestId": "syd1::syd1::xv4vl-1795222322347-86a34739827b",
+        "at": "2026-11-21T00:52:03.711Z"
+      },
+      {
+        "path": "/auth/verify",
+        "http": 400,
+        "requestId": "syd1::syd1::wn2h9-1795222322510-a99368ce7630",
+        "at": "2026-11-21T00:52:03.872Z"
+      },
+      {
+        "path": "/auth/recovery",
+        "http": 200,
+        "requestId": "syd1::syd1::56fp9-1795222322751-b15e7ba7345f",
+        "at": "2026-11-21T00:52:04.113Z"
+      },
+      {
+        "path": "/auth/recovery",
+        "http": 400,
+        "requestId": "syd1::syd1::zk6v6-1795222322870-3cde393f3098",
+        "at": "2026-11-21T00:52:04.196Z"
+      },
+      {
+        "path": "/auth/invite",
+        "http": 503,
+        "requestId": "syd1::syd1::kzntj-1795222322987-b5cf49099e35",
+        "at": "2026-11-21T00:52:04.328Z"
+      },
+      {
+        "path": "/app/login",
+        "http": 200,
+        "requestId": "syd1::syd1::hqmvc-1795222323103-7c4e1340963b",
+        "at": "2026-11-21T00:52:04.668Z"
+      },
+      {
+        "path": "/app/signup",
+        "http": 200,
+        "requestId": "syd1::syd1::hqmvc-1795222323431-3f1882ae2cb3",
+        "at": "2026-11-21T00:52:04.833Z"
+      },
+      {
+        "path": "/api/app-session",
+        "http": 200,
+        "requestId": "syd1::syd1::xv4vl-1795222323598-0cc65667cd58",
+        "at": "2026-11-21T00:52:04.921Z"
+      },
+      {
+        "path": "/api/admin/incidents",
+        "http": 403,
+        "requestId": "syd1::syd1::rmkpf-1795222323688-660a408c438b",
+        "at": "2026-11-21T00:52:05.023Z"
+      }
+    ],
+    "reopened": [
+      {
+        "path": "/auth/verify",
+        "http": 200,
+        "requestId": "syd1::syd1::5nkcl-1795222642713-f0c07e6e0f75",
+        "at": "2026-11-21T00:57:24.135Z"
+      },
+      {
+        "path": "/auth/verify",
+        "http": 400,
+        "requestId": "syd1::syd1::xv4vl-1795222642988-538f7fb8b5a7",
+        "at": "2026-11-21T00:57:24.341Z"
+      },
+      {
+        "path": "/auth/recovery",
+        "http": 200,
+        "requestId": "syd1::syd1::w22k9-1795222643220-0fb4b859308c",
+        "at": "2026-11-21T00:57:24.864Z"
+      },
+      {
+        "path": "/auth/recovery",
+        "http": 400,
+        "requestId": "syd1::syd1::5nkcl-1795222643643-87240814403b",
+        "at": "2026-11-21T00:57:25.033Z"
+      },
+      {
+        "path": "/auth/invite",
+        "http": 503,
+        "requestId": "syd1::syd1::dmsf6-1795222643798-7bf048ca1417",
+        "at": "2026-11-21T00:57:25.135Z"
+      },
+      {
+        "path": "/app/login",
+        "http": 200,
+        "requestId": "syd1::syd1::pbfz6-1795222643917-26f38db4671b",
+        "at": "2026-11-21T00:57:25.485Z"
+      },
+      {
+        "path": "/app/signup",
+        "http": 200,
+        "requestId": "syd1::syd1::pbfz6-1795222644248-5ee235baf1ef",
+        "at": "2026-11-21T00:57:25.682Z"
+      },
+      {
+        "path": "/api/app-session",
+        "http": 200,
+        "requestId": "syd1::syd1::56fp9-1795222644465-5649b625bd55",
+        "at": "2026-11-21T00:57:25.813Z"
+      },
+      {
+        "path": "/api/admin/incidents",
+        "http": 403,
+        "requestId": "syd1::syd1::xv4vl-1795222644609-cf076de5a3c4",
+        "at": "2026-11-21T00:57:25.954Z"
+      }
+    ],
+    "supportContact": true,
+    "redemptionsUsingCustomerTokens": 0
+  },
+  "promotedAt": "2026-11-21T00:51:58.167Z",
+  "reopenedAt": "2026-11-21T00:57:08.124Z",
+  "providerSignupEnabled": true,
+  "dbRegistration": true,
+  "otherAuthSettingsUnchanged": true,
+  "refundWorker": [
+    {
+      "requestId": "dmkp4-1795222509338-e495b4ee252f",
+      "at": "2026-11-21T00:55:09.338Z",
+      "status": 200,
+      "overdue": 0,
+      "attentionRequired": false
+    }
+  ],
+  "customerObservations": {
+    "at": "2026-11-21T00:57:49.559Z",
+    "metrics": {
+      "new_accounts": 1,
+      "verified_emails": 0,
+      "verified_phones": 0,
+      "paid_orders": 0,
+      "paid_gross_aud_cents": "0",
+      "refunded_aud_cents": "0",
+      "credits_issued": "0",
+      "credit_integrity_failures": 0,
+      "packs": 0,
+      "opened_packs": 0,
+      "allocated_cards": 0,
+      "pack_integrity_failures": 0,
+      "custody_failures": 0,
+      "completed_consume_jobs": 0,
+      "billing_jobs_needing_attention": 0,
+      "sms_attempts": 0,
+      "reserved_aud_cents": 0,
+      "uncertain_sms": 0
+    }
+  },
+  "store": "Published AU v31 (1.30), existing release untouched during repair"
+}
