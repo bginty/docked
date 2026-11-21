@@ -1,0 +1,68 @@
+{
+  "status": "deployed_and_verified",
+  "function": "docked-auth-email",
+  "project": "pojoymtniryarxxunyvz",
+  "productionVersion": 51,
+  "deployedAt": "2026-11-21T22:23:56.300Z",
+  "publicSourceCommit": "17b3e78926906760535350c060241aebf1f8287d",
+  "reviewedLocalSourceCommit": "53e01fa184e480121dbb4df2844028dd08f0cb3c",
+  "publicTree": "d472a2c26663f4c4f9b9a866b083107bd87777f9",
+  "deploymentBundleSha256": "462b9a313c9a8d06460f84d65a11f32428fca864fef9221e16193ff91cd1f8d1",
+  "exactSourceReadback": true,
+  "customHookAuthenticationPreserved": true,
+  "preflightActiveOrRecentQueueJobs": 0,
+  "httpChecks": [
+    {
+      "path": "/",
+      "method": "GET",
+      "status": 405,
+      "expected": 405,
+      "cacheControl": "no-store",
+      "body": "{\"error\":{\"http_code\":405,\"message\":\"Method not allowed\"}}",
+      "requestId": "01a20036-1d9c-7dab-a3e7-580ce4f80773"
+    },
+    {
+      "path": "/",
+      "method": "POST",
+      "status": 401,
+      "expected": 401,
+      "cacheControl": "no-store",
+      "body": "{\"error\":{\"http_code\":401,\"message\":\"Webhook verification failed\"}}",
+      "requestId": "01a20036-3447-7eb7-bd14-7af025c192eb"
+    },
+    {
+      "path": "/worker",
+      "method": "POST",
+      "status": 401,
+      "expected": 401,
+      "cacheControl": "no-store",
+      "body": "{\"error\":{\"http_code\":401,\"message\":\"Webhook verification failed\"}}",
+      "requestId": "01a20036-427e-70ae-8c09-fb8f95fc1acb"
+    },
+    {
+      "path": "/control",
+      "method": "POST",
+      "status": 401,
+      "expected": 401,
+      "cacheControl": "no-store",
+      "body": "{\"error\":{\"http_code\":401,\"message\":\"Webhook verification failed\"}}",
+      "requestId": "01a20036-5151-794b-888c-7d80c87090d7"
+    }
+  ],
+  "logo": {
+    "url": "https://docked.com.au/brand/docked/icons/docked-icon-192.png",
+    "httpStatus": 200,
+    "bytes": 43116
+  },
+  "testEmailsSent": 0,
+  "customerTokensUsed": 0,
+  "inboxDeliveryTestPerformed": false,
+  "focusedTests": {
+    "passed": 31,
+    "failed": 0,
+    "skipped": 0,
+    "lint": "passed"
+  },
+  "pullRequest": "https://github.com/bginty/docked/pull/3",
+  "googlePaymentsSettingsChanged": false
+}

@@ -14,6 +14,7 @@ import {
   projectUrl,
   productionRecipientAllowed,
 } from "../../supabase/functions/docked-auth-email/mail.mjs";
+import { authenticationLink } from "../../supabase/functions/docked-auth-email/presentation.mjs";
 let pg: PGlite;
 test("ordinary customer mail requires explicit unexpired public activation; beta stays scoped", () => {
   const e = {
@@ -112,6 +113,96 @@ before(async () => {
   );
 });
 after(async () => await pg.close());
+test("HTML presentation preserves legacy queue identities for every action and both email-change recipients", async () => {
+  for (const action of [
+    "signup",
+    "recovery",
+    "magiclink",
+    "email_change",
+    "invite",
+  ]) {
+    const input = {
+      ...payload("p"),
+      user: {
+        email: "member@example.test",
+        new_email: "replacement@example.test",
+      },
+      email_data: {
+        ...payload("p").email_data,
+        email_action_type: action,
+        token_hash: "pkce_" + "p".repeat(64),
+        token_hash_new: "pkce_" + "q".repeat(64),
+      },
+    };
+    const messages = messagesFor(input, { allowInvites: true });
+    const legacy = messages.map((message) => ({
+      ...message,
+      body: {
+        contentType: "Text",
+        content: `${message.subject}\n\nOpen this one-time link to continue:\n${authenticationLink(message.body).href}\n\nIf you did not request this, ignore this email. Never share the link.\n\nDocked — Ginty United Investments Pty Ltd\nABN 78 606 187 106\nSupport and privacy: support@docked.com.au`,
+      },
+    }));
+    const previousJobs = await queueJobs(legacy, secret, "production");
+    const brandedJobs = await queueJobs(messages, secret, "production");
+    assert.deepEqual(
+      brandedJobs.map((job) => job.id),
+      previousJobs.map((job) => job.id),
+    );
+    assert.equal(
+      new Set(brandedJobs.map((job) => job.id)).size,
+      messages.length,
+    );
+    for (const [index, job] of brandedJobs.entries()) {
+      assert.notEqual(job.fingerprint, previousJobs[index].fingerprint);
+      assert.ok(Buffer.byteLength(JSON.stringify(job.envelope)) < 32768);
+    }
+  }
+});
+test("an existing Text job survives a changed-presentation retry and still dispatches only once", async () => {
+  const [message] = messagesFor(payload("z"));
+  const legacy = {
+    ...message,
+    body: {
+      contentType: "Text",
+      content: `${message.subject}\n${authenticationLink(message.body).href}`,
+    },
+  };
+  const previousJobs = await queueJobs([legacy], secret, "controlled");
+  const brandedJobs = await queueJobs([message], secret, "controlled");
+  await rpc("enqueue", { mode: "controlled", jobs: previousJobs });
+  await assert.rejects(
+    () => rpc("enqueue", { mode: "controlled", jobs: brandedJobs }),
+    /Mail idempotency conflict/,
+  );
+  const stored = (
+    await pg.query<{ fingerprint: string }>(
+      "select fingerprint from private.docked_auth_mail_outbox where id=$1",
+      [previousJobs[0].id],
+    )
+  ).rows;
+  assert.deepEqual(stored, [{ fingerprint: previousJobs[0].fingerprint }]);
+  let sends = 0;
+  const fetcher: typeof fetch = async (url, options) => {
+    if (String(url).includes("oauth2"))
+      return Response.json({ access_token: "authored", token_type: "Bearer" });
+    sends++;
+    assert.equal(
+      JSON.parse(options?.body as string).message.body.contentType,
+      "Text",
+    );
+    return new Response(null, { status: 202 });
+  };
+  const args = {
+    env,
+    mode: "controlled",
+    rpc,
+    id: previousJobs[0].id,
+    fetcher,
+  };
+  assert.equal((await drainOne(args)).state, "accepted");
+  assert.equal((await drainOne(args)).state, "idle");
+  assert.equal(sends, 1);
+});
 test("production dispatch rejects previously queued unapproved recipients before certificate or Graph requests", async () => {
   const input = payload("r");
   input.user.email = "other@example.test";

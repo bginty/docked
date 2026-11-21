@@ -1,0 +1,458 @@
+From 53e01fa184e480121dbb4df2844028dd08f0cb3c Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.com>
+Date: Sun, 22 Nov 2026 08:49:59 +1100
+Subject: [PATCH] Brand Docked authentication emails and retain legal footer
+
+---
+ supabase/functions/docked-auth-email/mail.mjs |   7 +-
+ .../docked-auth-email/presentation.mjs        | 127 ++++++++++++++++++
+ .../functions/docked-auth-email/queue.mjs     |   9 +-
+ tests/platform/auth-invitation.test.ts        |   7 +-
+ tests/platform/auth-mail-worker.test.ts       |  91 +++++++++++++
+ tests/platform/production-graph-mail.test.ts  |  73 +++++++++-
+ 6 files changed, 291 insertions(+), 23 deletions(-)
+ create mode 100644 supabase/functions/docked-auth-email/presentation.mjs
+
+diff --git a/supabase/functions/docked-auth-email/mail.mjs b/supabase/functions/docked-auth-email/mail.mjs
+index fcca293..07339f1 100644
+--- a/supabase/functions/docked-auth-email/mail.mjs
++++ b/supabase/functions/docked-auth-email/mail.mjs
+@@ -1,4 +1,6 @@
+ // Production-only, provider-independent core. Never logs payloads or credentials.
++import { authEmailBody } from "./presentation.mjs";
++
+ export const projectUrl = "https://pojoymtniryarxxunyvz.supabase.co";
+ const sender = "support@docked.com.au";
+ const isolatedProject = "https://bckkllmndoxzpzdqrevb.supabase.co";
+@@ -221,10 +223,7 @@ export function messagesFor(
+     if (!confirmation) url.searchParams.set("redirect_to", data.redirect_to);
+     return {
+       subject: subjects[action],
+-      body: {
+-        contentType: "Text",
+-        content: `${subjects[action]}\n\nOpen this one-time link to continue:\n${url.href}\n\nIf you did not request this, ignore this email. Never share the link.\n\nDocked — Ginty United Investments Pty Ltd\nABN 78 606 187 106\nSupport and privacy: ${sender}`,
+-      },
++      body: authEmailBody(action, subjects[action], url.href),
+       toRecipients: [{ emailAddress: { address } }],
+     };
+   });
+diff --git a/supabase/functions/docked-auth-email/presentation.mjs b/supabase/functions/docked-auth-email/presentation.mjs
+new file mode 100644
+index 0000000..5f9a7fd
+--- /dev/null
++++ b/supabase/functions/docked-auth-email/presentation.mjs
+@@ -0,0 +1,127 @@
++// Presentation only. Callers validate the recipient, action and destination first.
++const brandOrigin = "https://docked.com.au";
++const support = "support@docked.com.au";
++const copy = {
++  signup: {
++    introduction:
++      "Confirm your email address to finish setting up your Docked account.",
++    button: "Verify email address",
++  },
++  recovery: {
++    introduction:
++      "Use the secure link below to choose a new password for your Docked account.",
++    button: "Reset password",
++  },
++  magiclink: {
++    introduction:
++      "Use the secure link below to sign in to your Docked account.",
++    button: "Sign in to Docked",
++  },
++  email_change: {
++    introduction:
++      "Confirm this email address to continue changing your Docked sign-in email. For your security, confirmation is required from both email addresses.",
++    button: "Confirm email change",
++  },
++  invite: {
++    introduction:
++      "You have been invited to Docked. Use the secure link below to accept your invitation.",
++    button: "Accept invitation",
++  },
++};
++const entities = {
++  "&": "&amp;",
++  '"': "&quot;",
++  "'": "&#39;",
++  "<": "&lt;",
++  ">": "&gt;",
++};
++const escapeHtml = (value) =>
++  String(value).replace(/[&"'<>]/g, (character) => entities[character]);
++
++/** Render the already-validated URL without changing its path, token or query. */
++export function authEmailBody(action, subject, url) {
++  if (typeof action !== "string" || !Object.hasOwn(copy, action))
++    throw Error("Unsupported Auth email action");
++  const { introduction, button } = copy[action];
++  const safeUrl = escapeHtml(url);
++  const safeSubject = escapeHtml(subject);
++  return {
++    contentType: "HTML",
++    content: `<!doctype html>
++<html lang="en">
++<head>
++  <meta charset="utf-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1">
++  <meta name="color-scheme" content="light">
++  <title>${safeSubject}</title>
++  <style>@media only screen and (max-width: 480px) { .outer { padding: 16px 8px !important; } .content { padding: 28px 22px !important; } }</style>
++</head>
++<body style="margin:0;padding:0;background-color:#f1f5f9;color:#0b0f1a;font-family:Arial,Helvetica,sans-serif;-webkit-text-size-adjust:100%;">
++  <div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;">${escapeHtml(introduction)}</div>
++  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;background-color:#f1f5f9;">
++    <tr><td class="outer" align="center" style="padding:32px 16px;">
++      <!--[if mso]><table role="presentation" width="600" cellpadding="0" cellspacing="0"><tr><td><![endif]-->
++      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;border-collapse:separate;border-spacing:0;background-color:#ffffff;border:1px solid #dbe3ee;border-radius:16px;text-align:left;">
++        <tr><td style="padding:24px 32px;background-color:#0b0f1a;border-radius:15px 15px 0 0;">
++          <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:collapse;"><tr>
++            <td width="56" style="vertical-align:middle;"><img src="${brandOrigin}/brand/docked/icons/docked-icon-192.png" width="56" height="56" alt="Docked logo" style="display:block;width:56px;height:56px;border:0;border-radius:12px;"></td>
++            <td style="padding-left:14px;vertical-align:middle;color:#ffffff;font-size:25px;font-weight:700;letter-spacing:3px;line-height:32px;">DOCKED</td>
++          </tr></table>
++        </td></tr>
++        <tr><td class="content" style="padding:36px 32px;">
++          <h1 style="margin:0 0 18px;font-size:28px;line-height:36px;font-weight:700;color:#0b0f1a;">${safeSubject}</h1>
++          <p style="margin:0 0 26px;font-size:16px;line-height:26px;color:#475569;">${escapeHtml(introduction)}</p>
++          <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;"><tr><td bgcolor="#1a2aff" style="background-color:#1a2aff;border-radius:8px;text-align:center;">
++            <a data-docked-auth-link="true" href="${safeUrl}" style="display:inline-block;padding:14px 22px;border:1px solid #1a2aff;border-radius:8px;color:#ffffff;font-size:16px;font-weight:700;line-height:24px;text-decoration:none;">${escapeHtml(button)}</a>
++          </td></tr></table>
++          <p style="margin:28px 0 8px;font-size:13px;line-height:21px;color:#475569;">If the button does not work, copy and paste this one-time link into your browser:</p>
++          <p style="margin:0 0 24px;font-size:13px;line-height:21px;word-break:break-all;overflow-wrap:anywhere;"><a href="${safeUrl}" style="color:#1749c7;text-decoration:underline;word-break:break-all;overflow-wrap:anywhere;">${safeUrl}</a></p>
++          <p style="margin:0 0 28px;font-size:13px;line-height:21px;color:#475569;">If you did not request this, you can ignore this email. Never share this link.</p>
++          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-top:1px solid #dbe3ee;"><tr><td style="padding-top:22px;">
++            <p style="margin:0 0 6px;font-size:16px;font-weight:700;line-height:24px;color:#0b0f1a;">The Docked team</p>
++            <p style="margin:0;font-size:14px;line-height:23px;"><a href="mailto:${support}" style="color:#1749c7;text-decoration:underline;">${support}</a><br><a href="${brandOrigin}" style="color:#1749c7;text-decoration:underline;">docked.com.au</a></p>
++          </td></tr></table>
++        </td></tr>
++        <tr><td style="padding:20px 32px;border-top:1px solid #dbe3ee;background-color:#f8fafc;border-radius:0 0 15px 15px;">
++          <p style="margin:0;font-size:12px;line-height:20px;color:#475569;">Docked is operated by Ginty United Investments Pty Ltd · ABN 78 606 187 106</p>
++        </td></tr>
++      </table>
++      <!--[if mso]></td></tr></table><![endif]-->
++    </td></tr>
++  </table>
++</body>
++</html>`,
++  };
++}
++
++/** Read only our serialized CTA, or the pre-branding plain-text link, for queue identity. */
++export function authenticationLink(body) {
++  const content = body?.content;
++  if (typeof content !== "string") throw Error("Missing authentication link");
++  let candidate;
++  if (body.contentType?.toLowerCase() === "text") {
++    const links = content
++      .split("\n")
++      .filter((line) => line.startsWith("https://"));
++    if (links.length !== 1) throw Error("Missing authentication link");
++    candidate = links[0];
++  } else if (body.contentType?.toLowerCase() === "html") {
++    const links = [
++      ...content.matchAll(/<a data-docked-auth-link="true" href="([^"]+)"/g),
++    ];
++    if (
++      links.length !== 1 ||
++      content.split("data-docked-auth-link=").length !== 2
++    )
++      throw Error("Missing authentication link");
++    // Generated URLs only need ampersand decoding. A round trip rejects other
++    // entities or unescaped markup, instead of interpreting arbitrary HTML.
++    candidate = links[0][1].replaceAll("&amp;", "&");
++    if (escapeHtml(candidate) !== links[0][1])
++      throw Error("Missing authentication link");
++  } else throw Error("Missing authentication link");
++  const url = new URL(candidate);
++  if (url.protocol !== "https:" || url.username || url.password || url.hash)
++    throw Error("Missing authentication link");
++  return url;
++}
+diff --git a/supabase/functions/docked-auth-email/queue.mjs b/supabase/functions/docked-auth-email/queue.mjs
+index 0a38bd8..814eca8 100644
+--- a/supabase/functions/docked-auth-email/queue.mjs
++++ b/supabase/functions/docked-auth-email/queue.mjs
+@@ -3,6 +3,7 @@ import {
+   projectUrl,
+   productionRecipientAllowed,
+ } from "./mail.mjs";
++import { authenticationLink } from "./presentation.mjs";
+ 
+ const encode = new TextEncoder();
+ const b64 = (v) => btoa(String.fromCharCode(...new Uint8Array(v)));
+@@ -65,13 +66,7 @@ export async function queueJobs(
+         throw Error("Unapproved controlled recipient");
+       const diagnostic =
+         mode === "controlled" && /^[a-f0-9]{64}$/.test(diagnosticId ?? "");
+-      const link = diagnostic
+-        ? null
+-        : new URL(
+-            message.body.content
+-              .split("\n")
+-              .find((line) => line.startsWith("https://")),
+-          );
++      const link = diagnostic ? null : authenticationLink(message.body);
+       const token = diagnostic
+         ? diagnosticId
+         : (link.searchParams.get("token") ??
+diff --git a/tests/platform/auth-invitation.test.ts b/tests/platform/auth-invitation.test.ts
+index 2f2c79f..d5c5df9 100644
+--- a/tests/platform/auth-invitation.test.ts
++++ b/tests/platform/auth-invitation.test.ts
+@@ -9,6 +9,7 @@ import {
+   productionRecipientAllowed,
+ } from "../../supabase/functions/docked-auth-email/mail.mjs";
+ import { queueJobs } from "../../supabase/functions/docked-auth-email/queue.mjs";
++import { authenticationLink } from "../../supabase/functions/docked-auth-email/presentation.mjs";
+ 
+ const origin = "https://docked-production.netlify.app";
+ const token = "a".repeat(64);
+@@ -203,11 +204,7 @@ test("invite messages use gated browser confirmation and encrypted stable queue
+     ),
+   );
+   const messages = messagesFor(payload, { allowInvites: true });
+-  const url = new URL(
+-    messages[0].body.content
+-      .split("\n")
+-      .find((s: string) => s.startsWith("https://"))!,
+-  );
++  const url = authenticationLink(messages[0].body);
+   assert.equal(url.pathname, "/auth/invite");
+   assert.equal(url.origin, origin);
+   assert.equal(url.searchParams.get("token_hash"), token);
+diff --git a/tests/platform/auth-mail-worker.test.ts b/tests/platform/auth-mail-worker.test.ts
+index 6b23c25..bfce730 100644
+--- a/tests/platform/auth-mail-worker.test.ts
++++ b/tests/platform/auth-mail-worker.test.ts
+@@ -14,6 +14,7 @@ import {
+   projectUrl,
+   productionRecipientAllowed,
+ } from "../../supabase/functions/docked-auth-email/mail.mjs";
++import { authenticationLink } from "../../supabase/functions/docked-auth-email/presentation.mjs";
+ let pg: PGlite;
+ test("ordinary customer mail requires explicit unexpired public activation; beta stays scoped", () => {
+   const e = {
+@@ -112,6 +113,96 @@ before(async () => {
+   );
+ });
+ after(async () => await pg.close());
++test("HTML presentation preserves legacy queue identities for every action and both email-change recipients", async () => {
++  for (const action of [
++    "signup",
++    "recovery",
++    "magiclink",
++    "email_change",
++    "invite",
++  ]) {
++    const input = {
++      ...payload("p"),
++      user: {
++        email: "member@example.test",
++        new_email: "replacement@example.test",
++      },
++      email_data: {
++        ...payload("p").email_data,
++        email_action_type: action,
++        token_hash: "pkce_" + "p".repeat(64),
++        token_hash_new: "pkce_" + "q".repeat(64),
++      },
++    };
++    const messages = messagesFor(input, { allowInvites: true });
++    const legacy = messages.map((message) => ({
++      ...message,
++      body: {
++        contentType: "Text",
++        content: `${message.subject}\n\nOpen this one-time link to continue:\n${authenticationLink(message.body).href}\n\nIf you did not request this, ignore this email. Never share the link.\n\nDocked — Ginty United Investments Pty Ltd\nABN 78 606 187 106\nSupport and privacy: support@docked.com.au`,
++      },
++    }));
++    const previousJobs = await queueJobs(legacy, secret, "production");
++    const brandedJobs = await queueJobs(messages, secret, "production");
++    assert.deepEqual(
++      brandedJobs.map((job) => job.id),
++      previousJobs.map((job) => job.id),
++    );
++    assert.equal(
++      new Set(brandedJobs.map((job) => job.id)).size,
++      messages.length,
++    );
++    for (const [index, job] of brandedJobs.entries()) {
++      assert.notEqual(job.fingerprint, previousJobs[index].fingerprint);
++      assert.ok(Buffer.byteLength(JSON.stringify(job.envelope)) < 32768);
++    }
++  }
++});
++test("an existing Text job survives a changed-presentation retry and still dispatches only once", async () => {
++  const [message] = messagesFor(payload("z"));
++  const legacy = {
++    ...message,
++    body: {
++      contentType: "Text",
++      content: `${message.subject}\n${authenticationLink(message.body).href}`,
++    },
++  };
++  const previousJobs = await queueJobs([legacy], secret, "controlled");
++  const brandedJobs = await queueJobs([message], secret, "controlled");
++  await rpc("enqueue", { mode: "controlled", jobs: previousJobs });
++  await assert.rejects(
++    () => rpc("enqueue", { mode: "controlled", jobs: brandedJobs }),
++    /Mail idempotency conflict/,
++  );
++  const stored = (
++    await pg.query<{ fingerprint: string }>(
++      "select fingerprint from private.docked_auth_mail_outbox where id=$1",
++      [previousJobs[0].id],
++    )
++  ).rows;
++  assert.deepEqual(stored, [{ fingerprint: previousJobs[0].fingerprint }]);
++  let sends = 0;
++  const fetcher: typeof fetch = async (url, options) => {
++    if (String(url).includes("oauth2"))
++      return Response.json({ access_token: "authored", token_type: "Bearer" });
++    sends++;
++    assert.equal(
++      JSON.parse(options?.body as string).message.body.contentType,
++      "Text",
++    );
++    return new Response(null, { status: 202 });
++  };
++  const args = {
++    env,
++    mode: "controlled",
++    rpc,
++    id: previousJobs[0].id,
++    fetcher,
++  };
++  assert.equal((await drainOne(args)).state, "accepted");
++  assert.equal((await drainOne(args)).state, "idle");
++  assert.equal(sends, 1);
++});
+ test("production dispatch rejects previously queued unapproved recipients before certificate or Graph requests", async () => {
+   const input = payload("r");
+   input.user.email = "other@example.test";
+diff --git a/tests/platform/production-graph-mail.test.ts b/tests/platform/production-graph-mail.test.ts
+index d75688f..9b8077b 100644
+--- a/tests/platform/production-graph-mail.test.ts
++++ b/tests/platform/production-graph-mail.test.ts
+@@ -15,6 +15,10 @@ import {
+   projectUrl,
+   sendGraph,
+ } from "../../supabase/functions/docked-auth-email/mail.mjs";
++import {
++  authEmailBody,
++  authenticationLink,
++} from "../../supabase/functions/docked-auth-email/presentation.mjs";
+ 
+ function payload(action = "signup") {
+   return {
+@@ -117,11 +121,8 @@ test("Auth links bind production project and exact callbacks; secure email-chang
+     const input = payload(action);
+     input.email_data.token_hash = "pkce_" + "a".repeat(64);
+     const [message] = messagesFor(input);
+-    const link = new URL(
+-      message.body.content
+-        .split("\n")
+-        .find((line: string) => line.startsWith("https://"))!,
+-    );
++    assert.equal(message.body.contentType, "HTML");
++    const link = authenticationLink(message.body);
+     assert.equal(
+       link.origin,
+       action === "recovery" || action === "signup"
+@@ -143,6 +144,15 @@ test("Auth links bind production project and exact callbacks; secure email-chang
+       ),
+       input.email_data.token_hash,
+     );
++    assert.equal(
++      link.searchParams.get("redirect_to"),
++      action === "magiclink" ? input.email_data.redirect_to : null,
++    );
++    const anchors = [...message.body.content.matchAll(/href="([^"]+)"/g)].map(
++      (match) => match[1].replaceAll("&amp;", "&"),
++    );
++    assert.deepEqual(anchors.slice(0, 2), [link.href, link.href]);
++    assert.doesNotMatch(message.body.content, /&type=|&redirect_to=/);
+   }
+   const messages = messagesFor(payload("email_change"));
+   assert.equal(messages.length, 2);
+@@ -150,12 +160,20 @@ test("Auth links bind production project and exact callbacks; secure email-chang
+     messages[0].toRecipients[0].emailAddress.address,
+     "member@example.test",
+   );
+-  assert.match(messages[0].body.content, new RegExp("b".repeat(64)));
++  assert.equal(
++    authenticationLink(messages[0].body).searchParams.get("token"),
++    "b".repeat(64),
++  );
++  assert.doesNotMatch(messages[0].body.content, new RegExp("a".repeat(64)));
+   assert.equal(
+     messages[1].toRecipients[0].emailAddress.address,
+     "replacement@example.test",
+   );
+-  assert.match(messages[1].body.content, new RegExp("a".repeat(64)));
++  assert.equal(
++    authenticationLink(messages[1].body).searchParams.get("token"),
++    "a".repeat(64),
++  );
++  assert.doesNotMatch(messages[1].body.content, new RegExp("b".repeat(64)));
+   for (const destination of [
+     "https://evil.invalid/",
+     "https://docked.com.au.evil.invalid/auth/callback",
+@@ -178,6 +196,46 @@ test("Auth links bind production project and exact callbacks; secure email-chang
+     assert.throws(() => messagesFor(payload(action)));
+ });
+ 
++test("branded Auth email escapes content, does not reflect member metadata and has no token-bearing image requests", () => {
++  const input = {
++    ...payload(),
++    user: {
++      ...payload().user,
++      user_metadata: { name: '<img src="https://untrusted.test/track">' },
++    },
++  };
++  const [message] = messagesFor(input);
++  assert.doesNotMatch(message.body.content, /untrusted|member@example/);
++  const images = [...message.body.content.matchAll(/<img[^>]+src="([^"]+)"/g)];
++  assert.equal(images.length, 1);
++  const imageUrl = new URL(images[0][1]);
++  assert.equal(imageUrl.origin, "https://docked.com.au");
++  assert.equal(imageUrl.search, "");
++  assert.equal(imageUrl.hash, "");
++  const escaped = authEmailBody(
++    "signup",
++    'A <title> & "quoted"',
++    authenticationLink(message.body).href,
++  );
++  assert.doesNotMatch(escaped.content, /A <title>/);
++  assert.match(escaped.content, /A &lt;title&gt; &amp; &quot;quoted&quot;/);
++  assert.equal(
++    authenticationLink(escaped).href,
++    authenticationLink(message.body).href,
++  );
++});
++
++test("queue link extraction accepts only one designated HTML Auth link and rejects malformed entity encoding", () => {
++  const body = messagesFor(payload())[0].body;
++  for (const content of [
++    body.content.replace('data-docked-auth-link="true"', ""),
++    body.content + body.content,
++    body.content.replace("&amp;type=", "&type="),
++    body.content.replace("&amp;type=", "&#38;type="),
++  ])
++    assert.throws(() => authenticationLink({ ...body, content }));
++});
++
+ test("Certificate OAuth assertion uses PS256, fixed tenant endpoint and short expiry", async () => {
+   const { endpoint, assertion } = await graphAssertion(env, 1_800_000_000_000);
+   const [headerPart, bodyPart, signature] = assertion.split(".");
+@@ -228,6 +286,7 @@ test("Graph transport pins sender, refuses redirects/errors and does not interpr
+   assert.equal(calls[1].options.redirect, "error");
+   const sent = JSON.parse(calls[1].options.body as string);
+   assert.equal(sent.saveToSentItems, true);
++  assert.equal(sent.message.body.contentType, "HTML");
+   assert.equal(
+     sent.message.toRecipients[0].emailAddress.address,
+     "member@example.test",
+-- 
+2.56.1
+
