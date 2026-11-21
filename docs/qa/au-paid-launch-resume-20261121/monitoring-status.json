@@ -1,0 +1,34 @@
+{
+  "asOf": "2026-11-21T00:01:28.541Z",
+  "mode": "Read-only on founder workstation",
+  "pid": 25688,
+  "activation": "2026-11-20T23:55:39.828Z",
+  "through": "2026-11-21T23:55:39.828Z",
+  "observations": [
+    {
+      "at": "2026-11-21T00:01:28.541Z",
+      "label": "latest",
+      "completed": true
+    }
+  ],
+  "milestones": [
+    {
+      "label": "15m",
+      "due": "2026-11-21T00:10:39.828Z",
+      "completed": false
+    },
+    {
+      "label": "1h",
+      "due": "2026-11-21T00:55:39.828Z",
+      "completed": false
+    },
+    {
+      "label": "24h",
+      "due": "2026-11-21T23:55:39.828Z",
+      "completed": false
+    }
+  ],
+  "firstPaidOrderObserved": false,
+  "firstPackObserved": false,
+  "firstRegistrationObserved": false
+}

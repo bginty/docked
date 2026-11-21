@@ -1,0 +1,36 @@
+{
+  "at": "2026-11-20T23:43:59.931Z",
+  "passed": true,
+  "methods": [
+    "GET"
+  ],
+  "productionWrites": 0,
+  "smsSent": 0,
+  "twilio": {
+    "existingCredentialAccepted": true,
+    "existingServiceMatched": true,
+    "dockedSenderPresent": true,
+    "acceptedSenderEvidenceReused": true,
+    "currency": "USD",
+    "auNetworkRates": 52,
+    "maxPrice": 0.0515,
+    "conservativeAudBound": 0.44770000000000004,
+    "reservationAud": 1,
+    "fundedBalance": 20,
+    "balanceCurrency": "USD",
+    "providerSettingsWritten": 0,
+    "noAutomaticRechargeEvidence": "Reuse accepted 17-Nov SMS_DECISION; no new recharge-setting inspection claimed"
+  },
+  "auth": {
+    "signupDisabled": true,
+    "phoneOff": true,
+    "hookOff": true,
+    "totpPreserved": true,
+    "emailAutoconfirm": false,
+    "smtpConfigured": false,
+    "otpLength": 6,
+    "otpSeconds": 300,
+    "minimumFrequency": 60,
+    "signedHookConfigured": true
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "at": "2026-11-21T00:01:13.836Z",
+  "readOnly": true,
+  "checkpoint": "latest",
+  "data": {
+    "new_accounts": 0,
+    "verified_emails": 0,
+    "verified_phones": 0,
+    "paid_orders": 0,
+    "paid_gross_aud_cents": "0",
+    "refunded_aud_cents": "0",
+    "credits_issued": "0",
+    "credit_integrity_failures": 0,
+    "packs": 0,
+    "opened_packs": 0,
+    "allocated_cards": 0,
+    "pack_integrity_failures": 0,
+    "custody_failures": 0,
+    "completed_consume_jobs": 0,
+    "billing_jobs_needing_attention": 0,
+    "sms_attempts": 0,
+    "reserved_aud_cents": 0,
+    "uncertain_sms": 0
+  },
+  "site": {
+    "http": 200,
+    "elapsedMs": 681,
+    "registrationLink": true
+  },
+  "twilioAccountWideUtcDates": {
+    "start": "2026-11-20",
+    "end": "2026-11-21"
+  },
+  "providerUsage": [
+    {
+      "category": "sms-outbound",
+      "http": 200,
+      "usage": [
+        {
+          "count": "0",
+          "price": "0",
+          "currency": "usd"
+        }
+      ]
+    },
+    {
+      "category": "sms-messages-carrierfees",
+      "http": 200,
+      "usage": [
+        {
+          "count": "0",
+          "price": "0",
+          "currency": "usd"
+        }
+      ]
+    }
+  ],
+  "providerUsageScope": "Account-wide published totals for UTC calendar days. Historical usage on these dates can predate the launch. Public-window reservations are reported separately."
+}

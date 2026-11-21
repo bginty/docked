@@ -1,0 +1,48 @@
+{
+  "at": "2026-11-20T23:54:30.751Z",
+  "mode": "registration",
+  "readOnly": true,
+  "comparedWith": "Latest reconciled 20 November coordinated launch preflight",
+  "changedTables": [
+    "auth.refresh_tokens",
+    "auth.sessions",
+    "auth.users",
+    "beta_packs.control",
+    "beta_packs.events",
+    "commercial_billing.control",
+    "commercial_billing.definitions",
+    "commercial_billing.products",
+    "credits_sandbox.trading_control",
+    "cron.job_run_details",
+    "private.audit_events",
+    "private.docked_mail_scheduler",
+    "private.feature_flags",
+    "public_gameplay.policy",
+    "public_gameplay.sports",
+    "sms_delivery.windows",
+    "sports_feed.nfl_rounds",
+    "sports_feed.nfl_worker_runs",
+    "sports_feed.weekly_core_job_runs"
+  ],
+  "changedProtectedFields": [
+    "counts",
+    "sourceDigest"
+  ],
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 1,
+    "public_flags": 1,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custodyRecords": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "unclassified": true
+}

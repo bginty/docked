@@ -1,9 +1,12 @@
 {
-  "at": "2026-11-20T13:44:33.949Z",
+  "at": "2026-11-20T23:43:05.495Z",
   "mode": "prepare",
   "readOnly": true,
   "comparedWith": "Latest reconciled 20 November coordinated launch preflight",
   "changedTables": [
+    "auth.refresh_tokens",
+    "auth.sessions",
+    "auth.users",
     "beta_packs.control",
     "beta_packs.events",
     "commercial_billing.control",

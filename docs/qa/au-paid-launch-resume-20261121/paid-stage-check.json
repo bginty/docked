@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-20T23:42:36.421Z",
+  "source": "42d906af9a9d3c9fe4fa3afe7a7697d236816aee",
+  "deployment": "dpl_77UA5x9izFz4SBAAxoLhZfPhpK4j",
+  "passed": true,
+  "validatedReadOnlyRoutes": true,
+  "matchedOwnerSession": [
+    {
+      "path": "/api/app-session",
+      "method": "GET",
+      "requestId": "syd1::syd1::tvqzk-1795218037217-a3153e0b3511",
+      "status": 200,
+      "at": "2026-11-20T23:40:37.217Z"
+    },
+    {
+      "path": "/admin/incidents",
+      "method": "GET",
+      "requestId": "syd1::syd1::wn2h9-1795218040418-1a5873633df6",
+      "status": 200,
+      "at": "2026-11-20T23:40:40.418Z"
+    }
+  ],
+  "protectedWebChecks": 8,
+  "readOnlyPackOffers": 18,
+  "customerOperations": 0
+}

@@ -1,0 +1,76 @@
+{
+  "at": "2026-11-20T23:45:20.209Z",
+  "deployment": "dpl_77UA5x9izFz4SBAAxoLhZfPhpK4j",
+  "source": "42d906af9a9d3c9fe4fa3afe7a7697d236816aee",
+  "mode": "live",
+  "checks": [
+    {
+      "route": "/",
+      "method": "GET",
+      "workerAuth": false,
+      "status": 200,
+      "requestId": "syd1::syd1::qfx2s-1795218320736-fae48f05a0b0",
+      "at": "2026-11-20T23:45:22.347Z"
+    },
+    {
+      "route": "/api/auth/phone",
+      "method": "POST",
+      "workerAuth": false,
+      "status": 403,
+      "requestId": "syd1::syd1::tvqzk-1795218321490-1961cc0fef43",
+      "at": "2026-11-20T23:45:22.725Z"
+    },
+    {
+      "route": "/api/admin/incidents",
+      "method": "GET",
+      "workerAuth": false,
+      "status": 403,
+      "requestId": "syd1::syd1::tt96c-1795218321457-418f13015b36",
+      "at": "2026-11-20T23:45:22.749Z"
+    },
+    {
+      "route": "/app/signup",
+      "method": "GET",
+      "workerAuth": false,
+      "status": 200,
+      "requestId": "syd1::syd1::vrqpr-1795218321478-8745b264047f",
+      "at": "2026-11-20T23:45:22.791Z"
+    },
+    {
+      "route": "/api/store/google/commercial?view=wallet",
+      "method": "GET",
+      "workerAuth": false,
+      "status": 403,
+      "requestId": "syd1::syd1::kzntj-1795218321276-c8eab0b1090a",
+      "at": "2026-11-20T23:45:22.874Z"
+    },
+    {
+      "route": "/commercial-policy",
+      "method": "GET",
+      "workerAuth": false,
+      "status": 200,
+      "requestId": "syd1::cpgqd-1795218321469-6f85127ba467",
+      "at": "2026-11-20T23:45:23.177Z"
+    },
+    {
+      "route": "/api/webhooks/auth-sms",
+      "method": "POST",
+      "workerAuth": false,
+      "status": 503,
+      "requestId": "syd1::syd1::szb7x-1795218321479-80d33b9d6ffe",
+      "at": "2026-11-20T23:45:23.425Z"
+    },
+    {
+      "route": "/api/store/google/scheduled",
+      "method": "GET",
+      "workerAuth": false,
+      "status": 401,
+      "requestId": "syd1::syd1::gwfq6-1795218321473-721a44013bba",
+      "at": "2026-11-20T23:45:23.454Z"
+    }
+  ],
+  "newSalesMade": 0,
+  "realMessagesRequested": 0,
+  "publicRegistrationPresentation": false,
+  "passed": true
+}

@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-21T00:04:02.905Z",
+  "source": "42d906af9a9d3c9fe4fa3afe7a7697d236816aee",
+  "deployment": "dpl_ENRo3YtNe3NWe4gQ9tCTwhWHx4wR",
+  "nativeFiveMinuteCron": true,
+  "runs": [
+    {
+      "at": "2026-11-21T00:00:09.256Z",
+      "http": 200,
+      "requestId": "5cb89-1795219209256-ad0a0c4656f4",
+      "attentionRequired": false,
+      "workerAttention": false,
+      "completed": 1,
+      "overdue": 0,
+      "retrying": 0,
+      "attempted": 0
+    }
+  ],
+  "passed": true
+}
