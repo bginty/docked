@@ -1,0 +1,11 @@
+{
+  "archiveSha256": "a7702c5ee18bd29221d207804207f3199c04f475b13101f1b9b54a6db0e80c93",
+  "protectedTables": 576,
+  "isolatedNetwork": "none",
+  "cronActive": false,
+  "verifiedResult": "PASS",
+  "test": "One fictional retained Owner with a fictional AAL2 session and no commercial username. Ran the profile transaction for an eligible Victorian adult as docked_app, including commercial community eligibility, distinct public username, current Terms and Privacy versions, notification preferences, onboarding completion, and audit. Verified active public profile, three consent events and a completion timestamp. Rolled back all fixture records.",
+  "scope": "Restricted-role database path on the isolated restore. This did not submit the Founder\u2019s live profile, create consent for any real account or authorize a charge.",
+  "currentOwnerState": "Both retained Owners lack a public username; the normal commercial form requires one in addition to their own consent.",
+  "productionWrites": 0
+}
