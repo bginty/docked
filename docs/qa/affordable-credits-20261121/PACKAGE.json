@@ -1,0 +1,28 @@
+{
+  "name": "Australian affordable credits, source and staged product definitions; unsigned Android candidate",
+  "source": "0b862b05268a69c17bc3a470edbc2e81b34e0f39",
+  "base": "38832424a729015c4af06cca9f2592f0b1497ec0",
+  "files": {
+    "android/app/build.gradle": "1fbd553ca9952cc3ff5cf5da2f89c16ebee435311755c696d10b0bb54d8be453",
+    "android/app/src/main/java/au/com/docked/app/DockedBillingPlugin.java": "e20e353de80ea8d18cca043c83d945355e9579b46aca20f202029b968a697dd0",
+    "config/affordable-credit-products.json": "f60ae4d3422f8d1a57c04aa291fb0fdeaef695a645e57b3c669cea97ff50bf78",
+    "docs/qa/affordable-credits-20261121/ACCEPTANCE.json": "b2a26963f35462c1e376664bbf0d61d15a2bb6f518e1b8422a78a73b5a4ede5e",
+    "docs/qa/affordable-credits-20261121/RELEASE.md": "ce3b2b3621c828de3a699cd10b8fdecc4ae25ccf1341676858e8e9fe1f04ac7e",
+    "docs/qa/affordable-credits-20261121/docked_credits_1900_v1.json": "433d0a7a2cd41010cf168fa08e1f153627e5f4f97b47922466ded7c6bc443698",
+    "docs/qa/affordable-credits-20261121/docked_credits_700_v1.json": "d853c632df3c75967f3fd62c44e11a4ad72d40d256b405e9a415927083e1b528",
+    "docs/qa/affordable-credits-20261121/play-readback.json": "b28464c8a07f2434205e7f9afaa85b9b6f8615fb6c94092dc1a07a039896549c",
+    "scripts/commercial-billing-postgres.ts": "39685aba99ac96aa6a43b40617af1ba18e8f87133cdcf3044085d1fcab5e95e3",
+    "src/app/fantasy/test-wallet/page.tsx": "4959660b83f9d0ebb960581fe9023eb7ce4151f6972b914ad7067fcf50b33b33",
+    "src/components/commercial-member.tsx": "90652caf2339b62171c199f250866cfbed9174f50f219a49329f9d6e148f8e15",
+    "src/components/google-test-credits.tsx": "7cad3d6a81c39294d6fa4a837e52b2a131f9e6f3e5d9a5de98556caf8134b164",
+    "src/components/owner-customer-browse.tsx": "d743ea739829fa99467e14bd3007a488e36242e997d973a0166b0793ec4433f8",
+    "src/components/pack-shop.tsx": "64077cd6f17155f05b9799c29c9940d0593b7ce98ae818859536eb0ae24ff97c",
+    "src/components/paid-launch-home.tsx": "6f0849edfaf935f5f96357436e3a90f0a54a0dfb997c46602d2014867e829ef9",
+    "src/core/commercial-billing.ts": "ccc96fbd66a196a1409bd2c805227f56325510ac84ecd11aec47f5bf226e899f",
+    "src/core/credit-top-up.ts": "fc098ac3995fe4f1497b06ad834fba08039edd5301d52a90a3e2809d4dbf380c",
+    "supabase/migrations/20261121062000_affordable_credit_products.sql": "d0c156c74eaa20d192ad8c8c0d57e997af7c381a9aee15bcf2b5eded8d86f853",
+    "tests/platform/commercial-google.test.ts": "3483799b26b9171aaabe8a28c0ebbd2683435e87a496559279cf1c9e515fa209",
+    "tests/platform/credit-top-up.test.ts": "c32aa7b96b7823e461015a6eb77cd009d256132781fb60f6e48b68301fb84172"
+  },
+  "productionActivationAuthorized": false
+}
