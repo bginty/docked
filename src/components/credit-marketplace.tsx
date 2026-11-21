@@ -38,7 +38,8 @@ export function Marketplace({ member }: { member: string }) {
   return <MemberMarketplace key={member} member={member} />;
 }
 function MemberMarketplace({ member }: { member: string }) {
-  const { commercialSurface } = useEnvironmentPresentation();
+  const { commercialSurface, cashWithdrawalPolicyPublished } =
+    useEnvironmentPresentation();
   const [acquisition, setAcquisition] = useState<CompletedAcquisition | null>(
     null,
   );
@@ -222,7 +223,9 @@ function MemberMarketplace({ member }: { member: string }) {
         <h1>Marketplace</h1>
         <p>
           {commercialSurface
-            ? "Docked Credits · No cash withdrawals."
+            ? cashWithdrawalPolicyPublished
+              ? "Docked Credits · Only eligible settled sale proceeds can be requested for withdrawal on the website, subject to identity, bank-account and funding checks."
+              : "Docked Credits · No cash withdrawals."
             : "Docked Credits · Test credits have no cash value."}
         </p>
       </header>

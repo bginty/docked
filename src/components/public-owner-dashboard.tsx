@@ -112,6 +112,9 @@ export function PublicOwnerDashboard({
           </Link>
         ))}
       </nav>
+      <nav className="actions" aria-label="Commercial controls">
+        <Link className="admin-control" href="/admin/withdrawals">Withdrawal operations</Link>
+      </nav>
       {!data && (
         <p role="alert">
           Commercial reporting is unavailable. Reload to try again.

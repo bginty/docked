@@ -141,8 +141,13 @@ export function AppShell({
     ].includes(href)
       ? `${href}?sport=${sport}`
       : href;
-  const { production, liveBeta, commercialSurface, publicCustomer } =
-    useEnvironmentPresentation();
+  const {
+    production,
+    liveBeta,
+    commercialSurface,
+    publicCustomer,
+    cashWithdrawalPolicyPublished,
+  } = useEnvironmentPresentation();
   const activeNav = nav;
   const destination = appDestination(path);
   const shell = useEditingViewport(authenticated);
@@ -212,7 +217,9 @@ export function AppShell({
             18+ · Fantasy Cards
             <br />
             {commercialSurface
-              ? "Free Core play. No cash redemption."
+              ? cashWithdrawalPolicyPublished
+                ? "Free Core play. Eligible sale proceeds have separate withdrawal checks."
+                : "Free Core play. No cash redemption."
               : "Free play. No cash value."}
           </p>
         </aside>
@@ -301,7 +308,9 @@ export function AppShell({
           </div>
           <p className="app-footnote">
             {commercialSurface || publicCustomer
-              ? "No cash redemption. Competition rules apply."
+              ? cashWithdrawalPolicyPublished
+                ? "Purchased and test credits cannot be withdrawn. Eligible settled sale proceeds require verification and review."
+                : "No cash redemption. Competition rules apply."
               : "Invited test beta · No cash value. Competition rules apply."}
           </p>
         </div>

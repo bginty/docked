@@ -17,6 +17,10 @@ export const commercialProducts: CommercialProduct[] = draft.products.map(
   }),
 );
 export const commercialPolicyVersion = "commercial-closed-loop-2026-11-01-v1";
+/** An explicit opt-in scope. Existing control rows and product defaults remain
+ * closed-loop until the separate cash policy and operational setup are complete. */
+export const commercialCashPolicyVersion =
+  "commercial-cash-withdrawals-2026-11-21-v1";
 export const commercialSports = ["nfl", "afl", "nrl"] as const;
 export type CommercialSport = (typeof commercialSports)[number];
 export type CommercialReceipt = {
@@ -72,7 +76,9 @@ export function assertCommercialApproval(
 ) {
   if (
     c.environment !== environment ||
-    c.policy_version !== commercialPolicyVersion
+    ![commercialPolicyVersion, commercialCashPolicyVersion].includes(
+      c.policy_version,
+    )
   )
     throw Error("Billing environment or policy mismatch");
   const expiry = Date.parse(String(c.approvals.validUntil ?? ""));
@@ -94,10 +100,36 @@ export function assertCommercialApproval(
     )
       throw Error("Commercial approval pending");
   if (
-    c.approvals.withdrawals !== false ||
     c.approvals.prizes !== false ||
     c.approvals.paidEntry !== false ||
     c.approvals.nba !== false
   )
     throw Error("Unsupported commercial launch scope");
+  if (c.policy_version === commercialPolicyVersion) {
+    if (c.approvals.withdrawals !== false)
+      throw Error("Closed-loop policy cannot authorize withdrawals");
+  } else {
+    if (c.approvals.withdrawals !== true)
+      throw Error("Cash policy requires explicit withdrawal scope");
+    for (const key of [
+      "withdrawalPolicyVersion",
+      "ownerDecision",
+      "legalAssessment",
+      "playAssessment",
+    ]) {
+      if (
+        typeof c.approvals[key] !== "string" ||
+        String(c.approvals[key]).trim().length < 8
+      )
+        throw Error("Cash policy decision record is incomplete");
+    }
+    // This records the actual decision basis, never invents Google approval.
+    // A documented owner decision is permitted without a written support reply.
+    if (
+      !["owner-reviewed-advice", "google-written-determination"].includes(
+        String(c.approvals.withdrawalAssessmentBasis),
+      )
+    )
+      throw Error("Cash policy assessment basis is required");
+  }
 }

@@ -109,6 +109,10 @@ export function AdminShell({
                 <AdminIcon name="wallet" />
                 Billing and refunds
               </Link>
+              <Link href="/admin/withdrawals">
+                <AdminIcon name="wallet" />
+                Withdrawal operations
+              </Link>
             </>
           )}
         </nav>

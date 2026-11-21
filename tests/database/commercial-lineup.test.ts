@@ -1,26 +1,29 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { randomUUID } from "node:crypto";
-import { readFile } from "node:fs/promises";
 import { multiSportDatabase } from "../fixtures/multi-sport-db";
 import {
   aflConfiguration,
   nrlConfiguration,
 } from "../../src/core/sport-configuration";
 import { sandboxRecommendation } from "../../src/core/sport-sandbox";
-import { commercialPack } from "../../src/core/commercial-billing";
+import {
+  commercialCashPolicyVersion,
+  commercialPack,
+} from "../../src/core/commercial-billing";
 import { rarityConfiguration } from "../../src/core/card-rarity";
 
 for (const sport of [aflConfiguration, nrlConfiguration])
   test(`${sport.label}: commercial owned inventory reuses saved lineup validation without changing other rounds`, async () => {
     const d = await multiSportDatabase(sport, false, undefined, true, true);
     try {
-      await d.pg.exec(
-        await readFile(
-          "supabase/migrations/20261102010000_commercial_lineup_inventory.sql",
-          "utf8",
-        ),
-      );
+      // multiSportDatabase applies every migration in order. Reapplying the
+      // historical lineup migration here would silently undo later guards.
+      for (const member of [d.user, d.other])
+        await d.q(
+          "insert into public.profiles(id,country,state,age_attested,accepted_version) values($1,'AU','NSW',true,'ISOLATED-CASH-LINEUP-TEST')",
+          [member],
+        );
       const cid = d.rounds.OPEN1,
         old = d.inventories[d.user];
       const before = await d.q(
@@ -128,6 +131,69 @@ for (const sport of [aflConfiguration, nrlConfiguration])
       assert.equal(record.counts.RARE, 1);
       assert.equal(record.opened, 1);
       assert.deepEqual(owned.eligible_competition_ids, [cid]);
+      const lineupInventory = async () =>
+        (
+          await d.q("select commercial_billing.lineup_inventory($1,$2) cards", [
+            d.user,
+            cid,
+          ])
+        )[0].cards as Array<{ id: string }>;
+      const legacyInventory = await lineupInventory();
+      assert(legacyInventory.some((c) => c.id === card));
+      const legacyApprovals = (
+        await d.q("select approvals from commercial_billing.control where id")
+      )[0].approvals;
+      const cashApprovals = {
+        ...legacyApprovals,
+        withdrawals: true,
+        withdrawalPolicyVersion: "ISOLATED-WITHDRAWAL-SCHEDULE",
+        ownerDecision: "ISOLATED-OWNER-DECISION",
+        legalAssessment: "ISOLATED-LEGAL-ASSESSMENT",
+        playAssessment: "ISOLATED-PLAY-ASSESSMENT",
+        withdrawalAssessmentBasis: "owner-reviewed-advice",
+      };
+      const setCashApprovals = (approvals: Record<string, unknown>) =>
+        d.q(
+          "update commercial_billing.control set policy_version=$1,approvals=$2::jsonb",
+          [commercialCashPolicyVersion, JSON.stringify(approvals)],
+        );
+      await setCashApprovals(cashApprovals);
+      assert.deepEqual(await lineupInventory(), legacyInventory);
+      // These calls go directly through the database read boundary, bypassing
+      // the TypeScript approval validator so the SQL predicate is exercised.
+      for (const patch of [
+        { withdrawals: false },
+        { withdrawals: "true" },
+        { prizes: true },
+        { paidEntry: true },
+        { nba: true },
+        { validUntil: "2000-01-01T00:00:00Z" },
+        { validUntil: "infinity" },
+        { owner: 123456789 },
+        { googlePlay: null },
+        { withdrawalPolicyVersion: null },
+        { ownerDecision: "\uFEFF\t      \u00A0" },
+        { legalAssessment: null },
+        { playAssessment: null },
+        { withdrawalAssessmentBasis: "assumed-approved" },
+      ]) {
+        await setCashApprovals({ ...cashApprovals, ...patch });
+        assert.deepEqual(
+          await lineupInventory(),
+          [],
+          `Cash inventory must deny invalid approval ${JSON.stringify(patch)}`,
+        );
+      }
+      await setCashApprovals({
+        ...cashApprovals,
+        withdrawalAssessmentBasis: "google-written-determination",
+      });
+      assert.deepEqual(await lineupInventory(), legacyInventory);
+      await setCashApprovals(cashApprovals);
+      await d.q("update commercial_billing.control set gameplay_enabled=false");
+      assert.deepEqual(await lineupInventory(), []);
+      await d.q("update commercial_billing.control set gameplay_enabled=true");
+      assert.deepEqual(await lineupInventory(), legacyInventory);
       const picks = sandboxRecommendation(state, cid).picks;
       const slot = sport.slots.find((s) =>
         s.positions.includes(old[0].position),

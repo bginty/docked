@@ -2,7 +2,15 @@ import Link from "next/link";
 import { FantasyHero, FantasyLogo } from "./fantasy-brand";
 import { brand } from "../brand/brand";
 
-export function PaidLaunchHome({ canRegister }: { canRegister: boolean }) {
+export function PaidLaunchHome({
+  canRegister,
+  cashWithdrawalPolicyPublished = false,
+  marketplaceAvailable = false,
+}: {
+  canRegister: boolean;
+  cashWithdrawalPolicyPublished?: boolean;
+  marketplaceAvailable?: boolean;
+}) {
   return (
     <div className="fantasy-public">
       <header>
@@ -51,7 +59,10 @@ export function PaidLaunchHome({ canRegister }: { canRegister: boolean }) {
           <p>
             {canRegister ? "Buy" : "At launch, buy"} Docked Credits through
             Google Play in the Android app: A$49 for 4,900 credits or A$99 for
-            9,900 credits, including GST. Credits cannot be withdrawn.
+            9,900 credits, including GST.{" "}
+            {cashWithdrawalPolicyPublished
+              ? "Purchased credits cannot be withdrawn as cash. Eligible settled card-sale proceeds are assessed separately."
+              : "Credits cannot be withdrawn."}
           </p>
         </div>
         <div>
@@ -73,11 +84,33 @@ export function PaidLaunchHome({ canRegister }: { canRegister: boolean }) {
             Your completed purchase and allocated cards are saved for recovery
             after a reload. Find your collection in My Cards.
           </p>
-          <p>
-            Marketplace trading and swaps are unavailable. Practice competitions
-            remain closed. No prizes, withdrawals or scored competitions are
-            open.
-          </p>
+          {cashWithdrawalPolicyPublished ? (
+            <>
+              <p>
+                {marketplaceAvailable
+                  ? "Buy and sell eligible cards at fixed prices when the Marketplace is open."
+                  : "Marketplace buying and selling are currently unavailable."}{" "}
+                Swaps, prizes and scored competitions remain closed.
+              </p>
+              <p>
+                Only eligible settled card-sale proceeds can be requested for
+                withdrawal on the website, subject to identity and bank-account
+                verification, available funds and current service controls. The
+                withdrawal page shows availability, the conversion rate, limits
+                and any fee before you confirm. A card sale does not guarantee
+                an available withdrawal balance.
+              </p>
+              <Link href="/commercial-policy">
+                Marketplace and withdrawal terms
+              </Link>
+            </>
+          ) : (
+            <p>
+              Marketplace trading and swaps are unavailable. Practice
+              competitions remain closed. No prizes, withdrawals or scored
+              competitions are open.
+            </p>
+          )}
         </div>
       </section>
       <footer>

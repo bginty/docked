@@ -4,7 +4,6 @@ import { requireIdentity } from "./auth";
 import { timePurchase } from "./purchase-timing";
 import { db, rateLimit } from "./db";
 import { authSessionsRelation } from "../core/auth-relations";
-import { commercialPolicyVersion } from "../core/commercial-billing";
 import { commercialRuntime } from "./commercial-runtime";
 import { storeAccountId } from "./store-purchase-verification";
 import { currentConsentVersions } from "../core/auth-readiness";
@@ -95,6 +94,36 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
   };
   return {
     member: who.user.id,
+    /** The adapter keeps the existing commercial identity and isolated-preview
+     * admission. Callers cannot substitute a member from request JSON. */
+    withdrawalContext: (mutation = false) => {
+      if (mutation) assertTransactionIdentity();
+      return {
+        member: who.user.id,
+        authenticatedAt: who.authenticatedAt,
+        access: {
+          requestsEnabled:
+            process.env.DOCKED_COMMERCIAL_WITHDRAWAL_REQUESTS === "true",
+          paymentsEnabled:
+            process.env.DOCKED_COMMERCIAL_WITHDRAWAL_PAYMENTS === "true",
+          actor: async (tx: Sql) => {
+            await marketActor(tx);
+            const [row] =
+              await tx`select commercial_billing.withdrawal_actor_allowed(${who.user.id}::uuid,${who.sessionId}::uuid,${who.aal},false) allowed`;
+            if (row?.allowed !== true)
+              throw Error("Current withdrawal session required");
+          },
+          member: async (tx: Sql, target: string) => {
+            if (target !== who.user.id)
+              throw Error("Withdrawal member mismatch");
+            const [row] =
+              await tx`select commercial_billing.withdrawal_member_allowed(${target}::uuid,${versions.terms},${versions.privacy}) allowed`;
+            if (row?.allowed !== true)
+              throw Error("Current withdrawal eligibility required");
+          },
+        },
+      };
+    },
     view: new CommercialMemberView(
       ledger,
       who.user.id,
@@ -118,17 +147,26 @@ export async function memberCommercial(access: "read" | "mutation" = "read") {
       });
     },
     wallet: () => ledger.wallet(who.user.id),
-    session: async () => ({
-      environment: "commercial",
-      isolatedTestOnly: acceptance,
-      policy: commercialPolicyVersion,
-      member: who.user.id,
-      accountBinding: account,
-      products: checkoutEnabled
-        ? await ledger.checkout(who.user.id, authorize)
-        : [],
-      wallet: await ledger.wallet(who.user.id),
-    }),
+    session: async () => {
+      const [control] =
+        await ledger.sql`select policy_version from commercial_billing.control where id`;
+      if (!control) throw Error("Commercial policy is unavailable");
+      const [products, wallet] = await Promise.all([
+        checkoutEnabled
+          ? ledger.checkout(who.user.id, authorize)
+          : Promise.resolve([]),
+        ledger.wallet(who.user.id),
+      ]);
+      return {
+        environment: "commercial",
+        isolatedTestOnly: acceptance,
+        policy: String(control.policy_version),
+        member: who.user.id,
+        accountBinding: account,
+        products,
+        wallet,
+      };
+    },
     receipt: async (body: unknown) => {
       assertTransactionIdentity();
       if (!checkoutEnabled) throw Error("Checkout disabled");

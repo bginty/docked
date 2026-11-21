@@ -1,7 +1,11 @@
 import Link from "next/link";
-import policies from "../../config/launch-policy-content.json";
+import launchPolicies from "../../config/launch-policy-content.json";
+import cashPolicies from "../../config/cash-policy-content.json";
+import { cashWithdrawalPolicyPublished } from "../core/commercial-cash-presentation";
 
 export function ReleasePolicyPage({ id }: { id: string }) {
+  const cashPublished = cashWithdrawalPolicyPublished();
+  const policies = cashPublished ? cashPolicies : launchPolicies;
   const document = policies.documents.find((item) => item.id === id);
   if (!document) throw new Error("Unknown policy document");
   const version =
@@ -19,7 +23,9 @@ export function ReleasePolicyPage({ id }: { id: string }) {
       <p>{document.status}</p>
       <p>
         <small>
-          Published {date} · Version {version}
+          {cashPublished
+            ? `Version ${version}`
+            : `Published ${date} · Version ${version}`}
         </small>
       </p>
       <nav aria-label="Policy documents">

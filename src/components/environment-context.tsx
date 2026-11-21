@@ -13,6 +13,9 @@ export type EnvironmentPresentation = Omit<
   fantasyProduction?: boolean;
   fantasyBranding?: boolean;
   commercialSurface?: boolean;
+  /** Published notices, not payment readiness or withdrawal authority. */
+  cashWithdrawalPolicyPublished?: boolean;
+  commercialMarketplace?: boolean;
   publicCustomer?: boolean;
 };
 

@@ -24,6 +24,11 @@ const markers = [
   "COMMERCIAL_RETENTION_KEY",
   "COMMERCIAL_RETENTION_DB",
   "COMMERCIAL_RETENTION_WORKER",
+  "WITHDRAWAL_BANK",
+  "SUMSUB_APP",
+  "SUMSUB_SECRET",
+  "SUMSUB_WEBHOOK",
+  "SUMSUB_IDENTITY",
 ].map((name) => `DOCKED_BUILD_CANARY_${name}_20261002`);
 async function inspect(directory: string): Promise<number> {
   let checked = 0;

@@ -14,6 +14,11 @@ import { saveAppOnboarding } from "@/server/app-onboarding";
 import { requireOnboardingIdentity } from "@/server/onboarding-identity";
 import { boundedCommunityBody } from "@/core/community-social";
 import { exportPreviewFixtureData } from "@/server/preview-export";
+import {
+  accountDeletionPendingMessage,
+  exportWithdrawalAccount,
+  WithdrawalAccountCleanupPending,
+} from "@/server/commercial-withdrawal-account";
 export async function GET() {
   try {
     const who = await requireAccountIdentity(),
@@ -28,6 +33,7 @@ export async function GET() {
       appOnboarding,
       previewAccess,
       previewFixtureEvidence,
+      withdrawalAccount,
     ] = await Promise.all([
       sql`select * from public.notification_preferences where user_id=${who.user.id}`,
       sql`select tip_id,created_at from public.saved_tips where user_id=${who.user.id}`,
@@ -38,6 +44,11 @@ export async function GET() {
       sql`select interests,version,completed_at from private.app_onboarding where user_id=${who.user.id}`,
       sql`select capabilities,created_at,expires_at,revoked_at from private.preview_tester_access where user_id=${who.user.id} order by created_at`,
       exportPreviewFixtureData(who.user.id),
+      exportWithdrawalAccount(sql, {
+        member: who.user.id,
+        sessionId: who.sessionId,
+        aal: who.aal,
+      }),
     ]);
     return NextResponse.json(
       {
@@ -51,6 +62,7 @@ export async function GET() {
         appOnboarding,
         previewAccess,
         previewFixtureEvidence,
+        ...(withdrawalAccount ? { withdrawalAccount } : {}),
       },
       {
         headers: {
@@ -124,10 +136,13 @@ export async function POST(request: Request) {
         );
       await sql`select private.disable_account(${who.user.id})`;
       let pending = false;
+      let pendingReason: "identity" | "withdrawal" = "identity";
       try {
         await processAccountDeletion(who.user.id);
-      } catch {
+      } catch (error) {
         pending = true;
+        if (error instanceof WithdrawalAccountCleanupPending)
+          pendingReason = "withdrawal";
       }
       await (await authClient())?.auth.signOut();
       return NextResponse.json(
@@ -137,7 +152,7 @@ export async function POST(request: Request) {
           message: pending
             ? process.env.DOCKED_BETA_STAGING === "true"
               ? "Account access revoked. Your deletion request is recorded; shared beta identity erasure requires operator review. Deletion is not yet complete."
-              : "Account access revoked. Identity erasure is queued for retry."
+              : accountDeletionPendingMessage(pendingReason)
             : "Account deleted. Necessary ownership, competition and audit records are retained separately from your active profile.",
         },
         { status: pending ? 202 : 200 },

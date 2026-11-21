@@ -1,0 +1,34 @@
+{
+  "checked": "2026-11-21",
+  "console": {
+    "needAttention": 0,
+    "actioned": 10,
+    "policyIssuesShown": 0,
+    "auIarc": "Mature (M)",
+    "contentRatingEdited": "2026-11-06",
+    "dataSafetyEdited": "2026-11-12"
+  },
+  "publishedDataSafety": {
+    "shared": [
+      "phone number",
+      "diagnostics",
+      "device or other IDs"
+    ],
+    "collectedRelevant": [
+      "user IDs",
+      "purchase history",
+      "other user-generated content",
+      "app interactions",
+      "in-app search history"
+    ]
+  },
+  "commercialTradingSubmittedForInitialReview": false,
+  "modelSpecificGoogleDetermination": null,
+  "hostedReadOnly": {
+    "path": "/api/marketplace?sport=nfl",
+    "http": 401,
+    "requestId": "syd1::syd1::8jc2w-1795241687878-8dfa2352d39c"
+  },
+  "hostedTwoPartySettlement": "pending protected two-member acceptance",
+  "publicTransfersActivated": false
+}

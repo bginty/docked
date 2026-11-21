@@ -6,6 +6,7 @@ import { ApiForm } from "@/components/forms";
 import { AppAuthShell } from "@/components/app-auth-shell";
 import { MfaForm } from "@/components/mfa-form";
 import { publicCustomersEnabled } from "@/core/public-customer";
+import { cashWithdrawalPolicyPublished } from "@/core/commercial-cash-presentation";
 export const metadata = {
   title: "Docked account and support",
   robots: { index: false, follow: false },
@@ -75,8 +76,10 @@ export default async function Page({
         credit sales are available only where enabled. Scoring follows each
         competition’s saved rules. Clearly labelled practice fixtures and test
         inventory are separate from verified results and permanent collectibles.
-        Test credits have no cash value. Cash prizes and withdrawals are
-        disabled.
+        Test credits have no cash value.{" "}
+        {cashWithdrawalPolicyPublished()
+          ? "Cash prizes are unavailable. Only eligible settled card-sale proceeds may be requested for withdrawal on the website, subject to current availability, identity and bank verification, funding and recovery checks."
+          : "Cash prizes and withdrawals are disabled."}
       </p>
       {section === "legacy-support" && (
         <p>

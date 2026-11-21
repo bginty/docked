@@ -120,8 +120,19 @@ export class CommercialLedger {
   protected async noHold(tx: Sql, member: string) {
     const r =
       await tx`select id from commercial_billing.recovery_cases where member_id=${member} and state='OPEN' limit 1`;
-    if (r.length)
+    if (r.length || (await this.withdrawalHeld(tx, member)))
       throw Error("Account review required before spending or purchasing");
+  }
+  /** Old deployments remain compatible before the dormant withdrawal migration
+   * is installed. Once installed, refund exposure follows cash-out provenance
+   * to its seller as well as the original purchaser. */
+  private async withdrawalHeld(tx: Sql, member: string) {
+    const [installed] =
+      await tx`select to_regprocedure('commercial_billing.withdrawal_member_held(uuid)') is not null present`;
+    if (!installed.present) return false;
+    const [result] =
+      await tx`select commercial_billing.withdrawal_member_held(${member}::uuid) held`;
+    return result.held === true;
   }
   async checkout(member: string, authorize: Authorize) {
     return this.sql.begin(async (transaction) => {
@@ -361,11 +372,13 @@ export class CommercialLedger {
     const [r] = await this
       .sql`select coalesce(sum(remaining),0)::text available,exists(select 1 from commercial_billing.recovery_cases where member_id=${member} and state='OPEN') held from commercial_billing.lots where member_id=${member}`;
     const balance = integer(r.available);
+    const held =
+      r.held === true || (await this.withdrawalHeld(this.sql, member));
     return {
       balance,
-      spendable: r.held ? 0 : balance,
-      held: r.held ? balance : 0,
-      reviewRequired: r.held === true,
+      spendable: held ? 0 : balance,
+      held: held ? balance : 0,
+      reviewRequired: held,
       withdrawable: 0,
       environment: this.environment,
     };
