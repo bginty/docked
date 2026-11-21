@@ -23,10 +23,12 @@ export function CommercialMember({
   member,
   sport = "nfl",
   surface = "packs",
+  creditPack,
 }: {
   member: string;
   sport?: CommercialSport;
   surface?: "packs" | "wallet";
+  creditPack?: string;
 }) {
   const [view, setView] = useState<View | null>(null),
     [error, setError] = useState(""),
@@ -276,6 +278,10 @@ export function CommercialMember({
             )}
           </section>
           <GoogleCommercialCredits
+            creditPack={creditPack}
+            spendable={
+              wallet && !wallet.reviewRequired ? wallet.spendable : undefined
+            }
             member={member}
             onSettled={async () => {
               await refreshWallet();

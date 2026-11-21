@@ -1,4 +1,5 @@
 import draft from "../../config/store-credit-package-drafts.json";
+import affordable from "../../config/affordable-credit-products.json";
 import { paidPackOffers, paidPackWeights } from "./paid-pack-catalogue";
 import { digest } from "./scoring-engine";
 export type BillingEnvironment = "commercial" | "acceptance";
@@ -8,13 +9,16 @@ export type CommercialProduct = {
   audCents: number;
   version: string;
 };
-export const commercialProducts: CommercialProduct[] = draft.products.map(
-  (p) => ({
+export const commercialProducts: CommercialProduct[] = [
+  draft,
+  affordable,
+].flatMap((catalogue) =>
+  catalogue.products.map((p) => ({
     id: p.id,
     credits: p.credits,
     audCents: p.priceCents,
-    version: draft.version,
-  }),
+    version: catalogue.version,
+  })),
 );
 export const commercialPolicyVersion = "commercial-closed-loop-2026-11-01-v1";
 export const commercialSports = ["nfl", "afl", "nrl"] as const;

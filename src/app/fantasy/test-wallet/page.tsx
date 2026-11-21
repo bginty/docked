@@ -22,6 +22,7 @@ export default async function TestWalletPage({
 }: {
   searchParams: Promise<{
     view?: string;
+    creditPack?: string;
     sport?: string;
     packs?: string;
     tab?: string;
@@ -54,6 +55,7 @@ export default async function TestWalletPage({
             member={who.user.id}
             sport={selected === "afl" || selected === "nrl" ? selected : "nfl"}
             surface="wallet"
+            creditPack={params.creditPack}
           />
         </AppShell>
       );

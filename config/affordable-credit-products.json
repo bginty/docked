@@ -1,0 +1,31 @@
+{
+  "version": "au-affordable-credits-2026-11-21-v1",
+  "status": "prepared-inactive",
+  "scope": "account",
+  "currency": "AUD",
+  "territories": [
+    "AU"
+  ],
+  "products": [
+    {
+      "id": "docked_credits_700_v1",
+      "title": "700 Docked Credits",
+      "description": "700 Docked Credits for your Docked account. No bonus credits. No cash withdrawal.",
+      "credits": 700,
+      "bonusCredits": 0,
+      "priceCents": 700,
+      "purchaseOptionId": "buy-au"
+    },
+    {
+      "id": "docked_credits_1900_v1",
+      "title": "1,900 Docked Credits",
+      "description": "1,900 Docked Credits for your Docked account. No bonus credits. No cash withdrawal.",
+      "credits": 1900,
+      "bonusCredits": 0,
+      "priceCents": 1900,
+      "purchaseOptionId": "buy-au"
+    }
+  ],
+  "tax": "AU standard GST inclusive",
+  "multiQuantity": false
+}

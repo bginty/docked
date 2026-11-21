@@ -1,4 +1,6 @@
 "use client";
+import { creditTopUpPlan, selectedCreditPack } from "@/core/credit-top-up";
+import affordable from "../../config/affordable-credit-products.json";
 import { purchaseTiming } from "@/core/purchase-performance";
 import {
   Capacitor,
@@ -8,10 +10,18 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { boundedFetch } from "@/core/bounded-request";
 
+type Offer = {
+  token: string;
+  price: string;
+  currency: string;
+  priceMicros?: number;
+  purchaseOptionId?: string;
+  discount?: boolean;
+};
 type StoreItem = {
   id: string;
   name: string;
-  offers: { token: string; price: string; currency: string }[];
+  offers: Offer[];
 };
 type PurchaseEvent = { responseCode: number; purchases: { token: string }[] };
 interface Billing {
@@ -37,8 +47,25 @@ type Session = {
   member: string;
   accountBinding: string;
   environment: "test" | "commercial";
-  products: { id: string; credits: number }[];
+  products: { id: string; credits: number; audCents?: number }[];
 };
+
+function eligibleOffer(
+  offer: Offer,
+  product: Session["products"][number],
+  mode: Session["environment"],
+) {
+  if (!offer.token || !offer.price || offer.currency !== "AUD") return false;
+  if (mode === "test") return true;
+  // v31 has no structured pricing and only knows the original two products.
+  if (offer.priceMicros === undefined)
+    return !affordable.products.some((p) => p.id === product.id);
+  return (
+    offer.purchaseOptionId === "buy-au" &&
+    offer.discount === false &&
+    offer.priceMicros === (product.audCents ?? 0) * 10000
+  );
+}
 
 /** Invisible unless BOTH the native allowlist and account-specific server gate
  * admit no-charge testing. No PayPal link, client allocation or local receipt cache. */
@@ -49,6 +76,8 @@ export function GoogleTestCredits(props: {
   return <GoogleCredits {...props} mode="test" />;
 }
 export function GoogleCommercialCredits(props: {
+  creditPack?: string;
+  spendable?: number;
   member: string;
   onSettled: () => Promise<void>;
 }) {
@@ -58,7 +87,11 @@ function GoogleCredits({
   member,
   onSettled,
   mode,
+  creditPack,
+  spendable,
 }: {
+  creditPack?: string;
+  spendable?: number;
   member: string;
   onSettled: () => Promise<void>;
   mode: "test" | "commercial";
@@ -195,18 +228,23 @@ function GoogleCredits({
           : "",
       );
       setItems(
-        available.products.flatMap((p) => {
-          const approved = s.products.find((a) => a.id === p.id);
-          return approved && p.offers.some((o) => o.currency === "AUD")
-            ? [
-                {
-                  ...p,
-                  offers: p.offers.filter((o) => o.currency === "AUD"),
-                  credits: approved.credits,
-                },
-              ]
-            : [];
-        }),
+        available.products
+          .flatMap((p) => {
+            const approved = s.products.find((a) => a.id === p.id);
+            return approved &&
+              p.offers.some((o) => eligibleOffer(o, approved, mode))
+              ? [
+                  {
+                    ...p,
+                    offers: p.offers.filter((o) =>
+                      eligibleOffer(o, approved, mode),
+                    ),
+                    credits: approved.credits,
+                  },
+                ]
+              : [];
+          })
+          .sort((a, b) => a.credits - b.credits),
       );
       listener = await billing.addListener("purchasesUpdated", (e) => {
         if (stopped) return;
@@ -289,7 +327,14 @@ function GoogleCredits({
       const fresh = (await billing.products()).products.find(
           (p) => p.id === item.id,
         ),
-        offer = fresh?.offers.find((o) => o.currency === "AUD");
+        approved = s.products.find((p) => p.id === item.id),
+        offer =
+          approved &&
+          fresh?.offers.find(
+            (o) =>
+              eligibleOffer(o, approved, mode) &&
+              o.price === item.offers[0].price,
+          );
       if (!offer) throw Error("This product is currently unavailable.");
       // Google's own confirmation shows the current authoritative price. This
       // button starts checkout only; the server never credits a client result.
@@ -308,6 +353,15 @@ function GoogleCredits({
       }
     }
   }
+  const selected = selectedCreditPack(creditPack);
+  const plan =
+    selected && spendable !== undefined
+      ? creditTopUpPlan(
+          selected.priceCredits,
+          spendable,
+          items.map((i) => i.credits),
+        )
+      : null;
   return (
     <section className="panel" aria-labelledby="google-test-title">
       <h2 id="google-test-title">
@@ -325,6 +379,30 @@ function GoogleCredits({
           available balance before choosing a credit package.
         </p>
       )}
+      {selected && plan && (
+        <p aria-live="polite">
+          {selected.name} costs {selected.priceCredits.toLocaleString("en-AU")}{" "}
+          credits.{" "}
+          {plan.amounts.length ? (
+            <>
+              Lowest available outlay:{" "}
+              {plan.amounts
+                .map(
+                  (n) =>
+                    items.find((item) => item.credits === n)!.offers[0].price,
+                )
+                .join(" + ")}
+              {plan.amounts.length > 1 &&
+                " across separate Google Play purchases"}
+              .
+            </>
+          ) : (
+            "Your available balance covers this pack."
+          )}{" "}
+          After buying the pack: {plan.remaining.toLocaleString("en-AU")}{" "}
+          credits remaining.
+        </p>
+      )}
       {items.map((item) => (
         <button
           className="primary"
@@ -335,6 +413,9 @@ function GoogleCredits({
           {item.credits.toLocaleString("en-AU")}{" "}
           {mode === "test" ? "test credits" : "Docked Credits"} Â·{" "}
           {item.offers[0].price}
+          {plan?.amounts[0] === item.credits
+            ? " · Suggested for your pack"
+            : ""}
         </button>
       ))}
       <button

@@ -1,0 +1,33 @@
+{
+  "packageName": "docked.fantasy",
+  "productId": "docked_credits_700_v1",
+  "listings": [
+    {
+      "languageCode": "en-US",
+      "title": "700 Docked Credits",
+      "description": "700 Docked Credits for your Docked account. No bonus credits. No cash withdrawal."
+    }
+  ],
+  "purchaseOptions": [
+    {
+      "purchaseOptionId": "buy-au",
+      "buyOption": {
+        "legacyCompatible": true,
+        "multiQuantityEnabled": false
+      },
+      "taxAndComplianceSettings": {
+        "withdrawalRightType": "WITHDRAWAL_RIGHT_DIGITAL_CONTENT"
+      },
+      "regionalPricingAndAvailabilityConfigs": [
+        {
+          "regionCode": "AU",
+          "availability": "AVAILABLE",
+          "price": {
+            "currencyCode": "AUD",
+            "units": "7"
+          }
+        }
+      ]
+    }
+  ]
+}

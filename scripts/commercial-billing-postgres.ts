@@ -838,6 +838,67 @@ async function main() {
       for (const a of all) assert.equal(a.lot, a.ledger);
     },
   );
+  await check(
+    "affordable products start inactive and use existing settlement, retries and refunds",
+    async () => {
+      const migration = readFileSync(
+        "supabase/migrations/20261121062000_affordable_credit_products.sql",
+        "utf8",
+      );
+      await sql.unsafe(migration);
+      await sql.unsafe(migration);
+      for (const credits of [700, 1900]) {
+        const customer = randomUUID();
+        const order = receipt(credits);
+        assert(
+          !(await ledger.checkout(customer, authorize)).some(
+            (p) => p.id === order.r.product.id,
+          ),
+        );
+        await assert.rejects(accept(order, customer));
+        await sql`update commercial_billing.products set approved=true where id=${order.r.product.id}`;
+        assert(
+          (await ledger.checkout(customer, authorize)).some(
+            (p) => p.id === order.r.product.id && p.credits === credits,
+          ),
+        );
+        await Promise.all([accept(order, customer), accept(order, customer)]);
+        assert.equal((await ledger.wallet(customer)).balance, credits);
+        const family = credits === 700 ? "STANDARD" : "PREMIUM";
+        const size = credits === 700 ? 9 : 3;
+        const offer = commercialPack("nfl", family, size);
+        const selection = {
+          sport: "nfl",
+          family,
+          size,
+          configurationHash: offer.configurationHash,
+          confirmed: true,
+        } as const;
+        const req = randomUUID();
+        const result = await ledger.buyPack(
+          customer,
+          req,
+          selection,
+          authorize,
+        );
+        assert.equal(
+          (await ledger.buyPack(customer, req, selection, authorize)).id,
+          result.id,
+        );
+        assert.equal(
+          (await ledger.openPack(customer, result.id, authorize)).cards.length,
+          size,
+        );
+        assert.equal((await ledger.wallet(customer)).balance, 0);
+        await refund(order, customer);
+        await refund(order, customer);
+        const holds =
+          await sql`select exposure_credits from commercial_billing.recovery_cases where receipt=${order.r.key}`;
+        assert.equal(holds.length, 1);
+        assert.equal(Number(holds[0].exposure_credits), credits);
+      }
+    },
+  );
   const reportDir =
     process.env.DOCKED_DB_TEST_REPORT_DIR ??
     "docs/qa/commercial-billing-20261101";

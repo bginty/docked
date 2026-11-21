@@ -8,6 +8,8 @@ def commercialCandidateBuild = gradle.startParameter.taskNames.any { it.toLowerC
 def storeInternalBuild = billingQaBuild || storeCandidateBuild || memberTestBuild || commercialCandidateBuild || gradle.startParameter.taskNames.any { it.toLowerCase().contains('storeinternal') }
 def creditProducts = new groovy.json.JsonSlurper().parse(file('../../config/store-credit-package-drafts.json')).products.collect { it.id }.join(',')
 
+def newCreditProducts = new groovy.json.JsonSlurper().parse(file('../../config/affordable-credit-products.json')).products.collect { it.id }.join(',')
+
 android {
     namespace = "au.com.docked.app"
     compileSdk = rootProject.ext.compileSdkVersion
@@ -17,8 +19,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         // v31 includes DockedPullImage; v30 cannot share generated card images.
-        versionCode commercialCandidateBuild ? 31 : (memberTestBuild ? 28 : (storeCandidateBuild ? 29 : (billingQaBuild ? 26 : 23)))
-        versionName commercialCandidateBuild ? "1.30" : (memberTestBuild ? "1.27" : (storeCandidateBuild ? "1.28" : (billingQaBuild ? "1.25" : "1.22")))
+        versionCode commercialCandidateBuild ? 32 : (memberTestBuild ? 28 : (storeCandidateBuild ? 29 : (billingQaBuild ? 26 : 23)))
+        versionName commercialCandidateBuild ? "1.31" : (memberTestBuild ? "1.27" : (storeCandidateBuild ? "1.28" : (billingQaBuild ? "1.25" : "1.22")))
         buildConfigField 'String', 'DOCKED_MEMBER_TEST_PRODUCTS', '""'
         buildConfigField 'String', 'DOCKED_COMMERCIAL_PRODUCTS', '""'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -42,7 +44,7 @@ android {
         // product activation remain independently mandatory. Never uses TEST wallet.
         storeCommercialCandidate {
             initWith release
-            buildConfigField 'String', 'DOCKED_COMMERCIAL_PRODUCTS', '"' + creditProducts + '"'
+            buildConfigField 'String', 'DOCKED_COMMERCIAL_PRODUCTS', '"' + creditProducts + ',' + newCreditProducts + '"'
             signingConfig signingConfigs.closedTestUpload
             debuggable false
             matchingFallbacks = ['release']

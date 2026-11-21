@@ -465,7 +465,15 @@ export function PackShop({
                       ) : (
                         s.wallet.spendable < priceFor(p) && (
                           <p className="small-note">
-                            Insufficient available {creditLabel}
+                            {commercial ? (
+                              <NavigationShortcut
+                                href={`/fantasy/test-wallet?sport=${sport}&creditPack=${p.tier}-${p.cards}`}
+                              >
+                                Add credits for this pack
+                              </NavigationShortcut>
+                            ) : (
+                              <>Insufficient available {creditLabel}</>
+                            )}
                           </p>
                         )
                       )}

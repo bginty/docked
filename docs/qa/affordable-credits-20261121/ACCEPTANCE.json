@@ -1,0 +1,39 @@
+{
+  "sourceBase": "38832424a729015c4af06cca9f2592f0b1497ec0",
+  "packageName": "docked.fantasy",
+  "versionCode": 32,
+  "versionName": "1.31",
+  "unsignedBundleSha256": "5de4441b5d2dab25feff268013d184e53c694dbfb2feb0d4322d27abc77393ea",
+  "appOrigin": "https://docked.com.au/app",
+  "nativeCatalogue": [
+    700,
+    1900,
+    4900,
+    9900
+  ],
+  "providerFixtureAndPlannerTests": 18,
+  "isolatedPostgresChecks": [
+    "migration reapplication leaves gates closed and creates no accounts",
+    "pending and cancelled purchases never credit",
+    "delayed approval and 20 concurrent retries fulfil exactly once",
+    "refund after partial spending, opened pack, and replay preserves cards with a recovery hold",
+    "concurrent 9900 purchases and atomic failure preserve balances",
+    "card sale, fee, refund after transfer never debit unrelated member",
+    "partial refunds held, full refund replacement is not cumulative",
+    "charged price mismatch records money, grants no credits",
+    "durable notifications, outages, leases and reconciliation after restart",
+    "emergency stop and expired approval preserve bound payment/refund recovery without admitting new sales",
+    "delayed approval after account closure requires remedy review, never new fulfilment",
+    "runtime least-privilege role can read and accept but cannot activate",
+    "refund after original pack is transferred preserves buyer funds and ownership",
+    "unopened refunded pack stays recorded and cannot be opened while held",
+    "empty supply, insufficient balance and stale account permission roll back atomically",
+    "RLS, immutability, environment isolation and balanced accounting",
+    "affordable products start inactive and use existing settlement, retries and refunds"
+  ],
+  "realPurchases": 0,
+  "playWrites": 0,
+  "productionMutations": 0,
+  "googleSignedNewArtifact": false,
+  "deviceDiscoveryNewSkus": false
+}

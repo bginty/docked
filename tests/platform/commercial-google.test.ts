@@ -64,6 +64,31 @@ function provider() {
     },
   };
 }
+for (const credits of [700, 1900]) {
+  test(`Provider fixture verifies purchase and recognises refund of ${credits} credit product`, async () => {
+    const f = provider();
+    const sku = commercialProducts.find((p) => p.credits === credits)!;
+    f.purchase.productLineItem[0].productId = sku.id;
+    f.order.lineItems[0].productId = sku.id;
+    f.order.total.units = String(credits / 100);
+    f.order.tax.units = String(Math.floor(Math.round(credits / 11) / 100));
+    f.order.tax.nanos = (Math.round(credits / 11) % 100) * 10000000;
+    const v = new GoogleCommercialVerifier(
+      "commercial",
+      async () => "fixture",
+      f.transport,
+    );
+    const paid = await v.verify(token, account);
+    assert.equal(paid.state, "PURCHASED");
+    assert.equal(paid.grossCents, credits);
+    assert.equal(paid.product.credits, credits);
+    f.order.state = "REFUNDED";
+    f.order.orderHistory = {
+      refundEvent: { refundDetails: { total: f.order.total } },
+    };
+    assert.equal((await v.verify(token, account)).state, "REVOKED");
+  });
+}
 test("verified commercial receipt uses provider identity, exact AUD charge and account", async () => {
   const f = provider(),
     v = new GoogleCommercialVerifier(

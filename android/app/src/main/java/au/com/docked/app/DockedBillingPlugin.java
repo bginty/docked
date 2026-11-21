@@ -56,6 +56,9 @@ public class DockedBillingPlugin extends Plugin implements PurchasesUpdatedListe
                     if (item.getOneTimePurchaseOfferDetailsList() != null)
                         for (ProductDetails.OneTimePurchaseOfferDetails offer : item.getOneTimePurchaseOfferDetailsList()) {
                             JSObject o = new JSObject(); o.put("token", offer.getOfferToken());
+                            o.put("priceMicros", offer.getPriceAmountMicros());
+                            o.put("purchaseOptionId", offer.getPurchaseOptionId());
+                            o.put("discount", offer.getOfferId() != null);
                             o.put("price", offer.getFormattedPrice()); o.put("currency", offer.getPriceCurrencyCode()); offers.put(o);
                         }
                     row.put("offers", offers); rows.put(row);
