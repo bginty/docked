@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { publicSports, isPublicSport } from "@/core/public-customer";
 import { paidPackOffers } from "@/core/paid-pack-catalogue";
+import { PackArtwork } from "./pack-artwork";
 import { PublicClubhouse } from "./public-clubhouse";
 import { LogoutControls } from "./account-navigation";
 
@@ -44,15 +45,46 @@ export function OwnerCustomerBrowse() {
       {path === "/fantasy/play" ? (
         <PublicClubhouse sport={sport} />
       ) : catalogue ? (
-        <section className="fantasy-panel">
+        <section className="fantasy-panel pack-shop">
           <h1>{sport.toUpperCase()} packs</h1>
-          <ul>
-            {paidPackOffers.map((p) => (
-              <li key={p.id}>
-                {p.name} · {p.priceCredits.toLocaleString("en-AU")} credits
-              </li>
-            ))}
-          </ul>
+          <Link
+            className="pack-control secondary"
+            href={"/fantasy/play?sport=" + sport}
+          >
+            Back to {sport.toUpperCase()} clubhouse
+          </Link>
+          {(["STANDARD", "PREMIUM"] as const).map((tier) => (
+            <section className="pack-family" data-family={tier} key={tier}>
+              <header>
+                <h2>{tier === "STANDARD" ? "Standard" : "Premium"}</h2>
+              </header>
+              <div className="pack-product-grid">
+                {paidPackOffers
+                  .filter((pack) => pack.type === tier)
+                  .map((pack) => (
+                    <article className="pack-product" key={pack.id}>
+                      <PackArtwork
+                        presentation="catalogue"
+                        sport={sport}
+                        count={pack.cards}
+                        name={pack.name}
+                        premium={pack.type === "PREMIUM"}
+                      />
+                      <h3>{pack.name}</h3>
+                      <p className="pack-product-guarantee">
+                        {pack.cards} {pack.cards === 1 ? "card" : "cards"}
+                      </p>
+                      <p className="pack-price">
+                        <strong>
+                          {pack.priceCredits.toLocaleString("en-AU")}
+                        </strong>{" "}
+                        credits
+                      </p>
+                    </article>
+                  ))}
+              </div>
+            </section>
+          ))}
           <Link href="/refund-policy">Purchases and refunds</Link>
         </section>
       ) : (
