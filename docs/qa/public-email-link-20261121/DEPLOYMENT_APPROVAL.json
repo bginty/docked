@@ -1,0 +1,24 @@
+{
+  "operation": "Repair public email verification and recovery, then reopen acquisition",
+  "validForHours": 24,
+  "source": "fd162088105d02c73398b7ba761fed334dc1f5ab",
+  "baseline": {
+    "source": "42d906af9a9d3c9fe4fa3afe7a7697d236816aee",
+    "deployment": "dpl_ENRo3YtNe3NWe4gQ9tCTwhWHx4wR",
+    "site": "https://docked.com.au",
+    "launchManifest": "318da4a0eedc948eec202b1756d916d55d18a63bc873be24067021253d59da77"
+  },
+  "sourceBlobSha256": {
+    "src/core/customer-email-readiness.ts": "07c5b6ea64caa3fcd1e08fbb5f688c3d8481e533f276054abe5a726083d90ae8",
+    "src/core/customer-verification.ts": "42c0facffb53c193541199746c4f9b924f1ca5b4aaa9d6a900028811a2ff8ef1",
+    "tests/platform/hosted-production.test.ts": "3ad8ab84b88073feaafd52d65893777da366782473cd047b530d3d0e085054d8"
+  },
+  "orderedProcedure": [
+    "Verify the exact source, file hashes, expiry, canonical deployment, existing production bindings and customer/financial baseline. Verify a fresh authenticated encrypted backup and isolated restore. Reconcile subsequent legitimate activity. Stop on unexplained material drift.",
+    "Keep private.feature_flags.registration=false and Supabase disable_signup=true. Stage this application only, from the exact Git source, on the existing protected Production target. Preserve the currently deployed runtime settings, secrets, Auth email function, Android artifact, public-budget window and commercial configuration. Only deployment provenance changes.",
+    "Require successful build. Check the two canonical email routes against the pinned staging deployment. For GET only, use a non-issued fictional hash and confirm HTTP 200, the correct same-origin form, no-store and zero token redemption. Require invalid or missing inputs to return 400. Confirm the existing invite route stays disabled, ordinary sign-in and support remain available and registration stays closed. Reuse the isolated provider POST/confirmation evidence. Never open customer links or submit a customer token.",
+    "Promote only after staging passes. Repeat the same harmless checks on docked.com.au and confirm the exact deployment and closed signup flags. Check the existing refund worker, ledger and custody monitors. No resend, notification, purchase or card issuance as a release test.",
+    "Only after all checks pass and the original launch operating windows are still valid, restore the original registration DB flag false to true and then the Production Supabase disable_signup flag true to false. Independently read back both, check the public eligibility form and monitor genuine email confirmations. Existing accounts use the ordinary confirmation/resend flow. Keep all other controls and original spending limits.",
+    "If a required check fails, keep or return only new registration to its paused state. Close Supabase signup and the registration DB flag. Preserve pending accounts, refund processing, signed emails and financial and custody history. Conditional app-only rollback to the verified prior deployment while signups remain closed if compatible. No database snapshot rollback, new migration, Android submission or Play change."
+  ]
+}
