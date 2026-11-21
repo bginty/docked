@@ -1,0 +1,61 @@
+{
+  "record": "Before attended staging acceptance",
+  "baseline": {
+    "at": "2026-11-21T07:07:12.809Z",
+    "deployment": "dpl_VpwKZaEsogGJUrD896CSqH5YyTwu",
+    "source": "38832424a729015c4af06cca9f2592f0b1497ec0",
+    "candidate": "83794e9ac31c54960bfc76b9a07b36047f20486b",
+    "package": "487bd703fb5b93c8a8f43327d0ec337452953ef9746db8bd67e4f9a141c254fa"
+  },
+  "candidate": {
+    "at": "2026-11-21T07:24:08.501Z",
+    "source": "83794e9ac31c54960bfc76b9a07b36047f20486b",
+    "package": "487bd703fb5b93c8a8f43327d0ec337452953ef9746db8bd67e4f9a141c254fa",
+    "deployment": "dpl_2k3nw6ZuhxCT5SyAdBwbCiiq4JyU",
+    "host": "docked-production-flq0ej9od-briant-s-projects.vercel.app",
+    "aliasMoved": false
+  },
+  "backup": {
+    "at": "2026-11-21T07:22:19.263Z",
+    "backupAt": "2026-11-21T07:18:47.962Z",
+    "archiveSha256": "a17e15f2a8a2d4c839a3141846e4e2e7bccc8e5f309fd1b232461b8c2b8c5b1c",
+    "archiveBytes": 139755742,
+    "encryptedAtRest": "AES-256-GCM",
+    "protectedTables": 576,
+    "protectedRecordsUnchanged": true,
+    "network": "none",
+    "publishedPorts": 0,
+    "cronActive": false,
+    "productionWrites": 0
+  },
+  "preflight": {
+    "at": "2026-11-21T07:23:12.307Z",
+    "comparedTables": 576,
+    "custodyRecords": 936,
+    "counts": {
+      "definitions": 6540,
+      "lifetime": 933,
+      "beta_allocations": 30,
+      "commercial_cards": 15,
+      "open_controls": 1,
+      "public_flags": 1,
+      "active_or_scored": 0,
+      "deletion_schedules": 0
+    },
+    "integrity": {
+      "lifetime_mismatches": 0,
+      "duplicate_serials": 0,
+      "unbalanced_journals": 0
+    },
+    "ownerRecordsWithFullRoleAndIndividualMfa": 2,
+    "reportRoles": 6
+  },
+  "protectedStaging": {
+    "ready": "2026-11-21T07:25:46.697Z",
+    "directHostStatus": 302,
+    "anonymousReportHttp": 403,
+    "requestId": "syd1::syd1::4qgfk-1795245950979-23fd7247f485"
+  },
+  "targetedTestsPassed": 23,
+  "physicalAndroidAcceptance": "Pending. Attached device reports v31 / 1.30; device inventory is not routing acceptance."
+}
