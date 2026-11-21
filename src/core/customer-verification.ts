@@ -59,7 +59,7 @@ export async function customerVerification(
     );
   if (request.method === "GET")
     return page(
-      "Verify your email to continue. You’ll choose your display name and accept the free beta rules next.",
+      "Select Verify my email to confirm your email address and continue to Docked.",
       200,
       token,
     );

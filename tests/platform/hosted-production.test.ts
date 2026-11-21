@@ -12,6 +12,13 @@ import {
 } from "../../src/core/hosted-production.mjs";
 import { assertDeploymentEnvironment } from "../../src/core/deployment-environment";
 import { databaseConnectionOptions } from "../../src/server/database-tls";
+import { customerEmailEnabled } from "../../src/core/customer-email-readiness";
+import { productionInvitationsEnabled } from "../../src/core/auth-invitation";
+import { customerVerification } from "../../src/core/customer-verification";
+import { recoveryRequest } from "../../src/core/auth-recovery";
+import closedRuntime from "../../config/operations/public-runtime-closed.json";
+import paidLaunch from "../../config/operations/paid-launch-final.json";
+import { messagesFor } from "../../supabase/functions/docked-auth-email/mail.mjs";
 import {
   fantasyProductionEnabled,
   fantasyProductionAction,
@@ -57,6 +64,81 @@ function environment(): Record<string, string> {
     ...Object.fromEntries(productionDisabledFlags.map((key) => [key, "false"])),
   };
 }
+
+test("public signup and recovery emails open on the reviewed stable runtime with invitations off", async () => {
+  const env = {
+    ...environment(),
+    ...closedRuntime.environment,
+    ...paidLaunch.paidRuntimeOverrides,
+    ...paidLaunch.finalRegistrationOverride,
+    VERCEL_PROJECT_ID: manifest.vercelProjectId,
+    DATABASE_URL: database(manifest.supabaseProjectRef),
+    NEXT_PUBLIC_SUPABASE_URL: `https://${manifest.supabaseProjectRef}.supabase.co`,
+  };
+  const origin = manifest.origin;
+  assert.equal(productionInvitationsEnabled(env), false);
+  const enabled = customerEmailEnabled(env);
+  assert.equal(enabled, true);
+  assert.equal(
+    customerEmailEnabled({ ...env, REGISTRATION_ENABLED: "false" }),
+    true,
+  );
+  for (const patch of [
+    { DOCKED_PUBLIC_CUSTOMERS: "false" },
+    { AUTH_EMAIL_ENABLED: "false" },
+    { DOCKED_RELEASE_CHANNEL: "beta" },
+  ])
+    assert.equal(customerEmailEnabled({ ...env, ...patch }), false);
+  for (const patch of [
+    { VERCEL_PROJECT_ID: "other-project" },
+    { VERCEL_ENV: "preview" },
+    { NEXT_PUBLIC_SUPABASE_URL: "https://unrelated.example" },
+  ])
+    assert.throws(() => customerEmailEnabled({ ...env, ...patch }));
+  for (const action of ["signup", "recovery"]) {
+    const [message] = messagesFor({
+      user: { email: "fixture@example.test" },
+      email_data: {
+        site_url: origin,
+        redirect_to:
+          origin +
+          (action === "signup"
+            ? "/auth/callback?next=/app/verified"
+            : "/auth/callback?next=/app/reset-password"),
+        email_action_type: action,
+        token_hash: "pkce_" + "e".repeat(64),
+      },
+    });
+    const link = message.body.content
+      .split("\n")
+      .find((line: string) => line.startsWith("https://"));
+    assert.ok(link);
+    const request = new Request(link);
+    assert.equal(new URL(request.url).origin, origin);
+    const unexpected = async (): Promise<never> => {
+      throw Error("GET consumed a token");
+    };
+    const result: Response =
+      action === "signup"
+        ? await customerVerification(request, {
+            enabled,
+            origin,
+            verify: unexpected,
+          })
+        : await recoveryRequest(request, {
+            enabled,
+            siteUrl: origin,
+            canContinue: unexpected,
+          });
+    assert.equal(result.status, 200);
+    const body = await result.text();
+    assert.match(
+      body,
+      action === "signup" ? /Verify my email/ : /Continue to password reset/,
+    );
+    assert.doesNotMatch(body, /free beta/i);
+  }
+});
 
 test("beta deployment cannot enable public registration or use an unknown channel", () => {
   assert.doesNotThrow(() =>
