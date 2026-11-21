@@ -1,5 +1,5 @@
 import { createServer } from "node:http";
-import { readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve, sep } from "node:path";
 import assert from "node:assert/strict";
 import { chromium, expect } from "@playwright/test";
@@ -129,6 +129,10 @@ export async function commercialMarketBrowser(
   });
   await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
   origin = "http://127.0.0.1:" + (server.address() as { port: number }).port;
+  const output =
+    process.env.DOCKED_MARKET_BROWSER_REPORT_DIR ??
+    "docs/qa/v31-revenue-launch-20261113";
+  mkdirSync(output, { recursive: true });
   const browser = await chromium.launch({ channel: "msedge" });
   const errors: string[] = [];
   try {
@@ -194,7 +198,7 @@ export async function commercialMarketBrowser(
       buyerPage.getByRole("button", { name: "Buy card", exact: true }),
     ).toHaveCount(0, { timeout: 5000 });
     await buyerPage.screenshot({
-      path: "docs/qa/v31-revenue-launch-20261113/market-purchase-mobile.png",
+      path: output + "/market-purchase-mobile.png",
       fullPage: true,
     });
     await buyerPage
@@ -213,7 +217,7 @@ export async function commercialMarketBrowser(
       sellerPage.getByText("Balance refresh unavailable", { exact: false }),
     ).toHaveCount(0);
     await sellerPage.screenshot({
-      path: "docs/qa/v31-revenue-launch-20261113/market-sale-desktop.png",
+      path: output + "/market-sale-desktop.png",
       fullPage: true,
     });
     await sellerPage
@@ -255,14 +259,20 @@ export async function commercialMarketBrowser(
       productionWrites: 0,
     };
     writeFileSync(
-      "docs/qa/v31-revenue-launch-20261113/market-browser.json",
+      output + "/market-browser.json",
       JSON.stringify(report, null, 2) + "\n",
     );
   } catch (e) {
-    await browser.contexts().at(-1)?.pages().at(-1)?.screenshot({
-      path: "docs/qa/v31-revenue-launch-20261113/market-browser-failure.png",
-      fullPage: true,
-    });
+    writeFileSync(output + "/browser-errors.json", JSON.stringify(errors));
+    await browser
+      .contexts()
+      .at(-1)
+      ?.pages()
+      .at(-1)
+      ?.screenshot({
+        path: output + "/market-browser-failure.png",
+        fullPage: true,
+      });
     throw e;
   } finally {
     await browser.close();

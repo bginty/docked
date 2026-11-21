@@ -15,6 +15,20 @@ export default async function MarketplaceAdmin() {
   } catch {
     notFound();
   }
+  if (
+    process.env.DOCKED_BETA_STAGING !== "true" &&
+    process.env.DOCKED_COMMERCIAL_MARKETPLACE === "true"
+  )
+    return (
+      <AdminShell role="owner" displayName="Owner" active="marketplace">
+        <h1>Commercial Marketplace oversight</h1>
+        <p>
+          Review customer restrictions and payment or refund issues in
+          Commercial operations.
+        </p>
+        <a href="/admin/operations">Commercial operations</a>
+      </AdminShell>
+    );
   if (process.env.DOCKED_BETA_STAGING !== "true")
     return (
       <AdminShell role="owner" displayName="Owner" active="marketplace">
