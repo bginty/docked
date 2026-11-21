@@ -1,0 +1,111 @@
+{
+  "liveAtTimeOfCheck": {
+    "application": "ed5a1d12579e8abab9fbd62702d243c3f903229f",
+    "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp"
+  },
+  "dashboardStage": {
+    "at": "2026-11-21T04:24:22.267Z",
+    "source": "58e9ad606cd066ff1639c59f978a6090e3aa63f7",
+    "deployment": "dpl_66BrtVga2z71wmp7w6ZfVuqrX4TZ",
+    "rows": [
+      {
+        "path": "/api/app-session",
+        "status": 200,
+        "request": "syd1::syd1::ztv7g-1795235061406-2e8a05d7ec24"
+      },
+      {
+        "path": "/api/admin/operations?scope=live",
+        "status": 403,
+        "request": "syd1::syd1::xjbkt-1795235062409-507bf5d0569e"
+      }
+    ],
+    "alias": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp"
+  },
+  "existingApprovedReportingMigration": {
+    "passed": true,
+    "at": "2026-11-21T04:19:39.842Z",
+    "version": "20261121021000",
+    "source": "58e9ad606cd066ff1639c59f978a6090e3aa63f7",
+    "approval": "cd648264f23a8fbc676f15d0569edb20485faaa0f531f86c1ce1c90c3bdc1732",
+    "sqlSha": "07ad0c710744a60cb3d24a8257f9a607b18ea1c50dd9864b584c8a5e6cc53554",
+    "functionSha": "dfe6fe3bea717489b0bd988656043b7ef9498d239b0a227fba357f68148f904f",
+    "grants": [
+      {
+        "principal": "docked_app",
+        "privilege_type": "EXECUTE"
+      },
+      {
+        "principal": "postgres",
+        "privilege_type": "EXECUTE"
+      }
+    ],
+    "installedCount": 1
+  },
+  "database": {
+    "restoredProtectedTables": 576,
+    "archiveSha256": "c7aae0c19ea112845570c418733f8428ef8e2c4c1543d88452077ed7f5077876",
+    "backupAt": "2026-11-21T04:04:53.913Z",
+    "restoreVerifiedAt": "2026-11-21T04:09:10.947Z",
+    "network": "none",
+    "effectiveGrants": [
+      {
+        "r": "anon",
+        "allowed": false
+      },
+      {
+        "r": "authenticated",
+        "allowed": false
+      },
+      {
+        "r": "docked_app",
+        "allowed": true
+      },
+      {
+        "r": "docked_beta_app",
+        "allowed": false
+      },
+      {
+        "r": "docked_commercial_app",
+        "allowed": false
+      },
+      {
+        "r": "service_role",
+        "allowed": false
+      }
+    ],
+    "counts": {
+      "definitions": 6540,
+      "lifetime": 918,
+      "beta_allocations": 30,
+      "commercial_cards": 0,
+      "open_controls": 1,
+      "public_flags": 1,
+      "active_or_scored": 0,
+      "deletion_schedules": 0
+    },
+    "custodyRecords": 936,
+    "integrity": {
+      "lifetime_mismatches": 0,
+      "duplicate_serials": 0,
+      "unbalanced_journals": 0
+    }
+  },
+  "customerIssue": {
+    "evidence": "Founder screenshot on step 3. A matching Production POST /api/member returned 403 and one member rate-limit counter advanced. No profile, consent, financial or custody record changed in that interval. The generic HTTP response does not establish the specific save failure.",
+    "causeOfMandatoryWizard": "The mode switch led back to /app, which sent a retained Owner through the ordinary phone and onboarding selectors. The installed-app session response also requested onboarding."
+  },
+  "candidateChecks": {
+    "source": "b49f5e4b71b6adf01df8a7ac14df7c3b561218b8",
+    "platformAndDatabaseTests": 20,
+    "typecheck": "passed",
+    "changedFileLint": "passed",
+    "nextProductionBuild": "passed",
+    "loopbackBrowserWidths": [
+      390,
+      1440
+    ],
+    "browserChecks": "Actual customer shell and clubhouse components, with an isolated navigation and identity fixture. Switched NFL to AFL to NRL, inspected six pack sizes per selected sport, opened wallet information and found the Owner return and opt-in setup controls. Zero writes or wallet API requests.",
+    "hostedSignedInCandidate": "pending",
+    "genuinePayment": "outside this release"
+  }
+}
