@@ -1,5 +1,5 @@
 {
-  "status": "approved_pending_deployment",
+  "status": "deployed_and_verified",
   "project": "pojoymtniryarxxunyvz",
   "function": "docked-auth-email",
   "baseSource": "4a562c54d5f920c4fbbecf547427cc989db86fed",
@@ -38,10 +38,9 @@
   "customerTokensUsed": 0,
   "googleSettingsChanged": false,
   "sourceCommit": "53e01fa184e480121dbb4df2844028dd08f0cb3c",
-  "productionVersion": 50,
-  "productionDeploymentAttempted": false,
-  "publicPush": "approved_pending",
-  "publicPushReason": "External publication was treated as a separate decision; preparing the change was authorized but public push was not.",
+  "productionVersion": 51,
+  "productionDeploymentAttempted": true,
+  "publicPush": "published_via_connected_github",
   "branch": "codex/docked-email-branding-20261122",
   "userApprovalRecordedAt": "2026-11-21T22:21:09.646967+00:00",
   "preflight": {
@@ -51,5 +50,10 @@
     "baselineUnchanged": true,
     "activeOrRecentQueueJobs": 0,
     "candidateHashesMatchReviewedManifest": true
-  }
+  },
+  "publicSourceCommit": "17b3e78926906760535350c060241aebf1f8287d",
+  "productionBundleSha256": "462b9a313c9a8d06460f84d65a11f32428fca864fef9221e16193ff91cd1f8d1",
+  "deployedAt": "2026-11-21T22:23:56.300Z",
+  "exactSourceReadback": true,
+  "pullRequest": "https://github.com/bginty/docked/pull/3"
 }

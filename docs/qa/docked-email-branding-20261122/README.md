@@ -59,9 +59,13 @@ No database migration, environment-variable change, app/web deployment, native b
 
 ## Deployment status
 
-**Approved by the user; deployment pending.** The prior automatic approval rejection was followed by the user’s instruction, “ok makes sense lets proceed with that”. Fresh preflight confirms the Production email function remains version 50 and byte-identical to the reviewed baseline, with no active or recent queued messages. Exact candidate source: `53e01fa184e480121dbb4df2844028dd08f0cb3c`. The local `implementation.patch` contains the six-file code/test change.
+**Live and verified.** The user approved proceeding on 22 November 2026. Production `docked-auth-email` is now version **51**, and all five deployed modules were read back byte-for-byte against the reviewed candidate. Public source commit: `17b3e78926906760535350c060241aebf1f8287d`; its complete tree matches the approved local publication tree. Source review is recorded in [PR #3](https://github.com/bginty/docked/pull/3).
 
-Approved scope: publish this isolated branch to `bginty/docked` and deploy its five Edge Function modules to the existing Production `docked-auth-email` service. This authorizes no test email, Google account change, database migration or app deployment.
+The live endpoint rejected GET requests with 405 and unsigned POST requests with 401 on the authentication, worker and control routes. The existing logo URL returned 200 with the expected PNG. Detailed production evidence is in `PRODUCTION.json`.
+
+No test email was sent and no fresh inbox-delivery check is claimed. This release changes the presentation used for newly generated account emails. Existing inbox messages are unchanged. The existing application, Google payments settings, database and Android binary were not modified.
+
+The CLI lacked GitHub credentials, so publication used the connected GitHub account. The new public commit has different commit metadata from local source `53e01fa184e480121dbb4df2844028dd08f0cb3c`, but the approved file contents were preserved exactly.
 
 ## Deployment and rollback
 
