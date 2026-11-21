@@ -1,0 +1,102 @@
+{
+  "source": "ed5a1d12579e8abab9fbd62702d243c3f903229f",
+  "packageSha256": "080771d9ef0237dd30aa3bf34f9699c6e05bed50e52c8b3292fbc721aa0c7708",
+  "candidate": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+  "prior": "dpl_9DX5EYTE3KeHQoxPPzV8X8MLc8S5",
+  "observedAt": "2026-11-21T02:56:03Z",
+  "authenticatedNavigation": [
+    {
+      "at": "2026-11-21T02:53:01.624Z",
+      "method": "POST",
+      "status": 303,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+      "path": "/api/owner-view",
+      "mode": "customer",
+      "requestId": "syd1::syd1::td4b4-1795229582010-1fdb599d94cd"
+    },
+    {
+      "at": "2026-11-21T02:56:02.092Z",
+      "method": "POST",
+      "status": 303,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+      "path": "/api/owner-view",
+      "mode": "owner",
+      "requestId": "syd1::syd1::z2psv-1795229762647-0c7399734f12"
+    },
+    {
+      "at": "2026-11-21T02:52:21.851Z",
+      "method": "GET",
+      "status": 200,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+      "path": "/admin/incidents",
+      "mode": null,
+      "requestId": "syd1::syd1::p6957-1795229542604-9dfb2c2b96ab"
+    },
+    {
+      "at": "2026-11-21T02:52:22.055Z",
+      "method": "GET",
+      "status": 200,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+      "path": "/admin/incidents",
+      "mode": null,
+      "requestId": "syd1::syd1::dfc9q-1795229542804-427768a965b2"
+    },
+    {
+      "at": "2026-11-21T02:53:02.503Z",
+      "method": "GET",
+      "status": 200,
+      "deployment": "dpl_9DX5EYTE3KeHQoxPPzV8X8MLc8S5",
+      "path": "/app",
+      "mode": null,
+      "requestId": "syd1::syd1::zlzqz-1795229582521-0c5158914252"
+    },
+    {
+      "at": "2026-11-21T02:53:03.955Z",
+      "method": "GET",
+      "status": 200,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+      "path": "/admin/incidents",
+      "mode": null,
+      "requestId": "syd1::syd1::xjbkt-1795229584315-7d02623d6d10"
+    },
+    {
+      "at": "2026-11-21T02:55:23.593Z",
+      "method": "GET",
+      "status": 200,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+      "path": "/app",
+      "mode": null,
+      "requestId": "syd1::syd1::c5tsj-1795229723587-3366165bdcb7"
+    },
+    {
+      "at": "2026-11-21T02:55:24.539Z",
+      "method": "GET",
+      "status": 200,
+      "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+      "path": "/app/onboarding",
+      "mode": null,
+      "requestId": "syd1::syd1::mdlmj-1795229725199-084ca7a4c9c3"
+    },
+    {
+      "at": "2026-11-21T02:56:03.547Z",
+      "method": "GET",
+      "status": 200,
+      "deployment": "dpl_9DX5EYTE3KeHQoxPPzV8X8MLc8S5",
+      "path": "/admin/operations",
+      "mode": null,
+      "requestId": "syd1::syd1::chrtk-1795229762986-06c83d3d0118"
+    }
+  ],
+  "founderClicks": [
+    "View as Customer",
+    "Return to Owner Dashboard"
+  ],
+  "commercialNoticesShownOnPinnedEntry": true,
+  "commercialNoticesAccepted": false,
+  "siblingSessionRevoked": false,
+  "purchasePerformed": false,
+  "financialAndCustodyReconciliation": "918 limited issuances, 936 custody entries, balanced journals, 0 duplicate serials and 0 lifetime mismatches in the read-only snapshot. Correlated both attended logins to the same original Founder and verified factor.",
+  "result": "The staged switch returned 303 in each direction. Vercel served the immediately-following browser document from the prior live deployment. A pinned read of the same app entry with the saved customer preference displayed the correct commercial onboarding. This attempt alone does not establish uninterrupted staged navigation.",
+  "stagingCorrection": "Individually route each same-origin document hop to the approved build; retain real status, Location, session, user actions and content. Independently exercised on a browser POST to 303 to GET to 307 to GET with a real HttpOnly cookie.",
+  "deploymentAction": "Left the live domain on its existing release pending full navigation acceptance."
+}
