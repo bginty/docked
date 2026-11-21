@@ -1,0 +1,86 @@
+{
+  "source": "ed5a1d12579e8abab9fbd62702d243c3f903229f",
+  "approvalSha256": "080771d9ef0237dd30aa3bf34f9699c6e05bed50e52c8b3292fbc721aa0c7708",
+  "approval": "Founder approved Release 1 conditional staging and promotion for 24 hours",
+  "baseline": "dpl_9DX5EYTE3KeHQoxPPzV8X8MLc8S5",
+  "staging": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+  "stageCreatedAt": "2026-11-21T02:40:36.264Z",
+  "protectedChecks": {
+    "at": "2026-11-21T02:43:03.902Z",
+    "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+    "anonymousSession": false,
+    "anonymousModeSwitch": 403,
+    "candidateRoute": 405,
+    "requestIds": [
+      "syd1::syd1::ffx7m-1795228983392-bc6a60d588a5",
+      "syd1::syd1::chrtk-1795228983967-da1ab7f15ee1",
+      "syd1::syd1::jjvnw-1795228984745-71f984377b65"
+    ]
+  },
+  "freshBackup": {
+    "at": "2026-11-21T02:39:29.282Z",
+    "backupAt": "2026-11-21T02:35:05.903Z",
+    "sourceProject": "pojoymtniryarxxunyvz",
+    "archiveSha256": "a7702c5ee18bd29221d207804207f3199c04f475b13101f1b9b54a6db0e80c93",
+    "archiveBytes": 139695961,
+    "encryptedAtRest": "AES-256-GCM",
+    "restoreTarget": "docked-commercial-restore-20261121y",
+    "network": "none",
+    "loopbackOnlyDriver": false,
+    "publishedPorts": 0,
+    "restored": true,
+    "protectedTables": 576,
+    "protectedRecordsUnchanged": true,
+    "migrationsReapplied": false,
+    "productionWrites": 0,
+    "cronActive": false
+  },
+  "drift": {
+    "capturedAt": "2026-11-21T02:39:30.465Z",
+    "tables": 576,
+    "integrity": {
+      "lifetime_mismatches": 0,
+      "duplicate_serials": 0,
+      "unbalanced_journals": 0
+    },
+    "counts": {
+      "definitions": 6540,
+      "lifetime": 918,
+      "beta_allocations": 30,
+      "commercial_cards": 0,
+      "open_controls": 1,
+      "public_flags": 1,
+      "active_or_scored": 0,
+      "deletion_schedules": 0
+    },
+    "custody": 936
+  },
+  "refundWorker": {
+    "at": "2026-11-21T02:37:29.338Z",
+    "passed": true,
+    "seen": [
+      {
+        "at": "2026-11-21T02:35:09.395Z",
+        "requestId": "qm6vw-1795228509395-fdbb8e51a73d",
+        "overdue": 0
+      },
+      {
+        "at": "2026-11-21T02:30:09.498Z",
+        "requestId": "bhn6j-1795228209498-af2f914718ec",
+        "overdue": 0
+      },
+      {
+        "at": "2026-11-21T02:25:09.384Z",
+        "requestId": "gzvmg-1795227909384-53bcb46fff1e",
+        "overdue": 0
+      },
+      {
+        "at": "2026-11-21T02:20:09.235Z",
+        "requestId": "87n9x-1795227609235-0fb9a6e57cae",
+        "overdue": 0
+      }
+    ]
+  },
+  "status": "Awaiting the Founder’s hands-on Owner navigation before any promotion",
+  "productionAliasMoved": false
+}
