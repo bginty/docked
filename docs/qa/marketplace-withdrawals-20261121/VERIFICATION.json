@@ -1,0 +1,163 @@
+{
+  "status": "OFF_RELEASE_CANDIDATE",
+  "recordedAt": "2026-11-21T08:10:37.033810+00:00",
+  "baseCommit": "58841a60b4e4c57d9c410c4f1c2e315ee8bf20d2",
+  "liveSourceObserved": "83794e9ac31c54960bfc76b9a07b36047f20486b",
+  "liveDeploymentObserved": "dpl_2k3nw6ZuhxCT5SyAdBwbCiiq4JyU",
+  "productionWrites": false,
+  "deploymentPerformed": false,
+  "productionTransfersEnabled": false,
+  "productionWithdrawalsApproved": false,
+  "productionWithdrawalModuleInstalled": false,
+  "providerConfigurationObserved": {
+    "matchingConfiguredVariableNames": [],
+    "hiddenProductionVariableCount": 0,
+    "secretValuesDecrypted": false
+  },
+  "validation": {
+    "node": "22.23.5",
+    "nativePostgres": "17.12",
+    "productionBuild": {
+      "status": "PASS",
+      "log": "BUILD.txt",
+      "baselineSparseAssetsRestoredFromGit": true
+    },
+    "fullTypecheck": {
+      "status": "PASS",
+      "via": "Next production build and earlier standalone tsc --noEmit"
+    },
+    "fullEslint": {
+      "status": "PASS",
+      "command": "node node_modules/eslint/bin/eslint.js src scripts tests --max-warnings=0"
+    },
+    "diffWhitespace": {
+      "status": "PASS"
+    },
+    "focusedPlatform": {
+      "passed": 71,
+      "failed": 0,
+      "skipped": 0
+    },
+    "nativeWithdrawal": {
+      "reportedTestsPassed": 10,
+      "substantiveScenarios": 9,
+      "parentCountIncluded": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "nativeLifecycle": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "nativeMarketplace": {
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "nativeLineupCompatibility": {
+      "aflPassed": 1,
+      "nrlPassed": 1,
+      "failed": 0,
+      "skipped": 0
+    },
+    "clientBoundary": {
+      "status": "PASS",
+      "browserAssetsChecked": 114,
+      "injectedNewMarkerFamilies": [
+        "WITHDRAWAL_BANK",
+        "SUMSUB_APP",
+        "SUMSUB_SECRET",
+        "SUMSUB_WEBHOOK",
+        "SUMSUB_IDENTITY"
+      ]
+    },
+    "componentInteractions": {
+      "status": "PASS",
+      "checksPassed": 10,
+      "scope": "Actual bundled React components in JSDOM with synthetic in-memory fetch fixtures",
+      "evidence": "MOCKED_COMPONENT_UI.json"
+    },
+    "realBrowser": {
+      "status": "BLOCKED_BEFORE_LAUNCH",
+      "reason": "Executor denied Chromium process-singleton socket creation",
+      "screenshots": []
+    },
+    "hostedAuthentication": "NOT_RUN",
+    "realProviderSandboxIntegration": "NOT_RUN",
+    "realBankTransfer": "NOT_RUN"
+  },
+  "requiredOperationalInputs": [
+    "Provider account/configuration and hosted Sandbox evidence",
+    "Actual redemption conversion, minimum/maximum, rolling 24-hour limit, fee and identity age",
+    "Payout bank workflow, bank ownership evidence and genuine reconciled backing",
+    "Provider/privacy/retention arrangements and accurate new consent/declaration selection",
+    "Protected hosted two-member acceptance and permitted browser/physical Android verification"
+  ],
+  "implementationManifestSha256": "f9762473537a2c8ebf6f794f52c23da37e4cb96338d2b8e1a42b72ccaa0a00e6",
+  "implementationFiles": {
+    "config/cash-policy-content.json": "d34af0c31f6ac567882288ffb908ca6068abd4f1ae0b9effca4ca577f0fdc5c3",
+    "scripts/check-client-boundary.ts": "b0f225ca196cdb521366ec0d4cb681cc7e79cfb4c4ef433ae1af3bd589b99314",
+    "scripts/commercial-market-browser.ts": "b485ad42e229532fa97c5524998aac8230a31966021edc25109a9d9f22fb26c6",
+    "scripts/commercial-withdrawal-browser.ts": "940991fe27cbc203abdbfddbd731605191928855d535657bff54a0d90fdf4f27",
+    "scripts/commercial-withdrawal-dom.mjs": "c42b3fafd60997dbd5477744b38b7be66d2ef3e60789ddecfd4ea09c9600cc7a",
+    "src/app/[section]/page.tsx": "244e3bde56aa8610073f0b6d50721e37d0e7e8853670c4b247a00b7eb4b44cc2",
+    "src/app/admin/marketplace/page.tsx": "7baa82750e3f016e1f95b06bbaef587866fec0727f4d5e2174a79ca2d639ebf5",
+    "src/app/admin/withdrawals/page.tsx": "54cf5d9c1e6d1e3d61fa4419c5e1fc0e650731822ea123dba090201d0a8d9c71",
+    "src/app/api/admin/withdrawals/bank/route.ts": "9e4309bc7aa0a9ac7567d5a01a7a730eaaf7ad4660f269f30a09937339c0f5c7",
+    "src/app/api/admin/withdrawals/route.ts": "621dd320de91955f9e0beabf770c6e3b8f9d82de6ddc9ae7fa9b82b68dceb0a8",
+    "src/app/api/commercial-withdrawals/destination/route.ts": "80aa40def9fd2f957c98b8cbbe7026f558f48bb9a2e66a9bd59eee54fdb5978b",
+    "src/app/api/commercial-withdrawals/identity/route.ts": "c9c5f7ea30ea5e4623fed4670c57dfdcacd0f60fd8c89f7e1a423a883de94ac6",
+    "src/app/api/commercial-withdrawals/route.ts": "c3c44471251702db0f3460a5dbfc4cbe4d9c29e09adc3b6ae2de1f1e362ec316",
+    "src/app/api/member/route.ts": "92d4060941aa07e6b29fecf8bd531de495e5a2cf880077bf3e709f0ac7fab4ca",
+    "src/app/api/webhooks/commercial-identity/route.ts": "f253b030917764c07dfc1b050e0868b5b609a5f92fcfeddeb75accd50992898d",
+    "src/app/fantasy/[tab]/page.tsx": "671cf6c891ef971f94769484e3bf23966e93cf2b1116615313b4cfdbb230c78e",
+    "src/app/page.tsx": "f660984cfb44a83410cc7f38634855fb110706bfba8221125f3ee52317d46793",
+    "src/app/profile/withdrawals/page.tsx": "ee882dae321599a4164cde00b970a0058f8e21b028c5d538dea81aff0b1dca0c",
+    "src/app/redemption.css": "7fff704e0b4b684fd6cf750c498892c684bf26f02de666a09a652128d24a54d9",
+    "src/components/admin-shell.tsx": "78d3d3a09e4db5293ddef1160c6cef80f56c6859f51fdd97d109ff037fc43bc5",
+    "src/components/app-shell.tsx": "c7c3305fdefe82d6aafb65a07545ed48afb05f2219c88368e3a92c9d4b5e601c",
+    "src/components/commercial-withdrawal-operations.tsx": "2552ae59765e093d8a720e1307d3200ea5945bd963534cee742fd56176f8c98a",
+    "src/components/commercial-withdrawals.tsx": "be268b036d62d235e851f681ab36921a9f095965353b5f40b4b1128f28b30fcc",
+    "src/components/credit-marketplace.tsx": "f7b1df67b35ea29b61aac1d1da1b843f78f902aed4aec4638a37c1ee6cbfbf0d",
+    "src/components/environment-context.tsx": "ed4130944fb377aafba2a120fbc91d80a2d7be80db7beb4ad93760bc553c0de4",
+    "src/components/pack-shop.tsx": "fa5f1719f663ed5ead1452bc7cccf50f15f1d07cd995235a93ce3aa08535fde7",
+    "src/components/paid-launch-home.tsx": "37fe10e36ea727ca97462ee7ac1a506984ab6fc64ee23c8e1ab063719311c7f1",
+    "src/components/public-owner-dashboard.tsx": "1ff54b6e2f3ae63f2f28ea2ad89911f154d19e2ad10eda4697500c4798a9cc53",
+    "src/components/release-policy-page.tsx": "ce8b882e6ef443ded87cb06466bcc556d0122a0a3a693a167ae67323e89e84c9",
+    "src/core/commercial-billing.ts": "b554607e781d30a75c7c9a6fbb4406e5bd3d16bece9b438dc662ba265fc85923",
+    "src/core/commercial-cash-presentation.ts": "098d883f8da4aca0cb325ed89ed95c8a00071f9a6ee93cb7034cee22a71596c8",
+    "src/core/commercial-withdrawals.ts": "c606f5c3f13044b0802983bcb274190829375432cebb8cf25e5b8861f24ce32f",
+    "src/server/account-deletion.ts": "feffbc5c86ef86445a4946470c2ea7217ea4c3f3a37f314b2de299ec3f60c361",
+    "src/server/commercial-kyc-provider.ts": "a218268701015b43083c4e95b55aff0189e348e3ca51e9d242b68e7682f51ae6",
+    "src/server/commercial-ledger.ts": "b4706557ec9bc44bfccdae8492c0f895525d6d8642edd321134edac1ab3c7956",
+    "src/server/commercial-market-view.ts": "7fc9f8e16748bc3596fba741822e23940738a0ab2cb1d01fed6244438b6c10c7",
+    "src/server/commercial-runtime.ts": "229c830181f4c086edb6a2591157c33dd14d23aa9c292bc0a367fdf92520ba88",
+    "src/server/commercial-withdrawal-account.ts": "98f92b272ce1b40b99121633912cbcfa6f1c0908b3cdae31ebb0785036932a3f",
+    "src/server/commercial-withdrawal-http.ts": "d02202267be19dbb31f835b515a52da6a88d6dbe4e00ac15d9c5c65ec07c3e12",
+    "src/server/commercial-withdrawal-ledger.ts": "5f68cbf22561f0f2d27a84cf654c3041d6560d3629c0ee86b62a7f2b85f28ed3",
+    "src/server/commercial-withdrawal-service.ts": "d2cb60784bf6f22f16d3686ca95adc416f4d7ae0ea949a46ad81a69ac2a4faba",
+    "src/server/commercial-withdrawal-vault.ts": "827c7557d7cf85aad96eac1f395bf6b35aee312b357dfaabebd0ec5e56db70b1",
+    "src/server/member-commercial.ts": "747891dcf76d240c4d6ad35d54d26b0fa066ebf74eb83a6f5cd89d4eb5f1186b",
+    "src/server/presentation.ts": "765d0032b86d6204c5d8eba815d0f60fe1e64e701cd5df8abd516f15045f3090",
+    "supabase/migrations/20261121074228_commercial_manual_withdrawals.sql": "8f701a9d27c38a9d236344d67adc628657f648cba0c7813f7f26528ab85c83bc",
+    "supabase/migrations/20261121074659_commercial_withdrawal_account_lifecycle.sql": "41d6fdd9456e7b797a5468ea51cf16488c2bf98105c75b9c14ed2046b9ca056b",
+    "supabase/migrations/20261121075714_commercial_cash_policy_compatibility.sql": "a61a2c820264479cd4b4c4a2433c1972695ac88ecf2dc1a9ee0ce206f383c39d",
+    "tests/database/commercial-lineup.test.ts": "37b60e64f4eca7a48d835819e985c60a1aaefdbd37aa6d5649ea728608a9484f",
+    "tests/database/commercial-withdrawal-account.test.ts": "b17dd266f80faea68b06651359c4bf528bc3d6abe60a7323a71dc0377b76c70b",
+    "tests/database/commercial-withdrawals.test.ts": "dd35fe08c46f629c7991387eacd0d67b6ecd9c582975ee626c65cb185241f047",
+    "tests/fixtures/multi-sport-db.ts": "57dee3e95c66f891eb2e8b502c7bf33a7e3785024e837387b6b1dfe804db7807",
+    "tests/fixtures/withdrawal-ui.tsx": "e46bdd09a3aa90a37003b5ead91f8c2ab3b4de5f4057a47c07256c20a83ba964",
+    "tests/platform/commercial-cash-presentation.test.ts": "461dba5728e2fc72df2aa4380c87fe5273fa50859463b8e66d746b1232ea1695",
+    "tests/platform/commercial-kyc-provider.test.ts": "e002a22eba02bcffb1878e427078c8f6e2bcea71aad08a07d8ab2abdab122314",
+    "tests/platform/commercial-withdrawal-access.test.ts": "dbcea39b1496b855affc49d73efb02b044f88218260a3f63c10c0665f9c93f75",
+    "tests/platform/commercial-withdrawal-account.test.ts": "09c041560f722168a5c7d0349f61c1b1cee9c9afeed8aaad49cef3afe0c5c359",
+    "tests/platform/commercial-withdrawals.test.ts": "7500aa50a75c5cc39362444adef3644d7a05c40eb227dbd9f23db6f7cdb557e1"
+  },
+  "publicGitHubPublication": {
+    "status": "AUTO_REVIEW_REJECTED",
+    "remoteBranchCreated": false,
+    "pullRequestCreated": false,
+    "reason": "Public repository publication of unpublished payment/identity source, migrations and operational details requires explicit user approval."
+  }
+}

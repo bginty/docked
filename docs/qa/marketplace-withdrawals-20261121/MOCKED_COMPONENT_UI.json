@@ -1,0 +1,32 @@
+{
+  "scope": "Actual bundled React components in JSDOM with synthetic in-memory fetch fixtures",
+  "status": "PASS",
+  "checkedAt": "2026-11-21T08:06:25.447Z",
+  "sources": {
+    "src/components/commercial-withdrawals.tsx": "be268b036d62d235e851f681ab36921a9f095965353b5f40b4b1128f28b30fcc",
+    "src/components/commercial-withdrawal-operations.tsx": "2552ae59765e093d8a720e1307d3200ea5945bd963534cee742fd56176f8c98a",
+    "tests/fixtures/withdrawal-ui.tsx": "e46bdd09a3aa90a37003b5ead91f8c2ab3b4de5f4057a47c07256c20a83ba964",
+    "scripts/commercial-withdrawal-dom.mjs": "c42b3fafd60997dbd5477744b38b7be66d2ef3e60789ddecfd4ea09c9600cc7a"
+  },
+  "checks": [
+    "Actual customer component enforces minimum/eligible maximum and displays exact AUD quote and fee",
+    "Nonzero fee is deducted exactly and fractional credits cannot be requested",
+    "Unverified bank destination cannot be selected or used",
+    "Raw bank form inputs clear after both rejected save and successful save",
+    "Lost-response retry sends exactly the same request UUID and command",
+    "Customer history and web storage contain no raw bank values",
+    "Exact Owner reference retrieval selects the matching obligation, clears stale forms for unknown references and returns to the queue",
+    "Owner must personally confirm payment before record-sent becomes available",
+    "Raw bank details disappear on window blur and actual server expiry timer",
+    "Owner receipt/history returns only masked bank data after recording sent"
+  ],
+  "realBrowser": false,
+  "renderedLayout": false,
+  "screenshots": [],
+  "hostedAuthentication": false,
+  "production": false,
+  "externalCalls": false,
+  "realKyc": false,
+  "realBankTransfer": false,
+  "browserAttempt": "Chromium could not start: executor rejected process singleton socket(). No browser checks passed."
+}

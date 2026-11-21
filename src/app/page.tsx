@@ -18,5 +18,11 @@ export default async function Home() {
     environment.commercialSurface &&
     process.env.DOCKED_COMMERCIAL_CHECKOUT === "true" &&
     phoneDeliveryReady();
-  return <PaidLaunchHome canRegister={canRegister} />;
+  return (
+    <PaidLaunchHome
+      canRegister={canRegister}
+      cashWithdrawalPolicyPublished={environment.cashWithdrawalPolicyPublished}
+      marketplaceAvailable={environment.commercialMarketplace}
+    />
+  );
 }

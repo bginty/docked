@@ -5,6 +5,7 @@ import { authUsersRelation } from "../core/auth-relations";
 import { databaseConnectionOptions } from "./database-tls";
 import { databasePoolOptions } from "./database-pool";
 import { CommercialMarketLedger } from "./commercial-market-ledger";
+import { CommercialWithdrawalLedger } from "./commercial-withdrawal-ledger";
 import { GoogleCommercialVerifier } from "./google-commercial-verifier";
 import { CommercialReconciliation } from "./commercial-reconciliation";
 import { googlePlayOAuth } from "./google-play-oauth";
@@ -80,6 +81,10 @@ export async function commercialRuntime() {
   });
   return {
     ledger,
+    withdrawals: new CommercialWithdrawalLedger(connection, environment, {
+      active,
+      values,
+    }),
     verifier,
     worker: new CommercialReconciliation(ledger, verifier, async (member) => {
       const sql = db();

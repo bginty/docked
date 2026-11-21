@@ -1,6 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
 import { db } from "./db";
 import { eraseAuthRetainingReferences } from "./auth-erasure";
+import {
+  finishAccountDeletion,
+  WithdrawalAccountCleanupPending,
+} from "./commercial-withdrawal-account";
 /** Called only after private.disable_account has atomically revoked access and queued erasure. */
 export async function processAccountDeletion(userId: string) {
   if (process.env.DOCKED_BETA_STAGING === "true")
@@ -35,15 +39,11 @@ export async function processAccountDeletion(userId: string) {
     },
   );
   await eraseAuthRetainingReferences(admin.auth.admin, userId);
-  await sql.begin(async (tx) => {
-    // Serialise completion after Auth erasure. Concurrent retries may see an
-    // already-deleted Auth user; only one completion/audit event is recorded.
-    const [current] =
-      await tx`select state from private.job_runs where kind='account_deletion' and dedupe_key=${`account-deletion:${userId}`} for update`;
-    if (!current) throw new Error("Account-deletion request unavailable");
-    if (current?.state === "done") return;
-    await tx`delete from public.profiles where id=${userId}`;
-    await tx`update private.job_runs set payload='{}',state='done',last_success=clock_timestamp(),lease_until=null,lease_token=null,failure_reason=null,owner_action=null where kind='account_deletion' and dedupe_key=${`account-deletion:${userId}`}`;
-    await tx`insert into private.audit_events(actor,action,subject) values('account-service','account_erasure_completed',${userId})`;
-  });
+  let result: { pending: boolean };
+  try {
+    result = await finishAccountDeletion(sql, userId);
+  } catch {
+    throw new WithdrawalAccountCleanupPending();
+  }
+  if (result.pending) throw new WithdrawalAccountCleanupPending();
 }

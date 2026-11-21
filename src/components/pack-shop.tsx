@@ -22,6 +22,7 @@ import { purchaseTiming } from "@/core/purchase-performance";
 import { boundedFetch } from "@/core/bounded-request";
 import type { CouponQuote } from "@/core/pack-coupons";
 import type { memberCoupon } from "@/server/pack-coupons";
+import { useEnvironmentPresentation } from "./environment-context";
 type Product = PackShopState["products"][number];
 function FamilyDisclosures({
   p,
@@ -116,6 +117,7 @@ export function PackShop({
   repeatStatus?: (busy: boolean, error: string) => void;
 }) {
   const commercial = s.environment === "commercial";
+  const { cashWithdrawalPolicyPublished } = useEnvironmentPresentation();
   const creditLabel = commercial ? "Docked Credits" : "test credits";
   const search = useSearchParams().toString();
   const [tab, setTab] = useState<PackTab>("buy"),
@@ -608,7 +610,9 @@ export function PackShop({
       )}
       <p className="pack-no-cash">
         {commercial
-          ? "Docked Credits · Not withdrawable"
+          ? cashWithdrawalPolicyPublished
+            ? "Purchased credits cannot be withdrawn. Eligible settled card-sale proceeds are assessed separately."
+            : "Docked Credits · Not withdrawable"
           : "Test Docked Credits · No cash value"}
       </p>
       <NavigationShortcut
@@ -770,7 +774,9 @@ export function PackShop({
               {submitting || recovery
                 ? "Closing this review does not cancel a submitted request. Your request is saved for recovery, including after a refresh."
                 : commercial
-                  ? "No credits deducted until you confirm. Docked Credits cannot be withdrawn."
+                  ? cashWithdrawalPolicyPublished
+                    ? "No credits deducted until you confirm. Purchased credits cannot be withdrawn. A pack does not guarantee resale value or withdrawal eligibility."
+                    : "No credits deducted until you confirm. Docked Credits cannot be withdrawn."
                   : "No credits deducted until you confirm. Test credits have no cash value."}
             </p>
           </div>

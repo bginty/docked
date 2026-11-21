@@ -5,6 +5,7 @@ import { config } from "./config";
 import { db } from "./db";
 import { fantasyEnabled } from "@/core/fantasy";
 import { commercialSurfaceEnabled } from "../core/commercial-presentation";
+import { cashWithdrawalPolicyPublished } from "../core/commercial-cash-presentation";
 import { publicCustomersEnabled } from "@/core/public-customer";
 import {
   fantasyProductionEnabled,
@@ -33,6 +34,10 @@ export const environmentPresentation = cache(async () => {
   return {
     ...readiness,
     commercialSurface: commercialSurfaceEnabled(),
+    cashWithdrawalPolicyPublished: cashWithdrawalPolicyPublished(),
+    commercialMarketplace:
+      commercialSurfaceEnabled() &&
+      process.env.DOCKED_COMMERCIAL_MARKETPLACE === "true",
     publicCustomer: publicCustomersEnabled(),
     reviewOnly: settings.reviewOnly,
     fantasyPreview: fantasyEnabled(),

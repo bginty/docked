@@ -6,6 +6,44 @@
   min-width: 0;
   overflow-wrap: anywhere;
 }
+.commercial-withdrawals fieldset,
+.commercial-withdrawal-operations fieldset {
+  border: 0;
+  min-width: 0;
+  padding: 0;
+}
+.commercial-withdrawals .app-panel,
+.commercial-withdrawal-operations .app-panel {
+  margin-block: 20px;
+}
+.commercial-withdrawals .check,
+.commercial-withdrawal-operations .check {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+.commercial-withdrawals input[type="checkbox"],
+.commercial-withdrawal-operations input[type="checkbox"] {
+  flex: 0 0 20px;
+  width: 20px;
+  min-height: 20px;
+  margin-top: 2px;
+}
+.commercial-withdrawal-operations textarea {
+  min-height: 100px;
+  max-width: 100%;
+  padding: 12px;
+  color: inherit;
+  background: #091323;
+  border: 1px solid #436080;
+  border-radius: 9px;
+  font: inherit;
+}
+.withdrawal-history-item {
+  padding-block: 16px;
+  border-bottom: 1px solid #436080;
+}
 .withdrawals section,
 .withdrawals label,
 .redemption-layout > div,

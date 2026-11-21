@@ -10,6 +10,7 @@ import {
 import { sellerQuote, saleFeePolicy } from "../core/credits-policy";
 import { marketQuery, type MarketplaceView } from "../core/marketplace";
 import type { CommercialLedger } from "./commercial-ledger";
+import { cashWithdrawalPolicyPublished } from "../core/commercial-cash-presentation";
 
 /** Bounded commercial-only projection. No synthetic aggregate/wallet conversion,
  * unlisted third-party inventory, account identifiers or refund details exposed. */
@@ -99,6 +100,13 @@ export class CommercialMarketView {
           await sql`select coalesce(jsonb_agg(distinct snapshot->>'team'),'[]') teams,coalesce(jsonb_agg(distinct snapshot->>'position'),'[]') positions from (${base}) f`;
         const [balance] =
           await sql`select coalesce(sum(remaining),0)::text amount,exists(select 1 from commercial_billing.recovery_cases where member_id=${this.member} and state='OPEN') held from commercial_billing.lots where member_id=${this.member}`;
+        const [withdrawalHoldSupport] =
+          await sql`select to_regprocedure('commercial_billing.withdrawal_member_held(uuid)') is not null installed`;
+        if (withdrawalHoldSupport.installed) {
+          const [withdrawalHold] =
+            await sql`select commercial_billing.withdrawal_member_held(${this.member}::uuid) held`;
+          balance.held ||= withdrawalHold.held === true;
+        }
         const amount = integer(balance.amount);
         const decorate = (r: any): MarketplaceView["rows"][number]["card"] => ({
           ...commercialCard(
@@ -210,7 +218,9 @@ export class CommercialMarketView {
             total: amount,
             heldAvailable: balance.held ? amount : 0,
             spendable: balance.held ? 0 : amount,
-            label: "Docked Credits · no cash withdrawal",
+            label: cashWithdrawalPolicyPublished(process.env)
+              ? "Docked Credits · view withdrawal eligibility in your profile"
+              : "Docked Credits · no cash withdrawal",
             withdrawableIsSubset: true,
             restricted: amount,
           },

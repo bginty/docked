@@ -98,6 +98,17 @@ export default async function FantasyPage({
         (await searchParams).sport,
         (await cookies()).get(activeSportCookie)?.value,
       );
+      if (
+        tab === "market" &&
+        commercialSurfaceEnabled() &&
+        process.env.DOCKED_COMMERCIAL_MARKETPLACE === "true"
+      ) {
+        return (
+          <AppShell authenticated>
+            <Marketplace key={who.user.id} member={who.user.id} />
+          </AppShell>
+        );
+      }
       if (tab === "market")
         return (
           <AppShell authenticated>
