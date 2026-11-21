@@ -1,0 +1,15 @@
+{
+  "name": "Fixed-price Marketplace, dormant application package; policy and hosted settlement pending",
+  "source": "6c2aa80e61e22b2321530f9f998400cca74ae078",
+  "base": "38832424a729015c4af06cca9f2592f0b1497ec0",
+  "files": {
+    "docs/qa/fixed-price-market-20261121/PLAY_SCOPE.json": "bc2d8d3753bb5dca2734236583282bc0c878c1c7b392c39e0af5315da7b5e0f7",
+    "docs/qa/fixed-price-market-20261121/REVIEW.md": "2b4bf85ee69e8619e64c4d6a4e5081c1e3e7fd8304926c6e4d618ab81c962c32",
+    "docs/qa/fixed-price-market-20261121/isolated-browser.json": "a37b1abd1330889a970ae7fca2fd471aa1b888f4f36f1ba846d485da3a4990fe",
+    "scripts/commercial-market-browser.ts": "b485ad42e229532fa97c5524998aac8230a31966021edc25109a9d9f22fb26c6",
+    "src/app/admin/marketplace/page.tsx": "7baa82750e3f016e1f95b06bbaef587866fec0727f4d5e2174a79ca2d639ebf5",
+    "src/app/fantasy/[tab]/page.tsx": "671cf6c891ef971f94769484e3bf23966e93cf2b1116615313b4cfdbb230c78e",
+    "tests/fixtures/multi-sport-db.ts": "57dee3e95c66f891eb2e8b502c7bf33a7e3785024e837387b6b1dfe804db7807"
+  },
+  "productionActivationAuthorized": false
+}
