@@ -1,0 +1,133 @@
+{
+  "source": "ed5a1d12579e8abab9fbd62702d243c3f903229f",
+  "approvedPackageSha256": "080771d9ef0237dd30aa3bf34f9699c6e05bed50e52c8b3292fbc721aa0c7708",
+  "previousDeployment": "dpl_9DX5EYTE3KeHQoxPPzV8X8MLc8S5",
+  "deployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+  "canonicalDomain": "docked.com.au",
+  "promotedAt": "2026-11-21T03:31:00.523Z",
+  "verifiedAt": "2026-11-21T03:36:37.518244+00:00",
+  "backupUsed": {
+    "sha256": "a7702c5ee18bd29221d207804207f3199c04f475b13101f1b9b54a6db0e80c93",
+    "captured": "2026-11-21T02:35:05.903Z",
+    "latestIsolatedVerification": "2026-11-21T03:24:47.788Z",
+    "verifiedTables": 576,
+    "restoreNetwork": "none",
+    "verifiedBeforePromotion": true
+  },
+  "stagedOwnerRequests": 8,
+  "verifiedLiveRoutes": [
+    {
+      "path": "/auth/verify",
+      "http": 200,
+      "requestId": "syd1::syd1::ztv7g-1795231889440-e994be8f0271",
+      "at": "2026-11-21T03:31:30.881Z"
+    },
+    {
+      "path": "/auth/verify",
+      "http": 400,
+      "requestId": "syd1::syd1::7rtbz-1795231891702-d30e3aa4de6d",
+      "at": "2026-11-21T03:31:31.307Z"
+    },
+    {
+      "path": "/auth/recovery",
+      "http": 200,
+      "requestId": "syd1::syd1::dfc9q-1795231892663-22d57243f2fe",
+      "at": "2026-11-21T03:31:32.103Z"
+    },
+    {
+      "path": "/auth/recovery",
+      "http": 400,
+      "requestId": "syd1::syd1::dc6ph-1795231892921-6dcb2e841c08",
+      "at": "2026-11-21T03:31:32.598Z"
+    },
+    {
+      "path": "/auth/invite",
+      "http": 503,
+      "requestId": "syd1::syd1::p6957-1795231893408-b0d4789ff585",
+      "at": "2026-11-21T03:31:32.986Z"
+    },
+    {
+      "path": "/app/login",
+      "http": 200,
+      "requestId": "syd1::syd1::7rx4d-1795231893800-ca1cdd0323ea",
+      "at": "2026-11-21T03:31:34.731Z"
+    },
+    {
+      "path": "/app/signup",
+      "http": 200,
+      "requestId": "syd1::syd1::dc6ph-1795231895548-88a9ef22ec59",
+      "at": "2026-11-21T03:31:35.145Z"
+    },
+    {
+      "path": "/api/app-session",
+      "http": 200,
+      "requestId": "syd1::syd1::mdlmj-1795231895960-e01065a54a60",
+      "at": "2026-11-21T03:31:35.927Z"
+    },
+    {
+      "path": "/api/admin/incidents",
+      "http": 403,
+      "requestId": "syd1::syd1::xz7jj-1795231896761-cdbc3e6e5c10",
+      "at": "2026-11-21T03:31:36.592Z"
+    }
+  ],
+  "signupOpen": true,
+  "visibleLogin": [
+    {
+      "width": 390,
+      "loginVisible": true,
+      "overflow": false,
+      "sessionAuthenticated": false,
+      "documentRequest": "syd1::syd1::htlx5-1795231935659-85b60ff86024"
+    },
+    {
+      "width": 1440,
+      "loginVisible": true,
+      "overflow": false,
+      "sessionAuthenticated": false,
+      "documentRequest": "syd1::syd1::xgnst-1795231944374-95391c3e68c1"
+    }
+  ],
+  "refundWorker": [
+    {
+      "at": "2026-11-21T03:35:09.293Z",
+      "requestId": "nxlsh-1795232109293-5c2e6adb3626",
+      "overdue": 0
+    }
+  ],
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 918,
+    "beta_allocations": 30,
+    "commercial_cards": 0,
+    "open_controls": 1,
+    "public_flags": 1,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custody": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "providerRuntimeReadback": true,
+  "publicSmsBudget": {
+    "enabled": true,
+    "budget_aud_cents": 5000,
+    "reserved_aud_cents": 0,
+    "active": true,
+    "public": true
+  },
+  "profileSaveEvidence": "PROFILE_SAVE_REHEARSAL.json",
+  "operatorNotes": [
+    "The temporary navigation browser blocked profile and consent writes. No real Owner notice was accepted, and no payment or pack opening was performed.",
+    "The initial attended navigation reached an older build on document redirects. The final visit correlated both mode changes, the full customer landing, the Owner return, session and Incidents read to the staged release.",
+    "An additional preflight database export lost its TLS connection. The release used the authenticated archive listed above, restored and checked again before promotion within the reviewed age limit; no partial archive was used."
+  ],
+  "remaining": [
+    "Founder personally completes commercial onboarding and checks installed-v31 product discovery.",
+    "A real payment is a separate Founder decision.",
+    "Release 2 requires separate approval."
+  ]
+}
