@@ -1,0 +1,46 @@
+{
+  "release": "2 · Public commercial Owner dashboard and customer clubhouse",
+  "requiresLiveSource": "ed5a1d12579e8abab9fbd62702d243c3f903229f",
+  "source": "58e9ad606cd066ff1639c59f978a6090e3aa63f7",
+  "files": {
+    "src/app/admin/operations/page.tsx": "27d9118e372a2622eabf4cccd91498b4b51eb23b1c821bfa9b88d2890aab6acf",
+    "src/app/commercial-dashboard.css": "2f1853060d747271c09c9e86742438aee76da3c13603fd166c8915c80143c217",
+    "src/app/fantasy/[tab]/page.tsx": "685c352bfc7510e0b71b7287fe81c825e04b64a8c9573900e8688ff105725983",
+    "src/components/admin-shell.tsx": "4bb3963e483618c13cc839ac5a9af7e266a790ead179727efa83edd49f6cf5a9",
+    "src/components/public-gameplay.tsx": "32565e300929972c918079b0bd1fd1a9cb36defccb2f43dbd29c86ccb3ae10d7",
+    "src/components/public-owner-dashboard.tsx": "8473322c5d4567f917eeb2c4db9febeffa1c34ea917e8f763cb7762b0b93687d",
+    "src/core/owner-operations.ts": "6255bbf278bde016340fc579902eb4b48a5cd8dad387573b3497e263a1ffb6fc",
+    "src/core/public-owner-summary.ts": "4f1850a5da2f6c4e270424c3bd1a59298deff96ad0aeb22134e3e9f7dd7e850c",
+    "src/server/owner-operations.ts": "2a4a809e0a74335b58f68852aed3fe5e0506041ddf72f741213cede5f140b60b",
+    "supabase/migrations/20261121021000_owner_commercial_summary.sql": "07ad0c710744a60cb3d24a8257f9a607b18ea1c50dd9864b584c8a5e6cc53554"
+  },
+  "focusedChanges": [
+    "Reuse the approved dashboard artwork, KPI tiles, date navigation, accessible daily charts and real commercial support links. Hide inapplicable beta administration entries from the public Owner sidebar. Keep the original Owner checks on destinations.",
+    "Commercial customer growth, verified mobile count, journaled gross charges and refund dates, provider-reported tax, outstanding purchased credits, paid packs by sport/type, commercial cards and lifetime supply, support, moderation, open holds, job attention and SMS reservations. Unsettled payout, actual carrier invoice and net recognised revenue are not inferred. All dates shown for daily figures use Australia/Sydney.",
+    "Add collection, wallet, pack shop and saved-pack shortcuts to the public sport clubhouse, preserve approved Practice restrictions, clarify closed marketplace and public Social sign-in. Retain existing collection filters, reveal, social moderation, support and purchase recovery paths."
+  ],
+  "evidence": [
+    "Production-shaped Next.js build; browser fixture rendered real components at 390 and 1440 pixels. Screenshots use explicitly synthetic figures, and no external API or customer session. Earlier approved beta reference screens are under docs/qa/owner-reference/final.",
+    "PostgreSQL tests exercised grant denial, Owner MFA enforcement, Sydney day boundaries, sale and later refund, excluded TEST money, supply preservation and SMS reservations. The separate rehearsal loaded the authenticated Nov 21 backup in a network-isolated container and checked 576 protected tables. Within a rolled-back transaction the exact migration and a fictional new Owner exercised the actual database MFA guard. Cross-checked provider gross charges and packs against independent aggregate queries. The isolated restore was stopped.",
+    "10 focused tests of summary, support, owned collection, pack reveal and sport navigation passed."
+  ],
+  "screens": {
+    "after-1440.png": "bf130e753b8e6b52b21e53f01426f709f946a45e062091e8103a0b0af4cd808d",
+    "after-390.png": "bdf726f4ec911d7bc40044db5916cd2c95a10c6235ac6111c8534196162fd569",
+    "before-1440.png": "f1cdef285af70cd830f68568e15f4a1ceb98746f0fc37c76773262daa9f1baa6",
+    "before-390.png": "4602feb5be5dccc148cb2468f496f4d54ee1e32bd0ddcdc9e623f8f045e51fc3"
+  },
+  "isolatedRestoreEvidenceSha256": "6d2b322d14a9001ba68d106c788357445373fbff4c62cc34725e31b8f054c1e2",
+  "approvalSequence": [
+    "Release 1 must be deployed and accepted first. Obtain separate exact approval for Release 2. Verify live source, migration history, frozen Git blob hashes and existing runtime settings. Stop on unexplained changes.",
+    "Capture a fresh authenticated encrypted Production backup, restore in isolation and rehearse the single new function. Reconcile finance, historical supply, custody, identities, signup, SMS budget, refund worker and closed optional gates.",
+    "Install only 20261121021000_owner_commercial_summary.sql in one migration transaction with bounded lock timeout. It creates one restricted SECURITY DEFINER function, calls private.public_owner_actor() for the live Owner/AAL2/session check, and grants execution only to docked_app. There are no table grants, data rewrites or configuration changes.",
+    "Stage the exact application behind deployment protection, with the current Production runtime. The signed-in Owner reads the new report, confirms the commercial metrics and mobile layout, and checks that emergency support remains available. No incident mutation, real payment, pack opening or SMS during acceptance. Confirm the new function rejects unauthenticated/non-Owner read attempts. Promote only after required checks pass.",
+    "Postflight the commercial report, support and member navigation, receipt recovery routes, refund worker and current financial/custody totals, preserving genuine activity. If needed revert the application to the verified Release 1 deployment. The additive function can stay unused; any later removal requires separate review. No database snapshot rollback or reversal of genuine transactions."
+  ],
+  "exclusions": [
+    "Release 1 execution authority",
+    "Paid checkout on behalf of an Owner",
+    "Changes to billing/identity rules, budget, market, prizes, scored competitions, inventory or Google Play"
+  ]
+}
