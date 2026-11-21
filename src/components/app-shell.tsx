@@ -117,15 +117,18 @@ export function AppShell({
   authenticated = false,
   loading = false,
   customerView = false,
+  browseOnly = false,
 }: {
   children: ReactNode;
   authenticated?: boolean;
   loading?: boolean;
   customerView?: boolean;
+  browseOnly?: boolean;
 }) {
   const path = usePathname();
   const { sport, nba, beta } = useSport();
   const sportHref = (href: string) =>
+    !browseOnly &&
     ((nba && sport === "basketball") || beta.some((s) => s === sport)) &&
     [
       "/fantasy/play",
@@ -159,7 +162,7 @@ export function AppShell({
       </div>
     );
   return (
-    <WorkspaceWalletProvider>
+    <WorkspaceWalletProvider enabled={!browseOnly}>
       {!loading && <StartupReady />}
       <div
         ref={shell}
@@ -250,7 +253,11 @@ export function AppShell({
             </strong>
             <nav aria-label="App utilities">
               <span id="workspace-wallet-slot">
-                <WorkspaceWalletLink />
+                {browseOnly ? (
+                  <Link href="/fantasy/test-wallet">Docked Credits</Link>
+                ) : (
+                  <WorkspaceWalletLink />
+                )}
               </span>
               <Link
                 className="app-desktop-search"
@@ -270,7 +277,8 @@ export function AppShell({
           <PwaStatus allowInstall={destination === "/fantasy/profile"} />
           <div className="app-content">
             {customerView && <CustomerViewBanner />}
-            {[
+            {!browseOnly &&
+            [
               "/fantasy/play",
               "/fantasy/cards",
               "/fantasy/market",

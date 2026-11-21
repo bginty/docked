@@ -33,7 +33,7 @@ export default async function AppOnboarding() {
   if (state.completed && !state.legalRequired) redirect("/fantasy/play");
   return (
     <>
-      {(await identity())?.customerView && <CustomerViewBanner />}
+      {(await identity())?.customerView && <CustomerViewBanner resume />}
       <AppOnboardingForm
         legalRequired={state.legalRequired}
         usernameRequired={state.usernameRequired}

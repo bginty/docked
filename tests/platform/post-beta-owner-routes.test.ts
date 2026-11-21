@@ -626,3 +626,98 @@ test("Owner preference writes require same-origin public AAL2 Owner authority an
   origin = false;
   assert.equal((await post("customer")).status, 403);
 });
+
+test("verified Owners switch straight into the customer shell before phone, username or consent setup", async () => {
+  let who: any = {
+    customerView: true,
+    postBetaOwner: true,
+    aal: "aal2",
+    mfaRequired: true,
+    user: { id: "founder" },
+    profile: { launch_transition: { commercialReady: true } },
+  };
+  let completed = false,
+    reads = 0,
+    participation = 0;
+  const stubs = {
+    "@/server/app-view": { appViewer: async () => ({ who, configured: true }) },
+    "@/server/auth": {
+      identity: async () => who,
+      requireIdentity: async () => {
+        participation++;
+        return who;
+      },
+    },
+    "@/server/app-onboarding": {
+      appOnboardingState: async () => {
+        reads++;
+        return {
+          completed,
+          legalRequired: !completed,
+          usernameRequired: !completed,
+        };
+      },
+    },
+    "@/core/public-customer": { publicCustomersEnabled: () => true },
+    "@/core/hosted-beta.mjs": { betaOwnerAuthenticationOnly: () => false },
+    "@/core/customer-onboarding.mjs": { customerOnboardingEnabled: () => true },
+    "@/core/fantasy-production": { fantasyPlatformEnabled: () => true },
+    "@/server/db": {
+      db: () => {
+        throw Error("Unexpected DB access");
+      },
+    },
+    "@/components/owner-customer-browse": { OwnerCustomerBrowse: () => null },
+    "@/components/app-shell": {
+      AppShell: () => null,
+      PersistentAppShell: () => null,
+    },
+    "next/navigation": { redirect },
+  };
+  const entry = await load("src/app/app/page.tsx", stubs),
+    session = await load("src/app/api/app-session/route.ts", stubs),
+    layout = await load("src/app/fantasy/layout.tsx", stubs);
+  for (const id of ["founder", "barry"]) {
+    who.user = { id };
+    completed = false;
+    await redirected(() => entry.default(), "/fantasy/play");
+    const state = await (await session.GET()).json();
+    assert.equal(state.onboardingRequired, false);
+    assert.equal(state.ownerAccess, false);
+    const previous = reads;
+    const browse = await layout.default({
+      children: "private participant page",
+    });
+    assert.equal(browse.props.browseOnly, true);
+    assert.equal(browse.props.customerView, true);
+    assert.equal(reads, previous);
+    who.user.phone = "+61400000000";
+    who.user.phone_confirmed_at = "2025-01-01";
+    assert.equal(
+      (await layout.default({ children: "private participant page" })).props
+        .browseOnly,
+      true,
+    );
+    completed = true;
+    const active = await layout.default({
+      children: "private participant page",
+    });
+    assert.equal(active.props.children, "private participant page");
+    assert.equal(active.props.customerView, true);
+  }
+  assert.equal(participation, 2);
+  who = {
+    ...who,
+    postBetaOwner: false,
+    customerView: false,
+    mfaRequired: false,
+    user: { id: "customer" },
+  };
+  completed = false;
+  await redirected(() => entry.default(), "/app/onboarding");
+  assert.equal((await (await session.GET()).json()).onboardingRequired, true);
+  await redirected(
+    () => layout.default({ children: "private participant page" }),
+    "/app/verify-phone",
+  );
+});

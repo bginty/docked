@@ -25,8 +25,14 @@ const WalletContext = createContext<{
   value: WalletProjection | null;
   status: string;
 } | null>(null);
-export function WorkspaceWalletProvider({ children }: { children: ReactNode }) {
-  const wallet = useWorkspaceWallet("", true);
+export function WorkspaceWalletProvider({
+  children,
+  enabled = true,
+}: {
+  children: ReactNode;
+  enabled?: boolean;
+}) {
+  const wallet = useWorkspaceWallet("", enabled);
   return createElement(WalletContext.Provider, { value: wallet }, children);
 }
 /** Existing authenticated wallet projection only. Never substitute gameplay points. */

@@ -1,7 +1,9 @@
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
+import { appOnboardingState } from "@/server/app-onboarding";
+import { OwnerCustomerBrowse } from "@/components/owner-customer-browse";
 import { requireIdentity } from "@/server/auth";
 import { boundedRead } from "@/core/bounded-request";
-import { PersistentAppShell } from "@/components/app-shell";
+import { AppShell, PersistentAppShell } from "@/components/app-shell";
 import { fantasyPlatformEnabled } from "@/core/fantasy-production";
 import { publicCustomersEnabled } from "@/core/public-customer";
 import { identity } from "@/server/auth";
@@ -23,6 +25,21 @@ export default async function FantasyLayout({
   }
   if (publicCustomersEnabled()) {
     const who = await boundedRead(identity()).catch(() => null);
+    if (who?.customerView) {
+      const setup =
+        verifiedPhone(who.user) &&
+        who.profile.launch_transition?.commercialReady === true
+          ? await appOnboardingState(who.user.id).catch(() => null)
+          : null;
+      if (!setup?.completed || setup.legalRequired || setup.usernameRequired)
+        return (
+          <AppShell authenticated customerView browseOnly>
+            <Suspense fallback={<p role="status">Loading customer view…</p>}>
+              <OwnerCustomerBrowse />
+            </Suspense>
+          </AppShell>
+        );
+    }
     if (
       who &&
       (!who.mfaRequired || who.aal === "aal2") &&

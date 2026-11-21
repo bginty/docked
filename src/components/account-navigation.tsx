@@ -12,10 +12,17 @@ export function OwnerViewSwitch({ customer = false }: { customer?: boolean }) {
     </form>
   );
 }
-export function CustomerViewBanner() {
+export function CustomerViewBanner({
+  resume = false,
+}: { resume?: boolean } = {}) {
   return (
     <aside className="actions" aria-label="Owner navigation">
       <strong>Customer View — Your Own Account</strong>
+      {resume && (
+        <a className="button secondary" href="/fantasy/play">
+          Continue browsing
+        </a>
+      )}
       <OwnerViewSwitch customer />
     </aside>
   );

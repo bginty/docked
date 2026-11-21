@@ -13,9 +13,13 @@ export async function GET() {
         { status: 503, headers },
       );
     if (!who) return NextResponse.json({ authenticated: false }, { headers });
-    if (who.postBetaOwner && !who.customerView)
+    if (who.postBetaOwner)
       return NextResponse.json(
-        { authenticated: true, onboardingRequired: false, ownerAccess: true },
+        {
+          authenticated: true,
+          onboardingRequired: false,
+          ownerAccess: !who.customerView,
+        },
         { headers },
       );
     const state = await appOnboardingState(who.user.id);
