@@ -1,0 +1,52 @@
+{
+  "release": "1 · Owner Customer View, account sessions and Google Play purchase readiness",
+  "source": "ed5a1d12579e8abab9fbd62702d243c3f903229f",
+  "baselineSource": "fd162088105d02c73398b7ba761fed334dc1f5ab",
+  "baselineDeployment": "dpl_9DX5EYTE3KeHQoxPPzV8X8MLc8S5",
+  "target": "docked.com.au application only",
+  "changedRuntimeFiles": {
+    "src/app/admin/layout.tsx": "4e2fffd26fb127001c62f21e6eb2625f7b5a14aab678bd50338a7b119de506d6",
+    "src/app/api/app-session/route.ts": "7bd60cfeb8ade10bff1d26293d26560e18639caca04e6cb37c97d18cf1dbb18c",
+    "src/app/api/auth/route.ts": "1012907d379aa858ae4a513fca896bfef1cf6e9188a08b0eaa77971898be1921",
+    "src/app/api/owner-view/route.ts": "5c487d27fccf8f0c15765e37b73fe2878ef2f3fad48315cce9bd0de8ca72febf",
+    "src/app/app/onboarding/page.tsx": "e2d25c02cc1e56009a0e6c8ccd4bea6d51e3ed27448507b1b11c8c5bfc1e41b1",
+    "src/app/app/page.tsx": "5c07f6e21c063e20b390379e8e2e38c24faa8794f51b8895645e6f3b04ce5612",
+    "src/app/app/verify-phone/page.tsx": "82fdeb660d16654a0489a5112ac4677d721453d1c53c54fe6bfd29e1c72a6ada",
+    "src/app/dashboard/page.tsx": "a3904826d102d4b6e7f7721c7d731e83fbea77f0a40e3b59e134ab3322f8c57c",
+    "src/app/fantasy/[tab]/page.tsx": "656b4b16b3468321e0bad7d78f08ac3fe21937b75fb421fd6b5d47a3dc6ce0ad",
+    "src/app/fantasy/layout.tsx": "607736cf3c70e4fb46e50033da20f352008c55e6ac41f8e72a0c26dfe55ed1a6",
+    "src/components/account-navigation.tsx": "4264827b05abbb10bfd5617315fa5610530be00bc1ce10519ceaf6c5d00caf6c",
+    "src/components/admin-shell.tsx": "e5d0fee1f5c7f10b051fa72929c881b801f5ed83037ce06c6867ea3ac8dffe12",
+    "src/components/app-shell.tsx": "53774a2515a28869cc61c7ea8a60259f2d0191751b1b68d396ce0e6c8fac3cff",
+    "src/components/google-test-credits.tsx": "e05bd0ef3a7222f71b4444028385c460e4a0fda8ca351f44f4c0f3b8d405f6a3",
+    "src/components/owner-navigation-context.tsx": "b3712491c339e4269544189e958de1c5364943bc1f94fda0a9f90dd490437d55",
+    "src/core/owner-view.ts": "42c66db5c33ff711ce8b6de69fcc527d4d8ade168685dcefa8c305582704b5e8",
+    "src/core/post-beta-owner.ts": "07345aacb1a1ed6a1e4869b34a4394c4fd8759b9bb8d6265af3110d2e01a0983",
+    "src/server/auth.ts": "1d30db583e125bc4067dafc71e81ece38fd8f3ab4cf98a2c604b0c649b00fa38"
+  },
+  "googleReadbackSha256": "f362ae299480d419ce42e66a373ce97370d03142cd69d19acd8e27012a7d6619",
+  "verified": [
+    "Protected docked-preview dpl_5bapBNP7btzwq2KWZMn1vPaoXGPG built the exact source. Pinned /api/app-session returned 200 and authenticated false. An anonymous POST to /api/owner-view?mode=customer returned 403. The shared Preview is not the public customer environment.",
+    "Local production build and TypeScript passed. 35 focused routing/security checks including both isolated Owner identities, phone/consent routing, native session routing and denial; 30 commercial Google, receipt and scarcity tests. Eight existing retained-Owner consent tests passed. Loopback GoTrue revoked one of two sessions, preserved the sibling refresh, supported re-login, then revoked both in global logout.",
+    "Connected Android package docked.fantasy versionCode 31/versionName 1.30 installer com.android.vending. Google reported both AU purchase options ACTIVE and AVAILABLE, AUD 49/99, single quantity. Installed-Owner storefront discovery and a genuine charge are distinct outstanding acceptance levels.",
+    "Read-only commercial preflight counted two active Owners, two AU age attestations, one verified AU mobile, zero current Terms and zero current Privacy acceptances. No Owner role, profile, consent or balance was altered. The ordinary commerce check binds to the current verified UUID, latest consent, AU policy, phone claim, active session and receipt binding. Preserved beta collection is excluded.",
+    "Email repair remains the deployed fd162088 application, dpl_9DX5EYTE3KeHQoxPPzV8X8MLc8S5, verified via the live alias. Reuse docs/qa/public-email-link-20261121/EXECUTED.json and INCIDENT.md for the original local OTP, replay and hosted callback evidence. Kobi has not reported successful confirmation."
+  ],
+  "steps": [
+    "Within separate 24-hour approval verify the exact source and all blob hashes. Re-read the alias, deployment provenance, runtime values or write-only secret metadata, MFA protections, refund workers, budget expiry, live commercial gates and current financial/custody invariants. Reconcile subsequent genuine customer activity. Capture a fresh authenticated encrypted backup and verify isolated restore before promotion.",
+    "Build immutable protected Production-target staging using the existing reviewed origin and identical runtime. Make no new trusted origin, test grant, database, secret, account, or provider setting. An origin denial, unbound deployment response or failed test stops promotion.",
+    "Use the Founder’s own signed-in AAL2 session on the trusted origin pinned to the stage. Select View as Customer. Verify /app and /api/app-session use the same account and present the outstanding commercial notices. Return to Owner Dashboard; confirm /admin/incidents still opens. No consent on behalf of an Owner. Do not sign out unrelated sessions. Barry’s equivalent route is covered by isolated tests.",
+    "Promote the exact staged application only after protected checks pass. Verify alias, mobile and desktop menus, customer login and email/recovery forms, protected incident access and live customer/financial/security invariants. No changes to Supabase, schema, Android, pricing, budget or Play publication.",
+    "In installed v31 the Founder personally accepts the current notices and uses the existing verified mobile. Use Wallet to see both live products and check native prices. For no-charge acceptance stop before confirming payment. Barry completes his own outstanding requirements if he chooses to participate.",
+    "For a separately authorised real payment the Founder alone selects and confirms a Google Play product. Match provider order, binding, one acknowledged receipt, one credit journal and wallet delta. Only after a deliberate pack purchase verify one debit, the chosen card count, serial and custody, and saved receipt after reload and re-login. Reconcile a pending request via its original receipt before any retry."
+  ],
+  "recovery": "If a staged check fails do not promote. If postflight fails and current live runtime compatibility is verified, restore the recorded previous Vercel deployment alias only; otherwise contain the affected path and escalate. Never reverse genuine consent, transactions or card allocations. Successful provider session revocations cannot be undone; the user signs back in.",
+  "exclusions": [
+    "Database migrations or grants",
+    "Production account impersonation or consent",
+    "Global logout tests against actual Owners",
+    "Automatic SMS, charges, credits or packs",
+    "Google Play changes",
+    "Release 2 dashboard and UX"
+  ]
+}

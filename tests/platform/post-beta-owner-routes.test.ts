@@ -626,3 +626,27 @@ test("Owner preference writes require same-origin public AAL2 Owner authority an
   origin = false;
   assert.equal((await post("customer")).status, 403);
 });
+
+test("actual public entry and native session responses guide each Owner through personal phone and consent before Play",async()=>{
+  let uid="founder", phone=false, complete=false;
+  const who=()=>({user:{id:uid,...(phone?{phone:"+61400000000",phone_confirmed_at:"2020-01-01"}:{})},aal:"aal2",postBetaOwner:true,customerView:true});
+  const boundaries={
+    "@/server/app-view":{appViewer:async()=>({who:who(),configured:true})},
+    "@/server/app-onboarding":{appOnboardingState:async(id:string)=>{assert.equal(id,uid);return{completed:complete,legalRequired:!complete};}},
+    "@/server/auth":{}, "@/server/db":{}, "@/core/customer-onboarding.mjs":{customerOnboardingEnabled:()=>false},
+    "@/core/hosted-beta.mjs":{betaOwnerAuthenticationOnly:()=>false}, "next/navigation":{redirect}
+  };
+  const env={DOCKED_PUBLIC_CUSTOMERS:"true", DOCKED_BETA_STAGING:"false"};
+  const entry=await load("src/app/app/page.tsx",boundaries,env);
+  const session=await load("src/app/api/app-session/route.ts",boundaries,env);
+  for(uid of ["founder","barry"]){
+    phone=false;complete=false;
+    await redirected(()=>entry.default(),"/app/verify-phone");
+    phone=true;
+    await redirected(()=>entry.default(),"/app/onboarding");
+    assert.deepEqual(await (await session.GET()).json(),{authenticated:true,onboardingRequired:true});
+    complete=true;
+    await redirected(()=>entry.default(),"/fantasy/play");
+    assert.deepEqual(await (await session.GET()).json(),{authenticated:true,onboardingRequired:false});
+  }
+});
