@@ -1,0 +1,41 @@
+{
+  "source": "b49f5e4b71b6adf01df8a7ac14df7c3b561218b8",
+  "packageSha256": "ce0f26a9397834e89d87d456b93b0d507993d7e46e27086aa68db09b553ce891",
+  "verifiedAt": "2026-11-21T05:27:17.541Z",
+  "unchangedPublicDeployment": "dpl_5qZVUxM8D8isJ5RYbqChDGMk3RUp",
+  "protectedCandidate": "dpl_2P7U8nCvUdzGaTkdV4RoXxXNVHdp",
+  "protectedEndpointHttp": 302,
+  "anonymousReportHttp": 403,
+  "exportedGitBlobs": 1034,
+  "backupAt": "2026-11-21T05:15:09.991Z",
+  "encryptedArchiveSha256": "a95ca8e5ddd91ed0a38c864253fd3cda122e20e1f45e90d8f12f60774dbcebd2",
+  "restoredTables": 576,
+  "network": "none",
+  "readOnlySnapshotAt": "2026-11-21T05:21:22.345Z",
+  "counts": {
+    "definitions": 6540,
+    "lifetime": 933,
+    "beta_allocations": 30,
+    "commercial_cards": 15,
+    "open_controls": 1,
+    "public_flags": 1,
+    "active_or_scored": 0,
+    "deletion_schedules": 0
+  },
+  "custody": 936,
+  "integrity": {
+    "lifetime_mismatches": 0,
+    "duplicate_serials": 0,
+    "unbalanced_journals": 0
+  },
+  "existingReportingFunction": {
+    "version": "20261121021000",
+    "sqlSha256": "07ad0c710744a60cb3d24a8257f9a607b18ea1c50dd9864b584c8a5e6cc53554",
+    "verifiedFunctionSha256": "dfe6fe3bea717489b0bd988656043b7ef9498d239b0a227fba357f68148f904f",
+    "installedCount": 1
+  },
+  "newMigrations": 0,
+  "unchangedRuntimeSettings": true,
+  "healthyRefundWorkerObservations": 4,
+  "ownerReview": "Pending protected attended acceptance; no promotion."
+}
