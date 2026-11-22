@@ -1,0 +1,48 @@
+{
+  "requestedActions": [
+    "Publish codex/docked-email-branding-20261122 in public repository bginty/docked",
+    "Deploy the reviewed candidate as docked-auth-email in Production Supabase project pojoymtniryarxxunyvz"
+  ],
+  "sourceCommit": "53e01fa184e480121dbb4df2844028dd08f0cb3c",
+  "implementationPatchSha256": "56aceab56626353d9291ff37ae6d744ec60bedbefb50b207d222ebf64707bc5e",
+  "functionFiles": [
+    {
+      "name": "docked-auth-email/index.ts",
+      "sha256": "2fb90abf640880564f5b2bbf2ae3bbd0fb1b56e0c352f4805e6a28a6ec1ccb27"
+    },
+    {
+      "name": "docked-auth-email/router.mjs",
+      "sha256": "deeba5f79a92c9f23b659358155611347d37daf3de0e135ac03b11388a7cdfe2"
+    },
+    {
+      "name": "docked-auth-email/mail.mjs",
+      "sha256": "e2c5381492ae9676ad4d7238327136bd08713333ff8436928520af0ad52f1e6c"
+    },
+    {
+      "name": "docked-auth-email/queue.mjs",
+      "sha256": "b32f9e10c162b01d37fadd37677f842b9d96976b9f742b99666916f0d660870c"
+    },
+    {
+      "name": "docked-auth-email/presentation.mjs",
+      "sha256": "9860d09b55d0d7f0cd5020723e49f67406af857628a8d6806502fb7cd6e11fb3"
+    }
+  ],
+  "preserve": {
+    "verify_jwt": false,
+    "environmentVariables": true,
+    "indexAndRouter": true
+  },
+  "outOfScope": [
+    "sending test emails",
+    "Google payments changes",
+    "Marketplace and withdrawals",
+    "database migrations",
+    "Vercel or Android release"
+  ],
+  "testsPassed": 31,
+  "status": "approved_and_executed",
+  "approvalText": "ok makes sense lets proceed with that",
+  "recordedAt": "2026-11-21T22:21:09.646967+00:00",
+  "deployedVersion": 51,
+  "publicSourceCommit": "17b3e78926906760535350c060241aebf1f8287d"
+}

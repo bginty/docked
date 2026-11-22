@@ -1,4 +1,6 @@
 // Production-only, provider-independent core. Never logs payloads or credentials.
+import { authEmailBody } from "./presentation.mjs";
+
 export const projectUrl = "https://pojoymtniryarxxunyvz.supabase.co";
 const sender = "support@docked.com.au";
 const isolatedProject = "https://bckkllmndoxzpzdqrevb.supabase.co";
@@ -221,10 +223,7 @@ export function messagesFor(
     if (!confirmation) url.searchParams.set("redirect_to", data.redirect_to);
     return {
       subject: subjects[action],
-      body: {
-        contentType: "Text",
-        content: `${subjects[action]}\n\nOpen this one-time link to continue:\n${url.href}\n\nIf you did not request this, ignore this email. Never share the link.\n\nDocked — Ginty United Investments Pty Ltd\nABN 78 606 187 106\nSupport and privacy: ${sender}`,
-      },
+      body: authEmailBody(action, subjects[action], url.href),
       toRecipients: [{ emailAddress: { address } }],
     };
   });
