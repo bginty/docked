@@ -5,6 +5,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { build } from "esbuild";
 import { createRequire } from "node:module";
 import vm from "node:vm";
+import { basename } from "node:path";
 import type {
   OwnerRosterReport,
   OwnerRosterRow,
@@ -39,7 +40,7 @@ const loaded = build({
       setTimeout,
       clearTimeout,
     });
-    modules[file.path.split("/").at(-1)!] = module.exports;
+    modules[basename(file.path)] = module.exports;
   }
   return {
     Component: modules["owner-rosters.js"].OwnerRosters as ComponentType<{

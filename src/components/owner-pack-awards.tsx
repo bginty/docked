@@ -17,6 +17,7 @@ import styles from "./owner-pack-awards.module.css";
 export type AwardRecipient = { id: string; title: string; detail: string };
 type BasketLine = { product: OwnerPackAwardProduct; quantity: number };
 type Review = {
+  lastRequest: string | null;
   recipient: AwardRecipient;
   reason: OwnerPackAwardCommand["reason"];
   reference: string;
@@ -28,6 +29,48 @@ type Pending = {
   recipient: AwardRecipient;
   command: OwnerPackAwardCommand;
 };
+type AwardSlot = { pending: Pending | null; lastRequest: string | null };
+/** IndexedDB serializes conflicting read/write transactions across renderer processes.
+ * localStorage is a notification and recovery mirror; a second tab can briefly
+ * see an older localStorage value even after a Web Lock changes hands. */
+async function awardSlot(
+  key: string,
+  owner: string,
+  update?: (current: AwardSlot) => AwardSlot,
+): Promise<AwardSlot> {
+  const db = await new Promise<IDBDatabase>((resolve, reject) => {
+    const open = indexedDB.open("docked-owner-pack-awards", 1);
+    open.onupgradeneeded = () => open.result.createObjectStore("requests");
+    open.onerror = () => reject(open.error);
+    open.onsuccess = () => resolve(open.result);
+  });
+  try {
+    return await new Promise<AwardSlot>((resolve, reject) => {
+      const tx = db.transaction("requests", "readwrite");
+      const store = tx.objectStore("requests");
+      const read = store.get(key);
+      let result: AwardSlot;
+      read.onsuccess = () => {
+        try {
+          const mirror = read.result === undefined ? localStorage.getItem(key) : null;
+          const current: AwardSlot = read.result ?? {
+            pending: mirror ? readPending(mirror, owner) : null,
+            lastRequest: null,
+          };
+          if (current.pending) readPending(JSON.stringify(current.pending), owner);
+          result = update ? update(current) : current;
+          if (result !== current || read.result === undefined) store.put(result, key);
+        } catch {
+          tx.abort();
+        }
+      };
+      tx.onabort = () => reject(tx.error ?? Error("Award storage unavailable"));
+      tx.oncomplete = () => resolve(result);
+    });
+  } finally {
+    db.close();
+  }
+}
 const endpoint = "/api/admin/pack-awards";
 const reasonLabel = (reason: "PROMOTION" | "PRIZE") =>
   reason === "PROMOTION" ? "Promotion" : "Prize";
@@ -191,6 +234,7 @@ export function OwnerPackAwards({
   const reportFlight = useRef(false);
   const searchRequest = useRef(0);
   const alive = useRef(true);
+  const lastRequest = useRef<string | null>(null);
   const pendingRef = useRef<Pending | null>(null);
   const reviewHeading = useRef<HTMLHeadingElement>(null);
   const storageKey = `docked:owner-pack-award:pending:${ownerId}`;
@@ -202,10 +246,15 @@ export function OwnerPackAwards({
   }
   useEffect(() => {
     alive.current = true;
-    const restore = () => {
+    let active = true;
+    let revision = 0;
+    const restore = async () => {
+      const current = ++revision;
       try {
-        const raw = localStorage.getItem(storageKey);
-        const saved = raw ? readPending(raw, ownerId) : null;
+        const slot = await awardSlot(storageKey, ownerId);
+        if (!active || current !== revision) return;
+        lastRequest.current = slot.lastRequest;
+        const saved = slot.pending;
         pendingRef.current = saved;
         setPending(saved);
         setReview(null);
@@ -224,6 +273,7 @@ export function OwnerPackAwards({
     };
     window.addEventListener("storage", changed);
     return () => {
+      active = false;
       alive.current = false;
       searchRequest.current++;
       window.removeEventListener("storage", changed);
@@ -363,6 +413,7 @@ export function OwnerPackAwards({
     setError("");
     setReceipt(null);
     setReview({
+      lastRequest: lastRequest.current,
       recipient,
       reason,
       reference: checked.data.reference,
@@ -373,13 +424,15 @@ export function OwnerPackAwards({
   async function clearSaved(saved: Pending) {
     // Another tab may have started its next award after resolving this request.
     // Never remove a different saved command.
-    await navigator.locks.request(storageKey, () => {
-      const raw = localStorage.getItem(storageKey);
-      const current = raw ? readPending(raw, ownerId) : null;
-      if (current?.command.request === saved.command.request) {
-        localStorage.removeItem(storageKey);
-        replacePending(null);
-      } else replacePending(current);
+    await navigator.locks.request(storageKey, async () => {
+      const current = await awardSlot(storageKey, ownerId, (slot) =>
+        slot.pending?.command.request === saved.command.request
+          ? { pending: null, lastRequest: saved.command.request }
+          : slot,
+      );
+      lastRequest.current = current.lastRequest;
+      replacePending(current.pending);
+      if (!current.pending) localStorage.removeItem(storageKey);
     });
   }
 
@@ -470,15 +523,8 @@ export function OwnerPackAwards({
     confirmationFlight.current = true;
     setBusy(true);
     try {
-      const saved = await navigator.locks.request(storageKey, () => {
+      const saved = await navigator.locks.request(storageKey, async () => {
         if (!alive.current) return null;
-        const old = localStorage.getItem(storageKey);
-        if (old) {
-          replacePending(readPending(old, ownerId));
-          setReview(null);
-          setError("Check the saved award before starting another.");
-          return null;
-        }
         const next: Pending = {
           version: 1,
           owner: ownerId,
@@ -492,8 +538,20 @@ export function OwnerPackAwards({
             confirmed: true,
           }),
         };
-        localStorage.setItem(storageKey, JSON.stringify(next));
+        const slot = await awardSlot(storageKey, ownerId, (current) =>
+          current.pending || current.lastRequest !== review.lastRequest
+            ? current
+            : { ...current, pending: next },
+        );
+        lastRequest.current = slot.lastRequest;
+        if (slot.pending?.command.request !== next.command.request) {
+          replacePending(slot.pending);
+          setReview(null);
+          setError("Another tab handled this review. Check the saved request or award history.");
+          return null;
+        }
         replacePending(next);
+        localStorage.setItem(storageKey, JSON.stringify(next));
         setReview(null);
         return next;
       });
