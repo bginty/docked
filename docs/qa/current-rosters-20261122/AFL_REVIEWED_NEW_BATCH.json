@@ -1,0 +1,441 @@
+{
+  "request": "ca6d66a5-ee3c-4354-a930-679f19924129",
+  "reference": "Nine corroborated AFL draft identities, 22 November 2026",
+  "confirmed": true,
+  "changes": [
+    {
+      "playerId": "21516a52-1b27-42ce-a4cb-99275a51e6ae",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T50",
+        "name": "Essendon"
+      },
+      "source": {
+        "url": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+        "hash": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+        "observedAt": "2026-11-22T01:42:25.514344Z",
+        "effectiveAt": "2026-11-22T01:42:25.514344Z"
+      },
+      "relistConfirmed": false,
+      "candidate": {
+        "id": "21516a52-1b27-42ce-a4cb-99275a51e6ae",
+        "sport": "afl",
+        "provider": "afl-public-profile",
+        "providerId": "13891",
+        "snapshot": {
+          "name": "Ethan Drever",
+          "team": "Essendon",
+          "position": "MID",
+          "season": "2026",
+          "verifiedJerseyNumber": null,
+          "colour": "#171717",
+          "accentColour": "#cc2031",
+          "status": "active",
+          "synthetic": false
+        },
+        "eligiblePositions": [
+          "MID"
+        ],
+        "source": {
+          "url": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+          "hash": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+          "checkedAt": "2026-11-22T01:42:25.514344Z",
+          "license": "Official public factual reference; no content licence asserted",
+          "verification": "Official individual profile https://www.afl.com.au/players/13891/ethan-drever (DOB 2008-07-10), completed club selection and published playing role agree. Existing canonical and historical name/alias review found no matching identity. Full capture evidence: AFL_NEW_PLAYER_PLAN.json. No issuance approval.",
+          "permanentIssuanceEligible": false
+        }
+      },
+      "registerDefinitions": true,
+      "aliases": []
+    },
+    {
+      "playerId": "24d2311f-2df2-4c86-a7be-76fba7b91021",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T140",
+        "name": "Western Bulldogs"
+      },
+      "source": {
+        "url": "https://www.westernbulldogs.com.au/news/2167140/2026-telstra-afl-draft-pick-50",
+        "hash": "b2faa495fae58cd6c33d4ba72d8258b75c5aa2cfe1bbf19560671ca3fc11477b",
+        "observedAt": "2026-11-22T01:40:32.222556Z",
+        "effectiveAt": "2026-11-22T01:40:32.222556Z"
+      },
+      "relistConfirmed": false,
+      "candidate": {
+        "id": "24d2311f-2df2-4c86-a7be-76fba7b91021",
+        "sport": "afl",
+        "provider": "afl-public-profile",
+        "providerId": "8950",
+        "snapshot": {
+          "name": "Jack Riding",
+          "team": "Western Bulldogs",
+          "position": "MID",
+          "season": "2026",
+          "verifiedJerseyNumber": null,
+          "colour": "#0055a4",
+          "accentColour": "#ed1b2f",
+          "status": "active",
+          "synthetic": false
+        },
+        "eligiblePositions": [
+          "MID"
+        ],
+        "source": {
+          "url": "https://www.westernbulldogs.com.au/news/2167140/2026-telstra-afl-draft-pick-50",
+          "hash": "b2faa495fae58cd6c33d4ba72d8258b75c5aa2cfe1bbf19560671ca3fc11477b",
+          "checkedAt": "2026-11-22T01:40:32.222556Z",
+          "license": "Official public factual reference; no content licence asserted",
+          "verification": "Official individual profile https://www.afl.com.au/players/8950/jack-riding (DOB 2000-10-08), completed club selection and published playing role agree. Existing canonical and historical name/alias review found no matching identity. Full capture evidence: AFL_NEW_PLAYER_PLAN.json. No issuance approval.",
+          "permanentIssuanceEligible": false
+        }
+      },
+      "registerDefinitions": true,
+      "aliases": []
+    },
+    {
+      "playerId": "28efca70-ad93-400f-a8c1-b5dc3eaf6535",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T160",
+        "name": "Sydney"
+      },
+      "source": {
+        "url": "https://www.sydneyswans.com.au/news/2166751/murray-lands-at-the-sydney-swans-with-pick-9",
+        "hash": "bf26d3c3265ef494ff68f83038c5d54ce4c54f74d50e18d1efbb3cf2f438c2c9",
+        "observedAt": "2026-11-22T01:40:32.811196Z",
+        "effectiveAt": "2026-11-22T01:40:32.811196Z"
+      },
+      "relistConfirmed": false,
+      "candidate": {
+        "id": "28efca70-ad93-400f-a8c1-b5dc3eaf6535",
+        "sport": "afl",
+        "provider": "afl-public-profile",
+        "providerId": "15314",
+        "snapshot": {
+          "name": "Caylen Murray",
+          "team": "Sydney",
+          "position": "MID",
+          "season": "2026",
+          "verifiedJerseyNumber": null,
+          "colour": "#ed1b2f",
+          "accentColour": "#ffffff",
+          "status": "active",
+          "synthetic": false
+        },
+        "eligiblePositions": [
+          "MID",
+          "DEF"
+        ],
+        "source": {
+          "url": "https://www.sydneyswans.com.au/news/2166751/murray-lands-at-the-sydney-swans-with-pick-9",
+          "hash": "bf26d3c3265ef494ff68f83038c5d54ce4c54f74d50e18d1efbb3cf2f438c2c9",
+          "checkedAt": "2026-11-22T01:40:32.811196Z",
+          "license": "Official public factual reference; no content licence asserted",
+          "verification": "Official individual profile https://www.afl.com.au/players/15314/caylen-murray (DOB 2008-01-03), completed club selection and published playing role agree. Existing canonical and historical name/alias review found no matching identity. Full capture evidence: AFL_NEW_PLAYER_PLAN.json. No issuance approval.",
+          "permanentIssuanceEligible": false
+        }
+      },
+      "registerDefinitions": true,
+      "aliases": []
+    },
+    {
+      "playerId": "3196c92d-2d2e-4fed-abed-8a49697bfdcb",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T50",
+        "name": "Essendon"
+      },
+      "source": {
+        "url": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+        "hash": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+        "observedAt": "2026-11-22T01:42:25.514344Z",
+        "effectiveAt": "2026-11-22T01:42:25.514344Z"
+      },
+      "relistConfirmed": false,
+      "candidate": {
+        "id": "3196c92d-2d2e-4fed-abed-8a49697bfdcb",
+        "sport": "afl",
+        "provider": "afl-public-profile",
+        "providerId": "14658",
+        "snapshot": {
+          "name": "Archie Elliott",
+          "team": "Essendon",
+          "position": "FWD",
+          "season": "2026",
+          "verifiedJerseyNumber": null,
+          "colour": "#171717",
+          "accentColour": "#cc2031",
+          "status": "active",
+          "synthetic": false
+        },
+        "eligiblePositions": [
+          "FWD"
+        ],
+        "source": {
+          "url": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+          "hash": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+          "checkedAt": "2026-11-22T01:42:25.514344Z",
+          "license": "Official public factual reference; no content licence asserted",
+          "verification": "Official individual profile https://www.afl.com.au/players/14658/archie-elliott (DOB 2008-08-10), completed club selection and published playing role agree. Existing canonical and historical name/alias review found no matching identity. Full capture evidence: AFL_NEW_PLAYER_PLAN.json. No issuance approval.",
+          "permanentIssuanceEligible": false
+        }
+      },
+      "registerDefinitions": true,
+      "aliases": []
+    },
+    {
+      "playerId": "534f696b-a415-45f9-a4fa-e760514b39a9",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T120",
+        "name": "Richmond"
+      },
+      "source": {
+        "url": "https://www.richmondfc.com.au/news/2166687",
+        "hash": "d3d97709d2af9abf9127ec77c3d61546827c4090a9993372672e9a8997fbcffd",
+        "observedAt": "2026-11-22T01:42:42.212218Z",
+        "effectiveAt": "2026-11-22T01:42:42.212218Z"
+      },
+      "relistConfirmed": false,
+      "candidate": {
+        "id": "534f696b-a415-45f9-a4fa-e760514b39a9",
+        "sport": "afl",
+        "provider": "afl-public-profile",
+        "providerId": "13950",
+        "snapshot": {
+          "name": "Arki Butler",
+          "team": "Richmond",
+          "position": "FWD",
+          "season": "2026",
+          "verifiedJerseyNumber": null,
+          "colour": "#171717",
+          "accentColour": "#ffd200",
+          "status": "active",
+          "synthetic": false
+        },
+        "eligiblePositions": [
+          "FWD"
+        ],
+        "source": {
+          "url": "https://www.richmondfc.com.au/news/2166687",
+          "hash": "d3d97709d2af9abf9127ec77c3d61546827c4090a9993372672e9a8997fbcffd",
+          "checkedAt": "2026-11-22T01:42:42.212218Z",
+          "license": "Official public factual reference; no content licence asserted",
+          "verification": "Official individual profile https://www.afl.com.au/players/13950/arki-butler (DOB 2008-04-23), completed club selection and published playing role agree. Existing canonical and historical name/alias review found no matching identity. Full capture evidence: AFL_NEW_PLAYER_PLAN.json. No issuance approval.",
+          "permanentIssuanceEligible": false
+        }
+      },
+      "registerDefinitions": true,
+      "aliases": []
+    },
+    {
+      "playerId": "9ee97be0-da52-4f73-a5ec-5378f9c22d1f",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T70",
+        "name": "Geelong"
+      },
+      "source": {
+        "url": "https://www.geelongcats.com.au/news/2165614/stephen-wells-post-2026-draft-takeaways",
+        "hash": "e0f260f1bdf2e45db9f2073fe05139157197983e3b6e673a73a70081c8bd29f6",
+        "observedAt": "2026-11-22T01:42:25.514344Z",
+        "effectiveAt": "2026-11-22T01:42:25.514344Z"
+      },
+      "relistConfirmed": false,
+      "candidate": {
+        "id": "9ee97be0-da52-4f73-a5ec-5378f9c22d1f",
+        "sport": "afl",
+        "provider": "afl-public-profile",
+        "providerId": "13906",
+        "snapshot": {
+          "name": "Lachlan Hicks",
+          "team": "Geelong",
+          "position": "MID",
+          "season": "2026",
+          "verifiedJerseyNumber": null,
+          "colour": "#002b5c",
+          "accentColour": "#ffffff",
+          "status": "active",
+          "synthetic": false
+        },
+        "eligiblePositions": [
+          "MID"
+        ],
+        "source": {
+          "url": "https://www.geelongcats.com.au/news/2165614/stephen-wells-post-2026-draft-takeaways",
+          "hash": "e0f260f1bdf2e45db9f2073fe05139157197983e3b6e673a73a70081c8bd29f6",
+          "checkedAt": "2026-11-22T01:42:25.514344Z",
+          "license": "Official public factual reference; no content licence asserted",
+          "verification": "Official individual profile https://www.afl.com.au/players/13906/lachlan-hicks (DOB 2008-01-19), completed club selection and published playing role agree. Existing canonical and historical name/alias review found no matching identity. Full capture evidence: AFL_NEW_PLAYER_PLAN.json. No issuance approval.",
+          "permanentIssuanceEligible": false
+        }
+      },
+      "registerDefinitions": true,
+      "aliases": []
+    },
+    {
+      "playerId": "ba600679-df69-4a7a-aebd-cfcb4b780d90",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T160",
+        "name": "Sydney"
+      },
+      "source": {
+        "url": "https://www.sydneyswans.com.au/news/2166984",
+        "hash": "7f226cf7345a559463ed0d1ad558f65f0a728d08a24de90d9b69e3cb9054a99a",
+        "observedAt": "2026-11-22T01:42:41.615475Z",
+        "effectiveAt": "2026-11-22T01:42:41.615475Z"
+      },
+      "relistConfirmed": true,
+      "candidate": {
+        "id": "ba600679-df69-4a7a-aebd-cfcb4b780d90",
+        "sport": "afl",
+        "provider": "afl-public-profile",
+        "providerId": "5176",
+        "snapshot": {
+          "name": "Mitch Knevitt",
+          "team": "Sydney",
+          "position": "MID",
+          "season": "2026",
+          "verifiedJerseyNumber": null,
+          "colour": "#ed1b2f",
+          "accentColour": "#ffffff",
+          "status": "active",
+          "synthetic": false
+        },
+        "eligiblePositions": [
+          "MID"
+        ],
+        "source": {
+          "url": "https://www.sydneyswans.com.au/news/2166984",
+          "hash": "7f226cf7345a559463ed0d1ad558f65f0a728d08a24de90d9b69e3cb9054a99a",
+          "checkedAt": "2026-11-22T01:42:41.615475Z",
+          "license": "Official public factual reference; no content licence asserted",
+          "verification": "Official individual profile https://www.afl.com.au/players/5176/mitch-knevitt (DOB 2003-01-08), completed club selection and published playing role agree. Existing canonical and historical name/alias review found no matching identity. Full capture evidence: AFL_NEW_PLAYER_PLAN.json. No issuance approval.",
+          "permanentIssuanceEligible": false
+        }
+      },
+      "registerDefinitions": true,
+      "aliases": []
+    },
+    {
+      "playerId": "c9ce9804-443c-4434-acb2-bd6430f76d9e",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T40",
+        "name": "Collingwood"
+      },
+      "source": {
+        "url": "https://www.collingwoodfc.com.au/news/2166617/gus-kennedy",
+        "hash": "ed6090483353563f24942adf8fae8c6797e8453666041ceae554b4c262f65ecb",
+        "observedAt": "2026-11-22T01:42:32.524002Z",
+        "effectiveAt": "2026-11-22T01:42:32.524002Z"
+      },
+      "relistConfirmed": false,
+      "candidate": {
+        "id": "c9ce9804-443c-4434-acb2-bd6430f76d9e",
+        "sport": "afl",
+        "provider": "afl-public-profile",
+        "providerId": "13934",
+        "snapshot": {
+          "name": "Gus Kennedy",
+          "team": "Collingwood",
+          "position": "DEF",
+          "season": "2026",
+          "verifiedJerseyNumber": null,
+          "colour": "#171717",
+          "accentColour": "#ffffff",
+          "status": "active",
+          "synthetic": false
+        },
+        "eligiblePositions": [
+          "DEF",
+          "MID"
+        ],
+        "source": {
+          "url": "https://www.collingwoodfc.com.au/news/2166617/gus-kennedy",
+          "hash": "ed6090483353563f24942adf8fae8c6797e8453666041ceae554b4c262f65ecb",
+          "checkedAt": "2026-11-22T01:42:32.524002Z",
+          "license": "Official public factual reference; no content licence asserted",
+          "verification": "Official individual profile https://www.afl.com.au/players/13934/gus-kennedy (DOB 2008-02-21), completed club selection and published playing role agree. Existing canonical and historical name/alias review found no matching identity. Full capture evidence: AFL_NEW_PLAYER_PLAN.json. No issuance approval.",
+          "permanentIssuanceEligible": false
+        }
+      },
+      "registerDefinitions": true,
+      "aliases": []
+    },
+    {
+      "playerId": "ea94538b-5f4e-491d-a6c7-837777c6ba1e",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T80",
+        "name": "Hawthorn"
+      },
+      "source": {
+        "url": "https://www.hawthornfc.com.au/news/2167057/cooper-hodge-the-hawk",
+        "hash": "4d1637794ee5487d92223a14e02ccc511b6791464f3c192addbaad21fc226879",
+        "observedAt": "2026-11-22T01:42:32.524002Z",
+        "effectiveAt": "2026-11-22T01:42:32.524002Z"
+      },
+      "relistConfirmed": false,
+      "candidate": {
+        "id": "ea94538b-5f4e-491d-a6c7-837777c6ba1e",
+        "sport": "afl",
+        "provider": "afl-public-profile",
+        "providerId": "15318",
+        "snapshot": {
+          "name": "Cooper Hodge",
+          "team": "Hawthorn",
+          "position": "MID",
+          "season": "2026",
+          "verifiedJerseyNumber": null,
+          "colour": "#4d2004",
+          "accentColour": "#f6b900",
+          "status": "active",
+          "synthetic": false
+        },
+        "eligiblePositions": [
+          "MID"
+        ],
+        "source": {
+          "url": "https://www.hawthornfc.com.au/news/2167057/cooper-hodge-the-hawk",
+          "hash": "4d1637794ee5487d92223a14e02ccc511b6791464f3c192addbaad21fc226879",
+          "checkedAt": "2026-11-22T01:42:32.524002Z",
+          "license": "Official public factual reference; no content licence asserted",
+          "verification": "Official individual profile https://www.afl.com.au/players/15318/cooper-hodge (DOB 2008-07-26), completed club selection and published playing role agree. Existing canonical and historical name/alias review found no matching identity. Full capture evidence: AFL_NEW_PLAYER_PLAN.json. No issuance approval.",
+          "permanentIssuanceEligible": false
+        }
+      },
+      "registerDefinitions": true,
+      "aliases": []
+    }
+  ]
+}

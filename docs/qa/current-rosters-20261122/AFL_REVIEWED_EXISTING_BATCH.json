@@ -1,0 +1,132 @@
+{
+  "request": "b9ab7d51-5193-4dd8-adcb-f872cfa593b1",
+  "reference": "AFL official-source review 22 November 2026",
+  "confirmed": true,
+  "changes": [
+    {
+      "playerId": "b21fd276-f50e-4d3d-a386-d5de38945dfb",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "PENDING_RELIST",
+      "availability": "UNKNOWN",
+      "currentClub": null,
+      "source": {
+        "url": "https://www.afl.com.au/news/1636586/st-kilda-saints-duo-dan-butler-ryan-byrnes-delisted-set-for-rookie-lifelines",
+        "hash": "0876ae65d729d6193d1ee57a2ff82682e457a1feb9d6dc0f2f10b52fbb33c398",
+        "observedAt": "2026-11-22T01:18:41.806090Z",
+        "effectiveAt": "2026-11-22T01:18:41.806090Z"
+      },
+      "relistConfirmed": false,
+      "registerDefinitions": false,
+      "aliases": []
+    },
+    {
+      "playerId": "296a07d2-daba-4901-a983-ec0099a2b63b",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "DELISTED",
+      "availability": "UNKNOWN",
+      "currentClub": null,
+      "source": {
+        "url": "https://www.afl.com.au/news/1634437",
+        "hash": "233f58350225c276de6f840b54ec9071a0c09c8fe35548124cdacb7aceb487b9",
+        "observedAt": "2026-11-22T01:18:37.673747Z",
+        "effectiveAt": "2026-11-22T01:18:37.673747Z"
+      },
+      "relistConfirmed": false,
+      "registerDefinitions": false,
+      "aliases": []
+    },
+    {
+      "playerId": "038da416-5f9c-4015-a428-014dcc40da2f",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "RETIRED",
+      "availability": "UNKNOWN",
+      "currentClub": null,
+      "source": {
+        "url": "https://www.afl.com.au/news/1589767/st-kilda-saints-defender-dougal-howard-to-hang-up-the-boots-after-two-club-12-season-career",
+        "hash": "436a4ee0b172ec821b3feadc182c785aaadfd25bcedc4ad66b1512e6702cd6fe",
+        "observedAt": "2026-11-22T01:17:42.421102Z",
+        "effectiveAt": "2026-11-22T01:17:42.421102Z"
+      },
+      "relistConfirmed": false,
+      "registerDefinitions": false,
+      "aliases": []
+    },
+    {
+      "playerId": "3ca2379e-f51b-4cc4-a2e9-7c0280caedeb",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "RETIRED",
+      "availability": "UNKNOWN",
+      "currentClub": null,
+      "source": {
+        "url": "https://www.afl.com.au/news/1636570/off-dane-rampe-former-sydney-swans-co-captain-calls-it-a-day",
+        "hash": "dc6f68be9ebd8767ec148fa44dac9098501af02afc903463bba223742aa47429",
+        "observedAt": "2026-11-22T01:18:40.313168Z",
+        "effectiveAt": "2026-11-22T01:18:40.313168Z"
+      },
+      "relistConfirmed": false,
+      "registerDefinitions": false,
+      "aliases": []
+    },
+    {
+      "playerId": "d8056009-6163-4a63-ae46-0ec498e75710",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "PENDING_RELIST",
+      "availability": "UNKNOWN",
+      "currentClub": null,
+      "source": {
+        "url": "https://www.afl.com.au/news/1636335/luckless-western-bulldog-riley-garcia-delisted-set-to-get-rookie-lifeline",
+        "hash": "fe1c24165dcda04bc44be46813f91a31b04602793654bd48de3813e1f7fb4f5b",
+        "observedAt": "2026-11-22T01:18:37.410339Z",
+        "effectiveAt": "2026-11-22T01:18:37.410339Z"
+      },
+      "relistConfirmed": false,
+      "registerDefinitions": false,
+      "aliases": []
+    },
+    {
+      "playerId": "88d868a0-d9ce-465f-a16e-751e22aeb135",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T1000",
+        "name": "Gold Coast"
+      },
+      "source": {
+        "url": "https://www.goldcoastfc.com.au/news/2167089/suns-re-select-ugle-hagan-and-himmelberg",
+        "hash": "185a47d5ce4ecb533a56711cd5c0a5287da52027f38f63463d2d4907aaf66d7f",
+        "observedAt": "2026-11-22T01:21:20.521201Z",
+        "effectiveAt": "2026-11-22T01:21:20.521201Z"
+      },
+      "relistConfirmed": true,
+      "registerDefinitions": false,
+      "aliases": []
+    },
+    {
+      "playerId": "5f7b2f82-b24f-45d9-a137-c698ba977e42",
+      "sport": "afl",
+      "expectedRevision": null,
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T1000",
+        "name": "Gold Coast"
+      },
+      "source": {
+        "url": "https://www.goldcoastfc.com.au/news/2167089/suns-re-select-ugle-hagan-and-himmelberg",
+        "hash": "185a47d5ce4ecb533a56711cd5c0a5287da52027f38f63463d2d4907aaf66d7f",
+        "observedAt": "2026-11-22T01:21:20.521201Z",
+        "effectiveAt": "2026-11-22T01:21:20.521201Z"
+      },
+      "relistConfirmed": true,
+      "registerDefinitions": false,
+      "aliases": []
+    }
+  ]
+}

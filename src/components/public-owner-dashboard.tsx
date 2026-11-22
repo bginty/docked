@@ -289,7 +289,9 @@ export function PublicOwnerDashboard({
         <nav className="actions" aria-label="Commercial support">
           <Link href="/admin/workspace/users">Customer support</Link>
           <Link href="/admin/workspace/cards">Cards and supply</Link>
+          <Link href="/admin/rosters">Player roster</Link>
           <Link href="/admin/workspace/packs">Pack receipts</Link>
+          <Link href="/admin/pack-awards">Award packs</Link>
           <Link href="/admin/commercial-billing">Billing and refunds</Link>
           <Link href="/admin/incidents">Operational incidents</Link>
         </nav>

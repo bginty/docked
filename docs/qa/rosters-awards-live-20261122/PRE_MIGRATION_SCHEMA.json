@@ -1,0 +1,75 @@
+{
+  "functions": [
+    {
+      "acl": "{postgres=X/postgres,docked_app=X/postgres}",
+      "signature": "private.admin_record_detail(text,text,integer)",
+      "definition": "CREATE OR REPLACE FUNCTION private.admin_record_detail(p_category text, p_id text, p_page integer DEFAULT 1)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\n SET statement_timeout TO '4s'\nAS $function$\ndeclare item record; events jsonb;begin\n perform private.public_owner_actor();\n if p_category is null or p_category not in('members','cards','packs','transactions','competitions','moderation') then raise exception 'Category denied';end if;\n if p_id is null or length(btrim(p_id))=0 or length(p_id)>160 or p_id~'[[:cntrl:]]' or p_page is null or p_page<1 or p_page>100 then raise exception 'Invalid record';end if;\n select * into item from private.public_admin_records() where category=p_category and id=p_id;\n if not found then return null;end if;\n select coalesce(jsonb_agg(to_jsonb(e)),'[]') into events from(\n  select * from(\n   select 'support:'||e.id id,e.created_at at,e.action event,e.reason detail from private.owner_support_events e where p_category='members' and e.target::text=p_id\n   union all select 'receipt:'||e.id,e.observed_at,e.state,'Verified provider observation' from commercial_billing.receipt_events e where p_category='transactions' and e.receipt=p_id\n   union all select 'custody:'||e.id,e.created_at,'Ownership recorded',e.reference from commercial_billing.ownership_events e where p_category='cards' and e.card::text=p_id\n  )h order by at desc,id limit 21 offset(p_page-1)*20)e;\n return jsonb_build_object('id',item.id,'category',item.category,'title',item.title,'source','Public commercial records; historical beta assets excluded',\n  'fields',item.fields,'history',(select coalesce(jsonb_agg(value),'[]') from jsonb_array_elements(events)with ordinality e(value,n) where n<=20),\n  'page',p_page,'hasMore',jsonb_array_length(events)>20);\nend$function$\n"
+    },
+    {
+      "acl": "{postgres=X/postgres,docked_app=X/postgres}",
+      "signature": "private.owner_command_centre(timestamp with time zone,timestamp with time zone,text,boolean)",
+      "definition": "CREATE OR REPLACE FUNCTION private.owner_command_centre(p_start timestamp with time zone, p_end timestamp with time zone, p_sport text DEFAULT NULL::text, p_include_staff boolean DEFAULT false)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\n SET statement_timeout TO '5s'\nAS $function$\ndeclare inventory jsonb;begin\n perform private.public_owner_actor();\n if p_start is null or p_end is null or p_end<=p_start or p_end-p_start>interval '366 days'\n or(p_sport is not null and p_sport not in('nfl','afl','nrl')) then raise exception 'Invalid report';end if;\n select coalesce(jsonb_agg(to_jsonb(d)),'[]') into inventory from(\n  select id,coalesce(snapshot->>'name','Player definition') name,sport,rarity tier,''::text season,lifetime_cap max_supply,issued,\n   lifetime_cap-issued available_lifetime_supply,(select count(*) from commercial_billing.cards c where c.definition=d.id) cards,\n   (select count(distinct serial) from commercial_billing.cards c where c.definition=d.id) distinct_serials\n  from commercial_billing.definitions d where p_sport is null or sport=p_sport order by sport,id)d;\n return jsonb_build_object('scope','live','generatedAt',clock_timestamp(),'inventory',inventory,'competitions','[]'::jsonb,'reports','[]'::jsonb,'emailFailures',null,\n  'metrics',jsonb_build_object('customers',(select count(*) from public.profiles p where not exists(select 1 from launch_transition.accounts a where a.user_id=p.id and a.kind in('customer','system')) and(p_include_staff or not exists(select 1 from private.roles r where r.user_id=p.id))),\n   'receiptsInReview',(select count(*) from commercial_billing.receipts where state='REVIEW'),\n   'recoveryHolds',(select count(*) from commercial_billing.recovery_cases where state='OPEN'),\n   'jobsNeedingAttention',(select count(*) from commercial_billing.jobs where state='attention'),\n   'paidPacks',(select count(*) from commercial_billing.packs where created_at>=p_start and created_at<p_end),\n   'commercialCards',(select count(*) from commercial_billing.cards),\n   'lifetimeIssued',(select sum(issued) from commercial_billing.definitions),\n   'openSales',(select sales_enabled::int from commercial_billing.control where id),\n   'openIssuance',(select issuance_enabled::int from commercial_billing.control where id)),\n  'limitations',jsonb_build_array('Historical beta assets are excluded from commercial customer records. Lifetime counts include their permanent supply consumption.',\n   'Marketplace and real scored competitions remain disabled. Use billing review for provider reconciliation and incident review for delivery evidence.'));\nend$function$\n"
+    },
+    {
+      "acl": "{postgres=X/postgres,docked_app=X/postgres}",
+      "signature": "private.owner_commercial_summary(timestamp with time zone,timestamp with time zone)",
+      "definition": "CREATE OR REPLACE FUNCTION private.owner_commercial_summary(p_start timestamp with time zone, p_end timestamp with time zone)\n RETURNS jsonb\n LANGUAGE plpgsql\n STABLE SECURITY DEFINER\n SET search_path TO ''\n SET statement_timeout TO '5s'\nAS $function$\ndeclare result jsonb;\nbegin\n  perform private.public_owner_actor();\n  if p_start is null or p_end is null or p_start >= p_end or p_end-p_start > interval '367 days' then\n    raise exception 'Invalid reporting period';\n  end if;\n  if not exists(select 1 from commercial_billing.control where id and environment='commercial') then\n    raise exception 'Commercial reporting environment required';\n  end if;\n  with customers as (\n    select p.id, p.created_at from public.profiles p\n    where launch_transition.identity_allowed(p.id)\n      and not exists (select 1 from private.roles r where r.user_id=p.id)\n  ), cash as (\n    select j.created_at, l.amount, r.tax_cents, r.gross_cents\n    from commercial_billing.journals j\n    join commercial_billing.lines l on l.journal=j.id and l.account='provider:google:receivable'\n    join commercial_billing.receipts r on r.key=j.receipt and r.environment='commercial' and r.money_recorded\n    where j.unit='AUD_CENTS' and j.created_at>=p_start and j.created_at<p_end\n  ), days as (\n    select d::date as business_day from generate_series((p_start at time zone 'Australia/Sydney')::date::timestamp,\n      ((p_end - interval '1 microsecond') at time zone 'Australia/Sydney')::date::timestamp, interval '1 day') d\n  ), growth as (\n    select (created_at at time zone 'Australia/Sydney')::date as business_day,count(*) n from customers\n    where created_at>=p_start and created_at<p_end group by 1\n  ), sales as (\n    select (created_at at time zone 'Australia/Sydney')::date as business_day,\n      sum(greatest(amount,0)) gross, sum(greatest(-amount,0)) refunds from cash group by 1\n  )\n  select jsonb_build_object(\n    'days',(select jsonb_agg(jsonb_build_object('day',d.business_day,'customers',coalesce(g.n,0),\n      'sales',coalesce(s.gross,0),'refunds',coalesce(s.refunds,0)) order by d.business_day)\n      from days d left join growth g using(business_day) left join sales s using(business_day)),\n    'verified',(select count(*) from customers c where private.public_phone_verified(c.id)),\n    'outstanding',(select coalesce(sum(l.remaining),0) from commercial_billing.lots l\n      join commercial_billing.receipts r on r.key=l.receipt where r.environment='commercial' and r.money_recorded),\n    'chargeTax',(select case when count(*)=count(tax_cents) then coalesce(sum(tax_cents),0) end from cash where amount>0),\n    'pending',(select count(*) from commercial_billing.receipts where environment='commercial' and state='PENDING'),\n    'packs',(select coalesce(jsonb_agg(to_jsonb(x) order by x.sport,x.type),'[]'::jsonb) from\n      (select product->>'sport' sport,product->>'type' type,count(*) total from commercial_billing.packs\n       where created_at>=p_start and created_at<p_end group by 1,2) x),\n    'support',(select count(*) from private.owner_support_events where created_at>=p_start and created_at<p_end),\n    'moderation',(select count(*) from private.social_reports where created_at>=p_start and created_at<p_end),\n    'sms',(select jsonb_build_object('budget',budget_aud_cents,'reserved',reserved_aud_cents,'expires',expires_at)\n      from sms_delivery.windows where enabled and allowlist is null and starts_at<=statement_timestamp()\n      and expires_at>statement_timestamp() order by starts_at desc limit 1)\n  ) into result;\n  return result;\nend$function$\n"
+    },
+    {
+      "acl": "{postgres=X/postgres}",
+      "signature": "private.public_admin_records()",
+      "definition": "CREATE OR REPLACE FUNCTION private.public_admin_records()\n RETURNS TABLE(id text, category text, title text, detail text, fields jsonb)\n LANGUAGE plpgsql\n STABLE SECURITY DEFINER\n SET search_path TO ''\n SET statement_timeout TO '4s'\nAS $function$\nbegin\n perform private.public_owner_actor();\n return query\n select p.id::text,'members'::text,coalesce(nullif(s.display_name,''),'Customer'),\n  case when coalesce(p.disabled_at,(select restricted_at from private.owner_customer_restrictions where user_id=p.id)) is null then 'Account enabled' else 'Account restricted' end,\n  jsonb_build_object('Record ID',p.id,'Country',p.country,'State',p.state,'Created at',p.created_at,\n   'Restricted at',coalesce(p.disabled_at,(select restricted_at from private.owner_customer_restrictions where user_id=p.id)),'Role',r.role,'Terms version',p.accepted_version,\n   'Phone verified',private.public_phone_verified(p.id),\n   'Commercial credits',coalesce((select sum(l.remaining) from commercial_billing.lots l where l.member_id=p.id),0),\n   'Commercial cards',(select count(*) from commercial_billing.cards c where c.owner_id=p.id),\n   'Open recovery holds',(select count(*) from commercial_billing.recovery_cases c where c.member_id=p.id and c.state='OPEN'))\n from public.profiles p left join private.social_profiles s on s.user_id=p.id left join private.roles r on r.user_id=p.id\n where not exists(select 1 from launch_transition.accounts a where a.user_id=p.id and a.kind in('customer','system'))\n union all\n select d.id::text,'cards',coalesce(d.snapshot->>'name','Player definition'),concat_ws(' · ',upper(d.sport),d.rarity,'Definition'),\n  jsonb_build_object('Record ID',d.id,'Sport',d.sport,'Rarity',d.rarity,'Lifetime cap',d.lifetime_cap,\n   'Lifetime issued',d.issued,'Historical issued',d.legacy_issued,'Approved',d.approved,'Record type','Definition')\n from commercial_billing.definitions d\n union all\n select c.id::text,'cards',coalesce(d.snapshot->>'name','Issued card'),concat_ws(' · ',upper(d.sport),d.rarity,'#'||c.serial),\n  jsonb_build_object('Record ID',c.id,'Definition',c.definition,'Serial',c.serial,'Owner reference',c.owner_id,\n   'Pack',c.pack,'Issued at',c.created_at,'Locked',c.locked,'Record type','Commercial issued card')\n from commercial_billing.cards c join commercial_billing.definitions d on d.id=c.definition\n union all\n select p.id::text,'packs',coalesce(p.product->>'name','Commercial pack'),'Paid credits · permanent allocation',\n  jsonb_build_object('Record ID',p.id,'Member reference',p.member_id,'Request',p.request,'Price credits',p.price,\n   'Card count',(select count(*) from commercial_billing.cards c where c.pack=p.id),'Product card count',p.product->'cards',\n   'Created at',p.created_at,'Opened at',p.opened_at,'Policy version',p.policy_version)\n from commercial_billing.packs p\n union all\n select r.key,'transactions','Google credit purchase',concat_ws(' · ',r.state,r.order_id),\n  jsonb_build_object('Record ID',r.key,'Member reference',r.member_id,'Order reference',r.order_id,'State',r.state,\n   'Environment',r.environment,'Gross AUD cents',r.gross_cents,'GST cents',r.tax_cents,\n   'Refunded AUD cents',r.refunded_cents,'Credited',r.credited,'Created at',r.created_at,\n   'Recovery hold',(select state from commercial_billing.recovery_cases c where c.receipt=r.key))\n from commercial_billing.receipts r;\nend$function$\n"
+    }
+  ],
+  "recordedAt": "2026-11-22T02:54:25.673941+00:00",
+  "constraints": [
+    {
+      "name": "player_identities_pkey",
+      "table": "player_identities",
+      "schema": "sports_feed",
+      "definition": "PRIMARY KEY (sport, player_id)"
+    },
+    {
+      "name": "player_identities_player_id_check",
+      "table": "player_identities",
+      "schema": "sports_feed",
+      "definition": "CHECK (((length(player_id) >= 1) AND (length(player_id) <= 160)))"
+    },
+    {
+      "name": "player_identities_sport_check",
+      "table": "player_identities",
+      "schema": "sports_feed",
+      "definition": "CHECK ((sport = ANY (ARRAY['afl'::text, 'football'::text, 'basketball'::text, 'nrl'::text])))"
+    },
+    {
+      "name": "commercial_pack_complete",
+      "table": "packs",
+      "schema": "commercial_billing",
+      "definition": "TRIGGER DEFERRABLE INITIALLY DEFERRED"
+    },
+    {
+      "name": "packs_member_id_fkey",
+      "table": "packs",
+      "schema": "commercial_billing",
+      "definition": "FOREIGN KEY (member_id) REFERENCES commercial_billing.accounts(member_id)"
+    },
+    {
+      "name": "packs_member_id_request_key",
+      "table": "packs",
+      "schema": "commercial_billing",
+      "definition": "UNIQUE (member_id, request)"
+    },
+    {
+      "name": "packs_pkey",
+      "table": "packs",
+      "schema": "commercial_billing",
+      "definition": "PRIMARY KEY (id)"
+    },
+    {
+      "name": "packs_price_check",
+      "table": "packs",
+      "schema": "commercial_billing",
+      "definition": "CHECK ((price > 0))"
+    }
+  ]
+}

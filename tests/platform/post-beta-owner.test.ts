@@ -47,8 +47,14 @@ test("both retained Owner roles land on Commercial operations and preserve indiv
 test("incidents survive login/MFA return validation without widening external redirects", () => {
   assert.equal(memberReturnPath("/admin/operations"), "/admin/operations");
   for (const aal of ["aal1", "aal2"]) {
-    const destination = postBetaOwnerDestination({ postBetaOwner: true, aal }, "/admin/incidents");
-    assert.equal(destination, aal === "aal2" ? "/admin/incidents" : "/mfa?next=%2Fadmin%2Fincidents");
+    const destination = postBetaOwnerDestination(
+      { postBetaOwner: true, aal },
+      "/admin/incidents",
+    );
+    assert.equal(
+      destination,
+      aal === "aal2" ? "/admin/incidents" : "/mfa?next=%2Fadmin%2Fincidents",
+    );
   }
   assert.equal(memberReturnPath("/admin/incidents"), "/admin/incidents");
   for (const path of [
@@ -58,6 +64,34 @@ test("incidents survive login/MFA return validation without widening external re
     "https://docked.com.au/admin/incidents",
   ])
     assert.equal(memberReturnPath(path), null);
+});
+
+test("pack awards retain their customer selection through Owner login and MFA", () => {
+  const next = "/admin/pack-awards?member=20000000-0000-4000-8000-000000000001";
+  assert.equal(memberReturnPath(next), next);
+  assert.equal(
+    postBetaOwnerDestination({ postBetaOwner: true, aal: "aal2" }, next),
+    next,
+  );
+  assert.equal(
+    postBetaOwnerDestination({ postBetaOwner: true, aal: "aal1" }, next),
+    `/mfa?next=${encodeURIComponent(next)}`,
+  );
+  assert.equal(memberReturnPath("/admin/pack-awards/enable"), null);
+});
+
+test("roster filters survive Owner login and MFA without adding mutation routes", () => {
+  const next = "/admin/rosters?sport=afl&club=ADE&page=2";
+  assert.equal(memberReturnPath(next), next);
+  assert.equal(
+    postBetaOwnerDestination({ postBetaOwner: true, aal: "aal2" }, next),
+    next,
+  );
+  assert.equal(
+    postBetaOwnerDestination({ postBetaOwner: true, aal: "aal1" }, next),
+    `/mfa?next=${encodeURIComponent(next)}`,
+  );
+  assert.equal(memberReturnPath("/admin/rosters/activate"), null);
 });
 
 test("invalid refresh clears only this project's session chunks, retaining PKCE and unrelated cookies", () => {

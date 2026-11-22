@@ -1,0 +1,170 @@
+{
+  "recordedAt": "2026-11-22T01:57:59.543799+00:00",
+  "state": "PREPARED_LOCAL_ONLY_NOT_DEPLOYED",
+  "branch": "codex/current-rosters-20261122",
+  "liveWebBase": "83794e9ac31c54960bfc76b9a07b36047f20486b",
+  "reviewBase": "58841a60b4e4c57d9c410c4f1c2e315ee8bf20d2",
+  "awardCandidateParent": "f1af4cdb23f394db615b9637d9b65566bf571d5b",
+  "node": "22.23.5",
+  "platform": {
+    "passed": 55,
+    "failed": 0,
+    "skipped": 0,
+    "exitCode": 0,
+    "evidence": "PLATFORM.tap",
+    "actualRosterDataTests": 6
+  },
+  "nativePostgres": {
+    "version": "17.10",
+    "passed": 24,
+    "failed": 0,
+    "fixtureOnly": true,
+    "evidence": "DATABASE.json",
+    "integrity": {
+      "supply_mismatch": 0,
+      "duplicate_serial": 0,
+      "incomplete_pack": 0
+    },
+    "actualLoadedRosterMigration": {
+      "path": "supabase/migrations/20261122011302_commercial_player_roster.sql",
+      "sha256": "4fdab8010fa79a3f01febcb0ac8454bd7f7f42bfbdbec6cca5c4dcd3e1ef2e39"
+    }
+  },
+  "fullLint": {
+    "status": "PASS",
+    "exitCode": 0,
+    "evidence": "LINT.log"
+  },
+  "typecheck": {
+    "status": "PASS",
+    "exitCode": 0,
+    "evidence": "TYPECHECK.log"
+  },
+  "productionBuild": {
+    "status": "PASS",
+    "exitCode": 0,
+    "evidence": "BUILD.log",
+    "runtimeSourceChangedAfterBuild": false
+  },
+  "localSupabaseSecurityAdvisors": {
+    "status": "PASS",
+    "issues": 0,
+    "evidence": "ADVISORS.json",
+    "hostedProductionClaim": false
+  },
+  "browserAcceptance": {
+    "status": "BLOCKED_NOT_EXECUTED",
+    "evidence": "../owner-pack-awards-20261122/BROWSER_ACCEPTANCE_BLOCKED.json",
+    "componentSSRAndCssChecks": "PASS",
+    "hostedFlow": "NOT_EXECUTED",
+    "installedAndroid": "NOT_EXECUTED",
+    "clientSecretCanaryBuild": "NOT_EXECUTED",
+    "fullCI": "NOT_EXECUTED"
+  },
+  "aflData": {
+    "censusPlayers": 542,
+    "existingPlayerDecisions": 7,
+    "nationalSelections": 65,
+    "existingCanonicalReturns": 2,
+    "newPlayerCandidatesPrepared": 9,
+    "dormantDefinitionsPrepared": 45,
+    "remainingSelections": 54,
+    "applied": false,
+    "activated": false,
+    "rosterSourceRefreshRequiredBeforeApplication": true
+  },
+  "migrations": [
+    {
+      "path": "supabase/migrations/20261122005246_owner_pack_awards.sql",
+      "sha256": "fe31894908c1db27a0f79bff8f9ae8283234a1531f778c6e043e80e85d083236"
+    },
+    {
+      "path": "supabase/migrations/20261122011302_commercial_player_roster.sql",
+      "sha256": "4fdab8010fa79a3f01febcb0ac8454bd7f7f42bfbdbec6cca5c4dcd3e1ef2e39"
+    }
+  ],
+  "sourceFileCount": 39,
+  "sourceSha256": {
+    "scripts/current-rosters-postgres-checks.ts": "60a67f0b592b67415519e00703ff6f5afb50a2f1384a48526bd89342aee60bdd",
+    "scripts/owner-pack-awards-local-postgres.mjs": "544228c10e0bf7f28406a7d42cb6142900805b8ca5c16d42c7fdff1273fab3be",
+    "scripts/owner-pack-awards-postgres.ts": "6db17d4029cc6ab45cb1946308bf43d47e9bb61ec49f23b6ef086c2be0eb069d",
+    "src/app/admin/pack-awards/page.tsx": "b4ec2677df26d012a82c0588cc12c4513ce197b3897db982bd066117aa661e07",
+    "src/app/admin/rosters/page.tsx": "f2b196038185f942349548afb9396167b910f35de75075cb1846062fe1d2ffdd",
+    "src/app/admin/workspace/[section]/page.tsx": "c553e4be6da39210eaef74fff646547b245520bff90dc59e48bd18f2f6624ea5",
+    "src/app/api/admin/pack-awards/route.ts": "9c46ba143f6dd7b90e4453e6bcd3ecb266ef14a21d6749490453e9b62b5a426c",
+    "src/app/api/admin/rosters/activation/route.ts": "ecbeedc36181ee36e17fe56557d8499604699f857a108f1efb357367bdf37007",
+    "src/app/api/admin/rosters/decisions/route.ts": "b3f4dac5f6e3c5eb8637dbc226ba15fe83d5620fa1b4ff703bf7a79aadca29ef",
+    "src/app/api/admin/rosters/route.ts": "ab88f2f9fd2d04bc39fbe1199a274959a7b0484a649ef44f7ba830dbd5481b8f",
+    "src/components/owner-pack-awards.module.css": "47e380183c43231781ff9f3aa9f6457c9016d169ad97b99a6a6834ed407b95c6",
+    "src/components/owner-pack-awards.tsx": "80626864268ce1f094e2ecaa5cccb8302b8505661af64fd659b7079192685eb0",
+    "src/components/owner-roster-download.tsx": "32b7f8ba5a16eb1b14e343758bd7541b8ca7518363a50e5cb7f8b06d032c5116",
+    "src/components/owner-rosters.module.css": "bde17f737744cd73a979c01b84ebaca749bfce451f8021107d44b2c43f561ce9",
+    "src/components/owner-rosters.tsx": "e4309da7633a5fc2be75b2b54edb2f89420aade6bfe1767ff5fc6c8f0089b772",
+    "src/components/pack-shop.tsx": "e14594c6ee20a36d43cbcf20674d92b1c33a7ec4435dc111ab38ec329aaf7769",
+    "src/components/public-owner-dashboard.tsx": "7bff77852a989e2f8ef97865dcf61e551d4f684175374350841a51c4617a545e",
+    "src/core/commercial-player-roster.ts": "3b725a9c370338c73cdad69cf55b06f125802cee7ac7de11d45b4529a96061ca",
+    "src/core/member-access-recovery.ts": "dc19da3e0294f96778b38c85430fd647f79add6c02545cdb3408a7055df02710",
+    "src/core/owner-pack-awards.ts": "fa6ef26f5ab09c9879472f5c899379b80c48b240a876fab586e3e78d3e2374a3",
+    "src/core/owner-roster-export.ts": "9fb7b2924f3abe7fead3f12579cf470005290f3cec134106f0f974bdae25abe0",
+    "src/core/pack-shop-state.ts": "5801b0673e76a4204ab7dc89aca9b3faa33dc3f4fb150b8046ef07e9a98f99fc",
+    "src/server/commercial-ledger.ts": "c9271d7acf4538b0704bb41f2789772f452c0f2d196ff4ede5da03a648597371",
+    "src/server/commercial-member-view.ts": "21d18fb6a4d412070115985e5dac8b4af08584ffc4f0bedb4993cf69a9952d18",
+    "src/server/commercial-player-roster.ts": "8ffb93bb41faf32c913c6d69aa1c4521d4c4b53c6a6b3d880476c09e41762ce3",
+    "src/server/owner-pack-awards.ts": "ae41f0b0ef970a53b4f8ec5f8e9c8ae025fa1c75cb2dbf8325aba83e21dec247",
+    "src/server/owner-roster-request.ts": "53c734cfb0e01b5df76870272e1f5452032647aa4a83ac1d02fb844ab2d37032",
+    "src/server/owner-rosters.ts": "47f2f0eaf869969c738d8f0185ee700020b6e2cea1fba203664d18418a67b7ac",
+    "supabase/migrations/20261122005246_owner_pack_awards.sql": "fe31894908c1db27a0f79bff8f9ae8283234a1531f778c6e043e80e85d083236",
+    "supabase/migrations/20261122011302_commercial_player_roster.sql": "4fdab8010fa79a3f01febcb0ac8454bd7f7f42bfbdbec6cca5c4dcd3e1ef2e39",
+    "tests/browser/owner-pack-awards.test.ts": "ba69a232c0d5500ebb535dac57a9e9a9423f903eee7c715153ed8a5f02bef05a",
+    "tests/fixtures/owner-pack-awards.tsx": "eca57300e3d105c2117f9d22c9f7e17a2f8bd8e8273eac7e2e2d9e7b9b83fc0b",
+    "tests/platform/afl-reviewed-roster-data.test.ts": "5b6f649adaf847537c4b1ff5d5b68376479ca96594cadd4efaa1b8ee10ae1ff1",
+    "tests/platform/commercial-player-roster.test.ts": "8753d0d1590bd451eaa6e0e176ffc75b3a7c808566ddd8abcadf99d15f1dd0ff",
+    "tests/platform/owner-pack-awards-route.test.ts": "29eb3366d2b9b55b911c0b66f75c21e529741af3b44a2d012a2a51b2e85f702c",
+    "tests/platform/owner-pack-awards.test.ts": "42e56606084b03d7683be22bf7aa4afacff953627c9b467a49bcba5964847863",
+    "tests/platform/owner-rosters-ui.test.ts": "3f37b4647019827734ef2c5597d380390ad65dac0cc6fb833a82407286a43fe6",
+    "tests/platform/owner-rosters.test.ts": "1ac23b7139cc6ff37854ded72d5b5e8e34a0a05f689746b3587dd1bbae313ea4",
+    "tests/platform/post-beta-owner.test.ts": "af66afdbfdc7102c692b5c815d666cec582b207286424e6e56a18df89fdd01a5"
+  },
+  "sourceManifestSha256": "955625441d1f1596557f1aaa2556b74724a5998e1c7e1ef5ac5d8d4b1a875891",
+  "sourceManifestHashEncoding": "SHA-256 of UTF-8 compact JSON sourceSha256 with lexicographically sorted keys",
+  "evidenceSha256": {
+    "ADVISORS.json": "f3da685c6d2f8fd33b5aef750dbdb362e99223fabfa496ab8cbddf305eaa5560",
+    "AFL_CENSUS.json": "45e6ebcc2d4732730bd46c64f1650bd2855c064394332117606cf21cfa2c64eb",
+    "AFL_DRAFT_CANDIDATES.json": "36937325b2f0958d6bde03815a9d8dbcaa7d326a275f3ce00c67edb374b63346",
+    "AFL_NEW_DORMANT_DEFINITIONS.json": "7f8147f83a39233a079e28f757d370b1d0a6f87d8c305f1dbdd6b12091fbd1f4",
+    "AFL_NEW_PLAYER_PLAN.json": "d4d4c6b37ef35bfceee4f4a3b57058cfad44229e2a0c0128d870e528daf7e313",
+    "AFL_OWNER_AUDIT.csv": "b720ea6a3b0f4e9b6a5a4b00c5184015edf71d9bb8d4f21a2872b90be2028dde",
+    "AFL_REVIEW.json": "b89773f99633ba62165a243afbdfbe4ddc3dad45d3242bd27f47eb5e4d6a2f0f",
+    "AFL_REVIEWED_EXISTING_BATCH.json": "c282328c33e0100b36e8f3d7a5b9274ce6a7c66ae4f69c6b926b5611b7452a4e",
+    "AFL_REVIEWED_NEW_BATCH.json": "cfd2a791cdaadfc1815c562f94df761f1e0fc2134079a989aab5709a87daacca",
+    "BUILD.log": "e02778776ff8757c50cadcdc2e41d1df690d6ea8e2a83dc89c5875f78f4df741",
+    "CLUB_IDENTITY_EVIDENCE.json": "69bbb5f10a53e44d8cd16b919f848b1041b90478c158a4e786ab30cd21ee0a44",
+    "DATABASE.json": "d678190e2f195647be12f2ce943c449a59b9e71b892ad801851013acb9a30986",
+    "DRAFT_IDENTITY_REVIEW_A.json": "6c87d8102c6cac451ce6b24a3be5beca3e2057886bb692c113c2bae5ab31935e",
+    "DRAFT_IDENTITY_REVIEW_B.json": "a882a3ec06cbd85e78afbf93986fe4d75eb5521359fc06230d6bcb9e13bcd104",
+    "LINT.log": "f6149ab06ddbe15b2c204e47081e5fb57486e064b01bd14d1662b9e5eed8d332",
+    "NEW_PLAYER_IDENTITY_CROSSCHECK.json": "9274f6bbd7c65bd0569e32fd542d2954363e7551145fe004cbbf4f057240bfa5",
+    "PLATFORM.tap": "ee94ebb5c993ec773f2e06cb00c951d4a2906b5e85ddf33554d67d93d32e5aa0",
+    "PRODUCTION_READONLY.json": "c4410a26ac300a09f6d0ba32e0e23b3141e42c03c3d899e78f4d27c373bb14e1",
+    "README.md": "38e22df9bd9bc3e527b3f4a138340de070775f329a9779c0e05e3e7e599a739a",
+    "RELEASE_HANDOVER.md": "e31339def746780a6513dc045308f20a908cf3109420a0fcd74b7a2411e9603e",
+    "TYPECHECK.log": "9aac3da9a7039a99c345545c32f286aa65c358d571bfce7e00d94625d095c829",
+    "capture-afl-review.py": "098bf995cedd7cd0df62ecc293adcaa874bda435db4fa29f1f6fc4945099e186"
+  },
+  "publication": {
+    "github": "AUTOMATIC_APPROVAL_REJECTED; no source uploaded",
+    "vercelSandboxSourceUpload": "AUTOMATIC_APPROVAL_REJECTED; no source uploaded",
+    "temporarySandbox": "STOPPED_NONPERSISTENT",
+    "alternativeTransportAttempted": false
+  },
+  "productionMigrations": 0,
+  "productionDeployments": 0,
+  "productionRosterDecisions": 0,
+  "customerAwards": 0,
+  "customerMessages": 0,
+  "realPayments": 0,
+  "whitespaceReview": {
+    "sourceAndDocuments": "PASS; CRLF accepted for RFC4180 CSV",
+    "rawBuildLog": "Preserved verbatim; terminal progress carriage returns, trailing spaces and final blank line retained"
+  }
+}

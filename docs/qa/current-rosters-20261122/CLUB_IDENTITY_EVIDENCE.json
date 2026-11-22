@@ -1,0 +1,268 @@
+{
+  "createdAt": "2026-11-22T01:54:38.294995+00:00",
+  "scope": "Seven requested currentClub IDs, extracted solely from existing official HTML captures; no additional network fetches or hosted writes",
+  "rows": [
+    {
+      "name": "Collingwood",
+      "id": "CD_T40",
+      "namespace": "AFL public clubPid / clubId (CD_T identifiers)",
+      "sourceUrl": "https://www.afl.com.au/news/1642221",
+      "sourceSha256": "f0a8f4af1f76ed5b71953d1e40ef61a54fa95c5825dd2308c3e04fde1a4e9a99",
+      "capturedAt": "2026-11-22T01:21:16.385231+00:00",
+      "widgetConfig": {
+        "subtitle": "",
+        "linkTo": "https://www.afl.com.au/draft",
+        "linkToLabel": "Draft Hub",
+        "promo": {},
+        "isLinkInNewTab": "true",
+        "numberOfPlayers": 10,
+        "clubPid": "CD_T40",
+        "seasonToShow": "2026"
+      },
+      "precedingOfficialClubBadgeCode": "COLL",
+      "precedingOfficialClubBadgeResource": "https://resources.afl.com.au/photo-resources/2026/03/20/70ef028e-4ce1-4755-9b53-1027c57aeb2c/26_0134_Editorial-GFX_Straps-Badge-Refresh_COLL_FA-1x.jpg",
+      "officialTeamPage": {
+        "url": "https://www.afl.com.au/teams/collingwood",
+        "sha256": "2ed7243337f9e384e6656a428b1c7300a37094c439024d2ed51c48fbafa22f21",
+        "capturedAt": "2026-11-22T01:17:20.349247+00:00",
+        "dataTeamAbbr": "coll"
+      },
+      "directClubSiteConfigurationCorroboration": [
+        {
+          "url": "https://www.collingwoodfc.com.au/news/2166617/gus-kennedy",
+          "sha256": "ed6090483353563f24942adf8fae8c6797e8453666041ceae554b4c262f65ecb",
+          "capturedAt": "2026-11-22T01:42:32.524002+00:00",
+          "captureTimeBasis": "Local source-cache write time after batch completed",
+          "field": "public site configuration clubId",
+          "observedValue": "CD_T40"
+        }
+      ],
+      "matchMethod": "Observed clubPid from official draft-picks widget; preceding official club-badge resource code matches that club official team-page data-team-abbr. No numeric sequence or club ID guessed."
+    },
+    {
+      "name": "Essendon",
+      "id": "CD_T50",
+      "namespace": "AFL public clubPid / clubId (CD_T identifiers)",
+      "sourceUrl": "https://www.afl.com.au/news/1642221",
+      "sourceSha256": "f0a8f4af1f76ed5b71953d1e40ef61a54fa95c5825dd2308c3e04fde1a4e9a99",
+      "capturedAt": "2026-11-22T01:21:16.385231+00:00",
+      "widgetConfig": {
+        "subtitle": "",
+        "linkTo": "https://www.afl.com.au/draft",
+        "linkToLabel": "Draft Hub",
+        "promo": {},
+        "isLinkInNewTab": "true",
+        "numberOfPlayers": 10,
+        "clubPid": "CD_T50",
+        "seasonToShow": "2026"
+      },
+      "precedingOfficialClubBadgeCode": "ESS",
+      "precedingOfficialClubBadgeResource": "https://resources.afl.com.au/photo-resources/2026/03/20/cab730e2-5ff4-4da8-9d6d-5ead5d3a184f/26_0134_Editorial-GFX_Straps-Badge-Refresh_ESS_FA-1x.jpg",
+      "officialTeamPage": {
+        "url": "https://www.afl.com.au/teams/essendon",
+        "sha256": "b7756784b34304cff3db8d6447878ff8a6876239c7eee00bda369944efec42cb",
+        "capturedAt": "2026-11-22T01:17:20.260866+00:00",
+        "dataTeamAbbr": "ess"
+      },
+      "directClubSiteConfigurationCorroboration": [
+        {
+          "url": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+          "sha256": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+          "capturedAt": "2026-11-22T01:42:25.514344+00:00",
+          "captureTimeBasis": "Local source-cache write time after batch completed",
+          "field": "public site configuration clubId",
+          "observedValue": "CD_T50"
+        }
+      ],
+      "matchMethod": "Observed clubPid from official draft-picks widget; preceding official club-badge resource code matches that club official team-page data-team-abbr. No numeric sequence or club ID guessed."
+    },
+    {
+      "name": "Geelong",
+      "id": "CD_T70",
+      "namespace": "AFL public clubPid / clubId (CD_T identifiers)",
+      "sourceUrl": "https://www.afl.com.au/news/1642221",
+      "sourceSha256": "f0a8f4af1f76ed5b71953d1e40ef61a54fa95c5825dd2308c3e04fde1a4e9a99",
+      "capturedAt": "2026-11-22T01:21:16.385231+00:00",
+      "widgetConfig": {
+        "subtitle": "",
+        "linkTo": "https://www.afl.com.au/draft",
+        "linkToLabel": "Draft Hub",
+        "promo": {},
+        "isLinkInNewTab": "true",
+        "numberOfPlayers": 10,
+        "clubPid": "CD_T70",
+        "seasonToShow": "2026"
+      },
+      "precedingOfficialClubBadgeCode": "GEEL",
+      "precedingOfficialClubBadgeResource": "https://resources.afl.com.au/photo-resources/2026/03/21/4fa2fed6-7658-4cf1-9e54-4b13974f89eb/26_0134_Editorial-GFX_Straps-Badge-Refresh_GEEL_FA_v2-1x.jpg",
+      "officialTeamPage": {
+        "url": "https://www.afl.com.au/teams/geelong-cats",
+        "sha256": "24cf8e48140ed087f4ed19eab4f361a175933c3db197a07f4ecec4ee64ff2f4c",
+        "capturedAt": "2026-11-22T01:17:24.785255+00:00",
+        "dataTeamAbbr": "geel"
+      },
+      "directClubSiteConfigurationCorroboration": [
+        {
+          "url": "https://www.geelongcats.com.au/news/2165614/stephen-wells-post-2026-draft-takeaways",
+          "sha256": "e0f260f1bdf2e45db9f2073fe05139157197983e3b6e673a73a70081c8bd29f6",
+          "capturedAt": "2026-11-22T01:42:25.514344+00:00",
+          "captureTimeBasis": "Local source-cache write time after batch completed",
+          "field": "public site configuration clubId",
+          "observedValue": "CD_T70"
+        },
+        {
+          "url": "https://www.geelongcats.com.au/teams/vfl/squad",
+          "sha256": "ec59bb4224483a6e8847bea25eea03940f06729394cfa9f57f05efb722ba9bc7",
+          "capturedAt": "2026-11-22T01:42:25.514344+00:00",
+          "captureTimeBasis": "Local source-cache write time after batch completed",
+          "field": "public site configuration clubId",
+          "observedValue": "CD_T70"
+        }
+      ],
+      "matchMethod": "Observed clubPid from official draft-picks widget; preceding official club-badge resource code matches that club official team-page data-team-abbr. No numeric sequence or club ID guessed."
+    },
+    {
+      "name": "Hawthorn",
+      "id": "CD_T80",
+      "namespace": "AFL public clubPid / clubId (CD_T identifiers)",
+      "sourceUrl": "https://www.afl.com.au/news/1642221",
+      "sourceSha256": "f0a8f4af1f76ed5b71953d1e40ef61a54fa95c5825dd2308c3e04fde1a4e9a99",
+      "capturedAt": "2026-11-22T01:21:16.385231+00:00",
+      "widgetConfig": {
+        "subtitle": "",
+        "linkTo": "https://www.afl.com.au/draft",
+        "linkToLabel": "Draft Hub",
+        "promo": {},
+        "isLinkInNewTab": "true",
+        "numberOfPlayers": 10,
+        "clubPid": "CD_T80",
+        "seasonToShow": "2026"
+      },
+      "precedingOfficialClubBadgeCode": "HAW",
+      "precedingOfficialClubBadgeResource": "https://resources.afl.com.au/photo-resources/2026/03/20/b935f4f6-cf88-4392-925a-8f48ef749bd0/26_0134_Editorial-GFX_Straps-Badge-Refresh_HAW_FA-1x.jpg",
+      "officialTeamPage": {
+        "url": "https://www.afl.com.au/teams/hawthorn",
+        "sha256": "90c20b357c3fccc7b72156a51a7088a2ff554828f8dce00140e721749d261654",
+        "capturedAt": "2026-11-22T01:17:24.713614+00:00",
+        "dataTeamAbbr": "haw"
+      },
+      "directClubSiteConfigurationCorroboration": [
+        {
+          "url": "https://www.hawthornfc.com.au/news/2167057/cooper-hodge-the-hawk",
+          "sha256": "4d1637794ee5487d92223a14e02ccc511b6791464f3c192addbaad21fc226879",
+          "capturedAt": "2026-11-22T01:42:32.524002+00:00",
+          "captureTimeBasis": "Local source-cache write time after batch completed",
+          "field": "public site configuration clubId",
+          "observedValue": "CD_T80"
+        }
+      ],
+      "matchMethod": "Observed clubPid from official draft-picks widget; preceding official club-badge resource code matches that club official team-page data-team-abbr. No numeric sequence or club ID guessed."
+    },
+    {
+      "name": "Richmond",
+      "id": "CD_T120",
+      "namespace": "AFL public clubPid / clubId (CD_T identifiers)",
+      "sourceUrl": "https://www.afl.com.au/news/1642221",
+      "sourceSha256": "f0a8f4af1f76ed5b71953d1e40ef61a54fa95c5825dd2308c3e04fde1a4e9a99",
+      "capturedAt": "2026-11-22T01:21:16.385231+00:00",
+      "widgetConfig": {
+        "subtitle": "",
+        "linkTo": "https://www.afl.com.au/draft",
+        "linkToLabel": "Draft Hub",
+        "promo": {},
+        "isLinkInNewTab": "true",
+        "numberOfPlayers": 10,
+        "clubPid": "CD_T120",
+        "seasonToShow": "2026"
+      },
+      "precedingOfficialClubBadgeCode": "RICH",
+      "precedingOfficialClubBadgeResource": "https://resources.afl.com.au/photo-resources/2026/03/20/4f382d51-bc6c-473b-a65b-68426dfa083d/26_0134_Editorial-GFX_Straps-Badge-Refresh_RICH_FA-1x.jpg",
+      "officialTeamPage": {
+        "url": "https://www.afl.com.au/teams/richmond",
+        "sha256": "18b2b0d00cdc463f2870f48b89fc6321aeb93fcd32ed3ab2643644a9875d05cb",
+        "capturedAt": "2026-11-22T01:17:28.993116+00:00",
+        "dataTeamAbbr": "rich"
+      },
+      "directClubSiteConfigurationCorroboration": [],
+      "matchMethod": "Observed clubPid from official draft-picks widget; preceding official club-badge resource code matches that club official team-page data-team-abbr. No numeric sequence or club ID guessed."
+    },
+    {
+      "name": "Sydney",
+      "id": "CD_T160",
+      "namespace": "AFL public clubPid / clubId (CD_T identifiers)",
+      "sourceUrl": "https://www.afl.com.au/news/1642221",
+      "sourceSha256": "f0a8f4af1f76ed5b71953d1e40ef61a54fa95c5825dd2308c3e04fde1a4e9a99",
+      "capturedAt": "2026-11-22T01:21:16.385231+00:00",
+      "widgetConfig": {
+        "subtitle": "",
+        "linkTo": "https://www.afl.com.au/draft",
+        "linkToLabel": "Draft Hub",
+        "promo": {},
+        "isLinkInNewTab": "true",
+        "numberOfPlayers": 10,
+        "clubPid": "CD_T160",
+        "seasonToShow": "2026"
+      },
+      "precedingOfficialClubBadgeCode": "SYD",
+      "precedingOfficialClubBadgeResource": "https://resources.afl.com.au/photo-resources/2026/03/20/4b886c05-eba6-4c79-90ab-fcc3873e3881/26_0134_Editorial-GFX_Straps-Badge-Refresh_SYD_FA-1x.jpg",
+      "officialTeamPage": {
+        "url": "https://www.afl.com.au/teams/sydney-swans",
+        "sha256": "d6c1dee5382fc0277974c7a63f554095536f02d505c509df85b00bb2f26e9097",
+        "capturedAt": "2026-11-22T01:17:28.977488+00:00",
+        "dataTeamAbbr": "syd"
+      },
+      "directClubSiteConfigurationCorroboration": [
+        {
+          "url": "https://www.sydneyswans.com.au/news/2166984",
+          "sha256": "7736bc6bcbc6771a89cdc76265099471cff730c3e3b341e27c7558fed72d5fa4",
+          "capturedAt": "2026-11-22T01:21:24.201925+00:00",
+          "field": "public site configuration clubId",
+          "observedValue": "CD_T160"
+        }
+      ],
+      "matchMethod": "Observed clubPid from official draft-picks widget; preceding official club-badge resource code matches that club official team-page data-team-abbr. No numeric sequence or club ID guessed."
+    },
+    {
+      "name": "Western Bulldogs",
+      "id": "CD_T140",
+      "namespace": "AFL public clubPid / clubId (CD_T identifiers)",
+      "sourceUrl": "https://www.afl.com.au/news/1642221",
+      "sourceSha256": "f0a8f4af1f76ed5b71953d1e40ef61a54fa95c5825dd2308c3e04fde1a4e9a99",
+      "capturedAt": "2026-11-22T01:21:16.385231+00:00",
+      "widgetConfig": {
+        "subtitle": "",
+        "linkTo": "https://www.afl.com.au/draft",
+        "linkToLabel": "Draft Hub",
+        "promo": {},
+        "isLinkInNewTab": "true",
+        "numberOfPlayers": 10,
+        "clubPid": "CD_T140",
+        "seasonToShow": "2026"
+      },
+      "precedingOfficialClubBadgeCode": "WB",
+      "precedingOfficialClubBadgeResource": "https://resources.afl.com.au/photo-resources/2026/03/20/1adb599c-dd68-4b82-8308-4e12083dd783/26_0134_Editorial-GFX_Straps-Badge-Refresh_WB_FA-1x.jpg",
+      "officialTeamPage": {
+        "url": "https://www.afl.com.au/teams/western-bulldogs",
+        "sha256": "c0ff263ddf2091dfa3296e3027962cef41e1c6fd0107b525144e983b74be3811",
+        "capturedAt": "2026-11-22T01:17:29.041990+00:00",
+        "dataTeamAbbr": "wb"
+      },
+      "directClubSiteConfigurationCorroboration": [],
+      "matchMethod": "Observed clubPid from official draft-picks widget; preceding official club-badge resource code matches that club official team-page data-team-abbr. No numeric sequence or club ID guessed."
+    }
+  ],
+  "goldCoastConsistency": {
+    "id": "CD_T1000",
+    "corroboration": [
+      {
+        "url": "https://www.goldcoastfc.com.au/news/2167089/suns-re-select-ugle-hagan-and-himmelberg",
+        "sha256": "185a47d5ce4ecb533a56711cd5c0a5287da52027f38f63463d2d4907aaf66d7f",
+        "capturedAt": "2026-11-22T01:21:20.521201+00:00",
+        "field": "public site configuration clubId",
+        "observedValue": "CD_T1000"
+      }
+    ]
+  },
+  "namespaceWarning": "The public pages also contain unrelated small numeric teamId values in service configuration. Those are not used or mixed with the observed CD_T clubPid/clubId namespace.",
+  "productionWrites": 0
+}

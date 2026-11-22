@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-22T01:07:26.266Z",
+  "runtime": "native PostgreSQL 17.10; loopback only",
+  "checks": [
+    "exact mixed award creates two sealed packs and ten permanent cards without monetary mutation",
+    "all six options and repeated same-definition packs retain canonical sizes and sequential serials",
+    "concurrent retries and reordered exact commands recover one immutable receipt",
+    "later unavailable pack rolls back all earlier pack/card/account allocation",
+    "current owner role, session, MFA and bound actor are rechecked inside the transaction",
+    "recipient restriction, consent withdrawal, phone loss, retirement and financial holds reject issuance",
+    "member sees free provenance and existing opening/replay reveals without another issuance",
+    "normal paid purchase still charges once, records funding and opens the same allocated cards",
+    "concurrent purchased and free packs cannot oversell the final serial",
+    "global issuance stop rejects new awards and leaves the committed audit intact",
+    "stale product review and direct orphan or incomplete awards cannot bypass allocation guards",
+    "pack award audit cannot be edited, deleted or converted into a paid pack",
+    "owner reports separate paid packs and retain member award history",
+    "restricted runtime has no new financial or direct award-table write authority",
+    "local catalogue audit confirms RLS, pinned definer search paths and no public execution"
+  ],
+  "integrity": {
+    "supply_mismatch": 0,
+    "duplicate_serial": 0,
+    "incomplete_pack": 0
+  },
+  "fixtureOnly": true,
+  "productionWrites": 0,
+  "customerAwards": 0,
+  "realPayments": 0
+}

@@ -1,0 +1,43 @@
+{
+  "at": "2026-11-22T02:50:26.276Z",
+  "runtime": "native PostgreSQL 17.10; loopback only",
+  "rosterMigration": {
+    "path": "supabase/migrations/20261122011302_commercial_player_roster.sql",
+    "sha256": "4fdab8010fa79a3f01febcb0ac8454bd7f7f42bfbdbec6cca5c4dcd3e1ef2e39"
+  },
+  "checks": [
+    "exact mixed award creates two sealed packs and ten permanent cards without monetary mutation",
+    "all six options and repeated same-definition packs retain canonical sizes and sequential serials",
+    "concurrent retries and reordered exact commands recover one immutable receipt",
+    "later unavailable pack rolls back all earlier pack/card/account allocation",
+    "current owner role, session, MFA and bound actor are rechecked inside the transaction",
+    "recipient restriction, consent withdrawal, phone loss, retirement and financial holds reject issuance",
+    "member sees free provenance and existing opening/replay reveals without another issuance",
+    "normal paid purchase still charges once, records funding and opens the same allocated cards",
+    "concurrent purchased and free packs cannot oversell the final serial",
+    "global issuance stop rejects new awards and leaves the committed audit intact",
+    "stale product review and direct orphan or incomplete awards cannot bypass allocation guards",
+    "pack award audit cannot be edited, deleted or converted into a paid pack",
+    "owner reports separate paid packs and retain member award history",
+    "restricted runtime has no new financial or direct award-table write authority",
+    "local catalogue audit confirms RLS, pinned definer search paths and no public execution",
+    "roster legacy report preserves all rows and current decision distinguishes saved club from current club",
+    "retirement blocks new paid/free/direct issuance while sealed cards reveal unchanged and remain tradable",
+    "all non-active states stay excluded and verified return preserves identity, legacy supply and existing holds",
+    "roster batches replay once, reject stale/future evidence, and roll back every earlier decision on later failure",
+    "native concurrent import serializes before both paid and free allocation without a post-removal card",
+    "an already-locked paid allocation commits before removal and every subsequent draw observes exclusion",
+    "stale repeatable-read snapshots cannot mint after a separately committed removal or overwrite current facts",
+    "staged prospect accepts newer completed-draft evidence without changing identity or history and activates only with exact authority",
+    "roster owner session/MFA, immutable events, RLS and narrow definer grants remain database-enforced"
+  ],
+  "integrity": {
+    "supply_mismatch": 0,
+    "duplicate_serial": 0,
+    "incomplete_pack": 0
+  },
+  "fixtureOnly": true,
+  "productionWrites": 0,
+  "customerAwards": 0,
+  "realPayments": 0
+}

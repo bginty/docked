@@ -1,0 +1,8 @@
+
+Running 3 tests using 1 worker
+
+  ✓  1 tests/browser/owner-pack-awards.test.ts:15:5 › Owner reviews a mixed free-pack award and recovers an interrupted result without a second request (5.6s)
+  ✓  2 tests/browser/owner-rosters.test.ts:197:5 › Owner roster filters and pagination retain the full CSV scope on mobile (8.9s)
+  ✓  3 tests/browser/owner-rosters.test.ts:312:5 › Owner roster clearly separates legacy, retired and unconfigured players without mutation (2.2s)
+
+  3 passed (17.7s)

@@ -1,0 +1,27 @@
+{
+  "state": "READ_ONLY_OBSERVATION_NO_DEPLOYMENT",
+  "afl": {
+    "issued": 342,
+    "players": 542,
+    "definitions": 2690,
+    "legacyIssued": 308,
+    "approvedDefinitions": 2680
+  },
+  "control": {
+    "environment": "commercial",
+    "salesEnabled": true,
+    "issuanceEnabled": true,
+    "transfersEnabled": false
+  },
+  "capturedAt": "2026-11-22T01:56:48.507772+00:00",
+  "packAwardsTable": null,
+  "playerRosterEventsTable": null,
+  "web": {
+    "deployment": "dpl_2k3nw6ZuhxCT5SyAdBwbCiiq4JyU",
+    "readyState": "READY",
+    "source": "83794e9ac31c54960bfc76b9a07b36047f20486b",
+    "url": "https://docked.com.au"
+  },
+  "productionWrites": 0,
+  "customerAwards": 0
+}

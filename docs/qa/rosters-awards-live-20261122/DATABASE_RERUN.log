@@ -1,0 +1,26 @@
+PASS exact mixed award creates two sealed packs and ten permanent cards without monetary mutation
+PASS all six options and repeated same-definition packs retain canonical sizes and sequential serials
+PASS concurrent retries and reordered exact commands recover one immutable receipt
+PASS later unavailable pack rolls back all earlier pack/card/account allocation
+PASS current owner role, session, MFA and bound actor are rechecked inside the transaction
+PASS recipient restriction, consent withdrawal, phone loss, retirement and financial holds reject issuance
+PASS member sees free provenance and existing opening/replay reveals without another issuance
+PASS normal paid purchase still charges once, records funding and opens the same allocated cards
+PASS concurrent purchased and free packs cannot oversell the final serial
+PASS global issuance stop rejects new awards and leaves the committed audit intact
+PASS stale product review and direct orphan or incomplete awards cannot bypass allocation guards
+PASS pack award audit cannot be edited, deleted or converted into a paid pack
+PASS owner reports separate paid packs and retain member award history
+PASS restricted runtime has no new financial or direct award-table write authority
+PASS local catalogue audit confirms RLS, pinned definer search paths and no public execution
+PASS roster legacy report preserves all rows and current decision distinguishes saved club from current club
+PASS retirement blocks new paid/free/direct issuance while sealed cards reveal unchanged and remain tradable
+PASS all non-active states stay excluded and verified return preserves identity, legacy supply and existing holds
+PASS roster batches replay once, reject stale/future evidence, and roll back every earlier decision on later failure
+PASS native concurrent import serializes before both paid and free allocation without a post-removal card
+PASS an already-locked paid allocation commits before removal and every subsequent draw observes exclusion
+PASS stale repeatable-read snapshots cannot mint after a separately committed removal or overwrite current facts
+PASS staged prospect accepts newer completed-draft evidence without changing identity or history and activates only with exact authority
+PASS roster owner session/MFA, immutable events, RLS and narrow definer grants remain database-enforced
+PASS 24 isolated PostgreSQL checks; zero integrity discrepancies
+Supabase fixture advisor exit: 0; see ADVISORS.json

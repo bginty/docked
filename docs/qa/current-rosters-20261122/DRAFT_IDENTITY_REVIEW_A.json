@@ -1,0 +1,2012 @@
+{
+  "createdAt": "2026-11-22T01:43:25.973027+00:00",
+  "scope": "First 32 UNRESOLVED_NEW_OR_RETURNING_IDENTITY rows in AFL_REVIEW.json table order; existing two commercial returns excluded",
+  "method": [
+    "Used publicly retrievable official AFL/club HTML and indexed public player-profile pages; no blocked api.afl.com.au endpoint or authentication endpoint was called",
+    "Queried Wikipedia public pageprops once for all 32 exact titles, checked ambiguous hits, and attempted public Wikidata name search; rate-limited results are unknown, not evidence of absence",
+    "Compared exact case-folded names to historical public Wikimedia AFL beta catalogue and existing commercial match fields; a name-only or disambiguation QID is never adopted",
+    "Collected factual evidence only; no canonical UUID, candidate definition, live mutation or activation created"
+  ],
+  "counts": {
+    "reviewed": 32,
+    "officialPlayerIdsCorroborated": 5,
+    "verifiedWikimediaQids": 0,
+    "withIndividualDobEvidence": 30,
+    "historicalExactNameMatches": 0,
+    "wikidataSearchRateLimited": 15,
+    "withReviewedPositionCandidate": 27
+  },
+  "historicalCatalogue": {
+    "path": "public/data/rosters/wikimedia-roster-beta-2026-10-23-v1.json",
+    "sha256": "dec3486cd976b54cd2a3ced2bf88a5378a139e6d2d4788c6202562793b36a5d9"
+  },
+  "wikipediaBatch": {
+    "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageprops&ppprop=wikibase_item&redirects=1&titles=Toby+Krasna%7CXavier+Ladbrook%7CSam+Tassone%7CKodah+Edwards%7CArchie+Van+Dyk%7CJackson+Phillips%7CArchie+Spencer%7CCody+Walker%7CHarvey+Spawton-Guy%7CJackson+Watkins%7CEthan+Herbert%7CSam+Gayfer%7CGus+Kennedy%7CJordan+Knapp%7CKoby+LeCras%7CEthan+Drever%7CArchie+Elliott%7CHarvie+Cooke%7CJack+Pickett%7CBlake+Justice%7CGeorge+Dimer%7CKane+Johnston%7CJake+Medved%7CLachlan+Hicks%7CAnthony+Long%7CZach+Stevens%7CLeo+Steed%7CEthan+Matthews%7CJake+Eime%7CAndrio+Sousa%7CBenji+van+Rooyen%7CCooper+Hodge",
+    "status": 200,
+    "sha256": "cb21050f5b66cb86cc4a9a3a4bd24b65f046a155a437f981e691561e765b12f0"
+  },
+  "rejectedIdentityExamples": [
+    {
+      "name": "Gus Kennedy",
+      "qid": "Q96981653",
+      "reason": "English cricketer born 1990-08-10; draft player official DOB is 2008-02-21",
+      "verificationSourceUrls": [
+        "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts%7Cpageprops&exintro=1&explaintext=1&titles=Anthony+Long%7CArchie+Elliott%7CCody+Walker%7CGus+Kennedy",
+        "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions%7Cclaims&languages=en&ids=Q30705720%7CQ134306675%7CQ20815925%7CQ96981653"
+      ]
+    },
+    {
+      "name": "Cody Walker",
+      "qid": "Q20815925",
+      "reason": "Disambiguation page, not an individual AFL player",
+      "verificationSourceUrls": [
+        "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts%7Cpageprops&exintro=1&explaintext=1&titles=Anthony+Long%7CArchie+Elliott%7CCody+Walker%7CGus+Kennedy",
+        "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions%7Cclaims&languages=en&ids=Q30705720%7CQ134306675%7CQ20815925%7CQ96981653"
+      ]
+    },
+    {
+      "name": "Archie Elliott",
+      "qid": "Q134306675",
+      "reason": "Disambiguation page, not the 2008-born AFL draftee",
+      "verificationSourceUrls": [
+        "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts%7Cpageprops&exintro=1&explaintext=1&titles=Anthony+Long%7CArchie+Elliott%7CCody+Walker%7CGus+Kennedy",
+        "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions%7Cclaims&languages=en&ids=Q30705720%7CQ134306675%7CQ20815925%7CQ96981653"
+      ]
+    },
+    {
+      "name": "Anthony Long",
+      "qid": "Q30705720",
+      "reason": "Disambiguation page; cannot bind the newly selected Geelong player to an older namesake",
+      "verificationSourceUrls": [
+        "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts%7Cpageprops&exintro=1&explaintext=1&titles=Anthony+Long%7CArchie+Elliott%7CCody+Walker%7CGus+Kennedy",
+        "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions%7Cclaims&languages=en&ids=Q30705720%7CQ134306675%7CQ20815925%7CQ96981653"
+      ]
+    }
+  ],
+  "sourceConflicts": [
+    {
+      "name": "Xavier Ladbrook",
+      "issue": "AFL top-40 and official Gippsland squad give 16/10/2008; earlier AFL June prospect article gives 1/11/08. Do not adopt a QID by a single inconsistent DOB.",
+      "urls": [
+        "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+        "https://www.afl.com.au/news/365063/gippsland-power",
+        "https://www.afl.com.au/news/1536339/cal-twomeys-25-draft-prospects-to-watch-at-the-u18-championships/amp"
+      ]
+    },
+    {
+      "name": "Harvie Cooke",
+      "issue": "Recent AFL top-40 and forwards profiles give 04/12/2008; Northern Knights squad page returns 12-Apr-08 and an inconsistent 204.7cm height. Requires source reconciliation before identity binding.",
+      "urls": [
+        "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+        "https://www.afl.com.au/talent-league/clubs/northern-knights"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.afl.com.au/news/1642221",
+      "status": 200,
+      "sha256": "7047b1c03e2e3248cad69f4cbe72f4e2d9c4b05f6c40ac8441a74085f0d9f54c",
+      "observedAt": "2026-11-22T01:39:43.776224Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-fetch.json"
+    },
+    {
+      "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+      "status": 200,
+      "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+      "observedAt": "2026-11-22T01:39:43.776224Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-fetch.json"
+    },
+    {
+      "url": "https://www.afc.com.au/news/2166685/crows-select-with-pick-no",
+      "status": 200,
+      "sha256": "61ece68b3d824ab6f40fd4cff9b98883339c2a5e7cf20ed74ccf8684d4ca0c58",
+      "observedAt": "2026-11-22T01:39:43.776224Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-fetch.json"
+    },
+    {
+      "url": "https://www.afl.com.au/news/1640348/kevin-sheehans-2026-telstra-afl-draft-top-prospects-midfielders/",
+      "status": 200,
+      "sha256": "ce1e6e2cb38c1e4f9a01157be247afd2e394ddd5b822cf216cd8c0528a1dc1d4",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://www.afl.com.au/news/1632340",
+      "status": 200,
+      "sha256": "1f1fd0fc5f7768f77f22be4c390e53b738dfd538ef6be57349b84520b52c45b7",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://www.afl.com.au/news/1634409",
+      "status": 200,
+      "sha256": "77a6b5cce25309a160921d2f9509023bde75caaab8d64fea9a99035191b92788",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://www.afl.com.au/news/1638960/kevin-sheehans-2026-telstra-afl-draft-top-prospects-small-and-medium-forwards/",
+      "status": 200,
+      "sha256": "57202af26025f599b580948ffe6def867346dcc118975fa7e412b3b378d1a156",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://www.afl.com.au/players/15318/cooper-hodge",
+      "status": 200,
+      "sha256": "f3e84484ab2a8fc5642d22ef4b4ae6b95d163e13b6f8abd0ef1b0dbb540e48ec",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://www.afl.com.au/players/13934/gus-kennedy",
+      "status": 200,
+      "sha256": "345e69887971e96e21c3b55e0c05d73daa9f9ad7e69a919628803d7d88d8d0b9",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://www.afl.com.au/players/14658/archie-elliott",
+      "status": 200,
+      "sha256": "f325d784ac6364722f5d982426836edbd10777d0b71e95ab0f96b554b580597c",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://www.afl.com.au/players/13906/lachlan-hicks",
+      "status": 200,
+      "sha256": "8c198b2d44242d5753930fd04bdd4820044377789855e3f3271cf8e07f5035f4",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+      "status": 200,
+      "sha256": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://www.geelongcats.com.au/news/2165614/stephen-wells-post-2026-draft-takeaways",
+      "status": 200,
+      "sha256": "e0f260f1bdf2e45db9f2073fe05139157197983e3b6e673a73a70081c8bd29f6",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://play.afl/victoria/news/vic-top-draft-prospects-defenders",
+      "status": 200,
+      "sha256": "e725f74dae27173e2a5108b2aa6899062416b989a45633de292c21f24102082d",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://www.geelongcats.com.au/teams/vfl/squad",
+      "status": 200,
+      "sha256": "ec59bb4224483a6e8847bea25eea03940f06729394cfa9f57f05efb722ba9bc7",
+      "observedAt": "2026-11-22T01:42:25.514344Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-profiles.json"
+    },
+    {
+      "url": "https://www.hawthornfc.com.au/news/2167057/cooper-hodge-the-hawk",
+      "status": 200,
+      "sha256": "4d1637794ee5487d92223a14e02ccc511b6791464f3c192addbaad21fc226879",
+      "observedAt": "2026-11-22T01:42:32.524002Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:32.524002Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-final-sources.json"
+    },
+    {
+      "url": "https://www.collingwoodfc.com.au/news/2166617/gus-kennedy",
+      "status": 200,
+      "sha256": "ed6090483353563f24942adf8fae8c6797e8453666041ceae554b4c262f65ecb",
+      "observedAt": "2026-11-22T01:42:32.524002Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:32.524002Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-final-sources.json"
+    },
+    {
+      "url": "https://www.afl.com.au/players/13891/ethan-drever",
+      "status": 200,
+      "sha256": "bd14b381f73db6f1604623ad141ef69f938968dc5775ddc36d9a535390a84832",
+      "observedAt": "2026-11-22T01:42:32.524002Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:42:32.524002Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-final-sources.json"
+    },
+    {
+      "url": "https://www.afl.com.au/draft/draft-tracker/2026",
+      "status": 200,
+      "sha256": "613934d5f6ebdf9434936a58f176636b4a98395d686245f618a5836af0639547",
+      "observedAt": "2026-11-22T01:40:32.496288Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:40:32.496288Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-extra.json"
+    },
+    {
+      "url": "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts%7Cpageprops&exintro=1&explaintext=1&titles=Anthony+Long%7CArchie+Elliott%7CCody+Walker%7CGus+Kennedy",
+      "status": 200,
+      "sha256": "4f13d37b71228b4b7c48e3a5a3eeb89e43b2b8eb392c549a91cd177c1b7ce150",
+      "observedAt": "2026-11-22T01:40:32.496288Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:40:32.496288Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-extra.json"
+    },
+    {
+      "url": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&props=labels%7Cdescriptions%7Cclaims&languages=en&ids=Q30705720%7CQ134306675%7CQ20815925%7CQ96981653",
+      "status": 200,
+      "sha256": "d3b2fcde444821c4d84b6b88154b4d6f8fc41cf28e4ec8edbfedfa691d5312cf",
+      "observedAt": "2026-11-22T01:40:32.496288Z",
+      "localCaptureFileWrittenAt": "2026-11-22T01:40:32.496288Z",
+      "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+      "captureCache": "docked-draft-identity-a-extra.json"
+    }
+  ],
+  "rows": [
+    {
+      "tableOrderWithinUnresolved": 1,
+      "pick": 14,
+      "name": "Toby Krasna",
+      "selectedClub": "Adelaide",
+      "previousPathway": "Northern Knights (Talent League), Preston Bullants JFC",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Toby Krasna",
+          "dob": "2008-02-28",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Toby Krasna",
+          "dob": "2008-02-28",
+          "url": "https://www.afl.com.au/news/1632340",
+          "sha256": "1f1fd0fc5f7768f77f22be4c390e53b738dfd538ef6be57349b84520b52c45b7",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Toby Krasna",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Toby+Krasna",
+        "status": 200,
+        "sha256": "80b32d98221807b84b03744769efd9e12b4ee59be1d1010207e329efc57a5de0"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 2,
+      "pick": 34,
+      "name": "Xavier Ladbrook",
+      "selectedClub": "Adelaide",
+      "previousPathway": "Gippsland Power (Talent League), Nar Nar Goon Football Club",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Xavier Ladbrook",
+          "dob": "2008-10-16",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "DEF",
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Xavier Ladbrook",
+          "dob": "2008-10-16",
+          "url": "https://play.afl/victoria/news/vic-top-draft-prospects-defenders",
+          "sha256": "e725f74dae27173e2a5108b2aa6899062416b989a45633de292c21f24102082d",
+          "positionMappingCandidate": [
+            "DEF",
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Xavier Ladbrook",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Xavier+Ladbrook",
+        "status": 200,
+        "sha256": "9100632bd765f1a99e44fcb5b03b20e1340fa77d95e1de84318c67a2bb38fd80"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 3,
+      "pick": 44,
+      "name": "Sam Tassone",
+      "selectedClub": "Adelaide",
+      "previousPathway": "North Adelaide (SANFL), Irymple Football Club",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Sam Tassone",
+          "dob": "2008-02-12",
+          "url": "https://www.afl.com.au/news/1632340",
+          "sha256": "1f1fd0fc5f7768f77f22be4c390e53b738dfd538ef6be57349b84520b52c45b7",
+          "positionMappingCandidate": [
+            "DEF"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Sam Tassone",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Sam+Tassone",
+        "status": 200,
+        "sha256": "25cd53237344dabf2e6bd1687cf45755d7c5068ed5de0f5aad5b3a2f7b234f4f"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 4,
+      "pick": 27,
+      "name": "Kodah Edwards",
+      "selectedClub": "Brisbane",
+      "previousPathway": "South Adelaide (SANFL), Willunga",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Kodah Edwards",
+          "dob": "2008-07-25",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "MID",
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Kodah Edwards",
+          "dob": "2008-07-25",
+          "url": "https://www.afl.com.au/news/1640348/kevin-sheehans-2026-telstra-afl-draft-top-prospects-midfielders/",
+          "sha256": "ce1e6e2cb38c1e4f9a01157be247afd2e394ddd5b822cf216cd8c0528a1dc1d4",
+          "positionMappingCandidate": [
+            "MID",
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Kodah Edwards",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Kodah+Edwards",
+        "status": 200,
+        "sha256": "1d6646b48debf00be9e9d4c63b3d8e166b53d6f2a17e18cd05b6ece6582b8b4a"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 5,
+      "pick": 28,
+      "name": "Archie Van Dyk",
+      "selectedClub": "Brisbane",
+      "previousPathway": "South Adelaide (SANFL), Port Noarlunga",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Archie Van Dyk",
+          "dob": "2008-07-28",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Archie Van Dyk",
+          "dob": "2008-07-28",
+          "url": "https://www.afl.com.au/news/1640348/kevin-sheehans-2026-telstra-afl-draft-top-prospects-midfielders/",
+          "sha256": "ce1e6e2cb38c1e4f9a01157be247afd2e394ddd5b822cf216cd8c0528a1dc1d4",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Archie Van Dyk",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Archie+Van+Dyk",
+        "status": 200,
+        "sha256": "062a3848a6a046a054f57b8c330c500645d1ac74e049b5e9e0439aec8ed32927"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 6,
+      "pick": 29,
+      "name": "Jackson Phillips",
+      "selectedClub": "Brisbane",
+      "previousPathway": "Dandenong Stingrays (Talent League), Langwarrin Community Football Club",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Jackson Phillips",
+          "dob": "2008-01-30",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Jackson Phillips",
+          "dob": "2008-01-30",
+          "url": "https://www.afl.com.au/news/1640348/kevin-sheehans-2026-telstra-afl-draft-top-prospects-midfielders/",
+          "sha256": "ce1e6e2cb38c1e4f9a01157be247afd2e394ddd5b822cf216cd8c0528a1dc1d4",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Jackson Phillips",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Jackson+Phillips",
+        "status": 200,
+        "sha256": "c2ee9d5194ad68cf5c9e32877e856715717e3d80aacd06ae76b45df8f3b52f65"
+      },
+      "wikidataSearchCandidates": [
+        {
+          "qid": "Q89636270",
+          "label": "Jackson R. Phillips",
+          "description": "researcher",
+          "accepted": false
+        }
+      ],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 7,
+      "pick": 36,
+      "name": "Archie Spencer",
+      "selectedClub": "Brisbane",
+      "previousPathway": "Eastern Ranges (Talent League), Woori Yallock JFC",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Archie Spencer",
+          "dob": "2008-09-24",
+          "url": "https://www.afl.com.au/news/1632340",
+          "sha256": "1f1fd0fc5f7768f77f22be4c390e53b738dfd538ef6be57349b84520b52c45b7",
+          "positionMappingCandidate": [
+            "DEF",
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Archie Spencer",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Archie+Spencer",
+        "status": 200,
+        "sha256": "695fe41e360a92050458a578ada1b2df00718f98bc9ed05a681a5d7b1e1a3b38"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 8,
+      "pick": 3,
+      "name": "Cody Walker",
+      "selectedClub": "Carlton",
+      "previousPathway": "Bendigo Pioneers (Talent League), Echuca Football Club",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Cody Walker",
+          "dob": "2008-01-26",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Cody Walker",
+          "dob": "2008-01-26",
+          "url": "https://www.afl.com.au/news/1640348/kevin-sheehans-2026-telstra-afl-draft-top-prospects-midfielders/",
+          "sha256": "ce1e6e2cb38c1e4f9a01157be247afd2e394ddd5b822cf216cd8c0528a1dc1d4",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Cody Walker",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Cody+Walker",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 9,
+      "pick": 32,
+      "name": "Harvey Spawton-Guy",
+      "selectedClub": "Carlton",
+      "previousPathway": "West Perth (WAFL), Joondalup Kinross JFC",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Harvey Spawton-Guy",
+          "dob": "2008-09-08",
+          "url": "https://www.afl.com.au/news/1634409",
+          "sha256": "77a6b5cce25309a160921d2f9509023bde75caaab8d64fea9a99035191b92788",
+          "positionMappingCandidate": [
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Harvey Spawton-Guy",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Harvey+Spawton-Guy",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 10,
+      "pick": 37,
+      "name": "Jackson Watkins",
+      "selectedClub": "Carlton",
+      "previousPathway": "Calder Cannons (Talent League), Aberfeldie (EDFL)",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Jackson Watkins",
+          "dob": "2008-10-04",
+          "url": "https://www.afl.com.au/news/1640348/kevin-sheehans-2026-telstra-afl-draft-top-prospects-midfielders/",
+          "sha256": "ce1e6e2cb38c1e4f9a01157be247afd2e394ddd5b822cf216cd8c0528a1dc1d4",
+          "positionMappingCandidate": [
+            "MID",
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Jackson Watkins",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Jackson+Watkins",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 11,
+      "pick": 46,
+      "name": "Ethan Herbert",
+      "selectedClub": "Carlton",
+      "previousPathway": "North Adelaide (SANFL), Walkerville JFC",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Ethan Herbert",
+          "dob": "2008-11-01",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "RUC",
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Ethan Herbert",
+          "dob": "2008-11-01",
+          "url": "https://www.afl.com.au/news/1634409",
+          "sha256": "77a6b5cce25309a160921d2f9509023bde75caaab8d64fea9a99035191b92788",
+          "positionMappingCandidate": [
+            "RUC",
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Ethan Herbert",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Ethan+Herbert",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 12,
+      "pick": 12,
+      "name": "Sam Gayfer",
+      "selectedClub": "Collingwood",
+      "previousPathway": "Northern Knights (Talent League), Banyule JFC",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Sam Gayfer",
+          "dob": "2008-05-21",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Sam Gayfer",
+          "dob": "2008-05-21",
+          "url": "https://www.afl.com.au/news/1634409",
+          "sha256": "77a6b5cce25309a160921d2f9509023bde75caaab8d64fea9a99035191b92788",
+          "positionMappingCandidate": [
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Sam Gayfer",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Sam+Gayfer",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 13,
+      "pick": 31,
+      "name": "Gus Kennedy",
+      "selectedClub": "Collingwood",
+      "previousPathway": "Dandenong Stingrays (Talent League), Carrum Patterson Lakes JFC",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Gus Kennedy",
+          "dob": "2008-02-21",
+          "url": "https://play.afl/victoria/news/vic-top-draft-prospects-defenders",
+          "sha256": "e725f74dae27173e2a5108b2aa6899062416b989a45633de292c21f24102082d",
+          "positionMappingCandidate": null,
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Gus Kennedy",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Gus+Kennedy",
+        "status": 200,
+        "sha256": "c330e37520f911ccf9c67fc03ad6f28fb1920dfb334914fa074046591d6a053c"
+      },
+      "wikidataSearchCandidates": [
+        {
+          "qid": "Q96981653",
+          "label": "Gus Kennedy",
+          "description": "English cricketer",
+          "accepted": false
+        }
+      ],
+      "officialPlayerProfile": {
+        "provider": "AFL public player profile",
+        "providerId": "13934",
+        "url": "https://www.afl.com.au/players/13934/gus-kennedy",
+        "sha256": "345e69887971e96e21c3b55e0c05d73daa9f9ad7e69a919628803d7d88d8d0b9",
+        "httpStatus": 200,
+        "dob": "2008-02-21",
+        "positionMappingCandidate": [
+          "DEF",
+          "MID"
+        ],
+        "clubSelectionUrl": "https://www.collingwoodfc.com.au/news/2166617/gus-kennedy",
+        "clubSelectionSha256": "ed6090483353563f24942adf8fae8c6797e8453666041ceae554b4c262f65ecb",
+        "matchingLogic": "Exact personal name and independently matching DOB on public AFL profile and league prospect evidence; current club and playing role corroborated by completed club selection article. Historical AFL beta catalogue and current commercial name matches are empty; no UUID inferred.",
+        "observedAt": "2026-11-22T01:42:25.514344Z",
+        "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+        "clubSelectionObservedAt": "2026-11-22T01:42:32.524002Z",
+        "positionSourceUrl": "https://www.collingwoodfc.com.au/news/2166617/gus-kennedy",
+        "positionSourceSha256": "ed6090483353563f24942adf8fae8c6797e8453666041ceae554b4c262f65ecb",
+        "positionSourceObservedAt": "2026-11-22T01:42:32.524002Z",
+        "primaryPositionCandidate": "DEF",
+        "factualCompleteness": {
+          "fullNameConfirmed": true,
+          "individualOfficialProfileIdConfirmed": true,
+          "dobConfirmedInDirectProfileHtml": true,
+          "completedClubSelectionConfirmed": true,
+          "playingRoleConfirmedByOfficialClub": true,
+          "legacyCanonicalConflictAuditComplete": false,
+          "canonicalUuidReady": false,
+          "sourcePermissionReviewed": false,
+          "commercialActivationApproved": false
+        }
+      },
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "OFFICIAL_PROFILE_ID_CORROBORATED_PENDING_CANONICAL_DECISION",
+      "missingFields": [
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 14,
+      "pick": 41,
+      "name": "Jordan Knapp",
+      "selectedClub": "Collingwood",
+      "previousPathway": "Eastern Ranges (Talent League), North Ringwood (EFNL)",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Jordan Knapp",
+          "dob": "2008-01-05",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Jordan Knapp",
+          "dob": "2008-01-05",
+          "url": "https://www.afl.com.au/news/1632340",
+          "sha256": "1f1fd0fc5f7768f77f22be4c390e53b738dfd538ef6be57349b84520b52c45b7",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Jordan Knapp",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Jordan+Knapp",
+        "status": 200,
+        "sha256": "f28e082579969c5fdd2a2b9ea3e61010c5868f06483c8a6e5ddd7f58efc5692e"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 15,
+      "pick": 62,
+      "name": "Koby LeCras",
+      "selectedClub": "Collingwood",
+      "previousPathway": "West Perth (WAFL), Cervantes Football Club",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Koby LeCras",
+          "dob": "2008-04-26",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Koby LeCras",
+          "dob": "2008-04-26",
+          "url": "https://www.afl.com.au/news/1634409",
+          "sha256": "77a6b5cce25309a160921d2f9509023bde75caaab8d64fea9a99035191b92788",
+          "positionMappingCandidate": [
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Koby LeCras",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Koby+LeCras",
+        "status": 200,
+        "sha256": "a05d92f97a7b3458eb46287f29626248d82c32c05a638c1b5f335e99f8bc970c"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 16,
+      "pick": 2,
+      "name": "Ethan Drever",
+      "selectedClub": "Essendon",
+      "previousPathway": "GWV Rebels (Talent League), Ballarat Football Netball Club",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Ethan Drever",
+          "dob": "2008-07-10",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": null,
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Ethan Drever",
+          "dob": "2008-07-10",
+          "url": "https://www.afl.com.au/news/1640348/kevin-sheehans-2026-telstra-afl-draft-top-prospects-midfielders/",
+          "sha256": "ce1e6e2cb38c1e4f9a01157be247afd2e394ddd5b822cf216cd8c0528a1dc1d4",
+          "positionMappingCandidate": null,
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Ethan Drever",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Ethan+Drever",
+        "status": 200,
+        "sha256": "6aa456e418ecd96a5f623349613bdac95876a6e600f13792abc745b71f68e1aa"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": {
+        "provider": "AFL public player profile",
+        "providerId": "13891",
+        "url": "https://www.afl.com.au/players/13891/ethan-drever",
+        "sha256": "bd14b381f73db6f1604623ad141ef69f938968dc5775ddc36d9a535390a84832",
+        "httpStatus": 200,
+        "dob": "2008-07-10",
+        "positionMappingCandidate": [
+          "MID"
+        ],
+        "clubSelectionUrl": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+        "clubSelectionSha256": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+        "matchingLogic": "Exact personal name and independently matching DOB on public AFL profile and league prospect evidence; current club and playing role corroborated by completed club selection article. Historical AFL beta catalogue and current commercial name matches are empty; no UUID inferred.",
+        "observedAt": "2026-11-22T01:42:32.524002Z",
+        "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+        "clubSelectionObservedAt": "2026-11-22T01:42:25.514344Z",
+        "positionSourceUrl": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+        "positionSourceSha256": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+        "positionSourceObservedAt": "2026-11-22T01:42:25.514344Z",
+        "primaryPositionCandidate": "MID",
+        "factualCompleteness": {
+          "fullNameConfirmed": true,
+          "individualOfficialProfileIdConfirmed": true,
+          "dobConfirmedInDirectProfileHtml": true,
+          "completedClubSelectionConfirmed": true,
+          "playingRoleConfirmedByOfficialClub": true,
+          "legacyCanonicalConflictAuditComplete": false,
+          "canonicalUuidReady": false,
+          "sourcePermissionReviewed": false,
+          "commercialActivationApproved": false
+        }
+      },
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "OFFICIAL_PROFILE_ID_CORROBORATED_PENDING_CANONICAL_DECISION",
+      "missingFields": [
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 17,
+      "pick": 17,
+      "name": "Archie Elliott",
+      "selectedClub": "Essendon",
+      "previousPathway": "GWV Rebels (Talent League), Horsham Football & Netball Clubs Inc.",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Archie Elliott",
+          "dob": "2008-08-10",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": null,
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Archie Elliott",
+          "dob": "2008-08-10",
+          "url": "https://www.afl.com.au/news/1638960/kevin-sheehans-2026-telstra-afl-draft-top-prospects-small-and-medium-forwards/",
+          "sha256": "57202af26025f599b580948ffe6def867346dcc118975fa7e412b3b378d1a156",
+          "positionMappingCandidate": null,
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Archie Elliott",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Archie+Elliott",
+        "status": 200,
+        "sha256": "11d7a16f16eebd421b99bbf46c4bc1ea495ff20e49af8b6b2a73fa4ab304b785"
+      },
+      "wikidataSearchCandidates": [
+        {
+          "qid": "Q4786672",
+          "label": "Archie Elliott, Lord Elliott",
+          "description": "Scottish judge (1922-2008)",
+          "accepted": false
+        },
+        {
+          "qid": "Q134306699",
+          "label": "Archie Elliott Jr.",
+          "description": "American judge",
+          "accepted": false
+        },
+        {
+          "qid": "Q134306675",
+          "label": "Archie Elliott",
+          "description": "Wikimedia disambiguation page",
+          "accepted": false
+        }
+      ],
+      "officialPlayerProfile": {
+        "provider": "AFL public player profile",
+        "providerId": "14658",
+        "url": "https://www.afl.com.au/players/14658/archie-elliott",
+        "sha256": "f325d784ac6364722f5d982426836edbd10777d0b71e95ab0f96b554b580597c",
+        "httpStatus": 200,
+        "dob": "2008-08-10",
+        "positionMappingCandidate": [
+          "FWD"
+        ],
+        "clubSelectionUrl": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+        "clubSelectionSha256": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+        "matchingLogic": "Exact personal name and independently matching DOB on public AFL profile and league prospect evidence; current club and playing role corroborated by completed club selection article. Historical AFL beta catalogue and current commercial name matches are empty; no UUID inferred.",
+        "observedAt": "2026-11-22T01:42:25.514344Z",
+        "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+        "clubSelectionObservedAt": "2026-11-22T01:42:25.514344Z",
+        "positionSourceUrl": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+        "positionSourceSha256": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+        "positionSourceObservedAt": "2026-11-22T01:42:25.514344Z",
+        "primaryPositionCandidate": "FWD",
+        "factualCompleteness": {
+          "fullNameConfirmed": true,
+          "individualOfficialProfileIdConfirmed": true,
+          "dobConfirmedInDirectProfileHtml": true,
+          "completedClubSelectionConfirmed": true,
+          "playingRoleConfirmedByOfficialClub": true,
+          "legacyCanonicalConflictAuditComplete": false,
+          "canonicalUuidReady": false,
+          "sourcePermissionReviewed": false,
+          "commercialActivationApproved": false
+        }
+      },
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "OFFICIAL_PROFILE_ID_CORROBORATED_PENDING_CANONICAL_DECISION",
+      "missingFields": [
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 18,
+      "pick": 21,
+      "name": "Harvie Cooke",
+      "selectedClub": "Essendon",
+      "previousPathway": "Northern Knights (Talent League), Eltham",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Harvie Cooke",
+          "dob": "2008-12-04",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "MID",
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Harvie Cooke",
+          "dob": "2008-12-04",
+          "url": "https://www.afl.com.au/news/1638960/kevin-sheehans-2026-telstra-afl-draft-top-prospects-small-and-medium-forwards/",
+          "sha256": "57202af26025f599b580948ffe6def867346dcc118975fa7e412b3b378d1a156",
+          "positionMappingCandidate": [
+            "MID",
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Harvie Cooke",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Harvie+Cooke",
+        "status": 200,
+        "sha256": "5dc368e22bb6f10eb6df8f40171dd8c53403983240a26e1ba6344bff6ffd3e80"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 19,
+      "pick": 26,
+      "name": "Jack Pickett",
+      "selectedClub": "Essendon",
+      "previousPathway": "Geelong Falcons (Talent League), Torquay",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Jack Pickett",
+          "dob": "2008-03-06",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Jack Pickett",
+          "dob": "2008-03-06",
+          "url": "https://www.afl.com.au/news/1634409",
+          "sha256": "77a6b5cce25309a160921d2f9509023bde75caaab8d64fea9a99035191b92788",
+          "positionMappingCandidate": [
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Jack Pickett",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Jack+Pickett",
+        "status": 200,
+        "sha256": "bd7d708d81311bad9b2a5d14368ae02d4fa114c220393c6880855f362823a6f5"
+      },
+      "wikidataSearchCandidates": [
+        {
+          "qid": "Q137693870",
+          "label": "Jack Pickett",
+          "description": "Canadian political candidate",
+          "accepted": false
+        }
+      ],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 20,
+      "pick": 55,
+      "name": "Blake Justice",
+      "selectedClub": "Essendon",
+      "previousPathway": "Calder Cannons (Talent League), Greenvale (EDFL)",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Blake Justice",
+          "dob": "2008-09-29",
+          "url": "https://www.afl.com.au/news/1640348/kevin-sheehans-2026-telstra-afl-draft-top-prospects-midfielders/",
+          "sha256": "ce1e6e2cb38c1e4f9a01157be247afd2e394ddd5b822cf216cd8c0528a1dc1d4",
+          "positionMappingCandidate": [
+            "MID",
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Blake Justice",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Blake+Justice",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 21,
+      "pick": 18,
+      "name": "George Dimer",
+      "selectedClub": "Fremantle",
+      "previousPathway": "Sandringham Dragons (Talent League), East Brighton Vampires JFC (SMJFL)",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "George Dimer",
+          "dob": "2008-06-21",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "FWD",
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "George Dimer",
+          "dob": "2008-06-21",
+          "url": "https://www.afl.com.au/news/1638960/kevin-sheehans-2026-telstra-afl-draft-top-prospects-small-and-medium-forwards/",
+          "sha256": "57202af26025f599b580948ffe6def867346dcc118975fa7e412b3b378d1a156",
+          "positionMappingCandidate": [
+            "FWD",
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "George Dimer",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=George+Dimer",
+        "status": 200,
+        "sha256": "9a8c2b464c222051d23abd24beb7c465830a9f65b20f4c1bf0c368141510fa1c"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 22,
+      "pick": 42,
+      "name": "Kane Johnston",
+      "selectedClub": "Fremantle",
+      "previousPathway": "Perth (WAFL), Harvey Bulls",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Kane Johnston",
+          "dob": "2002-06-26",
+          "url": "https://www.afl.com.au/news/1634409",
+          "sha256": "77a6b5cce25309a160921d2f9509023bde75caaab8d64fea9a99035191b92788",
+          "positionMappingCandidate": [
+            "FWD"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Kane Johnston",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Kane+Johnston",
+        "status": 200,
+        "sha256": "f1063f47b5ac4072fe08eba1959dae248e327bb27928da384ffa94956cb40eac"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 23,
+      "pick": 57,
+      "name": "Jake Medved",
+      "selectedClub": "Fremantle",
+      "previousPathway": "Sydney Swans Academy (Talent League), Manly Warringah Wolves",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Jake Medved",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Jake+Medved",
+        "status": 200,
+        "sha256": "0479635af51422a40220bb4a5c559eb915d1e629d3feb5d1400dbaa37d777098"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority",
+        "Individually corroborated DOB/position in this bounded review"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 24,
+      "pick": 38,
+      "name": "Lachlan Hicks",
+      "selectedClub": "Geelong",
+      "previousPathway": "Western Jets (Talent League), Altona",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Lachie Hicks",
+          "dob": "2008-01-19",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Lachie Hicks",
+          "dob": "2008-01-19",
+          "url": "https://www.afl.com.au/news/1640348/kevin-sheehans-2026-telstra-afl-draft-top-prospects-midfielders/",
+          "sha256": "ce1e6e2cb38c1e4f9a01157be247afd2e394ddd5b822cf216cd8c0528a1dc1d4",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Lachlan Hicks",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Lachlan+Hicks",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": {
+        "provider": "AFL public player profile",
+        "providerId": "13906",
+        "url": "https://www.afl.com.au/players/13906/lachlan-hicks",
+        "sha256": "8c198b2d44242d5753930fd04bdd4820044377789855e3f3271cf8e07f5035f4",
+        "httpStatus": 200,
+        "dob": "2008-01-19",
+        "positionMappingCandidate": [
+          "MID"
+        ],
+        "clubSelectionUrl": "https://www.geelongcats.com.au/news/2165614/stephen-wells-post-2026-draft-takeaways",
+        "clubSelectionSha256": "e0f260f1bdf2e45db9f2073fe05139157197983e3b6e673a73a70081c8bd29f6",
+        "matchingLogic": "Exact personal name and independently matching DOB on public AFL profile and league prospect evidence; current club and playing role corroborated by completed club selection article. Historical AFL beta catalogue and current commercial name matches are empty; no UUID inferred.",
+        "observedAt": "2026-11-22T01:42:25.514344Z",
+        "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+        "clubSelectionObservedAt": "2026-11-22T01:42:25.514344Z",
+        "positionSourceUrl": "https://www.geelongcats.com.au/news/2165614/stephen-wells-post-2026-draft-takeaways",
+        "positionSourceSha256": "e0f260f1bdf2e45db9f2073fe05139157197983e3b6e673a73a70081c8bd29f6",
+        "positionSourceObservedAt": "2026-11-22T01:42:25.514344Z",
+        "primaryPositionCandidate": "MID",
+        "factualCompleteness": {
+          "fullNameConfirmed": true,
+          "individualOfficialProfileIdConfirmed": true,
+          "dobConfirmedInDirectProfileHtml": true,
+          "completedClubSelectionConfirmed": true,
+          "playingRoleConfirmedByOfficialClub": true,
+          "legacyCanonicalConflictAuditComplete": false,
+          "canonicalUuidReady": false,
+          "sourcePermissionReviewed": false,
+          "commercialActivationApproved": false
+        }
+      },
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "OFFICIAL_PROFILE_ID_CORROBORATED_PENDING_CANONICAL_DECISION",
+      "missingFields": [
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 25,
+      "pick": 56,
+      "name": "Anthony Long",
+      "selectedClub": "Geelong",
+      "previousPathway": "West Adelaide (SANFL), Jervois Football Club Inc",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Anthony Long",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Anthony+Long",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority",
+        "Individually corroborated DOB/position in this bounded review"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 26,
+      "pick": 60,
+      "name": "Zach Stevens",
+      "selectedClub": "Geelong",
+      "previousPathway": "Geelong Cats (VFL), South Barwon",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Zach Stevens",
+          "dob": "2007-07-06",
+          "url": "https://www.afl.com.au/news/1638960/kevin-sheehans-2026-telstra-afl-draft-top-prospects-small-and-medium-forwards/",
+          "sha256": "57202af26025f599b580948ffe6def867346dcc118975fa7e412b3b378d1a156",
+          "positionMappingCandidate": null,
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Zach Stevens",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Zach+Stevens",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 27,
+      "pick": 10,
+      "name": "Leo Steed",
+      "selectedClub": "Gold Coast",
+      "previousPathway": "Swan Districts (WAFL), Dalyellup Dockers",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Leo Steed",
+          "dob": "2008-03-07",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Leo Steed",
+          "dob": "2008-03-07",
+          "url": "https://www.afl.com.au/news/1632340",
+          "sha256": "1f1fd0fc5f7768f77f22be4c390e53b738dfd538ef6be57349b84520b52c45b7",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Leo Steed",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Leo+Steed",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 28,
+      "pick": 6,
+      "name": "Ethan Matthews",
+      "selectedClub": "GWS",
+      "previousPathway": "GWS Giants Academy (Talent League), Ingleburn JAFC",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Ethan Matthews",
+          "dob": "2008-09-04",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        },
+        {
+          "matchedName": "Ethan Matthews",
+          "dob": "2008-09-04",
+          "url": "https://www.afl.com.au/news/1640348/kevin-sheehans-2026-telstra-afl-draft-top-prospects-midfielders/",
+          "sha256": "ce1e6e2cb38c1e4f9a01157be247afd2e394ddd5b822cf216cd8c0528a1dc1d4",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Ethan Matthews",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Ethan+Matthews",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 29,
+      "pick": 13,
+      "name": "Jake Eime",
+      "selectedClub": "GWS",
+      "previousPathway": "Central District (SANFL), Golden Grove Football Club",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Jake Eime",
+          "dob": "2008-07-29",
+          "url": "https://www.afl.com.au/news/1640782/kevin-sheehans-2026-telstra-afl-draft-top-40-prospects",
+          "sha256": "0792a132b1e822defc035bba703726d5b44bf81b9cf3fa3c54bc5911c6747850",
+          "positionMappingCandidate": [
+            "DEF"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:39:43.776224Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:39:43.776224Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Jake Eime",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Jake+Eime",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 30,
+      "pick": 45,
+      "name": "Andrio Sousa",
+      "selectedClub": "GWS",
+      "previousPathway": "Dandenong Stingrays (Talent League), Edithvale Aspendale JFC",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Andrio Sousa",
+          "dob": "2008-08-11",
+          "url": "https://www.afl.com.au/news/1632340",
+          "sha256": "1f1fd0fc5f7768f77f22be4c390e53b738dfd538ef6be57349b84520b52c45b7",
+          "positionMappingCandidate": null,
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Andrio Sousa",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Andrio+Sousa",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 31,
+      "pick": 30,
+      "name": "Benji van Rooyen",
+      "selectedClub": "Hawthorn",
+      "previousPathway": "Claremont (WAFL), Wembley Downs JFC",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Benji van Rooyen",
+          "dob": "2008-09-17",
+          "url": "https://www.afl.com.au/news/1634409",
+          "sha256": "77a6b5cce25309a160921d2f9509023bde75caaab8d64fea9a99035191b92788",
+          "positionMappingCandidate": null,
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Benji van Rooyen",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Benji+van+Rooyen",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": null,
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missingFields": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    },
+    {
+      "tableOrderWithinUnresolved": 32,
+      "pick": 58,
+      "name": "Cooper Hodge",
+      "selectedClub": "Hawthorn",
+      "previousPathway": "Brisbane Lions (VFL), Morningside AFC",
+      "completedSelectionSource": "https://www.afl.com.au/news/1642221",
+      "commercialCanonicalMatchesFromExistingAudit": [],
+      "historicalExactNameMatches": [],
+      "factualProfiles": [
+        {
+          "matchedName": "Cooper Hodge",
+          "dob": "2008-07-26",
+          "url": "https://www.afl.com.au/news/1640348/kevin-sheehans-2026-telstra-afl-draft-top-prospects-midfielders/",
+          "sha256": "ce1e6e2cb38c1e4f9a01157be247afd2e394ddd5b822cf216cd8c0528a1dc1d4",
+          "positionMappingCandidate": [
+            "MID"
+          ],
+          "positionMappingRequiresReview": true,
+          "observedAt": "2026-11-22T01:42:25.514344Z",
+          "localCaptureFileWrittenAt": "2026-11-22T01:42:25.514344Z",
+          "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented."
+        }
+      ],
+      "verifiedWikimediaQid": null,
+      "wikidataSearch": {
+        "name": "Cooper Hodge",
+        "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&language=en&uselang=en&type=item&limit=5&search=Cooper+Hodge",
+        "error": "HTTP Error 429: Too Many Requests"
+      },
+      "wikidataSearchCandidates": [],
+      "officialPlayerProfile": {
+        "provider": "AFL public player profile",
+        "providerId": "15318",
+        "url": "https://www.afl.com.au/players/15318/cooper-hodge",
+        "sha256": "f3e84484ab2a8fc5642d22ef4b4ae6b95d163e13b6f8abd0ef1b0dbb540e48ec",
+        "httpStatus": 200,
+        "dob": "2008-07-26",
+        "positionMappingCandidate": [
+          "MID"
+        ],
+        "clubSelectionUrl": "https://www.hawthornfc.com.au/news/2167057/cooper-hodge-the-hawk",
+        "clubSelectionSha256": "4d1637794ee5487d92223a14e02ccc511b6791464f3c192addbaad21fc226879",
+        "matchingLogic": "Exact personal name and independently matching DOB on public AFL profile and league prospect evidence; current club and playing role corroborated by completed club selection article. Historical AFL beta catalogue and current commercial name matches are empty; no UUID inferred.",
+        "observedAt": "2026-11-22T01:42:25.514344Z",
+        "captureTimeBasis": "Local capture-file write time after this fetched batch completed; individual HTTP response arrival times were not instrumented.",
+        "clubSelectionObservedAt": "2026-11-22T01:42:32.524002Z",
+        "positionSourceUrl": "https://www.hawthornfc.com.au/news/2167057/cooper-hodge-the-hawk",
+        "positionSourceSha256": "4d1637794ee5487d92223a14e02ccc511b6791464f3c192addbaad21fc226879",
+        "positionSourceObservedAt": "2026-11-22T01:42:32.524002Z",
+        "primaryPositionCandidate": "MID",
+        "factualCompleteness": {
+          "fullNameConfirmed": true,
+          "individualOfficialProfileIdConfirmed": true,
+          "dobConfirmedInDirectProfileHtml": true,
+          "completedClubSelectionConfirmed": true,
+          "playingRoleConfirmedByOfficialClub": true,
+          "legacyCanonicalConflictAuditComplete": false,
+          "canonicalUuidReady": false,
+          "sourcePermissionReviewed": false,
+          "commercialActivationApproved": false
+        }
+      },
+      "applyReady": false,
+      "canonicalUuidConstructed": false,
+      "status": "OFFICIAL_PROFILE_ID_CORROBORATED_PENDING_CANONICAL_DECISION",
+      "missingFields": [
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ]
+    }
+  ],
+  "limits": [
+    "Five public AFL profile IDs are factual identifiers, not fabricated Wikimedia identities; root must choose and reconcile canonical binding separately",
+    "Source pages may carry draft publication timestamps before the completed event described; existing completed-table audit remains the chronology authority",
+    "No claim that missing Wikipedia pages or incomplete/rate-limited Wikidata search proves no Wikidata entity exists",
+    "Position mappings outside the five corroborated official profiles are review candidates only; no issuance approval follows from these facts",
+    "Exact-name historical matching is a candidate conflict check only; root still owns full cross-provider alias reconciliation and canonical construction.",
+    "Source observedAt values use the precisely recorded local cache-file write time after each fetched batch; individual response arrival timestamps were not instrumented. This basis is explicit per source and no new fetch was performed to fabricate an earlier timestamp."
+  ],
+  "completedAt": "2026-11-22T01:45:00.806500Z"
+}

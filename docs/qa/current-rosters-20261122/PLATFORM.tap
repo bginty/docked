@@ -1,0 +1,365 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+(node:18) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:25) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: prepared AFL update contains only the seven corroborated existing identities with captured source hashes
+ok 1 - prepared AFL update contains only the seven corroborated existing identities with captured source hashes
+  ---
+  duration_ms: 6.241363
+  type: 'test'
+  ...
+# Subtest: draft research distinguishes completed selection facts from unverified new permanent identities
+ok 2 - draft research distinguishes completed selection facts from unverified new permanent identities
+  ---
+  duration_ms: 0.332023
+  type: 'test'
+  ...
+# Subtest: new AFL batch binds exactly nine observed profile identities without reusing existing players
+ok 3 - new AFL batch binds exactly nine observed profile identities without reusing existing players
+  ---
+  duration_ms: 23.769664
+  type: 'test'
+  ...
+# Subtest: new AFL definition artifact is the exact canonical dormant 45-row pool with no supply reset
+ok 4 - new AFL definition artifact is the exact canonical dormant 45-row pool with no supply reset
+  ---
+  duration_ms: 21.715141
+  type: 'test'
+  ...
+# Subtest: new AFL player facts and source hashes trace to their exact independent profile and club captures
+ok 5 - new AFL player facts and source hashes trace to their exact independent profile and club captures
+  ---
+  duration_ms: 1.832415
+  type: 'test'
+  ...
+# Subtest: all 63 unlinked draft selections partition into nine prepared and 54 pending without activation or duplicate returnees
+ok 6 - all 63 unlinked draft selections partition into nine prepared and 54 pending without activation or duplicate returnees
+  ---
+  duration_ms: 1.647665
+  type: 'test'
+  ...
+# (node:26) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: all sport/size variants require distinct supply for every positive-weight rarity
+ok 7 - all sport/size variants require distinct supply for every positive-weight rarity
+  ---
+  duration_ms: 7.576776
+  type: 'test'
+  ...
+# Subtest: missing, fractional or invalid supply cannot satisfy a required rarity
+ok 8 - missing, fractional or invalid supply cannot satisfy a required rarity
+  ---
+  duration_ms: 0.24435
+  type: 'test'
+  ...
+# (node:41) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: roster decisions keep injury separate from registration and canonicalise exact batches
+ok 9 - roster decisions keep injury separate from registration and canonicalise exact batches
+  ---
+  duration_ms: 25.898087
+  type: 'test'
+  ...
+# Subtest: source approval binds official sport domains and rejects confusing hosts or credentials
+ok 10 - source approval binds official sport domains and rejects confusing hosts or credentials
+  ---
+  duration_ms: 0.716996
+  type: 'test'
+  ...
+# Subtest: new-player definitions require the exact identity, evidence and sport position without granting rights
+ok 11 - new-player definitions require the exact identity, evidence and sport position without granting rights
+  ---
+  duration_ms: 2.987745
+  type: 'test'
+  ...
+# Subtest: legacy club audit uses all saved clubs, labels them unverified and never matches reviewed rows by historic club
+ok 12 - legacy club audit uses all saved clubs, labels them unverified and never matches reviewed rows by historic club
+  ---
+  duration_ms: 2.150998
+  type: 'test'
+  ...
+# Subtest: full audit export retains all filtered rows while the read view is capped at one hundred
+ok 13 - full audit export retains all filtered rows while the read view is capped at one hundred
+  ---
+  duration_ms: 1.110753
+  type: 'test'
+  ...
+# (node:47) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: dormant real roster definitions retain identity, eligibility and source without approval
+ok 14 - dormant real roster definitions retain identity, eligibility and source without approval
+  ---
+  duration_ms: 7.01475
+  type: 'test'
+  ...
+# Subtest: dormant import validation rejects bad immutable rows before SQL
+ok 15 - dormant import validation rejects bad immutable rows before SQL
+  ---
+  duration_ms: 8.375176
+  type: 'test'
+  ...
+# Subtest: duplicate aliases, synthetic identities, NBA and silent eligibility changes fail closed
+ok 16 - duplicate aliases, synthetic identities, NBA and silent eligibility changes fail closed
+  ---
+  duration_ms: 0.344492
+  type: 'test'
+  ...
+# Subtest: saved TEST_ONLY allocations cannot authorize a zero lifetime baseline
+ok 17 - saved TEST_ONLY allocations cannot authorize a zero lifetime baseline
+  ---
+  duration_ms: 0.148094
+  type: 'test'
+  ...
+# (node:57) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: award HTTP boundary rejects other origins, absent owner binding and malformed/oversize bodies before mutation
+ok 18 - award HTTP boundary rejects other origins, absent owner binding and malformed/oversize bodies before mutation
+  ---
+  duration_ms: 48.383289
+  type: 'test'
+  ...
+# Subtest: successful award passes the exact command and expected owner and cannot be publicly cached
+ok 19 - successful award passes the exact command and expected owner and cannot be publicly cached
+  ---
+  duration_ms: 15.854244
+  type: 'test'
+  ...
+# Subtest: unknown database or connection failures preserve pending recovery and hide private error detail
+ok 20 - unknown database or connection failures preserve pending recovery and hide private error detail
+  ---
+  duration_ms: 14.435595
+  type: 'test'
+  ...
+# Subtest: only a definitive ledger decline allows editing a saved award
+ok 21 - only a definitive ledger decline allows editing a saved award
+  ---
+  duration_ms: 23.594928
+  type: 'test'
+  ...
+# Subtest: award history validates bounded pagination and the expected owner
+ok 22 - award history validates bounded pagination and the expected owner
+  ---
+  duration_ms: 25.554066
+  type: 'test'
+  ...
+# Subtest: actual owner adapter binds verified MFA/session claims to the commercial transaction and rejects stale owner tabs
+ok 23 - actual owner adapter binds verified MFA/session claims to the commercial transaction and rejects stale owner tabs
+  ---
+  duration_ms: 31.857443
+  type: 'test'
+  ...
+# Subtest: owner award adapter cannot activate beta or a disabled commercial service
+ok 24 - owner award adapter cannot activate beta or a disabled commercial service
+  ---
+  duration_ms: 54.069547
+  type: 'test'
+  ...
+# (node:63) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: pack-only award command preserves the requested mixed bundle and normalises its review
+ok 25 - pack-only award command preserves the requested mixed bundle and normalises its review
+  ---
+  duration_ms: 11.863139
+  type: 'test'
+  ...
+# Subtest: all Standard and Premium sizes can be awarded, with bounded positive quantities
+ok 26 - all Standard and Premium sizes can be awarded, with bounded positive quantities
+  ---
+  duration_ms: 3.003068
+  type: 'test'
+  ...
+# Subtest: award review cannot submit credits, selected cards, actor identity, duplicate products or unconfirmed bundles
+ok 27 - award review cannot submit credits, selected cards, actor identity, duplicate products or unconfirmed bundles
+  ---
+  duration_ms: 1.800707
+  type: 'test'
+  ...
+# (node:79) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual roster UI distinguishes legacy metadata, unattached retired players and unconfigured draft candidates
+ok 28 - actual roster UI distinguishes legacy metadata, unattached retired players and unconfigured draft candidates
+  ---
+  duration_ms: 140.238731
+  type: 'test'
+  ...
+# Subtest: roster pagination preserves filters and CSV export retains filters across all pages
+ok 29 - roster pagination preserves filters and CSV export retains filters across all pages
+  ---
+  duration_ms: 3.187218
+  type: 'test'
+  ...
+# Subtest: legacy club filters remain visibly unverified through pagination and full CSV export
+ok 30 - legacy club filters remain visibly unverified through pagination and full CSV export
+  ---
+  duration_ms: 2.565366
+  type: 'test'
+  ...
+# (node:105) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: complete roster CSV preserves audited identities, Unicode and counts while neutralising spreadsheet formulas
+ok 31 - complete roster CSV preserves audited identities, Unicode and counts while neutralising spreadsheet formulas
+  ---
+  duration_ms: 2.895045
+  type: 'test'
+  ...
+# Subtest: roster audit export refuses silent pagination and duplicate canonical identities
+ok 32 - roster audit export refuses silent pagination and duplicate canonical identities
+  ---
+  duration_ms: 0.571927
+  type: 'test'
+  ...
+# Subtest: Owner roster GET exports all matching rows and rejects absent binding, unknown or duplicate filters
+ok 33 - Owner roster GET exports all matching rows and rejects absent binding, unknown or duplicate filters
+  ---
+  duration_ms: 56.728806
+  type: 'test'
+  ...
+# Subtest: reviewed roster mutation boundary rejects CSRF, missing binding and malformed/oversize input before mutation
+ok 34 - reviewed roster mutation boundary rejects CSRF, missing binding and malformed/oversize input before mutation
+  ---
+  duration_ms: 21.731106
+  type: 'test'
+  ...
+# Subtest: uncertain roster mutation failure never claims rejection or exposes database details
+ok 35 - uncertain roster mutation failure never claims rejection or exposes database details
+  ---
+  duration_ms: 11.995299
+  type: 'test'
+  ...
+# Subtest: actual roster adapter binds verified Owner session, refuses stale tabs and keeps scoped Preview read-only
+ok 36 - actual roster adapter binds verified Owner session, refuses stale tabs and keeps scoped Preview read-only
+  ---
+  duration_ms: 30.307656
+  type: 'test'
+  ...
+# (node:113) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: review arithmetic, safe pack tabs and stable newest-first history
+ok 37 - review arithmetic, safe pack tabs and stable newest-first history
+  ---
+  duration_ms: 0.951281
+  type: 'test'
+  ...
+# Subtest: stale purchase review cannot charge a different price; confirmed retry issues once
+ok 38 - stale purchase review cannot charge a different price; confirmed retry issues once
+  ---
+  duration_ms: 17.035144
+  type: 'test'
+  ...
+# (node:133) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: actual beta identity checks retain both Owners, require MFA and deny retired/revoked/forged access
+ok 39 - actual beta identity checks retain both Owners, require MFA and deny retired/revoked/forged access
+  ---
+  duration_ms: 34.185303
+  type: 'test'
+  ...
+# Subtest: actual public identity checks retain both Owners, require MFA and deny retired/revoked/forged access
+ok 40 - actual public identity checks retain both Owners, require MFA and deny retired/revoked/forged access
+  ---
+  duration_ms: 22.056333
+  type: 'test'
+  ...
+# Subtest: actual entry and fantasy layout redirect retained Owners before onboarding/wallet rendering
+ok 41 - actual entry and fantasy layout redirect retained Owners before onboarding/wallet rendering
+  ---
+  duration_ms: 45.354717
+  type: 'test'
+  ...
+# Subtest: actual native session route skips retired beta onboarding and refuses a missing identity
+ok 42 - actual native session route skips retired beta onboarding and refuses a missing identity
+  ---
+  duration_ms: 8.629791
+  type: 'test'
+  ...
+# Subtest: admin layout requires a current identity and MFA, and offers retry on service outages
+ok 43 - admin layout requires a current identity and MFA, and offers retry on service outages
+  ---
+  duration_ms: 6.713319
+  type: 'test'
+  ...
+# Subtest: actual beta login and completed MFA routes override stale beta return destinations for retained Owners
+ok 44 - actual beta login and completed MFA routes override stale beta return destinations for retained Owners
+  ---
+  duration_ms: 105.473816
+  type: 'test'
+  ...
+# Subtest: actual public login and completed MFA routes override stale beta return destinations for retained Owners
+ok 45 - actual public login and completed MFA routes override stale beta return destinations for retained Owners
+  ---
+  duration_ms: 30.330199
+  type: 'test'
+  ...
+# Subtest: actual proxy preserves multi-callback cookie changes, clears rejected chunks and never logs out other sessions
+ok 46 - actual proxy preserves multi-callback cookie changes, clears rejected chunks and never logs out other sessions
+  ---
+  duration_ms: 16.28158
+  type: 'test'
+  ...
+# Subtest: installed Supabase SSR client removes a genuinely rejected refresh from request and response cookies
+ok 47 - installed Supabase SSR client removes a genuinely rejected refresh from request and response cookies
+  ---
+  duration_ms: 75.444755
+  type: 'test'
+  ...
+# Subtest: Owner preference writes require same-origin public AAL2 Owner authority and bind each login independently
+ok 48 - Owner preference writes require same-origin public AAL2 Owner authority and bind each login independently
+  ---
+  duration_ms: 6.335338
+  type: 'test'
+  ...
+# Subtest: verified Owners switch straight into the customer shell before phone, username or consent setup
+ok 49 - verified Owners switch straight into the customer shell before phone, username or consent setup
+  ---
+  duration_ms: 37.474773
+  type: 'test'
+  ...
+# (node:141) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: both retained Owner roles land on Commercial operations and preserve individual MFA
+ok 50 - both retained Owner roles land on Commercial operations and preserve individual MFA
+  ---
+  duration_ms: 1.094938
+  type: 'test'
+  ...
+# Subtest: incidents survive login/MFA return validation without widening external redirects
+ok 51 - incidents survive login/MFA return validation without widening external redirects
+  ---
+  duration_ms: 0.148273
+  type: 'test'
+  ...
+# Subtest: pack awards retain their customer selection through Owner login and MFA
+ok 52 - pack awards retain their customer selection through Owner login and MFA
+  ---
+  duration_ms: 0.13252
+  type: 'test'
+  ...
+# Subtest: roster filters survive Owner login and MFA without adding mutation routes
+ok 53 - roster filters survive Owner login and MFA without adding mutation routes
+  ---
+  duration_ms: 0.077677
+  type: 'test'
+  ...
+# Subtest: invalid refresh clears only this project's session chunks, retaining PKCE and unrelated cookies
+ok 54 - invalid refresh clears only this project's session chunks, retaining PKCE and unrelated cookies
+  ---
+  duration_ms: 0.715868
+  type: 'test'
+  ...
+# Subtest: native resume returns retained Owners to Commercial operations without interrupting MFA or restarting gameplay
+ok 55 - native resume returns retained Owners to Commercial operations without interrupting MFA or restarting gameplay
+  ---
+  duration_ms: 0.123486
+  type: 'test'
+  ...
+1..55
+# tests 55
+# suites 0
+# pass 55
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1938.08256

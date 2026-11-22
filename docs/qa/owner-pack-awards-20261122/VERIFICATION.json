@@ -1,0 +1,50 @@
+{
+  "recordedAt": "2026-11-22T01:08:52.311367+00:00",
+  "state": "PREPARED_NOT_DEPLOYED",
+  "liveWebBase": "83794e9ac31c54960bfc76b9a07b36047f20486b",
+  "reviewBase": "58841a60b4e4c57d9c410c4f1c2e315ee8bf20d2",
+  "node": "22.23.5",
+  "platform": {
+    "passed": 42,
+    "failed": 0,
+    "skipped": 0
+  },
+  "nativePostgres": {
+    "version": "17.10",
+    "passed": 15,
+    "failed": 0,
+    "evidence": "DATABASE.json"
+  },
+  "localSupabaseSecurityAdvisors": "ADVISORS.json",
+  "typecheck": "PASS",
+  "fullLint": "PASS",
+  "productionBuild": "PASS",
+  "browserAcceptance": "BLOCKED_NOT_EXECUTED; BROWSER_ACCEPTANCE_BLOCKED.json",
+  "customerAwards": 0,
+  "productionMigrations": 0,
+  "productionDeployments": 0,
+  "sourceSha256": {
+    "scripts/owner-pack-awards-local-postgres.mjs": "544228c10e0bf7f28406a7d42cb6142900805b8ca5c16d42c7fdff1273fab3be",
+    "scripts/owner-pack-awards-postgres.ts": "4186eb6eaa00944c25d2fdee98967027c0b5c92d963a2027f4f34f66e280a56c",
+    "src/app/admin/pack-awards/page.tsx": "b4ec2677df26d012a82c0588cc12c4513ce197b3897db982bd066117aa661e07",
+    "src/app/admin/workspace/[section]/page.tsx": "1978b742856d6439307cdd2b3813e4687ab4f709d96d1ae73d4b8a941691211f",
+    "src/app/api/admin/pack-awards/route.ts": "9c46ba143f6dd7b90e4453e6bcd3ecb266ef14a21d6749490453e9b62b5a426c",
+    "src/components/owner-pack-awards.module.css": "47e380183c43231781ff9f3aa9f6457c9016d169ad97b99a6a6834ed407b95c6",
+    "src/components/owner-pack-awards.tsx": "80626864268ce1f094e2ecaa5cccb8302b8505661af64fd659b7079192685eb0",
+    "src/components/pack-shop.tsx": "e14594c6ee20a36d43cbcf20674d92b1c33a7ec4435dc111ab38ec329aaf7769",
+    "src/components/public-owner-dashboard.tsx": "a93bc4775e907a7ef19a5b441c611030c4602175e7d14f76d95628dd5f012f46",
+    "src/core/member-access-recovery.ts": "d71aa559f2bf2ad360874b77e6e23b72a26938321f38b52ee3f50e0081a91bed",
+    "src/core/owner-pack-awards.ts": "fa6ef26f5ab09c9879472f5c899379b80c48b240a876fab586e3e78d3e2374a3",
+    "src/core/pack-shop-state.ts": "5801b0673e76a4204ab7dc89aca9b3faa33dc3f4fb150b8046ef07e9a98f99fc",
+    "src/server/commercial-ledger.ts": "f971bbd19954c57260745b44056eaf19805560db6ea4170be1eb7eb584f70e86",
+    "src/server/commercial-member-view.ts": "54bf12150f0b221bf9a5fd2706e39418391d3773e90e7597ef8b9cfa88f16f24",
+    "src/server/owner-pack-awards.ts": "ae41f0b0ef970a53b4f8ec5f8e9c8ae025fa1c75cb2dbf8325aba83e21dec247",
+    "supabase/migrations/20261122005246_owner_pack_awards.sql": "fe31894908c1db27a0f79bff8f9ae8283234a1531f778c6e043e80e85d083236",
+    "tests/browser/owner-pack-awards.test.ts": "ba69a232c0d5500ebb535dac57a9e9a9423f903eee7c715153ed8a5f02bef05a",
+    "tests/fixtures/owner-pack-awards.tsx": "eca57300e3d105c2117f9d22c9f7e17a2f8bd8e8273eac7e2e2d9e7b9b83fc0b",
+    "tests/platform/owner-pack-awards-route.test.ts": "29eb3366d2b9b55b911c0b66f75c21e529741af3b44a2d012a2a51b2e85f702c",
+    "tests/platform/owner-pack-awards.test.ts": "42e56606084b03d7683be22bf7aa4afacff953627c9b467a49bcba5964847863",
+    "tests/platform/post-beta-owner.test.ts": "d47f98723b2e5e66941541adc68d483c46463424b35bea310eff2056d8e89147"
+  },
+  "sourceManifestSha256": "bbf9d52884c0cb626d0c03521178fc23063f5c3cac1585011cd13ec9f1380148"
+}

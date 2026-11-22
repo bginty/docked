@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-11-22T01:04:03.168030+00:00",
+  "status": "BLOCKED_NOT_EXECUTED",
+  "test": "tests/browser/owner-pack-awards.test.ts",
+  "fixture": "tests/fixtures/owner-pack-awards.tsx",
+  "productionClientBundle": "PASS: real production component and synthetic fixture compile to JavaScript and CSS",
+  "localBlockers": [
+    "Playwright-managed Chromium executable is absent.",
+    "System Chromium aborts because its process-singleton socket is not permitted by the executor sandbox.",
+    "Standard Playwright headless-shell installation returns HTTP 403 Site Unavailable from the CDN."
+  ],
+  "disposableSandbox": {
+    "sessionId": "sbx_KE53n39nWam3W6SNLgKMBL2LdVEt",
+    "name": "docked-owner-pack-awards-20261122-qa",
+    "persistent": false,
+    "status": "STOPPED",
+    "stopReason": "requested",
+    "stopVerified": true,
+    "durationMs": 118853,
+    "sourceUploaded": false,
+    "productionCredentialsUploaded": false,
+    "testExecuted": false
+  },
+  "uploadApproval": {
+    "decision": "REJECTED",
+    "action": "Upload 28 source/test/configuration files in a 43453-byte gzipped tarball to the disposable Vercel Sandbox.",
+    "reason": "Automatic approval review did not establish the external sandbox as a trusted destination for private repository source; explicit user authorization for this source disclosure was not present.",
+    "archiveSha256": "b0d62c16d8cca5c1da0a509ed5b3d060c70f5a8018cdb7847006341577dbc313",
+    "alternativeTransportAttempted": false
+  },
+  "screenshotsAvailable": false,
+  "pendingCoverage": [
+    "Mixed Premium 1-card and Standard 9-card award review",
+    "Forced simultaneous confirmation in two Owner tabs",
+    "Lost-response reload and exact-request recovery",
+    "Confirmed receipt survives history outage",
+    "Another Owner does not load the first Owner pending request",
+    "Mobile layout and horizontal overflow"
+  ]
+}

@@ -1,0 +1,1050 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-22T02:49:43Z",
+  "timezone": "Australia/Sydney",
+  "reviewer": "Independent roster evidence review",
+  "scope": "Read-only factual refresh of prepared seven-player and nine-player batches before release.",
+  "result": "No factual decision change found in retrieved primary sources for the prepared 16 players.",
+  "method": "Retrieved original primary-source articles and individual AFL public player profiles through web retrieval; compared names, DOBs, completed selection, current-club statements and playing roles with the prepared artifacts. Retrieved content can be cached by the search provider; this is not a fresh raw HTTP hash recapture.",
+  "originalArtifacts": {
+    "AFL_REVIEWED_EXISTING_BATCH.json": {
+      "sha256": "c282328c33e0100b36e8f3d7a5b9274ce6a7c66ae4f69c6b926b5611b7452a4e"
+    },
+    "AFL_REVIEWED_NEW_BATCH.json": {
+      "sha256": "cfd2a791cdaadfc1815c562f94df761f1e0fc2134079a989aab5709a87daacca"
+    },
+    "AFL_NEW_PLAYER_PLAN.json": {
+      "sha256": "d4d4c6b37ef35bfceee4f4a3b57058cfad44229e2a0c0128d870e528daf7e313"
+    }
+  },
+  "originalPayloadsChanged": false,
+  "originalPageHashesRecomputed": false,
+  "originalPageHashLimitation": "The original /tmp/docked-afl-roster-source-cache directory is unavailable in this runtime. Original page SHA256 values are retained as prior capture evidence, not represented as independently rehashed in this refresh.",
+  "verifiedExistingDecisions": [
+    {
+      "playerId": "b21fd276-f50e-4d3d-a386-d5de38945dfb",
+      "name": "Ryan Byrnes",
+      "registration": "PENDING_RELIST",
+      "availability": "UNKNOWN",
+      "currentClub": null,
+      "relistConfirmed": false,
+      "sourceUrl": "https://www.afl.com.au/news/1636586/st-kilda-saints-duo-dan-butler-ryan-byrnes-delisted-set-for-rookie-lifelines",
+      "sourceRef": "turn887458917view3",
+      "originalSourceSha256": "0876ae65d729d6193d1ee57a2ff82682e457a1feb9d6dc0f2f10b52fbb33c398",
+      "originalObservedAt": "2026-11-22T01:18:41.806090Z",
+      "reviewOutcome": "Retrieved primary-source facts support the prepared decision; no changed decision found.",
+      "originalApprovedDefinitionCount": 0
+    },
+    {
+      "playerId": "296a07d2-daba-4901-a983-ec0099a2b63b",
+      "name": "Jack Carroll",
+      "registration": "DELISTED",
+      "availability": "UNKNOWN",
+      "currentClub": null,
+      "relistConfirmed": false,
+      "sourceUrl": "https://www.afl.com.au/news/1634437",
+      "sourceRef": "turn765721968view0",
+      "originalSourceSha256": "233f58350225c276de6f840b54ec9071a0c09c8fe35548124cdacb7aceb487b9",
+      "originalObservedAt": "2026-11-22T01:18:37.673747Z",
+      "reviewOutcome": "Retrieved primary-source facts support the prepared decision; no changed decision found.",
+      "originalApprovedDefinitionCount": 0
+    },
+    {
+      "playerId": "038da416-5f9c-4015-a428-014dcc40da2f",
+      "name": "Dougal Howard",
+      "registration": "RETIRED",
+      "availability": "UNKNOWN",
+      "currentClub": null,
+      "relistConfirmed": false,
+      "sourceUrl": "https://www.afl.com.au/news/1589767/st-kilda-saints-defender-dougal-howard-to-hang-up-the-boots-after-two-club-12-season-career",
+      "sourceRef": "turn765721968view1",
+      "originalSourceSha256": "436a4ee0b172ec821b3feadc182c785aaadfd25bcedc4ad66b1512e6702cd6fe",
+      "originalObservedAt": "2026-11-22T01:17:42.421102Z",
+      "reviewOutcome": "Retrieved primary-source facts support the prepared decision; no changed decision found.",
+      "originalApprovedDefinitionCount": 0
+    },
+    {
+      "playerId": "3ca2379e-f51b-4cc4-a2e9-7c0280caedeb",
+      "name": "Dane Rampe",
+      "registration": "RETIRED",
+      "availability": "UNKNOWN",
+      "currentClub": null,
+      "relistConfirmed": false,
+      "sourceUrl": "https://www.afl.com.au/news/1636570/off-dane-rampe-former-sydney-swans-co-captain-calls-it-a-day",
+      "sourceRef": "turn765721968view2",
+      "originalSourceSha256": "dc6f68be9ebd8767ec148fa44dac9098501af02afc903463bba223742aa47429",
+      "originalObservedAt": "2026-11-22T01:18:40.313168Z",
+      "reviewOutcome": "Retrieved primary-source facts support the prepared decision; no changed decision found.",
+      "originalApprovedDefinitionCount": 0
+    },
+    {
+      "playerId": "d8056009-6163-4a63-ae46-0ec498e75710",
+      "name": "Riley Garcia",
+      "registration": "PENDING_RELIST",
+      "availability": "UNKNOWN",
+      "currentClub": null,
+      "relistConfirmed": false,
+      "sourceUrl": "https://www.afl.com.au/news/1636335/luckless-western-bulldog-riley-garcia-delisted-set-to-get-rookie-lifeline",
+      "sourceRef": "turn887458917view1",
+      "originalSourceSha256": "fe1c24165dcda04bc44be46813f91a31b04602793654bd48de3813e1f7fb4f5b",
+      "originalObservedAt": "2026-11-22T01:18:37.410339Z",
+      "reviewOutcome": "Retrieved primary-source facts support the prepared decision; no changed decision found.",
+      "originalApprovedDefinitionCount": 5
+    },
+    {
+      "playerId": "88d868a0-d9ce-465f-a16e-751e22aeb135",
+      "name": "Elliott Himmelberg",
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T1000",
+        "name": "Gold Coast"
+      },
+      "relistConfirmed": true,
+      "sourceUrl": "https://www.goldcoastfc.com.au/news/2167089/suns-re-select-ugle-hagan-and-himmelberg",
+      "sourceRef": "turn887458917view2",
+      "originalSourceSha256": "185a47d5ce4ecb533a56711cd5c0a5287da52027f38f63463d2d4907aaf66d7f",
+      "originalObservedAt": "2026-11-22T01:21:20.521201Z",
+      "reviewOutcome": "Retrieved primary-source facts support the prepared decision; no changed decision found.",
+      "originalApprovedDefinitionCount": 5
+    },
+    {
+      "playerId": "5f7b2f82-b24f-45d9-a137-c698ba977e42",
+      "name": "Jamarra Ugle-Hagan",
+      "registration": "ACTIVE",
+      "availability": "UNKNOWN",
+      "currentClub": {
+        "id": "CD_T1000",
+        "name": "Gold Coast"
+      },
+      "relistConfirmed": true,
+      "sourceUrl": "https://www.goldcoastfc.com.au/news/2167089/suns-re-select-ugle-hagan-and-himmelberg",
+      "sourceRef": "turn887458917view2",
+      "originalSourceSha256": "185a47d5ce4ecb533a56711cd5c0a5287da52027f38f63463d2d4907aaf66d7f",
+      "originalObservedAt": "2026-11-22T01:21:20.521201Z",
+      "reviewOutcome": "Retrieved primary-source facts support the prepared decision; no changed decision found.",
+      "originalApprovedDefinitionCount": 0
+    }
+  ],
+  "verifiedNewIdentityPreparation": [
+    {
+      "playerId": "21516a52-1b27-42ce-a4cb-99275a51e6ae",
+      "name": "Ethan Drever",
+      "draftName": "Ethan Drever",
+      "pick": 2,
+      "registration": "ACTIVE",
+      "currentClub": {
+        "id": "CD_T50",
+        "name": "Essendon"
+      },
+      "primaryPosition": "MID",
+      "eligiblePositions": [
+        "MID"
+      ],
+      "dateOfBirth": "2008-07-10",
+      "provider": "afl-public-profile",
+      "providerId": "13891",
+      "profileUrl": "https://www.afl.com.au/players/13891/ethan-drever",
+      "profileRef": "turn592903557view0",
+      "selectionAndPositionUrl": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+      "selectionAndPositionRef": "turn765721968view3",
+      "originalSourceSha256": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+      "originalObservedAt": "2026-11-22T01:42:25.514344Z",
+      "reviewOutcome": "Official public profile name and DOB, completed club selection, and published playing role support the prepared identity and position mapping.",
+      "definitionDisposition": "Five dormant and unapproved definitions; no issuance or activation by this review."
+    },
+    {
+      "playerId": "24d2311f-2df2-4c86-a7be-76fba7b91021",
+      "name": "Jack Riding",
+      "draftName": "Jack Riding",
+      "pick": 50,
+      "registration": "ACTIVE",
+      "currentClub": {
+        "id": "CD_T140",
+        "name": "Western Bulldogs"
+      },
+      "primaryPosition": "MID",
+      "eligiblePositions": [
+        "MID"
+      ],
+      "dateOfBirth": "2000-10-08",
+      "provider": "afl-public-profile",
+      "providerId": "8950",
+      "profileUrl": "https://www.afl.com.au/players/8950/jack-riding",
+      "profileRef": "turn592903557view1",
+      "selectionAndPositionUrl": "https://www.westernbulldogs.com.au/news/2167140/2026-telstra-afl-draft-pick-50",
+      "selectionAndPositionRef": "turn765721968view4",
+      "originalSourceSha256": "b2faa495fae58cd6c33d4ba72d8258b75c5aa2cfe1bbf19560671ca3fc11477b",
+      "originalObservedAt": "2026-11-22T01:40:32.222556Z",
+      "reviewOutcome": "Official public profile name and DOB, completed club selection, and published playing role support the prepared identity and position mapping.",
+      "definitionDisposition": "Five dormant and unapproved definitions; no issuance or activation by this review."
+    },
+    {
+      "playerId": "28efca70-ad93-400f-a8c1-b5dc3eaf6535",
+      "name": "Caylen Murray",
+      "draftName": "Caylen Murray",
+      "pick": 9,
+      "registration": "ACTIVE",
+      "currentClub": {
+        "id": "CD_T160",
+        "name": "Sydney"
+      },
+      "primaryPosition": "MID",
+      "eligiblePositions": [
+        "MID",
+        "DEF"
+      ],
+      "dateOfBirth": "2008-01-03",
+      "provider": "afl-public-profile",
+      "providerId": "15314",
+      "profileUrl": "https://www.afl.com.au/players/15314/caylen-murray",
+      "profileRef": "turn592903557view2",
+      "selectionAndPositionUrl": "https://www.sydneyswans.com.au/news/2166751/murray-lands-at-the-sydney-swans-with-pick-9",
+      "selectionAndPositionRef": "turn765721968view5",
+      "originalSourceSha256": "bf26d3c3265ef494ff68f83038c5d54ce4c54f74d50e18d1efbb3cf2f438c2c9",
+      "originalObservedAt": "2026-11-22T01:40:32.811196Z",
+      "reviewOutcome": "Official public profile name and DOB, completed club selection, and published playing role support the prepared identity and position mapping.",
+      "definitionDisposition": "Five dormant and unapproved definitions; no issuance or activation by this review."
+    },
+    {
+      "playerId": "3196c92d-2d2e-4fed-abed-8a49697bfdcb",
+      "name": "Archie Elliott",
+      "draftName": "Archie Elliott",
+      "pick": 17,
+      "registration": "ACTIVE",
+      "currentClub": {
+        "id": "CD_T50",
+        "name": "Essendon"
+      },
+      "primaryPosition": "FWD",
+      "eligiblePositions": [
+        "FWD"
+      ],
+      "dateOfBirth": "2008-08-10",
+      "provider": "afl-public-profile",
+      "providerId": "14658",
+      "profileUrl": "https://www.afl.com.au/players/14658/archie-elliott",
+      "profileRef": "turn592903557view3",
+      "selectionAndPositionUrl": "https://www.essendonfc.com.au/news/2167199/draft-wrap-quintet-of-emerging-talent-to-call-essendon-home",
+      "selectionAndPositionRef": "turn765721968view3",
+      "originalSourceSha256": "6203d38d220ccfa9073923310727f0efb4bbe1132103f66286fae5b4b76d0caf",
+      "originalObservedAt": "2026-11-22T01:42:25.514344Z",
+      "reviewOutcome": "Official public profile name and DOB, completed club selection, and published playing role support the prepared identity and position mapping.",
+      "definitionDisposition": "Five dormant and unapproved definitions; no issuance or activation by this review."
+    },
+    {
+      "playerId": "534f696b-a415-45f9-a4fa-e760514b39a9",
+      "name": "Arki Butler",
+      "draftName": "Arki Butler",
+      "pick": 4,
+      "registration": "ACTIVE",
+      "currentClub": {
+        "id": "CD_T120",
+        "name": "Richmond"
+      },
+      "primaryPosition": "FWD",
+      "eligiblePositions": [
+        "FWD"
+      ],
+      "dateOfBirth": "2008-04-23",
+      "provider": "afl-public-profile",
+      "providerId": "13950",
+      "profileUrl": "https://www.afl.com.au/players/13950/arki-butler",
+      "profileRef": "turn592903557view4",
+      "selectionAndPositionUrl": "https://www.richmondfc.com.au/news/2166687",
+      "selectionAndPositionRef": "turn311669145view0",
+      "originalSourceSha256": "d3d97709d2af9abf9127ec77c3d61546827c4090a9993372672e9a8997fbcffd",
+      "originalObservedAt": "2026-11-22T01:42:42.212218Z",
+      "reviewOutcome": "Official public profile name and DOB, completed club selection, and published playing role support the prepared identity and position mapping.",
+      "definitionDisposition": "Five dormant and unapproved definitions; no issuance or activation by this review."
+    },
+    {
+      "playerId": "9ee97be0-da52-4f73-a5ec-5378f9c22d1f",
+      "name": "Lachlan Hicks",
+      "draftName": "Lachlan Hicks",
+      "pick": 38,
+      "registration": "ACTIVE",
+      "currentClub": {
+        "id": "CD_T70",
+        "name": "Geelong"
+      },
+      "primaryPosition": "MID",
+      "eligiblePositions": [
+        "MID"
+      ],
+      "dateOfBirth": "2008-01-19",
+      "provider": "afl-public-profile",
+      "providerId": "13906",
+      "profileUrl": "https://www.afl.com.au/players/13906/lachlan-hicks",
+      "profileRef": "turn904113526view2",
+      "selectionAndPositionUrl": "https://www.geelongcats.com.au/news/2165614/stephen-wells-post-2026-draft-takeaways",
+      "selectionAndPositionRef": "turn311669145view1",
+      "originalSourceSha256": "e0f260f1bdf2e45db9f2073fe05139157197983e3b6e673a73a70081c8bd29f6",
+      "originalObservedAt": "2026-11-22T01:42:25.514344Z",
+      "reviewOutcome": "Official public profile name and DOB, completed club selection, and published playing role support the prepared identity and position mapping.",
+      "definitionDisposition": "Five dormant and unapproved definitions; no issuance or activation by this review."
+    },
+    {
+      "playerId": "ba600679-df69-4a7a-aebd-cfcb4b780d90",
+      "name": "Mitch Knevitt",
+      "draftName": "Mitchell Knevitt",
+      "pick": 48,
+      "registration": "ACTIVE",
+      "currentClub": {
+        "id": "CD_T160",
+        "name": "Sydney"
+      },
+      "primaryPosition": "MID",
+      "eligiblePositions": [
+        "MID"
+      ],
+      "dateOfBirth": "2003-01-08",
+      "provider": "afl-public-profile",
+      "providerId": "5176",
+      "profileUrl": "https://www.afl.com.au/players/5176/mitch-knevitt",
+      "profileRef": "turn592903557view6",
+      "selectionAndPositionUrl": "https://www.sydneyswans.com.au/news/2166984",
+      "selectionAndPositionRef": "turn311669145view2",
+      "originalSourceSha256": "7f226cf7345a559463ed0d1ad558f65f0a728d08a24de90d9b69e3cb9054a99a",
+      "originalObservedAt": "2026-11-22T01:42:41.615475Z",
+      "reviewOutcome": "Official public profile name and DOB, completed club selection, and published playing role support the prepared identity and position mapping.",
+      "definitionDisposition": "Five dormant and unapproved definitions; no issuance or activation by this review."
+    },
+    {
+      "playerId": "c9ce9804-443c-4434-acb2-bd6430f76d9e",
+      "name": "Gus Kennedy",
+      "draftName": "Gus Kennedy",
+      "pick": 31,
+      "registration": "ACTIVE",
+      "currentClub": {
+        "id": "CD_T40",
+        "name": "Collingwood"
+      },
+      "primaryPosition": "DEF",
+      "eligiblePositions": [
+        "DEF",
+        "MID"
+      ],
+      "dateOfBirth": "2008-02-21",
+      "provider": "afl-public-profile",
+      "providerId": "13934",
+      "profileUrl": "https://www.afl.com.au/players/13934/gus-kennedy",
+      "profileRef": "turn592903557view7",
+      "selectionAndPositionUrl": "https://www.collingwoodfc.com.au/news/2166617/gus-kennedy",
+      "selectionAndPositionRef": "turn311669145view3",
+      "originalSourceSha256": "ed6090483353563f24942adf8fae8c6797e8453666041ceae554b4c262f65ecb",
+      "originalObservedAt": "2026-11-22T01:42:32.524002Z",
+      "reviewOutcome": "Official public profile name and DOB, completed club selection, and published playing role support the prepared identity and position mapping.",
+      "definitionDisposition": "Five dormant and unapproved definitions; no issuance or activation by this review."
+    },
+    {
+      "playerId": "ea94538b-5f4e-491d-a6c7-837777c6ba1e",
+      "name": "Cooper Hodge",
+      "draftName": "Cooper Hodge",
+      "pick": 58,
+      "registration": "ACTIVE",
+      "currentClub": {
+        "id": "CD_T80",
+        "name": "Hawthorn"
+      },
+      "primaryPosition": "MID",
+      "eligiblePositions": [
+        "MID"
+      ],
+      "dateOfBirth": "2008-07-26",
+      "provider": "afl-public-profile",
+      "providerId": "15318",
+      "profileUrl": "https://www.afl.com.au/players/15318/cooper-hodge",
+      "profileRef": "turn592903557view8",
+      "selectionAndPositionUrl": "https://www.hawthornfc.com.au/news/2167057/cooper-hodge-the-hawk",
+      "selectionAndPositionRef": "turn311669145view4",
+      "originalSourceSha256": "4d1637794ee5487d92223a14e02ccc511b6791464f3c192addbaad21fc226879",
+      "originalObservedAt": "2026-11-22T01:42:32.524002Z",
+      "reviewOutcome": "Official public profile name and DOB, completed club selection, and published playing role support the prepared identity and position mapping.",
+      "definitionDisposition": "Five dormant and unapproved definitions; no issuance or activation by this review."
+    }
+  ],
+  "pendingReturnEvidence": {
+    "url": "https://www.afl.com.au/news/1642929/rookie-draft-preview-take-a-look-at-the-players-who-could-be-drafted-in-the-2026-pre-season-and-rookie-drafts",
+    "sourceRef": "turn904113526view1",
+    "facts": "The official preview names St Kilda (Dan Butler and Ryan Byrnes) and Western Bulldogs (Riley Garcia) as intended rookie re-listings, with draft scheduled for 23 November 2026 at 3pm AEDT. An intention is not a completed registration event."
+  },
+  "counts": {
+    "nationalSelections": 65,
+    "existingCanonicalReturns": 2,
+    "preparedNewIdentities": 9,
+    "remainingSelections": 54,
+    "dormantDefinitions": 45
+  },
+  "unresolvedSelections": [
+    {
+      "pick": 1,
+      "name": "Dougie Cochrane",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Port Adelaide"
+    },
+    {
+      "pick": 3,
+      "name": "Cody Walker",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Carlton"
+    },
+    {
+      "pick": 5,
+      "name": "Heath Mellody",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "West Coast"
+    },
+    {
+      "pick": 6,
+      "name": "Ethan Matthews",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "GWS"
+    },
+    {
+      "pick": 7,
+      "name": "Mitchell Harris",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Melbourne"
+    },
+    {
+      "pick": 8,
+      "name": "Harry Van Hattum",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Richmond"
+    },
+    {
+      "pick": 10,
+      "name": "Leo Steed",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Gold Coast"
+    },
+    {
+      "pick": 11,
+      "name": "Gustavo Teixeira",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "St Kilda"
+    },
+    {
+      "pick": 12,
+      "name": "Sam Gayfer",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Collingwood"
+    },
+    {
+      "pick": 13,
+      "name": "Jake Eime",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "GWS"
+    },
+    {
+      "pick": 14,
+      "name": "Toby Krasna",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Adelaide"
+    },
+    {
+      "pick": 15,
+      "name": "Lachlan Burrows",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Melbourne"
+    },
+    {
+      "pick": 16,
+      "name": "Tyson Bradley",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "St Kilda"
+    },
+    {
+      "pick": 18,
+      "name": "George Dimer",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Fremantle"
+    },
+    {
+      "pick": 19,
+      "name": "Clancy Snell",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Port Adelaide"
+    },
+    {
+      "pick": 20,
+      "name": "Wil Malady",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Port Adelaide"
+    },
+    {
+      "pick": 21,
+      "name": "Harvie Cooke",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Essendon"
+    },
+    {
+      "pick": 22,
+      "name": "Noah Williams",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Richmond"
+    },
+    {
+      "pick": 23,
+      "name": "George Gale",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "North Melbourne"
+    },
+    {
+      "pick": 24,
+      "name": "Jake Soutar",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "West Coast"
+    },
+    {
+      "pick": 25,
+      "name": "Wil Antrobus",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Port Adelaide"
+    },
+    {
+      "pick": 26,
+      "name": "Jack Pickett",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Essendon"
+    },
+    {
+      "pick": 27,
+      "name": "Kodah Edwards",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Brisbane"
+    },
+    {
+      "pick": 28,
+      "name": "Archie Van Dyk",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Brisbane"
+    },
+    {
+      "pick": 29,
+      "name": "Jackson Phillips",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Brisbane"
+    },
+    {
+      "pick": 30,
+      "name": "Benji van Rooyen",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Hawthorn"
+    },
+    {
+      "pick": 32,
+      "name": "Harvey Spawton-Guy",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Carlton"
+    },
+    {
+      "pick": 33,
+      "name": "Khaled El Souki",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Western Bulldogs"
+    },
+    {
+      "pick": 34,
+      "name": "Xavier Ladbrook",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Adelaide"
+    },
+    {
+      "pick": 35,
+      "name": "Seb Marsic",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "North Melbourne"
+    },
+    {
+      "pick": 36,
+      "name": "Archie Spencer",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Brisbane"
+    },
+    {
+      "pick": 37,
+      "name": "Jackson Watkins",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Carlton"
+    },
+    {
+      "pick": 39,
+      "name": "Gabriel Patterson",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Port Adelaide"
+    },
+    {
+      "pick": 40,
+      "name": "Brady Wright",
+      "status": "DOB_CONFLICT_REQUIRES_REVIEW",
+      "missing": [
+        "Resolve contradictory DOB in two official AFL sources",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": "6589",
+      "selectedClub": "Sydney"
+    },
+    {
+      "pick": 41,
+      "name": "Jordan Knapp",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Collingwood"
+    },
+    {
+      "pick": 42,
+      "name": "Kane Johnston",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Fremantle"
+    },
+    {
+      "pick": 43,
+      "name": "Lewis Houndsome",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "St Kilda"
+    },
+    {
+      "pick": 44,
+      "name": "Sam Tassone",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Adelaide"
+    },
+    {
+      "pick": 45,
+      "name": "Andrio Sousa",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "GWS"
+    },
+    {
+      "pick": 46,
+      "name": "Ethan Herbert",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Carlton"
+    },
+    {
+      "pick": 47,
+      "name": "Angus White",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Port Adelaide"
+    },
+    {
+      "pick": 49,
+      "name": "Ben Forster",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Melbourne"
+    },
+    {
+      "pick": 51,
+      "name": "Harry Franz",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Richmond"
+    },
+    {
+      "pick": 52,
+      "name": "Kaie Sullivan",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Melbourne"
+    },
+    {
+      "pick": 53,
+      "name": "Sam Devers",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Western Bulldogs"
+    },
+    {
+      "pick": 54,
+      "name": "Aidan McCartney",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "North Melbourne"
+    },
+    {
+      "pick": 55,
+      "name": "Blake Justice",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Essendon"
+    },
+    {
+      "pick": 56,
+      "name": "Anthony Long",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority",
+        "Individually corroborated DOB/position in this bounded review"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Geelong"
+    },
+    {
+      "pick": 57,
+      "name": "Jake Medved",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority",
+        "Individually corroborated DOB/position in this bounded review"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Fremantle"
+    },
+    {
+      "pick": 59,
+      "name": "Keenan Boi",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Hawthorn"
+    },
+    {
+      "pick": 60,
+      "name": "Zach Stevens",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Geelong"
+    },
+    {
+      "pick": 61,
+      "name": "Mason McGroder",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Sydney"
+    },
+    {
+      "pick": 62,
+      "name": "Koby LeCras",
+      "status": "IDENTIFIER_UNRESOLVED_WITH_PARTIAL_FACTUAL_EVIDENCE",
+      "missing": [
+        "Verified stable individual player identifier",
+        "Approved canonical UUID/provider binding; existing canonical recipe uses Wikimedia QIDs and no matching QID was verified",
+        "Reviewed factual source permission and separate commercial definition activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "Collingwood"
+    },
+    {
+      "pick": 65,
+      "name": "Harper Banfield",
+      "status": "STABLE_ID_NOT_ESTABLISHED_IN_BOUNDED_RESEARCH",
+      "missing": [
+        "Stable official individual identity identifier",
+        "Full historical identity and alias conflict review",
+        "Reviewed source permission, product position mapping and separate activation authority"
+      ],
+      "officialProfileObserved": null,
+      "selectedClub": "West Coast"
+    }
+  ],
+  "unresolvedBoundary": "All remaining 54 national selections remain research candidates. Do not create identities, approve definitions, or issue cards using guessed identifiers, positions, or unresolved DOB conflicts. No research expansion or new canonical mapping is included in this refresh.",
+  "explicitConflictsRetained": [
+    "Xavier Ladbrook: conflicting official date-of-birth evidence",
+    "Harvie Cooke: conflicting official date-of-birth evidence",
+    "Brady Wright: conflicting official date-of-birth evidence"
+  ],
+  "releaseBoundaries": [
+    "Refresh canonical IDs, aliases and expected roster revisions against current Production before applying either unchanged batch.",
+    "Existing issued cards, ownership, serials, trading rules and already allocated sealed-pack contents remain unchanged.",
+    "Injury/suspension are separate availability facts and are not inferred delistings.",
+    "Unreviewed legacy records are not independently certified current by this review.",
+    "New identity registration creates dormant/unapproved definitions only; activation requires its own valid rights reference and current revision under the existing application contract.",
+    "No production data, award, balance, deployment or source payload was mutated by this evidence review."
+  ],
+  "canonicalIdentityDatabaseRecheckPerformed": false,
+  "rightsApprovalEstablishedByThisReview": false,
+  "productionWrites": 0,
+  "cardsMinted": 0,
+  "definitionsActivated": 0
+}

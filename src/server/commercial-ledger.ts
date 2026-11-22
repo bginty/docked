@@ -12,6 +12,7 @@ import {
   assertCommercialApproval,
   commercialPack,
   commercialProducts,
+  commercialSports,
   integer,
   type BillingEnvironment,
   type CommercialReceipt,
@@ -23,8 +24,25 @@ import { sellerQuote } from "../core/credits-policy";
 import { digest } from "../core/scoring-engine";
 import { commercialCardSnapshot } from "../core/commercial-presentation";
 import { hasRequiredPackSupply } from "../core/commercial-pack-supply";
+import {
+  ownerPackAwardCommand,
+  OwnerPackAwardRejected,
+  type OwnerPackAwardReceipt,
+  type OwnerPackAwardView,
+} from "../core/owner-pack-awards";
 type Authorize = (tx: Sql, member: string) => Promise<void>;
+type AuthorizeOwner = (tx: Sql) => Promise<void>;
 type Funding = { lot: string; receipt: string; amount: number }[];
+type PackProduct = ReturnType<typeof commercialPack>;
+type PackDefinition = {
+  id: string;
+  player_id: string;
+  sport: CommercialSport;
+  rarity: Parameters<typeof rarityRule>[0];
+  issued: number | string;
+  lifetime_cap: number | string;
+  snapshot: unknown;
+};
 const uuid = z.string().uuid();
 /** Private commercial repository. Same authenticated Docked member IDs, separate
  * accounting provenance; no reads/writes or conversion of credits_sandbox. */
@@ -391,6 +409,95 @@ export class CommercialLedger {
     }
     return parts;
   }
+  /** One global order also covers an award containing several sports. */
+  private async packPool(tx: Sql, sports: CommercialSport[]) {
+    await tx`select commercial_billing.lock_roster_issuance()`;
+    const pool = await tx<
+      PackDefinition[]
+    >`select id,player_id,sport,rarity,issued,lifetime_cap,snapshot from commercial_billing.definitions where sport=any(${[...new Set(sports)]}::text[]) and approved and commercial_billing.roster_can_issue(sport,player_id) order by id for update`;
+    for (const definition of pool) {
+      const snapshot = commercialCardSnapshot.parse(definition.snapshot);
+      if (this.environment === "commercial" && snapshot.synthetic)
+        throw Error("Synthetic cards cannot be commercial inventory");
+      if (
+        integer(definition.lifetime_cap) !==
+        rarityRule(definition.rarity).lifetimeCap
+      )
+        throw Error("Approved lifetime supply mismatch");
+    }
+    return pool;
+  }
+  private drawPack(product: PackProduct, definitions: PackDefinition[]) {
+    const pool = definitions.filter((d) => d.sport === product.sport);
+    const availablePlayers = new Map<string, Set<string>>();
+    for (const definition of pool) {
+      if (integer(definition.issued) >= integer(definition.lifetime_cap))
+        continue;
+      const players =
+        availablePlayers.get(definition.rarity) ?? new Set<string>();
+      players.add(definition.player_id);
+      availablePlayers.set(definition.rarity, players);
+    }
+    if (
+      !hasRequiredPackSupply(
+        product,
+        [...availablePlayers].map(([rarity, players]) => ({
+          rarity,
+          players: players.size,
+        })),
+      )
+    )
+      throw Error("Pack supply unavailable; no charge or substitution");
+    const chosen: PackDefinition[] = [];
+    const players = new Set<string>();
+    const evidence = [];
+    for (let slot = 0; slot < product.cards; slot++) {
+      const rarity = drawPackRarity(product, slot);
+      const eligible = pool.filter(
+        (definition) =>
+          definition.rarity === rarity &&
+          integer(definition.issued) < integer(definition.lifetime_cap) &&
+          !players.has(definition.player_id),
+      );
+      if (!eligible.length)
+        throw Error("Pack supply unavailable; no charge or substitution");
+      const definition = eligible[randomInt(eligible.length)];
+      players.add(definition.player_id);
+      chosen.push(definition);
+      evidence.push({
+        rarity,
+        poolHash: digest(eligible.map((item) => item.id)),
+        eligiblePlayers: eligible.length,
+      });
+    }
+    return { chosen, evidence };
+  }
+  private async allocatePack(
+    tx: Sql,
+    member: string,
+    request: string,
+    product: PackProduct,
+    draw: ReturnType<CommercialLedger["drawPack"]>,
+    funding: Funding,
+    policy: string,
+    award?: { id: string; index: number },
+  ) {
+    const id = randomUUID();
+    if (award)
+      await tx`insert into commercial_billing.packs(id,member_id,request,product,price,funding,draw_evidence,policy_version,award_id,award_index) values(${id},${member},${request},${tx.json(product)},0,'[]'::jsonb,${tx.json(draw.evidence)},${policy},${award.id},${award.index})`;
+    else
+      await tx`insert into commercial_billing.packs(id,member_id,request,product,price,funding,draw_evidence,policy_version) values(${id},${member},${request},${tx.json(product)},${product.priceCredits},${tx.json(funding)},${tx.json(draw.evidence)},${policy})`;
+    for (const [slot, definition] of draw.chosen.entries()) {
+      const card = randomUUID();
+      const serial = integer(definition.issued) + 1;
+      await tx`insert into commercial_billing.cards(id,definition,serial,owner_id,pack,slot) values(${card},${definition.id},${serial},${member},${id},${slot})`;
+      await tx`insert into commercial_billing.ownership_events(card,to_member,reference) values(${card},${member},${`pack:${id}`})`;
+      // card_guard advanced the locked database counter. Keep this pool current
+      // for the next pack in the same transaction; never reuse a stale serial.
+      definition.issued = serial;
+    }
+    return id;
+  }
   async buyPack(
     member: string,
     request: string,
@@ -418,63 +525,26 @@ export class CommercialLedger {
       const [prior] =
         await tx`select * from commercial_billing.packs where member_id=${member} and request=${request}`;
       if (prior) {
-        if (prior.product.configurationHash !== p.configurationHash)
+        if (
+          prior.award_id ||
+          prior.product.configurationHash !== p.configurationHash
+        )
           throw Error("Purchase retry conflicts with original product");
         return { id: prior.id, price: integer(prior.price), cards: p.cards };
       }
       await this.noHold(tx, member);
-      // Global deterministic definition lock order prevents oversold lifetime supply.
-      const pool =
-        await tx`select * from commercial_billing.definitions where sport=${p.sport} and approved order by id for update`;
-      for (const d of pool) {
-        const snapshot = commercialCardSnapshot.parse(d.snapshot);
-        if (this.environment === "commercial" && snapshot.synthetic)
-          throw Error("Synthetic cards cannot be commercial inventory");
-        if (integer(d.lifetime_cap) !== rarityRule(d.rarity).lifetimeCap)
-          throw Error("Approved lifetime supply mismatch");
-      }
-      const availablePlayers = new Map<string, Set<string>>();
-      for (const d of pool) {
-        if (integer(d.issued) >= integer(d.lifetime_cap)) continue;
-        const players = availablePlayers.get(d.rarity) ?? new Set<string>();
-        players.add(d.player_id);
-        availablePlayers.set(d.rarity, players);
-      }
-      if (
-        !hasRequiredPackSupply(
-          p,
-          [...availablePlayers].map(([rarity, players]) => ({
-            rarity,
-            players: players.size,
-          })),
-        )
-      )
-        throw Error("Pack supply unavailable; no charge or substitution");
-      const chosen: (typeof pool)[number][] = [];
-      const players = new Set<string>();
-      const evidence = [];
-      for (let slot = 0; slot < p.cards; slot++) {
-        const rarity = drawPackRarity(p, slot),
-          eligible = pool.filter(
-            (d) =>
-              d.rarity === rarity &&
-              integer(d.issued) < integer(d.lifetime_cap) &&
-              !players.has(d.player_id),
-          );
-        if (!eligible.length)
-          throw Error("Pack supply unavailable; no charge or substitution");
-        const d = eligible[randomInt(eligible.length)];
-        players.add(d.player_id);
-        chosen.push(d);
-        evidence.push({
-          rarity,
-          poolHash: digest(eligible.map((x) => x.id)),
-          eligiblePlayers: eligible.length,
-        });
-      }
-      const funding = await this.spend(tx, member, p.priceCredits),
-        id = randomUUID();
-      await tx`insert into commercial_billing.packs(id,member_id,request,product,price,funding,draw_evidence,policy_version) values(${id},${member},${request},${tx.json(p)},${p.priceCredits},${tx.json(funding)},${tx.json(evidence)},${c.policy_version})`;
+      const pool = await this.packPool(tx, [p.sport]);
+      const draw = this.drawPack(p, pool);
+      const funding = await this.spend(tx, member, p.priceCredits);
+      const id = await this.allocatePack(
+        tx,
+        member,
+        request,
+        p,
+        draw,
+        funding,
+        c.policy_version,
+      );
       await this.journal(
         tx,
         `pack:${id}`,
@@ -487,11 +557,6 @@ export class CommercialLedger {
           ["system:pack-consumed", p.priceCredits],
         ],
       );
-      for (const [slot, d] of chosen.entries()) {
-        const card = randomUUID();
-        await tx`insert into commercial_billing.cards(id,definition,serial,owner_id,pack,slot) values(${card},${d.id},${integer(d.issued) + 1},${member},${id},${slot})`;
-        await tx`insert into commercial_billing.ownership_events(card,to_member,reference) values(${card},${member},${`pack:${id}`})`;
-      }
       await this.audit(tx, member, "pack-purchased", id, {
         product: p.id,
         cards: p.cards,
@@ -499,6 +564,215 @@ export class CommercialLedger {
       });
       return { id, price: p.priceCredits, cards: p.cards };
     });
+  }
+  private async awardReceipts(
+    tx: Sql,
+    ids: string[],
+  ): Promise<OwnerPackAwardReceipt[]> {
+    if (!ids.length) return [];
+    const rows = await tx<
+      {
+        id: string;
+        request: string;
+        member_id: string;
+        recipient_name: string;
+        actor: string;
+        reason: "PROMOTION" | "PRIZE";
+        reference: string;
+        created_at: string | Date;
+        packs: OwnerPackAwardReceipt["packs"];
+      }[]
+    >`select a.id,a.request,a.member_id,a.recipient_name,a.actor,a.reason,a.reference,a.created_at,
+      coalesce(jsonb_agg(jsonb_build_object('id',p.id,'sport',p.product->>'sport','family',p.product->>'type',
+        'size',(p.product->>'cards')::integer,'name',p.product->>'name') order by p.award_index) filter(where p.id is not null),'[]'::jsonb) packs
+      from commercial_billing.pack_awards a left join commercial_billing.packs p on p.award_id=a.id
+      where a.id=any(${ids}::uuid[]) group by a.id order by a.created_at desc,a.id desc`;
+    return rows.map((row) => ({
+      id: row.id,
+      request: row.request,
+      member: row.member_id,
+      recipientName: row.recipient_name,
+      actor: row.actor,
+      reason: row.reason,
+      reference: row.reference,
+      createdAt: new Date(row.created_at).toISOString(),
+      packs: row.packs,
+    }));
+  }
+  async ownerPackAwards(
+    actor: string,
+    authorize: AuthorizeOwner,
+    offset = 0,
+  ): Promise<OwnerPackAwardView> {
+    uuid.parse(actor);
+    z.number().int().min(0).max(100000).parse(offset);
+    return this.sql.begin(async (transaction) => {
+      const tx = transaction as unknown as Sql;
+      await authorize(tx);
+      await tx`select commercial_billing.pack_award_actor(${actor}::uuid)`;
+      const control = await this.control(tx);
+      let enabled = control.issuance_enabled === true;
+      try {
+        assertCommercialApproval(
+          control as Parameters<typeof assertCommercialApproval>[0],
+          this.environment,
+        );
+      } catch {
+        enabled = false;
+      }
+      const supply = await tx<
+        {
+          sport: CommercialSport;
+          rarity: string;
+          players: number;
+        }[]
+      >`select sport,rarity,count(distinct player_id) filter(where issued<lifetime_cap and commercial_billing.roster_can_issue(sport,player_id))::integer players from commercial_billing.definitions where approved group by sport,rarity`;
+      const products: OwnerPackAwardView["products"] = [];
+      for (const sport of commercialSports) {
+        const pool = supply.filter((row) => row.sport === sport);
+        // A sport without any approved definitions is not activated by awards.
+        if (!pool.length) continue;
+        for (const family of ["STANDARD", "PREMIUM"] as const)
+          for (const size of [1, 3, 9] as const) {
+            const product = commercialPack(sport, family, size);
+            products.push({
+              id: product.id,
+              name: product.name,
+              sport,
+              family,
+              size,
+              configurationHash: product.configurationHash,
+              available: enabled && hasRequiredPackSupply(product, pool),
+            });
+          }
+      }
+      const page = await tx<
+        { id: string }[]
+      >`select id from commercial_billing.pack_awards order by created_at desc,id desc limit 21 offset ${offset}`;
+      return {
+        enabled,
+        products,
+        awards: await this.awardReceipts(
+          tx,
+          page.slice(0, 20).map((row) => row.id),
+        ),
+        next: page.length > 20 ? offset + 20 : null,
+      };
+    });
+  }
+  async awardPacks(
+    actor: string,
+    input: unknown,
+    authorize: AuthorizeOwner,
+    versions: { terms: string; privacy: string },
+  ): Promise<OwnerPackAwardReceipt> {
+    uuid.parse(actor);
+    const command = ownerPackAwardCommand.parse(input);
+    const commandHash = digest(command);
+    let priorAbsent = false;
+    try {
+      return await this.sql.begin(async (transaction) => {
+        const tx = transaction as unknown as Sql;
+        await authorize(tx);
+        await tx`select commercial_billing.pack_award_actor(${actor}::uuid)`;
+        await tx`select pg_advisory_xact_lock(hashtextextended(${"owner-pack-award:" + actor + ":" + command.request},0))`;
+        await this.control(tx);
+        const [prior] =
+          await tx`select id,command,command_hash from commercial_billing.pack_awards where actor=${actor} and request=${command.request}`;
+        if (prior) {
+          if (
+            prior.command_hash !== commandHash ||
+            digest(prior.command) !== commandHash
+          )
+            throw Error("Award request conflicts with original award");
+          const [receipt] = await this.awardReceipts(tx, [prior.id]);
+          if (!receipt) throw Error("Saved award receipt unavailable");
+          return receipt;
+        }
+        priorAbsent = true;
+        const control = await this.control(tx, "issuance_enabled");
+        await this.accounts(tx, [command.member]);
+        await tx`select commercial_billing.pack_award_recipient(${actor}::uuid,${command.member}::uuid,${versions.terms},${versions.privacy})`;
+        await this.noHold(tx, command.member);
+        const products = command.lines.flatMap((line) => {
+          const product = commercialPack(line.sport, line.family, line.size);
+          if (product.configurationHash !== line.configurationHash)
+            throw new OwnerPackAwardRejected(
+              "Pack details changed. Refresh the pack options and review again.",
+            );
+          return Array.from({ length: line.quantity }, () => product);
+        });
+        const pool = await this.packPool(
+          tx,
+          products.map((product) => product.sport),
+        );
+        const [award] =
+          await tx`select * from commercial_billing.create_pack_award(${actor}::uuid,${tx.json(command)},${commandHash},${tx.json(products)},${versions.terms},${versions.privacy})`;
+        if (!award) throw Error("Pack award could not be prepared");
+        for (const [index, product] of products.entries()) {
+          const draw = this.drawPack(product, pool);
+          await this.allocatePack(
+            tx,
+            command.member,
+            randomUUID(),
+            product,
+            draw,
+            [],
+            control.policy_version,
+            { id: award.id, index },
+          );
+        }
+        await this.audit(tx, actor, "packs-awarded", award.id, {
+          member: command.member,
+          request: command.request,
+          reason: command.reason,
+          reference: command.reference,
+          packs: products.length,
+          cards: products.reduce((total, product) => total + product.cards, 0),
+        });
+        const [receipt] = await this.awardReceipts(tx, [award.id]);
+        if (!receipt) throw Error("Pack award receipt unavailable");
+        return receipt;
+      });
+    } catch (error) {
+      if (error instanceof OwnerPackAwardRejected) throw error;
+      // Only known business declines after the replay lookup are terminal.
+      // Network/commit failures, owner-session changes and request conflicts
+      // retain the same request for recovery instead of risking a second award.
+      if (priorAbsent && error instanceof Error) {
+        const message = error.message;
+        if (message === "Pack supply unavailable; no charge or substitution")
+          throw new OwnerPackAwardRejected(
+            "The full selection is no longer available. No packs were issued. Refresh and review your selection.",
+          );
+        if (message === "Account review required before spending or purchasing")
+          throw new OwnerPackAwardRejected(
+            "This customer has a financial hold. No packs were issued.",
+          );
+        if (
+          (error as Error & { code?: string }).code === "P0001" &&
+          [
+            "Eligible commercial customer required",
+            "Eligible commercial customer without a financial hold required",
+          ].includes(message)
+        )
+          throw new OwnerPackAwardRejected(
+            "This customer is not currently eligible to receive packs. Check their verification and account status.",
+          );
+        if (
+          [
+            "Commercial feature disabled",
+            "Commercial approval expired or pending",
+            "Commercial approval pending",
+            "Unsupported commercial launch scope",
+          ].includes(message)
+        )
+          throw new OwnerPackAwardRejected(
+            "Pack issuance is currently unavailable. No packs were issued.",
+          );
+      }
+      throw error;
+    }
   }
   async openPack(member: string, id: string, authorize: Authorize) {
     uuid.parse(member);

@@ -1,0 +1,44 @@
+✔ prepared AFL update contains only the seven corroborated existing identities with captured source hashes (8.63733ms)
+✔ draft research distinguishes completed selection facts from unverified new permanent identities (0.207033ms)
+✔ new AFL batch binds exactly nine observed profile identities without reusing existing players (15.820139ms)
+✔ new AFL definition artifact is the exact canonical dormant 45-row pool with no supply reset (18.272848ms)
+✔ new AFL player facts and source hashes trace to their exact independent profile and club captures (1.460729ms)
+✔ all 63 unlinked draft selections partition into nine prepared and 54 pending without activation or duplicate returnees (1.478746ms)
+✔ roster decisions keep injury separate from registration and canonicalise exact batches (13.324255ms)
+✔ source approval binds official sport domains and rejects confusing hosts or credentials (1.415099ms)
+✔ new-player definitions require the exact identity, evidence and sport position without granting rights (5.145214ms)
+✔ legacy club audit uses all saved clubs, labels them unverified and never matches reviewed rows by historic club (4.277979ms)
+✔ full audit export retains all filtered rows while the read view is capped at one hundred (1.272594ms)
+✔ award HTTP boundary rejects other origins, absent owner binding and malformed/oversize bodies before mutation (50.180672ms)
+✔ successful award passes the exact command and expected owner and cannot be publicly cached (8.655677ms)
+✔ unknown database or connection failures preserve pending recovery and hide private error detail (8.490868ms)
+✔ only a definitive ledger decline allows editing a saved award (8.152145ms)
+✔ award history validates bounded pagination and the expected owner (10.468158ms)
+✔ actual owner adapter binds verified MFA/session claims to the commercial transaction and rejects stale owner tabs (12.707423ms)
+✔ owner award adapter cannot activate beta or a disabled commercial service (34.391553ms)
+✔ pack-only award command preserves the requested mixed bundle and normalises its review (12.148127ms)
+✔ all Standard and Premium sizes can be awarded, with bounded positive quantities (2.38094ms)
+✔ award review cannot submit credits, selected cards, actor identity, duplicate products or unconfirmed bundles (1.645738ms)
+✔ actual roster UI distinguishes legacy metadata, unattached retired players and unconfigured draft candidates (127.942965ms)
+✔ roster pagination preserves filters and CSV export retains filters across all pages (2.805432ms)
+✔ legacy club filters remain visibly unverified through pagination and full CSV export (1.869988ms)
+✔ complete roster CSV preserves audited identities, Unicode and counts while neutralising spreadsheet formulas (3.357327ms)
+✔ roster audit export refuses silent pagination and duplicate canonical identities (0.531824ms)
+✔ Owner roster GET exports all matching rows and rejects absent binding, unknown or duplicate filters (51.004121ms)
+✔ reviewed roster mutation boundary rejects CSRF, missing binding and malformed/oversize input before mutation (15.791105ms)
+✔ uncertain roster mutation failure never claims rejection or exposes database details (7.265796ms)
+✔ actual roster adapter binds verified Owner session, refuses stale tabs and keeps scoped Preview read-only (20.496805ms)
+✔ both retained Owner roles land on Commercial operations and preserve individual MFA (1.246565ms)
+✔ incidents survive login/MFA return validation without widening external redirects (0.148855ms)
+✔ pack awards retain their customer selection through Owner login and MFA (0.142175ms)
+✔ roster filters survive Owner login and MFA without adding mutation routes (0.132891ms)
+✔ invalid refresh clears only this project's session chunks, retaining PKCE and unrelated cookies (0.75446ms)
+✔ native resume returns retained Owners to Commercial operations without interrupting MFA or restarting gameplay (0.160994ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1358.412114

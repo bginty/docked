@@ -1,0 +1,10 @@
+▲ Next.js 16.4.6 (webpack)
+✓ Running next.config.ts took 28ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 8.6s
+  Running TypeScript ...
+src/components/sport-image.tsx(3,24): error TS2307: Cannot find module '../../public/images/sports/manifest.json' or its corresponding type declarations.
+src/components/sport-image.tsx(28,30): error TS7006: Parameter 'item' implicitly has an 'any' type.
+Failed to type check.
+

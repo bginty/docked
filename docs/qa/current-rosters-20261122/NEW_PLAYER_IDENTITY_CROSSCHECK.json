@@ -1,0 +1,364 @@
+{
+  "capturedAt": "2026-11-22T01:44:57.82528+00:00",
+  "legacyPlayers": [],
+  "permanentIdentities": [],
+  "savedEconomyPlayers": [],
+  "commercialIdentities": [],
+  "scope": "Read-only exact-name review of the nine corroborated AFL profile identities, including Mitch/Mitchell Knevitt.",
+  "names": [
+    "Cooper Hodge",
+    "Gus Kennedy",
+    "Archie Elliott",
+    "Lachlan Hicks",
+    "Ethan Drever",
+    "Arki Butler",
+    "Caylen Murray",
+    "Mitch Knevitt",
+    "Mitchell Knevitt",
+    "Jack Riding",
+    "Lachie Hicks"
+  ],
+  "aflProviderAliasRows": 0,
+  "productionWrites": 0,
+  "surnameAndKnownVariantSweep": {
+    "project": "pojoymtniryarxxunyvz",
+    "capturedAt": "2026-11-22T01:52:26.122195+00:00",
+    "legacyPlayers": [],
+    "productionWrites": 0,
+    "permanentIdentities": [],
+    "savedEconomyPlayers": [
+      {
+        "id": "afl-roster-beta-Q29033807",
+        "name": "Dan Butler",
+        "provider": "wikimedia",
+        "providerId": "afl:Q29033807",
+        "canonicalPlayerId": null
+      },
+      {
+        "id": "afl-roster-beta-Q56434234",
+        "name": "Elliott Himmelberg",
+        "provider": "wikimedia",
+        "providerId": "afl:Q56434234",
+        "canonicalPlayerId": null
+      },
+      {
+        "id": "afl-roster-beta-Q140097392",
+        "name": "Jai Murray",
+        "provider": "wikimedia",
+        "providerId": "afl:Q140097392",
+        "canonicalPlayerId": null
+      },
+      {
+        "id": "afl-roster-beta-Q6146876",
+        "name": "Jamie Elliott",
+        "provider": "wikimedia",
+        "providerId": "afl:Q6146876",
+        "canonicalPlayerId": null
+      },
+      {
+        "id": "afl-roster-beta-Q25190512",
+        "name": "Matthew Kennedy",
+        "provider": "wikimedia",
+        "providerId": "afl:Q25190512",
+        "canonicalPlayerId": null
+      },
+      {
+        "id": "afl-roster-beta-Q106289186",
+        "name": "Nick Murray",
+        "provider": "wikimedia",
+        "providerId": "afl:Q106289186",
+        "canonicalPlayerId": null
+      },
+      {
+        "id": "afl-roster-beta-Q138655486",
+        "name": "Toby Murray",
+        "provider": "wikimedia",
+        "providerId": "afl:Q138655486",
+        "canonicalPlayerId": null
+      },
+      {
+        "id": "afl-roster-beta-Q141125098",
+        "name": "Tobyn Murray",
+        "provider": "wikimedia",
+        "providerId": "afl:Q141125098",
+        "canonicalPlayerId": null
+      }
+    ],
+    "aflProviderAliasRows": 0,
+    "commercialIdentities": [
+      {
+        "name": "Elliott Himmelberg",
+        "playerId": "88d868a0-d9ce-465f-a16e-751e22aeb135",
+        "provider": "wikimedia",
+        "providerId": "afl:Q56434234"
+      },
+      {
+        "name": "Jai Murray",
+        "playerId": "72f74263-aced-4327-a76e-ee903ef57434",
+        "provider": "wikimedia",
+        "providerId": "afl:Q140097392"
+      },
+      {
+        "name": "Jamie Elliott",
+        "playerId": "709be178-afb6-4a12-af6f-37dedb816b1b",
+        "provider": "wikimedia",
+        "providerId": "afl:Q6146876"
+      },
+      {
+        "name": "Matthew Kennedy",
+        "playerId": "1d8f3729-78a4-4468-a583-00e14d1f3142",
+        "provider": "wikimedia",
+        "providerId": "afl:Q25190512"
+      },
+      {
+        "name": "Nick Murray",
+        "playerId": "af7c46a0-34a3-446c-a85f-761dd437fa37",
+        "provider": "wikimedia",
+        "providerId": "afl:Q106289186"
+      },
+      {
+        "name": "Toby Murray",
+        "playerId": "7e25585a-c284-48be-aa36-6177c3687cf3",
+        "provider": "wikimedia",
+        "providerId": "afl:Q138655486"
+      },
+      {
+        "name": "Tobyn Murray",
+        "playerId": "84b7895e-883e-4ea0-ac9f-f0ce289ed586",
+        "provider": "wikimedia",
+        "providerId": "afl:Q141125098"
+      }
+    ],
+    "scope": "Read-only whole-word search for Kennedy, Drever, Elliott, Hicks, Hodge, Butler, Murray, Knevitt and Riding across the same four identity registries. Includes Lachie/Lachlan Hicks and Mitch/Mitchell Knevitt without requiring the first name to match.",
+    "query": "select jsonb_build_object(\n'capturedAt',clock_timestamp(),\n'project','pojoymtniryarxxunyvz',\n'legacyPlayers',(select coalesce(jsonb_agg(jsonb_build_object('id',id,'name',name,'team',team,'position',position) order by name),'[]'::jsonb) from beta_fantasy.players where sport='afl' and lower(name) ~ '(^|[^a-z])(kennedy|drever|elliott|hicks|hodge|butler|murray|knevitt|riding)([^a-z]|$)'),\n'permanentIdentities',(select coalesce(jsonb_agg(jsonb_build_object('id',id,'name',identity->>'name','provider',provider,'providerId',provider_id) order by identity->>'name'),'[]'::jsonb) from credits_sandbox.permanent_players where sport='afl' and lower(identity->>'name') ~ '(^|[^a-z])(kennedy|drever|elliott|hicks|hodge|butler|murray|knevitt|riding)([^a-z]|$)'),\n'savedEconomyPlayers',(select coalesce(jsonb_agg(jsonb_build_object('id',p->>'id','name',p->>'name','provider',p->>'provider','providerId',p->>'providerId','canonicalPlayerId',p->>'canonicalPlayerId') order by p->>'name'),'[]'::jsonb) from credits_sandbox.state s cross join lateral jsonb_array_elements(case jsonb_typeof(s.document#>'{economy,players}') when 'array' then s.document#>'{economy,players}' when 'object' then(select coalesce(jsonb_agg(value),'[]'::jsonb) from jsonb_each(s.document#>'{economy,players}')) else '[]'::jsonb end) p where p->>'sport'='afl' and lower(p->>'name') ~ '(^|[^a-z])(kennedy|drever|elliott|hicks|hodge|butler|murray|knevitt|riding)([^a-z]|$)'),\n'commercialIdentities',(select coalesce(jsonb_agg(x order by x->>'name'),'[]'::jsonb) from (select distinct jsonb_build_object('playerId',player_id,'name',snapshot->>'name','provider',snapshot->>'provider','providerId',snapshot->>'providerId') x from commercial_billing.definitions where sport='afl' and lower(snapshot->>'name') ~ '(^|[^a-z])(kennedy|drever|elliott|hicks|hodge|butler|murray|knevitt|riding)([^a-z]|$)') a),\n'aflProviderAliasRows',(select count(*) from sports_feed.player_aliases where sport='afl'),\n'productionWrites',0) result",
+    "candidateIdentityMatches": [],
+    "otherNameMatchesAreNotMerged": true,
+    "conclusion": "No candidate or known first-name variant was identified in these registries. Returned records concern distinct named athletes; Elliott Himmelberg is an incidental first-name token match. No Hicks records were returned, including Lachie/Lachlan."
+  },
+  "localSurnameAndVariantCrosscheck": {
+    "checkedAt": "2026-11-22T01:54:38.339847+00:00",
+    "censusPlayers": 542,
+    "censusSha256": "45e6ebcc2d4732730bd46c64f1650bd2855c064394332117606cf21cfa2c64eb",
+    "historicalCatalogue": "public/data/rosters/wikimedia-roster-beta-2026-10-23-v1.json",
+    "historicalSha256": "dec3486cd976b54cd2a3ced2bf88a5378a139e6d2d4788c6202562793b36a5d9",
+    "rows": [
+      {
+        "name": "Gus Kennedy",
+        "officialAflProfileId": "13934",
+        "knownNameVariantsChecked": [
+          "Gus Kennedy"
+        ],
+        "censusSurnameMatches": [
+          {
+            "playerId": "1d8f3729-78a4-4468-a583-00e14d1f3142",
+            "names": [
+              "Matthew Kennedy"
+            ],
+            "providers": [
+              {
+                "provider": "wikimedia",
+                "providerId": "afl:Q25190512"
+              }
+            ]
+          }
+        ],
+        "historicalSurnameMatches": [
+          {
+            "canonicalPlayerId": "1d8f3729-78a4-4468-a583-00e14d1f3142",
+            "name": "Matthew Kennedy",
+            "providerId": "afl:Q25190512"
+          }
+        ],
+        "candidateOrKnownVariantMatches": [],
+        "disposition": "No candidate or known name variant found; other surname records retained for review and never auto-merged"
+      },
+      {
+        "name": "Ethan Drever",
+        "officialAflProfileId": "13891",
+        "knownNameVariantsChecked": [
+          "Ethan Drever"
+        ],
+        "censusSurnameMatches": [],
+        "historicalSurnameMatches": [],
+        "candidateOrKnownVariantMatches": [],
+        "disposition": "No candidate or known name variant found; other surname records retained for review and never auto-merged"
+      },
+      {
+        "name": "Archie Elliott",
+        "officialAflProfileId": "14658",
+        "knownNameVariantsChecked": [
+          "Archie Elliott"
+        ],
+        "censusSurnameMatches": [
+          {
+            "playerId": "709be178-afb6-4a12-af6f-37dedb816b1b",
+            "names": [
+              "Jamie Elliott"
+            ],
+            "providers": [
+              {
+                "provider": "wikimedia",
+                "providerId": "afl:Q6146876"
+              }
+            ]
+          }
+        ],
+        "historicalSurnameMatches": [
+          {
+            "canonicalPlayerId": "709be178-afb6-4a12-af6f-37dedb816b1b",
+            "name": "Jamie Elliott",
+            "providerId": "afl:Q6146876"
+          }
+        ],
+        "candidateOrKnownVariantMatches": [],
+        "disposition": "No candidate or known name variant found; other surname records retained for review and never auto-merged"
+      },
+      {
+        "name": "Lachlan Hicks",
+        "officialAflProfileId": "13906",
+        "knownNameVariantsChecked": [
+          "Lachlan Hicks",
+          "Lachie Hicks"
+        ],
+        "censusSurnameMatches": [],
+        "historicalSurnameMatches": [],
+        "candidateOrKnownVariantMatches": [],
+        "disposition": "No candidate or known name variant found; other surname records retained for review and never auto-merged"
+      },
+      {
+        "name": "Cooper Hodge",
+        "officialAflProfileId": "15318",
+        "knownNameVariantsChecked": [
+          "Cooper Hodge"
+        ],
+        "censusSurnameMatches": [],
+        "historicalSurnameMatches": [],
+        "candidateOrKnownVariantMatches": [],
+        "disposition": "No candidate or known name variant found; other surname records retained for review and never auto-merged"
+      },
+      {
+        "name": "Arki Butler",
+        "officialAflProfileId": "13950",
+        "knownNameVariantsChecked": [
+          "Arki Butler"
+        ],
+        "censusSurnameMatches": [],
+        "historicalSurnameMatches": [
+          {
+            "canonicalPlayerId": "610a1cc4-160e-477c-a8ce-2c771e3882a6",
+            "name": "Dan Butler",
+            "providerId": "afl:Q29033807"
+          }
+        ],
+        "candidateOrKnownVariantMatches": [],
+        "disposition": "No candidate or known name variant found; other surname records retained for review and never auto-merged"
+      },
+      {
+        "name": "Caylen Murray",
+        "officialAflProfileId": "15314",
+        "knownNameVariantsChecked": [
+          "Caylen Murray"
+        ],
+        "censusSurnameMatches": [
+          {
+            "playerId": "72f74263-aced-4327-a76e-ee903ef57434",
+            "names": [
+              "Jai Murray"
+            ],
+            "providers": [
+              {
+                "provider": "wikimedia",
+                "providerId": "afl:Q140097392"
+              }
+            ]
+          },
+          {
+            "playerId": "7e25585a-c284-48be-aa36-6177c3687cf3",
+            "names": [
+              "Toby Murray"
+            ],
+            "providers": [
+              {
+                "provider": "wikimedia",
+                "providerId": "afl:Q138655486"
+              }
+            ]
+          },
+          {
+            "playerId": "84b7895e-883e-4ea0-ac9f-f0ce289ed586",
+            "names": [
+              "Tobyn Murray"
+            ],
+            "providers": [
+              {
+                "provider": "wikimedia",
+                "providerId": "afl:Q141125098"
+              }
+            ]
+          },
+          {
+            "playerId": "af7c46a0-34a3-446c-a85f-761dd437fa37",
+            "names": [
+              "Nick Murray"
+            ],
+            "providers": [
+              {
+                "provider": "wikimedia",
+                "providerId": "afl:Q106289186"
+              }
+            ]
+          }
+        ],
+        "historicalSurnameMatches": [
+          {
+            "canonicalPlayerId": "af7c46a0-34a3-446c-a85f-761dd437fa37",
+            "name": "Nick Murray",
+            "providerId": "afl:Q106289186"
+          },
+          {
+            "canonicalPlayerId": "7e25585a-c284-48be-aa36-6177c3687cf3",
+            "name": "Toby Murray",
+            "providerId": "afl:Q138655486"
+          },
+          {
+            "canonicalPlayerId": "84b7895e-883e-4ea0-ac9f-f0ce289ed586",
+            "name": "Tobyn Murray",
+            "providerId": "afl:Q141125098"
+          },
+          {
+            "canonicalPlayerId": "72f74263-aced-4327-a76e-ee903ef57434",
+            "name": "Jai Murray",
+            "providerId": "afl:Q140097392"
+          }
+        ],
+        "candidateOrKnownVariantMatches": [],
+        "disposition": "No candidate or known name variant found; other surname records retained for review and never auto-merged"
+      },
+      {
+        "name": "Mitch Knevitt",
+        "officialAflProfileId": "5176",
+        "knownNameVariantsChecked": [
+          "Mitch Knevitt",
+          "Mitchell Knevitt"
+        ],
+        "censusSurnameMatches": [],
+        "historicalSurnameMatches": [],
+        "candidateOrKnownVariantMatches": [],
+        "disposition": "No candidate or known name variant found; other surname records retained for review and never auto-merged"
+      },
+      {
+        "name": "Jack Riding",
+        "officialAflProfileId": "8950",
+        "knownNameVariantsChecked": [
+          "Jack Riding"
+        ],
+        "censusSurnameMatches": [],
+        "historicalSurnameMatches": [],
+        "candidateOrKnownVariantMatches": [],
+        "disposition": "No candidate or known name variant found; other surname records retained for review and never auto-merged"
+      }
+    ],
+    "fuzzyMergePerformed": false,
+    "scopeLimit": "No existing identity found in checked registries and explicit variants; this is not a claim about every possible unpublished alias."
+  }
+}

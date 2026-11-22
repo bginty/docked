@@ -1,0 +1,102 @@
+.root {
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+}
+.header,
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.panel {
+  min-width: 0;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid #17334d;
+  border-radius: 10px;
+  background: #061322;
+}
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  align-items: end;
+  gap: 1rem;
+}
+.filters label {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+}
+.filters input,
+.filters select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.65rem;
+  border: 1px solid #355570;
+  border-radius: 6px;
+  color: #edf5fd;
+  background: #0a1c30;
+  font: inherit;
+}
+.root button {
+  min-height: 44px;
+}
+.root :is(button, input, select, a, .tableWrap):focus-visible {
+  outline: 2px solid #8bd0ff;
+  outline-offset: 3px;
+}
+.tableWrap {
+  overflow-x: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-block: 1rem;
+}
+.table {
+  width: 100%;
+  min-width: 65rem;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.table caption {
+  text-align: left;
+  padding-block: 0.5rem;
+  color: #b7cadd;
+}
+.table th,
+.table td {
+  padding: 0.85rem 0.65rem;
+  border-bottom: 1px solid #25415a;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.table th[scope="col"] {
+  background: #0a1c30;
+}
+.table th[scope="row"] {
+  min-width: 12rem;
+  font-weight: 600;
+}
+.table small,
+.table time,
+.table a {
+  display: block;
+  margin-top: 0.3rem;
+}
+.muted {
+  color: #b7cadd;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.warning {
+  padding: 0.75rem 1rem;
+  border-left: 3px solid #cda04d;
+  background: #241f16;
+  line-height: 1.6;
+}
+.status {
+  display: inline-block;
+  font-weight: 650;
+}

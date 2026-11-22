@@ -70,7 +70,7 @@ export class CommercialMemberView {
         } catch {}
         const pool = await sql<
           { sport: string; rarity: string; players: number }[]
-        >`select sport,rarity,count(distinct player_id)::int players from commercial_billing.definitions where approved and issued<lifetime_cap group by sport,rarity`;
+        >`select sport,rarity,count(distinct player_id)::int players from commercial_billing.definitions where approved and issued<lifetime_cap and commercial_billing.roster_can_issue(sport,player_id) group by sport,rarity`;
         const products: PackShopState["products"] = commercialSports.flatMap(
           (sport) =>
             (["STANDARD", "PREMIUM"] as const).flatMap((family) =>
@@ -111,7 +111,7 @@ export class CommercialMemberView {
             ),
         );
         const rows =
-          await sql`select id,product,price,created_at,opened_at from commercial_billing.packs where member_id=${this.member} order by created_at desc,id desc limit 51 offset ${offset}`;
+          await sql`select p.id,p.product,p.price,p.created_at,p.opened_at,a.id award_id,a.reason award_reason from commercial_billing.packs p left join commercial_billing.pack_awards a on a.id=p.award_id where p.member_id=${this.member} order by p.created_at desc,p.id desc limit 51 offset ${offset}`;
         const history =
           await sql`select j.id,j.created_at,j.reason,sum(l.amount)::text amount from commercial_billing.lines l join commercial_billing.journals j on j.id=l.journal where l.account=${"member:" + this.member} and j.unit='CREDITS' group by j.id order by j.created_at desc,j.id desc limit 50`;
         const [balance] =
@@ -130,6 +130,9 @@ export class CommercialMemberView {
             sport: r.product.sport,
             purchasedAt: new Date(r.created_at).getTime(),
             paidCredits: Number(r.price),
+            award: r.award_id
+              ? { id: r.award_id, reason: r.award_reason }
+              : null,
             coupon: null,
             cardCount: r.product.cards,
             configuration: r.product.configurationHash,

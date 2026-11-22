@@ -542,10 +542,8 @@ export function PackShop({
           {(tab === "mine" ? unopened : historyPacks).length === 0 && (
             <p>
               {tab === "mine"
-                ? sport === "nfl"
-                  ? "No unopened purchased packs."
-                  : "No unopened purchased packs."
-                : "Your purchased pack history will appear here."}
+                ? "No unopened packs."
+                : "Your pack history will appear here."}
             </p>
           )}
           {(tab === "mine" ? unopened : historyPacks).map((p) => (
@@ -578,10 +576,15 @@ export function PackShop({
                         timeStyle: "short",
                       })
                     : "Date unavailable"}
-                  {p.paidCredits !== null
-                    ? ` · ${credits(p.paidCredits)} ${creditLabel}`
-                    : ""}
+                  {p.award
+                    ? ` · ${p.award.reason === "PROMOTION" ? "Promotion" : "Prize"} · Free`
+                    : p.paidCredits !== null
+                      ? ` · ${credits(p.paidCredits)} ${creditLabel}`
+                      : ""}
                 </p>
+                {p.award && (
+                  <p className="small-note">Award receipt: {p.award.id}</p>
+                )}
                 {p.coupon && (
                   <p className="small-note">
                     {p.coupon.code} · Original {credits(p.coupon.original)} ·

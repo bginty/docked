@@ -156,20 +156,33 @@ export default async function AdminWorkspacePage({
               </Link>
             ))}
         </nav>
+        {publicMode && section === "cards" && who.role === "owner" && (
+          <Link className="button ghost" href="/admin/rosters">
+            Player roster and club export
+          </Link>
+        )}
         {recordProblem && <p role="alert">{recordProblem}</p>}
         {record && <AdminRecordDetail record={record} />}
         {publicMode &&
           section === "users" &&
           record &&
           who.role === "owner" && (
-            <PublicOwnerSupport
-              target={record.id}
-              disabledAt={
-                typeof record.fields["Restricted at"] === "string"
-                  ? record.fields["Restricted at"]
-                  : null
-              }
-            />
+            <>
+              <Link
+                className="button ghost"
+                href={`/admin/pack-awards?member=${encodeURIComponent(record.id)}`}
+              >
+                Award packs to this customer
+              </Link>
+              <PublicOwnerSupport
+                target={record.id}
+                disabledAt={
+                  typeof record.fields["Restricted at"] === "string"
+                    ? record.fields["Restricted at"]
+                    : null
+                }
+              />
+            </>
           )}
         {!publicMode && section === "rewards" && who.role === "owner" && (
           <>
